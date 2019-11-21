@@ -2,11 +2,11 @@ apply plugin: 'java-library'
 apply plugin: 'kotlin'
 
 dependencies {
-    implementation Libs.androidxAnnotation
-    implementation Libs.kotlin
-    compileOnly Libs.retrofitCore
-    implementation Libs.rxJava
-    api Libs.mofslArtifactsAppCore
+    implementation AndroidxDependencies.annotation
+    implementation KotlinDependencies.kotlin
+    compileOnly RetrofitDependencies.core
+    implementation RxDependencies.java
+    api MofslArtifactDependencies.appCore
 }
 
 sourceCompatibility = "1.8"

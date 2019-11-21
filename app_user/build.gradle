@@ -27,20 +27,22 @@ android {
 
 dependencies {
   implementation fileTree(dir: 'libs', include: ['*.jar'])
-  implementation Libs.kotlin
-  implementation Libs.androidxAppcompat
-  implementation Libs.ktxCore
-  implementation Libs.timber
-  testImplementation Libs.testingJunit
-  androidTestImplementation Libs.androidxTestRunner
-  androidTestImplementation Libs.androidxTestEspresso
+  implementation KotlinDependencies.kotlin
+  implementation AndroidxDependencies.appcompat
+  implementation KotlinDependencies.ktxCore
+  testImplementation TestingDependencies.junit
+  androidTestImplementation AndroidxDependencies.testRunner
+  androidTestImplementation AndroidxDependencies.testEspresso
+  implementation Dependencies.timber
 
-  implementation Libs.daggerCore
-  kapt Libs.daggerCompiler
-  implementation Libs.okhttpCore
 
-  implementation Libs.rxJava
-  implementation Libs.rxKotlin
-  implementation Libs.rxRelay
-  implementation Libs.rxPreferences
+  implementation DaggerDependencies.core
+  kapt DaggerDependencies.compiler
+
+  implementation OkHttpDependencies.core
+
+  implementation RxDependencies.java
+  implementation RxDependencies.kotlin
+  implementation RxDependencies.relay
+  implementation RxDependencies.preferences
 }
