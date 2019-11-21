@@ -35,7 +35,7 @@ android {
   versionProps.load(new FileInputStream(file('../version.properties')))
 
   defaultConfig {
-    applicationId "com.mosl.mobile"
+    applicationId "com.mosl.agicapp"
     minSdkVersion Versions.minSdkVersion
     targetSdkVersion Versions.targetSdkVersion
 
