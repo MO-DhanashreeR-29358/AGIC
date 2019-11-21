@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="alpha_emphasis_high">@dimen/material_emphasis_high_type</dimen>
+    <dimen name="alpha_emphasis_medium">@dimen/material_emphasis_medium</dimen>
+    <dimen name="alpha_emphasis_disabled">@dimen/material_emphasis_disabled</dimen>
+
+    <dimen name="large_component_corner_size">16dp</dimen>
+    <dimen name="drawerLayoutWidth">280dp</dimen>
+
+    <dimen name="toolbar_height">38dp</dimen>
+</resources>

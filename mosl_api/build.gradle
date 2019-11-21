@@ -1,0 +1,13 @@
+apply plugin: 'java-library'
+apply plugin: 'kotlin'
+
+dependencies {
+    implementation Libs.androidxAnnotation
+    implementation Libs.kotlin
+    compileOnly Libs.retrofitCore
+    implementation Libs.rxJava
+    api Libs.mofslArtifactsAppCore
+}
+
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"

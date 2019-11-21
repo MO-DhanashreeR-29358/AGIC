@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Widget.MoslTheme.Text" parent="TextAppearance.AppCompat.Body1">
+        <item name="android:textColor">@color/primary_text_color</item>
+    </style>
+
+    <style name="Widget.MoslTheme.HeaderText" parent="Widget.MoslTheme.Text">
+        <item name="android:textSize">@dimen/text_size_medium</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+
+    <style name="Widget.MoslTheme.InfoValueText" parent="Widget.MoslTheme.Text">
+        <item name="android:textSize">@dimen/text_size_medium</item>\
+    </style>
+
+    <style name="Widget.MoslTheme.Header2Text" parent="Widget.MoslTheme.Text">
+        <item name="android:textSize">@dimen/text_size_medium</item>
+    </style>
+
+    <style name="Widget.MoslTheme.HeaderInfoText" parent="Widget.MoslTheme.Text">
+        <item name="android:textSize">@dimen/text_size_small</item>
+        <item name="android:textColor">@color/secondary_text_color</item>
+    </style>
+
+    <style name="Widget.MoslTheme.ActionableText" parent="Widget.MoslTheme.Text">
+        <item name="android:textSize">@dimen/text_size_normal</item>
+        <item name="android:textColor">@color/action_text_color</item>
+    </style>
+
+    <style name="Widget.MoslTheme.EditText" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+    </style>
+
+</resources>

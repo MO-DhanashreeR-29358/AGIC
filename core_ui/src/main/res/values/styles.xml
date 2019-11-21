@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!--Components-->
+    <style name="Widget.MoslTheme.Toolbar" parent="Widget.AppCompat.Toolbar">
+        <item name="android:theme">@style/Base.MoslTheme</item>
+        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+        <item name="titleTextAppearance">@style/TextAppearance.MoslTheme.Toolbar</item>
+        <item name="android:background">?toolbarColor</item>
+    </style>
+    <style name="TextAppearance.MoslTheme.Toolbar" parent="">
+        <item name="android:textSize">@dimen/text_size_medium</item>
+        <item name="android:textColor">@color/primary_text_color</item>
+    </style>
+    <!--Bottom Sheets-->
+    <style name="ThemeOverlay.MoslTheme.BottomSheetDialog" parent="ThemeOverlay.MaterialComponents.Dialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowAnimationStyle">@style/Animation.MoslTheme.BottomSheet.Modal</item>
+        <item name="android:statusBarColor" tools:ignore="NewApi">@android:color/transparent</item>
+        <item name="bottomSheetStyle">@style/Widget.MoslTheme.BottomSheet.Modal</item>
+        <item name="android:navigationBarColor" tools:ignore="NewApi">?colorSurface</item>
+        <item name="android:navigationBarDividerColor" tools:ignore="NewApi">
+            @android:color/transparent
+        </item>
+    </style>
+
+    <style name="Widget.MoslTheme.BottomSheet.Modal" parent="Widget.MaterialComponents.BottomSheet.Modal">
+        <item name="shapeAppearanceOverlay">?shapeAppearanceLargeComponent</item>
+    </style>
+
+    <!--Navigation Drawer-->
+    <style name="Widget.MoslTheme.NavigationView" parent="Widget.MaterialComponents.NavigationView">
+        <item name="itemTextAppearance">?textAppearanceBody2</item>
+    </style>
+
+    <style name="Widget.MoslTheme.ChipWithIcon" parent="Widget.MaterialComponents.Chip.Filter">
+
+    </style>
+
+    <style name="Widget.MoslTheme.Chip" parent="Widget.MaterialComponents.Chip.Choice">
+
+    </style>
+    
+    <style name="Widget.MoslTheme.Tab" parent="Widget.MaterialComponents.TabLayout">
+        <item name="tabIndicatorColor">?colorPrimary</item>
+    </style>
+
+    <style name="Widget.MoslTheme.TabColor" parent="Widget.MaterialComponents.TabLayout">
+        <item name="android:background">?background</item>
+    </style>
+
+    <style name="Widget.MoslTheme.Space" parent="">
+        <item name="android:background">?colorPrimaryVariant</item>
+    </style>
+
+    <style name="Widget.MoslTheme.spinner" parent="Widget.AppCompat.Spinner.Underlined">
+        <item name="android:popupAnimationStyle">@anim/bottom_sheet_slide_in</item>
+    </style>
+
+</resources>

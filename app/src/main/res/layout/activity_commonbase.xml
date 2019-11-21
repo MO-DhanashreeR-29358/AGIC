@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        tools:context=".core.MOSLCommonActivity"
+        tools:openDrawer="start"
+        >
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:id="@+id/coordinator_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:elevation="0dp">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/app_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:contentInsetStart="0dp"
+                    app:navigationIcon="@drawable/navigation_icon"
+                    app:title="@string/app_name" />
+            </com.google.android.material.appbar.AppBarLayout>
+
+                <FrameLayout
+                    android:id="@+id/activityFrameLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                    />
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+        <com.mosl.app.coreui.views.NonConsumingScrimInsetsFrameLayout
+            android:layout_width="@dimen/drawerLayoutWidth"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:background="@color/white"
+            android:fitsSystemWindows="true"
+            app:insetForeground="#4000"
+            >
+
+            <com.mosl.mobile.drawermenu.DrawerMenuView
+                android:id="@+id/drawer_menu"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
+
+        </com.mosl.app.coreui.views.NonConsumingScrimInsetsFrameLayout>
+    </androidx.drawerlayout.widget.DrawerLayout>
+</layout>

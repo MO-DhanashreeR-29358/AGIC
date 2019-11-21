@@ -1,0 +1,2 @@
+include ':app', ':data', ':domain', ':mosl_api', ':annotations', ':app_user', ':mock_data', ':core_ui',':core_data'
+rootProject.name='Agic'
