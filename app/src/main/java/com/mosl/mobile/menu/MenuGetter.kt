@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import com.mosl.app.coreui.base.LeanBaseFragment
 import com.mosl.app.coreui.base.PagerBaseFragment
 import com.mosl.mobile.constants.NavigationConstants
-import com.mosl.mobile.portfolio.PortfolioFragment
+import com.mosl.mobile.demo.DemoMVVMFragment
 
 object MenuGetter {
   const val ARG_TARGET_ITEM_POSITION = PagerBaseFragment.ARG_TARGET_ITEM_POSITION
@@ -15,7 +15,7 @@ object MenuGetter {
   @SuppressLint("SwitchIntDef")
   fun getFragment(@NavigationConstants menuCode: Int): Fragment? {
     return when (menuCode) {
-      NavigationConstants.NAVIGATE_TO_PORTFOLIO->PortfolioFragment()
+      NavigationConstants.NAVIGATE_TO_PORTFOLIO->DemoMVVMFragment()
       else -> null
     }
   }

@@ -1,8 +1,8 @@
 package com.mosl.mobile
 
-import com.mosl.mobile.portfolio.PortfolioFragmentProvider
+import com.mosl.mobile.demo.DemoMVVMFragmentProvider
 import dagger.Module
 
-@Module(includes = [PortfolioFragmentProvider::class])
+@Module(includes = [DemoMVVMFragmentProvider::class])
 abstract class FragmentProvider {
 }
