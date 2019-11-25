@@ -42,6 +42,7 @@ class BaseDataModule {
         .addConverterFactory(ProtoConverterFactory.create())
         .addConverterFactory(MoshiConverterFactory.create())
         .addCallAdapterFactory(rxJava2CallAdapterFactory)
+
   }
 
   @Provides

@@ -1,8 +1,17 @@
 apply plugin: 'java-library'
+apply plugin: 'kotlin'
+apply plugin: 'kotlin-kapt'
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation RxDependencies.java
+    implementation DaggerDependencies.core
+    implementation KotlinDependencies.kotlin
+    implementation AndroidxDependencies.annotation
+
+    implementation LifeCycleDependencies.liveData
+
 }
 
 sourceCompatibility = "1.8"
 targetCompatibility = "1.8"
+

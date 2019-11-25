@@ -67,6 +67,9 @@ dependencies {
   implementation MofslArtifactDependencies.appCore
   debugImplementation MofslArtifactDependencies.debugViewCore
 
+  implementation LifeCycleDependencies.liveData
+
+
   implementation project(':mosl_api')
   implementation project (':domain')
   implementation project (':annotations')

@@ -173,6 +173,27 @@ dependencies {
   implementation project(':app_user')
   implementation project(':core_ui')
   implementation project(':core_data')
+
+  // demo
+
+  implementation CoroutinesDependencies.core
+  implementation CoroutinesDependencies.android
+
+  implementation LifeCycleDependencies.viewModel
+  implementation LifeCycleDependencies.extension
+  implementation LifeCycleDependencies.liveData
+  implementation KotlinDependencies.ktxFragment
+
+  //Android Room
+  implementation RoomDependencies.ktx
+  implementation RoomDependencies.runtime
+  kapt RoomDependencies.compiler
+
+  implementation AndroidxDependencies.preferenceKotlin
+
+
+
+
 }
 
 kapt {

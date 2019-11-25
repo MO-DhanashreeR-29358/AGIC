@@ -3,7 +3,7 @@ package com.mosl.mobile.demo
 import com.mosl.app.core.base.BasePresenter
 import javax.inject.Inject
 
-class DemoMVVMPresenter @Inject constructor(view: DemoMVVMView):BasePresenter<DemoMVVMView>(view) {
+class DemoPresenter @Inject constructor(view: DemoView):BasePresenter<DemoView>(view) {
   override fun start() {
   }
 }

@@ -23,6 +23,8 @@ object Versions {
   const val stetho = "1.5.1"
   const val wearable = "2.3.0"
   const val androidDataBinding = "3.4.2"
+  const val coroutines ="1.3.0"
+  const val lifeCycle ="2.1.0"
 }
 
 object Dependencies {
@@ -61,6 +63,7 @@ object AndroidxDependencies {
   const val browser = "androidx.browser:browser:1.0.0"
   const val multiDex = "androidx.multidex:multidex:2.0.1"
   const val preference = "androidx.preference:preference:1.1.0-rc01"
+  const val preferenceKotlin = "androidx.preference:preference-ktx:1.1.0"
   const val legacy = "androidx.legacy:legacy-support-core-ui:1.0.0"
   const val testRunner = "androidx.test:runner:1.2.0"
   const val testEspresso = "androidx.test.espresso:espresso-core:3.2.0"
@@ -71,13 +74,21 @@ object AndroidxDependencies {
 
 object KotlinDependencies {
   const val ktxCore = "androidx.core:core-ktx:1.1.0-rc01"
-  const val ktxFragment = "androidx.fragment:fragment-ktx:1.1.0-rc0"
+  const val ktxFragment = "androidx.fragment:fragment-ktx:1.1.0-alpha09"
   const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlinVersion}"
 }
 
+object CoroutinesDependencies{
+  const val android= "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
+  const val core= "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
+
+}
+
 object LifeCycleDependencies {
-  const val compiler = "androidx.lifecycle:lifecycle-compiler:2.1.0-rc01"
-  const val extension = "androidx.lifecycle:lifecycle-extensions:2.1.0-rc01"
+  const val compiler = "androidx.lifecycle:lifecycle-compiler:${Versions.lifeCycle}"
+  const val extension = "androidx.lifecycle:lifecycle-extensions:${Versions.lifeCycle}"
+  const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifeCycle}"
+  const val liveData = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifeCycle}"
 }
 
 
@@ -102,6 +113,7 @@ object RoomDependencies {
   const val runtime = "androidx.room:room-runtime:${Versions.room}"
   const val compiler = "androidx.room:room-compiler:${Versions.room}"
   const val rx = "androidx.room:room-rxjava2:${Versions.room}"
+  const val ktx = "androidx.room:room-ktx:${Versions.room}"
 }
 
 
