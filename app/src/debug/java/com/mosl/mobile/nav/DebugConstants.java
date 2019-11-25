@@ -12,4 +12,5 @@ import java.lang.annotation.RetentionPolicy;
     int NAVIGATE_TO_DRAWER_MENU = -101;
     int NAVIGATE_TO_PLAYGROUND_01 = -102;
     int NAVIGATE_TO_PLAYGROUND_02 = -103;
+    int NAVIGATE_TO_LOGIN = -104;
 }

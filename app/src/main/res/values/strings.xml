@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">AGIC</string>
+    <string name="login">Login</string>
+    <string name="login_text">Anual Global Investor Conference</string>
+    <string name="login_text2">Access permitted to registerd users only</string>
+    <string name="text_2019">2019</string>
 </resources>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Agic.iml" filepath="$PROJECT_DIR$/Agic.iml" />
+      <module fileurl="file://$PROJECT_DIR$/annotations/annotations.iml" filepath="$PROJECT_DIR$/annotations/annotations.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app_user/app_user.iml" filepath="$PROJECT_DIR$/app_user/app_user.iml" />
+      <module fileurl="file://$PROJECT_DIR$/buildSrc/buildSrc.iml" filepath="$PROJECT_DIR$/buildSrc/buildSrc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/core_data/core_data.iml" filepath="$PROJECT_DIR$/core_data/core_data.iml" />
+      <module fileurl="file://$PROJECT_DIR$/core_ui/core_ui.iml" filepath="$PROJECT_DIR$/core_ui/core_ui.iml" />
+      <module fileurl="file://$PROJECT_DIR$/data/data.iml" filepath="$PROJECT_DIR$/data/data.iml" />
+      <module fileurl="file://$PROJECT_DIR$/domain/domain.iml" filepath="$PROJECT_DIR$/domain/domain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mock_data/mock_data.iml" filepath="$PROJECT_DIR$/mock_data/mock_data.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mosl_api/mosl_api.iml" filepath="$PROJECT_DIR$/mosl_api/mosl_api.iml" />
+    </modules>
+  </component>
+</project>
