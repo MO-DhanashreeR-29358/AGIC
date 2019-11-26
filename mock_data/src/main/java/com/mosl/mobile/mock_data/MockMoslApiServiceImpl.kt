@@ -10,7 +10,7 @@ import retrofit2.mock.MockRetrofit
 class MockMoslApiServiceImpl(
     private val mockRetrofit: MockRetrofit,
     private val context: Context) : MOSLApi {
-    override suspend fun userLogin(email: String, password: String):Response<AuthResponse>{
+    override suspend fun userLogin(email: String, password: String):AuthResponse{
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }

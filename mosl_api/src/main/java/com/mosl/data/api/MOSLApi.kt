@@ -13,6 +13,6 @@ interface MOSLApi {
   suspend fun userLogin(
     @Field("email") email: String,
     @Field("password") password: String
-  ): Response<AuthResponse>
+  ): AuthResponse
 
 }

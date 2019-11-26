@@ -4,6 +4,7 @@ import android.content.Context
 import com.mosl.app.core.rx.DefaultDispatchers
 import com.mosl.commons.rx.Dispatchers
 import com.mosl.mobile.coredata.util.HttpListenerFactory
+import com.mosl.mobile.coredata.util.MOSLResponseWrapper
 import dagger.Module
 import dagger.Provides
 import mosl.trading.annotation.InternalAPIRetrofit
@@ -35,10 +36,10 @@ class BaseDataModule {
   @Singleton
   @InternalAPIRetrofit
   internal fun provideNewRetrofitBuilder(client: OkHttpClient,
-//      MOSLResponseWrapper: MOSLResponseWrapper,
+      MOSLResponseWrapper: MOSLResponseWrapper,
       rxJava2CallAdapterFactory: RxJava2CallAdapterFactory): Retrofit.Builder {
     return Retrofit.Builder().client(client)
-//        .addConverterFactory(MOSLResponseWrapper)
+        .addConverterFactory(MOSLResponseWrapper)
         .addConverterFactory(ProtoConverterFactory.create())
         .addConverterFactory(MoshiConverterFactory.create())
         .addCallAdapterFactory(rxJava2CallAdapterFactory)

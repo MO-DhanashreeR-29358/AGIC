@@ -5,15 +5,17 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.mosl.mobile.R
 import com.mosl.mobile.core.MOSLCommonFragment
+import com.mosl.mobile.databinding.FragmentDemoBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import timber.log.Timber
 import javax.inject.Inject
-import androidx.lifecycle.observe
-import com.mosl.mobile.databinding.FragmentDemoBinding
 
-class DemoFragment() : MOSLCommonFragment(),DemoView {
+class DemoFragment() : MOSLCommonFragment(), DemoView {
   @Inject
   lateinit var presenter: DemoPresenter
   lateinit var binding: FragmentDemoBinding
@@ -32,7 +34,6 @@ class DemoFragment() : MOSLCommonFragment(),DemoView {
 
     binding.viewmodel = viewModel
 
-
     presenter.start()
   }
 
@@ -47,15 +48,24 @@ class DemoFragment() : MOSLCommonFragment(),DemoView {
 
   @SuppressLint("TimberArgCount")
   override fun onSuccess(user: LiveData<AuthResponseM>) {
-    user.observe(viewLifecycleOwner) { result ->
-      Timber.d("Success %s ", result.message)
-    }
-    binding.progressBar.hide()
+    user.observe(this, Observer {
+      Timber.d("Success %s ", it.message)
+      binding.progressBar.hide()
+    })
+
   }
 
-  override fun onFailure(message: String) {
+  override fun onError(message: String) {
     binding.progressBar.hide()
-    binding.rootLayout.snackbar(message)
+    Timber.d("Error %s ", String)
+  }
+
+  override suspend fun onFailure(message: String) {
+    withContext(Dispatchers.Main){
+      binding.progressBar.hide()
+      binding.rootLayout.snackbar(message)
+    }
+
   }
 
 }
