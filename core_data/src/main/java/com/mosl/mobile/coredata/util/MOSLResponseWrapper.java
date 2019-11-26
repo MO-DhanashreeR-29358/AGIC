@@ -2,7 +2,6 @@ package com.mosl.mobile.coredata.util;
 
 import com.google.gson.reflect.TypeToken;
 import com.mosl.annotations.ExcludeWrapper;
-import com.mosl.api.core.BaseResponse;
 import com.mosl.app.core.exception.ServiceFailureException;
 import com.mosl.mobile.coredata.ErrorRepository;
 import java.lang.annotation.Annotation;
@@ -18,10 +17,62 @@ import retrofit2.Retrofit;
  */
 
 public class MOSLResponseWrapper extends Converter.Factory {
-  private final ErrorRepository errorRepository;
+  //private final ErrorRepository errorRepository;
+  //
+  //@Inject MOSLResponseWrapper(ErrorRepository errorRepository) {
+  //  this.errorRepository = errorRepository;
+  //}
+  //
+  //protected static Class<?> getRawType(Type type) {
+  //  if (type instanceof ParameterizedType) {
+  //    ParameterizedType parameterizedType = (ParameterizedType) type;
+  //    Type rawType = parameterizedType.getRawType();
+  //    if (!(rawType instanceof Class)) throw new IllegalArgumentException();
+  //    return (Class<?>) rawType;
+  //  }
+  //  throw new IllegalArgumentException();
+  //}
+  //
+  //@Override
+  //public Converter<ResponseBody, ?> responseBodyConverter(Type type, Annotation[] annotations,
+  //    Retrofit retrofit) {
+  //  if (isWrapped(type)) {
+  //    return null;
+  //  }
+  //  for (Annotation annotation : annotations) {
+  //    if (annotation.annotationType() == ExcludeWrapper.class) {
+  //      return null;
+  //    }
+  //  }
+  //  Type envelopedType = TypeToken.getParameterized(BaseResponse.class, type).getType();
+  //  final Converter<ResponseBody, BaseResponse<?>> delegate =
+  //      retrofit.nextResponseBodyConverter(this, envelopedType, annotations);
+  //  return (Converter<ResponseBody, Object>) value -> {
+  //    BaseResponse<?> baseResponse = delegate.convert(value);
+  //    String code = "ErrorOccurred";
+  //    String message = "ErrorOccurred";
+  //    if (baseResponse != null) {
+  //      if (baseResponse.isSuccessful()) {
+  //        return baseResponse.data;
+  //      }
+  //      code = baseResponse.getMessage();
+  //      message = errorRepository.getMessageBlocking(code);
+  //    }
+  //    throw new ServiceFailureException(code, message);
+  //  };
+  //}
+  //
+  //private boolean isWrapped(Type type) {
+  //  if (type instanceof ParameterizedType) {
+  //    Class<?> rawType = getRawType(type);
+  //    return (rawType == BaseResponse.class);
+  //  }
+  //  return false;
+  //}
 
-  @Inject MOSLResponseWrapper(ErrorRepository errorRepository) {
-    this.errorRepository = errorRepository;
+
+
+  @Inject MOSLResponseWrapper() {
   }
 
   protected static Class<?> getRawType(Type type) {
@@ -45,11 +96,11 @@ public class MOSLResponseWrapper extends Converter.Factory {
         return null;
       }
     }
-    Type envelopedType = TypeToken.getParameterized(BaseResponse.class, type).getType();
-    final Converter<ResponseBody, BaseResponse<?>> delegate =
+    Type envelopedType = TypeToken.getParameterized(BaseResponseDemo.class, type).getType();
+    final Converter<ResponseBody, BaseResponseDemo<?>> delegate =
         retrofit.nextResponseBodyConverter(this, envelopedType, annotations);
     return (Converter<ResponseBody, Object>) value -> {
-      BaseResponse<?> baseResponse = delegate.convert(value);
+      BaseResponseDemo<?> baseResponse = delegate.convert(value);
       String code = "ErrorOccurred";
       String message = "ErrorOccurred";
       if (baseResponse != null) {
@@ -57,16 +108,15 @@ public class MOSLResponseWrapper extends Converter.Factory {
           return baseResponse.data;
         }
         code = baseResponse.getMessage();
-        message = errorRepository.getMessageBlocking(code);
       }
-      throw new ServiceFailureException(code, message);
+      throw new ServiceFailureException(code, baseResponse.getMessage());
     };
   }
 
   private boolean isWrapped(Type type) {
     if (type instanceof ParameterizedType) {
       Class<?> rawType = getRawType(type);
-      return (rawType == BaseResponse.class);
+      return (rawType == BaseResponseDemo.class);
     }
     return false;
   }

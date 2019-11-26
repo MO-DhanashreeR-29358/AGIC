@@ -10,7 +10,8 @@ import com.mosl.mobile.ui.DebugUiModule
 import dagger.Binds
 import dagger.Module
 
-@Module(includes = [CommonDataModule::class, DebugApiModule::class,DebugDataModule::class, DebugViewModule::class, DebugUiModule::class])
+@Module(includes = [CommonDataModule::class,DebugApiModule::class, DebugDataModule::class,
+  DebugViewModule::class, DebugUiModule::class])
 abstract class DebugModule {
   @Binds
   internal abstract fun provideApplication(application: MOSLApplication): Application

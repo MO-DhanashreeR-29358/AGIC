@@ -25,17 +25,21 @@ class AuthViewModel @Inject constructor(
     }
 
     Coroutines.io {
-      val liveDataResponse: LiveData<AuthResponseM>
+      try {
+
+        val liveDataResponse: LiveData<UserResponseMapper>
         liveDataResponse = liveData {
           val response = repository.userLogin(email!!, password!!)
           emit(response)
 
         }
-        withContext(Dispatchers.Main){
+        withContext(Dispatchers.Main) {
           view.onSuccess(liveDataResponse)
         }
 
-
+      } catch (e: Exception) {
+        view.onFailure(e.message ?: "An Error Occurred")
+      }
     }
 
   }

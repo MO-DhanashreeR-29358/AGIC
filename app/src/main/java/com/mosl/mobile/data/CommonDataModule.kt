@@ -2,6 +2,7 @@ package com.mosl.mobile.data
 
 import com.mosl.mobile.ApiBaseUrlImpl
 import com.mosl.mobile.CertPinProviderImpl
+import com.mosl.mobile.data.util.BaseDataModule
 import com.mosl.mobile.data.util.CertPinProvider
 import dagger.Module
 import dagger.Provides

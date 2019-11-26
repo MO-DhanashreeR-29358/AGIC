@@ -1,9 +1,10 @@
-package com.mosl.mobile.data
+package com.mosl.mobile.data.util
 
 import android.content.Context
 import com.mosl.app.core.rx.DefaultDispatchers
 import com.mosl.commons.rx.Dispatchers
-import com.mosl.mobile.data.util.HttpListenerFactory
+import com.mosl.mobile.data.MOSLResponseWrapper
+import com.mosl.mobile.data.PreferenceDataModule
 import dagger.Module
 import dagger.Provides
 import mosl.trading.annotation.InternalAPIRetrofit
@@ -11,6 +12,7 @@ import okhttp3.Cache
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 import timber.log.Timber
 import java.io.File
@@ -34,21 +36,22 @@ class BaseDataModule {
   @Singleton
   @InternalAPIRetrofit
   internal fun provideNewRetrofitBuilder(client: OkHttpClient,
-//      MOSLResponseWrapper: MOSLResponseWrapper,
+    moslResponseWrapper: MOSLResponseWrapper,
       rxJava2CallAdapterFactory: RxJava2CallAdapterFactory): Retrofit.Builder {
     return Retrofit.Builder().client(client)
-//        .addConverterFactory(MOSLResponseWrapper)
-        .addConverterFactory(MoshiConverterFactory.create())
+        .addConverterFactory(moslResponseWrapper)
+        .addConverterFactory(GsonConverterFactory.create())
         .addCallAdapterFactory(rxJava2CallAdapterFactory)
   }
 
   @Provides
   @Singleton
   internal fun provideRetrofitBuilder(client: OkHttpClient,
-      rxJava2CallAdapterFactory: RxJava2CallAdapterFactory): Retrofit
+      rxJava2CallAdapterFactory: RxJava2CallAdapterFactory,moslResponseWrapper: MOSLResponseWrapper): Retrofit
   .Builder {
     return Retrofit.Builder().client(client)
-        .addConverterFactory(MoshiConverterFactory.create())
+        .addConverterFactory(moslResponseWrapper)
+        .addConverterFactory(GsonConverterFactory.create())
         .addCallAdapterFactory(rxJava2CallAdapterFactory)
   }
 

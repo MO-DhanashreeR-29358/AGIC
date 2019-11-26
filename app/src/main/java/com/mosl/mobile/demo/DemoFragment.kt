@@ -47,9 +47,9 @@ class DemoFragment() : MOSLCommonFragment(), DemoView {
   }
 
   @SuppressLint("TimberArgCount")
-  override fun onSuccess(user: LiveData<AuthResponseM>) {
+  override fun onSuccess(user: LiveData<UserResponseMapper>) {
     user.observe(this, Observer {
-      Timber.d("Success %s ", it.message)
+      Timber.d("Success %s ", it)
       binding.progressBar.hide()
     })
 
@@ -61,7 +61,7 @@ class DemoFragment() : MOSLCommonFragment(), DemoView {
   }
 
   override suspend fun onFailure(message: String) {
-    withContext(Dispatchers.Main){
+    withContext(Dispatchers.Main) {
       binding.progressBar.hide()
       binding.rootLayout.snackbar(message)
     }

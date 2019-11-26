@@ -12,6 +12,7 @@ import okhttp3.Cache
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.converter.protobuf.ProtoConverterFactory
 import timber.log.Timber
@@ -36,12 +37,12 @@ class BaseDataModule {
   @Singleton
   @InternalAPIRetrofit
   internal fun provideNewRetrofitBuilder(client: OkHttpClient,
-      MOSLResponseWrapper: MOSLResponseWrapper,
+      moslResponseWrapper: MOSLResponseWrapper,
       rxJava2CallAdapterFactory: RxJava2CallAdapterFactory): Retrofit.Builder {
     return Retrofit.Builder().client(client)
-        .addConverterFactory(MOSLResponseWrapper)
+        .addConverterFactory(moslResponseWrapper)
         .addConverterFactory(ProtoConverterFactory.create())
-        .addConverterFactory(MoshiConverterFactory.create())
+        .addConverterFactory(GsonConverterFactory.create())
         .addCallAdapterFactory(rxJava2CallAdapterFactory)
 
   }
@@ -53,7 +54,7 @@ class BaseDataModule {
   .Builder {
     return Retrofit.Builder().client(client)
         .addConverterFactory(ProtoConverterFactory.create())
-        .addConverterFactory(MoshiConverterFactory.create())
+        .addConverterFactory(GsonConverterFactory.create())
         .addCallAdapterFactory(rxJava2CallAdapterFactory)
   }
 
