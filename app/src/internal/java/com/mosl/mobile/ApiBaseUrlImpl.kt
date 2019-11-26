@@ -4,6 +4,6 @@ import com.mosl.mobile.data.ApiBaseUrls
 
 class ApiBaseUrlImpl:ApiBaseUrls {
   override fun getMoslApiUrl(): String {
-    return "https://api.simplifiedcoding.in/course-apis/mvvm/"
+    return "http://wsn.motilaloswal.com:12345/"
   }
 }

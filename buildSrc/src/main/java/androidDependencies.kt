@@ -24,7 +24,7 @@ object Versions {
   const val wearable = "2.3.0"
   const val androidDataBinding = "3.4.2"
   const val coroutines ="1.3.0"
-  const val lifeCycle ="2.2.0-rc02"
+  const val lifeCycle ="2.2.0-alpha05"
 }
 
 object Dependencies {

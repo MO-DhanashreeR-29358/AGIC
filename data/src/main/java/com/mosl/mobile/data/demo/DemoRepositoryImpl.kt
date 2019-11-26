@@ -4,17 +4,28 @@ import com.mosl.data.api.MOSLApi
 import com.mosl.mobile.demo.UserResponse
 import com.mosl.mobile.demo.UserResponseMapper
 import com.mosl.mobile.domain.demo.DemoRepository
+import com.mosl.data.api.demo.LoginInfo
+import com.mosl.mobile.domain.demo.LoginInfoD
 import javax.inject.Inject
 
 class DemoRepositoryImpl @Inject constructor(
   private val api: MOSLApi
 ) : DemoRepository {
-  suspend override fun userLogin(email: String, password: String): UserResponseMapper {
-    return api.userLogin(email, password).run {
+  /*suspend override fun userLogin(loginInfo: LoginInfo): UserResponseMapper {
+    return api.userLogin(authType,email, password).run {
       this.transform()
     }
 
-  }
+  }*/
+
+  override suspend fun userLogin(loginDomain: LoginInfoD): UserResponseMapper {
+   val request =  loginDomain.mapToLoginInfo()
+   return api.userLogin(request).run {
+     this.transform()
+   }
+
+ }
+
 }
 
 fun UserResponse.transform(): UserResponseMapper {
@@ -27,6 +38,12 @@ fun UserResponse.transform(): UserResponseMapper {
     created_at = created_at,
     updated_at =updated_at
 
+  )
+}
+
+fun LoginInfoD.mapToLoginInfo(): LoginInfo {
+  return LoginInfo(
+    authType, password, employeeId, ipAddress
   )
 }
 

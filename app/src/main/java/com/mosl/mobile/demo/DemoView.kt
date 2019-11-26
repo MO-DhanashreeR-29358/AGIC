@@ -7,5 +7,5 @@ interface DemoView : BaseView {
   fun onStarted()
   fun onSuccess(user: LiveData<UserResponseMapper>)
   fun onError(message: String)
-  suspend fun onFailure(message: String)
+  fun onFailure(message: String)
 }

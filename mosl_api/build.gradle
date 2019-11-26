@@ -7,10 +7,9 @@ dependencies {
     compileOnly RetrofitDependencies.core
     implementation RxDependencies.java
     api MofslArtifactDependencies.appCore
-
+    implementation RetrofitDependencies.gson
     //Android Room
     implementation RoomDependencies.runtime
-
 }
 
 sourceCompatibility = "1.8"

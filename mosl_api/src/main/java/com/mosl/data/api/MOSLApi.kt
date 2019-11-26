@@ -1,17 +1,15 @@
 package com.mosl.data.api
 
+import com.mosl.data.api.demo.LoginInfo
 import com.mosl.mobile.demo.UserResponse
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
+import retrofit2.http.Body
 import retrofit2.http.POST
 
 interface MOSLApi {
 
-  @FormUrlEncoded
-  @POST("login")
+  @POST("QMS2API/api/Login/authorize")
   suspend fun userLogin(
-    @Field("email") email: String,
-    @Field("password") password: String
+    @Body request: LoginInfo
   ): UserResponse
 
 }

@@ -75,7 +75,7 @@ dependencies {
   implementation LifeCycleDependencies.liveData
   implementation MofslArtifactDependencies.annotation
   implementation RetrofitDependencies.gson
-
+  implementation MofslArtifactDependencies.apiCore
   implementation project(':mosl_api')
   implementation project (':domain')
   implementation project (':annotations')
