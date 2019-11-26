@@ -4,8 +4,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/padding_medium">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/imgProfileIcon"
@@ -19,7 +18,7 @@
 
 
         <TextView
-            android:id="@+id/txtHeader"
+            android:id="@+id/txtName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:padding="@dimen/padding_small"
@@ -42,7 +41,7 @@
             android:textSize="@dimen/text_size_medium"
             app:layout_constraintEnd_toStartOf="@id/imgProfileIcon"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/txtHeader"
+            app:layout_constraintTop_toBottomOf="@id/txtName"
             tools:text="10:00 am - 11:00 am" />
 
         <TextView
@@ -59,21 +58,42 @@
 
         <ImageView
             android:id="@+id/icon_more"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/_32sdp"
+            android:layout_height="@dimen/_32sdp"
             android:layout_marginTop="@dimen/margin_medium"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/txtDesignation"
             app:srcCompat="@drawable/ic_more_horiz"
             tools:ignore="ContentDescription" />
 
         <View
+            android:id="@+id/view"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_1sdp"
-            android:layout_margin="@dimen/margin_small"
-            app:layout_constraintTop_toBottomOf="@id/icon_more"
-            android:background="@color/greyWhite"/>
+            android:layout_height="@dimen/_2sdp"
+            android:layout_marginTop="@dimen/margin_small"
+            android:background="@color/greyWhite"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/icon_more" />
+
+        <TextView
+            android:id="@+id/txtDesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding_small"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_medium"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view"
+            tools:text="Are attitudes changing globally towards 'owning' a vehicle?" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_2sdp"
+            android:layout_marginTop="@dimen/margin_small"
+            android:background="@color/greyWhite"
+            app:layout_constraintTop_toBottomOf="@id/txtDesc" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

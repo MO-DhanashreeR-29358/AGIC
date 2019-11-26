@@ -5,20 +5,25 @@ import com.mosl.mobile.dashboard.DashboardModule
 import com.mosl.mobile.drawermenu.DrawerMenuFragment
 import com.mosl.mobile.featurescope.FirstPlaygroundFragment
 import com.mosl.mobile.featurescope.SecondPlaygroundFragment
+import com.mosl.mobile.panel.PanelFragment
+import com.mosl.mobile.panel.PanelModule
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
 @Module
 abstract class DebugFragmentsProvider {
-  @ContributesAndroidInjector
-  abstract fun provideFirstPlaygroundFragmentFactory(): FirstPlaygroundFragment
+    @ContributesAndroidInjector
+    abstract fun provideFirstPlaygroundFragmentFactory(): FirstPlaygroundFragment
 
-  @ContributesAndroidInjector
-  abstract fun provideDeeplinkTestFragmentFactory(): SecondPlaygroundFragment
+    @ContributesAndroidInjector
+    abstract fun provideDeeplinkTestFragmentFactory(): SecondPlaygroundFragment
 
-  @ContributesAndroidInjector(modules = [DashboardModule::class])
-  abstract fun provideDashboardFragmentFactory(): DashboardFragment
+    @ContributesAndroidInjector(modules = [DashboardModule::class])
+    abstract fun provideDashboardFragmentFactory(): DashboardFragment
 
-  @ContributesAndroidInjector
-  abstract fun provideDrawerMenuFragmentFactory(): DrawerMenuFragment
+    @ContributesAndroidInjector(modules = [PanelModule::class])
+    abstract fun providePanelFragmentFactory(): PanelFragment
+
+    @ContributesAndroidInjector
+    abstract fun provideDrawerMenuFragmentFactory(): DrawerMenuFragment
 }

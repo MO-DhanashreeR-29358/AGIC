@@ -5,181 +5,182 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 def gitSha() {
-  def p = 'git rev-parse --short HEAD'.execute([], project.rootDir)
-  p.waitFor()
-  if (p.exitValue() != 0) {
-    throw new RuntimeException(p.errorStream.text)
-  }
+    def p = 'git rev-parse --short HEAD'.execute([], project.rootDir)
+    p.waitFor()
+    if (p.exitValue() != 0) {
+        throw new RuntimeException(p.errorStream.text)
+    }
 
-  return p.text.trim()
+    return p.text.trim()
 }
 
 def gitTimestamp() {
-  def p = 'git log -n 1 --format=%at'.execute([], rootDir)
-  p.waitFor()
-  if (p.exitValue() != 0) {
-    throw new RuntimeException(p.errorStream.text)
-  }
+    def p = 'git log -n 1 --format=%at'.execute([], rootDir)
+    p.waitFor()
+    if (p.exitValue() != 0) {
+        throw new RuntimeException(p.errorStream.text)
+    }
 
-  return p.text.trim()
+    return p.text.trim()
 }
 
 android {
-  packagingOptions {
-    exclude 'META-INF/annotations.kotlin_module'
-  }
-  compileSdkVersion Versions.compileSdkVersion
-  buildToolsVersion Versions.buildToolsVersion
-
-  Properties versionProps = new Properties()
-  versionProps.load(new FileInputStream(file('../version.properties')))
-
-  defaultConfig {
-    applicationId "com.mosl.mobile"
-    minSdkVersion Versions.minSdkVersion
-    targetSdkVersion Versions.targetSdkVersion
-
-    buildConfigField 'String', 'GIT_SHA', "\"${gitSha()}\""
-    buildConfigField 'long', 'GIT_TIMESTAMP', "${gitTimestamp()}L"
-
-    resConfigs "en", "hi"
-    vectorDrawables.useSupportLibrary = true
-
-    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-  }
-
-  dataBinding {
-    enabled = true
-  }
-
-  bundle {
-    language {
-      enableSplit = false
+    packagingOptions {
+        exclude 'META-INF/annotations.kotlin_module'
     }
-  }
+    compileSdkVersion Versions.compileSdkVersion
+    buildToolsVersion Versions.buildToolsVersion
 
-  flavorDimensions 'releaseType'
-  productFlavors {
-    internal {
-      versionCode versionProps['code'].toInteger()
-      versionName versionProps['name']
-      applicationIdSuffix '.internal'
-      buildConfigField 'boolean', 'LOGOUT_ON_UPDATE', "${versionProps['clearUserLogin']}"
-      //TODO Remove below lines before giving UAT release
-      minSdkVersion 21
-      dimension 'releaseType'
-    }
-    production {
-      versionCode versionProps['prodCode'].toInteger()
-      versionName versionProps['prodName']
-      buildConfigField 'boolean', 'LOGOUT_ON_UPDATE', "${versionProps['prodClearUserLogin']}"
-      dimension 'releaseType'
-    }
-  }
+    Properties versionProps = new Properties()
+    versionProps.load(new FileInputStream(file('../version.properties')))
 
-  buildTypes {
-    debug {
-      applicationIdSuffix '.debug'
-      multiDexEnabled true
-      ext.alwaysUpdateBuildId = false
-    }
-    release {
-      minifyEnabled true
-      shrinkResources true
-      proguardFile 'proguard-moshi.pro'
-      proguardFile 'proguard-retrofit.pro'
-      proguardFile 'proguard-dagger.pro'
-      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-    }
-  }
+    defaultConfig {
+        applicationId "com.mosl.mobile"
+        minSdkVersion Versions.minSdkVersion
+        targetSdkVersion Versions.targetSdkVersion
 
-  android.applicationVariants.all { variant ->
-    variant.outputs.all {
-      outputFileName = "${project.name}-${variant.name}-${variant.versionName}.apk"
+        buildConfigField 'String', 'GIT_SHA', "\"${gitSha()}\""
+        buildConfigField 'long', 'GIT_TIMESTAMP', "${gitTimestamp()}L"
+
+        resConfigs "en", "hi"
+        vectorDrawables.useSupportLibrary = true
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-  }
 
-  compileOptions {
-    sourceCompatibility JavaVersion.VERSION_1_8
-    targetCompatibility JavaVersion.VERSION_1_8
-  }
+    dataBinding {
+        enabled = true
+    }
 
-  lintOptions {
-    check 'NewApi', 'SyntheticAccessor'
-    ignoreWarnings false
-  }
+    bundle {
+        language {
+            enableSplit = false
+        }
+    }
+
+    flavorDimensions 'releaseType'
+    productFlavors {
+        internal {
+            versionCode versionProps['code'].toInteger()
+            versionName versionProps['name']
+            applicationIdSuffix '.internal'
+            buildConfigField 'boolean', 'LOGOUT_ON_UPDATE', "${versionProps['clearUserLogin']}"
+            //TODO Remove below lines before giving UAT release
+            minSdkVersion 21
+            dimension 'releaseType'
+        }
+        production {
+            versionCode versionProps['prodCode'].toInteger()
+            versionName versionProps['prodName']
+            buildConfigField 'boolean', 'LOGOUT_ON_UPDATE', "${versionProps['prodClearUserLogin']}"
+            dimension 'releaseType'
+        }
+    }
+
+    buildTypes {
+        debug {
+            applicationIdSuffix '.debug'
+            multiDexEnabled true
+            ext.alwaysUpdateBuildId = false
+        }
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFile 'proguard-moshi.pro'
+            proguardFile 'proguard-retrofit.pro'
+            proguardFile 'proguard-dagger.pro'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    android.applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "${project.name}-${variant.name}-${variant.versionName}.apk"
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    lintOptions {
+        check 'NewApi', 'SyntheticAccessor'
+        ignoreWarnings false
+    }
 }
 
 dependencies {
-  implementation fileTree(dir: 'libs', include: ['*.jar'])
-  implementation KotlinDependencies.kotlin
-  implementation AndroidxDependencies.appcompat
-  implementation KotlinDependencies.ktxCore
-  implementation AndroidxDependencies.constraintLayout
-  implementation AndroidxDependencies.material
-  testImplementation TestingDependencies.junit
-  androidTestImplementation AndroidxDependencies.testRunner
-  androidTestImplementation AndroidxDependencies.testEspresso
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation KotlinDependencies.kotlin
+    implementation AndroidxDependencies.appcompat
+    implementation KotlinDependencies.ktxCore
+    implementation AndroidxDependencies.constraintLayout
+    implementation AndroidxDependencies.material
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    testImplementation TestingDependencies.junit
+    androidTestImplementation AndroidxDependencies.testRunner
+    androidTestImplementation AndroidxDependencies.testEspresso
 
-  //Dagger
-  implementation DaggerDependencies.core
-  kapt DaggerDependencies.compiler
-  implementation DaggerDependencies.android
-  kapt DaggerDependencies.androidCompiler
+    //Dagger
+    implementation DaggerDependencies.core
+    kapt DaggerDependencies.compiler
+    implementation DaggerDependencies.android
+    kapt DaggerDependencies.androidCompiler
 
-  //RxJava 2.0
-  implementation RxDependencies.java
-  implementation RxDependencies.kotlin
-  implementation RxDependencies.relay
-  implementation RxDependencies.android
-  implementation RxBindingDependencies.bindingPlatform
-  implementation RxBindingDependencies.bindingCore
-  implementation RxBindingDependencies.bindingAppcompat
+    //RxJava 2.0
+    implementation RxDependencies.java
+    implementation RxDependencies.kotlin
+    implementation RxDependencies.relay
+    implementation RxDependencies.android
+    implementation RxBindingDependencies.bindingPlatform
+    implementation RxBindingDependencies.bindingCore
+    implementation RxBindingDependencies.bindingAppcompat
 
-  implementation MofslArtifactDependencies.appCore
-  implementation MofslArtifactDependencies.annotation
+    implementation MofslArtifactDependencies.appCore
+    implementation MofslArtifactDependencies.annotation
 
-  implementation Dependencies.timber
+    implementation Dependencies.timber
 
-  implementation RetrofitDependencies.core
-  implementation RetrofitDependencies.rxJava
-  debugImplementation RetrofitDependencies.mock
-  implementation MoshiDependencies.retrofitConvertor
+    implementation RetrofitDependencies.core
+    implementation RetrofitDependencies.rxJava
+    debugImplementation RetrofitDependencies.mock
+    implementation MoshiDependencies.retrofitConvertor
 
-  implementation MoshiDependencies.core
-  kapt MoshiDependencies.codegen
+    implementation MoshiDependencies.core
+    kapt MoshiDependencies.codegen
 
-  implementation OkHttpDependencies.core
-  implementation OkHttpDependencies.okio
-  debugImplementation OkHttpDependencies.logger
+    implementation OkHttpDependencies.core
+    implementation OkHttpDependencies.okio
+    debugImplementation OkHttpDependencies.logger
 
-  debugImplementation MofslArtifactDependencies.debugViewCore
-  debugImplementation MofslArtifactDependencies.debugView
-  debugImplementation AndroidxDependencies.multiDex
-  implementation MofslArtifactDependencies.appCoreUI
+    debugImplementation MofslArtifactDependencies.debugViewCore
+    debugImplementation MofslArtifactDependencies.debugView
+    debugImplementation AndroidxDependencies.multiDex
+    implementation MofslArtifactDependencies.appCoreUI
 
-  implementation GroupieDependencies.core
-  implementation GroupieDependencies.dataBinding
+    implementation GroupieDependencies.core
+    implementation GroupieDependencies.dataBinding
 
-  //StethoDependencies
-  debugImplementation StethoDependencies.core
-  debugImplementation StethoDependencies.okHttp
+    //StethoDependencies
+    debugImplementation StethoDependencies.core
+    debugImplementation StethoDependencies.okHttp
 
-  implementation 'com.intuit.sdp:sdp-android:1.0.6'
-  implementation 'com.intuit.ssp:ssp-android:1.0.6'
+    implementation 'com.intuit.sdp:sdp-android:1.0.6'
+    implementation 'com.intuit.ssp:ssp-android:1.0.6'
 
 
-  implementation project(':data')
-  implementation project(':domain')
-  implementation project(":mosl_api")
-  implementation project(':annotations')
-  implementation project(':app_user')
-  implementation project(':core_ui')
-  implementation project(':core_data')
+    implementation project(':data')
+    implementation project(':domain')
+    implementation project(":mosl_api")
+    implementation project(':annotations')
+    implementation project(':app_user')
+    implementation project(':core_ui')
+    implementation project(':core_data')
 }
 
 kapt {
-  javacOptions {
-    option("-Xmaxerrs", 2000)
-  }
+    javacOptions {
+        option("-Xmaxerrs", 2000)
+    }
 }
