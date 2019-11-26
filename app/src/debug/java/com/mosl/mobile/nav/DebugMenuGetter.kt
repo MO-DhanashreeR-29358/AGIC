@@ -2,6 +2,7 @@ package com.mosl.mobile.nav
 
 import androidx.fragment.app.Fragment
 import com.mosl.mobile.dashboard.DashboardFragment
+import com.mosl.mobile.dashboardnew.OverViewFragment
 import com.mosl.mobile.drawermenu.DrawerMenuFragment
 import com.mosl.mobile.featurescope.FirstPlaygroundFragment
 import com.mosl.mobile.featurescope.SecondPlaygroundFragment
@@ -13,6 +14,7 @@ object DebugMenuGetter {
         return when (pageId) {
             DebugConstants.NAVIGATE_TO_LOGIN -> LoginFragment()
             DebugConstants.NAVIGATE_TO_DASHBOARD -> DashboardFragment()
+            DebugConstants.NAVIGATE_TO_OVERVIEW -> OverViewFragment()
             DebugConstants.NAVIGATE_TO_DRAWER_MENU -> DrawerMenuFragment()
             DebugConstants.NAVIGATE_TO_PLAYGROUND_01 -> FirstPlaygroundFragment()
             DebugConstants.NAVIGATE_TO_PLAYGROUND_02 -> SecondPlaygroundFragment()
@@ -24,6 +26,7 @@ object DebugMenuGetter {
     fun isHandled(@DebugConstants pageId: Int): Boolean {
         return when (pageId) {
             DebugConstants.NAVIGATE_TO_DASHBOARD -> true
+            DebugConstants.NAVIGATE_TO_OVERVIEW -> true
             DebugConstants.NAVIGATE_TO_LOGIN-> true
             DebugConstants.NAVIGATE_TO_DRAWER_MENU -> true
             DebugConstants.NAVIGATE_TO_PLAYGROUND_01 -> true

@@ -9,7 +9,7 @@ import com.mosl.mobile.R
 import com.mosl.mobile.core.MOSLCommonActivity
 import com.mosl.mobile.coreui.LocaleManager
 import com.mosl.mobile.databinding.ActivitySplashScreenBinding
-import com.mosl.mobile.nav.DebugConstants.NAVIGATE_TO_LOGIN
+import com.mosl.mobile.nav.DebugConstants.NAVIGATE_TO_DASHBOARD
 
 class SplashActivity : LeanBaseActivity() {
   lateinit var binding: ActivitySplashScreenBinding
@@ -43,7 +43,7 @@ class SplashActivity : LeanBaseActivity() {
 
   internal fun openDashboard() {
     val intent = Intent(this, MOSLCommonActivity::class.java).apply{
-      putExtra(MOSLCommonActivity.ARG_PAGE_ID, NAVIGATE_TO_LOGIN)
+      putExtra(MOSLCommonActivity.ARG_PAGE_ID, NAVIGATE_TO_DASHBOARD)
     }
     startActivity(intent)
     finish()

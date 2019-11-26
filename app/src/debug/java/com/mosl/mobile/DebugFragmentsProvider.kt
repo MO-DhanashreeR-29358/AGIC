@@ -2,6 +2,7 @@ package com.mosl.mobile
 
 import com.mosl.mobile.dashboard.DashboardFragment
 import com.mosl.mobile.dashboard.DashboardModule
+import com.mosl.mobile.dashboardnew.OverViewFragment
 import com.mosl.mobile.drawermenu.DrawerMenuFragment
 import com.mosl.mobile.featurescope.FirstPlaygroundFragment
 import com.mosl.mobile.featurescope.SecondPlaygroundFragment
@@ -19,6 +20,9 @@ abstract class DebugFragmentsProvider {
 
     @ContributesAndroidInjector(modules = [DashboardModule::class])
     abstract fun provideDashboardFragmentFactory(): DashboardFragment
+
+    @ContributesAndroidInjector(modules = [DashboardModule::class])
+    abstract fun provideOverViewFragmentFactory(): OverViewFragment
 
 
     @ContributesAndroidInjector(modules = [DashboardModule::class])
