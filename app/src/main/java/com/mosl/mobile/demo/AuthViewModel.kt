@@ -5,7 +5,7 @@ import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
-import com.mosl.mobile.data.util.Encryptor
+import com.mosl.mobile.coredata.util.Encryptor
 import com.mosl.mobile.domain.demo.DemoRepository
 import com.mosl.mobile.domain.demo.LoginInfoD
 import kotlinx.coroutines.Dispatchers

@@ -39,7 +39,6 @@ class BaseDataModule {
       rxJava2CallAdapterFactory: RxJava2CallAdapterFactory): Retrofit.Builder {
     return Retrofit.Builder().client(client)
         .addConverterFactory(moslResponseWrapper)
-        .addConverterFactory(ProtoConverterFactory.create())
         .addConverterFactory(GsonConverterFactory.create())
         .addCallAdapterFactory(rxJava2CallAdapterFactory)
 
@@ -48,10 +47,11 @@ class BaseDataModule {
   @Provides
   @Singleton
   internal fun provideRetrofitBuilder(client: OkHttpClient,
+    moslResponseWrapper: MOSLResponseWrapper,
       rxJava2CallAdapterFactory: RxJava2CallAdapterFactory): Retrofit
   .Builder {
     return Retrofit.Builder().client(client)
-        .addConverterFactory(ProtoConverterFactory.create())
+      .addConverterFactory(moslResponseWrapper)
         .addConverterFactory(GsonConverterFactory.create())
         .addCallAdapterFactory(rxJava2CallAdapterFactory)
   }
