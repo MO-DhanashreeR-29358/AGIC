@@ -63,6 +63,18 @@ class PanelFragment : MOSLCommonFragment(), PanelContract.View {
                 time = "12:00 pm - 01:00 pm",
                 designation = "Teenage Founder & Ceo,Aerobotics7",
                 desc = "Are attitudes changing globally towards 'owning' a vehicle?"
+            ),
+            PanelDataHeader(
+                name = "Mr.Harshwardhan Jala",
+                time = "12:00 pm - 01:00 pm",
+                designation = "Teenage Founder & Ceo,Aerobotics7",
+                desc = "Are attitudes changing globally towards 'owning' a vehicle?"
+            ),
+            PanelDataHeader(
+                name = "Mr.Harshwardhan Jala",
+                time = "12:00 pm - 01:00 pm",
+                designation = "Teenage Founder & Ceo,Aerobotics7",
+                desc = "Are attitudes changing globally towards 'owning' a vehicle?"
             )
         )
         for (model in itemData) {

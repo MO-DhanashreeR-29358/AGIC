@@ -1,21 +1,11 @@
-package com.mosl.mobile.dashboardnew
+package com.mosl.mobile.overview
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.widget.TextView
-import androidx.annotation.DrawableRes
-import androidx.annotation.StringRes
 import com.google.android.material.tabs.TabLayout
-import com.mosl.app.core.utils.hideKeyBoard
 import com.mosl.mobile.R
 import com.mosl.mobile.core.MOSLCommonFragment
-import com.mosl.mobile.dashboard.DashboardPresenter
-import com.mosl.mobile.databinding.FragmentDashboardNBinding
 import com.mosl.mobile.databinding.FragmentOverviewBinding
-import com.mosl.mobile.nav.DebugConstants
-import com.xwray.groupie.Section
-import javax.inject.Inject
 
 class OverViewFragment : MOSLCommonFragment() {
 

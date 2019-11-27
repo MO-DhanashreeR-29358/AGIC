@@ -18,4 +18,5 @@ public @interface DebugConstants {
     int NAVIGATE_TO_LOGIN = -104;
     int NAVIGATE_TO_OVERVIEW = -105;
     int NAVIGATE_TO_SCHEDULE = -106;
+    int NAVIGATE_TO_PANEL = -107;
 }

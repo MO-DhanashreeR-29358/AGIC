@@ -148,15 +148,35 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
 
 
     private fun setupTabs() {
-        binding.tabLayout.addTab(binding.tabLayout.newTab().setText(R.string.schedule).setIcon(R.drawable.navigation_icon).setTag(DebugConstants.NAVIGATE_TO_SCHEDULE))
+        binding.tabLayout.addTab(
+            binding.tabLayout.newTab().setText(R.string.schedule).setIcon(R.drawable.navigation_icon).setTag(
+                DebugConstants.NAVIGATE_TO_SCHEDULE
+            )
+        )
 
-        binding.tabLayout.addTab(binding.tabLayout.newTab().setText(R.string.overview).setIcon(R.drawable.navigation_icon).setTag(DebugConstants.NAVIGATE_TO_OVERVIEW))
+        binding.tabLayout.addTab(
+            binding.tabLayout.newTab().setText(R.string.overview).setIcon(R.drawable.navigation_icon).setTag(
+                DebugConstants.NAVIGATE_TO_OVERVIEW
+            )
+        )
 
-        binding.tabLayout.addTab(binding.tabLayout.newTab().setText(R.string.panel).setIcon(R.drawable.navigation_icon).setTag(DebugConstants.NAVIGATE_TO_OVERVIEW))
+        binding.tabLayout.addTab(
+            binding.tabLayout.newTab().setText(R.string.panel).setIcon(R.drawable.navigation_icon).setTag(
+                DebugConstants.NAVIGATE_TO_PANEL
+            )
+        )
 
-        binding.tabLayout.addTab(binding.tabLayout.newTab().setText(R.string.bytes).setIcon(R.drawable.navigation_icon).setTag(DebugConstants.NAVIGATE_TO_LOGIN))
+        binding.tabLayout.addTab(
+            binding.tabLayout.newTab().setText(R.string.bytes).setIcon(R.drawable.navigation_icon).setTag(
+                DebugConstants.NAVIGATE_TO_LOGIN
+            )
+        )
 
-        binding.tabLayout.addTab(binding.tabLayout.newTab().setText(R.string.pdf).setIcon(R.drawable.navigation_icon).setTag(DebugConstants.NAVIGATE_TO_DASHBOARD))
+        binding.tabLayout.addTab(
+            binding.tabLayout.newTab().setText(R.string.pdf).setIcon(R.drawable.navigation_icon).setTag(
+                DebugConstants.NAVIGATE_TO_DASHBOARD
+            )
+        )
 
 //                .setCustomView(
 //                    getTabLayoutView(

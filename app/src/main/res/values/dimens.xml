@@ -1,2 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+
+    <dimen name="menuIcons">@dimen/_24sdp</dimen>
+    <dimen name="margin_extra_large">@dimen/_24sdp</dimen>
+    <dimen name="margin_extra_small">@dimen/_2sdp</dimen>
+    <dimen name="margin_large">@dimen/_16sdp</dimen>
+    <dimen name="margin_medium">@dimen/_8sdp</dimen>
+    <dimen name="margin_normal">@dimen/_12sdp</dimen>
+    <dimen name="margin_small">@dimen/_4sdp</dimen>
+    <dimen name="padding_extra_large">@dimen/_24sdp</dimen>
+    <dimen name="padding_extra_small">@dimen/_2sdp</dimen>
+    <dimen name="padding_large">@dimen/_16sdp</dimen>
+    <dimen name="padding_medium">@dimen/_8sdp</dimen>
+    <dimen name="padding_normal">@dimen/_12sdp</dimen>
+    <dimen name="padding_small">@dimen/_4sdp</dimen>
+    <dimen name="text_size_extra_small">@dimen/_10ssp</dimen>
+    <dimen name="text_size_large">@dimen/_20ssp</dimen>
+    <dimen name="text_size_medium">@dimen/_16ssp</dimen>
+    <dimen name="text_size_normal">@dimen/_14ssp</dimen>
+    <dimen name="text_size_small">@dimen/_12ssp</dimen>
+    <dimen name="circle_size">@dimen/_5sdp</dimen>
+
+    <dimen name="et_size">@dimen/_45ssp</dimen>
+    <dimen name="very_extra_large">@dimen/_64ssp</dimen>
+    <dimen name="login_img_large">@dimen/_150sdp</dimen>
+    <dimen name="login_bottom">@dimen/_175sdp</dimen>
+    <dimen name="menu_icon">@dimen/_24sdp</dimen>
+    <dimen name="text_size_extra_large">@dimen/_24ssp</dimen>
+    <dimen name="tabIndicatorHeight">@dimen/_4sdp</dimen>
+
+</resources>
