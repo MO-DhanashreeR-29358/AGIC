@@ -64,6 +64,7 @@ dependencies {
   androidTestImplementation AndroidxDependencies.testEspresso
 
   debugImplementation OkHttpDependencies.logger
+  debugImplementation OkHttpDependencies.core
   implementation MofslArtifactDependencies.conceal
 
   implementation MofslArtifactDependencies.moslCommons

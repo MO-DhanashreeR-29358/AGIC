@@ -11,7 +11,7 @@ object Versions {
 
   const val dexCountGradlePlugin = "0.8.6"
   const val errorProne = "0.0.13"
-  const val okHttp = "3.12.3"
+  const val okHttp = "4.2.0"
   const val okIo = "1.17.4"
   const val timber = "4.7.1"
   const val groupie = "2.3.0"

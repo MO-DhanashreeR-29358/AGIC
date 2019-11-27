@@ -1,6 +1,7 @@
 package com.mosl.mobile.coredata
 
 import com.mosl.mobile.app_user.util.AuthorizationInterceptor
+import com.mosl.mobile.coredata.interceptor.EncryptionInterceptor
 import com.mosl.mobile.coredata.util.CertPinProvider
 import com.mosl.mobile.coredata.util.HttpListenerFactory
 import com.mosl.mobile.coredata.util.interceptors.CacheInterceptor
@@ -51,11 +52,12 @@ class DataModule {
     @InternalAPIClient
     internal fun provideInternalAPIOkHttpClient(
         okHttpClient: OkHttpClient,
-        headerInterceptor: HeaderInterceptor, authorizationInterceptor: AuthorizationInterceptor
+        headerInterceptor: HeaderInterceptor,
+        encryptionInterceptor: EncryptionInterceptor
     ): OkHttpClient {
         return okHttpClient.newBuilder()
             .addInterceptor(headerInterceptor)
-            .addInterceptor(authorizationInterceptor)
+            .addInterceptor(encryptionInterceptor)
             .build()
     }
 }
