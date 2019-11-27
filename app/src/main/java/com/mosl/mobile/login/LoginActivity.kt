@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import com.jakewharton.rxbinding3.view.clicks
 import com.mosl.app.core.events.DataAction
 import com.mosl.app.coreui.base.BaseActivity
 import com.mosl.app.coreui.base.LeanBaseActivity
@@ -35,7 +36,6 @@ class LoginActivity : LeanBaseActivity(), Navigator ,LoginView{
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         binding = ActivityLoginBinding.bind(findViewById(R.id.constrainLaout))
 
-        binding.btnlogin.setOnClickListener(View.OnClickListener { openDashboard() })
 
     }
 
@@ -56,7 +56,7 @@ class LoginActivity : LeanBaseActivity(), Navigator ,LoginView{
     }
 
     override fun onLoginClicked(): Observable<Unit> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return binding.btnLogin.clicks()
     }
 
     override fun renderLogin(uiModel: UiModel<Unit>) {

@@ -4,6 +4,9 @@
 
     <string name="conference_over">The Conference got over.</string>
     <string name="skip_to_login">Skip to Login</string>
+    <string name="stay_updated_with">Stay updated with our newsletter..</string>
+    <string name="welcome">Welcome</string>
+    <string name="agic_2017">Agic 2017</string>
 
     <string name="day1">DAY 1</string>
     <string name="day2">DAY 2</string>
@@ -17,8 +20,8 @@
 
     <string name="login">Login</string>
     <string name="login_text">Anual Global Investor Conference</string>
-    <string name="login_text2">Access permitted to registerd users only</string>
-    <string name="text_2019">2019</string>
+    <string name="login_text2">Access permitted to registerd\nusers only</string>
+    <string name="text_year">2020</string>
 
     <string name="title_activity_login">Login</string>
     <string name="dummy_button">Dummy Button</string>
