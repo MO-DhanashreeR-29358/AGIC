@@ -35,13 +35,11 @@ class OverViewFragment : MOSLCommonFragment() {
 
     private fun setupTabs() {
 
-        binding.tabLayout.addTab(binding.tabLayout.newTab().setText(R.string.day1).setTag(DebugConstants.NAVIGATE_TO_DASHBOARD))
+        binding.tabLayout.addTab(binding.tabLayout.newTab().setText(R.string.day1))
 
-        binding.tabLayout.addTab(binding.tabLayout.newTab().setText(R.string.day2).setTag(DebugConstants.NAVIGATE_TO_OVERVIEW))
+        binding.tabLayout.addTab(binding.tabLayout.newTab().setText(R.string.day2))
 
-        binding.tabLayout.addTab(binding.tabLayout.newTab().setText(R.string.day3).setTag(DebugConstants.NAVIGATE_TO_OVERVIEW))
-
-
+        binding.tabLayout.addTab(binding.tabLayout.newTab().setText(R.string.day3))
 
 
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
