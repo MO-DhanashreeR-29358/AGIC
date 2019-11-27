@@ -9,44 +9,45 @@ import com.mosl.mobile.R
 import com.mosl.mobile.core.MOSLCommonActivity
 import com.mosl.mobile.coreui.LocaleManager
 import com.mosl.mobile.databinding.ActivitySplashScreenBinding
-import com.mosl.mobile.nav.DebugConstants.NAVIGATE_TO_DASHBOARD
+import com.mosl.mobile.login.LoginActivity
 import com.mosl.mobile.nav.DebugConstants.NAVIGATE_TO_SCHEDULE
+import com.mosl.mobile.newsletter.NewsLetterActivity
 
 class SplashActivity : LeanBaseActivity() {
-  lateinit var binding: ActivitySplashScreenBinding
+    lateinit var binding: ActivitySplashScreenBinding
 
-  override fun getLayout(): Int {
-    return R.layout.activity_splash_screen
-  }
-
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    binding = ActivitySplashScreenBinding.bind(findViewById(R.id.splash_root))
-    checkNetwork()
-  }
-
-  override fun attachBaseContext(base: Context) {
-    super.attachBaseContext(LocaleManager.withLocale(base))
-  }
-
-  private fun checkNetwork() {
-    if (this.isNetworkConnected()) {
-      initializeApp()
-    } else {
-      // No network
+    override fun getLayout(): Int {
+        return R.layout.activity_splash_screen
     }
-  }
 
-
-  private fun initializeApp() {
-    openDashboard()
-  }
-
-  internal fun openDashboard() {
-    val intent = Intent(this, MOSLCommonActivity::class.java).apply{
-      putExtra(MOSLCommonActivity.ARG_PAGE_ID, NAVIGATE_TO_SCHEDULE)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivitySplashScreenBinding.bind(findViewById(R.id.splash_root))
+        checkNetwork()
     }
-    startActivity(intent)
-    finish()
-  }
+
+    override fun attachBaseContext(base: Context) {
+        super.attachBaseContext(LocaleManager.withLocale(base))
+    }
+
+    private fun checkNetwork() {
+        if (this.isNetworkConnected()) {
+            initializeApp()
+        } else {
+            // No network
+        }
+    }
+
+
+    private fun initializeApp() {
+        openDashboard()
+    }
+
+    internal fun openDashboard() {
+        val intent = Intent(this, NewsLetterActivity::class.java).apply {
+            putExtra(MOSLCommonActivity.ARG_PAGE_ID, NAVIGATE_TO_SCHEDULE)
+        }
+        startActivity(intent)
+        finish()
+    }
 }

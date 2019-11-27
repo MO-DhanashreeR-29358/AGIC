@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">AGIC</string>
     <string name="conference_over">The Conference got over.</string>
+    <string name="skip_to_login">Skip to Login</string>
 
     <string name="day1">DAY 1</string>
     <string name="day2">DAY 2</string>
@@ -16,5 +17,11 @@
     <string name="login_text">Anual Global Investor Conference</string>
     <string name="login_text2">Access permitted to registerd users only</string>
     <string name="text_2019">2019</string>
+
+    <string name="title_activity_login">Login</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    <string name="title_activity_news_letter">News Letter</string>
 
 </resources>

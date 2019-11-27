@@ -168,7 +168,7 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
 
         binding.tabLayout.addTab(
             binding.tabLayout.newTab().setText(R.string.bytes).setIcon(R.drawable.navigation_icon).setTag(
-                DebugConstants.NAVIGATE_TO_LOGIN
+                DebugConstants.NAVIGATE_TO_DASHBOARD
             )
         )
 
