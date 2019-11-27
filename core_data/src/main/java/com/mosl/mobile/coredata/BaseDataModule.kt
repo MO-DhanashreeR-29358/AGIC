@@ -4,7 +4,6 @@ import android.content.Context
 import com.mosl.app.core.rx.DefaultDispatchers
 import com.mosl.commons.rx.Dispatchers
 import com.mosl.mobile.coredata.util.HttpListenerFactory
-import com.mosl.mobile.coredata.util.MOSLResponseWrapper
 import dagger.Module
 import dagger.Provides
 import mosl.trading.annotation.InternalAPIRetrofit
@@ -13,7 +12,6 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.converter.protobuf.ProtoConverterFactory
 import timber.log.Timber
 import java.io.File
