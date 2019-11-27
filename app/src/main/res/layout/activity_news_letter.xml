@@ -1,0 +1,27 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:id="@+id/rrTCT"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context="com.mosl.mobile.newsletter.NewsLetterActivity">
+
+
+        <TextView
+            android:id="@+id/skip_to_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/login_btn_back"
+            android:gravity="center"
+            android:padding="@dimen/padding_medium"
+            android:text="@string/skip_to_login"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_medium" />
+
+
+    </RelativeLayout>
+
+</layout>
