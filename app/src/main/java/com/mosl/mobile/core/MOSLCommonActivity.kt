@@ -1,16 +1,24 @@
 package com.mosl.mobile.core
 
 import android.content.Context
+import android.content.IntentFilter
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.view.View
 import android.view.View.OnClickListener
+import android.widget.Toast
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import com.jakewharton.rxbinding3.appcompat.navigationClicks
+import com.mosl.app.core.network.NetworkChangeEvent
 import com.mosl.app.core.network.NetworkReceiver
+import com.mosl.app.core.rx.applyUiModel
 import com.mosl.app.coreui.base.ActivityDelegate
 import com.mosl.app.coreui.base.BaseActivity
+import com.mosl.app.coreui.base.NavigationElement
+import com.mosl.mobile.BuildConfig
 import com.mosl.mobile.R
 import com.mosl.mobile.coreui.LocaleManager
 import com.mosl.mobile.dashboard.ActivityNavigationHelper
@@ -22,9 +30,12 @@ import com.mosl.navigator.FragmentNavigationEntry
 import com.mosl.navigator.FragmentResolver
 import com.mosl.navigator.NavigationHelper
 import com.mosl.navigator.Navigator
+import io.reactivex.Observable
+import io.reactivex.rxkotlin.Observables
 import io.reactivex.rxkotlin.addTo
 import timber.log.Timber
 import java.util.HashMap
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
@@ -56,12 +67,19 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     binding = ActivityCommonbaseBinding.bind(findViewById(R.id.drawer_layout))
-    binding.appBar.navigationClicks().subscribe { openMenuDrawer() }.addTo(disposable)
+
+    registerReceiver(
+      networkReceiver,
+      IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
+    )
+          binding.appBar.navigationClicks().subscribe { openMenuDrawer() }.addTo(disposable)
     if (savedInstanceState == null) {
       activityNavHelper.loadIntent(intent)
     } else {
       globalTitles = savedInstanceState.getSerializable(PAGE_TITLES) as HashMap<String, AppTitle>
     }
+
+    setupObservables()
   }
 
   private fun openMenuDrawer() {
@@ -92,6 +110,35 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
   override fun hideProgress() {
   }
 
+  override fun onBackPressed() {
+    if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
+      binding.drawerLayout.closeDrawers()
+      return
+    }
+
+    if (binding.progressBar.visibility == View.VISIBLE) {
+      binding.progressBar.visibility = View.GONE
+      return
+    }
+
+    if (navigationHelper.onBackPressed()) {
+      return
+    }
+
+    if (navigationHelper.canGoBack()) {
+      screenNavigator.goBack()
+      return
+    }
+
+    handleExitAppPopup()
+  }
+
+  private fun handleExitAppPopup() {
+
+      exitPopup()
+
+  }
+
   override fun setAppTitle(page: String, appTitle: AppTitle?) {
     val title = appTitle ?: globalTitles[page] ?: AppTitle.EMPTY
     Timber.d("ActionBarNew Set Title for %s, to %s", page, title)
@@ -119,10 +166,65 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
     outState.putSerializable(PAGE_TITLES, globalTitles)
   }
 
+
+  private fun exitPopup() {
+    if (doubleBackToExitPressedOnce) {
+      finish()
+      return
+    }
+
+    doubleBackToExitPressedOnce = true
+    Toast.makeText(this, "Please click back again to exit", Toast.LENGTH_SHORT).show()
+
+    disposable.add(Observable.timer(2000, TimeUnit.MILLISECONDS)
+      .subscribe { doubleBackToExitPressedOnce = false })
+  }
+
+  internal fun setupObservables() {
+    val mainThread = dispatchers.main
+
+
+    networkReceiver.onNetworkChanged()
+      .distinctUntilChanged()
+      .observeOn(mainThread)
+      .subscribe(this::onEvent)
+      .addTo(disposable)
+
+
+    activityNavHelper.addTo(disposable)
+  }
+
+
+  fun onEvent(event: NetworkChangeEvent) {
+    Timber.i("Network Changed : %s", event)
+
+    val currentFragment = currentFragment
+    if (currentFragment is NavigationElement) {
+      (currentFragment as NavigationElement).networkChanged(event)
+    }
+
+    if (event.isConnected) {
+      snackbar?.dismiss()
+    } else {
+      snackbar = showNetworkDisconnectedSnackbar()
+    }
+  }
+
+  internal fun showNetworkDisconnectedSnackbar(): Snackbar {
+    val snackbar = Snackbar.make(
+      binding.coordinatorLayout, R.string.network_unavailable,
+      Snackbar.LENGTH_INDEFINITE
+    )
+    snackbar.setAction(R.string.button_label_ok) { v -> snackbar.dismiss() }
+    snackbar.show()
+    return snackbar
+  }
+
   override fun onDestroy() {
     super.onDestroy()
     globalTitles.clear()
     disposable.clear()
+    unregisterReceiver(networkReceiver)
   }
 
   companion object {

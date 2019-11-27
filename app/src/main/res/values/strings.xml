@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">AGIC</string>
+    <string name="network_unavailable">Network Not Available</string>
+
 </resources>
