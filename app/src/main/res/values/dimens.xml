@@ -25,6 +25,9 @@
     <dimen name="et_size">@dimen/_40ssp</dimen>
     <dimen name="very_extra_large">@dimen/_52ssp</dimen>
     <dimen name="login_img_large">@dimen/_100sdp</dimen>
+    <dimen name="img_large">@dimen/_60sdp</dimen>
+    <dimen name="img_large_40">@dimen/_40sdp</dimen>
+    <dimen name="img_large_50">@dimen/_50sdp</dimen>
     <dimen name="login_bottom">@dimen/_175sdp</dimen>
     <dimen name="menu_icon">@dimen/_24sdp</dimen>
     <dimen name="text_size_extra_large">@dimen/_24ssp</dimen>
