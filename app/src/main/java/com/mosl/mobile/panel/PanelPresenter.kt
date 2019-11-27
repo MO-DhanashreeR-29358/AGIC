@@ -8,7 +8,7 @@ import javax.inject.Inject
 @Module
 abstract class PanelModule {
     @Binds
-    abstract fun provideDashboardView(fragment: PanelFragment): PanelContract.View
+    abstract fun providePanelView(fragment: PanelFragment): PanelContract.View
 }
 
 class PanelPresenter @Inject constructor(

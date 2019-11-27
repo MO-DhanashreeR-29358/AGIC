@@ -2,7 +2,7 @@ package com.mosl.mobile
 
 import com.mosl.mobile.dashboard.DashboardFragment
 import com.mosl.mobile.dashboard.DashboardModule
-import com.mosl.mobile.overview.OverViewFragment
+import com.mosl.mobile.overviewpager.OverViewPagerFragment
 import com.mosl.mobile.drawermenu.DrawerMenuFragment
 import com.mosl.mobile.featurescope.FirstPlaygroundFragment
 import com.mosl.mobile.featurescope.SecondPlaygroundFragment
@@ -15,27 +15,29 @@ import dagger.android.ContributesAndroidInjector
 
 @Module
 abstract class DebugFragmentsProvider {
-  @ContributesAndroidInjector
-  abstract fun provideFirstPlaygroundFragmentFactory(): FirstPlaygroundFragment
+    @ContributesAndroidInjector
+    abstract fun provideFirstPlaygroundFragmentFactory(): FirstPlaygroundFragment
 
-  @ContributesAndroidInjector
-  abstract fun provideDeeplinkTestFragmentFactory(): SecondPlaygroundFragment
+    @ContributesAndroidInjector
+    abstract fun provideDeeplinkTestFragmentFactory(): SecondPlaygroundFragment
 
-  @ContributesAndroidInjector(modules = [DashboardModule::class])
-  abstract fun provideDashboardFragmentFactory(): DashboardFragment
+    @ContributesAndroidInjector(modules = [DashboardModule::class])
+    abstract fun provideDashboardFragmentFactory(): DashboardFragment
 
-  @ContributesAndroidInjector(modules = [DashboardModule::class])
-  abstract fun provideOverViewFragmentFactory(): OverViewFragment
+    @ContributesAndroidInjector(modules = [DashboardModule::class])
+    abstract fun provideOverViewFragmentFactory(): OverViewPagerFragment
 
-  @ContributesAndroidInjector(modules = [DashboardModule::class])
-  abstract fun provideScheduleFragmenttFactory(): ScheduleFragment
+    @ContributesAndroidInjector(modules = [DashboardModule::class])
+    abstract fun provideScheduleFragmenttFactory(): ScheduleFragment
 
-  @ContributesAndroidInjector(modules = [DashboardModule::class])
-  abstract fun provideLoginFragmentFactory(): LoginFragment
+    @ContributesAndroidInjector(modules = [DashboardModule::class])
+    abstract fun provideLoginFragmentFactory(): LoginFragment
 
-  @ContributesAndroidInjector(modules = [PanelModule::class])
-  abstract fun providePanelFragmentFactory(): PanelFragment
+    @ContributesAndroidInjector(modules = [PanelModule::class])
+    abstract fun providePanelFragmentFactory(): PanelFragment
 
-  @ContributesAndroidInjector
-  abstract fun provideDrawerMenuFragmentFactory(): DrawerMenuFragment
+
+
+    @ContributesAndroidInjector
+    abstract fun provideDrawerMenuFragmentFactory(): DrawerMenuFragment
 }

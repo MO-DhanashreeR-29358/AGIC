@@ -10,14 +10,14 @@
 
 
         <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabLayout"
+            android:id="@+id/tab_layout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@color/greyWhite"
             app:iconGravity="textStart"
-            app:iconPadding="4dp"
+            app:iconPadding="@dimen/_4sdp"
             app:layout_anchorGravity="bottom|center"
-            app:layout_constraintBottom_toTopOf="@+id/activityFrameLayout"
+            app:layout_constraintBottom_toTopOf="@+id/pager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -27,15 +27,14 @@
             app:tabSelectedTextColor="@color/blue"
             app:tabTextAppearance="@style/MaxCustomTabText" />
 
-        <FrameLayout
-            android:id="@+id/activityFrameLayout"
-            android:layout_width="0dp"
+        <com.mosl.app.coreui.views.CustomViewPager
+            android:id="@+id/pager"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
+            app:layout_constraintTop_toBottomOf="@id/tab_layout" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

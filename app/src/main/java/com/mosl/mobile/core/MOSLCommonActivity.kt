@@ -21,6 +21,7 @@ import com.mosl.app.core.utils.hideKeyBoard
 import com.mosl.app.coreui.base.ActivityDelegate
 import com.mosl.app.coreui.base.BaseActivity
 import com.mosl.mobile.R
+import com.mosl.mobile.constants.NavigationConstants
 import com.mosl.mobile.coreui.LocaleManager
 import com.mosl.mobile.dashboard.ActivityNavigationHelper
 import com.mosl.mobile.databinding.ActivityCommonbaseBinding
@@ -162,13 +163,13 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
 
         binding.tabLayout.addTab(
             binding.tabLayout.newTab().setText(R.string.panel).setIcon(R.drawable.navigation_icon).setTag(
-                DebugConstants.NAVIGATE_TO_PANEL
+                NavigationConstants.NAVIGATE_TO_PANEL_BASE
             )
         )
 
         binding.tabLayout.addTab(
             binding.tabLayout.newTab().setText(R.string.bytes).setIcon(R.drawable.navigation_icon).setTag(
-                DebugConstants.NAVIGATE_TO_LOGIN
+                NavigationConstants.NAVIGATE_TO_BYTES
             )
         )
 
