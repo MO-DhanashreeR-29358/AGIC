@@ -20,10 +20,10 @@
 
         <ImageView
             android:id="@+id/agic15IMG"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_large"
-            android:layout_marginBottom="@dimen/margin_large"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/margin_extra_large"
+            android:layout_marginBottom="@dimen/margin_extra_large"
             android:src="@drawable/agic_15"
             app:layout_constraintBottom_toTopOf="@+id/txt1"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -63,6 +63,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/et_size"
             android:layout_marginLeft="@dimen/margin_large"
+            android:background="@drawable/login_et_back"
             android:layout_marginRight="@dimen/margin_large"
             android:layout_marginBottom="@dimen/margin_large"
             android:textSize="@dimen/text_size_medium"
