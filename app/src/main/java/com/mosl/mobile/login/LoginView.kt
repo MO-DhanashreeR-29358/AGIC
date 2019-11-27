@@ -1,12 +1,11 @@
 package com.mosl.mobile.login
 
-import android.os.Bundle
-import android.view.View
-import com.mosl.app.coreui.base.BaseFragment
-import com.mosl.mobile.R
-import com.mosl.mobile.core.MOSLCommonFragment
-import com.mosl.mobile.databinding.FragmentLoginBinding
+import com.mosl.app.core.base.BaseView
+import com.mosl.commons.data.UiModel
+import com.mosl.mobile.demo.User
+import io.reactivex.Observable
 
-class LoginView {
-
+interface LoginView : BaseView {
+  fun onLoginClicked(): Observable<Unit>
+  fun renderLogin(uiModel: UiModel<Unit>)
 }

@@ -24,7 +24,8 @@ object Versions {
   const val wearable = "2.3.0"
   const val androidDataBinding = "3.4.2"
   const val coroutines ="1.3.0"
-  const val lifeCycle ="2.2.0-alpha05"
+  const val lifeCycle ="2.2.0-rc02"
+  const val sdp ="1.0.6"
 }
 
 object Dependencies {
@@ -182,6 +183,11 @@ object OkHttpDependencies {
 object StethoDependencies {
   const val core = "com.facebook.stetho:stetho:${Versions.stetho}"
   const val okHttp = "com.facebook.stetho:stetho-okhttp3:${Versions.stetho}"
+}
+
+object DimensionDependencies {
+  const val sdp = "com.intuit.sdp:sdp-android:${Versions.sdp}"
+  const val ssp = "com.intuit.ssp:ssp-android:${Versions.sdp}"
 }
 
 object LeakCanaryDependencies {

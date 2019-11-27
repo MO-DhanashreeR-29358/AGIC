@@ -3,11 +3,9 @@ package com.mosl.mobile.newsletter
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
 import com.mosl.app.coreui.base.LeanBaseActivity
 import com.mosl.mobile.R
 import com.mosl.mobile.core.MOSLCommonActivity
-import com.mosl.mobile.databinding.ActivityLogin2Binding
 import com.mosl.mobile.databinding.ActivityNewsLetterBinding
 import com.mosl.mobile.login.LoginActivity
 import com.mosl.mobile.nav.DebugConstants

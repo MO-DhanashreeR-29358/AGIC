@@ -6,6 +6,8 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import com.mosl.app.core.events.DataAction
 import com.mosl.app.coreui.base.BaseActivity
+import com.mosl.app.coreui.base.LeanBaseActivity
+import com.mosl.commons.data.UiModel
 import com.mosl.mobile.R
 import com.mosl.mobile.core.MOSLCommonActivity
 import com.mosl.mobile.databinding.ActivityLoginBinding
@@ -20,7 +22,7 @@ import io.reactivex.Observable
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
  */
-class LoginActivity : BaseActivity(), Navigator {
+class LoginActivity : LeanBaseActivity(), Navigator ,LoginView{
 
     lateinit var binding: ActivityLoginBinding
 
@@ -30,10 +32,7 @@ class LoginActivity : BaseActivity(), Navigator {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-//        setContentView(R.layout.activity_login)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
         binding = ActivityLoginBinding.bind(findViewById(R.id.constrainLaout))
 
         binding.btnlogin.setOnClickListener(View.OnClickListener { openDashboard() })
@@ -54,6 +53,22 @@ class LoginActivity : BaseActivity(), Navigator {
         } else {
             hideProgress()
         }
+    }
+
+    override fun onLoginClicked(): Observable<Unit> {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun renderLogin(uiModel: UiModel<Unit>) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun isDataEmpty(): Boolean {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun onDataAction(): Observable<DataAction> {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
 
@@ -107,5 +122,7 @@ class LoginActivity : BaseActivity(), Navigator {
     override fun showProgress() {
         binding.progressBar.visibility = View.VISIBLE
     }
+
+
 
 }
