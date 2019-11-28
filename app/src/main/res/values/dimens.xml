@@ -3,6 +3,7 @@
 
     <dimen name="menuIcons">@dimen/_24sdp</dimen>
     <dimen name="margin_extra_large">@dimen/_24sdp</dimen>
+    <dimen name="margin_30">@dimen/_30sdp</dimen>
     <dimen name="margin_extra_small">@dimen/_2sdp</dimen>
     <dimen name="margin_large">@dimen/_16sdp</dimen>
     <dimen name="margin_medium">@dimen/_8sdp</dimen>
@@ -22,8 +23,9 @@
     <dimen name="text_size_small">@dimen/_12ssp</dimen>
     <dimen name="circle_size">@dimen/_5sdp</dimen>
 
-    <dimen name="et_size">@dimen/_40ssp</dimen>
-    <dimen name="very_extra_large">@dimen/_52ssp</dimen>
+    <dimen name="et_size">@dimen/_30ssp</dimen>
+    <dimen name="tab_size">@dimen/_45ssp</dimen>
+    <dimen name="very_extra_large">@dimen/_68ssp</dimen>
     <dimen name="login_img_large">@dimen/_100sdp</dimen>
     <dimen name="img_large">@dimen/_60sdp</dimen>
     <dimen name="img_large_40">@dimen/_40sdp</dimen>

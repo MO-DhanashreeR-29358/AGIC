@@ -3,6 +3,7 @@ package com.mosl.mobile.splash
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import com.mosl.app.core.network.isNetworkConnected
 import com.mosl.app.coreui.base.LeanBaseActivity
 import com.mosl.mobile.R
@@ -15,7 +16,12 @@ import com.mosl.mobile.newsletter.NewsLetterActivity
 import javax.inject.Inject
 
 class SplashActivity : LeanBaseActivity() {
+
     lateinit var binding: ActivitySplashScreenBinding
+
+    private var mDelayHandler: Handler? = null
+    private val SPLASH_DELAY: Long = 2000 //3 seconds
+
 
     override fun getLayout(): Int {
         return R.layout.activity_splash_screen
@@ -27,7 +33,13 @@ class SplashActivity : LeanBaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySplashScreenBinding.bind(findViewById(R.id.splash_root))
-        checkNetwork()
+//        checkNetwork()
+
+        //Initialize the Handler
+        mDelayHandler = Handler()
+
+        //Navigate with delay
+        mDelayHandler!!.postDelayed(mRunnable, SPLASH_DELAY)
     }
 
     override fun attachBaseContext(base: Context) {
@@ -61,5 +73,16 @@ class SplashActivity : LeanBaseActivity() {
             finish()
         }
 
+    }
+
+    internal val mRunnable: Runnable = Runnable {
+        if (!isFinishing) {
+
+            checkNetwork()
+
+//            val intent = Intent(applicationContext, NewsLetterActivity::class.java)
+//            startActivity(intent)
+//            finish()
+        }
     }
 }
