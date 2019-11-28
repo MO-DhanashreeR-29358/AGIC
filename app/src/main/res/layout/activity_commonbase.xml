@@ -52,21 +52,5 @@
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-        <com.mosl.app.coreui.views.NonConsumingScrimInsetsFrameLayout
-            android:layout_width="@dimen/drawerLayoutWidth"
-            android:layout_height="match_parent"
-            android:layout_gravity="start"
-            android:background="@color/white"
-            android:fitsSystemWindows="true"
-            app:insetForeground="#4000"
-            >
-
-            <com.mosl.mobile.drawermenu.DrawerMenuView
-                android:id="@+id/drawer_menu"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                />
-
-        </com.mosl.app.coreui.views.NonConsumingScrimInsetsFrameLayout>
     </androidx.drawerlayout.widget.DrawerLayout>
 </layout>
