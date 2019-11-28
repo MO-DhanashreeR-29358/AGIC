@@ -7,7 +7,7 @@ dependencies {
     compileOnly RetrofitDependencies.core
     implementation RxDependencies.java
     api MofslArtifactDependencies.appCore
-    implementation RetrofitDependencies.gson
+    implementation GsonDependencies.gson
     //Android Room
     implementation RoomDependencies.runtime
 }

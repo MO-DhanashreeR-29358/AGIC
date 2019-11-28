@@ -13,8 +13,8 @@ fun LoginRequest.mapToLoginRequest(): LoginInfoRequest {
 }
 
 
-fun LoginInfoResponse.mapToLoginResponse(): LoginResponse {
-    return LoginResponse(
+fun LoginInfoResponse.mapToLoginResponse(): User {
+    return User(
 
         clientId, fundId, clientName, emailId, fundName, contactName1, contactName2, contactName3, contactMobile1, contactMobile2, contactMobile3, day
 

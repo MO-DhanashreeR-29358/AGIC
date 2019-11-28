@@ -6,12 +6,13 @@ import android.os.Bundle
 import com.mosl.app.core.network.isNetworkConnected
 import com.mosl.app.coreui.base.LeanBaseActivity
 import com.mosl.mobile.R
+import com.mosl.mobile.app_user.login.UserManager
 import com.mosl.mobile.core.MOSLCommonActivity
 import com.mosl.mobile.coreui.LocaleManager
 import com.mosl.mobile.databinding.ActivitySplashScreenBinding
-import com.mosl.mobile.login.LoginActivity
-import com.mosl.mobile.nav.DebugConstants.NAVIGATE_TO_SCHEDULE
+import com.mosl.mobile.nav.DebugConstants
 import com.mosl.mobile.newsletter.NewsLetterActivity
+import javax.inject.Inject
 
 class SplashActivity : LeanBaseActivity() {
     lateinit var binding: ActivitySplashScreenBinding
@@ -19,6 +20,9 @@ class SplashActivity : LeanBaseActivity() {
     override fun getLayout(): Int {
         return R.layout.activity_splash_screen
     }
+
+    @Inject
+    lateinit var userManager: UserManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,10 +48,18 @@ class SplashActivity : LeanBaseActivity() {
     }
 
     internal fun openDashboard() {
-        val intent = Intent(this, NewsLetterActivity::class.java).apply {
-            putExtra(MOSLCommonActivity.ARG_PAGE_ID, NAVIGATE_TO_SCHEDULE)
+        if (userManager.isLoggedIn()) {
+            val intent = Intent(this, MOSLCommonActivity::class.java)
+                .apply {
+                    putExtra(MOSLCommonActivity.ARG_PAGE_ID, DebugConstants.NAVIGATE_TO_SCHEDULE)
+                }
+            startActivity(intent)
+            finish()
+        } else {
+            val intent = Intent(this, NewsLetterActivity::class.java)
+            startActivity(intent)
+            finish()
         }
-        startActivity(intent)
-        finish()
+
     }
 }

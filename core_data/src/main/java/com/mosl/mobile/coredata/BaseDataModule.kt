@@ -81,5 +81,9 @@ class BaseDataModule {
         return HttpListenerFactory
     }
 
-
+    @Provides
+    @Singleton
+    fun provideGson(): Gson {
+        return GsonBuilder().create()
+    }
 }

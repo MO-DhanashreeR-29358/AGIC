@@ -26,6 +26,7 @@ object Versions {
   const val coroutines ="1.3.0"
   const val lifeCycle ="2.2.0-rc02"
   const val sdp ="1.0.6"
+  const val gson ="2.8.5"
 }
 
 object Dependencies {
@@ -183,6 +184,10 @@ object OkHttpDependencies {
 object StethoDependencies {
   const val core = "com.facebook.stetho:stetho:${Versions.stetho}"
   const val okHttp = "com.facebook.stetho:stetho-okhttp3:${Versions.stetho}"
+}
+
+object GsonDependencies{
+  const val gson = "com.google.code.gson:gson:${Versions.gson}"
 }
 
 object DimensionDependencies {

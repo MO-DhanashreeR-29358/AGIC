@@ -45,6 +45,7 @@ dependencies {
   implementation RxDependencies.kotlin
   implementation RxDependencies.relay
   implementation RxDependencies.preferences
+  implementation GsonDependencies.gson
 
   implementation project (":mosl_api")
 }

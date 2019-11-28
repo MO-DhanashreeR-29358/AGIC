@@ -73,6 +73,7 @@ dependencies {
   debugImplementation MofslArtifactDependencies.debugViewCore
   implementation MofslArtifactDependencies.annotation
   implementation RetrofitDependencies.gson
+  implementation GsonDependencies.gson
 
   implementation project(':mosl_api')
   implementation project (':mock_data')

@@ -30,4 +30,5 @@ class PreferenceDataModule {
     internal fun provideClientCodePref(prefs: SharedPreferences): StringPreference {
         return StringPreference(prefs, PREF_CLIENT_CODE, "")
     }
+
 }

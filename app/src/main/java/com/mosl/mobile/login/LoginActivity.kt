@@ -14,7 +14,7 @@ import com.mosl.commons.data.UiModel
 import com.mosl.commons.data.onFailure
 import com.mosl.commons.data.onSuccess
 import com.mosl.mobile.R
-import com.mosl.mobile.app_user.model.LoginResponse
+import com.mosl.mobile.app_user.model.User
 import com.mosl.mobile.core.MOSLCommonActivity
 import com.mosl.mobile.databinding.ActivityLoginBinding
 import com.mosl.mobile.nav.DebugConstants
@@ -73,7 +73,7 @@ class LoginActivity : LeanBaseActivity(), Navigator, LoginView {
         return binding.editUniqueCode.editorActions { event -> event == EditorInfo.IME_ACTION_DONE }
     }
 
-    override fun renderLogin(uiModel: UiModel<LoginResponse>) {
+    override fun renderLogin(uiModel: UiModel<User>) {
         toggleProgressBar(uiModel.inProgress)
 
         uiModel.onFailure { error ->

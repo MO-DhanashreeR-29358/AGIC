@@ -1,5 +1,13 @@
 package com.mosl.mobile.app_user.user
 
+import android.content.Context
+import android.content.SharedPreferences
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
+import com.mosl.mobile.app_user.UserPreference
+import com.mosl.mobile.app_user.helper.PrefStoreProvider
+import com.mosl.mobile.app_user.helper.UserPrefStore
+import com.mosl.mobile.app_user.helper.getPref
 import com.mosl.mobile.app_user.login.UserManager
 import com.mosl.mobile.login.UserCache
 import com.mosl.mobile.login.UserCacheImpl
@@ -10,13 +18,39 @@ import javax.inject.Singleton
 
 @Module
 class UserModule {
-  @Provides
-   internal fun provideUserManager(userCache: UserCache): UserManager{
-    return UserManagerImpl(userCache)
-  }
 
-  @Provides @Singleton
-  internal fun provideUserCache():UserCache{
-    return UserCacheImpl()
-  }
+    private val USER_MANAGER_PREF = ".user_manager"
+
+
+    @Provides
+    @UserPreference
+    @Singleton
+    fun provideUserCredPreference(context: Context): SharedPreferences {
+        return context.getPref(
+            context.packageName + USER_MANAGER_PREF
+        )
+    }
+
+    @Provides
+    @Singleton
+    fun provideUserPrefStore(
+        @UserPreference preferences: SharedPreferences
+    ): UserPrefStore {
+        return PrefStoreProvider.createUserPrefStore(preferences)
+    }
+
+    @Provides
+    internal fun provideUserManager(userManagerImpl: UserManagerImpl): UserManager {
+        return userManagerImpl
+    }
+
+
+    @Provides
+    @Singleton
+    internal fun provideUserCache(userCacheImpl: UserCacheImpl): UserCache {
+        return userCacheImpl
+    }
+
+
+
 }

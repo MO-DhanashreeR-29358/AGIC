@@ -8,7 +8,9 @@ import com.mosl.mobile.R
 import com.mosl.mobile.core.MOSLCommonActivity
 import com.mosl.mobile.databinding.ActivityNewsLetterBinding
 import com.mosl.mobile.login.LoginActivity
+import com.mosl.mobile.login.UserManagerImpl
 import com.mosl.mobile.nav.DebugConstants
+import javax.inject.Inject
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -17,6 +19,9 @@ import com.mosl.mobile.nav.DebugConstants
 class NewsLetterActivity : LeanBaseActivity() {
 
     lateinit var binding: ActivityNewsLetterBinding
+
+    @Inject
+    lateinit var userManager: UserManagerImpl
 
     override fun getLayout(): Int {
         return R.layout.activity_news_letter
