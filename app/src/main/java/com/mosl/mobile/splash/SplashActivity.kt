@@ -50,9 +50,6 @@ class SplashActivity : LeanBaseActivity() {
     internal fun openDashboard() {
         if (userManager.isLoggedIn()) {
             val intent = Intent(this, MOSLCommonActivity::class.java)
-                .apply {
-                    putExtra(MOSLCommonActivity.ARG_PAGE_ID, DebugConstants.NAVIGATE_TO_SCHEDULE)
-                }
             startActivity(intent)
             finish()
         } else {

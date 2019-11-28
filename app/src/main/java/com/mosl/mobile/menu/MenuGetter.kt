@@ -15,38 +15,17 @@ object MenuGetter {
   @SuppressLint("SwitchIntDef")
   fun getFragment(@NavigationConstants menuCode: Int): Fragment? {
     return when (menuCode) {
-      NavigationConstants.NAVIGATE_TO_PORTFOLIO->DemoFragment()
+      NavigationConstants.NAVIGATE_TO_DEMO->DemoFragment()
       else -> null
     }
   }
 
-  fun LeanBaseFragment.withIsSensitiveFlag(): LeanBaseFragment {
-    arguments = bundleOf(PAGE_IS_SENSITIVE to true)
-    return this
-  }
 
-  fun PagerBaseFragment.withPageSource(source: Int): PagerBaseFragment {
-    arguments = bundleOf(PagerBaseFragment.ARG_TARGET_ITEM_POSITION to source)
-    return this
-  }
-
-  fun isActivity(pageId: Int): Boolean {
-    return false
-  }
-
-  fun isDialog(pageId: Int): Boolean {
-    return false
-  }
-
-  fun isExternalWebLink(pageId: Int): Boolean {
-    return false
-  }
-
-  fun isWebLink(pageId: Int): Boolean {
-    return false
-  }
-
-  fun isCustomNavigation(pageId: Int): Boolean {
-    return false
+  @JvmStatic
+  fun isHandled(@NavigationConstants pageId: Int): Boolean {
+    return when (pageId) {
+      NavigationConstants.NAVIGATE_TO_DEMO -> true
+      else -> return false
+    }
   }
 }

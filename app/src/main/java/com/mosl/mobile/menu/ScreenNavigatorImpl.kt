@@ -6,6 +6,7 @@ import com.mosl.annotations.ActivityScoped
 import com.mosl.app.core.prefs.StringPreference
 import com.mosl.mobile.annotations.ClientCode
 import com.mosl.mobile.app_user.login.UserManager
+import com.mosl.mobile.constants.NavigationConstants
 import com.mosl.mobile.helper.CustomNavigator
 import com.mosl.navigator.FragmentNavigationEntry
 import com.mosl.navigator.NavigationEntry
@@ -33,7 +34,7 @@ customNavigator, navigator) {
   }
 
   override fun openHome() {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    openPage(NavigationConstants.NAVIGATE_TO_DEMO, false)
   }
 
   override fun openPage(entry: NavigationEntry) {
