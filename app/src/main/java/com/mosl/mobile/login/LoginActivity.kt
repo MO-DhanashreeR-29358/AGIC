@@ -12,6 +12,7 @@ import com.mosl.app.core.events.DataAction
 import com.mosl.app.coreui.base.LeanBaseActivity
 import com.mosl.commons.data.UiModel
 import com.mosl.commons.data.onFailure
+import com.mosl.commons.data.onSuccess
 import com.mosl.mobile.R
 import com.mosl.mobile.app_user.model.LoginResponse
 import com.mosl.mobile.core.MOSLCommonActivity
@@ -34,6 +35,7 @@ class LoginActivity : LeanBaseActivity(), Navigator, LoginView {
     lateinit var binding: ActivityLoginBinding
     @Inject
     lateinit var presenter: LoginPresenter
+
     override fun getLayout(): Int {
         return R.layout.activity_login
     }
@@ -73,10 +75,13 @@ class LoginActivity : LeanBaseActivity(), Navigator, LoginView {
 
     override fun renderLogin(uiModel: UiModel<LoginResponse>) {
         toggleProgressBar(uiModel.inProgress)
-//    Timber.d("User cache %s", userManager.user)
 
         uiModel.onFailure { error ->
             error.showOnFailurePopup()
+        }
+
+        uiModel.onSuccess {
+            openDashboard()
         }
     }
 

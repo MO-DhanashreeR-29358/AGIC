@@ -2,6 +2,7 @@ package com.mosl.mobile.coredata
 
 import android.content.Context
 import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import com.mosl.app.core.rx.DefaultDispatchers
 import com.mosl.commons.rx.Dispatchers
 import com.mosl.mobile.coredata.util.HttpListenerFactory
@@ -25,14 +26,6 @@ class BaseDataModule {
         return DefaultDispatchers
     }
 
-    private var gson: Gson? = null
-
-    fun getGson(): Gson? {
-        if (gson == null) {
-            gson = Gson()
-        }
-        return gson
-    }
 
     @Provides
     @Singleton
@@ -50,7 +43,7 @@ class BaseDataModule {
     ): Retrofit.Builder {
         return Retrofit.Builder().client(client)
             .addConverterFactory(moslResponseWrapper)
-            .addConverterFactory(GsonConverterFactory.create(getGson()))
+            .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(rxJava2CallAdapterFactory)
 
     }
@@ -65,7 +58,7 @@ class BaseDataModule {
     .Builder {
         return Retrofit.Builder().client(client)
             .addConverterFactory(moslResponseWrapper)
-            .addConverterFactory(GsonConverterFactory.create(getGson()))
+            .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(rxJava2CallAdapterFactory)
     }
 
@@ -88,16 +81,5 @@ class BaseDataModule {
         return HttpListenerFactory
     }
 
-//    @Provides
-//    @Singleton
-//    internal fun provideGson(): Gson {
-//        return GsonBuilder().create()
-//    }
-//
-//    @Provides
-//    @Singleton
-//    internal fun provideGsonConverterFactory(gson: Gson): GsonConverterFactory {
-//        return GsonConverterFactory.create(gson)
-//    }
 
 }
