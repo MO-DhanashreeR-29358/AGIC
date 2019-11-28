@@ -3,7 +3,7 @@ package com.mosl.mobile.helper
 import androidx.appcompat.app.AppCompatActivity
 import com.mosl.annotations.ActivityScoped
 import com.mosl.app.core.prefs.StringPreference
-import com.mosl.data.api.MOSLApi
+import com.mosl.data.api.AGICApi
 import com.mosl.mobile.annotations.ClientCode
 import com.mosl.navigator.Navigator
 import io.reactivex.disposables.CompositeDisposable
@@ -19,7 +19,7 @@ class CustomNavigatorImpl @Inject constructor(
     protected val activity: AppCompatActivity,
     protected val navigator: Navigator,
     @param:ClientCode protected val clientCode: StringPreference,
-    protected val moslApi: MOSLApi
+    protected val moslApi: AGICApi
    // protected val screenNavigator: Lazy<ScreenNavigator>
 ) : CustomNavigator, Disposable {
   private val disposable: CompositeDisposable = CompositeDisposable()

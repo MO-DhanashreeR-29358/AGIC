@@ -45,7 +45,7 @@ class AESEncryptor @Inject constructor() : Encryptor {
 
   companion object {
     private const val CIPHER_ALGORITHM = "AES/CBC/PKCS5Padding"
-    private const val ZERO_PADDING_KEY = "8080808080808080"
-    private const val IV = "8080808080808080"
+    private const val ZERO_PADDING_KEY = "24@b73#7qc23&4dk"
+    private const val IV = "24@b73#7qc23&4dk"
   }
 }

@@ -54,12 +54,12 @@
             android:text="@string/text_year"
             android:textColor="@color/greyWhite"
             android:textSize="@dimen/very_extra_large"
-            app:layout_constraintBottom_toTopOf="@+id/edit_code"
+            app:layout_constraintBottom_toTopOf="@+id/edit_unique_code"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent" />
 
         <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/edit_code"
+            android:id="@+id/edit_unique_code"
             android:layout_width="match_parent"
             android:layout_height="@dimen/et_size"
             android:layout_marginLeft="@dimen/margin_large"
@@ -67,6 +67,7 @@
             android:layout_marginRight="@dimen/margin_large"
             android:layout_marginBottom="@dimen/margin_large"
             android:textSize="@dimen/text_size_medium"
+            android:imeOptions="actionDone"
             app:layout_constraintBottom_toTopOf="@+id/btn_login"
             app:layout_constraintStart_toStartOf="parent" />
 

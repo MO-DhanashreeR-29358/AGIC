@@ -25,7 +25,7 @@ class EncryptionInterceptor @Inject constructor(
       oldBody.writeTo(buffer)
       val strOldBody = buffer.readUtf8()
 
-      val mediaType = "text/plain; charset=utf-8".toMediaTypeOrNull()
+      val mediaType = "application/json; charset=utf-8".toMediaTypeOrNull()
       val strNewBody = encryptor.encrypt(strOldBody)
       val body = strNewBody.toRequestBody(mediaType)
       request = request.newBuilder()
@@ -40,7 +40,7 @@ class EncryptionInterceptor @Inject constructor(
         val strResponse = response.body
         val decrypted = encryptor.decrypt(strResponse!!.string())
         if (decrypted != null) {
-          val decryptedBody = decrypted.toResponseBody("application/json".toMediaTypeOrNull())
+          val decryptedBody = decrypted.toResponseBody("application/json; charset=utf-8".toMediaTypeOrNull())
           return response.newBuilder()
               .body(decryptedBody)
               .build()

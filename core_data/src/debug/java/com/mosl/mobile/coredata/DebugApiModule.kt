@@ -1,7 +1,7 @@
 package com.mosl.mobile.coredata
 
 import android.content.Context
-import com.mosl.data.api.MOSLApi
+import com.mosl.data.api.AGICApi
 import com.mosl.debugview.core.annotation.IsMockMode
 import com.mosl.mobile.mock_data.MockMoslApiServiceImpl
 import dagger.Module
@@ -21,21 +21,21 @@ class DebugApiModule {
   @Singleton
   @Named("MockMoslApi")
   internal fun provideMockAmcApiService(mockRetrofit: MockRetrofit,
-      context: Context): MOSLApi {
+      context: Context): AGICApi {
     return MockMoslApiServiceImpl(mockRetrofit, context)
   }
 
   @Provides
   @Singleton
   internal fun provideMoslApi(@InternalAPIClient internalOkClient: OkHttpClient,
-      @InternalAPIRetrofit builder: Retrofit.Builder, @IsMockMode isMockMode: Boolean,
-      @Named("MockMoslApi") mockMoslApi: MOSLApi, apiBaseUrls: CommonBaseUrls): MOSLApi {
+                              @InternalAPIRetrofit builder: Retrofit.Builder, @IsMockMode isMockMode: Boolean,
+                              @Named("MockMoslApi") mockMoslApi: AGICApi, apiBaseUrls: CommonBaseUrls): AGICApi {
     return if (isMockMode) {
       mockMoslApi
     } else {
       builder.client(internalOkClient).baseUrl(apiBaseUrls.getMoslApiUrl())
           .build()
-          .create(MOSLApi::class.java)
+          .create(AGICApi::class.java)
     }
   }
 }

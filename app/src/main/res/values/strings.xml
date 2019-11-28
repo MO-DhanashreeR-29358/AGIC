@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">AGIC</string>
     <string name="network_unavailable">Network Not Available</string>
+    <string name="msg_unique_code_empty">Please enter your 5 digit id to Login</string>
 
     <string name="conference_over">The Conference got over.</string>
     <string name="skip_to_login">Skip to Login</string>

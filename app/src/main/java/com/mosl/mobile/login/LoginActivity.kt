@@ -3,13 +3,17 @@ package com.mosl.mobile.login
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.Fragment
 import com.jakewharton.rxbinding3.view.clicks
+import com.jakewharton.rxbinding3.widget.editorActions
+import com.mosl.app.core.error.getErrorOnFailure
 import com.mosl.app.core.events.DataAction
-import com.mosl.app.coreui.base.BaseActivity
 import com.mosl.app.coreui.base.LeanBaseActivity
 import com.mosl.commons.data.UiModel
+import com.mosl.commons.data.onFailure
 import com.mosl.mobile.R
+import com.mosl.mobile.app_user.model.LoginResponse
 import com.mosl.mobile.core.MOSLCommonActivity
 import com.mosl.mobile.databinding.ActivityLoginBinding
 import com.mosl.mobile.nav.DebugConstants
@@ -17,16 +21,19 @@ import com.mosl.navigator.AppTitle
 import com.mosl.navigator.AuthorizationState
 import com.mosl.navigator.FragmentNavigationEntry
 import com.mosl.navigator.Navigator
+import com.mosl.shared.util.getDeviceID
 import io.reactivex.Observable
+import javax.inject.Inject
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
  */
-class LoginActivity : LeanBaseActivity(), Navigator ,LoginView{
+class LoginActivity : LeanBaseActivity(), Navigator, LoginView {
 
     lateinit var binding: ActivityLoginBinding
-
+    @Inject
+    lateinit var presenter: LoginPresenter
     override fun getLayout(): Int {
         return R.layout.activity_login
     }
@@ -35,7 +42,7 @@ class LoginActivity : LeanBaseActivity(), Navigator ,LoginView{
         super.onCreate(savedInstanceState)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         binding = ActivityLoginBinding.bind(findViewById(R.id.constrainLaout))
-
+        presenter.start()
 
     }
 
@@ -59,8 +66,32 @@ class LoginActivity : LeanBaseActivity(), Navigator ,LoginView{
         return binding.btnLogin.clicks()
     }
 
-    override fun renderLogin(uiModel: UiModel<Unit>) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
+    override fun onDoneClicked(): Observable<Int> {
+        return binding.editUniqueCode.editorActions { event -> event == EditorInfo.IME_ACTION_DONE }
+    }
+
+    override fun renderLogin(uiModel: UiModel<LoginResponse>) {
+        toggleProgressBar(uiModel.inProgress)
+//    Timber.d("User cache %s", userManager.user)
+
+        uiModel.onFailure { error ->
+            error.showOnFailurePopup()
+        }
+    }
+
+    fun Throwable.showOnFailurePopup() {
+        val errorOnFailure = this.getErrorOnFailure()
+        alert(message = errorOnFailure.getResolvedMessage(applicationContext))
+    }
+
+    override fun getUniqueCode(): String {
+        return binding.editUniqueCode.text?.trim()
+            .toString()
+    }
+
+    override fun getDeviceId(): String {
+        return getDeviceID(getApplicationContext().getContentResolver())
     }
 
     override fun isDataEmpty(): Boolean {
@@ -122,7 +153,6 @@ class LoginActivity : LeanBaseActivity(), Navigator ,LoginView{
     override fun showProgress() {
         binding.progressBar.visibility = View.VISIBLE
     }
-
 
 
 }

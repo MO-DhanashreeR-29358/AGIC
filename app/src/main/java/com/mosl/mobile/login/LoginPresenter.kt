@@ -1,12 +1,34 @@
 package com.mosl.mobile.login
 
-import android.os.Bundle
-import android.view.View
-import com.mosl.app.coreui.base.BaseFragment
-import com.mosl.mobile.R
-import com.mosl.mobile.core.MOSLCommonFragment
-import com.mosl.mobile.databinding.FragmentLoginBinding
+import com.mosl.app.core.base.BasePresenter
+import com.mosl.mobile.app_user.login.LoginRepository
+import io.reactivex.Observable
+import javax.inject.Inject
 
-class LoginPresenter {
+class LoginPresenter @Inject constructor(
+    view: LoginView,
+    val loginRepository: LoginRepository
+) : BasePresenter<LoginView>(view) {
+
+
+    override fun start() {
+        disposable.add(
+            Observable.merge(view.onLoginClicked(), view.onDoneClicked())
+                .map<LoginFormInput> {
+                    LoginFormInput(
+                        view.getUniqueCode(), view.getDeviceId()
+                    )
+                }
+                .switchMap { input ->
+                    LoginValidator.validate(input)
+                        .flatMap {
+                            loginRepository.login(it)
+                        }.compose(applyUiModel())
+                }.subscribe {
+                    view.renderLogin(it)
+
+                }
+        )
+    }
 
 }

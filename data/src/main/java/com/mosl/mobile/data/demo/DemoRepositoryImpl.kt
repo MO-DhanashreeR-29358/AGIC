@@ -1,6 +1,6 @@
 package com.mosl.mobile.data.demo
 
-import com.mosl.data.api.MOSLApi
+import com.mosl.data.api.AGICApi
 import com.mosl.mobile.demo.UserResponse
 import com.mosl.mobile.demo.UserResponseMapper
 import com.mosl.mobile.domain.demo.DemoRepository
@@ -9,7 +9,7 @@ import com.mosl.mobile.domain.demo.LoginInfoD
 import javax.inject.Inject
 
 class DemoRepositoryImpl @Inject constructor(
-  private val api: MOSLApi
+  private val api: AGICApi
 ) : DemoRepository {
   /*suspend override fun userLogin(loginInfo: LoginInfo): UserResponseMapper {
     return api.userLogin(authType,email, password).run {
@@ -20,7 +20,7 @@ class DemoRepositoryImpl @Inject constructor(
 
   override suspend fun userLogin(loginDomain: LoginInfoD): UserResponseMapper {
    val request =  loginDomain.mapToLoginInfo()
-   return api.userLogin(request).run {
+   return api.demoLogin(request).run {
      this.transform()
    }
 

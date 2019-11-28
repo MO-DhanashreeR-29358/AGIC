@@ -157,6 +157,7 @@ dependencies {
   debugImplementation MofslArtifactDependencies.debugView
   debugImplementation AndroidxDependencies.multiDex
   implementation MofslArtifactDependencies.appCoreUI
+  implementation MofslArtifactDependencies.validator
 
   implementation GroupieDependencies.core
   implementation GroupieDependencies.dataBinding
@@ -175,6 +176,7 @@ dependencies {
   implementation project(':app_user')
   implementation project(':core_ui')
   implementation project(':core_data')
+  implementation project(':shared')
 
   // demo
 

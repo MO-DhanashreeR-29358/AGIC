@@ -2,8 +2,9 @@ package com.mosl.mobile.coredata;
 
 import com.google.gson.reflect.TypeToken;
 import com.mosl.annotations.ExcludeWrapper;
-import com.mosl.api.core.BaseResponse;
 import com.mosl.app.core.exception.ServiceFailureException;
+import com.mosl.mobile.coredata.util.BaseResponseAgic;
+
 import java.lang.annotation.Annotation;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -42,11 +43,11 @@ public class MOSLResponseWrapper extends Converter.Factory {
         return null;
       }
     }
-    Type envelopedType = TypeToken.getParameterized(BaseResponse.class, type).getType();
-    final Converter<ResponseBody, BaseResponse<?>> delegate =
+    Type envelopedType = TypeToken.getParameterized(BaseResponseAgic.class, type).getType();
+    final Converter<ResponseBody, BaseResponseAgic<?>> delegate =
         retrofit.nextResponseBodyConverter(this, envelopedType, annotations);
     return (Converter<ResponseBody, Object>) value -> {
-      BaseResponse<?> baseResponse = delegate.convert(value);
+      BaseResponseAgic<?> baseResponse = delegate.convert(value);
       String code = "ErrorOccurred";
       String message = "ErrorOccurred";
       if (baseResponse != null) {
@@ -63,7 +64,7 @@ public class MOSLResponseWrapper extends Converter.Factory {
   private boolean isWrapped(Type type) {
     if (type instanceof ParameterizedType) {
       Class<?> rawType = getRawType(type);
-      return (rawType == BaseResponse.class);
+      return (rawType == BaseResponseAgic.class);
     }
     return false;
   }

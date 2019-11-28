@@ -1,6 +1,6 @@
 package com.mosl.mobile.coredata
 
-import com.mosl.data.api.MOSLApi
+import com.mosl.data.api.AGICApi
 import dagger.Module
 import dagger.Provides
 import mosl.trading.annotation.InternalAPIClient
@@ -14,9 +14,9 @@ class ApiModule {
   @Provides
   @Singleton
   internal fun provideMOSLApi(@InternalAPIClient internalOkClient: OkHttpClient,
-      @InternalAPIRetrofit builder: Retrofit.Builder, apiBaseUrls: CommonBaseUrls): MOSLApi {
+      @InternalAPIRetrofit builder: Retrofit.Builder, apiBaseUrls: CommonBaseUrls): AGICApi {
     return builder.client(internalOkClient).baseUrl(apiBaseUrls.getMoslApiUrl())
         .build()
-        .create(MOSLApi::class.java)
+        .create(AGICApi::class.java)
   }
 }
