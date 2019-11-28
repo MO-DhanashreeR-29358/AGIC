@@ -12,6 +12,7 @@ import kotlin.annotation.AnnotationRetention.SOURCE
     NavigationConstants.NAVIGATE_TO_PORTFOLIO,
     NavigationConstants.NAVIGATE_TO_BYTES,
     NavigationConstants.NAVIGATE_TO_PANEL_BASE,
+    NavigationConstants.NAVIGATE_TO_PDF,
     NavigationConstants.NAVIGATE_TO_NONE
 )
 annotation class NavigationConstants {
@@ -19,7 +20,7 @@ annotation class NavigationConstants {
         const val NAVIGATE_TO_PORTFOLIO = 101
         const val NAVIGATE_TO_BYTES = 102
         const val NAVIGATE_TO_PANEL_BASE = 103
-
+        const val NAVIGATE_TO_PDF = 104
         const val NAVIGATE_TO_NONE = -1
     }
 }

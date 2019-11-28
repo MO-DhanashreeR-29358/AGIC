@@ -80,7 +80,7 @@ class PanelFragment : MOSLCommonFragment(), PanelContract.View {
             )
         )
         for (model in itemData) {
-            section.add(PanelListItem(model))
+            section.add(PanelListItem(model, context!!))
         }
 
 

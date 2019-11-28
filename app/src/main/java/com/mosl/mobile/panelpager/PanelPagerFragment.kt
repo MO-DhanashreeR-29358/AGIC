@@ -1,11 +1,10 @@
-package com.mosl.mobile.panelbase
+package com.mosl.mobile.panelpager
 
 
 import android.content.res.Resources
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import com.google.android.material.tabs.TabLayout
 import com.mosl.app.coreui.adapters.ViewPagerAdapter
 import com.mosl.mobile.R
 import com.mosl.mobile.core.MOSLCommonPager
@@ -17,7 +16,7 @@ import timber.log.Timber
 /**
  * A simple [Fragment] subclass.
  */
-class PanelBaseFragment : MOSLCommonPager(), PanelBaseView {
+class PanelPagerFragment : MOSLCommonPager(), PanelPagerView {
 
     lateinit var pagerAdapter: ViewPagerAdapter
     lateinit var binding: FragmentPanelBaseBinding

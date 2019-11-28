@@ -1,30 +1,30 @@
 package com.mosl.mobile.overviewpager
 
-import android.content.res.Resources
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.mosl.app.coreui.adapters.ViewPagerAdapter
 import com.mosl.mobile.R
 import com.mosl.mobile.core.MOSLCommonPager
-import com.mosl.mobile.databinding.FragmentOverviewBinding
+import com.mosl.mobile.databinding.FragmentOverviewPagerBinding
+import com.mosl.mobile.overview.OverviewFragment
 import com.mosl.mobile.panel.PanelFragment
-import com.mosl.mobile.panelbase.PanelBaseView
+import com.mosl.mobile.panelpager.PanelPagerView
 import timber.log.Timber
 
-class OverViewPagerFragment : MOSLCommonPager(), PanelBaseView {
+class OverViewPagerFragment : MOSLCommonPager(), PanelPagerView {
 
 
-    lateinit var binding: FragmentOverviewBinding
-    lateinit var pagerAdapter: ViewPagerAdapter
+    lateinit var binding: FragmentOverviewPagerBinding
+    private lateinit var pagerAdapter: ViewPagerAdapter
 
     override fun getLayout(): Int {
-        return R.layout.fragment_overview
+        return R.layout.fragment_overview_pager
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentOverviewBinding.bind(view)
+        binding = FragmentOverviewPagerBinding.bind(view)
         setUpAdapter()
 
 
@@ -32,9 +32,9 @@ class OverViewPagerFragment : MOSLCommonPager(), PanelBaseView {
 
     override fun getItem(pos: Int): Fragment? {
         return when (pos) {
-            0 -> PanelFragment()
-            1 -> PanelFragment()
-            2 -> PanelFragment()
+            0 -> OverviewFragment()
+            1 -> OverviewFragment()
+            2 -> OverviewFragment()
             else -> null
         }
     }
@@ -48,7 +48,7 @@ class OverViewPagerFragment : MOSLCommonPager(), PanelBaseView {
         pagerAdapter.setFragmentTitles(R.array.tabTitles)
         mPager.adapter = pagerAdapter
 
-        val screenSize = Resources.getSystem().displayMetrics.widthPixels
+        //val screenSize = Resources.getSystem().displayMetrics.widthPixels
         mPager.addOnPageChangeListener(pageChangeListener)
         mIndicator.setupWithViewPager(mPager)
         /* mIndicator.tabMode = if (screenSize < 1100)

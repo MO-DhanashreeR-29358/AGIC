@@ -1,27 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
-        android:id="@+id/constrainLaout"
+        android:id="@+id/constrainLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?android:colorBackground"
         android:orientation="horizontal"
-        android:padding="@dimen/padding_normal">
+        android:padding="@dimen/padding_medium">
 
         <ImageView
             android:id="@+id/image1"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/_72sdp"
+            android:layout_gravity="center"
             android:layout_weight="1"
-            android:src="@drawable/ic_mtrack_small" />
+            android:src="@drawable/ic_mtrack_small"
+            tools:ignore="ContentDescription" />
 
         <LinearLayout
             android:id="@+id/linear_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_weight="2"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            tools:ignore="HardcodedText">
 
             <TextView
                 android:id="@+id/txt_name_post"
@@ -29,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:text="Mr. Prasan Basu President South Asia, Neilsen"
                 android:textColor="@color/blue"
-                android:textSize="@dimen/text_size_large" />
+                android:textSize="@dimen/text_size_normal" />
 
 
             <TextView
@@ -37,8 +42,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Mr. Prasan Basu"
+                android:textAllCaps="true"
                 android:textColor="@color/black"
-                android:textSize="@dimen/text_size_large" />
+                android:textSize="@dimen/text_size_normal" />
 
         </LinearLayout>
 
@@ -47,7 +53,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.8"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            tools:ignore="HardcodedText">
 
             <TextView
                 android:id="@+id/txt_from"
@@ -55,7 +62,7 @@
                 android:layout_height="wrap_content"
                 android:text="04.00 pm"
                 android:textColor="@color/pink"
-                android:textSize="@dimen/text_size_large" />
+                android:textSize="@dimen/text_size_small" />
 
             <ImageView
                 android:id="@+id/img_more"
@@ -63,8 +70,8 @@
                 android:layout_height="@dimen/menu_icon"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="@dimen/margin_small"
-                android:layout_weight="1"
-                android:src="@drawable/ic_more_ver" />
+                android:src="@drawable/ic_more_ver"
+                tools:ignore="ContentDescription" />
 
 
             <TextView
@@ -73,7 +80,7 @@
                 android:layout_height="wrap_content"
                 android:text="04.00 pm"
                 android:textColor="@color/pink"
-                android:textSize="@dimen/text_size_large" />
+                android:textSize="@dimen/text_size_small" />
 
         </LinearLayout>
 

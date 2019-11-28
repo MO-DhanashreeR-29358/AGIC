@@ -30,29 +30,37 @@
                     app:title="@string/app_name" />
             </com.google.android.material.appbar.AppBarLayout>
 
-            <FrameLayout
-                android:id="@+id/activityFrameLayout"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="@dimen/et_size"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+                android:layout_height="match_parent">
 
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tabLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:background="@color/greyWhite"
-                android:orientation="horizontal"
-                android:text="@string/alert_dialog_title"
-                app:iconGravity="textStart"
-                app:iconPadding="4dp"
-                app:layout_anchorGravity="bottom|center"
-                app:tabIconTint="@color/white"
-                app:tabIndicatorColor="@color/blue"
-                app:tabIndicatorHeight="0dp"
-                app:tabSelectedTextColor="@color/blue"
-                app:tabTextAppearance="@style/MineCustomTabText" />
+                <FrameLayout
+                    android:id="@+id/activityFrameLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_above="@+id/tabLayout"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tabLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/greyWhite"
+                    android:orientation="horizontal"
+                    android:text="@string/alert_dialog_title"
+                    app:iconGravity="textStart"
+                    app:iconPadding="@dimen/padding_small"
+                    app:layout_anchorGravity="bottom|center"
+                    app:tabGravity="fill"
+                    app:tabIconTint="@color/white"
+                    app:tabIndicatorColor="@color/blue"
+                    app:tabIndicatorHeight="0dp"
+                    app:tabMode="auto"
+                    app:tabSelectedTextColor="@color/blue"
+                    app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget" />
+            </RelativeLayout>
 
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>

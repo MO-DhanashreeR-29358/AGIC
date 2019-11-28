@@ -6,6 +6,7 @@ import com.mosl.mobile.R
 import com.mosl.mobile.core.MOSLCommonFragment
 import com.mosl.mobile.databinding.FragmentOverviewBinding
 import com.mosl.mobile.databinding.FragmentScheduleBinding
+import com.mosl.mobile.pdf.PdfFragment
 
 class ScheduleFragment : MOSLCommonFragment() {
 
@@ -19,6 +20,8 @@ class ScheduleFragment : MOSLCommonFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentScheduleBinding.bind(view)
+
+
 
     }
 }

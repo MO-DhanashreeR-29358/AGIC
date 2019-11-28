@@ -10,7 +10,6 @@ import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Section
 import com.xwray.groupie.ViewHolder
 import com.xwray.groupie.databinding.BindableItem
-import timber.log.Timber
 import javax.inject.Inject
 
 class BytesFragment : MOSLCommonFragment(), BytesContract {

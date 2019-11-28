@@ -18,7 +18,7 @@ object BytesRepositoryImpl : BytesRepository {
     }
 
 
-    fun getAllHeaders(): Observable<List<BytesHeader>> {
+    private fun getAllHeaders(): Observable<List<BytesHeader>> {
         return Observable.fromCallable {
             val item1 = listOf(
                 BytesData(

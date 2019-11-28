@@ -27,6 +27,7 @@ import com.mosl.mobile.dashboard.ActivityNavigationHelper
 import com.mosl.mobile.databinding.ActivityCommonbaseBinding
 import com.mosl.mobile.menu.ScreenNavigatorImpl
 import com.mosl.mobile.nav.DebugConstants
+import com.mosl.mobile.pdf.PdfFragment
 import com.mosl.navigator.AppTitle
 import com.mosl.navigator.AuthorizationState
 import com.mosl.navigator.FragmentNavigationEntry
@@ -175,7 +176,7 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
 
         binding.tabLayout.addTab(
             binding.tabLayout.newTab().setText(R.string.pdf).setIcon(R.drawable.navigation_icon).setTag(
-                DebugConstants.NAVIGATE_TO_DASHBOARD
+                NavigationConstants.NAVIGATE_TO_PDF
             )
         )
 
@@ -194,7 +195,13 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
 
                 val tabIconColor = ContextCompat.getColor(baseContext, R.color.blue)
                 tab.icon!!.setColorFilter(tabIconColor, PorterDuff.Mode.SRC_IN)
-                navigateDashboardFragment(tab.tag as Int)
+                if (tab.tag as Int == NavigationConstants.NAVIGATE_TO_PDF) {
+                    PdfFragment.newInstance()
+                        .show(supportFragmentManager, "")
+                } else {
+                    navigateDashboardFragment(tab.tag as Int)
+                }
+
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab) {
@@ -212,8 +219,10 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
     private fun navigateDashboardFragment(pageId: Int) {
         val bundle = Bundle()
         when (pageId) {
-        }
 
+
+        }
+        Timber.d("pageId Selected---> %d", pageId)
         navigateTo(pageId, bundle, true)
     }
 

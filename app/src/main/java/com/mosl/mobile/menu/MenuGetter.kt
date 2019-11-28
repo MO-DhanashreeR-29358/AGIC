@@ -7,7 +7,8 @@ import com.mosl.app.coreui.base.LeanBaseFragment
 import com.mosl.app.coreui.base.PagerBaseFragment
 import com.mosl.mobile.bytes.BytesFragment
 import com.mosl.mobile.constants.NavigationConstants
-import com.mosl.mobile.panelbase.PanelBaseFragment
+import com.mosl.mobile.panelpager.PanelPagerFragment
+import com.mosl.mobile.pdf.PdfFragment
 import com.mosl.mobile.portfolio.PortfolioFragment
 
 object MenuGetter {
@@ -20,7 +21,8 @@ object MenuGetter {
         return when (menuCode) {
             NavigationConstants.NAVIGATE_TO_PORTFOLIO -> PortfolioFragment()
             NavigationConstants.NAVIGATE_TO_BYTES -> BytesFragment()
-            NavigationConstants.NAVIGATE_TO_PANEL_BASE -> PanelBaseFragment()
+            NavigationConstants.NAVIGATE_TO_PANEL_BASE -> PanelPagerFragment()
+            NavigationConstants.NAVIGATE_TO_PDF -> PdfFragment()
             else -> null
         }
     }

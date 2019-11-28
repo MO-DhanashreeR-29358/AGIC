@@ -5,10 +5,8 @@
     android:layout_height="wrap_content"
     android:drawablePadding="@dimen/padding_extra_small"
     android:drawableTint="@color/white"
-    android:ellipsize="end"
-    android:gravity="center"
-    android:maxLines="2"
-    android:textAllCaps="false"
     android:textColor="@color/lightGrey"
-    android:textSize="@dimen/text_size_small"
-    tools:text="tab" />
+    android:textSize="@dimen/text_size_extra_small"
+    android:textAllCaps="false"
+    tools:text="tab"
+    tools:targetApi="m" />
