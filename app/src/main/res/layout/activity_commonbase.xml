@@ -33,13 +33,13 @@
                 android:id="@+id/activityFrameLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="@dimen/et_size"
+                android:layout_marginBottom="@dimen/tab_size"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tabLayout"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/et_size"
+                android:layout_height="@dimen/tab_size"
                 android:layout_gravity="bottom"
                 android:background="@color/greyWhite"
                 android:orientation="horizontal"

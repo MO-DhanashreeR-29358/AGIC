@@ -3,16 +3,14 @@ package com.mosl.mobile.newsletter
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import androidx.recyclerview.widget.LinearLayoutManager
+import android.widget.ExpandableListView.OnGroupExpandListener
 import com.mosl.app.coreui.base.LeanBaseActivity
 import com.mosl.mobile.R
 import com.mosl.mobile.core.MOSLCommonActivity
 import com.mosl.mobile.databinding.ActivityNewsLetterBinding
 import com.mosl.mobile.login.LoginActivity
 import com.mosl.mobile.nav.DebugConstants
-import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.Section
-import com.xwray.groupie.ViewHolder
+
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -20,10 +18,8 @@ import com.xwray.groupie.ViewHolder
  */
 class NewsLetterActivity : LeanBaseActivity() {
 
+    lateinit var listAdapter: ExpandableFaqsListAdapter
     lateinit var binding: ActivityNewsLetterBinding
-
-    lateinit var section: Section
-
 
     override fun getLayout(): Int {
         return R.layout.activity_news_letter
@@ -34,40 +30,58 @@ class NewsLetterActivity : LeanBaseActivity() {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        binding = ActivityNewsLetterBinding.bind(findViewById(R.id.rrTCT))
+        binding = ActivityNewsLetterBinding.bind(findViewById(R.id.relativeLayoutMain))
 
         binding.skipToLogin.setOnClickListener(View.OnClickListener { openDashboard() })
 
         setupRecyclerView()
     }
 
-    private fun setupRecyclerView() {
-        val groupAdapter = GroupAdapter<ViewHolder>()
-        section = Section()
-        groupAdapter.add(section)
-        binding.recyclerView.apply {
-            layoutManager = LinearLayoutManager(baseContext)
-            setHasFixedSize(true)
-            adapter = groupAdapter
-        }
+    var faqsListParent: ArrayList<NewsLetterHeader>? = null
+    var faqsListChild: ArrayList<NewsLetterHeader>? = null
 
-        val itemData = listOf(
+    private fun setupRecyclerView() {
+
+        faqsListParent = ArrayList<NewsLetterHeader>()
+        faqsListChild = ArrayList<NewsLetterHeader>()
+
+        faqsListParent!!.add(
             NewsLetterHeader(
                 url = "https://app.slack.com/client/TGVG31LQ4/CQEF9E7EX",
-                description = "Aug 30, 2017 - According to the Android Docs",
-                image = "Are attitudes changing globally towards 'owning' a vehicle?"
-            ),
+                description = "Not the answer you're looking for? Browse other questions tagged Are attitudes changing globally towards 'owning' a vehicle? Aug 30, 2017 - According to the Android Docs",
+                image = ""
+            )
+        )
+
+        faqsListParent!!.add(
+            NewsLetterHeader(
+                url = "Animate the transition between fragments",
+                description = "Are attitudes changing globally towards 'owning' a vehicle? Also you can simple use the withOnlyOneExpandedItem() which is in FastAdapter Add this method to replace fragments with Animations:",
+                image = ""
+            )
+        )
+
+        faqsListChild!!.add(
             NewsLetterHeader(
                 url = "Animate the transition between fragments",
                 description = "Add this method to replace fragments with Animations:",
                 image = "Are attitudes changing globally towards 'owning' a vehicle?"
             )
         )
-        for (model in itemData) {
-            section.add(NewsLetterListItem(model))
-        }
 
+        listAdapter = ExpandableFaqsListAdapter(baseContext, faqsListParent, faqsListChild)
 
+        binding.recyclerView.setAdapter(listAdapter)
+
+        binding.recyclerView.setOnGroupExpandListener(object : OnGroupExpandListener {
+            internal var previousGroup = -1
+
+            override fun onGroupExpand(groupPosition: Int) {
+                if (groupPosition != previousGroup)
+                    binding.recyclerView.collapseGroup(previousGroup)
+                previousGroup = groupPosition
+            }
+        })
     }
 
 
