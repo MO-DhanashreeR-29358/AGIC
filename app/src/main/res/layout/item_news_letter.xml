@@ -9,8 +9,8 @@
 
         <ImageView
             android:id="@+id/imgProfileIcon"
-            android:layout_width="@dimen/img_large_50"
-            android:layout_height="@dimen/img_large_50"
+            android:layout_width="@dimen/img_news_letter"
+            android:layout_height="@dimen/img_news_letter"
             android:layout_marginLeft="@dimen/margin_medium"
             app:srcCompat="@mipmap/ic_launcher_round" />
 

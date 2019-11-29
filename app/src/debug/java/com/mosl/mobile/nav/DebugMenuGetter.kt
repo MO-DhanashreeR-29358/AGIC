@@ -2,13 +2,9 @@ package com.mosl.mobile.nav
 
 import androidx.fragment.app.Fragment
 import com.mosl.mobile.dashboard.DashboardFragment
-import com.mosl.mobile.overview.OverViewFragment
 import com.mosl.mobile.drawermenu.DrawerMenuFragment
 import com.mosl.mobile.featurescope.FirstPlaygroundFragment
 import com.mosl.mobile.featurescope.SecondPlaygroundFragment
-import com.mosl.mobile.login.LoginFragment
-import com.mosl.mobile.panel.PanelFragment
-import com.mosl.mobile.schedule.ScheduleFragment
 
 object DebugMenuGetter {
   @JvmStatic

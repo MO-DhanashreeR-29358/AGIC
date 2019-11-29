@@ -5,11 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseExpandableListAdapter
+import androidx.databinding.DataBindingUtil
 import com.mosl.mobile.R
+import com.mosl.mobile.databinding.ActivityNewsLetterBinding
+import com.mosl.mobile.databinding.ItemNewsLetterChildBinding
+import com.mosl.mobile.databinding.ItemNewsLetterParentBinding
 import kotlinx.android.synthetic.main.item_news_letter_child.view.*
 import kotlinx.android.synthetic.main.item_news_letter_parent.view.*
 
-class ExpandableFaqsListAdapter(
+class ExpandableNewsLetterAdapter(
     val _context: Context,
     var _listDataHeader: ArrayList<NewsLetterHeader>?,
     private val _listChild: List<NewsLetterHeader>? // header titles
@@ -37,23 +41,19 @@ class ExpandableFaqsListAdapter(
         groupPosition: Int, childPosition: Int,
         isLastChild: Boolean, convertView: View?, parent: ViewGroup
     ): View {
-        var convertView = convertView
+        lateinit var binding: ItemNewsLetterChildBinding
 
         val childText = getChild(groupPosition, childPosition) as String
 
-        if (convertView == null) {
-            val infalInflater = this._context
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-            convertView = infalInflater.inflate(R.layout.item_news_letter_child, null)
-        }
+        binding = DataBindingUtil.inflate(
+            LayoutInflater.from(parent.getContext()),
+            R.layout.item_news_letter_child, parent, false
+        );
 
-        convertView!!.txt_newsletter_child_description.text = childText
 
-        /*val txtListChild = convertView!!
-                .findViewById(R.id.lblListItem) as TextView
-        txtListChild.text = childText
-        */
-        return convertView!!
+        binding.txtNewsletterChildDescription.text = childText
+
+        return binding.root
     }
 
     override fun getChildrenCount(groupPosition: Int): Int {
@@ -76,28 +76,27 @@ class ExpandableFaqsListAdapter(
         groupPosition: Int, isExpanded: Boolean,
         convertView: View?, parent: ViewGroup
     ): View {
-        var convertView = convertView
+        lateinit var binding: ItemNewsLetterParentBinding
+
         val headerTitle = getGroup(groupPosition) as String
-        if (convertView == null) {
-            val infalInflater =
-                this._context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-            convertView = infalInflater.inflate(R.layout.item_news_letter_parent, null)
-        }
+
+        binding = DataBindingUtil.inflate(
+            LayoutInflater.from(parent.getContext()),
+            R.layout.item_news_letter_parent, parent, false
+        );
+
 
         if (isExpanded) {
-            convertView!!.imgProfileIcon.setImageResource(R.mipmap.ic_launcher_round);
-            convertView!!.icon_more.setImageResource(R.drawable.ic_more_horiz);
+            binding.imgProfileIcon.setImageResource(R.mipmap.ic_launcher_round);
+            binding.iconMore.setImageResource(R.drawable.ic_more_horiz);
         } else {
-            convertView!!.imgProfileIcon.setImageResource(R.mipmap.ic_launcher_round);
-            convertView!!.icon_more.setImageResource(R.drawable.ic_more_horiz);
+            binding.imgProfileIcon.setImageResource(R.mipmap.ic_launcher_round);
+            binding.iconMore.setImageResource(R.drawable.ic_more_horiz);
         }
 
-        convertView?.setBackgroundResource(R.color.white)
+        binding.txtNewsletterParentTitle.text = headerTitle
 
-
-        convertView!!.txt_newsletter_parent_title.text = headerTitle
-
-        return convertView!!
+        return binding.root
     }
 
     override fun hasStableIds(): Boolean {

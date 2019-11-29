@@ -11,7 +11,6 @@ class OverViewFragment : MOSLCommonFragment() {
 
     lateinit var binding: FragmentOverviewBinding
 
-
     override fun getLayout(): Int {
         return R.layout.fragment_overview
     }
@@ -19,20 +18,18 @@ class OverViewFragment : MOSLCommonFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentOverviewBinding.bind(view)
-
         setupTabs()
     }
 
     private fun setupTabs() {
+        binding.tabLayout.addTab(binding.tabLayout.newTab().setText(R.string.text_label_day1))
 
-        binding.tabLayout.addTab(binding.tabLayout.newTab().setText(R.string.day1))
+        binding.tabLayout.addTab(binding.tabLayout.newTab().setText(R.string.text_label_day2))
 
-        binding.tabLayout.addTab(binding.tabLayout.newTab().setText(R.string.day2))
+        binding.tabLayout.addTab(binding.tabLayout.newTab().setText(R.string.text_label_day3))
 
-        binding.tabLayout.addTab(binding.tabLayout.newTab().setText(R.string.day3))
-
-
-        binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+        binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener
+        {
             override fun onTabSelected(tab: TabLayout.Tab) {
 
             }
@@ -46,20 +43,4 @@ class OverViewFragment : MOSLCommonFragment() {
             }
         })
     }
-
-//    private fun getTabLayoutView(@StringRes section: Int): View {
-//        val tv = LayoutInflater.from(context).inflate(R.layout.view_custom_tab, null) as TextView
-//        tv.setText(section)
-//        tv.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
-//        return tv
-//    }
-
-    private fun navigateDashboardFragment(pageId: Int) {
-        val bundle = Bundle()
-        when (pageId) {
-        }
-
-        navigateTo(pageId, bundle, true)
-    }
-
 }
