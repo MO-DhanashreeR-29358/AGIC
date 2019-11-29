@@ -9,15 +9,24 @@ import kotlin.annotation.AnnotationRetention.SOURCE
 
 @kotlin.annotation.Retention(SOURCE)
 @IntDef(
-  NavigationConstants.NAVIGATE_TO_PORTFOLIO,
- NavigationConstants.NAVIGATE_TO_NONE,
- NavigationConstants.NAVIGATE_TO_SCHEDULE
+    NavigationConstants.NAVIGATE_TO_PORTFOLIO,
+    NavigationConstants.NAVIGATE_TO_NONE,
+    NavigationConstants.NAVIGATE_TO_SCHEDULE,
+    NavigationConstants.NAVIGATE_TO_OVERVIEW,
+    NavigationConstants.NAVIGATE_TO_PANEL,
+    NavigationConstants.NAVIGATE_TO_BYTES,
+    NavigationConstants.NAVIGATE_TO_PDF
 
 )
 annotation class NavigationConstants {
-   companion object {
-     const val NAVIGATE_TO_PORTFOLIO=101
-     const val NAVIGATE_TO_NONE = -1
-       const val NAVIGATE_TO_SCHEDULE = 1
-   }
+    companion object {
+        const val NAVIGATE_TO_PORTFOLIO = 101
+        const val NAVIGATE_TO_NONE = -1
+        const val NAVIGATE_TO_SCHEDULE = 1
+        const val NAVIGATE_TO_OVERVIEW = 2
+        const val NAVIGATE_TO_PANEL = 3
+        const val NAVIGATE_TO_BYTES = 4
+        const val NAVIGATE_TO_PDF = 5
+
+    }
 }

@@ -7,6 +7,8 @@ import com.mosl.app.coreui.base.LeanBaseFragment
 import com.mosl.app.coreui.base.PagerBaseFragment
 import com.mosl.mobile.constants.NavigationConstants
 import com.mosl.mobile.demo.DemoFragment
+import com.mosl.mobile.overview.OverViewFragment
+import com.mosl.mobile.panel.PanelFragment
 import com.mosl.mobile.schedule.ScheduleFragment
 
 object MenuGetter {
@@ -17,6 +19,10 @@ object MenuGetter {
   fun getFragment(@NavigationConstants menuCode: Int): Fragment? {
     return when (menuCode) {
       NavigationConstants.NAVIGATE_TO_SCHEDULE->ScheduleFragment()
+      NavigationConstants.NAVIGATE_TO_OVERVIEW->OverViewFragment()
+      NavigationConstants.NAVIGATE_TO_PANEL->PanelFragment()
+      NavigationConstants.NAVIGATE_TO_BYTES->ScheduleFragment()
+      NavigationConstants.NAVIGATE_TO_PDF->ScheduleFragment()
       else -> null
     }
   }
@@ -26,6 +32,10 @@ object MenuGetter {
   fun isHandled(@NavigationConstants pageId: Int): Boolean {
     return when (pageId) {
       NavigationConstants.NAVIGATE_TO_SCHEDULE -> true
+      NavigationConstants.NAVIGATE_TO_OVERVIEW -> true
+      NavigationConstants.NAVIGATE_TO_PANEL -> true
+      NavigationConstants.NAVIGATE_TO_BYTES -> true
+      NavigationConstants.NAVIGATE_TO_PDF -> true
       else -> return false
     }
   }

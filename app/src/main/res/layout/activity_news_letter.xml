@@ -42,7 +42,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/welcome"
-                    android:textColor="@color/blue"
+                    android:textColor="@color/dark_blue"
                     android:textSize="@dimen/text_size_large" />
 
                 <TextView
@@ -61,9 +61,9 @@
             android:id="@+id/warnMSG"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@color/yellow"
+            android:background="@color/colorPrimary"
             android:gravity="center"
-            android:padding="@dimen/padding_medium"
+            android:padding="@dimen/padding_extra_small"
             android:text="@string/stay_updated_with"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size_medium"
@@ -83,21 +83,11 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/warnMSG" />
 
-        <!--        <androidx.recyclerview.widget.RecyclerView-->
-        <!--            android:id="@+id/recyclerView"-->
-        <!--            android:layout_width="0dp"-->
-        <!--            android:layout_height="0dp"-->
-        <!--            android:layoutAnimation="@anim/layout_animation"-->
-        <!--            app:layout_constraintBottom_toTopOf="@+id/skip_to_login"-->
-        <!--            app:layout_constraintEnd_toEndOf="parent"-->
-        <!--            app:layout_constraintStart_toStartOf="parent"-->
-        <!--            app:layout_constraintTop_toBottomOf="@+id/warnMSG" />-->
-
         <TextView
             android:id="@+id/skip_to_login"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@color/skip_color"
+            android:background="@color/light_blue_700"
             android:gravity="center"
             android:padding="@dimen/padding_medium"
             android:text="@string/skip_to_login"

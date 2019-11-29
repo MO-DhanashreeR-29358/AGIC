@@ -15,9 +15,9 @@ import com.mosl.commons.data.onFailure
 import com.mosl.commons.data.onSuccess
 import com.mosl.mobile.R
 import com.mosl.mobile.app_user.model.User
+import com.mosl.mobile.constants.NavigationConstants
 import com.mosl.mobile.core.MOSLCommonActivity
 import com.mosl.mobile.databinding.ActivityLoginBinding
-import com.mosl.mobile.nav.DebugConstants
 import com.mosl.navigator.AppTitle
 import com.mosl.navigator.AuthorizationState
 import com.mosl.navigator.FragmentNavigationEntry
@@ -50,7 +50,7 @@ class LoginActivity : LeanBaseActivity(), Navigator, LoginView {
 
     internal fun openDashboard() {
         val intent = Intent(this, MOSLCommonActivity::class.java).apply {
-            putExtra(MOSLCommonActivity.ARG_PAGE_ID, DebugConstants.NAVIGATE_TO_SCHEDULE)
+            putExtra(MOSLCommonActivity.ARG_PAGE_ID, NavigationConstants.NAVIGATE_TO_SCHEDULE)
         }
         startActivity(intent)
         finish()

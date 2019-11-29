@@ -19,16 +19,13 @@
     <string name="bytes">Bytes</string>
     <string name="pdf">PDF</string>
 
-    <string name="login">Login</string>
-    <string name="digit_id">5 digit id</string>
-    <string name="login_text">Anual Global Investor Conference</string>
-    <string name="login_text2">Access permitted to registerd\nusers only</string>
-    <string name="text_year">2020</string>
+    <string name="text_label_login">Login</string>
+    <string name="hint_label_digit_id">5 Digit id</string>
+    <string name="text_label_agic">Annual Global Investor Conference</string>
+    <string name="text_label_permission">Access permitted to registerd\nusers only</string>
+    <string name="text_label_year">2020</string>
 
     <string name="title_activity_login">Login</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
-
     <string name="title_activity_news_letter">News Letter</string>
 
 </resources>
