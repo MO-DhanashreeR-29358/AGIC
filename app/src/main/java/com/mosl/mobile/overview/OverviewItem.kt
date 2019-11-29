@@ -1,10 +1,8 @@
 package com.mosl.mobile.overview
 
-import android.view.View
+
 import com.mosl.mobile.R
 import com.mosl.mobile.databinding.ItemFragmentOverviewBinding
-import com.mosl.mobile.databinding.ItemFragmentPanelBinding
-import com.mosl.mobile.panel.PanelDataHeader
 import com.xwray.groupie.databinding.BindableItem
 
 
@@ -14,10 +12,10 @@ class OverviewItem(overviewData: OverviewData) : BindableItem<ItemFragmentOvervi
 
     override fun bind(viewBinding: ItemFragmentOverviewBinding, position: Int) {
 
-        viewBinding.txtName.text = itemData.name
-        viewBinding.txtNamePost.text = itemData.postName
-        viewBinding.txtFrom.text = itemData.timeFrom
-        viewBinding.txtToEnd.text = itemData.timeTo
+        viewBinding.tvOverviewName.text = itemData.name
+        viewBinding.tvOverviewDesignation.text = itemData.designation
+        viewBinding.overviewTvTimeFrom.text = itemData.timeFrom
+        viewBinding.tvOverviewTimeTo.text = itemData.timeTo
 
 
     }

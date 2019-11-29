@@ -6,5 +6,5 @@
         android:left="@dimen/_10sdp"
         android:right="@dimen/_10sdp"
         android:top="@dimen/_10sdp" />
-    <solid android:color="@color/darkGrey" />
+    <solid android:color="@color/_material_grey_800" />
 </shape>

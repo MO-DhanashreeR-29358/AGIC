@@ -1,80 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/border_dialog"
-        android:orientation="vertical"
         tools:ignore="HardcodedText">
 
         <TextView
+            android:id="@+id/tv_pdf_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:gravity="center"
             android:text="home.html"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size_large"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             tools:text="home.html" />
 
         <TextView
+            android:id="@+id/tv_pdf_desc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:gravity="center"
             android:text="The Pdf you are about to download is as of 12 AM last night and will not conatin any changes you may have made today"
             android:textColor="@color/white"
-            android:textSize="@dimen/text_size_normal" />
+            android:textSize="@dimen/text_size_normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_pdf_title" />
 
         <View
+            android:id="@+id/horizontal_view"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_1sdp"
             android:layout_marginTop="@dimen/margin_normal"
-            android:background="@color/warmGrey" />
+            android:background="@color/warmGrey"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_pdf_desc" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="2">
+        <TextView
+            android:id="@+id/tv_pdf_cancel"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:gravity="center"
+            android:padding="@dimen/padding_medium"
+            android:text="Cancel"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/text_size_medium"
+            app:layout_constraintEnd_toStartOf="@+id/vertical_view"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/horizontal_view" />
 
-            <TextView
-                android:id="@+id/pdf_tv_cancel"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:padding="@dimen/padding_small"
-                android:text="Cancel"
-                android:textColor="@color/blue"
-                android:textSize="@dimen/text_size_medium" />
+        <View
+            android:id="@+id/vertical_view"
+            android:layout_width="@dimen/_1sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:background="@color/warmGrey"
+            app:layout_constraintEnd_toStartOf="@+id/tv_pdf_ok"
+            app:layout_constraintStart_toEndOf="@+id/tv_pdf_cancel"
+            app:layout_constraintTop_toBottomOf="@id/horizontal_view" />
 
-            <View
-                android:layout_width="@dimen/_1sdp"
-                android:layout_height="match_parent"
-                android:background="@color/warmGrey" />
-
-            <TextView
-                android:id="@+id/pdf_tv_ok"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:padding="@dimen/padding_small"
-                android:text="OK"
-                android:textColor="@color/blue"
-                android:textSize="@dimen/text_size_medium"
-                tools:text="OK" />
-
-        </LinearLayout>
+        <TextView
+            android:id="@+id/tv_pdf_ok"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:gravity="center"
+            android:padding="@dimen/padding_medium"
+            android:text="OK"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/text_size_medium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/vertical_view"
+            app:layout_constraintTop_toBottomOf="@id/horizontal_view"
+            tools:text="OK" />
 
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </layout>

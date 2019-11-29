@@ -37,12 +37,12 @@ class PdfFragment : DialogFragment(), PdfContract {
 
         binding.apply {
 
-            pdfTvCancel.setOnClickListener {
+            tvPdfCancel.setOnClickListener {
                 dialog?.dismiss()
             }
 
-            pdfTvOk.setOnClickListener {
-                pdfTvCancel.performClick()
+            tvPdfOk.setOnClickListener {
+                tvPdfCancel.performClick()
             }
         }
 
