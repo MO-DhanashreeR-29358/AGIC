@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseExpandableListAdapter
 import com.mosl.mobile.R
-import kotlinx.android.synthetic.main.item_faqs_child.view.*
-import kotlinx.android.synthetic.main.item_faqs_parent.view.*
+import kotlinx.android.synthetic.main.item_news_letter_child.view.*
+import kotlinx.android.synthetic.main.item_news_letter_parent.view.*
 
 class ExpandableFaqsListAdapter(
     val _context: Context,
@@ -44,10 +44,10 @@ class ExpandableFaqsListAdapter(
         if (convertView == null) {
             val infalInflater = this._context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-            convertView = infalInflater.inflate(R.layout.item_faqs_child, null)
+            convertView = infalInflater.inflate(R.layout.item_news_letter_child, null)
         }
 
-        convertView!!.txtFaqAnswer.text = childText
+        convertView!!.txt_newsletter_child_description.text = childText
 
         /*val txtListChild = convertView!!
                 .findViewById(R.id.lblListItem) as TextView
@@ -79,8 +79,9 @@ class ExpandableFaqsListAdapter(
         var convertView = convertView
         val headerTitle = getGroup(groupPosition) as String
         if (convertView == null) {
-            val infalInflater = this._context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-            convertView = infalInflater.inflate(R.layout.item_faqs_parent, null)
+            val infalInflater =
+                this._context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+            convertView = infalInflater.inflate(R.layout.item_news_letter_parent, null)
         }
 
         if (isExpanded) {
@@ -94,7 +95,7 @@ class ExpandableFaqsListAdapter(
         convertView?.setBackgroundResource(R.color.white)
 
 
-        convertView!!.txtFaqs.text = headerTitle
+        convertView!!.txt_newsletter_parent_title.text = headerTitle
 
         return convertView!!
     }
