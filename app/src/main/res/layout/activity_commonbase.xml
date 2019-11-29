@@ -20,52 +20,129 @@
                 android:id="@+id/app_bar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:theme="@style/AppTheme.AppBarOverlay"
                 app:elevation="0dp">
 
                 <androidx.appcompat.widget.Toolbar
                     android:id="@+id/toolBar"
                     android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    app:contentInsetStart="0dp"
-                    app:navigationIcon="@drawable/navigation_icon"
-                    app:title="@string/app_name" />
+                    android:layout_height="wrap_content"
+                    android:theme="@style/ThemeOverlay.MaterialComponents.ActionBar"
+                    app:contentInsetStart="4dp"
+                    app:popupTheme="@style/ThemeOverlay.MaterialComponents.Light">
+
+                    <LinearLayout
+                        android:id="@+id/linear_toolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/img1"
+                            android:layout_width="@dimen/img_large_50"
+                            android:layout_height="@dimen/img_large_50"
+                            android:layout_gravity="center_vertical"
+                            android:layout_margin="@dimen/margin_small"
+                            android:layout_marginTop="@dimen/et_size"
+                            android:src="@drawable/agic_15" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/txt_company_name"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/dark_blue"
+                                android:ellipsize="marquee"
+                                android:singleLine="true"
+                                android:textSize="@dimen/text_size_medium"
+                                android:textStyle="bold"
+                                android:marqueeRepeatLimit="marquee_forever"
+                                android:scrollHorizontally="true"
+                                android:focusable="true"
+                                android:focusableInTouchMode="true"
+                                android:text="@string/app_name" />
+
+                            <TextView
+                                android:id="@+id/txt_name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/margin_medium"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_size_small"
+                                android:text="@string/app_name"
+                                android:ellipsize="marquee"
+                                android:singleLine="true"
+                                android:marqueeRepeatLimit="marquee_forever"
+                                android:scrollHorizontally="true"
+                                android:focusable="true"
+                                android:focusableInTouchMode="true"/>
+
+                        </LinearLayout>
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/img_call"
+                            android:layout_width="@dimen/menuIcons"
+                            android:layout_height="@dimen/menuIcons"
+                            android:layout_gravity="center_vertical"
+                            android:layout_margin="@dimen/margin_small"
+                            android:src="@drawable/ic_call_green_24dp" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/img_logout"
+                            android:layout_width="@dimen/menuIcons"
+                            android:layout_height="@dimen/menuIcons"
+                            android:layout_gravity="center_vertical"
+                            android:layout_margin="@dimen/margin_large"
+                            android:src="@drawable/ic_logout_red_24_dp" />
+
+                    </LinearLayout>
+
+
+                </androidx.appcompat.widget.Toolbar>
+
+
             </com.google.android.material.appbar.AppBarLayout>
 
 
             <FrameLayout
-                    android:id="@+id/activityFrameLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_above="@+id/tabLayout"
-                    app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+                android:id="@+id/activityFrameLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/tabLayout"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-                <com.google.android.material.tabs.TabLayout
-                    android:id="@+id/tabLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:layout_alignParentBottom="true"
-                    android:background="@color/greyWhite"
-                    android:orientation="horizontal"
-                    android:text="@string/alert_dialog_title"
-                    app:iconGravity="textStart"
-                    app:iconPadding="@dimen/padding_small"
-                    app:layout_anchorGravity="bottom|center"
-                    app:tabGravity="fill"
-                    app:tabIconTint="@color/white"
-                    app:tabIndicatorColor="@color/blue"
-                    app:tabIndicatorHeight="0dp"
-                    app:tabMode="auto"
-                    app:tabSelectedTextColor="@color/blue"
-                    app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget" />
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayout"
+                style="@style/Widget.MoslTheme.TabColor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_gravity="bottom"
+                android:orientation="horizontal"
+                android:text="@string/alert_dialog_title"
+                app:iconGravity="textStart"
+                app:iconPadding="@dimen/padding_small"
+                app:layout_anchorGravity="bottom|center"
+                app:tabGravity="fill"
+                app:tabIconTint="@color/white"
+                app:tabIndicatorColor="@color/blue"
+                app:tabIndicatorHeight="0dp"
+                app:tabMode="auto"
+                app:tabSelectedTextColor="@color/blue"
+                app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget" />
 
             <com.mosl.app.coreui.views.BlockingProgressLayout
                 android:id="@+id/progress_bar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:visibility="gone"
-                tools:visibility="visible"
-                />
+                tools:visibility="visible" />
 
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>

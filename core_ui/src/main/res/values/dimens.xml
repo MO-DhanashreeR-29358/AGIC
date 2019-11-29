@@ -7,5 +7,5 @@
     <dimen name="large_component_corner_size">16dp</dimen>
     <dimen name="drawerLayoutWidth">280dp</dimen>
 
-    <dimen name="toolbar_height">38dp</dimen>
+    <dimen name="toolbar_height">@dimen/_38ssp</dimen>
 </resources>

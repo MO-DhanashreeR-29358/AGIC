@@ -61,7 +61,7 @@
             android:id="@+id/warnMSG"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
+            android:background="@color/orange"
             android:gravity="center"
             android:padding="@dimen/padding_extra_small"
             android:text="@string/stay_updated_with"

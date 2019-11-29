@@ -54,7 +54,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="04.00 pm"
-                android:textColor="@color/pink"
+                android:textColor="@color/dark_purple"
                 android:textSize="@dimen/text_size_large" />
 
             <ImageView
@@ -72,7 +72,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="04.00 pm"
-                android:textColor="@color/pink"
+                android:textColor="@color/dark_purple"
                 android:textSize="@dimen/text_size_large" />
 
         </LinearLayout>

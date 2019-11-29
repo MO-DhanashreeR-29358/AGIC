@@ -35,7 +35,7 @@
                 android:layout_marginEnd="@dimen/margin_medium"
                 android:layout_weight="0.5"
                 android:gravity="end"
-                android:textColor="@color/pink"
+                android:textColor="@color/dark_purple"
                 android:textSize="@dimen/text_size_normal"
                 tools:text="04:50 pm" />
 
