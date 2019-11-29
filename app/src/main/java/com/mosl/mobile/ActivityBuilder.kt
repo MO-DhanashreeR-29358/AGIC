@@ -9,7 +9,7 @@ import dagger.android.ContributesAndroidInjector
 
 @Module(includes = [CommonActivityBuilder::class])
 abstract class ActivityBuilder {
-  @ActivityScoped
-  @ContributesAndroidInjector(modules = [CommonActivityModule::class, MainActivityModule::class])
-  internal abstract fun bindCommonActivity(): MOSLCommonActivity
+    @ActivityScoped
+    @ContributesAndroidInjector(modules = [CommonActivityModule::class, MainActivityModule::class])
+    internal abstract fun bindCommonActivity(): MOSLCommonActivity
 }

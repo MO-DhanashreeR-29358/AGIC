@@ -23,6 +23,11 @@ android {
       proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
     }
   }
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
 }
 
 dependencies {
@@ -59,12 +64,19 @@ dependencies {
   androidTestImplementation AndroidxDependencies.testEspresso
 
   debugImplementation OkHttpDependencies.logger
+  debugImplementation OkHttpDependencies.core
   implementation MofslArtifactDependencies.conceal
 
   implementation MofslArtifactDependencies.moslCommons
   implementation MofslArtifactDependencies.appCore
+  implementation MofslArtifactDependencies.apiCore
   debugImplementation MofslArtifactDependencies.debugViewCore
+  implementation MofslArtifactDependencies.annotation
+  implementation RetrofitDependencies.gson
+  implementation GsonDependencies.gson
 
+  implementation project(':mosl_api')
+  implementation project (':mock_data')
   implementation project (':annotations')
   implementation project (':app_user')
 

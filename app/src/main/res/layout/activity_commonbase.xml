@@ -17,12 +17,13 @@
             android:layout_height="match_parent">
 
             <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/app_bar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:elevation="0dp">
 
                 <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/app_bar"
+                    android:id="@+id/toolBar"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     app:contentInsetStart="0dp"
@@ -35,7 +36,7 @@
                 android:id="@+id/activityFrameLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="@dimen/_32sdp"
+                android:layout_above="@+id/tabLayout"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
             <com.google.android.material.tabs.TabLayout
@@ -54,26 +55,19 @@
                 app:tabIconTint="@color/white"
                 app:tabIndicatorColor="@color/blue"
                 app:tabIndicatorHeight="0dp"
-                app:tabMode="auto"
+                app:tabMode="fixed"
                 app:tabSelectedTextColor="@color/blue"
                 app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget" />
+
+            <com.mosl.app.coreui.views.BlockingProgressLayout
+                android:id="@+id/progress_bar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                tools:visibility="visible" />
 
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-        <com.mosl.app.coreui.views.NonConsumingScrimInsetsFrameLayout
-            android:layout_width="@dimen/drawerLayoutWidth"
-            android:layout_height="match_parent"
-            android:layout_gravity="start"
-            android:background="@color/white"
-            android:fitsSystemWindows="true"
-            app:insetForeground="#4000">
-
-            <com.mosl.mobile.drawermenu.DrawerMenuView
-                android:id="@+id/drawer_menu"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-        </com.mosl.app.coreui.views.NonConsumingScrimInsetsFrameLayout>
     </androidx.drawerlayout.widget.DrawerLayout>
 </layout>

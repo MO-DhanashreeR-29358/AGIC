@@ -2,15 +2,16 @@ package com.mosl.mobile.overview
 
 
 import com.mosl.mobile.R
-import com.mosl.mobile.databinding.ItemFragmentOverviewBinding
+import com.mosl.mobile.databinding.ItemFragmentOverviewChildBinding
 import com.xwray.groupie.databinding.BindableItem
 
 
-class OverviewItem(overviewData: OverviewData) : BindableItem<ItemFragmentOverviewBinding>() {
+class OverviewItem(overviewData: OverviewChildData) :
+    BindableItem<ItemFragmentOverviewChildBinding>() {
     private val itemData = overviewData
 
 
-    override fun bind(viewBinding: ItemFragmentOverviewBinding, position: Int) {
+    override fun bind(viewBinding: ItemFragmentOverviewChildBinding, position: Int) {
 
         viewBinding.tvOverviewName.text = itemData.name
         viewBinding.tvOverviewDesignation.text = itemData.designation
@@ -21,6 +22,6 @@ class OverviewItem(overviewData: OverviewData) : BindableItem<ItemFragmentOvervi
     }
 
     override fun getLayout(): Int {
-        return R.layout.item_fragment_overview
+        return R.layout.item_fragment_overview_child
     }
 }

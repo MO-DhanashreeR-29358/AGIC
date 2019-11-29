@@ -3,9 +3,9 @@ package com.mosl.mobile.login
 import android.os.Bundle
 import android.view.View
 import com.mosl.mobile.R
+import com.mosl.mobile.constants.NavigationConstants
 import com.mosl.mobile.core.MOSLCommonFragment
 import com.mosl.mobile.databinding.FragmentLoginBinding
-import com.mosl.mobile.nav.DebugConstants
 
 class LoginFragment : MOSLCommonFragment() {
 
@@ -25,7 +25,7 @@ class LoginFragment : MOSLCommonFragment() {
 
     internal fun openDashboard() {
         val bundle = Bundle()
-        navigateTo(DebugConstants.NAVIGATE_TO_OVERVIEW, bundle, true)
+        navigateTo(NavigationConstants.NAVIGATE_TO_OVERVIEW, bundle, true)
     }
 
 }

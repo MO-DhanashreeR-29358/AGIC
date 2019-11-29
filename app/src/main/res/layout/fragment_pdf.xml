@@ -14,20 +14,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="home.html"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size_large"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="home.html" />
+            android:text="@string/text_label_pdf_title" />
 
         <TextView
             android:id="@+id/tv_pdf_desc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="The Pdf you are about to download is as of 12 AM last night and will not conatin any changes you may have made today"
+            android:text="@string/text_label_pdf_desc"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size_normal"
             app:layout_constraintEnd_toEndOf="parent"

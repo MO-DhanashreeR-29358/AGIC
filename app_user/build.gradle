@@ -34,7 +34,7 @@ dependencies {
   androidTestImplementation AndroidxDependencies.testRunner
   androidTestImplementation AndroidxDependencies.testEspresso
   implementation Dependencies.timber
-
+  implementation RetrofitDependencies.gson
 
   implementation DaggerDependencies.core
   kapt DaggerDependencies.compiler
@@ -45,4 +45,7 @@ dependencies {
   implementation RxDependencies.kotlin
   implementation RxDependencies.relay
   implementation RxDependencies.preferences
+  implementation GsonDependencies.gson
+
+  implementation project (":mosl_api")
 }

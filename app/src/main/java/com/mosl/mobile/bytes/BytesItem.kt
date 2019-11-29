@@ -1,7 +1,6 @@
 package com.mosl.mobile.bytes
 
 import com.mosl.mobile.R
-import com.mosl.mobile.dashboard.DashboardItem
 import com.mosl.mobile.databinding.ItemBytesBinding
 import com.xwray.groupie.databinding.BindableItem
 
@@ -12,8 +11,8 @@ class BytesItem(private val bytesData: BytesData) : BindableItem<ItemBytesBindin
     }
 
     override fun bind(viewBinding: ItemBytesBinding, position: Int) {
-        viewBinding.txtTime.text = bytesData.time
-        viewBinding.txtDesc.text = bytesData.desc
+        viewBinding.tvBytesTime.text = bytesData.time
+        viewBinding.tvBytesDesc.text = bytesData.desc
     }
 
     override fun getId(): Long {

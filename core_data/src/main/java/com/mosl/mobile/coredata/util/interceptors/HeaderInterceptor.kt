@@ -7,6 +7,10 @@ import javax.inject.Inject
 
 class HeaderInterceptor @Inject constructor() : Interceptor {
     override fun intercept(chain: Chain): Response {
-        return chain.proceed(chain.request())
+        val request = chain.request()
+        val builder = request.newBuilder()
+            .header("Content-Type", "application/json;charset=utf-8")
+        val response = chain.proceed(builder.build())
+        return response
     }
 }

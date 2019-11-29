@@ -1,9 +1,9 @@
 package com.mosl.mobile
 
-import com.mosl.mobile.data.ApiBaseUrls
+import com.mosl.mobile.coredata.ApiBaseUrls
 
-class ApiBaseUrlImpl:ApiBaseUrls {
+class ApiBaseUrlImpl: ApiBaseUrls {
   override fun getMoslApiUrl(): String {
-    return "https://uatapi.motilaloswal.com/InternalAPIv4/api/"
+    return "https://agic.motilaloswal.com/AGIC_MobileAPI/api/"
   }
 }

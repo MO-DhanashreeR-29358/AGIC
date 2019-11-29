@@ -4,6 +4,6 @@ import com.mosl.mobile.data.ApiBaseUrls
 
 class ApiBaseUrlImpl:ApiBaseUrls {
   override fun getMoslApiUrl(): String {
-    return "https://maint.motilaloswal.com/InternalAPIV11/api/"
+    return "https://agic.motilaloswal.com/AGIC_MobileAPI/api/"
   }
 }

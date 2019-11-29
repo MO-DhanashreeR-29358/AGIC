@@ -28,4 +28,5 @@ abstract class MOSLApplication : DaggerApplication() {
 //    super.onLowMemory()
 //    logCustomEvent(CustomEvent("LowMemory"))
 //  }
+
 }

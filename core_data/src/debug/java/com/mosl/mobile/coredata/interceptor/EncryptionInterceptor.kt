@@ -1,0 +1,57 @@
+package com.mosl.mobile.coredata.interceptor
+
+import com.mosl.shared.Encryptor.AESEncryptor
+import okhttp3.Interceptor
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.RequestBody.Companion.toRequestBody
+import okhttp3.Response
+import okhttp3.ResponseBody.Companion.toResponseBody
+import okio.Buffer
+import java.io.IOException
+import javax.inject.Inject
+
+class EncryptionInterceptor @Inject constructor(
+  val encryptor: AESEncryptor
+) : Interceptor {
+
+  @Throws(IOException::class)
+  override fun intercept(chain: Interceptor.Chain): Response {
+    var request = chain.request()
+    val oldBody = request.body
+    var isEncrypted = false
+
+    if (oldBody != null) {
+      val buffer = Buffer()
+      oldBody.writeTo(buffer)
+      val strOldBody = buffer.readUtf8()
+
+      val mediaType = "application/json; charset=utf-8".toMediaTypeOrNull()
+      val strNewBody = encryptor.encrypt(strOldBody)
+      val body = strNewBody.toRequestBody(mediaType)
+      request = request.newBuilder()
+          .method(request.method, body)
+          .build()
+      isEncrypted = true
+    }
+
+    val response = chain.proceed(request)
+    if (isEncrypted && response.body != null) {
+      try {
+        val strResponse = response.body
+        val decrypted = encryptor.decrypt(strResponse!!.string())
+        if (decrypted != null) {
+          val decryptedBody = decrypted.toResponseBody("application/json; charset=utf-8".toMediaTypeOrNull())
+          return response.newBuilder()
+              .body(decryptedBody)
+              .build()
+        } else {
+          return response;
+        }
+      } catch (e: Exception) {
+        return response
+      }
+    } else {
+      return response
+    }
+  }
+}

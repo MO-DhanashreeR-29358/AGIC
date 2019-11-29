@@ -2,7 +2,7 @@ package com.mosl.mobile.featurescope
 
 import android.os.Bundle
 import android.view.View
-import com.mosl.data.api.MOSLApi
+import com.mosl.data.api.AGICApi
 import com.mosl.mobile.R
 import com.mosl.mobile.core.MOSLCommonFragment
 import com.mosl.mobile.databinding.FragmentFeatureMainBinding
@@ -10,7 +10,7 @@ import javax.inject.Inject
 
 class FirstPlaygroundFragment : MOSLCommonFragment() {
   @Inject
-  lateinit var moslApi: MOSLApi
+  lateinit var moslApi: AGICApi
   lateinit var binding: FragmentFeatureMainBinding
 
   override fun getLayout(): Int {

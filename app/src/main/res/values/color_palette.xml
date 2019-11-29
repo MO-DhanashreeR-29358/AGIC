@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="branding_color_primary">#f9a825</color>
+    <color name="branding_color_primary_dark">#F57F17</color>
+    <color name="branding_color_primary_dark_disabled">#1ff57f17</color>
+    <color name="branding_color_accent">#25375b</color>
+    <color name="light_blue_700">#0091ea</color>
+    <color name="dark_blue_700">#445278</color>
+
+    <color name="text_color_primary_black">#dd000000</color>
+    <color name="text_color_secondary_black">#89000000</color>
+    <color name="text_color_disabled_black">@color/_material_grey_500</color>
+
+    <color name="_green">#ff5aaa3a</color>
+    <color name="_red">#ffd50a15</color>
+    <color name="_red_disabled">#61d50a15</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="_material_grey_100">#F5F5F5</color>
+
+
+    <color name="orange">#FBB230</color>
+    <color name="_material_grey_200">#f0f0f0</color>
+    <color name="_material_grey_300">#E0E0E0</color>
+    <color name="_material_grey_400">#BDBDBD</color>
+    <color name="_material_grey_500">#9E9E9E</color>
+    <color name="_material_grey_800">#424242</color>
+    <color name="_material_grey_900">#212121</color>
+    <color name="transparent">#00000000</color>
+    <color name="dark_grey">#202020</color>
+    
+    <color name="dashboard_background_color">#F0F0F0</color>
+    <color name="tile_color_converted">#61CA79</color>
+    <color name="tile_color_not_interested">#E3554F</color>
+    <color name="tile_color_interested">#EE7950</color>
+    <color name="button_bg_color">#363636</color>
+    <color name="light_cyan_color">#31B8E5</color>
+
+</resources>

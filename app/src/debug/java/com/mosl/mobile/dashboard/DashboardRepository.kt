@@ -45,9 +45,9 @@ object DashboardRepositoryImpl : DashboardRepository {
       )
       val debugSection = DashboardHeader("Debug Screen", debugScreens)
 
-      val portfolioScreens= listOf(DashboardData("Portfolio",
+      val portfolioScreens= listOf(DashboardData("Demo",
         NAVIGATE_TO_PORTFOLIO))
-      val portfolioSection=DashboardHeader("Portfolio",portfolioScreens)
+      val portfolioSection=DashboardHeader("Demo",portfolioScreens)
 
       listOf(debugSection,portfolioSection)
     }

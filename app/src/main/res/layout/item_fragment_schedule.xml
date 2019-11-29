@@ -28,9 +28,9 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/image"
-            android:layout_width="@dimen/_80sdp"
-            android:layout_height="@dimen/_80sdp"
+            android:id="@+id/iv_icon_schedule"
+            android:layout_width="@dimen/very_extra_large"
+            android:layout_height="@dimen/very_extra_large"
             android:layout_marginStart="@dimen/margin_small"
             android:layout_marginTop="@dimen/margin_extra_large"
             android:layout_marginEnd="@dimen/margin_small"
@@ -40,21 +40,21 @@
             tools:ignore="ContentDescription" />
 
         <TextView
-            android:id="@+id/txtTime"
+            android:id="@+id/tv_schedule_time"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_normal"
             android:layout_marginEnd="@dimen/margin_small"
             android:padding="@dimen/padding_small"
-            android:textColor="@color/pink"
+            android:textColor="@color/dark_purple"
             android:textSize="@dimen/text_size_normal"
-            app:layout_constraintEnd_toStartOf="@id/image"
+            app:layout_constraintEnd_toStartOf="@id/iv_icon_schedule"
             app:layout_constraintStart_toEndOf="@id/circleView"
             tools:ignore="MissingConstraints"
-            tools:text="02:00 pm - 02:50 pm" />
+            tools:text="@string/text_label_panel_time" />
 
         <TextView
-            android:id="@+id/txtHeader"
+            android:id="@+id/tv_schedule_designation"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/margin_small"
@@ -62,44 +62,43 @@
             android:padding="@dimen/padding_small"
             android:textColor="@color/blue"
             android:textSize="@dimen/text_size_medium"
-            app:layout_constraintEnd_toStartOf="@id/image"
+            app:layout_constraintEnd_toStartOf="@id/iv_icon_schedule"
             app:layout_constraintStart_toEndOf="@id/circleView"
-            app:layout_constraintTop_toBottomOf="@id/txtTime"
-            tools:text="Dr.Pawan Goenka -Md,Mahindra &amp; Mahindra" />
+            app:layout_constraintTop_toBottomOf="@id/tv_schedule_time"
+            tools:text="@string/text_label_overview_designation" />
 
         <TextView
-            android:id="@+id/txtHeader1"
+            android:id="@+id/tv_schedule_designation_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:maxLines="2"
             android:padding="@dimen/padding_small"
             android:textColor="@color/black"
             android:textSize="@dimen/text_size_medium"
-            app:layout_constraintEnd_toStartOf="@id/image"
+            app:layout_constraintEnd_toStartOf="@id/iv_icon_schedule"
             app:layout_constraintStart_toEndOf="@id/circleView"
-            app:layout_constraintTop_toBottomOf="@id/txtHeader"
-            tools:text="Dr.PAWAN GOENKA - MD" />
+            app:layout_constraintTop_toBottomOf="@id/tv_schedule_designation"
+            tools:text="@string/text_label_overview_name" />
 
         <TextView
-            android:id="@+id/txtVenue"
+            android:id="@+id/tv_schedule_venue"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_location"
             android:drawablePadding="@dimen/padding_small"
-            android:maxLines="2"
             android:padding="@dimen/padding_small"
             android:textColor="@color/black"
             android:textSize="@dimen/text_size_small"
-            app:layout_constraintEnd_toStartOf="@id/image"
+            app:layout_constraintEnd_toStartOf="@id/iv_icon_schedule"
             app:layout_constraintStart_toEndOf="@id/circleView"
-            app:layout_constraintTop_toBottomOf="@id/txtHeader1"
+            app:layout_constraintTop_toBottomOf="@id/tv_schedule_designation_name"
             tools:text="Venue- Ballroom Level" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/_1sdp"
             android:background="@color/warmGrey"
-            app:layout_constraintTop_toBottomOf="@id/txtVenue" />
+            app:layout_constraintTop_toBottomOf="@id/tv_schedule_venue" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

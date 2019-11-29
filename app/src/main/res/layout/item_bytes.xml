@@ -17,19 +17,19 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/txtTime"
+                android:id="@+id/tv_bytes_time"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:layout_marginEnd="@dimen/margin_medium"
                 android:layout_weight="0.5"
                 android:gravity="end"
-                android:textColor="@color/pink"
+                android:textColor="@color/dark_purple"
                 android:textSize="@dimen/text_size_normal"
-                tools:text="04:50 pm" />
+                tools:text="@string/text_label_overview_time" />
 
             <TextView
-                android:id="@+id/txtDesc"
+                android:id="@+id/tv_bytes_desc"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
@@ -37,7 +37,7 @@
                 android:gravity="start"
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_size_normal"
-                tools:text="Day 3 ends now.Thank you for joining us.#MOAGIC" />
+                tools:text="@string/text_label_bytes_desc" />
 
         </LinearLayout>
 

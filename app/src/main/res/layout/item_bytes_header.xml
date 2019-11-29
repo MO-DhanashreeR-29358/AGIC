@@ -5,12 +5,11 @@
         android:id="@+id/txt_section_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/light_grey"
+        android:background="@color/_material_grey_500"
         android:gravity="center_vertical"
         android:minHeight="@dimen/_40sdp"
         android:padding="@dimen/padding_medium"
         android:textColor="@color/black"
-        android:textStyle="bold"
         android:textSize="@dimen/text_size_normal"
-        android:text="August 21,2019"/>
+        android:text="@string/text_label_byte_header"/>
 </layout>

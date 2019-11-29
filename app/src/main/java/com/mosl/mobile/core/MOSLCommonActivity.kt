@@ -1,44 +1,45 @@
 package com.mosl.mobile.core
 
 import android.content.Context
+import android.content.IntentFilter
+import android.graphics.BlendMode
+import android.graphics.BlendModeColorFilter
 import android.graphics.PorterDuff
+import android.graphics.PorterDuffColorFilter
+import android.graphics.drawable.Drawable
+import android.net.ConnectivityManager
+import android.os.Build
 import android.os.Bundle
 import android.os.PersistableBundle
-import android.view.LayoutInflater
 import android.view.View
 import android.view.View.OnClickListener
-import android.widget.TextView
-import androidx.annotation.DrawableRes
-import androidx.annotation.StringRes
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import com.jakewharton.rxbinding3.appcompat.navigationClicks
+import com.mosl.app.core.network.NetworkChangeEvent
 import com.mosl.app.core.network.NetworkReceiver
 import com.mosl.app.core.utils.hideKeyBoard
 import com.mosl.app.coreui.base.ActivityDelegate
 import com.mosl.app.coreui.base.BaseActivity
+import com.mosl.app.coreui.base.NavigationElement
 import com.mosl.mobile.R
 import com.mosl.mobile.constants.NavigationConstants
 import com.mosl.mobile.coreui.LocaleManager
 import com.mosl.mobile.dashboard.ActivityNavigationHelper
 import com.mosl.mobile.databinding.ActivityCommonbaseBinding
 import com.mosl.mobile.menu.ScreenNavigatorImpl
-import com.mosl.mobile.nav.DebugConstants
 import com.mosl.mobile.pdf.PdfFragment
-import com.mosl.navigator.AppTitle
-import com.mosl.navigator.AuthorizationState
-import com.mosl.navigator.FragmentNavigationEntry
-import com.mosl.navigator.FragmentResolver
-import com.mosl.navigator.NavigationHelper
-import com.mosl.navigator.Navigator
+import com.mosl.navigator.*
+import io.reactivex.Observable
 import io.reactivex.rxkotlin.addTo
 import timber.log.Timber
 import java.util.*
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
-
 
 class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
 
@@ -70,7 +71,12 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCommonbaseBinding.bind(findViewById(R.id.drawer_layout))
-        binding.appBar.navigationClicks().subscribe { openMenuDrawer() }.addTo(disposable)
+
+        registerReceiver(
+            networkReceiver,
+            IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
+        )
+        binding.toolBar.navigationClicks().subscribe { openMenuDrawer() }.addTo(disposable)
         if (savedInstanceState == null) {
             activityNavHelper.loadIntent(intent)
         } else {
@@ -78,7 +84,101 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
                 savedInstanceState.getSerializable(PAGE_TITLES) as HashMap<String, AppTitle>
         }
 
+        setupObservables()
+
         setupTabs()
+    }
+
+    private fun setupTabs() {
+        binding.tabLayout.addTab(
+            binding.tabLayout.newTab().setText(R.string.schedule).setIcon(R.drawable.navigation_icon).setTag(
+                NavigationConstants.NAVIGATE_TO_SCHEDULE
+            )
+        )
+
+        binding.tabLayout.addTab(
+            binding.tabLayout.newTab().setText(R.string.overview).setIcon(R.drawable.navigation_icon).setTag(
+                NavigationConstants.NAVIGATE_TO_OVERVIEW
+            )
+        )
+
+        binding.tabLayout.addTab(
+            binding.tabLayout.newTab().setText(R.string.panel).setIcon(R.drawable.navigation_icon).setTag(
+                NavigationConstants.NAVIGATE_TO_PANEL
+            )
+        )
+
+        binding.tabLayout.addTab(
+            binding.tabLayout.newTab().setText(R.string.bytes).setIcon(R.drawable.navigation_icon).setTag(
+                NavigationConstants.NAVIGATE_TO_BYTES
+            )
+        )
+
+        binding.tabLayout.addTab(
+            binding.tabLayout.newTab().setText(R.string.pdf).setIcon(R.drawable.navigation_icon).setTag(
+                NavigationConstants.NAVIGATE_TO_PDF
+            )
+        )
+
+
+
+        setColorFilter(binding.tabLayout.getTabAt(0)?.icon, baseContext.setColor(R.color.white))
+
+        binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab) {
+                setColorFilter(tab.icon, baseContext.setColor(R.color.blue))
+                if (tab.tag as Int == NavigationConstants.NAVIGATE_TO_PDF) {
+                    PdfFragment.newInstance()
+                        .show(supportFragmentManager, "")
+                } else {
+                    navigateFragment(tab.tag as Int)
+                }
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab) {
+                setColorFilter(tab.icon, baseContext.setColor(R.color.white))
+            }
+
+            override fun onTabReselected(tab: TabLayout.Tab) {
+            }
+        })
+    }
+
+    private fun Context.setColor(color: Int): Int {
+        return ContextCompat.getColor(this, color)
+    }
+
+    private fun navigateFragment(pageId: Int) {
+        val bundle = Bundle()
+        when (pageId) {
+        }
+
+        navigateTo(pageId, bundle, true)
+    }
+
+    private fun setColorFilter(drawable: Drawable?, color: Int) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            drawable?.setColorFilter(BlendModeColorFilter(color, BlendMode.SRC_ATOP))
+        } else {
+            drawable?.setColorFilter(PorterDuffColorFilter(color, PorterDuff.Mode.SRC_ATOP))
+        }
+    }
+
+    fun navigateTo(
+        id: Int,
+        bundle: Bundle,
+        addStack: Boolean
+    ) {
+        val activity = this
+        if (activity != null) {
+            hideKeyboard(activity.currentFocus)
+            screenNavigator.openPage(id, bundle, addStack)
+        }
+    }
+
+    protected fun hideKeyboard(view: View?) {
+        if (view == null) return
+        hideKeyBoard(view)
     }
 
     private fun openMenuDrawer() {
@@ -109,11 +209,40 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
     override fun hideProgress() {
     }
 
+    override fun onBackPressed() {
+        if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            binding.drawerLayout.closeDrawers()
+            return
+        }
+
+        if (binding.progressBar.visibility == View.VISIBLE) {
+            binding.progressBar.visibility = View.GONE
+            return
+        }
+
+        if (navigationHelper.onBackPressed()) {
+            return
+        }
+
+        if (navigationHelper.canGoBack()) {
+            screenNavigator.goBack()
+            return
+        }
+
+        handleExitAppPopup()
+    }
+
+    private fun handleExitAppPopup() {
+
+        exitPopup()
+
+    }
+
     override fun setAppTitle(page: String, appTitle: AppTitle?) {
         val title = appTitle ?: globalTitles[page] ?: AppTitle.EMPTY
         Timber.d("ActionBarNew Set Title for %s, to %s", page, title)
         globalTitles[page] = title
-        binding.appBar.title = title.toString()
+        binding.toolBar.title = title.toString()
     }
 
     override fun showProgress() {
@@ -136,10 +265,65 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
         outState.putSerializable(PAGE_TITLES, globalTitles)
     }
 
+
+    private fun exitPopup() {
+        if (doubleBackToExitPressedOnce) {
+            finish()
+            return
+        }
+
+        doubleBackToExitPressedOnce = true
+        Toast.makeText(this, "Please click back again to exit", Toast.LENGTH_SHORT).show()
+
+        disposable.add(Observable.timer(2000, TimeUnit.MILLISECONDS)
+            .subscribe { doubleBackToExitPressedOnce = false })
+    }
+
+    internal fun setupObservables() {
+        val mainThread = dispatchers.main
+
+
+        networkReceiver.onNetworkChanged()
+            .distinctUntilChanged()
+            .observeOn(mainThread)
+            .subscribe(this::onEvent)
+            .addTo(disposable)
+
+
+        activityNavHelper.addTo(disposable)
+    }
+
+
+    fun onEvent(event: NetworkChangeEvent) {
+        Timber.i("Network Changed : %s", event)
+
+        val currentFragment = currentFragment
+        if (currentFragment is NavigationElement) {
+            (currentFragment as NavigationElement).networkChanged(event)
+        }
+
+        if (event.isConnected) {
+            snackbar?.dismiss()
+        } else {
+            snackbar = showNetworkDisconnectedSnackbar()
+        }
+    }
+
+    internal fun showNetworkDisconnectedSnackbar(): Snackbar {
+        val snackbar = Snackbar.make(
+            binding.coordinatorLayout, R.string.network_unavailable,
+            Snackbar.LENGTH_INDEFINITE
+        )
+        snackbar.setAction(R.string.button_label_ok) { v -> snackbar.dismiss() }
+        snackbar.show()
+        return snackbar
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         globalTitles.clear()
         disposable.clear()
+        unregisterReceiver(networkReceiver)
     }
 
     companion object {
@@ -148,105 +332,4 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
         private const val PAGE_TITLES = "pageTitles"
     }
 
-
-    private fun setupTabs() {
-        binding.tabLayout.addTab(
-            binding.tabLayout.newTab().setText(R.string.schedule).setIcon(R.drawable.navigation_icon).setTag(
-                DebugConstants.NAVIGATE_TO_SCHEDULE
-            )
-        )
-
-        binding.tabLayout.addTab(
-            binding.tabLayout.newTab().setText(R.string.overview).setIcon(R.drawable.navigation_icon).setTag(
-                DebugConstants.NAVIGATE_TO_OVERVIEW
-            )
-        )
-
-        binding.tabLayout.addTab(
-            binding.tabLayout.newTab().setText(R.string.panel).setIcon(R.drawable.navigation_icon).setTag(
-                NavigationConstants.NAVIGATE_TO_PANEL_BASE
-            )
-        )
-
-        binding.tabLayout.addTab(
-            binding.tabLayout.newTab().setText(R.string.bytes).setIcon(R.drawable.navigation_icon).setTag(
-                NavigationConstants.NAVIGATE_TO_BYTES
-            )
-        )
-
-        binding.tabLayout.addTab(
-            binding.tabLayout.newTab().setText(R.string.pdf).setIcon(R.drawable.navigation_icon).setTag(
-                NavigationConstants.NAVIGATE_TO_PDF
-            )
-        )
-
-//                .setCustomView(
-//                    getTabLayoutView(
-//                        R.drawable.navigation_icon,
-//                        R.string.pdf
-//                    )
-//                )
-
-        val tabIconColor = ContextCompat.getColor(baseContext, R.color.blue)
-        binding.tabLayout.getTabAt(0)?.icon!!.setColorFilter(tabIconColor, PorterDuff.Mode.SRC_IN)
-
-        binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-            override fun onTabSelected(tab: TabLayout.Tab) {
-
-                val tabIconColor = ContextCompat.getColor(baseContext, R.color.blue)
-                tab.icon!!.setColorFilter(tabIconColor, PorterDuff.Mode.SRC_IN)
-                if (tab.tag as Int == NavigationConstants.NAVIGATE_TO_PDF) {
-                    PdfFragment.newInstance()
-                        .show(supportFragmentManager, "")
-                } else {
-                    navigateDashboardFragment(tab.tag as Int)
-                }
-
-            }
-
-            override fun onTabUnselected(tab: TabLayout.Tab) {
-                val tabIconColor = ContextCompat.getColor(baseContext, R.color.white)
-                tab.icon!!.setColorFilter(tabIconColor, PorterDuff.Mode.SRC_IN)
-            }
-
-            override fun onTabReselected(tab: TabLayout.Tab) {
-
-//        onTabSelection(tab)
-            }
-        })
-    }
-
-    private fun navigateDashboardFragment(pageId: Int) {
-        val bundle = Bundle()
-        when (pageId) {
-
-
-        }
-        Timber.d("pageId Selected---> %d", pageId)
-        navigateTo(pageId, bundle, true)
-    }
-
-    fun navigateTo(
-        id: Int,
-        bundle: Bundle,
-        addStack: Boolean
-    ) {
-        val activity = this
-        if (activity != null) {
-            hideKeyboard(activity.currentFocus)
-            screenNavigator.openPage(id, bundle, addStack)
-        }
-    }
-
-    private fun getTabLayoutView(@DrawableRes resId: Int, @StringRes section: Int): View {
-        val tv = LayoutInflater.from(this).inflate(R.layout.view_custom_tab, null) as TextView
-        tv.setText(section)
-        tv.setCompoundDrawablesWithIntrinsicBounds(0, resId, 0, 0)
-        return tv
-    }
-
-    protected fun hideKeyboard(view: View?) {
-        if (view == null) return
-        hideKeyBoard(view)
-    }
 }

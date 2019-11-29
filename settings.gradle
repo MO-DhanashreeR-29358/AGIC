@@ -1,2 +1,14 @@
-include ':app', ':data', ':domain', ':mosl_api', ':annotations', ':app_user', ':mock_data', ':core_ui',':core_data'
+include ':app',
+        ':shared',
+        ':data',
+        ':domain',
+        ':mosl_api',
+        ':annotations',
+        ':app_user',
+        ':mock_data',
+        ':core_ui',
+        ':core_data'
 rootProject.name='Agic'
+
+project(':mock_data').projectDir = new File("service/mock_data")
+project(':mosl_api').projectDir = new File("service/mosl_api")

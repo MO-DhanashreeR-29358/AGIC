@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:colorBackground"
+        android:padding="@dimen/padding_normal"
+        tools:ignore="HardcodedText">
+
+        <ImageView
+            android:id="@+id/icon_overview_mctrack"
+            android:layout_width="@dimen/imageIcons"
+            android:layout_height="@dimen/imageIcons"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_mtrack_small"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
+
+        <TextView
+            android:id="@+id/tv_overview_designation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/dark_blue"
+            android:layout_marginEnd="@dimen/margin_medium"
+            android:textSize="@dimen/text_size_normal"
+            app:layout_constraintEnd_toStartOf="@+id/overview_tv_time_from"
+            app:layout_constraintStart_toEndOf="@+id/icon_overview_mctrack"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/text_label_overview_designation" />
+
+
+        <TextView
+            android:id="@+id/overview_tv_time_from"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/dark_purple"
+            android:textSize="@dimen/text_size_small"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/text_label_overview_time" />
+
+        <ImageView
+            android:id="@+id/img_overview_more"
+            android:layout_width="@dimen/margin_normal"
+            android:layout_height="@dimen/margin_normal"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="@dimen/margin_small"
+            android:src="@drawable/ic_more_ver"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_overview_designation"
+            app:layout_constraintTop_toBottomOf="@+id/overview_tv_time_from"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/tv_overview_time_to"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/dark_purple"
+            android:textSize="@dimen/text_size_small"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_overview_more"
+            tools:text="@string/text_label_overview_time" />
+
+
+        <TextView
+            android:id="@+id/tv_overview_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_small"
+            android:textAllCaps="true"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_normal"
+            app:layout_constraintEnd_toStartOf="@+id/overview_tv_time_from"
+            app:layout_constraintStart_toEndOf="@+id/icon_overview_mctrack"
+            app:layout_constraintTop_toBottomOf="@+id/tv_overview_designation"
+            tools:text="@string/text_label_overview_name" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_2sdp"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:background="@color/greyWhite"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_overview_name" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
