@@ -4,6 +4,7 @@
     <!--Top level DayNight theme to be used in AndroidManifest.xml-->
     <style name="MoslTheme" parent="Base.MoslTheme" />
 
+
     <!--Base custom theme which will be shared between both light and dark theme variants-->
     <style name="Base.MoslTheme" parent="Base.ThemeBuilder">
         <!--Material color attributes -->
@@ -83,5 +84,10 @@
         <item name="background">@color/color_background</item>
         <item name="actionBarSize">@dimen/toolbar_height</item>
     </style>
+
+    <style name="SplashTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:windowBackground">@drawable/bg_splash</item>
+    </style>
+
 
 </resources>

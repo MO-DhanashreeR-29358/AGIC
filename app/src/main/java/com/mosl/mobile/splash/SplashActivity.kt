@@ -33,7 +33,7 @@ class SplashActivity : LeanBaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivitySplashScreenBinding.bind(findViewById(R.id.splash_root))
+//        binding = ActivitySplashScreenBinding.bind(findViewById(R.id.splash_root))
 //        checkNetwork()
 
         //Initialize the Handler
