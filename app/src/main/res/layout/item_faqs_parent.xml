@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="16dp">
+    android:paddingLeft="@dimen/padding_normal"
+    android:paddingTop="@dimen/padding_normal"
+    android:paddingRight="@dimen/padding_normal">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -26,8 +28,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/margin_large"
             android:layout_toRightOf="@+id/imgProfileIcon"
-            android:textColor="@color/blue"
-            android:textSize="@dimen/text_size_normal"
+            android:textColor="@color/dark_blue"
+            android:textSize="@dimen/text_size_small"
             tools:text="Ms.Nandini Maheshwari" />
 
 
@@ -38,7 +40,6 @@
             android:layout_below="@+id/imgProfileIcon"
             android:layout_centerHorizontal="true"
             app:srcCompat="@drawable/ic_more_horiz" />
-
 
 
     </RelativeLayout>

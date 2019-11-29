@@ -28,9 +28,6 @@ class NewsLetterActivity : LeanBaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
         binding = ActivityNewsLetterBinding.bind(findViewById(R.id.relativeLayoutMain))
 
         binding.skipToLogin.setOnClickListener(View.OnClickListener { openDashboard() })
