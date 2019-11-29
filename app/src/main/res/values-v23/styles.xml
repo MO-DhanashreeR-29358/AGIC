@@ -3,12 +3,10 @@
 
 
     <style name="MaxCustomTabText" parent="TextAppearance.Design.Tab">
-        <item name="android:textSize">@dimen/text_size_medium</item>
+        <item name="android:textSize">@dimen/text_size_small</item>
         <item name="android:textAllCaps">false</item>
     </style>
 
-    <style name="SplashTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="android:windowBackground">@drawable/bg_splash</item>
-    </style>
+
 
 </resources>

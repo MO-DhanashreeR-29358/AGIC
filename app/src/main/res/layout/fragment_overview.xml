@@ -13,7 +13,7 @@
             android:id="@+id/tabLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@color/greyWhite"
+            android:background="@color/toolbar_color"
             app:iconGravity="textStart"
             app:iconPadding="4dp"
             app:layout_anchorGravity="bottom|center"
@@ -22,9 +22,9 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:tabIconTint="@color/white"
-            app:tabIndicatorColor="@color/blue"
+            app:tabIndicatorColor="@color/dark_blue"
             app:tabIndicatorHeight="@dimen/margin_small"
-            app:tabSelectedTextColor="@color/blue"
+            app:tabSelectedTextColor="@color/dark_blue"
             app:tabTextAppearance="@style/MaxCustomTabText" />
 
         <FrameLayout
