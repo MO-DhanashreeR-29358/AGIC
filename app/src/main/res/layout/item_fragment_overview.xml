@@ -98,11 +98,10 @@
 
         <ImageView
             android:id="@+id/icon_overview_mctrack"
-            android:layout_width="@dimen/_72sdp"
-            android:layout_height="@dimen/_72sdp"
+            android:layout_width="@dimen/imageIcons"
+            android:layout_height="@dimen/imageIcons"
             android:layout_gravity="center"
             android:src="@drawable/ic_mtrack_small"
-
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="ContentDescription" />
@@ -111,7 +110,7 @@
             android:id="@+id/tv_overview_designation"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Mr.Prasan Basu President South Asia, Nielsen"
+            tools:text="@string/text_label_overview_designation"
             android:textColor="@color/blue"
             android:textSize="@dimen/text_size_normal"
             app:layout_constraintEnd_toStartOf="@+id/overview_tv_time_from"
@@ -130,8 +129,8 @@
 
         <ImageView
             android:id="@+id/img_overview_more"
-            android:layout_width="@dimen/menu_icon"
-            android:layout_height="@dimen/menu_icon"
+            android:layout_width="@dimen/menuIcons"
+            android:layout_height="@dimen/menuIcons"
             android:layout_gravity="center_horizontal"
             android:layout_margin="@dimen/margin_small"
             android:src="@drawable/ic_more_ver"

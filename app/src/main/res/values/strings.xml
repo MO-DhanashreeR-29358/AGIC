@@ -27,4 +27,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <string name="text_label_overview_name"></string>
+    <string name="text_label_overview_designation">Mr.Prasan Basu President South Asia, Nielsen</string>
+
 </resources>

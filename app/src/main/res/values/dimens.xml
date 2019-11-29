@@ -2,6 +2,8 @@
 <resources>
 
     <dimen name="menuIcons">@dimen/_24sdp</dimen>
+    <dimen name="imageIcons">@dimen/_48sdp</dimen>
+
     <dimen name="margin_extra_large">@dimen/_24sdp</dimen>
     <dimen name="margin_extra_small">@dimen/_2sdp</dimen>
     <dimen name="margin_large">@dimen/_16sdp</dimen>
@@ -16,6 +18,7 @@
     <dimen name="padding_small">@dimen/_4sdp</dimen>
     <dimen name="text_size_extra_small">@dimen/_10ssp</dimen>
     <dimen name="text_size_large">@dimen/_20ssp</dimen>
+    <dimen name="text_size_extra_large">@dimen/_24ssp</dimen>
     <dimen name="text_size_medium">@dimen/_16ssp</dimen>
     <dimen name="text_size_normal">@dimen/_14ssp</dimen>
     <dimen name="text_size_small">@dimen/_12ssp</dimen>
@@ -25,8 +28,5 @@
     <dimen name="very_extra_large">@dimen/_64ssp</dimen>
     <dimen name="login_img_large">@dimen/_150sdp</dimen>
     <dimen name="login_bottom">@dimen/_175sdp</dimen>
-    <dimen name="menu_icon">@dimen/_24sdp</dimen>
-    <dimen name="text_size_extra_large">@dimen/_24ssp</dimen>
-    <dimen name="tabIndicatorHeight">@dimen/_4sdp</dimen>
 
 </resources>
