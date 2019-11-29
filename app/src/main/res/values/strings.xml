@@ -20,6 +20,7 @@
     <string name="pdf">PDF</string>
 
     <string name="login">Login</string>
+    <string name="digit_id">5 digit id</string>
     <string name="login_text">Anual Global Investor Conference</string>
     <string name="login_text2">Access permitted to registerd\nusers only</string>
     <string name="text_year">2020</string>

@@ -1,34 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constrainLaout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="?android:colorBackground">
+        android:background="@color/white">
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/img_banner"
+            android:id="@+id/img_logo"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/_50ssp"
-            android:layout_marginTop="@dimen/margin_medium"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:contentDescription="@string/app_name"
             android:scaleType="fitStart"
             android:src="@drawable/mot_logo"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/img_logo"
+            android:id="@+id/img_banner"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="@dimen/margin_extra_large"
-            android:layout_marginBottom="@dimen/margin_extra_large"
+            android:layout_marginTop="@dimen/margin_large"
+            android:layout_marginBottom="@dimen/margin_large"
+            android:contentDescription="@string/app_name"
             android:src="@drawable/agic_15"
             app:layout_constraintBottom_toTopOf="@+id/txt_agic"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/img_banner" />
+            app:layout_constraintTop_toBottomOf="@+id/img_logo" />
 
         <TextView
             android:id="@+id/txt_agic"
@@ -38,7 +41,7 @@
             android:gravity="center_horizontal"
             android:text="@string/login_text"
             android:textColor="@color/black"
-            android:textSize="@dimen/text_size_large"
+            android:textSize="@dimen/text_size_medium"
             app:layout_constraintBottom_toTopOf="@+id/txt_year"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -46,14 +49,15 @@
             android:id="@+id/txt_year"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_large"
             android:layout_marginTop="@dimen/margin_large"
-            android:layout_marginEnd="@dimen/margin_large"
             android:layout_marginBottom="@dimen/margin_large"
             android:gravity="center"
+            android:scaleY="1.4"
             android:text="@string/text_year"
             android:textColor="@color/greyWhite"
+            android:textScaleX="1.5"
             android:textSize="@dimen/very_extra_large"
+            android:textStyle="normal"
             app:layout_constraintBottom_toTopOf="@+id/edit_unique_code"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent" />
@@ -62,21 +66,27 @@
             android:id="@+id/edit_unique_code"
             android:layout_width="match_parent"
             android:layout_height="@dimen/et_size"
-            android:layout_marginLeft="@dimen/margin_large"
-            android:background="@drawable/login_et_back"
-            android:layout_marginRight="@dimen/margin_large"
+            android:layout_marginLeft="@dimen/margin_30"
+            android:layout_marginTop="@dimen/margin_large"
+            android:layout_marginRight="@dimen/margin_30"
             android:layout_marginBottom="@dimen/margin_large"
-            android:textSize="@dimen/text_size_medium"
+            android:autofillHints="@string/app_name"
+            android:background="@drawable/login_et_back"
+            android:gravity="center"
+            android:hint="@string/digit_id"
             android:imeOptions="actionDone"
-            app:layout_constraintBottom_toTopOf="@+id/btn_login"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:inputType="number"
+            android:textSize="@dimen/text_size_medium"
+            app:layout_constraintBottom_toTopOf="@+id/txt_login"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="UnusedAttribute" />
 
         <TextView
-            android:id="@+id/btn_login"
+            android:id="@+id/txt_login"
             android:layout_width="match_parent"
             android:layout_height="@dimen/et_size"
-            android:layout_marginLeft="@dimen/margin_large"
-            android:layout_marginRight="@dimen/margin_large"
+            android:layout_marginLeft="@dimen/margin_30"
+            android:layout_marginRight="@dimen/margin_30"
             android:layout_marginBottom="@dimen/margin_large"
             android:background="@drawable/login_btn_back"
             android:gravity="center"
@@ -92,17 +102,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_large"
-            android:layout_marginTop="@dimen/margin_extra_large"
-            android:layout_marginEnd="@dimen/margin_extra_large"
+            android:layout_marginTop="@dimen/margin_large"
+            android:layout_marginEnd="@dimen/margin_large"
             android:layout_marginBottom="@dimen/margin_large"
             android:gravity="center_horizontal"
             android:paddingLeft="@dimen/padding_extra_large"
-            android:paddingTop="@dimen/padding_normal"
             android:paddingRight="@dimen/padding_extra_large"
-            android:paddingBottom="@dimen/padding_normal"
             android:text="@string/login_text2"
             android:textColor="@color/blue"
-            android:textSize="@dimen/text_size_large"
+            android:textSize="@dimen/text_size_medium"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent" />
@@ -120,6 +128,5 @@
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 </layout>

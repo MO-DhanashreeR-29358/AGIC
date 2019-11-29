@@ -65,7 +65,7 @@ class LoginActivity : LeanBaseActivity(), Navigator, LoginView {
     }
 
     override fun onLoginClicked(): Observable<Unit> {
-        return binding.btnLogin.clicks()
+        return binding.txtLogin.clicks()
     }
 
 

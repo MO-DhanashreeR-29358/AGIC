@@ -72,7 +72,7 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
       networkReceiver,
       IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
     )
-          binding.appBar.navigationClicks().subscribe { openMenuDrawer() }.addTo(disposable)
+          binding.toolBar.navigationClicks().subscribe { openMenuDrawer() }.addTo(disposable)
     if (savedInstanceState == null) {
       activityNavHelper.loadIntent(intent)
     } else {
@@ -143,7 +143,7 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
     val title = appTitle ?: globalTitles[page] ?: AppTitle.EMPTY
     Timber.d("ActionBarNew Set Title for %s, to %s", page, title)
     globalTitles[page] = title
-    binding.appBar.title = title.toString()
+    binding.toolBar.title = title.toString()
   }
 
   override fun showProgress() {

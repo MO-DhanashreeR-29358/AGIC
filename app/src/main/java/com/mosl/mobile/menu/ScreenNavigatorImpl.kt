@@ -34,7 +34,7 @@ customNavigator, navigator) {
   }
 
   override fun openHome() {
-    openPage(NavigationConstants.NAVIGATE_TO_DEMO, false)
+    openPage(NavigationConstants.NAVIGATE_TO_SCHEDULE, false)
   }
 
   override fun openPage(entry: NavigationEntry) {
