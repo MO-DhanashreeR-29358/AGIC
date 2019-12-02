@@ -3,4 +3,7 @@
 
     <string name="button_label_retrieve">Retrieve</string>
     <string name="button_label_exit">Exit</string>
+    <string name="msg_logout">Do you want to logout?</string>
+    <string name="msg_yes">YES</string>
+    <string name="msg_no">NO</string>
 </resources>
