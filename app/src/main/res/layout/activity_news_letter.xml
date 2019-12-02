@@ -7,73 +7,73 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
-        android:paddingTop="@dimen/padding_medium"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:context="com.mosl.mobile.newsletter.NewsLetterActivity">
 
-        <View
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/greyWhite"
-            app:layout_constraintBottom_toTopOf="@+id/txt_warn_msg"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <ImageView
-            android:id="@+id/img_agic"
-            android:layout_width="@dimen/img_news_letter"
-            android:layout_height="@dimen/img_news_letter"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/margin_normal"
-            android:layout_marginTop="@dimen/margin_large"
-            android:layout_marginRight="@dimen/margin_normal"
-            android:layout_marginBottom="@dimen/margin_normal"
-            android:src="@drawable/agic_15"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/txt_welcome"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/txt_label_welcome"
-            android:textColor="@color/dark_blue"
-            android:textSize="@dimen/text_size_medium"
-            app:layout_constraintBottom_toTopOf="@+id/txt_agic_year"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <TextView
-            android:id="@+id/txt_agic_year"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/txt_welcome"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="@dimen/margin_medium"
-            android:text="@string/txt_label_agic_year"
-            android:textSize="@dimen/text_size_medium"
-            app:layout_constraintBottom_toTopOf="@+id/txt_warn_msg"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <TextView
-            android:id="@+id/txt_warn_msg"
+        <RelativeLayout
+            android:id="@+id/topToolRR"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_medium"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:background="@color/greyWhite"
+            app:layout_constraintBottom_toTopOf="@+id/warnMSG"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/img1"
+                android:layout_width="@dimen/img_large"
+                android:layout_height="@dimen/img_large"
+                android:layout_centerVertical="true"
+                android:layout_margin="@dimen/margin_normal"
+                android:layout_marginTop="@dimen/et_size"
+                android:src="@drawable/agic_15" />
+
+            <LinearLayout
+                android:id="@+id/topTXT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txt_welcome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/welcome"
+                    android:textColor="@color/dark_blue"
+                    android:textSize="@dimen/text_size_large" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txt_welcome"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/agic_2017"
+                    android:textSize="@dimen/text_size_medium" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/warnMSG"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
             android:gravity="center"
             android:padding="@dimen/padding_extra_small"
-            android:text="@string/txt_label_stay_updated_with"
+            android:text="@string/stay_updated_with"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size_medium"
-            app:layout_constraintBottom_toTopOf="@+id/expandable_list"
+            app:layout_constraintBottom_toTopOf="@+id/recyclerView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/img_agic" />
+            app:layout_constraintTop_toBottomOf="@+id/topToolRR" />
 
         <ExpandableListView
-            android:id="@+id/expandable_list"
+            android:id="@+id/recyclerView"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:groupIndicator="@null"
@@ -81,7 +81,7 @@
             app:layout_constraintBottom_toTopOf="@+id/skip_to_login"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txt_warn_msg" />
+            app:layout_constraintTop_toBottomOf="@+id/warnMSG" />
 
         <TextView
             android:id="@+id/skip_to_login"
@@ -90,13 +90,13 @@
             android:background="@color/light_cyan_color"
             android:gravity="center"
             android:padding="@dimen/padding_small"
-            android:text="@string/txt_label_skip_to_login"
+            android:text="@string/skip_to_login"
             android:textColor="@color/black"
             android:textSize="@dimen/text_size_normal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/expandable_list" />
+            app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

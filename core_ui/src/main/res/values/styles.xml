@@ -48,7 +48,7 @@
     </style>
 
     <style name="Widget.MoslTheme.TabColor" parent="Widget.MaterialComponents.TabLayout">
-        <item name="android:background">?background</item>
+        <item name="android:background">@color/_material_grey_300</item>
     </style>
 
     <style name="Widget.MoslTheme.Space" parent="">
@@ -58,5 +58,8 @@
     <style name="Widget.MoslTheme.spinner" parent="Widget.AppCompat.Spinner.Underlined">
         <item name="android:popupAnimationStyle">@anim/bottom_sheet_slide_in</item>
     </style>
+
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.ActionBar"/>
 
 </resources>
