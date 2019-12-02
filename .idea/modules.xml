@@ -14,6 +14,7 @@
       <module fileurl="file://$PROJECT_DIR$/core_ui/core_ui.iml" filepath="$PROJECT_DIR$/core_ui/core_ui.iml" />
       <module fileurl="file://$PROJECT_DIR$/data/data.iml" filepath="$PROJECT_DIR$/data/data.iml" />
       <module fileurl="file://$PROJECT_DIR$/domain/domain.iml" filepath="$PROJECT_DIR$/domain/domain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/service/mosl_api/mosl_api.iml" filepath="$PROJECT_DIR$/service/mosl_api/mosl_api.iml" />
       <module fileurl="file://$PROJECT_DIR$/service/mock_data/service-mock_data.iml" filepath="$PROJECT_DIR$/service/mock_data/service-mock_data.iml" />
       <module fileurl="file://$PROJECT_DIR$/service/mosl_api/service-mosl_api.iml" filepath="$PROJECT_DIR$/service/mosl_api/service-mosl_api.iml" />
       <module fileurl="file://$PROJECT_DIR$/shared/shared.iml" filepath="$PROJECT_DIR$/shared/shared.iml" />
