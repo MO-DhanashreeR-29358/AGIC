@@ -35,6 +35,7 @@ import com.mosl.mobile.coreui.LocaleManager
 import com.mosl.mobile.dashboard.ActivityNavigationHelper
 import com.mosl.mobile.databinding.ActivityCommonbaseBinding
 import com.mosl.mobile.login.LoginActivity
+import com.mosl.mobile.login.UserCacheImpl
 import com.mosl.mobile.menu.ScreenNavigatorImpl
 import com.mosl.navigator.*
 import io.reactivex.Observable
@@ -63,6 +64,8 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
     @Inject
     lateinit var activityNavHelper: ActivityNavigationHelper
 
+    @Inject
+    lateinit var userCacheImpl: UserCacheImpl
     override fun getLayout(): Int {
         return R.layout.activity_commonbase
     }
@@ -251,6 +254,7 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
             .setPositiveButton(R.string.msg_yes) { _, _ ->
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
+                userCacheImpl.clearUser()
                 finish()
             }
             .setNegativeButton(R.string.msg_no) { _, _ -> }

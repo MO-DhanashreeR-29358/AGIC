@@ -2,8 +2,6 @@ package com.mosl.mobile.app_user.user
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
 import com.mosl.mobile.app_user.UserPreference
 import com.mosl.mobile.app_user.helper.PrefStoreProvider
 import com.mosl.mobile.app_user.helper.UserPrefStore
@@ -50,7 +48,6 @@ class UserModule {
     internal fun provideUserCache(userCacheImpl: UserCacheImpl): UserCache {
         return userCacheImpl
     }
-
 
 
 }
