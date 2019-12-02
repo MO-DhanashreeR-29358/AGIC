@@ -11,6 +11,7 @@ import android.net.ConnectivityManager
 import android.os.Build
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.text.TextUtils
 import android.view.View
 import android.view.View.OnClickListener
 import android.widget.Toast
@@ -85,8 +86,13 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
         }
 
         setupObservables()
-
+        setUpContentView()
         setupTabs()
+    }
+
+    private fun setUpContentView() {
+        binding.txtCompanyName.setEllipsize(TextUtils.TruncateAt.MARQUEE)
+        binding.txtCompanyName.isSelected =true
     }
 
     private fun setupTabs() {

@@ -62,5 +62,8 @@ dependencies {
   implementation MofslArtifactDependencies.annotation
   implementation MofslArtifactDependencies.navigator
 
+  implementation DimensionDependencies.ssp
+  implementation DimensionDependencies.sdp
+
   implementation project(":annotations")
 }

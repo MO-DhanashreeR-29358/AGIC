@@ -13,7 +13,7 @@
             android:id="@+id/img_logo"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/_50ssp"
-            android:layout_marginTop="@dimen/margin_normal"
+            android:layout_marginTop="@dimen/margin_large"
             android:contentDescription="@string/app_name"
             android:scaleType="fitStart"
             android:src="@drawable/mot_logo"

@@ -4,6 +4,7 @@
     <!--Top level DayNight theme to be used in AndroidManifest.xml-->
     <style name="MoslTheme" parent="Base.MoslTheme" />
 
+
     <!--Base custom theme which will be shared between both light and dark theme variants-->
     <style name="Base.MoslTheme" parent="Base.ThemeBuilder">
         <!--Material color attributes -->
@@ -67,7 +68,7 @@
         <item name="alphaEmphasisMedium">@dimen/alpha_emphasis_medium</item>
         <item name="alphaEmphasisDisabled">@dimen/alpha_emphasis_disabled</item>
 
-        <item name="android:statusBarColor" tools:ignore="NewApi">?android:colorBackground</item>
+        <item name="android:statusBarColor" tools:ignore="NewApi">@color/black</item>
         <item name="android:windowLightStatusBar" tools:ignore="NewApi">true</item>
         <item name="android:navigationBarColor" tools:ignore="NewApi">?android:colorBackground</item>
         <item name="android:windowLightNavigationBar" tools:ignore="NewApi">true</item>
@@ -83,5 +84,10 @@
         <item name="background">@color/color_background</item>
         <item name="actionBarSize">@dimen/toolbar_height</item>
     </style>
+
+    <style name="SplashTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:windowBackground">@drawable/bg_splash</item>
+    </style>
+
 
 </resources>
