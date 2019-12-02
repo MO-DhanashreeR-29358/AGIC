@@ -26,7 +26,6 @@
             app:tabIndicatorColor="@color/dark_blue"
             app:tabIndicatorHeight="@dimen/margin_small"
             app:tabMode="fixed"
-            app:tabSelectedTextColor="@color/blue"
             app:tabSelectedTextColor="@color/dark_blue"
             app:tabTextAppearance="@style/MaxCustomTabText" />
 
