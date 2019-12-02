@@ -10,7 +10,6 @@ import com.mosl.mobile.constants.NavigationConstants
 import com.mosl.mobile.core.MOSLCommonActivity
 import com.mosl.mobile.databinding.ActivityNewsLetterBinding
 import com.mosl.mobile.login.LoginActivity
-import com.mosl.mobile.nav.DebugConstants
 
 
 /**
@@ -19,7 +18,7 @@ import com.mosl.mobile.nav.DebugConstants
  */
 class NewsLetterActivity : LeanBaseActivity() {
 
-    lateinit var listAdapter: ExpandableFaqsListAdapter
+    lateinit var listAdapter: ExpandableNewsLetterAdapter
     lateinit var binding: ActivityNewsLetterBinding
 
     override fun getLayout(): Int {
@@ -67,16 +66,16 @@ class NewsLetterActivity : LeanBaseActivity() {
             )
         )
 
-        listAdapter = ExpandableFaqsListAdapter(baseContext, faqsListParent, faqsListChild)
+        listAdapter = ExpandableNewsLetterAdapter(baseContext, faqsListParent, faqsListChild)
 
-        binding.recyclerView.setAdapter(listAdapter)
+        binding.expandableList.setAdapter(listAdapter)
 
-        binding.recyclerView.setOnGroupExpandListener(object : OnGroupExpandListener {
+        binding.expandableList.setOnGroupExpandListener(object : OnGroupExpandListener {
             internal var previousGroup = -1
 
             override fun onGroupExpand(groupPosition: Int) {
                 if (groupPosition != previousGroup)
-                    binding.recyclerView.collapseGroup(previousGroup)
+                    binding.expandableList.collapseGroup(previousGroup)
                 previousGroup = groupPosition
             }
         })

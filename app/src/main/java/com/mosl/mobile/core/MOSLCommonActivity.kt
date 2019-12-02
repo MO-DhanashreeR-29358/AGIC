@@ -97,31 +97,31 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
 
     private fun setupTabs() {
         binding.tabLayout.addTab(
-            binding.tabLayout.newTab().setText(R.string.schedule).setIcon(R.drawable.navigation_icon).setTag(
+            binding.tabLayout.newTab().setText(R.string.tab_label_schedule).setIcon(R.drawable.navigation_icon).setTag(
                 NavigationConstants.NAVIGATE_TO_SCHEDULE
             )
         )
 
         binding.tabLayout.addTab(
-            binding.tabLayout.newTab().setText(R.string.overview).setIcon(R.drawable.navigation_icon).setTag(
+            binding.tabLayout.newTab().setText(R.string.tab_label_overview).setIcon(R.drawable.navigation_icon).setTag(
                 NavigationConstants.NAVIGATE_TO_OVERVIEW
             )
         )
 
         binding.tabLayout.addTab(
-            binding.tabLayout.newTab().setText(R.string.panel).setIcon(R.drawable.navigation_icon).setTag(
+            binding.tabLayout.newTab().setText(R.string.tab_label_panel).setIcon(R.drawable.navigation_icon).setTag(
                 NavigationConstants.NAVIGATE_TO_PANEL
             )
         )
 
         binding.tabLayout.addTab(
-            binding.tabLayout.newTab().setText(R.string.bytes).setIcon(R.drawable.navigation_icon).setTag(
+            binding.tabLayout.newTab().setText(R.string.tab_label_bytes).setIcon(R.drawable.navigation_icon).setTag(
                 NavigationConstants.NAVIGATE_TO_BYTES
             )
         )
 
         binding.tabLayout.addTab(
-            binding.tabLayout.newTab().setText(R.string.pdf).setIcon(R.drawable.navigation_icon).setTag(
+            binding.tabLayout.newTab().setText(R.string.tab_label_pdf).setIcon(R.drawable.navigation_icon).setTag(
                 NavigationConstants.NAVIGATE_TO_PDF
             )
         )

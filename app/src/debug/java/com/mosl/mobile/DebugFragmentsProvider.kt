@@ -6,7 +6,6 @@ import com.mosl.mobile.overviewpager.OverviewFragment
 import com.mosl.mobile.drawermenu.DrawerMenuFragment
 import com.mosl.mobile.featurescope.FirstPlaygroundFragment
 import com.mosl.mobile.featurescope.SecondPlaygroundFragment
-import com.mosl.mobile.login.LoginFragment
 import com.mosl.mobile.panel.PanelChildFragment
 import com.mosl.mobile.panel.PanelChildModule
 import com.mosl.mobile.schedule.ScheduleFragment
@@ -29,9 +28,6 @@ abstract class DebugFragmentsProvider {
 
     @ContributesAndroidInjector(modules = [DashboardModule::class])
     abstract fun provideScheduleFragmenttFactory(): ScheduleFragment
-
-    @ContributesAndroidInjector(modules = [DashboardModule::class])
-    abstract fun provideLoginFragmentFactory(): LoginFragment
 
     @ContributesAndroidInjector(modules = [PanelChildModule::class])
     abstract fun providePanelFragmentFactory(): PanelChildFragment
