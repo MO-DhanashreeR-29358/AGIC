@@ -28,6 +28,7 @@
     <dimen name="edittext_size">@dimen/_30ssp</dimen>
     <dimen name="tab_size">@dimen/_45ssp</dimen>
     <dimen name="very_extra_large">@dimen/_68ssp</dimen>
+    <dimen name="login_img_large">@dimen/_100sdp</dimen>
     <dimen name="img_news_letter">@dimen/_50sdp</dimen>
     <dimen name="menu_icon">@dimen/_24sdp</dimen>
     <dimen name="text_size_extra_large">@dimen/_24ssp</dimen>
