@@ -7,22 +7,19 @@ import android.view.ViewGroup
 import android.widget.BaseExpandableListAdapter
 import androidx.databinding.DataBindingUtil
 import com.mosl.mobile.R
-import com.mosl.mobile.databinding.ActivityNewsLetterBinding
 import com.mosl.mobile.databinding.ItemNewsLetterChildBinding
 import com.mosl.mobile.databinding.ItemNewsLetterParentBinding
-import kotlinx.android.synthetic.main.item_news_letter_child.view.*
-import kotlinx.android.synthetic.main.item_news_letter_parent.view.*
+import com.mosl.mobile.domain.newsletter.NewsLetterResponseItemInfo
 
 class ExpandableNewsLetterAdapter(
     val _context: Context,
-    var _listDataHeader: ArrayList<NewsLetterHeader>?,
-    private val _listChild: List<NewsLetterHeader>? // header titles
-    // child data in format of header title, child title
+    var _listDataHeader: List<NewsLetterResponseItemInfo>?
+    // child data in format of header Title, child Title
 ) : BaseExpandableListAdapter() {
 
 
-    var _listDataHeaderFiltered: ArrayList<NewsLetterHeader>
-    var _listDataHeaderOriginal = ArrayList<NewsLetterHeader>()
+    var _listDataHeaderFiltered: List<NewsLetterResponseItemInfo>
+    var _listDataHeaderOriginal = ArrayList<NewsLetterResponseItemInfo>()
 
     init {
         _listDataHeaderFiltered = _listDataHeader!!
@@ -30,7 +27,7 @@ class ExpandableNewsLetterAdapter(
     }
 
     override fun getChild(groupPosition: Int, childPosititon: Int): Any {
-        return _listDataHeaderFiltered[groupPosition].description
+        return _listDataHeaderFiltered[groupPosition].HeadLines.toString()
     }
 
     override fun getChildId(groupPosition: Int, childPosition: Int): Long {
@@ -61,7 +58,7 @@ class ExpandableNewsLetterAdapter(
     }
 
     override fun getGroup(groupPosition: Int): Any {
-        return this._listDataHeaderFiltered[groupPosition].url
+        return this._listDataHeaderFiltered[groupPosition].Title.toString()
     }
 
     override fun getGroupCount(): Int {

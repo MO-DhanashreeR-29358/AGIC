@@ -69,6 +69,7 @@ class LoginActivity : LeanBaseActivity(), Navigator, LoginView {
     }
 
 
+
     override fun onDoneClicked(): Observable<Int> {
         return binding.editUniqueCode.editorActions { event -> event == EditorInfo.IME_ACTION_DONE }
     }

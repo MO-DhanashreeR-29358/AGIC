@@ -3,7 +3,7 @@ package com.mosl.mobile.coredata;
 import com.google.gson.reflect.TypeToken;
 import com.mosl.annotations.ExcludeWrapper;
 import com.mosl.app.core.exception.ServiceFailureException;
-import com.mosl.mobile.coredata.util.BaseResponseAgic;
+import com.mosl.data.api.BaseResponseAgic;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.ParameterizedType;
