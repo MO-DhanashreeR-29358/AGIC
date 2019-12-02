@@ -2,10 +2,7 @@ package com.mosl.mobile.core
 
 import android.content.Context
 import android.content.IntentFilter
-import android.graphics.BlendMode
-import android.graphics.BlendModeColorFilter
-import android.graphics.PorterDuff
-import android.graphics.PorterDuffColorFilter
+import android.graphics.*
 import android.graphics.drawable.Drawable
 import android.net.ConnectivityManager
 import android.os.Build
@@ -92,18 +89,18 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
 
     private fun setUpContentView() {
         binding.txtCompanyName.setEllipsize(TextUtils.TruncateAt.MARQUEE)
-        binding.txtCompanyName.isSelected =true
+        binding.txtCompanyName.isSelected = true
     }
 
     private fun setupTabs() {
         binding.tabLayout.addTab(
-            binding.tabLayout.newTab().setText(R.string.tab_label_schedule).setIcon(R.drawable.navigation_icon).setTag(
+            binding.tabLayout.newTab().setText(R.string.tab_label_schedule).setIcon(R.drawable.ic_tab_schedule).setTag(
                 NavigationConstants.NAVIGATE_TO_SCHEDULE
             )
         )
 
         binding.tabLayout.addTab(
-            binding.tabLayout.newTab().setText(R.string.tab_label_overview).setIcon(R.drawable.navigation_icon).setTag(
+            binding.tabLayout.newTab().setText(R.string.tab_label_overview).setIcon(R.drawable.ic_tab_overview).setTag(
                 NavigationConstants.NAVIGATE_TO_OVERVIEW
             )
         )
@@ -115,20 +112,25 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
         )
 
         binding.tabLayout.addTab(
-            binding.tabLayout.newTab().setText(R.string.tab_label_bytes).setIcon(R.drawable.navigation_icon).setTag(
+            binding.tabLayout.newTab().setText(R.string.tab_label_bytes).setIcon(R.drawable.ic_tab_bytes).setTag(
                 NavigationConstants.NAVIGATE_TO_BYTES
             )
         )
 
         binding.tabLayout.addTab(
-            binding.tabLayout.newTab().setText(R.string.tab_label_pdf).setIcon(R.drawable.navigation_icon).setTag(
+            binding.tabLayout.newTab().setText(R.string.tab_label_pdf).setIcon(R.drawable.ic_tab_pdf).setTag(
+                NavigationConstants.NAVIGATE_TO_PDF
+            )
+        )
+
+        binding.tabLayout.addTab(
+            binding.tabLayout.newTab().setText(R.string.tab_label_notes).setIcon(R.drawable.ic_tab_notes).setTag(
                 NavigationConstants.NAVIGATE_TO_PDF
             )
         )
 
 
-
-        setColorFilter(binding.tabLayout.getTabAt(0)?.icon, baseContext.setColor(R.color.white))
+        setColorFilter(binding.tabLayout.getTabAt(0)?.icon, baseContext.setColor(R.color.blue))
 
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
@@ -164,9 +166,9 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
 
     private fun setColorFilter(drawable: Drawable?, color: Int) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            drawable?.setColorFilter(BlendModeColorFilter(color, BlendMode.SRC_ATOP))
+            drawable?.colorFilter = BlendModeColorFilter(color, BlendMode.SRC_ATOP) as ColorFilter?
         } else {
-            drawable?.setColorFilter(PorterDuffColorFilter(color, PorterDuff.Mode.SRC_ATOP))
+            drawable?.colorFilter = PorterDuffColorFilter(color, PorterDuff.Mode.SRC_ATOP)
         }
     }
 

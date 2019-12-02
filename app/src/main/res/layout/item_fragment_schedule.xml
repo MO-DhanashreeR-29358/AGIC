@@ -8,29 +8,30 @@
 
         <View
             android:id="@+id/circleView"
-            android:layout_width="@dimen/_20sdp"
-            android:layout_height="@dimen/_20sdp"
+            android:layout_width="@dimen/_15sdp"
+            android:layout_height="@dimen/_15sdp"
             android:layout_marginStart="@dimen/margin_extra_large"
             android:layout_marginTop="@dimen/margin_normal"
             android:layout_marginEnd="@dimen/margin_normal"
-            android:background="@drawable/circle_background"
-            android:elevation="@dimen/_1sdp"
-            android:translationX="@dimen/_minus9sdp"
+            android:background="@drawable/bg_orange_circle"
+            android:elevation="@dimen/_5sdp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <View
             android:layout_width="@dimen/_2sdp"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
             android:layout_marginStart="@dimen/margin_extra_large"
             android:background="@color/light_orange"
+            android:translationX="@dimen/_7sdp"
+            app:layout_constraintBottom_toTopOf="@+id/view_devider"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/iv_icon_schedule"
-            android:layout_width="@dimen/very_extra_large"
-            android:layout_height="@dimen/very_extra_large"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/login_img_large"
             android:layout_marginStart="@dimen/margin_small"
             android:layout_marginTop="@dimen/margin_extra_large"
             android:layout_marginEnd="@dimen/margin_small"
@@ -43,13 +44,14 @@
             android:id="@+id/tv_schedule_time"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_normal"
+            android:layout_marginTop="@dimen/margin_medium"
             android:layout_marginEnd="@dimen/margin_small"
-            android:padding="@dimen/padding_small"
+            android:padding="@dimen/padding_extra_small"
             android:textColor="@color/dark_purple"
             android:textSize="@dimen/text_size_normal"
             app:layout_constraintEnd_toStartOf="@id/iv_icon_schedule"
             app:layout_constraintStart_toEndOf="@id/circleView"
+            app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints"
             tools:text="@string/text_label_panel_time" />
 
@@ -57,10 +59,10 @@
             android:id="@+id/tv_schedule_designation"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/margin_small"
+            android:layout_marginEnd="@dimen/margin_extra_small"
             android:maxLines="2"
-            android:padding="@dimen/padding_small"
-            android:textColor="@color/blue"
+            android:padding="@dimen/padding_extra_small"
+            android:textColor="@color/dark_blue"
             android:textSize="@dimen/text_size_medium"
             app:layout_constraintEnd_toStartOf="@id/iv_icon_schedule"
             app:layout_constraintStart_toEndOf="@id/circleView"
@@ -68,11 +70,11 @@
             tools:text="@string/text_label_overview_designation" />
 
         <TextView
-            android:id="@+id/tv_schedule_designation_name"
+            android:id="@+id/tv_schedule_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:maxLines="2"
-            android:padding="@dimen/padding_small"
+            android:padding="@dimen/padding_extra_small"
             android:textColor="@color/black"
             android:textSize="@dimen/text_size_medium"
             app:layout_constraintEnd_toStartOf="@id/iv_icon_schedule"
@@ -86,15 +88,21 @@
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_location"
             android:drawablePadding="@dimen/padding_small"
-            android:padding="@dimen/padding_small"
+            android:gravity="center_vertical"
+            android:paddingTop="@dimen/padding_small"
+            android:paddingEnd="@dimen/padding_small"
+            android:paddingBottom="@dimen/padding_small"
             android:textColor="@color/black"
             android:textSize="@dimen/text_size_small"
+            android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@id/iv_icon_schedule"
             app:layout_constraintStart_toEndOf="@id/circleView"
-            app:layout_constraintTop_toBottomOf="@id/tv_schedule_designation_name"
+            app:layout_constraintTop_toBottomOf="@id/tv_schedule_name"
+            tools:ignore="RtlSymmetry"
             tools:text="Venue- Ballroom Level" />
 
         <View
+            android:id="@+id/view_devider"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_1sdp"
             android:background="@color/warmGrey"

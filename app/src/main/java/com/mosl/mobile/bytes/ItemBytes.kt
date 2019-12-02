@@ -4,7 +4,7 @@ import com.mosl.mobile.R
 import com.mosl.mobile.databinding.ItemBytesBinding
 import com.xwray.groupie.databinding.BindableItem
 
-class BytesItem(private val bytesData: BytesData) : BindableItem<ItemBytesBinding>() {
+class ItemBytes(private val bytesData: BytesData) : BindableItem<ItemBytesBinding>() {
 
     override fun getLayout(): Int {
         return R.layout.item_bytes
@@ -23,7 +23,7 @@ class BytesItem(private val bytesData: BytesData) : BindableItem<ItemBytesBindin
         if (this === obj) return true
         if (obj == null || javaClass != obj.javaClass) return false
 
-        val that = obj as BytesItem?
+        val that = obj as ItemBytes?
 
         return bytesData == that!!.bytesData
     }

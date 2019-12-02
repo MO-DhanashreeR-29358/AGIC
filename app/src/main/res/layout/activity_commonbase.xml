@@ -145,10 +145,10 @@
                 app:layout_anchorGravity="bottom|center"
                 app:tabGravity="fill"
                 app:tabIconTint="@color/white"
-                app:tabIndicatorColor="@color/blue"
+                app:tabIndicatorColor="@color/dark_blue"
                 app:tabIndicatorHeight="0dp"
                 app:tabMode="auto"
-                app:tabSelectedTextColor="@color/blue"
+                app:tabSelectedTextColor="@color/dark_blue"
                 app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget" />
         </LinearLayout>
 

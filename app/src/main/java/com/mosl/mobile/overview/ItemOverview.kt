@@ -6,7 +6,7 @@ import com.mosl.mobile.databinding.ItemFragmentOverviewChildBinding
 import com.xwray.groupie.databinding.BindableItem
 
 
-class OverviewItem(overviewData: OverviewChildData) :
+class ItemOverview(overviewData: OverviewChildData) :
     BindableItem<ItemFragmentOverviewChildBinding>() {
     private val itemData = overviewData
 

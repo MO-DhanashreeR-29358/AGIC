@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AGIC</string>
+    <!--<string name="app_name">AGIC</string>
     <string name="network_unavailable">Network Not Available</string>
     <string name="msg_unique_code_empty">Please enter your 5 digit id to Login</string>
 
@@ -35,7 +35,7 @@
 
     </string-array>
 
-    <!-- TODO: Remove or change this placeholder text -->
+    &lt;!&ndash; TODO: Remove or change this placeholder text &ndash;&gt;
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="text_label_overview_name">Mr.Prasan Basu</string>
@@ -46,6 +46,6 @@
     <string name="text_label_bytes_desc">Day 3 ends now.Thank you for joining us.#MOAGIC"</string>
     <string name="text_label_pdf_title">home.html</string>
     <string name="text_label_byte_header">August 21,2019</string>
-    <string name="text_label_pdf_desc">The Pdf you are about to download is as of 12 AM last night and will not conatin any changes you may have made today</string>
+    <string name="text_label_pdf_desc">The Pdf you are about to download is as of 12 AM last night and will not conatin any changes you may have made today</string>-->
 
 </resources>

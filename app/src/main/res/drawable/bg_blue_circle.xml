@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/outer_blue_circle"
+        android:right="0dp"
+        android:top="0dp"
+        android:bottom="0dp"
+        android:left="0dp"
+        android:gravity="center"/>
+    <item android:drawable="@drawable/inner_blue_circle"
+        android:right="@dimen/margin_small"
+        android:top="@dimen/margin_small"
+        android:bottom="@dimen/margin_small"
+        android:left="@dimen/margin_small"
+        android:gravity="center"/>
+
+</layer-list>
+

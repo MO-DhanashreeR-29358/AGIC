@@ -73,7 +73,7 @@ class OverviewChildFragment : MOSLCommonFragment(), OverviewChildContract {
             )
         )
         for (model in itemData) {
-            section.add(OverviewItem(model))
+            section.add(ItemOverview(model))
         }
 
 

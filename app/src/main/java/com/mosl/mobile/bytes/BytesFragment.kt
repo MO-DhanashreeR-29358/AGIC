@@ -48,7 +48,7 @@ class BytesFragment : MOSLCommonFragment(), BytesContract {
             for (header in it) {
                 items.add(BytesHeaderItem(header.title))
                 for (model in header.bytesList) {
-                    items.add(BytesItem(model))
+                    items.add(ItemBytes(model))
                 }
             }
             section.update(items)

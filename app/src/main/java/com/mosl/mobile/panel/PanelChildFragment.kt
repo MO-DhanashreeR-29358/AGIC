@@ -18,7 +18,7 @@ import javax.inject.Inject
 /**
  * A simple [Fragment] subclass.
  */
-class PanelChildFragment : MOSLCommonFragment(), PanelChildContract.View {
+class PanelChildFragment : MOSLCommonFragment(), PanelChildContract {
     @Inject
     lateinit var presenter: PanelPresenter
     lateinit var binding: FragmentPanelChildBinding
@@ -79,7 +79,7 @@ class PanelChildFragment : MOSLCommonFragment(), PanelChildContract.View {
             )
         )
         for (model in itemData) {
-            section.add(PanelListItem(model, context!!))
+            section.add(ItemPanelList(model, context!!))
         }
 
 

@@ -9,7 +9,7 @@ import com.mosl.mobile.databinding.ItemFragmentPanelChildBinding
 import com.xwray.groupie.databinding.BindableItem
 
 
-class PanelListItem(private val panelItemData: PanelChildData, val context: Context) :
+class ItemPanelList(private val panelItemData: PanelChildData, val context: Context) :
     BindableItem<ItemFragmentPanelChildBinding>() {
 
     private var isShowViews: Boolean = false
@@ -47,6 +47,7 @@ class PanelListItem(private val panelItemData: PanelChildData, val context: Cont
         if (isMoreButtonClick) {
 
             viewBinding.tvPanelDesc.visibility = View.VISIBLE
+
             viewBinding.view.visibility = View.VISIBLE
         } else {
             viewBinding.tvPanelDesc.visibility = View.GONE
