@@ -3,6 +3,8 @@ package com.mosl.mobile
 import com.mosl.mobile.bytes.BytesFragment
 import com.mosl.mobile.bytes.BytesModule
 import com.mosl.mobile.demo.DemoFragmentProvider
+import com.mosl.mobile.notes.NotesFragment
+import com.mosl.mobile.notes.NotesModule
 import com.mosl.mobile.overview.OverviewChildFragment
 import com.mosl.mobile.overview.OverviewChildModule
 import com.mosl.mobile.panelpager.PanelFragment
@@ -24,5 +26,9 @@ abstract class FragmentProvider {
 
     @ContributesAndroidInjector(modules = [])
     abstract fun providePDFFragmentFactory(): PdfFragment
+
+
+    @ContributesAndroidInjector(modules = [NotesModule::class])
+    abstract fun provideNotesFragmentFactory(): NotesFragment
 
 }

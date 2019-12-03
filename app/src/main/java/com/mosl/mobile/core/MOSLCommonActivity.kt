@@ -125,7 +125,7 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
 
         binding.tabLayout.addTab(
             binding.tabLayout.newTab().setText(R.string.tab_label_notes).setIcon(R.drawable.ic_tab_notes).setTag(
-                NavigationConstants.NAVIGATE_TO_PDF
+                NavigationConstants.NAVIGATE_TO_NOTES
             )
         )
 

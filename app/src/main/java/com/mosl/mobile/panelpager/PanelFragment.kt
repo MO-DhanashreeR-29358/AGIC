@@ -49,18 +49,14 @@ class PanelFragment : MOSLCommonPager(), PanelContract {
         pagerAdapter.setFragmentTitles(R.array.tabTitles)
         mPager.adapter = pagerAdapter
 
-        val screenSize = Resources.getSystem().displayMetrics.widthPixels
         mPager.addOnPageChangeListener(pageChangeListener)
         mIndicator.setupWithViewPager(mPager)
-        /* mIndicator.tabMode = if (screenSize < 1100)
-             TabLayout.MODE_SCROLLABLE
-         else
-             TabLayout.MODE_FIXED*/
+
+
     }
 
     override fun onPageSelection(position: Int) {
         Timber.d("Page Selected---> %d", position)
-
         super.onPageSelection(position)
     }
 

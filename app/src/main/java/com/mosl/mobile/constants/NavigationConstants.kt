@@ -17,7 +17,8 @@ import kotlin.annotation.AnnotationRetention.SOURCE
     NavigationConstants.NAVIGATE_TO_BYTES,
     NavigationConstants.NAVIGATE_TO_PDF,
     NavigationConstants.NAVIGATE_TO_OVERVIEW_CHILD,
-    NavigationConstants.NAVIGATE_TO_PANEL_CHILD
+    NavigationConstants.NAVIGATE_TO_PANEL_CHILD,
+    NavigationConstants.NAVIGATE_TO_NOTES
 
 )
 annotation class NavigationConstants {
@@ -31,6 +32,7 @@ annotation class NavigationConstants {
         const val NAVIGATE_TO_PDF = 5
         const val NAVIGATE_TO_OVERVIEW_CHILD = 6
         const val NAVIGATE_TO_PANEL_CHILD = 7
+        const val NAVIGATE_TO_NOTES = 8
 
 
     }

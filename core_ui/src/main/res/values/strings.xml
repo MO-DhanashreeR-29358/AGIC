@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <string name="app_name">AGIC</string>
     <string name="network_unavailable">Network Not Available</string>
@@ -49,6 +49,6 @@
     <string name="text_label_pdf_title">home.html</string>
     <string name="text_label_byte_header">August 21,2019</string>
     <string name="text_label_pdf_desc">The Pdf you are about to download is as of 12 AM last night and will not conatin any changes you may have made today</string>
-
+    <string name="editText_hint" tools:ignore="TypographyEllipsis">Take notes here...</string>
 
 </resources>

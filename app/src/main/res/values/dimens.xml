@@ -33,5 +33,7 @@
     <dimen name="menu_icon">@dimen/_24sdp</dimen>
     <dimen name="text_size_extra_large">@dimen/_24ssp</dimen>
     <dimen name="tabIndicatorHeight">@dimen/_4sdp</dimen>
+    <dimen name="editText_min_height">@dimen/_250sdp</dimen>
+    <dimen name="min_schedule_img_height">@dimen/_150sdp</dimen>
 
 </resources>

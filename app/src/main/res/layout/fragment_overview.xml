@@ -26,7 +26,7 @@
             app:tabIndicatorColor="@color/dark_blue"
             app:tabIndicatorHeight="@dimen/margin_small"
             app:tabMode="fixed"
-            app:tabSelectedTextColor="@color/dark_blue"
+            app:tabSelectedTextColor="@color/darkGrey"
             app:tabTextAppearance="@style/MaxCustomTabText" />
 
         <com.mosl.app.coreui.views.CustomViewPager

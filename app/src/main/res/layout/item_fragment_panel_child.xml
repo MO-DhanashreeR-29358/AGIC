@@ -5,13 +5,15 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginBottom="@dimen/margin_small">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_medium"
-            android:layout_marginEnd="@dimen/margin_medium">
+            android:layout_marginEnd="@dimen/margin_medium"
+            >
 
             <ImageView
                 android:id="@+id/img_panel_profile"
@@ -29,7 +31,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_medium"
-                android:padding="@dimen/padding_small"
+                android:padding="@dimen/padding_extra_small"
                 android:textAllCaps="true"
                 android:textColor="@color/dark_blue"
                 android:textSize="@dimen/text_size_medium"
@@ -44,7 +46,7 @@
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_time"
                 android:drawablePadding="@dimen/padding_medium"
-                android:padding="@dimen/padding_small"
+                android:padding="@dimen/padding_extra_small"
                 android:textColor="@color/dark_purple"
                 android:textSize="@dimen/text_size_normal"
                 app:layout_constraintEnd_toStartOf="@id/img_panel_profile"
@@ -56,7 +58,7 @@
                 android:id="@+id/tv_panel_designation"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/padding_small"
+                android:padding="@dimen/padding_extra_small"
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_size_normal"
                 app:layout_constraintEnd_toStartOf="@id/img_panel_profile"
@@ -89,9 +91,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_medium"
             android:layout_marginEnd="@dimen/margin_medium"
-            android:padding="@dimen/padding_small"
+            android:padding="@dimen/padding_extra_small"
             android:textColor="@color/black"
-            android:textSize="@dimen/text_size_small"
+            android:textSize="@dimen/text_size_normal"
             android:visibility="gone"
             tools:text="Are attitudes changing globally towards 'owning' a vehicle?" />
 
@@ -102,6 +104,7 @@
             android:layout_marginTop="@dimen/margin_small"
             android:background="@color/greyWhite"
             android:visibility="gone" />
+
     </LinearLayout>
 
 

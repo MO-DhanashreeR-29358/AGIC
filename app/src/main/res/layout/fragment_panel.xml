@@ -13,7 +13,7 @@
             android:id="@+id/tab_layout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@color/greyWhite"
+            android:background="@color/toolbar_color"
             app:iconGravity="textStart"
             app:iconPadding="@dimen/_4sdp"
             app:layout_anchorGravity="bottom|center"
@@ -23,10 +23,10 @@
             app:layout_constraintTop_toTopOf="parent"
             app:tabGravity="fill"
             app:tabIconTint="@color/white"
-            app:tabIndicatorColor="@color/blue"
+            app:tabIndicatorColor="@color/dark_blue"
             app:tabIndicatorHeight="@dimen/margin_small"
             app:tabMode="fixed"
-            app:tabSelectedTextColor="@color/blue"
+            app:tabSelectedTextColor="@color/darkGrey"
             app:tabTextAppearance="@style/MaxCustomTabText" />
 
         <com.mosl.app.coreui.views.CustomViewPager
