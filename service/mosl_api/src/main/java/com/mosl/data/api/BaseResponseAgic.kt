@@ -1,11 +1,11 @@
-package com.mosl.mobile.coredata.util
+package com.mosl.data.api
 
 import com.google.gson.annotations.SerializedName
 
 data class BaseResponseAgic<T>(
     @JvmField  @SerializedName("Message") private val msg: String?,
     @JvmField @SerializedName("Response") val success: String?,
-    @JvmField @SerializedName("IsActive") val isActive: Any,
+    @JvmField @SerializedName("IsActive") val isActive: String,
     @JvmField @SerializedName("Data") val data: T?
 ) {
     val isSuccessful: Boolean
@@ -17,4 +17,9 @@ data class BaseResponseAgic<T>(
     inline fun onSuccess(action: (data: T) -> Unit) {
         if (success == "true" && data != null) action(data)
     }
+
+    val IsActive: Boolean
+        get() = isActive.equals("Y")
+
+
 }

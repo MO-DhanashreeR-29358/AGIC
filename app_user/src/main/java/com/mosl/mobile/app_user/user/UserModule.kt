@@ -2,9 +2,8 @@ package com.mosl.mobile.app_user.user
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
 import com.mosl.mobile.app_user.UserPreference
+import com.mosl.mobile.app_user.helper.NewsLetterPrefStateStore
 import com.mosl.mobile.app_user.helper.PrefStoreProvider
 import com.mosl.mobile.app_user.helper.UserPrefStore
 import com.mosl.mobile.app_user.helper.getPref
@@ -40,6 +39,14 @@ class UserModule {
     }
 
     @Provides
+    @Singleton
+    fun provideNewsLetterPref(
+        @UserPreference preferences: SharedPreferences
+    ): NewsLetterPrefStateStore {
+        return PrefStoreProvider.createNewsLetterStatePrefStore(preferences)
+    }
+
+    @Provides
     internal fun provideUserManager(userManagerImpl: UserManagerImpl): UserManager {
         return userManagerImpl
     }
@@ -50,7 +57,6 @@ class UserModule {
     internal fun provideUserCache(userCacheImpl: UserCacheImpl): UserCache {
         return userCacheImpl
     }
-
 
 
 }

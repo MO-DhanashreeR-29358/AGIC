@@ -1,5 +1,6 @@
 package com.mosl.mobile
 
+import com.mosl.mobile.contactrm.ContactDialogFrafment
 import com.mosl.mobile.bytes.BytesFragment
 import com.mosl.mobile.bytes.BytesModule
 import com.mosl.mobile.demo.DemoFragmentProvider
@@ -15,6 +16,10 @@ import dagger.android.ContributesAndroidInjector
 
 @Module(includes = [DemoFragmentProvider::class])
 abstract class FragmentProvider {
+
+
+    @ContributesAndroidInjector(modules = [])
+    abstract fun provideContactDialogFragmentFactory(): ContactDialogFrafment
     @ContributesAndroidInjector(modules = [BytesModule::class])
     abstract fun provideBytesFragmentFactory(): BytesFragment
 

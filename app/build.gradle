@@ -117,7 +117,7 @@ dependencies {
     implementation KotlinDependencies.ktxCore
     implementation AndroidxDependencies.constraintLayout
     implementation AndroidxDependencies.material
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
     testImplementation TestingDependencies.junit
     androidTestImplementation AndroidxDependencies.testRunner
     androidTestImplementation AndroidxDependencies.testEspresso

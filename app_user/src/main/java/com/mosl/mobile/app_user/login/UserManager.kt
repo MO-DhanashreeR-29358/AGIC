@@ -10,6 +10,7 @@ interface UserManager {
 
     fun getUser(): User?
     fun isLoggedIn(): Boolean
+    fun isActive(): Boolean
 }
 
 val UserManager.user: User

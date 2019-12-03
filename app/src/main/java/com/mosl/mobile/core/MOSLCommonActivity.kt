@@ -1,6 +1,7 @@
 package com.mosl.mobile.core
 
 import android.content.Context
+import android.content.Intent
 import android.content.IntentFilter
 import android.graphics.*
 import android.graphics.drawable.Drawable
@@ -12,6 +13,7 @@ import android.text.TextUtils
 import android.view.View
 import android.view.View.OnClickListener
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
@@ -26,9 +28,12 @@ import com.mosl.app.coreui.base.BaseActivity
 import com.mosl.app.coreui.base.NavigationElement
 import com.mosl.mobile.R
 import com.mosl.mobile.constants.NavigationConstants
+import com.mosl.mobile.contactrm.ContactDialogFrafment
 import com.mosl.mobile.coreui.LocaleManager
 import com.mosl.mobile.dashboard.ActivityNavigationHelper
 import com.mosl.mobile.databinding.ActivityCommonbaseBinding
+import com.mosl.mobile.login.LoginActivity
+import com.mosl.mobile.login.UserCacheImpl
 import com.mosl.mobile.menu.ScreenNavigatorImpl
 import com.mosl.mobile.pdf.PdfFragment
 import com.mosl.navigator.*
@@ -57,6 +62,9 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
     lateinit var screenNavigator: ScreenNavigatorImpl
     @Inject
     lateinit var activityNavHelper: ActivityNavigationHelper
+
+    @Inject
+    lateinit var userCacheImpl: UserCacheImpl
 
     override fun getLayout(): Int {
         return R.layout.activity_commonbase
@@ -90,6 +98,15 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
     private fun setUpContentView() {
         binding.txtCompanyName.setEllipsize(TextUtils.TruncateAt.MARQUEE)
         binding.txtCompanyName.isSelected = true
+        binding.imgLogout.setOnClickListener {
+            logoutCustomer()
+        }
+
+        binding.imgCall.setOnClickListener {
+            val ft = getSupportFragmentManager().beginTransaction()
+            val contactDialogFragment = ContactDialogFrafment()
+            contactDialogFragment.show(ft, "dialog")
+        }
     }
 
     private fun setupTabs() {
@@ -245,6 +262,21 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
         exitPopup()
 
     }
+
+    internal fun logoutCustomer() {
+        AlertDialog.Builder(this)
+            .setMessage(R.string.msg_logout)
+            .setCancelable(false)
+            .setPositiveButton(R.string.msg_yes) { _, _ ->
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
+                userCacheImpl.clearUser()
+                finish()
+            }
+            .setNegativeButton(R.string.msg_no) { _, _ -> }
+            .show()
+    }
+
 
     override fun setAppTitle(page: String, appTitle: AppTitle?) {
         val title = appTitle ?: globalTitles[page] ?: AppTitle.EMPTY

@@ -62,8 +62,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_medium"
             android:background="@color/color_secondary"
-            android:gravity="center"
-            android:padding="@dimen/padding_extra_small"
+            android:gravity="left|center_vertical"
+            android:paddingLeft="@dimen/padding_medium"
+            android:paddingTop="@dimen/padding_extra_small"
+            android:paddingRight="@dimen/padding_small"
+            android:paddingBottom="@dimen/padding_extra_small"
             android:text="@string/txt_label_stay_updated_with"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size_medium"
@@ -97,6 +100,16 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/expandable_list" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

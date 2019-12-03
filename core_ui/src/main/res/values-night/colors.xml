@@ -4,7 +4,7 @@
     <!--The same color values are defined for dark theme, but with values more appropriate for -->
     <!--low-luminance UIs. These colors will be used by night/themes.xml.-->
 
-    <color name="color_primary">@color/pumpkinTwo</color>
+    <color name="color_primary">@color/black</color>
     <color name="color_primary_variant">@color/lightPeach</color>
     <color name="color_secondary">@color/orangeYellow</color>
     <color name="color_secondary_variant">@color/orangeYellow</color>

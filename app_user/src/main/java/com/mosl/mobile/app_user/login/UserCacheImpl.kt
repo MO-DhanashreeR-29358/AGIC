@@ -1,6 +1,7 @@
 package com.mosl.mobile.login
 
 import com.google.gson.Gson
+import com.mosl.mobile.app_user.helper.NewsLetterPrefStateStore
 import com.mosl.mobile.app_user.helper.UserPrefStore
 import com.mosl.mobile.app_user.model.User
 import javax.inject.Inject
@@ -13,8 +14,21 @@ import javax.inject.Singleton
 @Singleton
 class UserCacheImpl @Inject constructor(
     private val gson: Gson,
-    private val userStore: UserPrefStore
+    private val userStore: UserPrefStore,
+    private val newsLetterPrefStateStore: NewsLetterPrefStateStore
 ) : UserCache {
+    override fun saveNewsLetterState(isActive: Boolean) {
+        newsLetterPrefStateStore.newsLetterState.set(isActive)
+
+    }
+
+    override fun getNewsLetterState(): Boolean {
+        return when {
+            newsLetterPrefStateStore.newsLetterState.isSet -> newsLetterPrefStateStore.newsLetterState.get()
+
+            else -> false
+        }
+    }
 
 
     override fun saveUser(user: User) {
@@ -33,5 +47,6 @@ class UserCacheImpl @Inject constructor(
 
     override fun clearUser() {
         userStore.clear()
+        newsLetterPrefStateStore.clear()
     }
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="color_primary">@color/pumpkinTwo</color>
+    <color name="color_primary">@color/black</color>
     <color name="color_primary_variant">@color/lightPeach</color>
     <color name="color_secondary">@color/orangeYellow</color>
     <color name="color_secondary_variant">@color/orangeYellow</color>

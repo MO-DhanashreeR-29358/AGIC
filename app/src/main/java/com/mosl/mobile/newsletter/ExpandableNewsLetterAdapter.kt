@@ -6,23 +6,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseExpandableListAdapter
 import androidx.databinding.DataBindingUtil
+import com.bumptech.glide.Glide
 import com.mosl.mobile.R
-import com.mosl.mobile.databinding.ActivityNewsLetterBinding
 import com.mosl.mobile.databinding.ItemNewsLetterChildBinding
 import com.mosl.mobile.databinding.ItemNewsLetterParentBinding
-import kotlinx.android.synthetic.main.item_news_letter_child.view.*
-import kotlinx.android.synthetic.main.item_news_letter_parent.view.*
+import com.mosl.mobile.domain.newsletter.NewsLetterResponseItemInfo
 
 class ExpandableNewsLetterAdapter(
     val _context: Context,
-    var _listDataHeader: ArrayList<NewsLetterHeader>?,
-    private val _listChild: List<NewsLetterHeader>? // header titles
-    // child data in format of header title, child title
+    var _listDataHeader: List<NewsLetterResponseItemInfo>?
 ) : BaseExpandableListAdapter() {
 
 
-    var _listDataHeaderFiltered: ArrayList<NewsLetterHeader>
-    var _listDataHeaderOriginal = ArrayList<NewsLetterHeader>()
+    var _listDataHeaderFiltered: List<NewsLetterResponseItemInfo>
+    var _listDataHeaderOriginal = ArrayList<NewsLetterResponseItemInfo>()
 
     init {
         _listDataHeaderFiltered = _listDataHeader!!
@@ -30,7 +27,7 @@ class ExpandableNewsLetterAdapter(
     }
 
     override fun getChild(groupPosition: Int, childPosititon: Int): Any {
-        return _listDataHeaderFiltered[groupPosition].description
+        return _listDataHeaderFiltered[groupPosition].HeadLines.toString()
     }
 
     override fun getChildId(groupPosition: Int, childPosition: Int): Long {
@@ -61,7 +58,7 @@ class ExpandableNewsLetterAdapter(
     }
 
     override fun getGroup(groupPosition: Int): Any {
-        return this._listDataHeaderFiltered[groupPosition].url
+        return this._listDataHeaderFiltered[groupPosition].Title.toString()
     }
 
     override fun getGroupCount(): Int {
@@ -85,14 +82,14 @@ class ExpandableNewsLetterAdapter(
             R.layout.item_news_letter_parent, parent, false
         );
 
+        Glide.with(parent.getContext())
+            .load(_listDataHeaderFiltered[groupPosition].IMAGEPATH.toString())
+            .into(binding.imgProfileIcon);
 
-        if (isExpanded) {
-            binding.imgProfileIcon.setImageResource(R.mipmap.ic_launcher_round);
-            binding.iconMore.setImageResource(R.drawable.ic_more_horiz);
-        } else {
-            binding.imgProfileIcon.setImageResource(R.mipmap.ic_launcher_round);
-            binding.iconMore.setImageResource(R.drawable.ic_more_horiz);
-        }
+
+        binding.iconMore.setImageResource(R.drawable.ic_more_horiz);
+
+
 
         binding.txtNewsletterParentTitle.text = headerTitle
 
