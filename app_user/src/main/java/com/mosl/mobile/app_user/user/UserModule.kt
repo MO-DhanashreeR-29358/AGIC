@@ -3,6 +3,7 @@ package com.mosl.mobile.app_user.user
 import android.content.Context
 import android.content.SharedPreferences
 import com.mosl.mobile.app_user.UserPreference
+import com.mosl.mobile.app_user.helper.NewsLetterPrefStateStore
 import com.mosl.mobile.app_user.helper.PrefStoreProvider
 import com.mosl.mobile.app_user.helper.UserPrefStore
 import com.mosl.mobile.app_user.helper.getPref
@@ -35,6 +36,14 @@ class UserModule {
         @UserPreference preferences: SharedPreferences
     ): UserPrefStore {
         return PrefStoreProvider.createUserPrefStore(preferences)
+    }
+
+    @Provides
+    @Singleton
+    fun provideNewsLetterPref(
+        @UserPreference preferences: SharedPreferences
+    ): NewsLetterPrefStateStore {
+        return PrefStoreProvider.createNewsLetterStatePrefStore(preferences)
     }
 
     @Provides

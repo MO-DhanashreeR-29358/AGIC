@@ -3,24 +3,24 @@
     <string name="network_unavailable">Network Not Available</string>
     <string name="msg_unique_code_empty">Please enter your 5 digit id to Login</string>
 
-    <string name="conference_over">The Conference got over.</string>
-    <string name="skip_to_login">Skip to Login</string>
-    <string name="stay_updated_with">Stay updated with our newsletter..</string>
-    <string name="welcome">Welcome</string>
-    <string name="agic_2017">Agic 2017</string>
+    <string name="txt_label_conference_over">The Conference got over.</string>
+    <string name="txt_label_skip_to_login">Skip to Login</string>
+    <string name="txt_label_stay_updated_with">Stay updated with our newsletter..</string>
+    <string name="txt_label_welcome">Welcome</string>
+    <string name="txt_label_agic_year">Agic 2020</string>
 
-    <string name="day1">DAY 1</string>
-    <string name="day2">DAY 2</string>
-    <string name="day3">DAY 3</string>
+    <string name="text_label_day1">DAY 1</string>
+    <string name="text_label_day2">DAY 2</string>
+    <string name="text_label_day3">DAY 3</string>
 
-    <string name="schedule">schedule</string>
-    <string name="overview">overview</string>
-    <string name="panel">Panel</string>
-    <string name="bytes">Bytes</string>
-    <string name="pdf">PDF</string>
+    <string name="tab_label_schedule">schedule</string>
+    <string name="tab_label_overview">overview</string>
+    <string name="tab_label_panel">Panel</string>
+    <string name="tab_label_bytes">Bytes</string>
+    <string name="tab_label_pdf">PDF</string>
 
     <string name="text_label_login">Login</string>
-    <string name="hint_label_digit_id">5 Digit id</string>
+    <string name="hint_label_digit_id">5 Digit Id</string>
     <string name="text_label_agic">Annual Global Investor Conference</string>
     <string name="text_label_permission">Access permitted to registerd\nusers only</string>
     <string name="text_label_year">2020</string>

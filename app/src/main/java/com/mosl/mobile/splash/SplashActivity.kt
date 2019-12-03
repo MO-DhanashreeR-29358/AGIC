@@ -13,7 +13,7 @@ import com.mosl.mobile.constants.NavigationConstants
 import com.mosl.mobile.core.MOSLCommonActivity
 import com.mosl.mobile.coreui.LocaleManager
 import com.mosl.mobile.databinding.ActivitySplashScreenBinding
-import com.mosl.mobile.nav.DebugConstants
+import com.mosl.mobile.login.LoginActivity
 import com.mosl.mobile.newsletter.NewsLetterActivity
 import javax.inject.Inject
 
@@ -92,8 +92,16 @@ class SplashActivity : LeanBaseActivity() {
         if (userManager.isLoggedIn()) {
             val intent = Intent(this, MOSLCommonActivity::class.java)
                 .apply {
-                    putExtra(MOSLCommonActivity.ARG_PAGE_ID, NavigationConstants.NAVIGATE_TO_SCHEDULE)
+                    putExtra(
+                        MOSLCommonActivity.ARG_PAGE_ID,
+                        NavigationConstants.NAVIGATE_TO_SCHEDULE
+                    )
                 }
+            startActivity(intent)
+            finish()
+        } else if (!userManager.isLoggedIn() && userManager.isActive()) {
+            val intent = Intent(this, LoginActivity::class.java)
+
             startActivity(intent)
             finish()
         } else {

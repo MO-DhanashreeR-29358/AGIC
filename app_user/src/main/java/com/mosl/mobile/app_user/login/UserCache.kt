@@ -12,4 +12,6 @@ internal interface UserCache {
     fun saveUser(user: User)
     fun getUser(): User?
     fun clearUser()
+    fun saveNewsLetterState(isActive:Boolean)
+    fun getNewsLetterState():Boolean
 }
