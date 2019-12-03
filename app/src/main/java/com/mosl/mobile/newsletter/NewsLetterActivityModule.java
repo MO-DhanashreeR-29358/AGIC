@@ -17,7 +17,9 @@ public abstract class NewsLetterActivityModule {
     @Binds
     abstract AppCompatActivity provideNewsActivity(NewsLetterActivity activity);
 
-    @Binds abstract NewsLetterRepository provideNewsLetterRepository(NewsLetterRepositoryImpl newsLetterRepository);
+    @Binds
+    abstract NewsLetterRepository provideNewsLetterRepository(NewsLetterRepositoryImpl newsLetterRepository);
 
-    @Binds abstract NewsLetterView provideNewsLetterView(NewsLetterActivity activity);
+    @Binds
+    abstract NewsLetterView provideNewsLetterView(NewsLetterActivity activity);
 }

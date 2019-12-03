@@ -10,8 +10,9 @@ data class NewsLetterResponseItem(
     @JvmField @SerializedName("IMAGEPATH")
     val imagePath: String,
 
-    @JvmField @SerializedName("Title") val
-    title: String,
+    @JvmField @SerializedName("Title")
+    val title: String,
 
-    @JvmField @SerializedName("HeadLines") val headLines: String
+    @JvmField @SerializedName("HeadLines")
+    val headLines: String
 )

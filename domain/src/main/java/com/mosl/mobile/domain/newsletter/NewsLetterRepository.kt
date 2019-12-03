@@ -3,5 +3,5 @@ package com.mosl.mobile.domain.newsletter
 import io.reactivex.Observable
 
 interface NewsLetterRepository {
-    fun brochureData(): Observable<List<NewsLetterResponseItemInfo>>
+    fun brochureData(): Observable<NewsLetterResponseInfo>
 }

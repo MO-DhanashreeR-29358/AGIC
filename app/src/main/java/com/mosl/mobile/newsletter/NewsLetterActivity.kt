@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.ExpandableListView.OnGroupExpandListener
+import com.jakewharton.rxbinding3.view.clicks
 import com.mosl.app.core.error.getErrorOnFailure
 import com.mosl.app.core.events.DataAction
 import com.mosl.app.coreui.base.LeanBaseActivity
@@ -15,11 +16,10 @@ import com.mosl.mobile.constants.NavigationConstants
 import com.mosl.mobile.core.MOSLCommonActivity
 import com.mosl.mobile.databinding.ActivityNewsLetterBinding
 import com.mosl.mobile.domain.newsletter.NewsLetterResponseInfo
-import com.mosl.mobile.domain.newsletter.NewsLetterResponseItemInfo
 import com.mosl.mobile.login.LoginActivity
+import com.mosl.mobile.login.UserManagerImpl
 import io.reactivex.Observable
 import javax.inject.Inject
-
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -33,6 +33,9 @@ class NewsLetterActivity : LeanBaseActivity(), NewsLetterView {
     @Inject
     lateinit var presenter: NewsLetterPresenter
 
+    @Inject
+    lateinit var userManager: UserManagerImpl
+
     override fun getLayout(): Int {
         return R.layout.activity_news_letter
     }
@@ -41,14 +44,13 @@ class NewsLetterActivity : LeanBaseActivity(), NewsLetterView {
         super.onCreate(savedInstanceState)
         binding = ActivityNewsLetterBinding.bind(findViewById(R.id.relativeLayoutMain))
 
-        binding.skipToLogin.setOnClickListener(View.OnClickListener { openDashboard() })
-
         presenter.start()
 //        presenter.onFetchCalled()
     }
 
 
     internal fun openDashboard() {
+        userManager.saveNewsLetterState(true)
         val intent = Intent(this, LoginActivity::class.java).apply {
             putExtra(MOSLCommonActivity.ARG_PAGE_ID, NavigationConstants.NAVIGATE_TO_SCHEDULE)
         }
@@ -57,14 +59,10 @@ class NewsLetterActivity : LeanBaseActivity(), NewsLetterView {
     }
 
     override fun onSkipClicked(): Observable<Unit> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return binding.skipToLogin.clicks()
     }
 
-    override fun renderSkip(uiModel: UiModel<Unit>) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun renderBrochureData(uiModel: UiModel<List<NewsLetterResponseItemInfo>>) {
+    override fun renderBrochureData(uiModel: UiModel<NewsLetterResponseInfo>) {
         toggleProgressBar(uiModel.inProgress)
 
         uiModel.onFailure { error ->
@@ -73,7 +71,12 @@ class NewsLetterActivity : LeanBaseActivity(), NewsLetterView {
 
         uiModel.onSuccess { data ->
 
-            listAdapter = ExpandableNewsLetterAdapter(baseContext, data)
+            if (data.IsActive)
+                binding.skipToLogin.visibility = View.VISIBLE
+            else
+                binding.skipToLogin.visibility = View.GONE
+
+            listAdapter = ExpandableNewsLetterAdapter(baseContext, data.Data)
 
             binding.expandableList.setAdapter(listAdapter)
 
@@ -95,6 +98,10 @@ class NewsLetterActivity : LeanBaseActivity(), NewsLetterView {
         } else {
             hideProgress()
         }
+    }
+
+    override fun renderSkip(uiModel: UiModel<Unit>) {
+        uiModel.onSuccess { data -> openDashboard() }
     }
 
     fun Throwable.showOnFailurePopup() {

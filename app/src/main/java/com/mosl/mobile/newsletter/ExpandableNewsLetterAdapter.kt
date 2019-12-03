@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseExpandableListAdapter
 import androidx.databinding.DataBindingUtil
+import com.bumptech.glide.Glide
 import com.mosl.mobile.R
 import com.mosl.mobile.databinding.ItemNewsLetterChildBinding
 import com.mosl.mobile.databinding.ItemNewsLetterParentBinding
@@ -14,7 +15,6 @@ import com.mosl.mobile.domain.newsletter.NewsLetterResponseItemInfo
 class ExpandableNewsLetterAdapter(
     val _context: Context,
     var _listDataHeader: List<NewsLetterResponseItemInfo>?
-    // child data in format of header Title, child Title
 ) : BaseExpandableListAdapter() {
 
 
@@ -82,14 +82,14 @@ class ExpandableNewsLetterAdapter(
             R.layout.item_news_letter_parent, parent, false
         );
 
+        Glide.with(parent.getContext())
+            .load(_listDataHeaderFiltered[groupPosition].IMAGEPATH.toString())
+            .into(binding.imgProfileIcon);
 
-        if (isExpanded) {
-            binding.imgProfileIcon.setImageResource(R.mipmap.ic_launcher_round);
-            binding.iconMore.setImageResource(R.drawable.ic_more_horiz);
-        } else {
-            binding.imgProfileIcon.setImageResource(R.mipmap.ic_launcher_round);
-            binding.iconMore.setImageResource(R.drawable.ic_more_horiz);
-        }
+
+        binding.iconMore.setImageResource(R.drawable.ic_more_horiz);
+
+
 
         binding.txtNewsletterParentTitle.text = headerTitle
 

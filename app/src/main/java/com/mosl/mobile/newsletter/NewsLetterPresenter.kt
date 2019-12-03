@@ -19,6 +19,13 @@ class NewsLetterPresenter @Inject constructor(
                 view.renderBrochureData(it)
             }
             .addTo(disposable)
+
+        view.onSkipClicked()
+            .compose(applyUiModel())
+            .subscribe {
+                view.renderSkip(it)
+            }
+            .addTo(disposable)
     }
 
 }

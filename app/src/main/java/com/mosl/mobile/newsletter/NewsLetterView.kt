@@ -9,7 +9,7 @@ import io.reactivex.Observable
 interface NewsLetterView : BaseView {
     fun onSkipClicked(): Observable<Unit>
     fun renderSkip(uiModel: UiModel<Unit>)
-    fun renderBrochureData(uiModel: UiModel<List<NewsLetterResponseItemInfo>>)
+    fun renderBrochureData(uiModel: UiModel<NewsLetterResponseInfo>)
     fun hideProgress()
     fun showProgress()
 

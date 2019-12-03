@@ -17,4 +17,9 @@ data class BaseResponseAgic<T>(
     inline fun onSuccess(action: (data: T) -> Unit) {
         if (success == "true" && data != null) action(data)
     }
+
+    val IsActive: Boolean
+        get() = isActive.equals("Y")
+
+
 }
