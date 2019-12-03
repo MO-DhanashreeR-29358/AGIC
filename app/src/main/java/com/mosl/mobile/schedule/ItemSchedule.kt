@@ -6,9 +6,11 @@ import com.mosl.mobile.databinding.ItemFragmentScheduleBinding
 import com.xwray.groupie.databinding.BindableItem
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import com.mosl.mobile.domain.schedule.ScheduleRequestInfo
+import com.mosl.mobile.domain.schedule.ScheduleResponseItemInfo
 
 
-class ItemSchedule(private val scheduleData: ScheduleData, val context: Context) :
+class ItemSchedule(private val scheduleData: ScheduleResponseItemInfo, val context: Context) :
     BindableItem<ItemFragmentScheduleBinding>(), Animation.AnimationListener {
 
 
@@ -30,10 +32,10 @@ class ItemSchedule(private val scheduleData: ScheduleData, val context: Context)
         } else {
             viewBinding.circleView.setBackgroundResource(R.drawable.bg_orange_circle)
         }
-        viewBinding.tvScheduleTime.text = scheduleData.scheduleTime
-        viewBinding.tvScheduleDesignation.text = scheduleData.scheduleDesignation
-        viewBinding.tvScheduleName.text = scheduleData.scheduleName
-        viewBinding.tvScheduleVenue.text = scheduleData.scheduleVenue
+        viewBinding.tvScheduleTime.text = scheduleData.start_time
+        viewBinding.tvScheduleDesignation.text = scheduleData.Rep[0].DESIGNATION
+        viewBinding.tvScheduleName.text = scheduleData.Rep[0].NAME
+        viewBinding.tvScheduleVenue.text = scheduleData.Schedule_Date
     }
 
     override fun onAnimationRepeat(animation: Animation?) {

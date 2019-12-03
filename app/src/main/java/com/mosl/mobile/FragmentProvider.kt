@@ -11,6 +11,8 @@ import com.mosl.mobile.overview.OverviewChildModule
 import com.mosl.mobile.panelpager.PanelFragment
 import com.mosl.mobile.panelpager.PanelModule
 import com.mosl.mobile.pdf.PdfFragment
+import com.mosl.mobile.schedule.ScheduleFragment
+import com.mosl.mobile.schedule.ScheduleModule
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -35,5 +37,8 @@ abstract class FragmentProvider {
 
     @ContributesAndroidInjector(modules = [NotesModule::class])
     abstract fun provideNotesFragmentFactory(): NotesFragment
+
+    @ContributesAndroidInjector(modules = [ScheduleModule::class])
+    abstract fun provideScheduleFragmentFactory(): ScheduleFragment
 
 }
