@@ -31,6 +31,7 @@ import com.mosl.app.coreui.base.BaseActivity
 import com.mosl.app.coreui.base.NavigationElement
 import com.mosl.mobile.R
 import com.mosl.mobile.constants.NavigationConstants
+import com.mosl.mobile.contactrm.ContactDialogFrafment
 import com.mosl.mobile.coreui.LocaleManager
 import com.mosl.mobile.dashboard.ActivityNavigationHelper
 import com.mosl.mobile.databinding.ActivityCommonbaseBinding
@@ -66,6 +67,7 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
 
     @Inject
     lateinit var userCacheImpl: UserCacheImpl
+
     override fun getLayout(): Int {
         return R.layout.activity_commonbase
     }
@@ -100,6 +102,12 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
         binding.txtCompanyName.isSelected = true
         binding.imgLogout.setOnClickListener {
             logoutCustomer()
+        }
+
+        binding.imgCall.setOnClickListener {
+            val ft = getSupportFragmentManager().beginTransaction()
+            val contactDialogFragment = ContactDialogFrafment()
+            contactDialogFragment.show(ft, "dialog")
         }
     }
 

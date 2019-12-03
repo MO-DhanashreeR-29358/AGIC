@@ -8,4 +8,5 @@
     <dimen name="drawerLayoutWidth">280dp</dimen>
 
     <dimen name="toolbar_height">@dimen/_38ssp</dimen>
+    <dimen name="img_height_width_default">@dimen/_32sdp</dimen>
 </resources>

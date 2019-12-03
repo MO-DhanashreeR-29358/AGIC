@@ -52,25 +52,25 @@ class PanelFragment : MOSLCommonFragment(), PanelContract.View {
                 designation = "Business Development Head,Uber",
                 desc = "Are attitudes changing globally towards 'owning' a vehicle?"
             ),
-            PanelDataHeader(
+            com.mosl.mobile.panel.PanelDataHeader(
                 name = "Mr.Punit Chhatwal",
                 time = "11:00 am - 12:00 pm",
                 designation = "Ceo,Indian Hotels",
                 desc = "Are attitudes changing globally towards 'owning' a vehicle?"
             ),
-            PanelDataHeader(
+            com.mosl.mobile.panel.PanelDataHeader(
                 name = "Mr.Harshwardhan Jala",
                 time = "12:00 pm - 01:00 pm",
                 designation = "Teenage Founder & Ceo,Aerobotics7",
                 desc = "Are attitudes changing globally towards 'owning' a vehicle?"
             ),
-            PanelDataHeader(
+            com.mosl.mobile.panel.PanelDataHeader(
                 name = "Mr.Harshwardhan Jala",
                 time = "12:00 pm - 01:00 pm",
                 designation = "Teenage Founder & Ceo,Aerobotics7",
                 desc = "Are attitudes changing globally towards 'owning' a vehicle?"
             ),
-            PanelDataHeader(
+            com.mosl.mobile.panel.PanelDataHeader(
                 name = "Mr.Harshwardhan Jala",
                 time = "12:00 pm - 01:00 pm",
                 designation = "Teenage Founder & Ceo,Aerobotics7",
@@ -78,7 +78,7 @@ class PanelFragment : MOSLCommonFragment(), PanelContract.View {
             )
         )
         for (model in itemData) {
-            section.add(PanelListItem(model))
+            section.add(com.mosl.mobile.panel.PanelListItem(model))
         }
 
 
