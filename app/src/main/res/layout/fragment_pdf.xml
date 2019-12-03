@@ -14,17 +14,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:text="@string/text_label_pdf_title"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size_large"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:text="@string/text_label_pdf_title" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tv_pdf_desc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="@dimen/padding_medium"
             android:gravity="center"
             android:text="@string/text_label_pdf_desc"
             android:textColor="@color/white"
@@ -45,7 +46,7 @@
         <TextView
             android:id="@+id/tv_pdf_cancel"
             android:layout_width="0dp"
-            android:layout_height="@dimen/_40sdp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_medium"
             android:gravity="center"
             android:padding="@dimen/padding_medium"
@@ -59,7 +60,7 @@
         <View
             android:id="@+id/vertical_view"
             android:layout_width="@dimen/_1sdp"
-            android:layout_height="@dimen/_40sdp"
+            android:layout_height="@dimen/_50sdp"
             android:background="@color/warmGrey"
             app:layout_constraintEnd_toStartOf="@+id/tv_pdf_ok"
             app:layout_constraintStart_toEndOf="@+id/tv_pdf_cancel"
@@ -68,7 +69,7 @@
         <TextView
             android:id="@+id/tv_pdf_ok"
             android:layout_width="0dp"
-            android:layout_height="@dimen/_40sdp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/margin_medium"
             android:gravity="center"
