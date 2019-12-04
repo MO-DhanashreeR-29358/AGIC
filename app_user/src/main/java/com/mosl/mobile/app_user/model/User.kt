@@ -17,14 +17,19 @@ data class User(
 
 ) {
     fun contactList(): List<ContactListItemData> {
-        val contactList= mutableListOf<ContactListItemData>()
-        return contactList.apply {
+        val contactListItemData = mutableListOf<ContactListItemData>()
+        contactListItemData.apply {
             add(ContactListItemData(contactName1, contactMobile1))
             add(ContactListItemData(contactName2, contactMobile2))
             add(ContactListItemData(contactName3, contactMobile3))
         }
 
+        val contactList = mutableListOf<ContactListItemData>()
+        contactListItemData.filter { !it.contactNumber.isNullOrEmpty() }.forEach {
+                contactList.add(it)
+        }
 
+        return contactList
     }
 
 }
