@@ -13,15 +13,19 @@ import com.mosl.mobile.panelpager.PanelModule
 import com.mosl.mobile.pdf.PdfFragment
 import com.mosl.mobile.schedule.ScheduleFragment
 import com.mosl.mobile.schedule.ScheduleModule
+import com.mosl.mobile.schedule.ScheduleRepDialogFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
 @Module(includes = [DemoFragmentProvider::class])
 abstract class FragmentProvider {
 
+    @ContributesAndroidInjector(modules = [])
+    abstract fun provideScheduleRepDialogFragmentFactory(): ScheduleRepDialogFragment
 
     @ContributesAndroidInjector(modules = [])
     abstract fun provideContactDialogFragmentFactory(): ContactDialogFrafment
+
     @ContributesAndroidInjector(modules = [BytesModule::class])
     abstract fun provideBytesFragmentFactory(): BytesFragment
 

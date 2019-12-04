@@ -6,27 +6,33 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mosl.commons.data.UiModel
 import com.mosl.commons.data.onSuccess
-import com.mosl.data.api.schedule.ScheduleRequest
 import com.mosl.mobile.R
 import com.mosl.mobile.core.MOSLCommonFragment
 import com.mosl.mobile.databinding.FragmentScheduleBinding
 import com.mosl.mobile.domain.schedule.ScheduleRequestInfo
 import com.mosl.mobile.domain.schedule.ScheduleResponseItemInfo
+import com.mosl.mobile.domain.schedule.ScheduleResponseItemInfo_Rep
+import com.mosl.mobile.schedule.ScheduleUiEvent.OnMoreClick
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Section
 import com.xwray.groupie.ViewHolder
 import dagger.android.support.AndroidSupportInjection
+import io.reactivex.Observable
+import io.reactivex.rxkotlin.ofType
+import io.reactivex.subjects.PublishSubject
 import javax.inject.Inject
 
+
 class ScheduleFragment : MOSLCommonFragment(), ScheduleContract {
+
+    private val followUpUiEvent = PublishSubject.create<ScheduleUiEvent>()
 
     @Inject
     lateinit var presenter: SchedulePresenter
 
     private lateinit var binding: FragmentScheduleBinding
     private lateinit var section: Section
-
-
+    
     override fun getLayout(): Int {
         return R.layout.fragment_schedule
     }
@@ -61,50 +67,26 @@ class ScheduleFragment : MOSLCommonFragment(), ScheduleContract {
             setHasFixedSize(true)
             adapter = groupAdapter
         }
-
-//        val itemData = listOf(
-//            ScheduleRequestInfo(
-//                "10:00 am - 11:00 am",
-//                "Ms.Nandini Maheshwari,Business Development Head,Uber",
-//                "Ms.Nandini Maheshwari",
-//                "Venue- Ballroom Level"
-//            ),
-//            ScheduleRequestInfo(
-//                "11:00 am - 12:00 pm",
-//                "Mr.Punit Chhatwal,Ceo,Indian Hotels",
-//                "Mr.Punit Chhatwal",
-//                "Venue- Ballroom Level"
-//            ),
-//            ScheduleRequestInfo(
-//                "12:00 pm - 01:00 pm",
-//                "Mr.Harshwardhan Jala,Teenage Founder & Ceo,Aerobotics7",
-//                "Mr.Harshwardhan Jala",
-//                "Venue- Ballroom Level"
-//            ),
-//            ScheduleRequestInfo(
-//                "01:00 pm - 02:00 pm",
-//                "Mr.Prasun Basu - President-South Asia ,Nielsen",
-//                "Mr.Prasun Basu",
-//                "Venue- Ballroom Level"
-//            ),
-//            ScheduleRequestInfo(
-//                "02:00 pm - 03:00 pm",
-//                "Mr.C S Ghosh -Founder & Chairman, Bandhan Bank",
-//                "Mr.C S Ghosh",
-//                "Venue- Ballroom Level"
-//            )
-//        )
-//        for (model in itemData) {
-//            section.add(ItemSchedule(model, context!!))
-//        }
     }
 
     override fun renderScheduleData(uiModel: UiModel<List<ScheduleResponseItemInfo>>) {
 
         uiModel.onSuccess {
             for (model in it) {
-                section.add(ItemSchedule(model, context!!))
+                section.add(ItemSchedule(model, followUpUiEvent, context!!))
             }
         }
+    }
+
+    override fun renderItemData(repoList: List<ScheduleResponseItemInfo_Rep>) {
+
+        val dialogFragment = ScheduleRepDialogFragment()
+
+        dialogFragment.setData(repoList);
+        dialogFragment.show(childFragmentManager, "dialog")
+    }
+
+    override fun onItemClicked(): Observable<OnMoreClick> {
+        return followUpUiEvent.ofType()
     }
 }
