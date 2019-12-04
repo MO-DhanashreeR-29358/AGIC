@@ -4,10 +4,10 @@ import android.content.Context
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import com.bumptech.glide.Glide
 import com.mosl.mobile.R
 import com.mosl.mobile.databinding.ItemFragmentScheduleBinding
 import com.mosl.mobile.domain.schedule.ScheduleResponseItemInfo
+import com.mosl.shared.util.getTimeAMPM
 import com.xwray.groupie.databinding.BindableItem
 import io.reactivex.subjects.PublishSubject
 import java.text.ParseException
@@ -33,11 +33,6 @@ class ItemSchedule(
         )
         animBlink.setAnimationListener(this)
         if (position == 1) {
-
-            Glide.with(context)
-                .load(YOUR_GIF)
-                .into(viewBinding.imageView);
-
             viewBinding.circleView.setBackgroundResource(R.drawable.bg_blue_circle)
             viewBinding.circleView.startAnimation(animBlink)
 
@@ -49,17 +44,8 @@ class ItemSchedule(
 
         try {
 
-            val startARR = scheduleData.start_time.split("T").toTypedArray()
-            val endARR = scheduleData.end_time.split("T").toTypedArray()
-
-            val f = SimpleDateFormat("HH:mm:ss")
-            val startTime1 = f.parse(startARR[1])
-            val endTime1 = f.parse(endARR[1])
-
-            val time = SimpleDateFormat("hh:mm a")
-
-            var startTime = time.format(startTime1)
-            var endTime = time.format(endTime1)
+            var startTime = getTimeAMPM(scheduleData.start_time)
+            var endTime = getTimeAMPM(scheduleData.end_time)
 
             val timePeriod = "$startTime - $endTime"
 
@@ -124,7 +110,11 @@ class ItemSchedule(
 
     override fun onClick(v: View?) {
         when {
-            v?.id == R.id.tv_schedule_name_more -> publishSubject.onNext(ScheduleUiEvent.OnMoreClick(scheduleData.Rep))
+            v?.id == R.id.tv_schedule_name_more -> publishSubject.onNext(
+                ScheduleUiEvent.OnMoreClick(
+                    scheduleData.Rep
+                )
+            )
         }
     }
 }

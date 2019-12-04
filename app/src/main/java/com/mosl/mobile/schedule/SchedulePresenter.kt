@@ -35,9 +35,7 @@ class SchedulePresenter @Inject constructor(
             .subscribe {
                 Log.d("Test", it.Rep.toString())
                 view.renderItemData(it.Rep)
-
             }
             .addTo(disposable)
     }
-
 }

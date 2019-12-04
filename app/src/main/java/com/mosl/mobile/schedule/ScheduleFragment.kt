@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.jakewharton.rxbinding3.view.clicks
 import com.mosl.commons.data.UiModel
 import com.mosl.commons.data.onSuccess
 import com.mosl.mobile.R
@@ -32,18 +33,18 @@ class ScheduleFragment : MOSLCommonFragment(), ScheduleContract {
 
     private lateinit var binding: FragmentScheduleBinding
     private lateinit var section: Section
-    
+
     override fun getLayout(): Int {
         return R.layout.fragment_schedule
     }
 
-    override fun getScheduleRequestInfo(): ScheduleRequestInfo {
-        return ScheduleRequestInfo(
-            ClientID = "4676",
-            schedule = "2019-08-19",
-            timestamp = "New"
-        )
-    }
+//    override fun getScheduleRequestInfo(): ScheduleRequestInfo {
+//        return ScheduleRequestInfo(
+//            ClientID = "4676",
+//            schedule = "2019-08-19",
+//            timestamp = "New"
+//        )
+//    }
 
     override fun onAttach(context: Context) {
         AndroidSupportInjection.inject(this)

@@ -118,7 +118,7 @@
             android:drawableStart="@drawable/ic_location"
             android:gravity="start|center_vertical"
             android:padding="@dimen/padding_extra_small"
-            android:textColor="@color/darkGrey"
+            android:textColor="@color/warmGrey"
             android:textSize="@dimen/text_size_small"
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@id/iv_icon_schedule"
