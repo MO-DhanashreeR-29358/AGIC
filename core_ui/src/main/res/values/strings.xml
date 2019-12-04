@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <string name="app_name">AGIC</string>
+    <string name="main_app_name">AGIC</string>
     <string name="network_unavailable">Network Not Available</string>
     <string name="msg_unique_code_empty">Please enter your 5 digit id to Login</string>
 
@@ -54,7 +54,8 @@
     <string name="button_label_retrieve">Retrieve</string>
     <string name="button_label_exit">Exit</string>
     <string name="msg_logout">Do you want to logout?</string>
-    <string name="msg_yes">YES</string>
-    <string name="msg_no">NO</string>
+    <string name="text_label_yes">YES</string>
+    <string name="text_label_no">NO</string>
     <string name="txt_label_contact_rm">Contact your RM</string>
+    <string name="call_alert_message">"Do you want to call?"</string>
 </resources>

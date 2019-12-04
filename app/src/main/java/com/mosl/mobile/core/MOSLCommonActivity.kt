@@ -27,8 +27,10 @@ import com.mosl.app.coreui.base.ActivityDelegate
 import com.mosl.app.coreui.base.BaseActivity
 import com.mosl.app.coreui.base.NavigationElement
 import com.mosl.mobile.R
+import com.mosl.mobile.app_user.login.UserManager
+import com.mosl.mobile.app_user.login.user
 import com.mosl.mobile.constants.NavigationConstants
-import com.mosl.mobile.contactrm.ContactDialogFrafment
+import com.mosl.mobile.contactrm.ContactDialogFragment
 import com.mosl.mobile.coreui.LocaleManager
 import com.mosl.mobile.dashboard.ActivityNavigationHelper
 import com.mosl.mobile.databinding.ActivityCommonbaseBinding
@@ -66,6 +68,9 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
     @Inject
     lateinit var userCacheImpl: UserCacheImpl
 
+    @Inject
+    lateinit var userManager: UserManager
+
     override fun getLayout(): Int {
         return R.layout.activity_commonbase
     }
@@ -91,25 +96,38 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
         }
 
         setupObservables()
-        setUpContentView()
-        setupTabs()
+        setUpView()
+        setUpTabs()
     }
 
-    private fun setUpContentView() {
-        binding.txtCompanyName.setEllipsize(TextUtils.TruncateAt.MARQUEE)
-        binding.txtCompanyName.isSelected = true
+    private fun setUpView() {
+
+        binding.txtFundName.setText(userManager.user.fundName)
+        binding.txtName.setText(userManager.user.clientName)
+        binding.txtFundName.setEllipsize(TextUtils.TruncateAt.MARQUEE)
+        binding.txtName.setEllipsize(TextUtils.TruncateAt.MARQUEE)
+        binding.txtFundName.isSelected = true
+        binding.txtName.isSelected = true
+
+        if (userManager.user.contactList().isEmpty()) {
+            binding.imgCall.visibility = View.GONE
+        } else {
+            binding.imgCall.visibility = View.VISIBLE
+        }
+
         binding.imgLogout.setOnClickListener {
             logoutCustomer()
         }
 
         binding.imgCall.setOnClickListener {
             val ft = getSupportFragmentManager().beginTransaction()
-            val contactDialogFragment = ContactDialogFrafment()
-            contactDialogFragment.show(ft, "dialog")
+            ContactDialogFragment.newInstance(userManager.user.contactList())
+                .show(ft, "dialog")
         }
     }
 
-    private fun setupTabs() {
+
+    private fun setUpTabs() {
         binding.tabLayout.addTab(
             binding.tabLayout.newTab().setText(R.string.tab_label_schedule).setIcon(R.drawable.ic_tab_schedule).setTag(
                 NavigationConstants.NAVIGATE_TO_SCHEDULE
@@ -267,13 +285,13 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
         AlertDialog.Builder(this)
             .setMessage(R.string.msg_logout)
             .setCancelable(false)
-            .setPositiveButton(R.string.msg_yes) { _, _ ->
+            .setPositiveButton(R.string.text_label_yes) { _, _ ->
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
                 userCacheImpl.clearUser()
                 finish()
             }
-            .setNegativeButton(R.string.msg_no) { _, _ -> }
+            .setNegativeButton(R.string.text_label_no) { _, _ -> }
             .show()
     }
 
@@ -354,7 +372,7 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
             binding.coordinatorLayout, R.string.network_unavailable,
             Snackbar.LENGTH_INDEFINITE
         )
-        snackbar.setAction(R.string.button_label_ok) { v -> snackbar.dismiss() }
+        snackbar.setAction(R.string.button_label_ok) { _ -> snackbar.dismiss() }
         snackbar.show()
         return snackbar
     }
