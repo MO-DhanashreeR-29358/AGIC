@@ -47,6 +47,7 @@
     <color name="_material_grey_900">#212121</color>
     <color name="transparent">#00000000</color>
     <color name="dark_grey">#202020</color>
+    <color name="tab_bg_color">#BEBEBE</color>
 
     <color name="dashboard_background_color">#F0F0F0</color>
     <color name="tile_color_converted">#61CA79</color>

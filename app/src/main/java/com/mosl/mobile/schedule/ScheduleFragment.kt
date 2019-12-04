@@ -12,7 +12,7 @@ import com.xwray.groupie.ViewHolder
 import javax.inject.Inject
 
 class ScheduleFragment : MOSLCommonFragment(), ScheduleContract {
-    // @Inject
+    //@Inject
     lateinit var presenter: SchedulePresenter
     private lateinit var binding: FragmentScheduleBinding
     private lateinit var section: Section
@@ -36,7 +36,9 @@ class ScheduleFragment : MOSLCommonFragment(), ScheduleContract {
             layoutManager = LinearLayoutManager(requireContext())
             setHasFixedSize(true)
             adapter = groupAdapter
+
         }
+
 
         val itemData = listOf(
             ScheduleData(

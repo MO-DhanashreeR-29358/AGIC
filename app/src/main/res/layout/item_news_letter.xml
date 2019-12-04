@@ -11,16 +11,17 @@
             android:id="@+id/imgProfileIcon"
             android:layout_width="@dimen/img_news_letter"
             android:layout_height="@dimen/img_news_letter"
-            android:layout_marginLeft="@dimen/margin_medium"
-            app:srcCompat="@mipmap/ic_launcher_round" />
+            android:layout_marginStart="@dimen/margin_medium"
+            app:srcCompat="@mipmap/ic_launcher_round"
+            tools:ignore="ContentDescription" />
 
 
         <TextView
             android:id="@+id/txtName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/margin_large"
-            android:layout_toRightOf="@+id/imgProfileIcon"
+            android:layout_marginStart="@dimen/margin_large"
+            android:layout_toEndOf="@+id/imgProfileIcon"
             android:textColor="@color/blue"
             android:textSize="@dimen/text_size_normal"
             tools:text="Ms.Nandini Maheshwari" />
@@ -32,7 +33,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/imgProfileIcon"
             android:layout_centerHorizontal="true"
-            app:srcCompat="@drawable/ic_more_horiz" />
+            app:srcCompat="@drawable/ic_more_horiz"
+            tools:ignore="ContentDescription" />
 
         <View
             android:id="@+id/ssView"
