@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mosl.app.coreui.dialog.BaseDialogFragment
+import com.mosl.groupiex.section.DataManagerSection
 import com.mosl.mobile.R
 import com.mosl.mobile.app_user.model.ContactListItemData
 import com.mosl.mobile.databinding.FragmentContactDialogBinding
@@ -29,7 +30,7 @@ class ContactDialogFragment : BaseDialogFragment(), ContactView {
 
     @Inject
     lateinit var presenter: ContactDialogPresenter
-    private lateinit var section: Section
+    private lateinit var section: DataManagerSection
     private val callUiEvent = PublishSubject.create<CallUiEvent>()
 
     override fun getLayout(): Int {
@@ -61,7 +62,7 @@ class ContactDialogFragment : BaseDialogFragment(), ContactView {
 
     private fun setupRecyclerView() {
         val groupAdapter = GroupAdapter<ViewHolder>()
-        section = Section()
+        section = DataManagerSection(onRetryClick)
         binding.rvContactList.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = groupAdapter
@@ -77,7 +78,8 @@ class ContactDialogFragment : BaseDialogFragment(), ContactView {
             list.add(item)
             section.add(item)
         }
-        section.update(list)
+        section.clearContent()
+        section.setContent(list)
 
     }
 
