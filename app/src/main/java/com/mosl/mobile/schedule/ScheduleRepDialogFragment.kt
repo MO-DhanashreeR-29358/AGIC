@@ -9,6 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.mosl.app.coreui.dialog.BaseDialogFragment
+import com.mosl.groupiex.section.DataManagerSection
 import com.mosl.mobile.R
 import com.mosl.mobile.databinding.FragmentScheduleRepDialogBinding
 import com.mosl.mobile.menu.ScreenNavigator
@@ -19,7 +21,7 @@ import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Section
 import com.xwray.groupie.ViewHolder
 
-class ScheduleRepDialogFragment : DialogFragment() {
+class ScheduleRepDialogFragment : BaseDialogFragment() {
 
     lateinit var repoList: List<ScheduleRepresentativeItemData>
 
@@ -27,49 +29,28 @@ class ScheduleRepDialogFragment : DialogFragment() {
     @Inject
     lateinit var screenNavigator: ScreenNavigator
 
-    private lateinit var section: Section
+    private lateinit var section: DataManagerSection
 
-    fun setData(list: List<ScheduleRepresentativeItemData>) {
-        this.repoList = list
+
+
+    override fun getLayout(): Int {
+       return R.layout.fragment_schedule_rep_dialog
     }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_schedule_rep_dialog, container, false)
-    }
-
-    private fun setupRecyclerView() {
-        val groupAdapter = GroupAdapter<ViewHolder>()
-        section = Section()
-        groupAdapter.add(section)
-        binding.rvScheduleRepo.apply {
-            layoutManager = LinearLayoutManager(requireContext())
-            setHasFixedSize(true)
-            adapter = groupAdapter
-        }
-    }
-
 
     override fun onStart() {
         super.onStart()
         val window = dialog?.window
         window?.setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
 
-
     }
+
 
     override fun onAttach(context: Context) {
         AndroidSupportInjection.inject(this)
         super.onAttach(context)
     }
 
-    override fun onViewCreated(
-        view: View,
-        savedInstanceState: Bundle?
-    ) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         binding = FragmentScheduleRepDialogBinding.bind(view)
@@ -80,8 +61,23 @@ class ScheduleRepDialogFragment : DialogFragment() {
 
         setupRecyclerView()
 
-        for (model in repoList) {
-            section.add(ItemScheduleRepo(model, context!!))
+    }
+
+    private fun setupRecyclerView() {
+        val groupAdapter = GroupAdapter<ViewHolder>()
+        section = DataManagerSection(onRetryClick)
+        groupAdapter.add(section)
+        binding.rvScheduleRepo.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            setHasFixedSize(true)
+            adapter = groupAdapter
         }
+        for (model in repoList) {
+            section.add(ItemScheduleRepo(model))
+        }
+    }
+
+    fun setData(list: List<ScheduleRepresentativeItemData>) {
+        this.repoList = list
     }
 }

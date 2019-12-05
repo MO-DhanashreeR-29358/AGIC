@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.mosl.app.core.events.DataAction
 import com.mosl.commons.data.UiModel
 import com.mosl.commons.data.onFailure
 import com.mosl.commons.data.onSuccess
@@ -46,6 +47,7 @@ class ScheduleFragment : MOSLCommonFragment(), ScheduleContract {
         setupRecyclerView()
 
         presenter.start()
+        dataActionSubject.onNext(DataAction.Fetch)
     }
 
     private fun setupRecyclerView() {

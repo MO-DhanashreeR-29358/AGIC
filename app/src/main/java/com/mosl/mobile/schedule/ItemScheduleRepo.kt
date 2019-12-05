@@ -8,8 +8,7 @@ import com.xwray.groupie.databinding.BindableItem
 
 
 class ItemScheduleRepo(
-    private val scheduleData: ScheduleRepresentativeItemData,
-    val context: Context
+    private val scheduleData: ScheduleRepresentativeItemData
 ) :
     BindableItem<ItemFragmentScheduleRepoBinding>() {
 

@@ -24,27 +24,26 @@ class SchedulePresenter @Inject constructor(
             timestamp = NEW
         )
 
-        repository.getScheduleData(scheduleRequest)
-            .compose(applyUiModel())
-            .subscribe {
-                view.renderScheduleData(it)
-            }
-            .addTo(disposable)
+        disposable.add(
+            onFetchCalled().switchMap {
+                repository.getScheduleData(scheduleRequest) }
+                .compose(applyUiModel())
+                .subscribe {
+                    view.renderScheduleData(it) }
 
+        )
         view.onItemClicked()
             .subscribe {
                 view.renderItemData(it.Rep)
-            }
-            .addTo(disposable)
+            }.addTo(disposable)
 
         view.onItemClickedMain()
             .subscribe {
-                view.renderItemToCalender(it.objScheduleResponseItemInfo)
-            }
+                view.renderItemToCalender(it.objScheduleResponseItemInfo) }
             .addTo(disposable)
     }
 
-    companion object{
+    companion object {
         const val NEW = "New"
     }
 }
