@@ -6,8 +6,7 @@ import android.location.Location
 import android.location.LocationManager
 import android.os.Build
 import android.provider.Settings
-import com.mosl.shared.AppDateFormats.DF_TIME_HH
-import com.mosl.shared.AppDateFormats.DF_TIME_hh
+import com.mosl.shared.AppDateFormats.*
 import java.net.Inet4Address
 import java.net.NetworkInterface
 import java.text.SimpleDateFormat
@@ -64,13 +63,14 @@ fun isMockSettingsON(context: Context): Boolean {
 }
 
 
-fun getTime(startDateTime: String?, endDateTime: String?): String {
-    val startTimeArray = startDateTime!!.split("T").toTypedArray()
-    val endTimeArray = endDateTime!!.split("T").toTypedArray()
-    val inputFormate = SimpleDateFormat("HH:mm:ss", Locale.ENGLISH)
-    val startTimeFormat = inputFormate.parse(startTimeArray[1])
-    val endTimeFormat = inputFormate.parse(endTimeArray[1])
+fun getTime(startDateTime: String, endDateTime: String): String {
+    val startTimeFormat = DF_TIME_HH_ss.parse(startDateTime.split())
+    val endTimeFormat = DF_TIME_HH_ss.parse(endDateTime.split())
     val startTime = DF_TIME_HH.format(startTimeFormat)
     val endTime = DF_TIME_HH.format(endTimeFormat)
     return startTime + '-' + endTime
+}
+
+fun String.split():String{
+    return split("T").toTypedArray()[1]
 }

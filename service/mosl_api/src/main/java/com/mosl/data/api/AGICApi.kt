@@ -8,6 +8,7 @@ import com.mosl.data.api.panel.PanelDataResponse
 import com.mosl.mobile.demo.UserResponse
 import io.reactivex.Observable
 import retrofit2.http.Body
+import retrofit2.http.Headers
 import retrofit2.http.POST
 
 interface AGICApi {
@@ -25,6 +26,12 @@ interface AGICApi {
 
 
     @POST("GetPanelDetails")
+    @Headers(CACHE_FOR_4HRS)
     fun getPanelDetails(): Observable<PanelDataResponse>
+
+
+    companion object {
+        const val CACHE_FOR_4HRS = "Cache-For: 240"
+    }
 
 }

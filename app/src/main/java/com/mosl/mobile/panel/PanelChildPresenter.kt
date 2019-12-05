@@ -3,8 +3,6 @@ package com.mosl.mobile.panel
 import com.mosl.app.core.base.BasePresenter
 import dagger.Binds
 import dagger.Module
-import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
 import javax.inject.Inject
 
 @Module
@@ -18,10 +16,13 @@ class PanelPresenter @Inject constructor(
 ) : BasePresenter<PanelChildView>(view) {
     override fun start() {
 
-        disposable.add(onFetchCalled()
+        disposable.add(view.onTabClicked()
             .map {
-                view.panelDayList()
+                it.panelDayWiseListData
             }
+            .compose (
+                applyUiModel()
+            )
             .subscribe(view::renderPage))
 
     }

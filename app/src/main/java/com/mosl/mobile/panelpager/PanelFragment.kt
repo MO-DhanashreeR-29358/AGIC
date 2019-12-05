@@ -14,7 +14,7 @@ import com.mosl.mobile.databinding.FragmentPanelBinding
 import com.mosl.mobile.domain.panel.PanelDayResponse
 import com.mosl.mobile.domain.panel.PanelResponse
 import com.mosl.mobile.panel.PanelChildFragment
-import timber.log.Timber
+import io.reactivex.subjects.PublishSubject
 import javax.inject.Inject
 
 
@@ -28,7 +28,9 @@ class PanelFragment : MOSLCommonPager(), PanelView {
 
     @Inject
     lateinit var presenter: PanelPresenter
-    var panelDayWiseListData= mutableListOf<List<PanelDayResponse>>()
+    var panelDayWiseListData = mutableListOf<List<PanelDayResponse>>()
+
+    private val tabPublishSubject = PublishSubject.create<PanelTabChangeEvent>()
     override fun getLayout(): Int {
         return R.layout.fragment_panel
     }
@@ -43,27 +45,25 @@ class PanelFragment : MOSLCommonPager(), PanelView {
     override fun getItem(pos: Int): Fragment? {
 
         val args = Bundle().apply {
-            if(panelDayWiseListData.isNotEmpty()){
-                putParcelableArrayList(PANEL_DAY_LIST,
-                    panelDayWiseListData.get(pos).getParcelablePanelDayList() as ArrayList<PanelListDayItemData>)
+            if (panelDayWiseListData.isNotEmpty()) {
+                putParcelableArrayList(
+                    PANEL_DAY_LIST,
+                    panelDayWiseListData.get(pos).getParcelablePanelDayList() as ArrayList<PanelListDayItemData>
+                )
             }
 
         }
         return when (pos) {
             0 -> {
-            val panelFragment =PanelChildFragment()
-                panelFragment.arguments =args
-                panelFragment
+                PanelChildFragment().apply { setSubject(tabPublishSubject) }
             }
+
             1 -> {
-                val panelFragment =PanelChildFragment()
-                panelFragment.arguments =args
-                panelFragment
+                PanelChildFragment().apply { setSubject(tabPublishSubject) }
             }
+
             2 -> {
-                val panelFragment =PanelChildFragment()
-                panelFragment.arguments =args
-                panelFragment
+                PanelChildFragment().apply { setSubject(tabPublishSubject) }
             }
             else -> null
         }
@@ -88,7 +88,7 @@ class PanelFragment : MOSLCommonPager(), PanelView {
     private fun List<PanelDayResponse>.getParcelablePanelDayList(): List<PanelListDayItemData> {
         return map {
             PanelListDayItemData(
-               day=it.day,
+                day = it.day,
                 cRepresentiveName = it.cRepresentiveName,
                 designation = it.designation,
                 representativeStarttime = it.representativeStarttime,
@@ -101,7 +101,7 @@ class PanelFragment : MOSLCommonPager(), PanelView {
     }
 
     override fun onPageSelection(position: Int) {
-        Timber.d("Page Selected---> %d", position)
+        tabPublishSubject.onNext(PanelTabChangeEvent.TabClick(panelDayWiseListData.get(position)))
         super.onPageSelection(position)
     }
 
@@ -109,15 +109,17 @@ class PanelFragment : MOSLCommonPager(), PanelView {
         toggleProgressBar(uiModel.inProgress)
 
         uiModel.onFailure { error ->
-           showOnFailurePopup(error)
+            showOnFailurePopup(error)
         }
 
         uiModel.onSuccess {
-            panelDayWiseListData= it.PanelDayWiseListData() as MutableList<List<PanelDayResponse>>
+            panelDayWiseListData = it.PanelDayWiseListData() as MutableList<List<PanelDayResponse>>
+            tabPublishSubject.onNext(PanelTabChangeEvent.TabClick(it.PanelDayWiseListData().get(0)))
         }
     }
+
     companion object {
-        const val  PANEL_DAY_LIST = "panel_day_list"
+        const val PANEL_DAY_LIST = "panel_day_list"
     }
 
 }

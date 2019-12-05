@@ -9,7 +9,7 @@ import java.util.Locale;
  */
 
 public class AppDateFormats {
-	public static final String JSON_DATE = "dd-MM-yyyy HH:mm:ss";
+	private static final String JSON_DATE = "dd-MM-yyyy HH:mm:ss";
 	public static final DateFormat DF_JSON_DATE = new SimpleDateFormat(JSON_DATE, Locale.ENGLISH);
 	private static final String date1 = "dd MMM yyyy";
 	public static final DateFormat df_Date1 = new SimpleDateFormat(date1, Locale.ENGLISH);
@@ -39,8 +39,8 @@ public class AppDateFormats {
 	private static final String TIME_HH = "HH:mm a";
 	public static final DateFormat DF_TIME_HH = new SimpleDateFormat(TIME_HH, Locale.ENGLISH);
 
-	private static final String TIME_hh = "hh:mm a";
-	public static final DateFormat DF_TIME_hh = new SimpleDateFormat(TIME_HH, Locale.ENGLISH);
+	private static final String TIME_HH_ss = "HH:mm:ss";
+	public static final DateFormat DF_TIME_HH_ss = new SimpleDateFormat(TIME_HH_ss, Locale.ENGLISH);
 
 	private static final String JSON_DATE4 = "dd-MM-yyyy";
 	public static final DateFormat DF_JSON_DATE4 = new SimpleDateFormat(JSON_DATE4, Locale.ENGLISH);

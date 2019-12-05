@@ -1,7 +1,6 @@
 package com.mosl.mobile.coredata
 
 import com.facebook.stetho.okhttp3.StethoInterceptor
-import com.mosl.mobile.app_user.util.AuthorizationInterceptor
 import com.mosl.mobile.coredata.interceptor.EncryptionInterceptor
 import com.mosl.mobile.coredata.util.CertPinProvider
 import com.mosl.mobile.coredata.util.HttpListenerFactory

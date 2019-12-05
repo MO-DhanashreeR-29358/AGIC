@@ -6,12 +6,13 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.mosl.mobile.R
 import com.mosl.mobile.databinding.ItemFragmentPanelChildBinding
+import com.mosl.mobile.domain.panel.PanelDayResponse
 import com.mosl.mobile.panelpager.PanelListDayItemData
 import com.mosl.shared.util.getTime
 import com.xwray.groupie.databinding.BindableItem
 
 
-class ItemPanelList(private val data: PanelListDayItemData, val context: Context) :
+class ItemPanelList(private val data: PanelDayResponse, val context: Context) :
     BindableItem<ItemFragmentPanelChildBinding>() {
 
     private var isShowViews: Boolean = false
