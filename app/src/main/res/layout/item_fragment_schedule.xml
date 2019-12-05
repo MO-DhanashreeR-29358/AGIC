@@ -17,6 +17,7 @@
             android:elevation="@dimen/_5sdp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+        
 
         <View
             android:layout_width="@dimen/_2sdp"
@@ -55,7 +56,7 @@
             tools:text="@string/text_label_panel_time" />
 
         <TextView
-            android:id="@+id/tv_schedule_designation"
+            android:id="@+id/tv_schedule_company_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_small"
@@ -81,8 +82,23 @@
             android:textSize="@dimen/text_size_normal"
             app:layout_constraintEnd_toStartOf="@id/iv_icon_schedule"
             app:layout_constraintStart_toEndOf="@id/circleView"
-            app:layout_constraintTop_toBottomOf="@id/tv_schedule_designation"
+            app:layout_constraintTop_toBottomOf="@id/tv_schedule_company_name"
             tools:text="@string/text_label_overview_name" />
+
+        <TextView
+            android:id="@+id/tv_schedule_name_more"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start|center_vertical"
+            android:padding="@dimen/padding_extra_small"
+            android:textColor="@color/dark_blue"
+            android:textSize="@dimen/text_size_small"
+            android:visibility="gone"
+            app:layout_constraintEnd_toStartOf="@id/iv_icon_schedule"
+            app:layout_constraintStart_toEndOf="@id/circleView"
+            app:layout_constraintTop_toBottomOf="@id/tv_schedule_name"
+            tools:ignore="RtlSymmetry"
+            tools:text="...1 more" />
 
         <TextView
             android:id="@+id/tv_schedule_venue"
@@ -96,7 +112,7 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@id/iv_icon_schedule"
             app:layout_constraintStart_toEndOf="@id/circleView"
-            app:layout_constraintTop_toBottomOf="@id/tv_schedule_name"
+            app:layout_constraintTop_toBottomOf="@id/tv_schedule_name_more"
             tools:ignore="RtlSymmetry"
             tools:text="Venue- Ballroom Level" />
 

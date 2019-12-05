@@ -1,9 +1,8 @@
 package com.mosl.mobile
 
-import com.mosl.mobile.contactrm.ContactDialogFragment
 import com.mosl.mobile.bytes.BytesFragment
 import com.mosl.mobile.bytes.BytesModule
-import com.mosl.mobile.contactrm.ContactModule
+import com.mosl.mobile.contactrm.ContactDialogFragment
 import com.mosl.mobile.demo.DemoFragmentProvider
 import com.mosl.mobile.notes.NotesFragment
 import com.mosl.mobile.notes.NotesModule
@@ -12,14 +11,19 @@ import com.mosl.mobile.overview.OverviewChildModule
 import com.mosl.mobile.panelpager.PanelFragment
 import com.mosl.mobile.panelpager.PanelModule
 import com.mosl.mobile.pdf.PdfFragment
+import com.mosl.mobile.schedule.ScheduleFragment
+import com.mosl.mobile.schedule.ScheduleModule
+import com.mosl.mobile.schedule.ScheduleRepDialogFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
 @Module(includes = [DemoFragmentProvider::class])
 abstract class FragmentProvider {
 
+    @ContributesAndroidInjector(modules = [])
+    abstract fun provideScheduleRepDialogFragmentFactory(): ScheduleRepDialogFragment
 
-    @ContributesAndroidInjector(modules = [ContactModule::class])
+    @ContributesAndroidInjector(modules = [])
     abstract fun provideContactDialogFragmentFactory(): ContactDialogFragment
 
     @ContributesAndroidInjector(modules = [BytesModule::class])
@@ -37,5 +41,8 @@ abstract class FragmentProvider {
 
     @ContributesAndroidInjector(modules = [NotesModule::class])
     abstract fun provideNotesFragmentFactory(): NotesFragment
+
+    @ContributesAndroidInjector(modules = [ScheduleModule::class])
+    abstract fun provideScheduleFragmentFactory(): ScheduleFragment
 
 }
