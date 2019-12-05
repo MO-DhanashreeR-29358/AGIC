@@ -31,7 +31,7 @@ class ItemPanelList(private val data: PanelDayResponse, val context: Context) :
             .into(viewBinding.imgPanelProfile)
 
 
-        viewBinding.iconMore.setOnClickListener {
+        viewBinding.constrainLayout.setOnClickListener {
             if (isShowViews) {
                 isShowViews = false
                 btnMoreClick(viewBinding, isShowViews)
