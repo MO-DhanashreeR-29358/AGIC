@@ -7,17 +7,17 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.mosl.commons.data.UiModel
 import com.mosl.commons.data.onFailure
 import com.mosl.commons.data.onSuccess
+import com.mosl.groupiex.section.DataManagerSection
 import com.mosl.mobile.R
 import com.mosl.mobile.core.MOSLCommonFragment
 import com.mosl.mobile.databinding.FragmentScheduleBinding
 import com.mosl.mobile.domain.schedule.ScheduleResponseItemInfo
-import com.mosl.mobile.domain.schedule.ScheduleResponseItemInfo_Rep
+import com.mosl.mobile.domain.schedule.ScheduleRepresentativeItemData
 import com.mosl.mobile.schedule.ScheduleUiEvent.OnMoreClick
 import com.mosl.mobile.schedule.ScheduleUiEvent.ItemClick
 import com.mosl.shared.util.checkTimeIsBetween
 import com.mosl.shared.util.getTimeAMPM
 import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.Section
 import com.xwray.groupie.ViewHolder
 import dagger.android.support.AndroidSupportInjection
 import io.reactivex.Observable
@@ -33,16 +33,12 @@ class ScheduleFragment : MOSLCommonFragment(), ScheduleContract {
     lateinit var presenter: SchedulePresenter
 
     private lateinit var binding: FragmentScheduleBinding
-    private lateinit var section: Section
+    private lateinit var section: DataManagerSection
 
     override fun getLayout(): Int {
         return R.layout.fragment_schedule
     }
 
-    override fun onAttach(context: Context) {
-        AndroidSupportInjection.inject(this)
-        super.onAttach(context)
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -54,7 +50,7 @@ class ScheduleFragment : MOSLCommonFragment(), ScheduleContract {
 
     private fun setupRecyclerView() {
         val groupAdapter = GroupAdapter<ViewHolder>()
-        section = Section()
+        section = DataManagerSection(onRetryClick)
         groupAdapter.add(section)
         binding.rvScheduleList.apply {
             layoutManager = LinearLayoutManager(requireContext())
@@ -65,19 +61,19 @@ class ScheduleFragment : MOSLCommonFragment(), ScheduleContract {
 
     override fun renderScheduleData(uiModel: UiModel<List<ScheduleResponseItemInfo>>) {
         uiModel.onFailure { it ->
-            showOnFailurePopup(it)
+            section.showError(it)
         }
 
         uiModel.onSuccess {
-
+            section.clearContent()
             var curentPos = -1;
             var curentPosBool = false;
-            var sortedList = it.sortedWith(compareBy({ it.start_time }))
+            val sortedList = it.sortedWith(compareBy({ it.startTime }))
 
             for ((i, model) in sortedList.withIndex()) {
 
-                var startTime = getTimeAMPM(model.start_time)
-                var endTime = getTimeAMPM(model.end_time)
+                val startTime = getTimeAMPM(model.startTime)
+                val endTime = getTimeAMPM(model.endTime)
 
 
                 if (checkTimeIsBetween(startTime, endTime) && !curentPosBool) {
@@ -85,17 +81,17 @@ class ScheduleFragment : MOSLCommonFragment(), ScheduleContract {
                     curentPosBool = true
                 }
 
-                section.add(ItemSchedule(model, followUpUiEvent, context!!, curentPos))
+                section.add(ItemSchedule(model, followUpUiEvent, requireContext(), curentPos))
             }
         }
     }
 
 
-    override fun renderItemData(repoList: List<ScheduleResponseItemInfo_Rep>) {
+    override fun renderItemData(repList: List<ScheduleRepresentativeItemData>) {
 
         val dialogFragment = ScheduleRepDialogFragment()
 
-        dialogFragment.setData(repoList);
+        dialogFragment.setData(repList);
         dialogFragment.show(childFragmentManager, "dialog")
     }
 

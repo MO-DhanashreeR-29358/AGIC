@@ -9,6 +9,7 @@ import android.provider.Settings
 import com.mosl.shared.AppDateFormats.*
 import java.net.Inet4Address
 import java.net.NetworkInterface
+import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -73,4 +74,61 @@ fun getTime(startDateTime: String, endDateTime: String): String {
 
 fun String.split():String{
     return split("T").toTypedArray()[1]
+}
+
+
+fun getTimeAMPM(dateTime: String): String {
+
+
+    val timeFormat = DF_TIME_HH_ss.parse(dateTime.split())
+    val time = DF_TIME_HH.format(timeFormat)
+
+    return time
+}
+
+fun checkTimeIsBetween(string1: String, string2: String): Boolean {
+    try {
+
+        val time1 = SimpleDateFormat("hh:mm a").parse(string1)
+        val calendar1 = Calendar.getInstance()
+        calendar1.time = time1
+        calendar1.add(Calendar.DATE, 1)
+
+
+        val time2 = SimpleDateFormat("hh:mm a").parse(string2)
+        val calendar2 = Calendar.getInstance()
+        calendar2.time = time2
+        calendar2.add(Calendar.DATE, 1)
+
+        val calendar3 = Calendar.getInstance()
+        val sdf = SimpleDateFormat("hh:mm a")
+        val currentTime = sdf.format(calendar3.time)
+
+        val d = sdf.parse(currentTime)
+        calendar3.time = d
+        calendar3.add(Calendar.DATE, 1)
+
+        val x = calendar3.time
+        if (x.after(calendar1.time) && x.before(calendar2.time)) {
+            return true
+        } else if (x.after(calendar2.time)) {
+            return false
+        } else if (x.before(calendar2.time)) {
+            return true
+        }
+
+    } catch (e: ParseException) {
+        e.printStackTrace()
+    }
+
+    return false
+}
+
+fun getTodaysDate(): String {
+
+    val calendar3 = Calendar.getInstance()
+    val currentDate = df_Date6.format(calendar3.time)
+
+
+    return currentDate
 }

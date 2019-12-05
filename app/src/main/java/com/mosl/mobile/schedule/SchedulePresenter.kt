@@ -1,6 +1,5 @@
 package com.mosl.mobile.schedule
 
-import android.util.Log
 import com.mosl.app.core.base.BasePresenter
 import com.mosl.mobile.app_user.login.UserManager
 import com.mosl.mobile.app_user.login.user
@@ -19,10 +18,10 @@ class SchedulePresenter @Inject constructor(
     override fun start() {
 
         val scheduleRequest = ScheduleRequestInfo(
-            ClientID = userManager.user.clientId,
+            clientID = userManager.user.clientId,
             schedule = getTodaysDate(),
 //            schedule = "2019-08-20",
-            timestamp = "New"
+            timestamp = NEW
         )
 
         repository.getScheduleData(scheduleRequest)
@@ -34,7 +33,6 @@ class SchedulePresenter @Inject constructor(
 
         view.onItemClicked()
             .subscribe {
-                Log.d("Test", it.Rep.toString())
                 view.renderItemData(it.Rep)
             }
             .addTo(disposable)
@@ -44,5 +42,9 @@ class SchedulePresenter @Inject constructor(
                 view.renderItemToCalender(it.objScheduleResponseItemInfo)
             }
             .addTo(disposable)
+    }
+
+    companion object{
+        const val NEW = "New"
     }
 }

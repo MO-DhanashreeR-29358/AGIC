@@ -14,14 +14,14 @@ import com.mosl.mobile.databinding.FragmentScheduleRepDialogBinding
 import com.mosl.mobile.menu.ScreenNavigator
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
-import com.mosl.mobile.domain.schedule.ScheduleResponseItemInfo_Rep
+import com.mosl.mobile.domain.schedule.ScheduleRepresentativeItemData
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Section
 import com.xwray.groupie.ViewHolder
 
 class ScheduleRepDialogFragment : DialogFragment() {
 
-    lateinit var repoList: List<ScheduleResponseItemInfo_Rep>
+    lateinit var repoList: List<ScheduleRepresentativeItemData>
 
     internal lateinit var binding: FragmentScheduleRepDialogBinding
     @Inject
@@ -29,7 +29,7 @@ class ScheduleRepDialogFragment : DialogFragment() {
 
     private lateinit var section: Section
 
-    fun setData(list: List<ScheduleResponseItemInfo_Rep>) {
+    fun setData(list: List<ScheduleRepresentativeItemData>) {
         this.repoList = list
     }
 

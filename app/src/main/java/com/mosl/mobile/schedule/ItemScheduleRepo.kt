@@ -3,12 +3,12 @@ package com.mosl.mobile.schedule
 import android.content.Context
 import com.mosl.mobile.R
 import com.mosl.mobile.databinding.ItemFragmentScheduleRepoBinding
-import com.mosl.mobile.domain.schedule.ScheduleResponseItemInfo_Rep
+import com.mosl.mobile.domain.schedule.ScheduleRepresentativeItemData
 import com.xwray.groupie.databinding.BindableItem
 
 
 class ItemScheduleRepo(
-    private val scheduleData: ScheduleResponseItemInfo_Rep,
+    private val scheduleData: ScheduleRepresentativeItemData,
     val context: Context
 ) :
     BindableItem<ItemFragmentScheduleRepoBinding>() {

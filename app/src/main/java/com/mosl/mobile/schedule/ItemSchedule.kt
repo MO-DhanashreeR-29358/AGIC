@@ -7,11 +7,10 @@ import android.view.animation.AnimationUtils
 import com.mosl.mobile.R
 import com.mosl.mobile.databinding.ItemFragmentScheduleBinding
 import com.mosl.mobile.domain.schedule.ScheduleResponseItemInfo
-import com.mosl.shared.util.getTimeAMPM
+import com.mosl.shared.util.getTime
 import com.xwray.groupie.databinding.BindableItem
 import io.reactivex.subjects.PublishSubject
 import java.text.ParseException
-import java.text.SimpleDateFormat
 
 
 class ItemSchedule(
@@ -47,38 +46,32 @@ class ItemSchedule(
 
         try {
 
-            var startTime = getTimeAMPM(scheduleData.start_time)
-            var endTime = getTimeAMPM(scheduleData.end_time)
-
-            val timePeriod = "$startTime - $endTime"
-
             if (scheduleData.Rep.size > 0) {
-                var scName = scheduleData.Rep[0].NAME
-                var scDesi = scheduleData.Rep[0].DESIGNATION
+                val scName = scheduleData.Rep[0].NAME
+                val scDesi = scheduleData.Rep[0].DESIGNATION
                 viewBinding.tvScheduleName.text = "$scName - $scDesi"
             }
 
             if (scheduleData.Rep.size > 1) {
                 viewBinding.tvScheduleNameMore.visibility = View.VISIBLE
-                var count = scheduleData.Rep.size - 1
+                val count = scheduleData.Rep.size - 1
                 viewBinding.tvScheduleNameMore.text = "...$count More"
             }
 
-            viewBinding.tvScheduleTime.text = timePeriod
-            viewBinding.tvScheduleCompanyName.text = scheduleData.company_name
+            viewBinding.tvScheduleTime.text = getTime(scheduleData.startTime,scheduleData.endTime)
+            viewBinding.tvScheduleCompanyName.text = scheduleData.companyName
 
-            var venue = scheduleData.room_no
-            viewBinding.tvScheduleVenue.text = "Venue - Room No. $venue"
+            viewBinding.tvScheduleVenue.text = scheduleData.roomNo
 
-            if (scheduleData.Nature_of_meeting.equals("1-1"))
+            if (scheduleData.natureOfMeeting.equals("1-1"))
                 viewBinding.ivIconSchedule.setImageResource(R.drawable.ic_1x1)
-            else if (scheduleData.Nature_of_meeting.equals("2-1"))
+            else if (scheduleData.natureOfMeeting.equals("2-1"))
                 viewBinding.ivIconSchedule.setImageResource(R.drawable.ic_2x1)
-            else if (scheduleData.Nature_of_meeting.equals("3-1"))
+            else if (scheduleData.natureOfMeeting.equals("3-1"))
                 viewBinding.ivIconSchedule.setImageResource(R.drawable.ic_3x1)
-            else if (scheduleData.Nature_of_meeting.equals("4-1"))
+            else if (scheduleData.natureOfMeeting.equals("4-1"))
                 viewBinding.ivIconSchedule.setImageResource(R.drawable.ic_4x1)
-            else if (scheduleData.Nature_of_meeting.equals("Small Group"))
+            else if (scheduleData.natureOfMeeting.equals("Small Group"))
                 viewBinding.ivIconSchedule.setImageResource(R.drawable.ic_group)
             else
                 viewBinding.ivIconSchedule.setImageResource(R.drawable.ic_mtrack)
@@ -88,19 +81,19 @@ class ItemSchedule(
         }
     }
 
-    override fun onAnimationRepeat(animation: Animation?) {
+    override fun onAnimationRepeat(animation: Animation) {
         if (animation == animBlink) {
             animation.start()
         }
     }
 
-    override fun onAnimationEnd(animation: Animation?) {
+    override fun onAnimationEnd(animation: Animation) {
         if (animation == animBlink) {
             animation.start()
         }
     }
 
-    override fun onAnimationStart(animation: Animation?) {
+    override fun onAnimationStart(animation: Animation) {
         if (animation == animBlink) {
             animation.start()
         }
