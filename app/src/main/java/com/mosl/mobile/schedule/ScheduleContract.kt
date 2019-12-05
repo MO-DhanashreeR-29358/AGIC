@@ -13,8 +13,12 @@ interface ScheduleContract : BaseView {
 
     fun renderScheduleData(uiModel: UiModel<List<ScheduleResponseItemInfo>>)
 
+    fun onItemClickedMain(): Observable<ItemClick>
+    fun renderItemToCalender(uiModel: ScheduleResponseItemInfo)
+
     fun onItemClicked(): Observable<OnMoreClick>
     fun renderItemData(uiModel: List<ScheduleResponseItemInfo_Rep>)
+
     fun hideProgress()
     fun showProgress()
 }

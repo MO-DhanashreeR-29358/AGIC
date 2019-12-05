@@ -6,6 +6,7 @@ import com.mosl.mobile.app_user.login.UserManager
 import com.mosl.mobile.app_user.login.user
 import com.mosl.mobile.domain.schedule.ScheduleRepository
 import com.mosl.mobile.domain.schedule.ScheduleRequestInfo
+import com.mosl.shared.util.getTodaysDate
 import io.reactivex.rxkotlin.addTo
 import javax.inject.Inject
 
@@ -19,11 +20,11 @@ class SchedulePresenter @Inject constructor(
 
         val scheduleRequest = ScheduleRequestInfo(
             ClientID = userManager.user.clientId,
-            schedule = "2019-08-20",
+            schedule = getTodaysDate(),
+//            schedule = "2019-08-20",
             timestamp = "New"
         )
 
-//        repository.getScheduleData(view.getScheduleRequestInfo())
         repository.getScheduleData(scheduleRequest)
             .compose(applyUiModel())
             .subscribe {
@@ -35,6 +36,12 @@ class SchedulePresenter @Inject constructor(
             .subscribe {
                 Log.d("Test", it.Rep.toString())
                 view.renderItemData(it.Rep)
+            }
+            .addTo(disposable)
+
+        view.onItemClickedMain()
+            .subscribe {
+                view.renderItemToCalender(it.objScheduleResponseItemInfo)
             }
             .addTo(disposable)
     }

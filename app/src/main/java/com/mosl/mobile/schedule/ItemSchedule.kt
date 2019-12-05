@@ -17,22 +17,24 @@ import java.text.SimpleDateFormat
 class ItemSchedule(
     private val scheduleData: ScheduleResponseItemInfo,
     private val publishSubject: PublishSubject<ScheduleUiEvent>,
-    val context: Context
+    val context: Context,
+    val curentPos: Int
 ) :
     BindableItem<ItemFragmentScheduleBinding>(), Animation.AnimationListener, View.OnClickListener {
 
     lateinit var animBlink: Animation
+
     override fun getLayout(): Int {
         return R.layout.item_fragment_schedule
     }
 
     override fun bind(viewBinding: ItemFragmentScheduleBinding, position: Int) {
-        animBlink = AnimationUtils.loadAnimation(
-            context,
-            R.anim.blink_anim
-        )
+
+        animBlink = AnimationUtils.loadAnimation(context, R.anim.blink_anim)
+
         animBlink.setAnimationListener(this)
-        if (position == 1) {
+
+        if (position == curentPos) {
             viewBinding.circleView.setBackgroundResource(R.drawable.bg_blue_circle)
             viewBinding.circleView.startAnimation(animBlink)
 
@@ -41,6 +43,7 @@ class ItemSchedule(
         }
 
         viewBinding.tvScheduleNameMore.setOnClickListener(this@ItemSchedule)
+        viewBinding.tvScheduleCompanyName.setOnClickListener(this@ItemSchedule)
 
         try {
 
@@ -60,7 +63,6 @@ class ItemSchedule(
                 var count = scheduleData.Rep.size - 1
                 viewBinding.tvScheduleNameMore.text = "...$count More"
             }
-
 
             viewBinding.tvScheduleTime.text = timePeriod
             viewBinding.tvScheduleCompanyName.text = scheduleData.company_name
@@ -84,22 +86,18 @@ class ItemSchedule(
         } catch (e: ParseException) {
             e.printStackTrace()
         }
-
-
     }
 
     override fun onAnimationRepeat(animation: Animation?) {
         if (animation == animBlink) {
             animation.start()
         }
-
     }
 
     override fun onAnimationEnd(animation: Animation?) {
         if (animation == animBlink) {
             animation.start()
         }
-
     }
 
     override fun onAnimationStart(animation: Animation?) {
@@ -113,6 +111,11 @@ class ItemSchedule(
             v?.id == R.id.tv_schedule_name_more -> publishSubject.onNext(
                 ScheduleUiEvent.OnMoreClick(
                     scheduleData.Rep
+                )
+            )
+            v?.id == R.id.tv_schedule_company_name -> publishSubject.onNext(
+                ScheduleUiEvent.ItemClick(
+                    scheduleData
                 )
             )
         }

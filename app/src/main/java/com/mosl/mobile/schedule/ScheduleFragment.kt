@@ -4,16 +4,18 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.jakewharton.rxbinding3.view.clicks
 import com.mosl.commons.data.UiModel
+import com.mosl.commons.data.onFailure
 import com.mosl.commons.data.onSuccess
 import com.mosl.mobile.R
 import com.mosl.mobile.core.MOSLCommonFragment
 import com.mosl.mobile.databinding.FragmentScheduleBinding
-import com.mosl.mobile.domain.schedule.ScheduleRequestInfo
 import com.mosl.mobile.domain.schedule.ScheduleResponseItemInfo
 import com.mosl.mobile.domain.schedule.ScheduleResponseItemInfo_Rep
 import com.mosl.mobile.schedule.ScheduleUiEvent.OnMoreClick
+import com.mosl.mobile.schedule.ScheduleUiEvent.ItemClick
+import com.mosl.shared.util.checkTimeIsBetween
+import com.mosl.shared.util.getTimeAMPM
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Section
 import com.xwray.groupie.ViewHolder
@@ -22,7 +24,6 @@ import io.reactivex.Observable
 import io.reactivex.rxkotlin.ofType
 import io.reactivex.subjects.PublishSubject
 import javax.inject.Inject
-
 
 class ScheduleFragment : MOSLCommonFragment(), ScheduleContract {
 
@@ -37,14 +38,6 @@ class ScheduleFragment : MOSLCommonFragment(), ScheduleContract {
     override fun getLayout(): Int {
         return R.layout.fragment_schedule
     }
-
-//    override fun getScheduleRequestInfo(): ScheduleRequestInfo {
-//        return ScheduleRequestInfo(
-//            ClientID = "4676",
-//            schedule = "2019-08-19",
-//            timestamp = "New"
-//        )
-//    }
 
     override fun onAttach(context: Context) {
         AndroidSupportInjection.inject(this)
@@ -71,13 +64,32 @@ class ScheduleFragment : MOSLCommonFragment(), ScheduleContract {
     }
 
     override fun renderScheduleData(uiModel: UiModel<List<ScheduleResponseItemInfo>>) {
+        uiModel.onFailure { it ->
+            showOnFailurePopup(it)
+        }
 
         uiModel.onSuccess {
-            for (model in it) {
-                section.add(ItemSchedule(model, followUpUiEvent, context!!))
+
+            var curentPos = -1;
+            var curentPosBool = false;
+            var sortedList = it.sortedWith(compareBy({ it.start_time }))
+
+            for ((i, model) in sortedList.withIndex()) {
+
+                var startTime = getTimeAMPM(model.start_time)
+                var endTime = getTimeAMPM(model.end_time)
+
+
+                if (checkTimeIsBetween(startTime, endTime) && !curentPosBool) {
+                    curentPos = i
+                    curentPosBool = true
+                }
+
+                section.add(ItemSchedule(model, followUpUiEvent, context!!, curentPos))
             }
         }
     }
+
 
     override fun renderItemData(repoList: List<ScheduleResponseItemInfo_Rep>) {
 
@@ -87,7 +99,15 @@ class ScheduleFragment : MOSLCommonFragment(), ScheduleContract {
         dialogFragment.show(childFragmentManager, "dialog")
     }
 
+    override fun renderItemToCalender(uiModel: ScheduleResponseItemInfo) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
     override fun onItemClicked(): Observable<OnMoreClick> {
+        return followUpUiEvent.ofType()
+    }
+
+    override fun onItemClickedMain(): Observable<ItemClick> {
         return followUpUiEvent.ofType()
     }
 }
