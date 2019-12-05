@@ -4,6 +4,7 @@ import com.mosl.data.api.demo.LoginInfo
 import com.mosl.data.api.login.LoginInfoRequest
 import com.mosl.data.api.login.LoginInfoResponse
 import com.mosl.data.api.newsletter.NewsLetterResponseItem
+import com.mosl.data.api.panel.PanelDataResponse
 import com.mosl.mobile.demo.UserResponse
 import io.reactivex.Observable
 import retrofit2.http.Body
@@ -21,5 +22,9 @@ interface AGICApi {
 
   @POST("GetBroucherDetails")
    fun getBrochureData(): Observable<BaseResponseAgic<List<NewsLetterResponseItem>>>
+
+
+    @POST("GetPanelDetails")
+    fun getPanelDetails(): Observable<PanelDataResponse>
 
 }

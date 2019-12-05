@@ -8,10 +8,9 @@ import com.mosl.mobile.R
 import com.mosl.mobile.core.MOSLCommonPager
 import com.mosl.mobile.databinding.FragmentOverviewBinding
 import com.mosl.mobile.overview.OverviewChildFragment
-import com.mosl.mobile.panelpager.PanelContract
 import timber.log.Timber
 
-class OverviewFragment : MOSLCommonPager(), PanelContract {
+class OverviewFragment : MOSLCommonPager() {
 
 
     lateinit var binding: FragmentOverviewBinding

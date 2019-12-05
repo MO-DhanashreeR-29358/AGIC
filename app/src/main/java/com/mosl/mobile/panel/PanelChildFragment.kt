@@ -5,12 +5,15 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.mosl.app.core.events.DataAction
+import com.mosl.groupiex.section.DataManagerSection
 import com.mosl.mobile.R
 import com.mosl.mobile.core.MOSLCommonFragment
 import com.mosl.mobile.databinding.FragmentPanelChildBinding
+import com.mosl.mobile.panelpager.PanelFragment
+import com.mosl.mobile.panelpager.PanelListDayItemData
 
 import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.Section
 import com.xwray.groupie.ViewHolder
 import javax.inject.Inject
 
@@ -18,11 +21,11 @@ import javax.inject.Inject
 /**
  * A simple [Fragment] subclass.
  */
-class PanelChildFragment : MOSLCommonFragment(), PanelChildContract {
+class PanelChildFragment : MOSLCommonFragment(), PanelChildView {
     @Inject
     lateinit var presenter: PanelPresenter
     lateinit var binding: FragmentPanelChildBinding
-    lateinit var section: Section
+    lateinit var section: DataManagerSection
 
 
     override fun getLayout(): Int {
@@ -33,12 +36,13 @@ class PanelChildFragment : MOSLCommonFragment(), PanelChildContract {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentPanelChildBinding.bind(view)
         setupRecyclerView()
-        //presenter.start()
+        presenter.start()
+        dataActionSubject.onNext(DataAction.Fetch)
     }
 
     private fun setupRecyclerView() {
         val groupAdapter = GroupAdapter<ViewHolder>()
-        section = Section()
+        section = DataManagerSection(onRetryClick)
         groupAdapter.add(section)
         binding.rvPanelList.apply {
             layoutManager = LinearLayoutManager(requireContext())
@@ -46,46 +50,23 @@ class PanelChildFragment : MOSLCommonFragment(), PanelChildContract {
             adapter = groupAdapter
         }
 
-        val itemData = listOf(
-            PanelChildData(
-                name = "Ms.Nandini Maheshwari",
-                time = "10:00 am - 11:00 am",
-                designation = "Business Development Head,Uber",
-                desc = "Are attitudes changing globally towards 'owning' a vehicle?"
-            ),
-            PanelChildData(
-                name = "Mr.Punit Chhatwal",
-                time = "11:00 am - 12:00 pm",
-                designation = "Ceo,Indian Hotels",
-                desc = "Are attitudes changing globally towards 'owning' a vehicle?"
-            ),
-            PanelChildData(
-                name = "Mr.Harshwardhan Jala",
-                time = "12:00 pm - 01:00 pm",
-                designation = "Teenage Founder & Ceo,Aerobotics7",
-                desc = "Are attitudes changing globally towards 'owning' a vehicle?"
-            ),
-            PanelChildData(
-                name = "Mr.Harshwardhan Jala",
-                time = "12:00 pm - 01:00 pm",
-                designation = "Teenage Founder & Ceo,Aerobotics7",
-                desc = "Are attitudes changing globally towards 'owning' a vehicle?"
-            ),
-            PanelChildData(
-                name = "Mr.Harshwardhan Jala",
-                time = "12:00 pm - 01:00 pm",
-                designation = "Teenage Founder & Ceo,Aerobotics7",
-                desc = "Are attitudes changing globally towards 'owning' a vehicle?"
-            )
-        )
-        for (model in itemData) {
-            section.add(ItemPanelList(model, context!!))
-        }
+
+
 
 
     }
 
-    override fun renderPage() {
+    override fun panelDayList():ArrayList<PanelListDayItemData>? {
+       return arguments?.getParcelableArrayList(PanelFragment.PANEL_DAY_LIST)
+    }
+
+    override fun renderPage(panelListDayData:List<PanelListDayItemData>?) {
+
+        if(panelListDayData!!.isNotEmpty()){
+            for (model in panelListDayData) {
+                section.add(ItemPanelList(model, context!!))
+            }
+        }
 
     }
 }

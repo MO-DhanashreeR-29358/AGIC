@@ -1,5 +1,7 @@
 package com.mosl.mobile.panelpager
 
+import com.mosl.mobile.data.panel.PanelDetailsRepositoryImpl
+import com.mosl.mobile.domain.panel.PanelDetailsRepository
 import dagger.Module
 import dagger.Provides
 
@@ -7,7 +9,12 @@ import dagger.Provides
 class PanelModule {
 
     @Provides
-    internal fun ProvidePanelBaseFragment(fragment: PanelFragment): PanelContract {
+    internal fun ProvidePanelBaseFragment(fragment: PanelFragment): PanelView {
         return fragment
+    }
+
+    @Provides
+    internal  fun ProvidesPanelDetailsResitory(repository: PanelDetailsRepositoryImpl):PanelDetailsRepository{
+        return repository
     }
 }

@@ -86,7 +86,7 @@
             android:background="@color/greyWhite" />
 
         <TextView
-            android:id="@+id/tv_panel_desc"
+            android:id="@+id/tv_panel_intro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_medium"
