@@ -72,7 +72,6 @@ class PanelChildFragment : MOSLCommonFragment(), PanelChildView {
     override fun renderPage(uiModel: UiModel<List<PanelDayResponse>>) {
         toggleProgressBar(uiModel.inProgress)
         uiModel.onFailure { error ->
-            showOnFailurePopup(error)
             section.showError(error)
         }
         uiModel.onSuccess { panelListDayData ->

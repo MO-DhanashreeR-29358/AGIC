@@ -1,8 +1,11 @@
 package com.mosl.mobile.panel
 
 import com.mosl.app.core.base.BasePresenter
+import com.mosl.app.core.exception.ServiceFailureException
 import dagger.Binds
 import dagger.Module
+import io.reactivex.Observable
+import io.reactivex.rxkotlin.Observables
 import javax.inject.Inject
 
 @Module
@@ -18,11 +21,13 @@ class PanelPresenter @Inject constructor(
 
         disposable.add(view.onTabClicked()
             .map {
-                it.panelDayWiseListData
+                if (it.panelDayWiseListData.isEmpty()){
+                    throw ServiceFailureException("No data available for the day")
+                }else {
+                    it.panelDayWiseListData
+                }
             }
-            .compose (
-                applyUiModel()
-            )
+            .compose (applyUiModel())
             .subscribe(view::renderPage))
 
     }

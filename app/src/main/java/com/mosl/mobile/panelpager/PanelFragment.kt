@@ -4,6 +4,7 @@ package com.mosl.mobile.panelpager
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import com.mosl.app.core.events.DataAction
 import com.mosl.app.coreui.adapters.ViewPagerAdapter
 import com.mosl.commons.data.UiModel
 import com.mosl.commons.data.onFailure
@@ -40,19 +41,11 @@ class PanelFragment : MOSLCommonPager(), PanelView {
         binding = FragmentPanelBinding.bind(view)
         setUpAdapter()
         presenter.start()
+        dataActionSubject.onNext(DataAction.Fetch)
     }
 
     override fun getItem(pos: Int): Fragment? {
 
-        val args = Bundle().apply {
-            if (panelDayWiseListData.isNotEmpty()) {
-                putParcelableArrayList(
-                    PANEL_DAY_LIST,
-                    panelDayWiseListData.get(pos).getParcelablePanelDayList() as ArrayList<PanelListDayItemData>
-                )
-            }
-
-        }
         return when (pos) {
             0 -> {
                 PanelChildFragment().apply { setSubject(tabPublishSubject) }
