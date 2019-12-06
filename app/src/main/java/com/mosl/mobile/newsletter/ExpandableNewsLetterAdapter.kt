@@ -1,6 +1,5 @@
 package com.mosl.mobile.newsletter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,21 +12,15 @@ import com.mosl.mobile.databinding.ItemNewsLetterParentBinding
 import com.mosl.mobile.domain.newsletter.NewsLetterResponseItemInfo
 
 class ExpandableNewsLetterAdapter(
-    val _context: Context,
-    var _listDataHeader: List<NewsLetterResponseItemInfo>?
+   val data: List<NewsLetterResponseItemInfo>
 ) : BaseExpandableListAdapter() {
 
 
-    var _listDataHeaderFiltered: List<NewsLetterResponseItemInfo>
-    var _listDataHeaderOriginal = ArrayList<NewsLetterResponseItemInfo>()
 
-    init {
-        _listDataHeaderFiltered = _listDataHeader!!
-        _listDataHeaderOriginal.addAll(_listDataHeader!!)
-    }
+
 
     override fun getChild(groupPosition: Int, childPosititon: Int): Any {
-        return _listDataHeaderFiltered[groupPosition].HeadLines.toString()
+        return data[groupPosition].HeadLines.toString()
     }
 
     override fun getChildId(groupPosition: Int, childPosition: Int): Long {
@@ -48,7 +41,7 @@ class ExpandableNewsLetterAdapter(
         );
 
 
-        binding.txtNewsletterChildDescription.text = childText
+        binding.txtChildDescription.text = childText
 
         return binding.root
     }
@@ -58,11 +51,11 @@ class ExpandableNewsLetterAdapter(
     }
 
     override fun getGroup(groupPosition: Int): Any {
-        return this._listDataHeaderFiltered[groupPosition].Title.toString()
+        return this.data[groupPosition].Title.toString()
     }
 
     override fun getGroupCount(): Int {
-        return this._listDataHeaderFiltered.size
+        return this.data.size
     }
 
     override fun getGroupId(groupPosition: Int): Long {
@@ -83,7 +76,7 @@ class ExpandableNewsLetterAdapter(
         );
 
         Glide.with(parent.getContext())
-            .load(_listDataHeaderFiltered[groupPosition].IMAGEPATH.toString())
+            .load(data[groupPosition].IMAGEPATH.toString())
             .into(binding.imgProfileIcon);
 
 
