@@ -41,8 +41,7 @@ abstract class CommonActivityModule {
   @Binds
   internal abstract fun provideActivityDelegate(activity: MOSLCommonActivity): ActivityDelegate
 
-  @Binds
-  internal abstract fun provideScheduleRepository(scheduleRepository: ScheduleRepositoryImpl): ScheduleRepository
+
 
 
 }

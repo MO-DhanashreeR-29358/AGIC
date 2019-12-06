@@ -16,10 +16,10 @@ class ScheduleModule {
         return fragment
     }
 
-//    @Provides
-//    internal
-//    fun provideScheduleRepository(scheduleRepository: ScheduleRepositoryImpl): ScheduleRepository {
-//        return scheduleRepository
-//    }
+    @Provides
+    internal
+    fun provideScheduleRepository(scheduleRepository: ScheduleRepositoryImpl): ScheduleRepository {
+        return scheduleRepository
+    }
 
 }

@@ -74,9 +74,6 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
     @Inject
     lateinit var userManager: UserManager
 
-    @Inject
-    lateinit var repository: ScheduleRepository
-
     override fun getLayout(): Int {
         return R.layout.activity_commonbase
     }
@@ -183,7 +180,7 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
                 setColorFilter(tab.icon, baseContext.setColor(R.color.blue))
                 if (tab.tag as Int == NavigationConstants.NAVIGATE_TO_PDF) {
                     val ft = getSupportFragmentManager().beginTransaction()
-                    if (!pdfLink.isNullOrEmpty()) {
+                    if (userManager.getPdf().isNotEmpty()) {
                         pdfLink?.let {
                             PdfFragment.newInstance(it)
                                 .show(ft, "")
