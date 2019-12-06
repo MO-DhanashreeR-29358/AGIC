@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentActivity
 import com.mosl.app.coreui.base.ActivityDelegate
 import com.mosl.mobile.FragmentProvider
+import com.mosl.mobile.data.schedule.ScheduleRepositoryImpl
+import com.mosl.mobile.domain.schedule.ScheduleRepository
 import com.mosl.mobile.menu.NavigatorAliceProvider
 import com.mosl.mobile.util.NavigationCallbackImpl
 import com.mosl.navigator.FragmentTransitionHelper
@@ -12,6 +14,8 @@ import com.mosl.navigator.NavigationCallback
 import com.mosl.navigator.Navigator
 import dagger.Binds
 import dagger.Module
+import dagger.Provides
+import javax.inject.Singleton
 
 @Module(includes = [FragmentProvider::class, NavigatorAliceProvider::class])
 abstract class CommonActivityModule {
@@ -36,5 +40,9 @@ abstract class CommonActivityModule {
 
   @Binds
   internal abstract fun provideActivityDelegate(activity: MOSLCommonActivity): ActivityDelegate
+
+  @Binds
+  internal abstract fun provideScheduleRepository(scheduleRepository: ScheduleRepositoryImpl): ScheduleRepository
+
 
 }

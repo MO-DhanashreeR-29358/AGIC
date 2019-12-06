@@ -17,7 +17,7 @@ import retrofit2.mock.MockRetrofit
 class MockMoslApiServiceImpl(
     private val mockRetrofit: MockRetrofit,
     private val context: Context) : AGICApi {
-    override fun getScheduleDataAPI(request: ScheduleRequest): Observable<List<ScheduleResponseItem>> {
+    override fun getScheduleDataAPI(request: ScheduleRequest): Observable<BaseResponseAgic<List<ScheduleResponseItem>>> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 

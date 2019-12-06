@@ -36,6 +36,7 @@ import com.mosl.mobile.contactrm.ContactDialogFragment
 import com.mosl.mobile.coreui.LocaleManager
 import com.mosl.mobile.dashboard.ActivityNavigationHelper
 import com.mosl.mobile.databinding.ActivityCommonbaseBinding
+import com.mosl.mobile.domain.schedule.ScheduleRepository
 import com.mosl.mobile.login.LoginActivity
 import com.mosl.mobile.login.UserCacheImpl
 import com.mosl.mobile.menu.ScreenNavigatorImpl
@@ -73,6 +74,9 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
     @Inject
     lateinit var userManager: UserManager
 
+    @Inject
+    lateinit var repository: ScheduleRepository
+
     override fun getLayout(): Int {
         return R.layout.activity_commonbase
     }
@@ -100,7 +104,9 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
         setupObservables()
         setUpView()
         setUpTabs()
+
     }
+
 
     private fun setUpView() {
 
@@ -127,6 +133,8 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
         }
     }
 
+
+    var pdfLink: String? = null
 
     private fun setUpTabs() {
         binding.tabLayout.addTab(
@@ -168,13 +176,20 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
 
         setColorFilter(binding.tabLayout.getTabAt(0)?.icon, baseContext.setColor(R.color.blue))
 
+
+
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 setColorFilter(tab.icon, baseContext.setColor(R.color.blue))
                 if (tab.tag as Int == NavigationConstants.NAVIGATE_TO_PDF) {
                     val ft = getSupportFragmentManager().beginTransaction()
-                    PdfFragment.newInstance()
-                        .show(ft, "")
+                    if (!pdfLink.isNullOrEmpty()) {
+                        pdfLink?.let {
+                            PdfFragment.newInstance(it)
+                                .show(ft, "")
+                        }
+                    }
+
                 } else {
                     navigateFragment(tab.tag as Int)
                 }
