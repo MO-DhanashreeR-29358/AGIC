@@ -30,10 +30,23 @@ class UserCacheImpl @Inject constructor(
         }
     }
 
+    override fun savePdf(pdfLink: String) {
+        userStore.pdfLink.set(pdfLink)
+    }
+
+    override fun getPdf(): String {
+        return when {
+            userStore.pdfLink.isSet -> userStore.pdfLink.get()
+
+            else -> ""
+        }
+    }
 
     override fun saveUser(user: User) {
         userStore.userInfo.set(gson.toJson(user))
     }
+
+
 
     override fun getUser(): User? {
         return when {

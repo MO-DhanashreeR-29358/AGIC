@@ -14,28 +14,15 @@ class ScheduleRepositoryImpl @Inject constructor(
 ) : ScheduleRepository {
 
     private val mapper = ScheduleMapper
-    private var pdfLink: String? = ""
 
     override fun getScheduleData(scheduleInafoa: ScheduleRequestInfo): Observable<ScheduleResponse> {
 
         return agicApi.getScheduleDataAPI(mapper.getScheduleRequestMap(scheduleInafoa))
 
             .map {
-                setPdf(it.pdf)
                 mapper.getScheduleMap(it.data, it.pdf)
             }
     }
 
-    override fun getPdf(): String {
-        return pdfLink ?: ""
-    }
-
-    override fun setPdf(pdfLink: String?) {
-        this.pdfLink = pdfLink
-    }
-
-    companion object{
-        const val PDF_LINK = "pdf_link"
-    }
 
 }

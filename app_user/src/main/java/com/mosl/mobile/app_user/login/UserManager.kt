@@ -8,6 +8,7 @@ import com.mosl.mobile.app_user.model.User
 
 interface UserManager {
 
+    fun getPdf(): String
     fun getUser(): User?
     fun isLoggedIn(): Boolean
     fun isActive(): Boolean

@@ -28,6 +28,7 @@ import javax.inject.Inject
 import android.content.Intent
 import com.mosl.mobile.core.MOSLCommonActivity
 import com.mosl.mobile.domain.schedule.ScheduleResponse
+import com.mosl.mobile.login.UserManagerImpl
 import com.mosl.shared.util.addToCalendart
 import java.util.*
 
@@ -41,7 +42,8 @@ class ScheduleFragment : MOSLCommonFragment(), ScheduleContract {
 
     private lateinit var binding: FragmentScheduleBinding
     private lateinit var section: DataManagerSection
-
+    @Inject
+    lateinit var userManager: UserManagerImpl
     override fun getLayout(): Int {
         return R.layout.fragment_schedule
     }
@@ -77,6 +79,7 @@ class ScheduleFragment : MOSLCommonFragment(), ScheduleContract {
             activity?.let {activity ->
                 (activity as MOSLCommonActivity).pdfLink=it.PDFLink!!
             }
+            userManager.savePdf(it.PDFLink!!)
 
             section.clearContent()
             var curentPos = -1;
