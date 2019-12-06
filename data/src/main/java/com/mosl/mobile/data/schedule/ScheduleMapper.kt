@@ -2,22 +2,24 @@ package com.mosl.mobile.data.schedule
 
 import com.mosl.data.api.schedule.ScheduleRequest
 import com.mosl.data.api.schedule.ScheduleResponseItem
-import com.mosl.mobile.domain.schedule.ScheduleRequestInfo
-import com.mosl.mobile.domain.schedule.ScheduleResponseItemInfo
 import com.mosl.mobile.domain.schedule.ScheduleRepresentativeItemData
+import com.mosl.mobile.domain.schedule.ScheduleRequestInfo
+import com.mosl.mobile.domain.schedule.ScheduleResponse
+import com.mosl.mobile.domain.schedule.ScheduleResponseItemInfo
 
 object ScheduleMapper {
 
 
-    fun getScheduleMap(responseList: List<ScheduleResponseItem>): List<ScheduleResponseItemInfo> {
-        return responseList.map {
+    fun getScheduleMap(responseList: List<ScheduleResponseItem>?, pdf: String?): ScheduleResponse {
+        val responseLisaat: List<ScheduleResponseItemInfo> = responseList!!.map {
             ScheduleResponseItemInfo(
 
                 Rep = it.Rep.map {
                     ScheduleRepresentativeItemData(
                         NAME = it.NAME,
                         DESIGNATION = it.DESIGNATION
-                    )  },
+                    )
+                },
 
                 recordNo = it.record_no,
                 ReportURL = it.ReportURL,
@@ -32,6 +34,11 @@ object ScheduleMapper {
                 updateDate = it.UpdateDate
             )
         }
+
+        return ScheduleResponse(
+            Data = responseLisaat,
+            PDFLink = pdf
+        )
     }
 
     fun getScheduleRequestMap(requestList: ScheduleRequestInfo): ScheduleRequest {

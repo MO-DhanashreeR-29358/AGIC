@@ -27,7 +27,7 @@ interface AGICApi {
    fun getBrochureData(): Observable<BaseResponseAgic<List<NewsLetterResponseItem>>>
 
     @POST("GetScheduleAPI")
-    fun getScheduleDataAPI(@Body request: ScheduleRequest): Observable<List<ScheduleResponseItem>>
+    fun getScheduleDataAPI(@Body request: ScheduleRequest): Observable<BaseResponseAgic<List<ScheduleResponseItem>>>
 
 
     @POST("GetPanelDetails")

@@ -26,6 +26,8 @@ import io.reactivex.rxkotlin.ofType
 import io.reactivex.subjects.PublishSubject
 import javax.inject.Inject
 import android.content.Intent
+import com.mosl.mobile.core.MOSLCommonActivity
+import com.mosl.mobile.domain.schedule.ScheduleResponse
 import com.mosl.shared.util.addToCalendart
 import java.util.*
 
@@ -65,16 +67,21 @@ class ScheduleFragment : MOSLCommonFragment(), ScheduleContract {
         }
     }
 
-    override fun renderScheduleData(uiModel: UiModel<List<ScheduleResponseItemInfo>>) {
+    override fun renderScheduleData(uiModel: UiModel<ScheduleResponse>) {
         uiModel.onFailure { it ->
             section.showError(it)
         }
 
         uiModel.onSuccess {
+
+            activity?.let {activity ->
+                (activity as MOSLCommonActivity).pdfLink=it.PDFLink!!
+            }
+
             section.clearContent()
             var curentPos = -1;
             var curentPosBool = false;
-            val sortedList = it.sortedWith(compareBy({ it.startTime }))
+            val sortedList = it.Data.sortedWith(compareBy({ it.startTime }))
 
             for ((i, model) in sortedList.withIndex()) {
 

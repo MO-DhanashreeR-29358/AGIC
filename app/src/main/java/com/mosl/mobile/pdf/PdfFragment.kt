@@ -2,17 +2,13 @@ package com.mosl.mobile.pdf
 
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
-import com.mosl.app.core.events.DataAction
 import com.mosl.app.coreui.dialog.BaseDialogFragment
 import com.mosl.mobile.R
-
 import com.mosl.mobile.databinding.FragmentPdfBinding
-import io.reactivex.Observable
+import com.mosl.mobile.util.downloadDocument
 
 
 /**
@@ -29,7 +25,6 @@ class PdfFragment : BaseDialogFragment(), PdfContract {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentPdfBinding.bind(view)
-//        dialog?.window?.setBackgroundDrawable(requireContext().getDrawable(R.drawable.border_dialog))
 
         binding.apply {
 
@@ -38,7 +33,10 @@ class PdfFragment : BaseDialogFragment(), PdfContract {
             }
 
             tvPdfOk.setOnClickListener {
-                tvPdfCancel.performClick()
+                arguments?.getString(PDF_LINK)?.let {
+                    requireContext().downloadDocument(it)
+                }
+
             }
         }
 
@@ -55,9 +53,16 @@ class PdfFragment : BaseDialogFragment(), PdfContract {
 
 
     companion object {
+
+        const val PDF_LINK = "pdf_link"
+
         @JvmStatic
-        fun newInstance(): PdfFragment {
-            return PdfFragment()
+        fun newInstance(pdfLink: String): PdfFragment {
+            val fragment = PdfFragment()
+            fragment.arguments = Bundle().apply {
+                putString(PDF_LINK, pdfLink)
+            }
+            return fragment
         }
     }
 }
