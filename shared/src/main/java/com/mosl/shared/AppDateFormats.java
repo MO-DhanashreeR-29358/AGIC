@@ -39,6 +39,10 @@ public class AppDateFormats {
 	private static final String TIME_HH = "HH:mm a";
 	public static final DateFormat DF_TIME_HH = new SimpleDateFormat(TIME_HH, Locale.ENGLISH);
 
+	private static final String TIME_hh = "hh:mm a";
+	public static final DateFormat DF_TIME_hh = new SimpleDateFormat(TIME_hh, Locale.ENGLISH);
+
+
 	private static final String TIME_HH_ss = "HH:mm:ss";
 	public static final DateFormat DF_TIME_HH_ss = new SimpleDateFormat(TIME_HH_ss, Locale.ENGLISH);
 

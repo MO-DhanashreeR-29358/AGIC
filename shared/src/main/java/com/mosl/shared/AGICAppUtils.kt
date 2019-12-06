@@ -67,8 +67,8 @@ fun isMockSettingsON(context: Context): Boolean {
 fun getTime(startDateTime: String, endDateTime: String): String {
     val startTimeFormat = DF_TIME_HH_ss.parse(startDateTime.split())
     val endTimeFormat = DF_TIME_HH_ss.parse(endDateTime.split())
-    val startTime = DF_TIME_HH.format(startTimeFormat)
-    val endTime = DF_TIME_HH.format(endTimeFormat)
+    val startTime = DF_TIME_hh.format(startTimeFormat)
+    val endTime = DF_TIME_hh.format(endTimeFormat)
     return startTime + '-' + endTime
 }
 
@@ -81,7 +81,7 @@ fun getTimeAMPM(dateTime: String): String {
 
 
     val timeFormat = DF_TIME_HH_ss.parse(dateTime.split())
-    val time = DF_TIME_HH.format(timeFormat)
+    val time = DF_TIME_hh.format(timeFormat)
 
     return time
 }
