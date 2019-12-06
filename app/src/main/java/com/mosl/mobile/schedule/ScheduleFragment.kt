@@ -25,6 +25,10 @@ import io.reactivex.Observable
 import io.reactivex.rxkotlin.ofType
 import io.reactivex.subjects.PublishSubject
 import javax.inject.Inject
+import android.content.Intent
+import com.mosl.shared.util.addToCalendart
+import java.util.*
+
 
 class ScheduleFragment : MOSLCommonFragment(), ScheduleContract {
 
@@ -97,8 +101,16 @@ class ScheduleFragment : MOSLCommonFragment(), ScheduleContract {
         dialogFragment.show(childFragmentManager, "dialog")
     }
 
-    override fun renderItemToCalender(uiModel: ScheduleResponseItemInfo) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun renderItemToCalender(objScheduleResponseItemInfo: ScheduleResponseItemInfo) {
+
+        addToCalendart(
+            context!!,
+            objScheduleResponseItemInfo.companyName,
+            objScheduleResponseItemInfo.natureOfMeeting,
+            objScheduleResponseItemInfo.roomNo,
+            objScheduleResponseItemInfo.startTime,
+            objScheduleResponseItemInfo.endTime
+        )
     }
 
     override fun onItemClicked(): Observable<OnMoreClick> {

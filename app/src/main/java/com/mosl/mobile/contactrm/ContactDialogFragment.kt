@@ -14,7 +14,6 @@ import com.mosl.mobile.databinding.FragmentContactDialogBinding
 import com.mosl.mobile.menu.ScreenNavigator
 import com.mosl.mobile.util.initiateCall
 import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.Section
 import com.xwray.groupie.ViewHolder
 import dagger.android.support.AndroidSupportInjection
 import io.reactivex.Observable
