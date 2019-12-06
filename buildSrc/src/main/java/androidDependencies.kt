@@ -4,7 +4,7 @@ object Versions {
     const val minSdkVersion = 19
     const val buildToolsVersion = "29.0.2"
 
-    const val androidVersion = "3.5.1"
+    const val androidVersion = "3.5.2"
     const val kotlinVersion = "1.3.50"
     const val fabric = "1.30.0"
     const val googleServices = "4.3.0"
