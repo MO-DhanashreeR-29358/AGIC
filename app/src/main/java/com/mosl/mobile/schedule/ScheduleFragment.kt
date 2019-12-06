@@ -1,6 +1,5 @@
 package com.mosl.mobile.schedule
 
-import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,19 +11,20 @@ import com.mosl.groupiex.section.DataManagerSection
 import com.mosl.mobile.R
 import com.mosl.mobile.core.MOSLCommonFragment
 import com.mosl.mobile.databinding.FragmentScheduleBinding
-import com.mosl.mobile.domain.schedule.ScheduleResponseItemInfo
 import com.mosl.mobile.domain.schedule.ScheduleRepresentativeItemData
-import com.mosl.mobile.schedule.ScheduleUiEvent.OnMoreClick
+import com.mosl.mobile.domain.schedule.ScheduleResponseItemInfo
 import com.mosl.mobile.schedule.ScheduleUiEvent.ItemClick
+import com.mosl.mobile.schedule.ScheduleUiEvent.OnMoreClick
+import com.mosl.shared.util.addToCalendart
 import com.mosl.shared.util.checkTimeIsBetween
 import com.mosl.shared.util.getTimeAMPM
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
-import dagger.android.support.AndroidSupportInjection
 import io.reactivex.Observable
 import io.reactivex.rxkotlin.ofType
 import io.reactivex.subjects.PublishSubject
 import javax.inject.Inject
+
 
 class ScheduleFragment : MOSLCommonFragment(), ScheduleContract {
 
@@ -97,8 +97,16 @@ class ScheduleFragment : MOSLCommonFragment(), ScheduleContract {
         dialogFragment.show(childFragmentManager, "dialog")
     }
 
-    override fun renderItemToCalender(uiModel: ScheduleResponseItemInfo) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun renderItemToCalender(objScheduleResponseItemInfo: ScheduleResponseItemInfo) {
+
+        addToCalendart(
+            context!!,
+            objScheduleResponseItemInfo.companyName,
+            objScheduleResponseItemInfo.natureOfMeeting,
+            objScheduleResponseItemInfo.roomNo,
+            objScheduleResponseItemInfo.startTime,
+            objScheduleResponseItemInfo.endTime
+        )
     }
 
     override fun isDataEmpty(): Boolean {

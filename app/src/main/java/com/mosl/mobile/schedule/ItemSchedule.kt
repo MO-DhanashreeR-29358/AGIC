@@ -43,7 +43,7 @@ class ItemSchedule(
             }
 
             tvScheduleNameMore.setOnClickListener(this@ItemSchedule)
-            tvScheduleCompanyName.setOnClickListener(this@ItemSchedule)
+            tvScheduleTime.setOnClickListener(this@ItemSchedule)
 
             try {
 
@@ -107,7 +107,7 @@ class ItemSchedule(
                     scheduleData.Rep
                 )
             )
-            v?.id == R.id.tv_schedule_company_name -> publishSubject.onNext(
+            v?.id == R.id.tv_schedule_time -> publishSubject.onNext(
                 ScheduleUiEvent.ItemClick(
                     scheduleData
                 )

@@ -12,6 +12,11 @@ import java.net.NetworkInterface
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
+import androidx.core.content.ContextCompat.startActivity
+import android.content.Intent
+import android.provider.CalendarContract.Events
+import android.provider.CalendarContract
+
 
 fun getLocalIpAddress(): String {
     try {
@@ -72,13 +77,12 @@ fun getTime(startDateTime: String, endDateTime: String): String {
     return startTime + '-' + endTime
 }
 
-fun String.split():String{
+fun String.split(): String {
     return split("T").toTypedArray()[1]
 }
 
 
 fun getTimeAMPM(dateTime: String): String {
-
 
     val timeFormat = DF_TIME_HH_ss.parse(dateTime.split())
     val time = DF_TIME_hh.format(timeFormat)
@@ -131,4 +135,39 @@ fun getTodaysDate(): String {
 
 
     return currentDate
+}
+
+fun addToCalendart(
+    context: Context,
+    title: String,
+    description: String,
+    location: String,
+    startTime: String,
+    endTime: String
+) {
+    if (Build.VERSION.SDK_INT >= 14) {
+        val intent = Intent(Intent.ACTION_INSERT)
+            .setData(Events.CONTENT_URI)
+            .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, startTime)
+            .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, endTime)
+            .putExtra(CalendarContract.EXTRA_EVENT_ALL_DAY, true)
+            .putExtra(Events.TITLE, title)
+            .putExtra(Events.DESCRIPTION, description)
+            .putExtra(Events.EVENT_LOCATION, location)
+            .putExtra(Events.AVAILABILITY, Events.AVAILABILITY_BUSY)
+//            .putExtra(Intent.EXTRA_EMAIL, "rowan@example.com,trevor@example.com")
+
+        context.startActivity(intent)
+
+    } else {
+        val cal = Calendar.getInstance()
+        val intent = Intent(Intent.ACTION_EDIT)
+        intent.type = "vnd.android.cursor.item/event"
+        intent.putExtra("beginTime", startTime)
+        intent.putExtra("allDay", true)
+        intent.putExtra("rrule", "FREQ=YEARLY")
+        intent.putExtra("endTime", endTime)
+        intent.putExtra("title", title)
+        context.startActivity(intent)
+    }
 }
