@@ -1,6 +1,5 @@
 package com.mosl.mobile.schedule
 
-import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,22 +11,19 @@ import com.mosl.groupiex.section.DataManagerSection
 import com.mosl.mobile.R
 import com.mosl.mobile.core.MOSLCommonFragment
 import com.mosl.mobile.databinding.FragmentScheduleBinding
-import com.mosl.mobile.domain.schedule.ScheduleResponseItemInfo
 import com.mosl.mobile.domain.schedule.ScheduleRepresentativeItemData
-import com.mosl.mobile.schedule.ScheduleUiEvent.OnMoreClick
+import com.mosl.mobile.domain.schedule.ScheduleResponseItemInfo
 import com.mosl.mobile.schedule.ScheduleUiEvent.ItemClick
+import com.mosl.mobile.schedule.ScheduleUiEvent.OnMoreClick
+import com.mosl.shared.util.addToCalendart
 import com.mosl.shared.util.checkTimeIsBetween
 import com.mosl.shared.util.getTimeAMPM
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
-import dagger.android.support.AndroidSupportInjection
 import io.reactivex.Observable
 import io.reactivex.rxkotlin.ofType
 import io.reactivex.subjects.PublishSubject
 import javax.inject.Inject
-import android.content.Intent
-import com.mosl.shared.util.addToCalendart
-import java.util.*
 
 
 class ScheduleFragment : MOSLCommonFragment(), ScheduleContract {

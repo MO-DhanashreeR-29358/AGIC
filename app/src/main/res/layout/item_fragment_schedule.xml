@@ -17,7 +17,7 @@
             android:elevation="@dimen/_5sdp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-        
+
 
         <View
             android:layout_width="@dimen/_2sdp"
@@ -34,9 +34,10 @@
             android:layout_width="wrap_content"
             android:layout_height="@dimen/min_schedule_img_height"
             android:layout_marginTop="@dimen/margin_normal"
+            android:layout_marginBottom="@dimen/margin_normal"
+            android:src="@drawable/ic_mtrack"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:src="@drawable/ic_mtrack"
             tools:ignore="ContentDescription" />
 
         <TextView
@@ -104,6 +105,7 @@
             android:id="@+id/tv_schedule_venue"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_normal"
             android:drawableStart="@drawable/ic_location"
             android:gravity="start|center_vertical"
             android:padding="@dimen/padding_extra_small"
@@ -113,16 +115,17 @@
             app:layout_constraintEnd_toStartOf="@id/iv_icon_schedule"
             app:layout_constraintStart_toEndOf="@id/circleView"
             app:layout_constraintTop_toBottomOf="@id/tv_schedule_name_more"
+            app:layout_constraintBottom_toTopOf="@id/view_divider"
             tools:ignore="RtlSymmetry"
             tools:text="Venue- Ballroom Level" />
 
         <View
             android:id="@+id/view_divider"
             android:layout_width="match_parent"
-            android:layout_marginTop="@dimen/margin_medium"
             android:layout_height="@dimen/_1sdp"
+            android:layout_marginTop="@dimen/margin_normal"
             android:background="@color/warmGrey"
-            app:layout_constraintTop_toBottomOf="@id/iv_icon_schedule" />
+            app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
