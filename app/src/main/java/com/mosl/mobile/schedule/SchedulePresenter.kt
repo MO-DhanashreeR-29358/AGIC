@@ -6,6 +6,7 @@ import com.mosl.mobile.app_user.login.user
 import com.mosl.mobile.domain.schedule.ScheduleRepository
 import com.mosl.mobile.domain.schedule.ScheduleRequestInfo
 import com.mosl.shared.util.getTodaysDate
+import io.reactivex.Observable
 import io.reactivex.rxkotlin.addTo
 import javax.inject.Inject
 
@@ -24,14 +25,17 @@ class SchedulePresenter @Inject constructor(
             timestamp = NEW
         )
 
-        disposable.add(
-            onFetchCalled().switchMap {
-                repository.getScheduleData(scheduleRequest) }
-                .compose(applyUiModel())
-                .subscribe {
-                    view.renderScheduleData(it) }
 
-        )
+
+        Observable.merge(onFetchCalled(), onRetryCalled()).switchMap {
+            repository.getScheduleData(scheduleRequest)
+        }
+            .compose(applyUiModel())
+            .subscribe {
+                view.renderScheduleData(it)
+            }.addTo(disposable)
+
+
         view.onItemClicked()
             .subscribe {
                 view.renderItemData(it.Rep)
@@ -39,7 +43,8 @@ class SchedulePresenter @Inject constructor(
 
         view.onItemClickedMain()
             .subscribe {
-                view.renderItemToCalender(it.objScheduleResponseItemInfo) }
+                view.renderItemToCalender(it.objScheduleResponseItemInfo)
+            }
             .addTo(disposable)
     }
 
