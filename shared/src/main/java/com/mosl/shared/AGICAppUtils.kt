@@ -145,7 +145,7 @@ fun addToCalendart(
     startTime: String,
     endTime: String
 ) {
-    if (Build.VERSION.SDK_INT >= 14) {
+    if (Build.VERSION.SDK_INT >= 15) {
         val intent = Intent(Intent.ACTION_INSERT)
             .setData(Events.CONTENT_URI)
             .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, startTime)
