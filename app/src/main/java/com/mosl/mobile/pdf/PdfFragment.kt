@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import com.mosl.app.core.events.DataAction
+import com.mosl.app.coreui.dialog.BaseDialogFragment
 import com.mosl.mobile.R
 
 import com.mosl.mobile.databinding.FragmentPdfBinding
@@ -17,23 +18,18 @@ import io.reactivex.Observable
 /**
  * A simple [Fragment] subclass.
  */
-class PdfFragment : DialogFragment(), PdfContract {
+class PdfFragment : BaseDialogFragment(), PdfContract {
 
     lateinit var binding: FragmentPdfBinding
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-
-        return inflater.inflate(R.layout.fragment_pdf, container, false)
+    override fun getLayout(): Int {
+        return R.layout.fragment_pdf
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentPdfBinding.bind(view)
-        dialog?.window?.setBackgroundDrawable(resources.getDrawable(R.drawable.border_dialog))
+//        dialog?.window?.setBackgroundDrawable(requireContext().getDrawable(R.drawable.border_dialog))
 
         binding.apply {
 
@@ -50,18 +46,10 @@ class PdfFragment : DialogFragment(), PdfContract {
     }
 
 
-    override fun isDataEmpty(): Boolean {
-        return false
-    }
-
-    override fun onDataAction(): Observable<DataAction> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
     override fun onStart() {
         super.onStart()
         val window = dialog?.window
-        window?.setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
 
     }
 

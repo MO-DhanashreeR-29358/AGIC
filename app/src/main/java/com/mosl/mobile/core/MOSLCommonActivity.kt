@@ -171,8 +171,9 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 setColorFilter(tab.icon, baseContext.setColor(R.color.blue))
                 if (tab.tag as Int == NavigationConstants.NAVIGATE_TO_PDF) {
+                    val ft = getSupportFragmentManager().beginTransaction()
                     PdfFragment.newInstance()
-                        .show(supportFragmentManager, "")
+                        .show(ft, "")
                 } else {
                     navigateFragment(tab.tag as Int)
                 }
