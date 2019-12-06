@@ -10,7 +10,7 @@ import com.mosl.commons.data.onFailure
 import com.mosl.commons.data.onSuccess
 import com.mosl.groupiex.section.DataManagerSection
 import com.mosl.mobile.R
-import com.mosl.mobile.core.MOSLCommonFragment
+import com.mosl.mobile.core.MOSLPagerItemFragment
 import com.mosl.mobile.databinding.FragmentPanelChildBinding
 import com.mosl.mobile.domain.panel.PanelDayResponse
 import com.mosl.mobile.panelpager.PanelFragment
@@ -27,7 +27,7 @@ import javax.inject.Inject
 /**
  * A simple [Fragment] subclass.
  */
-class PanelChildFragment : MOSLCommonFragment(), PanelChildView {
+class PanelChildFragment : MOSLPagerItemFragment(), PanelChildView {
     @Inject
     lateinit var presenter: PanelPresenter
     lateinit var binding: FragmentPanelChildBinding
@@ -97,4 +97,5 @@ class PanelChildFragment : MOSLCommonFragment(), PanelChildView {
             return fragment
         }
     }
+
 }

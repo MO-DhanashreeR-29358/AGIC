@@ -22,7 +22,9 @@ import com.google.android.material.tabs.TabLayout
 import com.jakewharton.rxbinding3.appcompat.navigationClicks
 import com.mosl.app.core.network.NetworkChangeEvent
 import com.mosl.app.core.network.NetworkReceiver
+import com.mosl.app.core.utils.hide
 import com.mosl.app.core.utils.hideKeyBoard
+import com.mosl.app.core.utils.show
 import com.mosl.app.coreui.base.ActivityDelegate
 import com.mosl.app.coreui.base.BaseActivity
 import com.mosl.app.coreui.base.NavigationElement
@@ -120,9 +122,8 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
         }
 
         binding.imgCall.setOnClickListener {
-            val ft = getSupportFragmentManager().beginTransaction()
             ContactDialogFragment.newInstance(userManager.user.contactList())
-                .show(ft, "dialog")
+                .show(supportFragmentManager, "dialog")
         }
     }
 
@@ -247,12 +248,6 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
         fragTransitionHelper.navigateTo(fragmentEntry)
     }
 
-    override fun hideAppTitle() {
-    }
-
-    override fun hideProgress() {
-    }
-
     override fun onBackPressed() {
         if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
             binding.drawerLayout.closeDrawers()
@@ -304,7 +299,16 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
         binding.toolBar.title = title.toString()
     }
 
+    override fun hideAppTitle() {
+    }
+
+
+    override fun hideProgress() {
+        binding.progressBar.hide()
+    }
+
     override fun showProgress() {
+        binding.progressBar.show()
     }
 
     override fun hideOverflowMenu() {
