@@ -78,12 +78,12 @@ class NewsLetterActivity : LeanBaseActivity(), NewsLetterView {
             else
                 binding.skipToLogin.visibility = View.GONE
 
-               listAdapter = ExpandableNewsLetterAdapter(baseContext, data.Data)
+                listAdapter = ExpandableNewsLetterAdapter(data.Data)
 
-               binding.expandableList.setAdapter(listAdapter)
+                binding.expandableList.setAdapter(listAdapter)
 
-               binding.expandableList.setOnGroupExpandListener(object : OnGroupExpandListener {
-                   var previousGroup = -1
+                binding.expandableList.setOnGroupExpandListener(object : OnGroupExpandListener {
+                    var previousGroup = -1
 
                 override fun onGroupExpand(groupPosition: Int) {
                     if (groupPosition != previousGroup)
@@ -112,11 +112,11 @@ class NewsLetterActivity : LeanBaseActivity(), NewsLetterView {
     }
 
     override fun isDataEmpty(): Boolean {
-       return false
+        return false
     }
 
     override fun onDataAction(): Observable<DataAction> {
-      return  dataActionSubject
+        return dataActionSubject
     }
 
     override fun hideProgress() {
