@@ -16,6 +16,7 @@ import com.mosl.mobile.domain.panel.PanelDayResponse
 import com.mosl.mobile.panelpager.PanelFragment
 import com.mosl.mobile.panelpager.PanelListDayItemData
 import com.mosl.mobile.panelpager.PanelTabChangeEvent
+import com.mosl.shared.util.addToCalendart
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
 import io.reactivex.Observable
@@ -34,6 +35,7 @@ class PanelChildFragment : MOSLPagerItemFragment(), PanelChildView {
     lateinit var section: DataManagerSection
 
     private var publishSubject = PublishSubject.create<PanelTabChangeEvent>()
+    private var publishSubjectItem = PublishSubject.create<PanelUiEvent>()
 
     override fun getLayout(): Int {
         return R.layout.fragment_panel_child
@@ -77,7 +79,7 @@ class PanelChildFragment : MOSLPagerItemFragment(), PanelChildView {
         uiModel.onSuccess { panelListDayData ->
             section.clearContent()
             for (model in panelListDayData) {
-                section.add(ItemPanelList(model, context!!))
+                section.add(ItemPanelList(model, context!!,publishSubjectItem))
             }
         }
 
@@ -85,6 +87,21 @@ class PanelChildFragment : MOSLPagerItemFragment(), PanelChildView {
 
     override fun onTabClicked(): Observable<PanelTabChangeEvent.TabClick> {
         return publishSubject.ofType()
+    }
+
+    override fun renderItemToCalender(panelDayResponse: PanelDayResponse) {
+        addToCalendart(
+            context!!,
+            panelDayResponse.cRepresentiveName,
+            panelDayResponse.speakerIntroduction,
+            "",
+            panelDayResponse.representativeStarttime,
+            panelDayResponse.representativeEndtime
+        )
+    }
+
+    override fun onItemClicked(): Observable<PanelUiEvent.ItemClick> {
+       return publishSubjectItem.ofType()
     }
 
     companion object {
@@ -97,5 +114,7 @@ class PanelChildFragment : MOSLPagerItemFragment(), PanelChildView {
             return fragment
         }
     }
+
+
 
 }

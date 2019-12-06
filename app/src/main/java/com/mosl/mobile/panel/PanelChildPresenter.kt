@@ -6,6 +6,7 @@ import dagger.Binds
 import dagger.Module
 import io.reactivex.Observable
 import io.reactivex.rxkotlin.Observables
+import io.reactivex.rxkotlin.addTo
 import javax.inject.Inject
 
 @Module
@@ -30,5 +31,10 @@ class PanelPresenter @Inject constructor(
             .compose (applyUiModel())
             .subscribe(view::renderPage))
 
+        view.onItemClicked()
+            .subscribe {
+                view.renderItemToCalender(it.panelDayResponseItem)
+            }
+            .addTo(disposable)
     }
 }
