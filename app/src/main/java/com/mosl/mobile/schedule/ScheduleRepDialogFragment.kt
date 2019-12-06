@@ -40,7 +40,7 @@ class ScheduleRepDialogFragment : BaseDialogFragment() {
     override fun onStart() {
         super.onStart()
         val window = dialog?.window
-        window?.setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
 
     }
 
@@ -54,7 +54,6 @@ class ScheduleRepDialogFragment : BaseDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding = FragmentScheduleRepDialogBinding.bind(view)
-        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         binding.ivClose.setOnClickListener {
             dismiss()
         }
