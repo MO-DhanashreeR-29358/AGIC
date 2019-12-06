@@ -70,7 +70,7 @@ class ScheduleFragment : MOSLCommonFragment(), ScheduleContract {
         }
     }
 
-    override fun renderScheduleData(uiModel: UiModel<List<ScheduleResponseItemInfo>>) {
+    override fun renderScheduleData(uiModel: UiModel<ScheduleResponse>) {
         uiModel.onFailure { it ->
             section.showError(it)
         }
@@ -85,7 +85,7 @@ class ScheduleFragment : MOSLCommonFragment(), ScheduleContract {
             section.clearContent()
             var curentPos = -1;
             var curentPosBool = false;
-            val sortedList = it.sortedWith(compareBy({ it.startTime }))
+            val sortedList = it.Data.sortedWith(compareBy({ it.startTime }))
 
             for ((i, model) in sortedList.withIndex()) {
 
