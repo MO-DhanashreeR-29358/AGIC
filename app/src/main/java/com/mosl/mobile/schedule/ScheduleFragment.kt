@@ -101,6 +101,10 @@ class ScheduleFragment : MOSLCommonFragment(), ScheduleContract {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
+    override fun isDataEmpty(): Boolean {
+        return true
+    }
+
     override fun onItemClicked(): Observable<OnMoreClick> {
         return followUpUiEvent.ofType()
     }

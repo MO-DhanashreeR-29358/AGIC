@@ -112,8 +112,9 @@ class NewsLetterActivity : LeanBaseActivity(), NewsLetterView {
     }
 
     override fun isDataEmpty(): Boolean {
-        return false
+        return true
     }
+
 
     override fun onDataAction(): Observable<DataAction> {
         return dataActionSubject
