@@ -10,11 +10,7 @@ class OverviewChildPresenter @Inject constructor(view: OverviewChildContract) :
 
         disposable.add(view.onTabClicked()
             .map {
-                if (it.overviewDayWiseListData.isEmpty()) {
-                    throw ServiceFailureException("No data available for the day")
-                } else {
-                    it.overviewDayWiseListData
-                }
+                it.overviewDayWiseListData
             }
             .compose(applyUiModel())
             .subscribe(view::renderPage))

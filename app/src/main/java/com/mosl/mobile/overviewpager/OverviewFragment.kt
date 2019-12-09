@@ -80,7 +80,7 @@ class OverviewFragment : MOSLCommonPager(), OverviewPagerContract {
             0 -> tabPublishSubject.onNext(OverviewPagerTabChangeEvent.TabClick(panelDayWiseListData.Day1!!))
             1 -> tabPublishSubject.onNext(OverviewPagerTabChangeEvent.TabClick(panelDayWiseListData.Day2!!))
             2 -> tabPublishSubject.onNext(OverviewPagerTabChangeEvent.TabClick(panelDayWiseListData.Day3!!))
-            else -> tabPublishSubject.onNext(OverviewPagerTabChangeEvent.TabClick(panelDayWiseListData.Day3!!))
+            else -> tabPublishSubject.onNext(OverviewPagerTabChangeEvent.TabClick(panelDayWiseListData.Day1!!))
         }
 
 
