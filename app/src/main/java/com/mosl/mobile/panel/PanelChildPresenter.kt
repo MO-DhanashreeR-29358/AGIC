@@ -2,11 +2,13 @@ package com.mosl.mobile.panel
 
 import com.mosl.app.core.base.BasePresenter
 import com.mosl.app.core.exception.ServiceFailureException
+import com.mosl.mobile.panelpager.PanelTabChangeEvent
 import dagger.Binds
 import dagger.Module
 import io.reactivex.Observable
 import io.reactivex.rxkotlin.Observables
 import io.reactivex.rxkotlin.addTo
+import io.reactivex.rxkotlin.ofType
 import javax.inject.Inject
 
 @Module
@@ -15,21 +17,14 @@ abstract class PanelChildModule {
     abstract fun providePanelChildView(fragment: PanelChildFragment): PanelChildView
 }
 
-class PanelPresenter @Inject constructor(
+class PanelChildPresenter @Inject constructor(
     view: PanelChildView
 ) : BasePresenter<PanelChildView>(view) {
     override fun start() {
 
-        disposable.add(view.onTabClicked()
-            .map {
-                if (it.panelDayWiseListData.isEmpty()){
-                    throw ServiceFailureException("No data available for the day")
-                }else {
-                    it.panelDayWiseListData
-                }
-            }
-            .compose (applyUiModel())
-            .subscribe(view::renderPage))
+        view.onTabClicked()
+            .subscribe(view::renderPage)
+            .addTo(disposable)
 
         view.onItemClicked()
             .subscribe {

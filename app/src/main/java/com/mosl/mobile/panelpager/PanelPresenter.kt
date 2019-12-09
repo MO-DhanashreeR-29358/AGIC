@@ -21,9 +21,7 @@ class PanelPresenter @Inject constructor(
         Observable.merge(onFetchCalled(), onRetryCalled())
             .switchMap {
                 repository.panelDetailsData()
-            }
-
-            .compose(applyUiModel()).subscribe {
+            }.compose(applyUiModel()).subscribe {
                 view.renderPanelData(it)
             }.addTo(disposable)
     }

@@ -13,9 +13,9 @@ import io.reactivex.Observable
 interface PanelChildView : BaseView {
     fun panelDayList():ArrayList<PanelListDayItemData>?
     fun renderPage(uiModel: UiModel<List<PanelDayResponse>>)
-    fun onTabClicked(): Observable<PanelTabChangeEvent.TabClick>
+    fun onTabClicked(): Observable<UiModel<List<PanelDayResponse>>>
 
-    fun renderItemToCalender(uiModel: PanelDayResponse)
+    fun renderItemToCalender(panelDayResponse: PanelDayResponse)
 
     fun onItemClicked(): Observable<PanelUiEvent.ItemClick>
 

@@ -1,12 +1,13 @@
 package com.mosl.data.api
 
+import com.mosl.data.api.bytes.BytesInfoRequest
 import com.mosl.data.api.demo.LoginInfo
 import com.mosl.data.api.login.LoginInfoRequest
 import com.mosl.data.api.login.LoginInfoResponse
 import com.mosl.data.api.newsletter.NewsLetterResponseItem
+import com.mosl.data.api.panel.PanelDataResponse
 import com.mosl.data.api.schedule.ScheduleRequest
 import com.mosl.data.api.schedule.ScheduleResponseItem
-import com.mosl.data.api.panel.PanelDataResponse
 import com.mosl.mobile.demo.UserResponse
 import io.reactivex.Observable
 import retrofit2.http.Body
@@ -15,19 +16,22 @@ import retrofit2.http.POST
 
 interface AGICApi {
 
-  @POST("QMS2API/api/Login/authorize")
-  suspend fun demoLogin(
-    @Body request: LoginInfo
-  ): UserResponse
+    @POST("QMS2API/api/Login/authorize")
+    suspend fun demoLogin(
+        @Body request: LoginInfo
+    ): UserResponse
 
-  @POST("GetClientDetails")
-   fun userLogin(@Body request: LoginInfoRequest): Observable<LoginInfoResponse>
+    @POST("GetClientDetails")
+    fun userLogin(@Body request: LoginInfoRequest): Observable<LoginInfoResponse>
 
-  @POST("GetBroucherDetails")
-   fun getBrochureData(): Observable<BaseResponseAgic<List<NewsLetterResponseItem>>>
+    @POST("GetBroucherDetails")
+    fun getBrochureData(): Observable<BaseResponseAgic<List<NewsLetterResponseItem>>>
 
     @POST("GetScheduleAPI")
     fun getScheduleDataAPI(@Body request: ScheduleRequest): Observable<BaseResponseAgic<List<ScheduleResponseItem>>>
+
+    @POST("GetbyteDetails")
+    fun getByteDetails(@Body request: BytesInfoRequest): Observable<List<String>>
 
 
     @POST("GetPanelDetails")

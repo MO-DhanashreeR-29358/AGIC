@@ -30,11 +30,11 @@ import javax.inject.Inject
  */
 class PanelChildFragment : MOSLPagerItemFragment(), PanelChildView {
     @Inject
-    lateinit var presenter: PanelPresenter
+    lateinit var presenter: PanelChildPresenter
     lateinit var binding: FragmentPanelChildBinding
     lateinit var section: DataManagerSection
 
-    private var publishSubject = PublishSubject.create<PanelTabChangeEvent>()
+    lateinit var publishSubject: Observable<UiModel<List<PanelDayResponse>>>
     private var publishSubjectItem = PublishSubject.create<PanelUiEvent>()
 
     override fun getLayout(): Int {
@@ -45,8 +45,8 @@ class PanelChildFragment : MOSLPagerItemFragment(), PanelChildView {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentPanelChildBinding.bind(view)
         setupRecyclerView()
+        publishSubject = (parentFragment as? PanelFragment)?.tabPublishSubject ?: Observable.empty()
         presenter.start()
-//        dataActionSubject.onNext(DataAction.Fetch)
     }
 
     private fun setupRecyclerView() {
@@ -58,13 +58,6 @@ class PanelChildFragment : MOSLPagerItemFragment(), PanelChildView {
             setHasFixedSize(true)
             adapter = groupAdapter
         }
-
-
-    }
-
-    fun setSubject(tabPublishSubject: PublishSubject<PanelTabChangeEvent>) {
-        publishSubject = tabPublishSubject
-
     }
 
     override fun panelDayList(): ArrayList<PanelListDayItemData>? {
@@ -79,13 +72,13 @@ class PanelChildFragment : MOSLPagerItemFragment(), PanelChildView {
         uiModel.onSuccess { panelListDayData ->
             section.clearContent()
             for (model in panelListDayData) {
-                section.add(ItemPanelList(model, context!!,publishSubjectItem))
+                section.add(ItemPanelList(model, context!!, publishSubjectItem))
             }
         }
 
     }
 
-    override fun onTabClicked(): Observable<PanelTabChangeEvent.TabClick> {
+    override fun onTabClicked(): Observable<UiModel<List<PanelDayResponse>>> {
         return publishSubject.ofType()
     }
 
@@ -101,20 +94,7 @@ class PanelChildFragment : MOSLPagerItemFragment(), PanelChildView {
     }
 
     override fun onItemClicked(): Observable<PanelUiEvent.ItemClick> {
-       return publishSubjectItem.ofType()
+        return publishSubjectItem.ofType()
     }
-
-    companion object {
-
-        @JvmStatic
-        fun newInstance(
-        ): PanelChildFragment {
-            val fragment = PanelChildFragment()
-
-            return fragment
-        }
-    }
-
-
 
 }

@@ -7,5 +7,7 @@ sealed class PanelTabChangeEvent {
         var panelDayWiseListData: List<PanelDayResponse>
     ) : PanelTabChangeEvent()
 
+    data class Error(val error: Throwable) : PanelTabChangeEvent()
+
 }
 

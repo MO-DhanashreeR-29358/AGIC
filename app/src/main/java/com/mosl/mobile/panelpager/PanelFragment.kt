@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.mosl.app.core.events.DataAction
+import com.mosl.app.core.exception.ServiceFailureException
 import com.mosl.app.coreui.adapters.ViewPagerAdapter
 import com.mosl.commons.data.UiModel
 import com.mosl.commons.data.onFailure
@@ -31,7 +32,7 @@ class PanelFragment : MOSLCommonPager(), PanelView {
     lateinit var presenter: PanelPresenter
     var panelDayWiseListData = mutableListOf<List<PanelDayResponse>>()
 
-    private val tabPublishSubject = PublishSubject.create<PanelTabChangeEvent>()
+    val tabPublishSubject = PublishSubject.create<UiModel<List<PanelDayResponse>>>()
     override fun getLayout(): Int {
         return R.layout.fragment_panel
     }
@@ -47,17 +48,11 @@ class PanelFragment : MOSLCommonPager(), PanelView {
     override fun getItem(pos: Int): Fragment? {
 
         return when (pos) {
-            0 -> {
-                PanelChildFragment().apply { setSubject(tabPublishSubject) }
-            }
+            0 -> { PanelChildFragment() }
 
-            1 -> {
-                PanelChildFragment().apply { setSubject(tabPublishSubject) }
-            }
+            1 -> { PanelChildFragment() }
 
-            2 -> {
-                PanelChildFragment().apply { setSubject(tabPublishSubject) }
-            }
+            2 -> { PanelChildFragment() }
             else -> null
         }
     }
@@ -77,24 +72,12 @@ class PanelFragment : MOSLCommonPager(), PanelView {
 
     }
 
-
-    private fun List<PanelDayResponse>.getParcelablePanelDayList(): List<PanelListDayItemData> {
-        return map {
-            PanelListDayItemData(
-                day = it.day,
-                cRepresentiveName = it.cRepresentiveName,
-                designation = it.designation,
-                representativeStarttime = it.representativeStarttime,
-                representativeEndtime = it.representativeEndtime,
-                panelImagePath = it.panelImagePath,
-                speakerIntroduction = it.speakerIntroduction
-
-            )
-        }
-    }
-
     override fun onPageSelection(position: Int) {
-        tabPublishSubject.onNext(PanelTabChangeEvent.TabClick(panelDayWiseListData.get(position)))
+        if (panelDayWiseListData.isNullOrEmpty()) {
+            tabPublishSubject.onNext(UiModel.error(ServiceFailureException("No data available for the day")))
+        } else {
+            tabPublishSubject.onNext(UiModel.success(panelDayWiseListData.get(position)))
+        }
         super.onPageSelection(position)
     }
 
@@ -102,12 +85,18 @@ class PanelFragment : MOSLCommonPager(), PanelView {
         toggleProgressBar(uiModel.inProgress)
 
         uiModel.onFailure { error ->
-            showOnFailurePopup(error)
+            tabPublishSubject.onNext(UiModel.error(error))
         }
 
         uiModel.onSuccess {
             panelDayWiseListData = it.PanelDayWiseListData() as MutableList<List<PanelDayResponse>>
-            tabPublishSubject.onNext(PanelTabChangeEvent.TabClick(it.PanelDayWiseListData().get(0)))
+            val dayPanel = it.PanelDayWiseListData().get(0)
+            if (dayPanel.isNotEmpty()) {
+                tabPublishSubject.onNext(UiModel.success(dayPanel))
+            } else {
+                tabPublishSubject.onNext(UiModel.error(ServiceFailureException("No data available for the day")))
+            }
+
         }
     }
 

@@ -68,6 +68,7 @@ class ScheduleFragment : MOSLCommonFragment(), ScheduleContract {
     override fun renderScheduleData(uiModel: UiModel<ScheduleResponse>) {
         uiModel.onFailure { it ->
             section.showError(it)
+
         }
 
         uiModel.onSuccess {

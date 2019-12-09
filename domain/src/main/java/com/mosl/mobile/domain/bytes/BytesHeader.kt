@@ -1,4 +1,4 @@
-package com.mosl.mobile.bytes
+package com.mosl.mobile.domain.bytes
 
 data class BytesHeader(
     @JvmField val title: String,
