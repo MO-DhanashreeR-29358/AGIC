@@ -14,11 +14,13 @@ import com.mosl.mobile.core.MOSLCommonPager
 import com.mosl.mobile.databinding.FragmentOverviewBinding
 import com.mosl.mobile.domain.overviewpager.OverviewPagerResponseDataInfo
 import com.mosl.mobile.overview.OverviewChildFragment
-import timber.log.Timber
+import com.mosl.mobile.panelpager.PanelTabChangeEvent
+import io.reactivex.subjects.PublishSubject
 import javax.inject.Inject
 
 class OverviewFragment : MOSLCommonPager(), OverviewPagerContract {
 
+    private val tabPublishSubject = PublishSubject.create<OverviewPagerTabChangeEvent>()
     private lateinit var section: DataManagerSection
 
     @Inject
@@ -32,6 +34,7 @@ class OverviewFragment : MOSLCommonPager(), OverviewPagerContract {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentOverviewBinding.bind(view)
         setUpAdapter()
@@ -42,9 +45,9 @@ class OverviewFragment : MOSLCommonPager(), OverviewPagerContract {
 
     override fun getItem(pos: Int): Fragment? {
         return when (pos) {
-            0 -> OverviewChildFragment()
-            1 -> OverviewChildFragment()
-            2 -> OverviewChildFragment()
+            0 -> OverviewChildFragment().apply { setSubject(tabPublishSubject) }
+            1 -> OverviewChildFragment().apply { setSubject(tabPublishSubject) }
+            2 -> OverviewChildFragment().apply { setSubject(tabPublishSubject) }
             else -> null
         }
     }
@@ -69,8 +72,19 @@ class OverviewFragment : MOSLCommonPager(), OverviewPagerContract {
              TabLayout.MODE_FIXED*/
     }
 
+    lateinit var panelDayWiseListData : OverviewPagerResponseDataInfo
+
     override fun onPageSelection(position: Int) {
-        Timber.d("Page Selected---> %d", position)
+
+        return when (position) {
+            0 -> tabPublishSubject.onNext(OverviewPagerTabChangeEvent.TabClick(panelDayWiseListData.Day1!!))
+            1 -> tabPublishSubject.onNext(OverviewPagerTabChangeEvent.TabClick(panelDayWiseListData.Day2!!))
+            2 -> tabPublishSubject.onNext(OverviewPagerTabChangeEvent.TabClick(panelDayWiseListData.Day3!!))
+            else -> tabPublishSubject.onNext(OverviewPagerTabChangeEvent.TabClick(panelDayWiseListData.Day3!!))
+        }
+
+
+
         super.onPageSelection(position)
     }
 
@@ -78,12 +92,16 @@ class OverviewFragment : MOSLCommonPager(), OverviewPagerContract {
         uiModel.onFailure {
             section.showError(it)
             showOnFailurePopup(it)
+
+            tabPublishSubject.onNext(OverviewPagerTabChangeEvent.TabClick(panelDayWiseListData.Day1!!))
         }
 
         uiModel.onSuccess {
 
             Log.d("DATA", it.toString())
 
+            panelDayWiseListData = it
+            tabPublishSubject.onNext(OverviewPagerTabChangeEvent.TabClick(panelDayWiseListData.Day1!!))
         }
     }
 }
