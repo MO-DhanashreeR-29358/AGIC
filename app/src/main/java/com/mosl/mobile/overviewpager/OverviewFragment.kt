@@ -1,29 +1,25 @@
 package com.mosl.mobile.overviewpager
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.mosl.app.coreui.adapters.ViewPagerAdapter
 import com.mosl.commons.data.UiModel
 import com.mosl.commons.data.onFailure
 import com.mosl.commons.data.onSuccess
+import com.mosl.groupiex.section.DataManagerSection
 import com.mosl.mobile.R
 import com.mosl.mobile.core.MOSLCommonPager
 import com.mosl.mobile.databinding.FragmentOverviewBinding
-import com.mosl.mobile.domain.overviewpager.OverviewPagerResponseInfo
+import com.mosl.mobile.domain.overviewpager.OverviewPagerResponseDataInfo
 import com.mosl.mobile.overview.OverviewChildFragment
 import timber.log.Timber
 import javax.inject.Inject
 
 class OverviewFragment : MOSLCommonPager(), OverviewPagerContract {
 
-    override fun renderScheduleData(uiModel: UiModel<List<OverviewPagerResponseInfo>>) {
-        uiModel.onFailure { error -> }
-
-        uiModel.onSuccess {
-
-        }
-    }
+    private lateinit var section: DataManagerSection
 
     @Inject
     lateinit var presenter: OverviewPresenter
@@ -58,6 +54,8 @@ class OverviewFragment : MOSLCommonPager(), OverviewPagerContract {
     }
 
     private fun setUpAdapter() {
+        section = DataManagerSection(onRetryClick)
+
         pagerAdapter = ViewPagerAdapter(childFragmentManager, requireContext(), this)
         pagerAdapter.setFragmentTitles(R.array.tabTitles)
         mPager.adapter = pagerAdapter
@@ -76,4 +74,16 @@ class OverviewFragment : MOSLCommonPager(), OverviewPagerContract {
         super.onPageSelection(position)
     }
 
+    override fun renderScheduleData(uiModel: UiModel<OverviewPagerResponseDataInfo>) {
+        uiModel.onFailure {
+            section.showError(it)
+            showOnFailurePopup(it)
+        }
+
+        uiModel.onSuccess {
+
+            Log.d("DATA", it.toString())
+
+        }
+    }
 }

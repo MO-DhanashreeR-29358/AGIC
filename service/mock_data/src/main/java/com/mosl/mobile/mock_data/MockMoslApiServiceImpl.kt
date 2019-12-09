@@ -1,27 +1,30 @@
 package com.mosl.mobile.mock_data
 
 import android.content.Context
-import com.mosl.data.api.demo.LoginInfo
 import com.mosl.data.api.AGICApi
 import com.mosl.data.api.BaseResponseAgic
+import com.mosl.data.api.demo.LoginInfo
 import com.mosl.data.api.login.LoginInfoRequest
 import com.mosl.data.api.login.LoginInfoResponse
 import com.mosl.data.api.newsletter.NewsLetterResponseItem
 import com.mosl.data.api.overviewpager.OverviewPagerRequest
-import com.mosl.data.api.overviewpager.OverviewPagerResponseItem
+import com.mosl.data.api.overviewpager.OverviewPagerResponseData
+import com.mosl.data.api.panel.PanelDataResponse
 import com.mosl.data.api.schedule.ScheduleRequest
 import com.mosl.data.api.schedule.ScheduleResponseItem
-import com.mosl.data.api.panel.PanelDataResponse
 import com.mosl.mobile.demo.UserResponse
 import io.reactivex.Observable
 import retrofit2.mock.MockRetrofit
 
 class MockMoslApiServiceImpl(
     private val mockRetrofit: MockRetrofit,
-    private val context: Context) : AGICApi {
-    override fun getClientIDOverAPI(request: OverviewPagerRequest): Observable<List<OverviewPagerResponseItem>> {
+    private val context: Context
+) : AGICApi {
+
+    override fun getClientIDOverAPI(request: OverviewPagerRequest): Observable<OverviewPagerResponseData> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
+
 
     override fun getScheduleDataAPI(request: ScheduleRequest): Observable<List<ScheduleResponseItem>> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -35,7 +38,7 @@ class MockMoslApiServiceImpl(
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override suspend fun demoLogin(loginInfo: LoginInfo):UserResponse{
+    override suspend fun demoLogin(loginInfo: LoginInfo): UserResponse {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 

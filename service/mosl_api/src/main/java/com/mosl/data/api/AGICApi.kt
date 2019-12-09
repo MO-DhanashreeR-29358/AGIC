@@ -5,7 +5,7 @@ import com.mosl.data.api.login.LoginInfoRequest
 import com.mosl.data.api.login.LoginInfoResponse
 import com.mosl.data.api.newsletter.NewsLetterResponseItem
 import com.mosl.data.api.overviewpager.OverviewPagerRequest
-import com.mosl.data.api.overviewpager.OverviewPagerResponseItem
+import com.mosl.data.api.overviewpager.OverviewPagerResponseData
 import com.mosl.data.api.schedule.ScheduleRequest
 import com.mosl.data.api.schedule.ScheduleResponseItem
 import com.mosl.data.api.panel.PanelDataResponse
@@ -32,7 +32,7 @@ interface AGICApi {
     fun getScheduleDataAPI(@Body request: ScheduleRequest): Observable<List<ScheduleResponseItem>>
 
     @POST("GetClientIDOver")
-    fun getClientIDOverAPI(@Body request: OverviewPagerRequest): Observable<List<OverviewPagerResponseItem>>
+    fun getClientIDOverAPI(@Body request: OverviewPagerRequest): Observable<OverviewPagerResponseData>
 
 
     @POST("GetPanelDetails")
