@@ -180,3 +180,9 @@ fun addToCalendart(
         context.startActivity(intent)
     }
 }
+
+fun getMilliFromDate(dateFormat: String,formaterDate:DateFormat): String {
+    val date = formaterDate.parse(dateFormat)
+
+    return date.time.toString()
+}

@@ -4,11 +4,13 @@ import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mosl.app.core.events.DataAction
+import com.mosl.app.core.prefs.StringPreference
 import com.mosl.commons.data.UiModel
 import com.mosl.commons.data.onFailure
 import com.mosl.commons.data.onSuccess
 import com.mosl.groupiex.section.DataManagerSection
 import com.mosl.mobile.R
+import com.mosl.mobile.annotations.LastScheduleDate
 import com.mosl.mobile.core.MOSLCommonFragment
 import com.mosl.mobile.databinding.FragmentScheduleBinding
 import com.mosl.mobile.domain.schedule.ScheduleRepresentativeItemData
@@ -27,6 +29,8 @@ import javax.inject.Inject
 import com.mosl.mobile.core.MOSLCommonActivity
 import com.mosl.mobile.domain.schedule.ScheduleResponse
 import com.mosl.mobile.login.UserManagerImpl
+import com.mosl.shared.AppDateFormats
+import java.util.*
 
 
 class ScheduleFragment : MOSLCommonFragment(), ScheduleContract {
@@ -44,6 +48,10 @@ class ScheduleFragment : MOSLCommonFragment(), ScheduleContract {
         return R.layout.fragment_schedule
     }
 
+
+   @Inject
+   @field:LastScheduleDate
+    lateinit var scheduleDate: StringPreference
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -66,13 +74,14 @@ class ScheduleFragment : MOSLCommonFragment(), ScheduleContract {
     }
 
     override fun renderScheduleData(uiModel: UiModel<ScheduleResponse>) {
+        toggleProgressBar(uiModel.inProgress)
         uiModel.onFailure { it ->
             section.showError(it)
 
         }
 
         uiModel.onSuccess {
-
+            scheduleDate.set( AppDateFormats.DF_JSON_DATE_4.format(Date()))
             activity?.let {activity ->
                 (activity as MOSLCommonActivity).pdfLink=it.PDFLink!!
             }

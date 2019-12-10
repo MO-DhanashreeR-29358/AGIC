@@ -5,11 +5,13 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jakewharton.rxbinding3.swiperefreshlayout.refreshes
 import com.mosl.app.core.events.DataAction
+import com.mosl.app.core.prefs.StringPreference
 import com.mosl.commons.data.UiModel
 import com.mosl.commons.data.onFailure
 import com.mosl.commons.data.onSuccess
 import com.mosl.groupiex.section.DataManagerSection
 import com.mosl.mobile.R
+import com.mosl.mobile.annotations.LastBytesDate
 import com.mosl.mobile.core.MOSLCommonFragment
 import com.mosl.mobile.databinding.FragmentBytesBinding
 import com.mosl.mobile.domain.bytes.BytesData
@@ -22,6 +24,7 @@ import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
 import com.xwray.groupie.databinding.BindableItem
 import io.reactivex.Observable
+import java.util.*
 import javax.inject.Inject
 
 class BytesFragment : MOSLCommonFragment(), BytesContract {
@@ -29,6 +32,10 @@ class BytesFragment : MOSLCommonFragment(), BytesContract {
     lateinit var presenter: BytesPresenter
     lateinit var binding: FragmentBytesBinding
     lateinit var section: DataManagerSection
+
+    @Inject
+    @field:LastBytesDate
+    lateinit var bytesDate: StringPreference
 
     override fun getLayout(): Int {
         return R.layout.fragment_bytes
@@ -66,6 +73,7 @@ class BytesFragment : MOSLCommonFragment(), BytesContract {
         }
 
         uiModel.onSuccess {
+            bytesDate.set(AppDateFormats.DF_JSON_DATE_4.format(Date()))
             section.clearContent()
 //            val sortedList = it.sortedWith(compareBy({ it.entryDate }))
             val bytesList = getBytesData(it)
@@ -91,7 +99,9 @@ class BytesFragment : MOSLCommonFragment(), BytesContract {
                 getFormatedDate(
                     it.entryDate,
                     AppDateFormats.DF_JSON_DATE_4,
-                    AppDateFormats.DF_JSON_DATE_10) }
+                    AppDateFormats.DF_JSON_DATE_10
+                )
+            }
             .distinctBy { it }
 
 

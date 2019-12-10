@@ -4,5 +4,5 @@ import io.reactivex.Observable
 
 interface BytesRepository {
 
-    fun bytesData(request: BytesRequest): Observable<List<BytesResponse>>
+    fun bytesData(): Observable<List<BytesResponse>>
 }

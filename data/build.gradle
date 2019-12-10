@@ -81,4 +81,5 @@ dependencies {
   implementation project (':annotations')
   implementation project (':app_user')
   implementation project (':mock_data')
+  implementation project (':shared')
 }

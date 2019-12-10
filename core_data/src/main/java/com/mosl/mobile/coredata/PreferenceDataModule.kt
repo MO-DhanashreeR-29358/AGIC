@@ -5,6 +5,10 @@ import android.content.SharedPreferences
 import com.f2prateek.rx.preferences2.RxSharedPreferences
 import com.mosl.app.core.prefs.StringPreference
 import com.mosl.mobile.annotations.ClientCode
+import com.mosl.mobile.annotations.LastBytesDate
+import com.mosl.mobile.annotations.LastScheduleDate
+import com.mosl.mobile.app_user.BYTES_DATE_KEY
+import com.mosl.mobile.app_user.SCHEDULE_DATE_KEY
 import com.mosl.mobile.app_user.helper.PrefStoreProvider.PREF_CLIENT_CODE
 import dagger.Module
 import dagger.Provides
@@ -29,6 +33,21 @@ class PreferenceDataModule {
     @Provides
     internal fun provideClientCodePref(prefs: SharedPreferences): StringPreference {
         return StringPreference(prefs, PREF_CLIENT_CODE, "")
+    }
+
+
+    @LastScheduleDate
+    @Singleton
+    @Provides
+    internal fun provideScheduleDatePref(prefs: SharedPreferences): StringPreference {
+        return StringPreference(prefs, SCHEDULE_DATE_KEY, "")
+    }
+
+    @LastBytesDate
+    @Singleton
+    @Provides
+    internal fun provideBytesDatePref(prefs: SharedPreferences): StringPreference {
+        return StringPreference(prefs, BYTES_DATE_KEY, "")
     }
 
 }

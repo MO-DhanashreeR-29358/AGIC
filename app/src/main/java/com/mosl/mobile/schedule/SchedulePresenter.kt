@@ -1,6 +1,8 @@
 package com.mosl.mobile.schedule
 
 import com.mosl.app.core.base.BasePresenter
+import com.mosl.app.core.prefs.StringPreference
+import com.mosl.mobile.annotations.LastScheduleDate
 import com.mosl.mobile.app_user.login.UserManager
 import com.mosl.mobile.app_user.login.user
 import com.mosl.mobile.domain.schedule.ScheduleRepository
@@ -12,23 +14,15 @@ import javax.inject.Inject
 
 class SchedulePresenter @Inject constructor(
     view: ScheduleContract,
-    val repository: ScheduleRepository,
-    val userManager: UserManager
+    val repository: ScheduleRepository
+
 ) : BasePresenter<ScheduleContract>(view) {
 
     override fun start() {
 
-        val scheduleRequest = ScheduleRequestInfo(
-            clientID = userManager.user.clientId,
-            schedule = getTodaysDate(),
-//            schedule = "2019-08-20",
-            timestamp = NEW
-        )
-
-
 
         Observable.merge(onFetchCalled(), onRetryCalled()).switchMap {
-            repository.getScheduleData(scheduleRequest)
+            repository.getScheduleData()
         }
             .compose(applyUiModel())
             .subscribe {
@@ -48,7 +42,5 @@ class SchedulePresenter @Inject constructor(
             .addTo(disposable)
     }
 
-    companion object {
-        const val NEW = "New"
-    }
+
 }
