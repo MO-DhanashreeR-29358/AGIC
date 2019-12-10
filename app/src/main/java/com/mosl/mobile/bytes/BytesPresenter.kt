@@ -20,7 +20,7 @@ class BytesPresenter @Inject constructor(
 
 
         Observable.merge(view.swipeRefresh(), onFetchCalled(), onRetryCalled()).switchMap {
-            repository.bytesData(BytesRequest("New", "0", userManager.user.clientId))
+            repository.bytesData(BytesRequest("New", "1441021596263", userManager.user.clientId))
         }.compose(applyUiModel())
             .subscribe {
                 view.renderData(it)

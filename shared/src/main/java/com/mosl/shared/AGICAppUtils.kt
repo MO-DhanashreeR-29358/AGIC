@@ -2,20 +2,20 @@ package com.mosl.shared.util
 
 import android.content.ContentResolver
 import android.content.Context
+import android.content.Intent
 import android.location.Location
 import android.location.LocationManager
 import android.os.Build
+import android.provider.CalendarContract
+import android.provider.CalendarContract.Events
 import android.provider.Settings
 import com.mosl.shared.AppDateFormats.*
 import java.net.Inet4Address
 import java.net.NetworkInterface
+import java.text.DateFormat
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
-import androidx.core.content.ContextCompat.startActivity
-import android.content.Intent
-import android.provider.CalendarContract.Events
-import android.provider.CalendarContract
 
 
 fun getLocalIpAddress(): String {
@@ -70,8 +70,8 @@ fun isMockSettingsON(context: Context): Boolean {
 
 
 fun getTime(startDateTime: String, endDateTime: String): String {
-    val startTimeFormat = DF_TIME_HH_ss.parse(startDateTime.split())
-    val endTimeFormat = DF_TIME_HH_ss.parse(endDateTime.split())
+    val startTimeFormat = DF_TIME_HH_ss.parse(startDateTime.split()) ?: "00:00:00"
+    val endTimeFormat = DF_TIME_HH_ss.parse(endDateTime.split()) ?: "00:00:00"
     val startTime = DF_TIME_hh.format(startTimeFormat)
     val endTime = DF_TIME_hh.format(endTimeFormat)
     return startTime + '-' + endTime
@@ -84,7 +84,7 @@ fun String.split(): String {
 
 fun getTimeAMPM(dateTime: String): String {
 
-    val timeFormat = DF_TIME_HH_ss.parse(dateTime.split())
+    val timeFormat = DF_TIME_HH_ss.parse(dateTime.split()) ?: "00:00:00"
     val time = DF_TIME_hh.format(timeFormat)
 
     return time
@@ -126,6 +126,15 @@ fun checkTimeIsBetween(string1: String, string2: String): Boolean {
     }
 
     return false
+}
+
+fun getFormatedDate(
+    date: String,
+    inputFormatedDate: DateFormat,
+    outputFormatedDate: DateFormat
+): String {
+    val time = inputFormatedDate.parse(date) ?: "0000-00-00'T'00:00:00"
+    return outputFormatedDate.format(time)
 }
 
 fun getTodaysDate(): String {

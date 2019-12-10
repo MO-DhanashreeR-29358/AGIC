@@ -2,6 +2,9 @@ package com.mosl.mobile.bytes
 
 import com.mosl.mobile.R
 import com.mosl.mobile.databinding.ItemBytesHeaderBinding
+import com.mosl.shared.AppDateFormats.DF_JSON_DATE_10
+import com.mosl.shared.AppDateFormats.DF_JSON_DATE_11
+import com.mosl.shared.util.getFormatedDate
 import com.xwray.groupie.databinding.BindableItem
 
 class BytesHeaderItem(val title: String) : BindableItem<ItemBytesHeaderBinding>() {
@@ -10,7 +13,7 @@ class BytesHeaderItem(val title: String) : BindableItem<ItemBytesHeaderBinding>(
     }
 
     override fun bind(viewBinding: ItemBytesHeaderBinding, position: Int) {
-        viewBinding.txtSectionTitle.text = title
+        viewBinding.txtSectionTitle.text = getFormatedDate(title, DF_JSON_DATE_10,DF_JSON_DATE_11)
     }
 
     override fun getId(): Long {

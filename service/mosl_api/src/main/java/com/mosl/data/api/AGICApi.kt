@@ -1,6 +1,7 @@
 package com.mosl.data.api
 
 import com.mosl.data.api.bytes.BytesInfoRequest
+import com.mosl.data.api.bytes.BytesInfoResponse
 import com.mosl.data.api.demo.LoginInfo
 import com.mosl.data.api.login.LoginInfoRequest
 import com.mosl.data.api.login.LoginInfoResponse
@@ -28,10 +29,14 @@ interface AGICApi {
     fun getBrochureData(): Observable<BaseResponseAgic<List<NewsLetterResponseItem>>>
 
     @POST("GetScheduleAPI")
+    @Headers(CACHE_FOR_4HRS)
     fun getScheduleDataAPI(@Body request: ScheduleRequest): Observable<BaseResponseAgic<List<ScheduleResponseItem>>>
 
+
+
     @POST("GetbyteDetails")
-    fun getByteDetails(@Body request: BytesInfoRequest): Observable<List<String>>
+    @Headers(CACHE_FOR_4HRS)
+    fun getByteDetails(@Body request: BytesInfoRequest): Observable<List<BytesInfoResponse>>
 
 
     @POST("GetPanelDetails")

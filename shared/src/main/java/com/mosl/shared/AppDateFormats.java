@@ -41,7 +41,8 @@ public class AppDateFormats {
 
 	private static final String TIME_hh = "hh:mm a";
 	public static final DateFormat DF_TIME_hh = new SimpleDateFormat(TIME_hh, Locale.ENGLISH);
-
+	private static final String TIME_HOURS = "HH";
+	public static final DateFormat DF_TIME_HOURS = new SimpleDateFormat(TIME_HOURS, Locale.ENGLISH);
 
 	private static final String TIME_HH_ss = "HH:mm:ss";
 	public static final DateFormat DF_TIME_HH_ss = new SimpleDateFormat(TIME_HH_ss, Locale.ENGLISH);
@@ -74,4 +75,11 @@ public class AppDateFormats {
 
 	private static final String JSON_DATE9 = "yyyy-MM-dd' 'kk:mm:ss";
 	public static final DateFormat DF_JSON_DATE9 = new SimpleDateFormat(JSON_DATE9, Locale.ENGLISH);
+
+	private static final String JSON_DATE_10 = "yyyy-MM-dd'T'HH";
+	public static final DateFormat DF_JSON_DATE_10 =
+			new SimpleDateFormat(JSON_DATE_10, Locale.ENGLISH);
+
+	private static final String JSON_DATE_11 = "MMMM dd,yyyy hh:mm a";
+	public static final DateFormat DF_JSON_DATE_11 = new SimpleDateFormat(JSON_DATE_11, Locale.ENGLISH);
 }

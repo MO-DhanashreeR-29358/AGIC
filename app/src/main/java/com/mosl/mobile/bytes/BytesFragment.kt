@@ -12,8 +12,15 @@ import com.mosl.groupiex.section.DataManagerSection
 import com.mosl.mobile.R
 import com.mosl.mobile.core.MOSLCommonFragment
 import com.mosl.mobile.databinding.FragmentBytesBinding
+import com.mosl.mobile.domain.bytes.BytesData
+import com.mosl.mobile.domain.bytes.BytesItemModel
+import com.mosl.mobile.domain.bytes.BytesResponse
+import com.mosl.mobile.util.toggleProgressBar
+import com.mosl.shared.AppDateFormats
+import com.mosl.shared.util.getFormatedDate
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
+import com.xwray.groupie.databinding.BindableItem
 import io.reactivex.Observable
 import javax.inject.Inject
 
@@ -52,23 +59,54 @@ class BytesFragment : MOSLCommonFragment(), BytesContract {
         return binding.swipeRefresh.refreshes()
     }
 
-    override fun renderData(uiModel: UiModel<List<String>>) {
+    override fun renderData(uiModel: UiModel<List<BytesResponse>>) {
+        binding.swipeRefresh.toggleProgressBar(section, uiModel.inProgress)
         uiModel.onFailure { it ->
             section.showError(it)
         }
 
         uiModel.onSuccess {
             section.clearContent()
-//            val sortedList = it.Data.sortedWith(compareBy({ it.startTime }))
-//            val items = mutableListOf<BindableItem<*>>()
-//            for (header in sortedList) {
-//                items.add(BytesHeaderItem(header.title))
-//                for (model in header.bytesList) {
-//                    items.add(ItemBytes(model))
-//                }
-//            }
-//            section.update(items)
+//            val sortedList = it.sortedWith(compareBy({ it.entryDate }))
+            val bytesList = getBytesData(it)
+            val items = mutableListOf<BindableItem<*>>()
+            for (header in bytesList) {
+                items.add(BytesHeaderItem(header.headerTime))
+                for (model in header.itemList) {
+                    items.add(ItemBytes(model))
+                }
+
+            }
+            section.update(items)
         }
+    }
+
+
+    fun getBytesData(dataList: List<BytesResponse>): List<BytesData> {
+        val bytesListData = mutableListOf<BytesData>()
+
+
+        val distinctDatesList = dataList
+            .map {
+                getFormatedDate(
+                    it.entryDate,
+                    AppDateFormats.DF_JSON_DATE_4,
+                    AppDateFormats.DF_JSON_DATE_10) }
+            .distinctBy { it }
+
+
+        distinctDatesList.forEachIndexed { indexDate, filteredDates ->
+            val childItemList = mutableListOf<BytesItemModel>()
+            dataList.forEachIndexed { index, bytesResponse ->
+                if (bytesResponse.entryDate.contains(filteredDates)) {
+                    childItemList.add(BytesItemModel(bytesResponse.byte, bytesResponse.entryDate))
+                }
+            }
+            bytesListData.add(indexDate, BytesData(filteredDates, childItemList))
+
+        }
+
+        return bytesListData
     }
 
 }

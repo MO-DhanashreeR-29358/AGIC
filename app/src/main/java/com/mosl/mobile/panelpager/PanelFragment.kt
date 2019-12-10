@@ -73,7 +73,7 @@ class PanelFragment : MOSLCommonPager(), PanelView {
     }
 
     override fun onPageSelection(position: Int) {
-        if (panelDayWiseListData.isNullOrEmpty()) {
+        if (panelDayWiseListData.get(position).isNullOrEmpty()) {
             tabPublishSubject.onNext(UiModel.error(ServiceFailureException("No data available for the day")))
         } else {
             tabPublishSubject.onNext(UiModel.success(panelDayWiseListData.get(position)))

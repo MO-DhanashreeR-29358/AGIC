@@ -5,6 +5,7 @@ import com.mosl.data.api.demo.LoginInfo
 import com.mosl.data.api.AGICApi
 import com.mosl.data.api.BaseResponseAgic
 import com.mosl.data.api.bytes.BytesInfoRequest
+import com.mosl.data.api.bytes.BytesInfoResponse
 import com.mosl.data.api.login.LoginInfoRequest
 import com.mosl.data.api.login.LoginInfoResponse
 import com.mosl.data.api.newsletter.NewsLetterResponseItem
@@ -22,7 +23,7 @@ class MockMoslApiServiceImpl(
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun getByteDetails(request: BytesInfoRequest): Observable<List<String>> {
+    override fun getByteDetails(request: BytesInfoRequest): Observable<List<BytesInfoResponse>> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
