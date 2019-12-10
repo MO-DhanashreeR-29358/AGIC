@@ -10,9 +10,14 @@ data class PanelResponse(
         val panelDayWiseListData = mutableListOf<List<PanelDayResponse>>()
 
         panelDayWiseListData.apply {
-            add(day1)
-            add(day2)
-            add(day3)
+
+            val sortedList1 = day1.sortedWith(compareBy({ it.representativeStarttime }))
+            val sortedList2 = day2.sortedWith(compareBy({ it.representativeStarttime }))
+            val sortedList3 = day3.sortedWith(compareBy({ it.representativeStarttime }))
+
+            add(sortedList1)
+            add(sortedList2)
+            add(sortedList3)
         }
         return panelDayWiseListData
 

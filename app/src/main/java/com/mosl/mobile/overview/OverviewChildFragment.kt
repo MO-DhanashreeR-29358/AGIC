@@ -13,7 +13,12 @@ import com.mosl.mobile.R
 import com.mosl.mobile.core.MOSLCommonFragment
 import com.mosl.mobile.databinding.FragmentOverviewChildBinding
 import com.mosl.mobile.domain.overviewpager.OverviewPagerResponseDayItemInfo
+import com.mosl.mobile.domain.overviewpager.OverviewPagerResponseRepositoryInfo
+import com.mosl.mobile.domain.panel.PanelDayResponse
+import com.mosl.mobile.overviewpager.OverviewFragment
 import com.mosl.mobile.overviewpager.OverviewPagerTabChangeEvent
+import com.mosl.mobile.panelpager.PanelFragment
+import com.mosl.mobile.schedule.ScheduleRepDialogFragment
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
 import io.reactivex.Observable
@@ -27,13 +32,26 @@ import javax.inject.Inject
  */
 class OverviewChildFragment : MOSLCommonFragment(), OverviewChildContract {
 
+    private val followUpUiEvent = PublishSubject.create<OverviewUiEvent>()
+
+    override fun onItemClicked(): Observable<OverviewUiEvent.OnMoreClick> {
+        return followUpUiEvent.ofType()
+    }
+
+    override fun renderItemData(repList: List<OverviewPagerResponseRepositoryInfo>) {
+        val dialogFragment = OverviewRepDialogFragment()
+
+        dialogFragment.setData(repList);
+        dialogFragment.show(childFragmentManager, "dialog")
+    }
+
     lateinit var binding: FragmentOverviewChildBinding
 
     @Inject
     lateinit var presenter: OverviewChildPresenter
     lateinit var section: DataManagerSection
 
-    private var publishSubject = PublishSubject.create<OverviewPagerTabChangeEvent>()
+    lateinit var publishSubject: Observable<UiModel<List<OverviewPagerResponseDayItemInfo>>>
 
     override fun getLayout(): Int {
         return R.layout.fragment_overview_child
@@ -43,6 +61,7 @@ class OverviewChildFragment : MOSLCommonFragment(), OverviewChildContract {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentOverviewChildBinding.bind(view)
         setupRecyclerView()
+        publishSubject = (parentFragment as? OverviewFragment)?.tabPublishSubject ?: Observable.empty()
         presenter.start()
     }
 
@@ -57,12 +76,8 @@ class OverviewChildFragment : MOSLCommonFragment(), OverviewChildContract {
         }
     }
 
-    fun setSubject(tabPublishSubject: PublishSubject<OverviewPagerTabChangeEvent>) {
-        publishSubject = tabPublishSubject
 
-    }
-
-    override fun onTabClicked(): Observable<OverviewPagerTabChangeEvent.TabClick> {
+    override fun onTabClicked(): Observable<UiModel<List<OverviewPagerResponseDayItemInfo>>> {
         return publishSubject.ofType()
     }
 
@@ -86,7 +101,7 @@ class OverviewChildFragment : MOSLCommonFragment(), OverviewChildContract {
             section.clearContent()
 
             for (model in it) {
-                section.add(ItemOverview(model))
+                section.add(ItemOverview(model, followUpUiEvent))
             }
         }
     }

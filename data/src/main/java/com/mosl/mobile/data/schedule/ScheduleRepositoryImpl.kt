@@ -20,7 +20,7 @@ class ScheduleRepositoryImpl @Inject constructor(
         return agicApi.getScheduleDataAPI(mapper.getScheduleRequestMap(scheduleInafoa))
 
             .map {
-                mapper.getScheduleMap(it, "")
+                mapper.getScheduleMap(it.data, it.pdf)
             }
     }
 

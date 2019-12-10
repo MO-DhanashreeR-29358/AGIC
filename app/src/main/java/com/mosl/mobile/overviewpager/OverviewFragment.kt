@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
+import com.mosl.app.core.exception.ServiceFailureException
 import com.mosl.app.coreui.adapters.ViewPagerAdapter
 import com.mosl.commons.data.UiModel
 import com.mosl.commons.data.onFailure
@@ -13,14 +14,14 @@ import com.mosl.mobile.R
 import com.mosl.mobile.core.MOSLCommonPager
 import com.mosl.mobile.databinding.FragmentOverviewBinding
 import com.mosl.mobile.domain.overviewpager.OverviewPagerResponseDataInfo
+import com.mosl.mobile.domain.overviewpager.OverviewPagerResponseDayItemInfo
 import com.mosl.mobile.overview.OverviewChildFragment
-import com.mosl.mobile.panelpager.PanelTabChangeEvent
 import io.reactivex.subjects.PublishSubject
 import javax.inject.Inject
 
 class OverviewFragment : MOSLCommonPager(), OverviewPagerContract {
 
-    private val tabPublishSubject = PublishSubject.create<OverviewPagerTabChangeEvent>()
+    val tabPublishSubject = PublishSubject.create<UiModel<List<OverviewPagerResponseDayItemInfo>>>()
     private lateinit var section: DataManagerSection
 
     @Inject
@@ -45,9 +46,9 @@ class OverviewFragment : MOSLCommonPager(), OverviewPagerContract {
 
     override fun getItem(pos: Int): Fragment? {
         return when (pos) {
-            0 -> OverviewChildFragment().apply { setSubject(tabPublishSubject) }
-            1 -> OverviewChildFragment().apply { setSubject(tabPublishSubject) }
-            2 -> OverviewChildFragment().apply { setSubject(tabPublishSubject) }
+            0 -> OverviewChildFragment()
+            1 -> OverviewChildFragment()
+            2 -> OverviewChildFragment()
             else -> null
         }
     }
@@ -72,36 +73,64 @@ class OverviewFragment : MOSLCommonPager(), OverviewPagerContract {
              TabLayout.MODE_FIXED*/
     }
 
-    lateinit var panelDayWiseListData : OverviewPagerResponseDataInfo
+    lateinit var panelDayWiseListData: OverviewPagerResponseDataInfo
 
     override fun onPageSelection(position: Int) {
 
         return when (position) {
-            0 -> tabPublishSubject.onNext(OverviewPagerTabChangeEvent.TabClick(panelDayWiseListData.Day1!!))
-            1 -> tabPublishSubject.onNext(OverviewPagerTabChangeEvent.TabClick(panelDayWiseListData.Day2!!))
-            2 -> tabPublishSubject.onNext(OverviewPagerTabChangeEvent.TabClick(panelDayWiseListData.Day3!!))
-            else -> tabPublishSubject.onNext(OverviewPagerTabChangeEvent.TabClick(panelDayWiseListData.Day1!!))
+            0 -> if (panelDayWiseListData.Day1.isNullOrEmpty()) {
+                tabPublishSubject.onNext(UiModel.error(ServiceFailureException("No data available for the day")))
+            } else {
+                tabPublishSubject.onNext(UiModel.success(panelDayWiseListData.Day1))
+            }
+            1 ->
+                if (panelDayWiseListData.Day2.isNullOrEmpty()) {
+                    tabPublishSubject.onNext(UiModel.error(ServiceFailureException("No data available for the day")))
+                } else {
+                    tabPublishSubject.onNext(UiModel.success(panelDayWiseListData.Day2))
+                }
+            2 ->
+                if (panelDayWiseListData.Day3.isNullOrEmpty()) {
+                    tabPublishSubject.onNext(UiModel.error(ServiceFailureException("No data available for the day")))
+                } else {
+                    tabPublishSubject.onNext(UiModel.success(panelDayWiseListData.Day3))
+                }
+            else ->
+                if (panelDayWiseListData.Day1.isNullOrEmpty()) {
+                    tabPublishSubject.onNext(UiModel.error(ServiceFailureException("No data available for the day")))
+                } else {
+                    tabPublishSubject.onNext(UiModel.success(panelDayWiseListData.Day1))
+                }
         }
-
-
 
         super.onPageSelection(position)
     }
 
     override fun renderScheduleData(uiModel: UiModel<OverviewPagerResponseDataInfo>) {
-        uiModel.onFailure {
-            section.showError(it)
-            showOnFailurePopup(it)
 
-            tabPublishSubject.onNext(OverviewPagerTabChangeEvent.TabClick(panelDayWiseListData.Day1!!))
+        uiModel.onFailure {
+            tabPublishSubject.onNext(UiModel.error(it))
         }
 
         uiModel.onSuccess {
 
             Log.d("DATA", it.toString())
 
-            panelDayWiseListData = it
-            tabPublishSubject.onNext(OverviewPagerTabChangeEvent.TabClick(panelDayWiseListData.Day1!!))
+            val sortedList1 = it.Day1.sortedWith(compareBy({ it.start_time }))
+            val sortedList2 = it.Day2.sortedWith(compareBy({ it.start_time }))
+            val sortedList3 = it.Day3.sortedWith(compareBy({ it.start_time }))
+
+            panelDayWiseListData = OverviewPagerResponseDataInfo(
+                sortedList1,
+                sortedList2,
+                sortedList3
+            )
+
+            if (panelDayWiseListData.Day1.isNullOrEmpty()) {
+                tabPublishSubject.onNext(UiModel.error(ServiceFailureException("No data available for the day")))
+            } else {
+                tabPublishSubject.onNext(UiModel.success(panelDayWiseListData.Day1))
+            }
         }
     }
 }

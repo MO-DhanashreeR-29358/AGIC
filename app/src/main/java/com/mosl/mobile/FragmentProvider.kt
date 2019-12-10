@@ -9,6 +9,7 @@ import com.mosl.mobile.notes.NotesFragment
 import com.mosl.mobile.notes.NotesModule
 import com.mosl.mobile.overview.OverviewChildFragment
 import com.mosl.mobile.overview.OverviewChildModule
+import com.mosl.mobile.overview.OverviewRepDialogFragment
 import com.mosl.mobile.overviewpager.OverviewFragment
 import com.mosl.mobile.overviewpager.OverviewPagerModule
 import com.mosl.mobile.panel.PanelChildFragment
@@ -27,6 +28,9 @@ abstract class FragmentProvider {
 
     @ContributesAndroidInjector(modules = [])
     abstract fun provideScheduleRepDialogFragmentFactory(): ScheduleRepDialogFragment
+
+    @ContributesAndroidInjector(modules = [])
+    abstract fun provideOverviewRepDialogFragmentFragmentFactory(): OverviewRepDialogFragment
 
     @ContributesAndroidInjector(modules = [ContactModule::class])
     abstract fun provideContactDialogFragmentFactory(): ContactDialogFragment
