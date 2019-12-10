@@ -10,12 +10,14 @@ object PrefStoreProvider {
     const val PREF_USER_INFO = "user_info"
     const val PREF_NEWS_LETTER_STATE = "news_letter_state"
     const val PREF_CLIENT_CODE = "client_code"
+    const val PREF_PDF_LINK = "pdf_link"
 
     fun createUserPrefStore(
         preference: SharedPreferences
     ): UserPrefStore {
         return UserPrefStore(
-            userInfo = StringPreference(preference, PREF_USER_INFO))
+            userInfo = StringPreference(preference, PREF_USER_INFO),
+            pdfLink = StringPreference(preference, PREF_PDF_LINK))
     }
 
     fun createNewsLetterStatePrefStore(
@@ -29,12 +31,15 @@ object PrefStoreProvider {
 }
 
 data class UserPrefStore(
-    @JvmField val userInfo: StringPreference
+    @JvmField val userInfo: StringPreference,
+    @JvmField val pdfLink: StringPreference
 ) : PrefStore {
     override fun clear() {
         userInfo.delete()
+        pdfLink.delete()
     }
 }
+
 
 data class NewsLetterPrefStateStore(
     @JvmField val newsLetterState: BooleanPreference

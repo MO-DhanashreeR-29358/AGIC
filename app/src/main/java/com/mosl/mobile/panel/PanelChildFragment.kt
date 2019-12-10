@@ -10,12 +10,13 @@ import com.mosl.commons.data.onFailure
 import com.mosl.commons.data.onSuccess
 import com.mosl.groupiex.section.DataManagerSection
 import com.mosl.mobile.R
-import com.mosl.mobile.core.MOSLCommonFragment
+import com.mosl.mobile.core.MOSLPagerItemFragment
 import com.mosl.mobile.databinding.FragmentPanelChildBinding
 import com.mosl.mobile.domain.panel.PanelDayResponse
 import com.mosl.mobile.panelpager.PanelFragment
 import com.mosl.mobile.panelpager.PanelListDayItemData
 import com.mosl.mobile.panelpager.PanelTabChangeEvent
+import com.mosl.shared.util.addToCalendart
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
 import io.reactivex.Observable
@@ -27,13 +28,14 @@ import javax.inject.Inject
 /**
  * A simple [Fragment] subclass.
  */
-class PanelChildFragment : MOSLCommonFragment(), PanelChildView {
+class PanelChildFragment : MOSLPagerItemFragment(), PanelChildView {
     @Inject
-    lateinit var presenter: PanelPresenter
+    lateinit var presenter: PanelChildPresenter
     lateinit var binding: FragmentPanelChildBinding
     lateinit var section: DataManagerSection
 
-    private var publishSubject = PublishSubject.create<PanelTabChangeEvent>()
+    lateinit var publishSubject: Observable<UiModel<List<PanelDayResponse>>>
+    private var publishSubjectItem = PublishSubject.create<PanelUiEvent>()
 
     override fun getLayout(): Int {
         return R.layout.fragment_panel_child
@@ -43,8 +45,8 @@ class PanelChildFragment : MOSLCommonFragment(), PanelChildView {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentPanelChildBinding.bind(view)
         setupRecyclerView()
+        publishSubject = (parentFragment as? PanelFragment)?.tabPublishSubject ?: Observable.empty()
         presenter.start()
-//        dataActionSubject.onNext(DataAction.Fetch)
     }
 
     private fun setupRecyclerView() {
@@ -56,13 +58,6 @@ class PanelChildFragment : MOSLCommonFragment(), PanelChildView {
             setHasFixedSize(true)
             adapter = groupAdapter
         }
-
-
-    }
-
-    fun setSubject(tabPublishSubject: PublishSubject<PanelTabChangeEvent>) {
-        publishSubject = tabPublishSubject
-
     }
 
     override fun panelDayList(): ArrayList<PanelListDayItemData>? {
@@ -77,24 +72,29 @@ class PanelChildFragment : MOSLCommonFragment(), PanelChildView {
         uiModel.onSuccess { panelListDayData ->
             section.clearContent()
             for (model in panelListDayData) {
-                section.add(ItemPanelList(model, context!!))
+                section.add(ItemPanelList(model, context!!, publishSubjectItem))
             }
         }
 
     }
 
-    override fun onTabClicked(): Observable<PanelTabChangeEvent.TabClick> {
+    override fun onTabClicked(): Observable<UiModel<List<PanelDayResponse>>> {
         return publishSubject.ofType()
     }
 
-    companion object {
-
-        @JvmStatic
-        fun newInstance(
-        ): PanelChildFragment {
-            val fragment = PanelChildFragment()
-
-            return fragment
-        }
+    override fun renderItemToCalender(panelDayResponse: PanelDayResponse) {
+        addToCalendart(
+            context!!,
+            panelDayResponse.cRepresentiveName,
+            panelDayResponse.speakerIntroduction,
+            "",
+            panelDayResponse.representativeStarttime,
+            panelDayResponse.representativeEndtime
+        )
     }
+
+    override fun onItemClicked(): Observable<PanelUiEvent.ItemClick> {
+        return publishSubjectItem.ofType()
+    }
+
 }

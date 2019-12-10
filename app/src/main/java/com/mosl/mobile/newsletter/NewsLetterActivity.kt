@@ -19,6 +19,7 @@ import com.mosl.mobile.domain.newsletter.NewsLetterResponseInfo
 import com.mosl.mobile.login.LoginActivity
 import com.mosl.mobile.login.UserManagerImpl
 import io.reactivex.Observable
+import io.reactivex.subjects.PublishSubject
 import javax.inject.Inject
 
 /**
@@ -35,6 +36,7 @@ class NewsLetterActivity : LeanBaseActivity(), NewsLetterView {
 
     @Inject
     lateinit var userManager: UserManagerImpl
+    private val dataActionSubject = PublishSubject.create<DataAction>()
 
     override fun getLayout(): Int {
         return R.layout.activity_news_letter
@@ -45,7 +47,7 @@ class NewsLetterActivity : LeanBaseActivity(), NewsLetterView {
         binding = ActivityNewsLetterBinding.bind(findViewById(R.id.relativeLayoutMain))
 
         presenter.start()
-//        presenter.onFetchCalled()
+        dataActionSubject.onNext(DataAction.Fetch)
     }
 
 
@@ -76,12 +78,12 @@ class NewsLetterActivity : LeanBaseActivity(), NewsLetterView {
             else
                 binding.skipToLogin.visibility = View.GONE
 
-            listAdapter = ExpandableNewsLetterAdapter(baseContext, data.Data)
+                listAdapter = ExpandableNewsLetterAdapter(data.Data)
 
-            binding.expandableList.setAdapter(listAdapter)
+                binding.expandableList.setAdapter(listAdapter)
 
-            binding.expandableList.setOnGroupExpandListener(object : OnGroupExpandListener {
-                internal var previousGroup = -1
+                binding.expandableList.setOnGroupExpandListener(object : OnGroupExpandListener {
+                    var previousGroup = -1
 
                 override fun onGroupExpand(groupPosition: Int) {
                     if (groupPosition != previousGroup)
@@ -110,11 +112,12 @@ class NewsLetterActivity : LeanBaseActivity(), NewsLetterView {
     }
 
     override fun isDataEmpty(): Boolean {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return true
     }
 
+
     override fun onDataAction(): Observable<DataAction> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return dataActionSubject
     }
 
     override fun hideProgress() {

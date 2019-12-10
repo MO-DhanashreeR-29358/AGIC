@@ -2,6 +2,7 @@ package com.mosl.mobile.newsletter
 
 import com.mosl.app.core.base.BasePresenter
 import com.mosl.mobile.domain.newsletter.NewsLetterRepository
+import io.reactivex.Observable
 import io.reactivex.rxkotlin.addTo
 import javax.inject.Inject
 
@@ -13,7 +14,10 @@ class NewsLetterPresenter @Inject constructor(
 
     override fun start() {
 
-        repository.brochureData()
+        Observable.merge(onFetchCalled(), onRetryCalled())
+            .switchMap {
+                repository.brochureData()
+            }
             .compose(applyUiModel())
             .subscribe {
                 view.renderBrochureData(it)

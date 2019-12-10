@@ -22,7 +22,9 @@ import com.google.android.material.tabs.TabLayout
 import com.jakewharton.rxbinding3.appcompat.navigationClicks
 import com.mosl.app.core.network.NetworkChangeEvent
 import com.mosl.app.core.network.NetworkReceiver
+import com.mosl.app.core.utils.hide
 import com.mosl.app.core.utils.hideKeyBoard
+import com.mosl.app.core.utils.show
 import com.mosl.app.coreui.base.ActivityDelegate
 import com.mosl.app.coreui.base.BaseActivity
 import com.mosl.app.coreui.base.NavigationElement
@@ -34,6 +36,7 @@ import com.mosl.mobile.contactrm.ContactDialogFragment
 import com.mosl.mobile.coreui.LocaleManager
 import com.mosl.mobile.dashboard.ActivityNavigationHelper
 import com.mosl.mobile.databinding.ActivityCommonbaseBinding
+import com.mosl.mobile.domain.schedule.ScheduleRepository
 import com.mosl.mobile.login.LoginActivity
 import com.mosl.mobile.login.UserCacheImpl
 import com.mosl.mobile.menu.ScreenNavigatorImpl
@@ -98,7 +101,9 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
         setupObservables()
         setUpView()
         setUpTabs()
+
     }
+
 
     private fun setUpView() {
 
@@ -120,12 +125,13 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
         }
 
         binding.imgCall.setOnClickListener {
-            val ft = getSupportFragmentManager().beginTransaction()
             ContactDialogFragment.newInstance(userManager.user.contactList())
-                .show(ft, "dialog")
+                .show(supportFragmentManager, "dialog")
         }
     }
 
+
+    var pdfLink: String? = null
 
     private fun setUpTabs() {
         binding.tabLayout.addTab(
@@ -167,12 +173,20 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
 
         setColorFilter(binding.tabLayout.getTabAt(0)?.icon, baseContext.setColor(R.color.blue))
 
+
+
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 setColorFilter(tab.icon, baseContext.setColor(R.color.blue))
                 if (tab.tag as Int == NavigationConstants.NAVIGATE_TO_PDF) {
-                    PdfFragment.newInstance()
-                        .show(supportFragmentManager, "")
+                    val ft = getSupportFragmentManager().beginTransaction()
+                    if (userManager.getPdf().isNotEmpty()) {
+                        pdfLink?.let {
+                            PdfFragment.newInstance(it)
+                                .show(ft, "")
+                        }
+                    }
+
                 } else {
                     navigateFragment(tab.tag as Int)
                 }
@@ -246,12 +260,6 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
         fragTransitionHelper.navigateTo(fragmentEntry)
     }
 
-    override fun hideAppTitle() {
-    }
-
-    override fun hideProgress() {
-    }
-
     override fun onBackPressed() {
         if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
             binding.drawerLayout.closeDrawers()
@@ -303,7 +311,16 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
         binding.toolBar.title = title.toString()
     }
 
+    override fun hideAppTitle() {
+    }
+
+
+    override fun hideProgress() {
+        binding.progressBar.hide()
+    }
+
     override fun showProgress() {
+        binding.progressBar.show()
     }
 
     override fun hideOverflowMenu() {

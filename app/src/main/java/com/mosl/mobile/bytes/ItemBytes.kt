@@ -2,6 +2,7 @@ package com.mosl.mobile.bytes
 
 import com.mosl.mobile.R
 import com.mosl.mobile.databinding.ItemBytesBinding
+import com.mosl.mobile.domain.bytes.BytesData
 import com.xwray.groupie.databinding.BindableItem
 
 class ItemBytes(private val bytesData: BytesData) : BindableItem<ItemBytesBinding>() {

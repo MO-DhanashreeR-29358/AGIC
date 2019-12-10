@@ -6,7 +6,8 @@ data class BaseResponseAgic<T>(
     @JvmField  @SerializedName("Message") private val msg: String?,
     @JvmField @SerializedName("Response") val success: String?,
     @JvmField @SerializedName("IsActive") val isActive: String,
-    @JvmField @SerializedName("Data") val data: T?
+    @JvmField @SerializedName("Data") val data: T?,
+    @JvmField @SerializedName("PDFLink") val pdf: String? = null
 ) {
     val isSuccessful: Boolean
         get() = success == "true" && data != null

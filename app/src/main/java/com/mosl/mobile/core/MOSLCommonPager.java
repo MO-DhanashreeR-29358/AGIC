@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
+import com.mosl.app.core.events.DataAction;
 import com.mosl.app.coreui.adapters.ViewPagerAdapter;
 import com.mosl.app.coreui.base.LeanBaseFragment;
 import com.mosl.app.coreui.base.NavigationElement;
@@ -138,6 +139,7 @@ public abstract class MOSLCommonPager extends MOSLCommonFragment
 
     @Override
     public void sendServiceRequest() {
+        dataActionSubject.onNext(DataAction.Retry.INSTANCE);
         dispatchSendServiceRequest(mPager);
     }
 

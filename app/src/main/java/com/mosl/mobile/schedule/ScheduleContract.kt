@@ -6,11 +6,12 @@ import com.mosl.mobile.schedule.ScheduleUiEvent.ItemClick
 import com.mosl.commons.data.UiModel
 import com.mosl.mobile.domain.schedule.ScheduleResponseItemInfo
 import com.mosl.mobile.domain.schedule.ScheduleRepresentativeItemData
+import com.mosl.mobile.domain.schedule.ScheduleResponse
 import io.reactivex.Observable
 
 interface ScheduleContract : BaseView {
 
-    fun renderScheduleData(uiModel: UiModel<List<ScheduleResponseItemInfo>>)
+    fun renderScheduleData(uiModel: UiModel<ScheduleResponse>)
 
     fun onItemClickedMain(): Observable<ItemClick>
     fun renderItemToCalender(uiModel: ScheduleResponseItemInfo)

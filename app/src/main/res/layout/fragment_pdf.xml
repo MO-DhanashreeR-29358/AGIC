@@ -6,15 +6,18 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/border_dialog"
+        android:layout_margin="@dimen/margin_small"
+        android:background="@color/_material_grey_800"
         tools:ignore="HardcodedText">
 
         <TextView
             android:id="@+id/tv_pdf_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/text_label_pdf_title"
+            android:paddingStart="@dimen/padding_normal"
+            android:paddingTop="@dimen/padding_medium"
+            android:paddingEnd="@dimen/padding_normal"
+            android:text="@string/text_label_confirm"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size_large"
             app:layout_constraintEnd_toEndOf="parent"
@@ -25,8 +28,9 @@
             android:id="@+id/tv_pdf_desc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/padding_medium"
-            android:gravity="center"
+            android:paddingStart="@dimen/padding_normal"
+            android:paddingTop="@dimen/padding_small"
+            android:paddingEnd="@dimen/padding_normal"
             android:text="@string/text_label_pdf_desc"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size_normal"
@@ -34,53 +38,32 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_pdf_title" />
 
-        <View
-            android:id="@+id/horizontal_view"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_1sdp"
-            android:layout_marginTop="@dimen/margin_normal"
-            android:background="@color/warmGrey"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_pdf_desc" />
 
         <TextView
             android:id="@+id/tv_pdf_cancel"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_medium"
-            android:gravity="center"
             android:padding="@dimen/padding_medium"
-            android:text="Cancel"
-            android:textColor="@color/blue"
-            android:textSize="@dimen/text_size_medium"
-            app:layout_constraintEnd_toStartOf="@+id/vertical_view"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/horizontal_view" />
-
-        <View
-            android:id="@+id/vertical_view"
-            android:layout_width="@dimen/_1sdp"
-            android:layout_height="@dimen/_50sdp"
-            android:background="@color/warmGrey"
+            android:text="@string/text_label_cancel"
+            android:textColor="@color/_green"
+            android:textSize="@dimen/text_size_small"
             app:layout_constraintEnd_toStartOf="@+id/tv_pdf_ok"
-            app:layout_constraintStart_toEndOf="@+id/tv_pdf_cancel"
-            app:layout_constraintTop_toBottomOf="@id/horizontal_view" />
+            app:layout_constraintTop_toBottomOf="@id/tv_pdf_desc" />
+
 
         <TextView
             android:id="@+id/tv_pdf_ok"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="@dimen/margin_medium"
-            android:gravity="center"
             android:padding="@dimen/padding_medium"
-            android:text="OK"
-            android:textColor="@color/blue"
-            android:textSize="@dimen/text_size_medium"
+            android:layout_marginEnd="@dimen/margin_normal"
+            android:text="@string/text_label_ok"
+            android:textColor="@color/_green"
+            android:textSize="@dimen/text_size_small"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/vertical_view"
-            app:layout_constraintTop_toBottomOf="@id/horizontal_view"
-            tools:text="OK" />
+            app:layout_constraintTop_toBottomOf="@id/tv_pdf_desc"
+            tools:text="@string/text_label_ok" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

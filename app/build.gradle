@@ -136,6 +136,7 @@ dependencies {
     implementation RxBindingDependencies.bindingPlatform
     implementation RxBindingDependencies.bindingCore
     implementation RxBindingDependencies.bindingAppcompat
+    implementation RxBindingDependencies.bindingSwipeRefresh
 
     implementation MofslArtifactDependencies.appCore
     implementation MofslArtifactDependencies.annotation

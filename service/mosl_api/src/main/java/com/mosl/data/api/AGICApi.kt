@@ -1,14 +1,15 @@
 package com.mosl.data.api
 
+import com.mosl.data.api.bytes.BytesInfoRequest
 import com.mosl.data.api.demo.LoginInfo
 import com.mosl.data.api.login.LoginInfoRequest
 import com.mosl.data.api.login.LoginInfoResponse
 import com.mosl.data.api.newsletter.NewsLetterResponseItem
+import com.mosl.data.api.panel.PanelDataResponse
 import com.mosl.data.api.overviewpager.OverviewPagerRequest
 import com.mosl.data.api.overviewpager.OverviewPagerResponseData
 import com.mosl.data.api.schedule.ScheduleRequest
 import com.mosl.data.api.schedule.ScheduleResponseItem
-import com.mosl.data.api.panel.PanelDataResponse
 import com.mosl.mobile.demo.UserResponse
 import io.reactivex.Observable
 import retrofit2.http.Body
@@ -34,6 +35,8 @@ interface AGICApi {
     @POST("GetClientIDOver")
     fun getClientIDOverAPI(@Body request: OverviewPagerRequest): Observable<OverviewPagerResponseData>
 
+    @POST("GetbyteDetails")
+    fun getByteDetails(@Body request: BytesInfoRequest): Observable<List<String>>
 
     @POST("GetPanelDetails")
     @Headers(CACHE_FOR_4HRS)

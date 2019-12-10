@@ -24,6 +24,9 @@ import io.reactivex.Observable
 import io.reactivex.rxkotlin.ofType
 import io.reactivex.subjects.PublishSubject
 import javax.inject.Inject
+import com.mosl.mobile.core.MOSLCommonActivity
+import com.mosl.mobile.domain.schedule.ScheduleResponse
+import com.mosl.mobile.login.UserManagerImpl
 
 
 class ScheduleFragment : MOSLCommonFragment(), ScheduleContract {
@@ -35,7 +38,8 @@ class ScheduleFragment : MOSLCommonFragment(), ScheduleContract {
 
     private lateinit var binding: FragmentScheduleBinding
     private lateinit var section: DataManagerSection
-
+    @Inject
+    lateinit var userManager: UserManagerImpl
     override fun getLayout(): Int {
         return R.layout.fragment_schedule
     }
@@ -61,16 +65,23 @@ class ScheduleFragment : MOSLCommonFragment(), ScheduleContract {
         }
     }
 
-    override fun renderScheduleData(uiModel: UiModel<List<ScheduleResponseItemInfo>>) {
+    override fun renderScheduleData(uiModel: UiModel<ScheduleResponse>) {
         uiModel.onFailure { it ->
             section.showError(it)
+
         }
 
         uiModel.onSuccess {
+
+            activity?.let {activity ->
+                (activity as MOSLCommonActivity).pdfLink=it.PDFLink!!
+            }
+            userManager.savePdf(it.PDFLink!!)
+
             section.clearContent()
             var curentPos = -1;
             var curentPosBool = false;
-            val sortedList = it.sortedWith(compareBy({ it.startTime }))
+            val sortedList = it.Data.sortedWith(compareBy({ it.startTime }))
 
             for ((i, model) in sortedList.withIndex()) {
 
@@ -107,6 +118,10 @@ class ScheduleFragment : MOSLCommonFragment(), ScheduleContract {
             objScheduleResponseItemInfo.startTime,
             objScheduleResponseItemInfo.endTime
         )
+    }
+
+    override fun isDataEmpty(): Boolean {
+        return true
     }
 
     override fun onItemClicked(): Observable<OnMoreClick> {
