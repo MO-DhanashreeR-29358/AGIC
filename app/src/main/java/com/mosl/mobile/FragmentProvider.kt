@@ -9,6 +9,11 @@ import com.mosl.mobile.notes.NotesFragment
 import com.mosl.mobile.notes.NotesModule
 import com.mosl.mobile.overview.OverviewChildFragment
 import com.mosl.mobile.overview.OverviewChildModule
+import com.mosl.mobile.overview.OverviewRepDialogFragment
+import com.mosl.mobile.overviewpager.OverviewFragment
+import com.mosl.mobile.overviewpager.OverviewPagerModule
+import com.mosl.mobile.panel.PanelChildFragment
+import com.mosl.mobile.panel.PanelChildModule
 import com.mosl.mobile.panelpager.PanelFragment
 import com.mosl.mobile.panelpager.PanelModule
 import com.mosl.mobile.pdf.PdfFragment
@@ -24,6 +29,9 @@ abstract class FragmentProvider {
     @ContributesAndroidInjector(modules = [])
     abstract fun provideScheduleRepDialogFragmentFactory(): ScheduleRepDialogFragment
 
+    @ContributesAndroidInjector(modules = [])
+    abstract fun provideOverviewRepDialogFragmentFragmentFactory(): OverviewRepDialogFragment
+
     @ContributesAndroidInjector(modules = [ContactModule::class])
     abstract fun provideContactDialogFragmentFactory(): ContactDialogFragment
 
@@ -33,8 +41,11 @@ abstract class FragmentProvider {
     @ContributesAndroidInjector(modules = [PanelModule::class])
     abstract fun providePanelBAseFragmentFactory(): PanelFragment
 
+    @ContributesAndroidInjector(modules = [PanelChildModule::class])
+    abstract fun providePanelFragmentFactory(): PanelChildFragment
+
     @ContributesAndroidInjector(modules = [OverviewChildModule::class])
-    abstract fun provideOverviewFragmentFactory(): OverviewChildFragment
+    abstract fun provideOverviewFragmentChildFactory(): OverviewChildFragment
 
     @ContributesAndroidInjector(modules = [])
     abstract fun providePDFFragmentFactory(): PdfFragment
@@ -45,5 +56,8 @@ abstract class FragmentProvider {
 
     @ContributesAndroidInjector(modules = [ScheduleModule::class])
     abstract fun provideScheduleFragmentFactory(): ScheduleFragment
+
+    @ContributesAndroidInjector(modules = [OverviewPagerModule::class])
+    abstract fun provideOverviewFragmentFactory(): OverviewFragment
 
 }

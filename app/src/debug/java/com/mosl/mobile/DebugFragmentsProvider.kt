@@ -23,15 +23,9 @@ abstract class DebugFragmentsProvider {
     @ContributesAndroidInjector(modules = [DashboardModule::class])
     abstract fun provideDashboardFragmentFactory(): DashboardFragment
 
-    @ContributesAndroidInjector(modules = [DashboardModule::class])
-    abstract fun provideOverViewFragmentFactory(): OverviewFragment
 
 //    @ContributesAndroidInjector(modules = [DashboardModule::class])
 //    abstract fun provideScheduleFragmenttFactory(): ScheduleFragment
-
-    @ContributesAndroidInjector(modules = [PanelChildModule::class])
-    abstract fun providePanelFragmentFactory(): PanelChildFragment
-
 
 
     @ContributesAndroidInjector

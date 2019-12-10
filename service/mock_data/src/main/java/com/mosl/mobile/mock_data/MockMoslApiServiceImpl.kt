@@ -9,6 +9,8 @@ import com.mosl.data.api.bytes.BytesInfoResponse
 import com.mosl.data.api.login.LoginInfoRequest
 import com.mosl.data.api.login.LoginInfoResponse
 import com.mosl.data.api.newsletter.NewsLetterResponseItem
+import com.mosl.data.api.overviewpager.OverviewRequest
+import com.mosl.data.api.overviewpager.OverviewResponseData
 import com.mosl.data.api.schedule.ScheduleRequest
 import com.mosl.data.api.schedule.ScheduleResponseItem
 import com.mosl.data.api.panel.PanelDataResponse
@@ -24,6 +26,10 @@ class MockMoslApiServiceImpl(
     }
 
     override fun getByteDetails(request: BytesInfoRequest): Observable<List<BytesInfoResponse>> {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun getClientIDOverAPI(request: OverviewRequest): Observable<OverviewResponseData> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 

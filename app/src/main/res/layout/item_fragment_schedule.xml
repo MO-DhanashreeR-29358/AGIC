@@ -38,6 +38,7 @@
             android:src="@drawable/ic_mtrack"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/view_divider"
             tools:ignore="ContentDescription" />
 
         <TextView

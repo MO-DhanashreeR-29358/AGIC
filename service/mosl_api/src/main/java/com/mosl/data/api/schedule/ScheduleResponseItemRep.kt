@@ -2,7 +2,7 @@ package com.mosl.data.api.schedule
 
 import com.google.gson.annotations.SerializedName
 
-data class ScheduleResponseItem_Rep(
+data class ScheduleResponseItemRep(
 
     @JvmField @SerializedName("NAME")
     val NAME: String,

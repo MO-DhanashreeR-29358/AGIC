@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 data class ScheduleResponseItem(
 
     @JvmField @SerializedName("Rep")
-    val Rep: List<ScheduleResponseItem_Rep>,
+    val Rep: List<ScheduleResponseItemRep>,
 
     @JvmField @SerializedName("record_no")
     val record_no: String,
