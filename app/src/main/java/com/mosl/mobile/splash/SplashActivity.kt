@@ -4,20 +4,24 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import androidx.appcompat.app.AppCompatActivity
 import com.mosl.app.core.network.isNetworkConnected
 import com.mosl.app.core.utils.showConfirmation
-import com.mosl.app.coreui.base.LeanBaseActivity
 import com.mosl.mobile.R
 import com.mosl.mobile.app_user.login.UserManager
 import com.mosl.mobile.constants.NavigationConstants
 import com.mosl.mobile.core.MOSLCommonActivity
 import com.mosl.mobile.coreui.LocaleManager
+import com.mosl.mobile.coreui.core.MSFDialog
+import com.mosl.mobile.coreui.core.MSFDialog.Action.OK
+
 import com.mosl.mobile.databinding.ActivitySplashScreenBinding
 import com.mosl.mobile.login.LoginActivity
 import com.mosl.mobile.newsletter.NewsLetterActivity
+import dagger.android.AndroidInjection
 import javax.inject.Inject
 
-class SplashActivity : LeanBaseActivity() {
+class SplashActivity : AppCompatActivity() {
 
     lateinit var binding: ActivitySplashScreenBinding
 
@@ -26,16 +30,16 @@ class SplashActivity : LeanBaseActivity() {
     private var count = 0
 
 
-    override fun getLayout(): Int {
-        return R.layout.activity_splash_screen
-    }
+//    override fun getLayout(): Int {
+//        return R.layout.activity_splash_screen
+//    }
 
     @Inject
     lateinit var userManager: UserManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        AndroidInjection.inject(this)
         //Initialize the Handler
         mDelayHandler = Handler()
 
@@ -56,7 +60,7 @@ class SplashActivity : LeanBaseActivity() {
             if (count < 2) {
                 count++
                 showConfirmation(
-                    message = "Application needs network to proceed",
+                    message = getString(R.string.msg_application_needs_network_to_proceed),
                     cancelable = true,
                     title = getString(R.string.alert_dialog_title),
                     positiveButton = R.string.button_label_retrieve,
@@ -71,18 +75,33 @@ class SplashActivity : LeanBaseActivity() {
                     Unit
                 }
             } else {
-                actionableAlert(
-                    message = "Application needs network to proceed",
-                    cancelable = false,
-                    buttonText = R.string.button_label_exit
-                ) {
-                    finish()
-                }
+                showActionableAlert(
+                    message =  getString(R.string.msg_application_needs_network_to_proceed),
+                    buttonText = getString(R.string.button_label_exit)
+                )
             }
 
         }
     }
 
+    private fun showActionableAlert(
+        message: String,
+        buttonText: String,
+        cancelable: Boolean = false
+    ) {
+        MSFDialog.alertDialog(
+            this@SplashActivity,
+            0,
+            resources.getString(R.string.main_app_name),
+            message,
+            buttonText,
+            cancelable
+        ) { action, _ ->
+            if (action == OK) {
+                finish()
+            }
+        }
+    }
 
     private fun initializeApp() {
         openDashboard()

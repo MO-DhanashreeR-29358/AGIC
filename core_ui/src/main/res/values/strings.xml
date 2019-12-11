@@ -53,6 +53,7 @@
 
     <string name="button_label_retrieve">Retrieve</string>
     <string name="button_label_exit">Exit</string>
+    <string name="msg_application_needs_network_to_proceed">Application needs network to proceed</string>
     <string name="msg_logout">Do you want to logout?</string>
     <string name="text_label_confirm">Confirm</string>
     <string name="text_label_yes">YES</string>

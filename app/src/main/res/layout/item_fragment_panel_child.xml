@@ -82,7 +82,7 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_2sdp"
+            android:layout_height="@dimen/_1sdp"
             android:layout_marginTop="@dimen/margin_small"
             android:background="@color/greyWhite" />
 
@@ -102,7 +102,7 @@
         <View
             android:id="@+id/view"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_2sdp"
+            android:layout_height="@dimen/_1sdp"
             android:layout_marginTop="@dimen/margin_small"
             android:background="@color/greyWhite"
             android:visibility="gone" />
