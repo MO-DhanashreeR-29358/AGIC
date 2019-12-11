@@ -74,7 +74,7 @@ class PanelFragment : MOSLCommonPager(), PanelView {
 
     override fun onPageSelection(position: Int) {
         if (panelDayWiseListData.get(position).isNullOrEmpty()) {
-            tabPublishSubject.onNext(UiModel.error(ServiceFailureException("No data available for the day")))
+            tabPublishSubject.onNext(UiModel.error(ServiceFailureException(NO_DATA_AVAILABLE_FOR_THE_DAY)))
         } else {
             tabPublishSubject.onNext(UiModel.success(panelDayWiseListData.get(position)))
         }
@@ -94,7 +94,7 @@ class PanelFragment : MOSLCommonPager(), PanelView {
             if (dayPanel.isNotEmpty()) {
                 tabPublishSubject.onNext(UiModel.success(dayPanel))
             } else {
-                tabPublishSubject.onNext(UiModel.error(ServiceFailureException("No data available for the day")))
+                tabPublishSubject.onNext(UiModel.error(ServiceFailureException(NO_DATA_AVAILABLE_FOR_THE_DAY)))
             }
 
         }
@@ -102,6 +102,7 @@ class PanelFragment : MOSLCommonPager(), PanelView {
 
     companion object {
         const val PANEL_DAY_LIST = "panel_day_list"
+        const val NO_DATA_AVAILABLE_FOR_THE_DAY = "No data available for the day"
     }
 
 }

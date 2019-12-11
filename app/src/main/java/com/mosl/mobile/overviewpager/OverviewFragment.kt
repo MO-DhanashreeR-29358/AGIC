@@ -15,6 +15,7 @@ import com.mosl.mobile.databinding.FragmentOverviewBinding
 import com.mosl.mobile.domain.overviewpager.OverviewResponseDataInfo
 import com.mosl.mobile.domain.overviewpager.OverviewResponseDayItemInfo
 import com.mosl.mobile.overview.OverviewChildFragment
+import com.mosl.mobile.panelpager.PanelFragment
 import io.reactivex.subjects.PublishSubject
 import javax.inject.Inject
 
@@ -67,60 +68,14 @@ class OverviewFragment : MOSLCommonPager(), OverviewPagerContract {
 
     }
 
-    lateinit var panelDayWiseListData: OverviewResponseDataInfo
+    var overViewDayWiseListData = mutableListOf<List<OverviewResponseDayItemInfo>>()
 
     override fun onPageSelection(position: Int) {
 
-        tabPublishSubject.apply {
-            return when (position) {
-                0 -> if (panelDayWiseListData.Day1.isNullOrEmpty()) {
-                    onNext(
-                        UiModel.error(
-                            ServiceFailureException(
-                                NO_DATA_AVAILABLE_FOR_THE_DAY
-                            )
-                        )
-                    )
-                } else {
-                    onNext(UiModel.success(panelDayWiseListData.Day1))
-                }
-                1 ->
-                    if (panelDayWiseListData.Day2.isNullOrEmpty()) {
-                        onNext(
-                            UiModel.error(
-                                ServiceFailureException(
-                                    NO_DATA_AVAILABLE_FOR_THE_DAY
-                                )
-                            )
-                        )
-                    } else {
-                        onNext(UiModel.success(panelDayWiseListData.Day2))
-                    }
-                2 ->
-                    if (panelDayWiseListData.Day3.isNullOrEmpty()) {
-                        onNext(
-                            UiModel.error(
-                                ServiceFailureException(
-                                    NO_DATA_AVAILABLE_FOR_THE_DAY
-                                )
-                            )
-                        )
-                    } else {
-                        onNext(UiModel.success(panelDayWiseListData.Day3))
-                    }
-                else ->
-                    if (panelDayWiseListData.Day1.isNullOrEmpty()) {
-                        onNext(
-                            UiModel.error(
-                                ServiceFailureException(
-                                    NO_DATA_AVAILABLE_FOR_THE_DAY
-                                )
-                            )
-                        )
-                    } else {
-                        onNext(UiModel.success(panelDayWiseListData.Day1))
-                    }
-            }
+        if (overViewDayWiseListData.get(position).isNullOrEmpty()) {
+            tabPublishSubject.onNext(UiModel.error(ServiceFailureException(PanelFragment.NO_DATA_AVAILABLE_FOR_THE_DAY)))
+        } else {
+            tabPublishSubject.onNext(UiModel.success(overViewDayWiseListData.get(position)))
         }
         super.onPageSelection(position)
     }
@@ -134,17 +89,13 @@ class OverviewFragment : MOSLCommonPager(), OverviewPagerContract {
 
         uiModel.onSuccess {
 
-            val sortedList1 = it.Day1.sortedWith(compareBy({ it.startTime }))
-            val sortedList2 = it.Day2.sortedWith(compareBy({ it.startTime }))
-            val sortedList3 = it.Day3.sortedWith(compareBy({ it.startTime }))
 
-            panelDayWiseListData = OverviewResponseDataInfo(
-                sortedList1,
-                sortedList2,
-                sortedList3
-            )
-
-            if (panelDayWiseListData.Day1.isNullOrEmpty()) {
+            overViewDayWiseListData =
+                it.OverViewDayWiseListData() as MutableList<List<OverviewResponseDayItemInfo>>
+            val dayOverView = it.OverViewDayWiseListData().get(0)
+            if (dayOverView.isNotEmpty()) {
+                tabPublishSubject.onNext(UiModel.success(dayOverView))
+            } else {
                 tabPublishSubject.onNext(
                     UiModel.error(
                         ServiceFailureException(
@@ -152,8 +103,6 @@ class OverviewFragment : MOSLCommonPager(), OverviewPagerContract {
                         )
                     )
                 )
-            } else {
-                tabPublishSubject.onNext(UiModel.success(panelDayWiseListData.Day1))
             }
         }
     }
