@@ -16,6 +16,7 @@
     <color name="alabaster">#F9F9F9</color>
 
     <color name="black">#000000</color>
+    <color name="light_black">#323232</color>
     <color name="darkGrey">#121212</color>
     <color name="lightGrey">#272727</color>
     <color name="warmGrey">#888888</color>
