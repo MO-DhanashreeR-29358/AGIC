@@ -33,6 +33,7 @@
     <color name="text_color_disabled_black">@color/_material_grey_500</color>
 
     <color name="_green">#ff5aaa3a</color>
+    <color name="light_teal">#76D7C4</color>
     <color name="_red">#ffd50a15</color>
     <color name="_red_disabled">#61d50a15</color>
 

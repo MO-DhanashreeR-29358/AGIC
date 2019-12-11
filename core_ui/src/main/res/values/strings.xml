@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <string name="main_app_name">AGIC</string>
+    <string name="main_app_name">Motilal Oswal Conferences</string>
     <string name="network_unavailable">Network Not Available</string>
     <string name="msg_unique_code_empty">Please enter your 5 digit id to Login</string>
 

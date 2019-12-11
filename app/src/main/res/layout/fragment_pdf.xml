@@ -6,7 +6,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_small"
+        android:layout_margin="@dimen/margin_large"
         android:background="@color/_material_grey_800"
         tools:ignore="HardcodedText">
 
@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:padding="@dimen/padding_medium"
             android:text="@string/text_label_cancel"
-            android:textColor="@color/_green"
+            android:textColor="@color/light_teal"
             android:textSize="@dimen/text_size_small"
             app:layout_constraintEnd_toStartOf="@+id/tv_pdf_ok"
             app:layout_constraintTop_toBottomOf="@id/tv_pdf_desc" />
@@ -59,7 +59,7 @@
             android:padding="@dimen/padding_medium"
             android:layout_marginEnd="@dimen/margin_normal"
             android:text="@string/text_label_ok"
-            android:textColor="@color/_green"
+            android:textColor="@color/light_teal"
             android:textSize="@dimen/text_size_small"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_pdf_desc"

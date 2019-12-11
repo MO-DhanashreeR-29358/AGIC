@@ -16,9 +16,9 @@ object OverviewPagerMapper {
 
         return OverviewResponseDataInfo(
 
-            Day1 = Day(responseList.Day1),
-            Day2 = Day(responseList.Day2),
-            Day3 = Day(responseList.Day3)
+            day1 = Day(responseList.Day1),
+            day2 = Day(responseList.Day2),
+            day3 = Day(responseList.Day3)
         )
     }
 
