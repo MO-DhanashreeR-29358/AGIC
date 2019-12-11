@@ -10,34 +10,35 @@ import com.mosl.mobile.domain.schedule.ScheduleResponseItemInfo
 object ScheduleMapper {
 
 
-    fun getScheduleMap(responseList: List<ScheduleResponseItem>?, pdf: String?): ScheduleResponse {
-        val responseLisaat: List<ScheduleResponseItemInfo> = responseList!!.map {
+    fun getScheduleMap(scheduleResponseItemList: List<ScheduleResponseItem>?, pdf: String?,message:String): ScheduleResponse {
+        val responseList: List<ScheduleResponseItemInfo> = scheduleResponseItemList!!.map {
             ScheduleResponseItemInfo(
 
                 Rep = it.Rep.map {
                     ScheduleRepresentativeItemData(
-                        NAME = it.NAME,
-                        DESIGNATION = it.DESIGNATION
+                        name = it.name,
+                        designation = it.designation
                     )
                 },
 
-                recordNo = it.record_no,
+                recordNo = it.recordNo,
                 ReportURL = it.ReportURL,
-                companyName = it.company_name,
-                roomNo = it.room_no,
-                scheduleDate = it.Schedule_Date,
-                fundId = it.fund_id,
-                startTime = it.start_time,
-                endTime = it.end_time,
-                natureOfMeeting = it.Nature_of_meeting,
-                updateFlag = it.updateflag,
+                companyName = it.companyName,
+                roomNo = it.roomNo,
+                scheduleDate = it.ScheduleDate,
+                fundId = it.fundId,
+                startTime = it.startTime,
+                endTime = it.endTime,
+                natureOfMeeting = it.NatureOfMeeting,
+                updateFlag = it.updateFlag,
                 updateDate = it.UpdateDate
             )
         }
 
         return ScheduleResponse(
-            Data = responseLisaat,
-            PDFLink = pdf
+            data = responseList,
+            pdfLink = pdf,
+            message = message
         )
     }
 

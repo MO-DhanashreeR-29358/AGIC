@@ -14,7 +14,7 @@ interface ScheduleContract : BaseView {
     fun renderScheduleData(uiModel: UiModel<ScheduleResponse>)
 
     fun onItemClickedMain(): Observable<ItemClick>
-    fun renderItemToCalender(uiModel: ScheduleResponseItemInfo)
+    fun renderItemToCalender(scheduleResponseItemInfo: ScheduleResponseItemInfo)
 
     fun onItemClicked(): Observable<OnMoreClick>
     fun renderItemData(repList: List<ScheduleRepresentativeItemData>)

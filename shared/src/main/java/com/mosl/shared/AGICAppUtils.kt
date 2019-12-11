@@ -164,7 +164,6 @@ fun addToCalendart(
             .putExtra(Events.DESCRIPTION, description)
             .putExtra(Events.EVENT_LOCATION, location)
             .putExtra(Events.AVAILABILITY, Events.AVAILABILITY_BUSY)
-//            .putExtra(Intent.EXTRA_EMAIL, "rowan@example.com,trevor@example.com")
 
         context.startActivity(intent)
 
@@ -184,5 +183,5 @@ fun addToCalendart(
 fun getMilliFromDate(dateFormat: String,formaterDate:DateFormat): String {
     val date = formaterDate.parse(dateFormat)
 
-    return date.time.toString()
+    return date?.time.toString()
 }

@@ -41,7 +41,7 @@ class ScheduleRepositoryImpl @Inject constructor(
 
             .map {
 //                scheduleDate.set( DF_JSON_DATE_4.format(Date()))
-                mapper.getScheduleMap(it.data, it.pdf)
+                mapper.getScheduleMap(it.data, it.pdf,it.message)
             }
     }
 

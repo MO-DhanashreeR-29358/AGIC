@@ -18,7 +18,7 @@ class ItemScheduleRepo(
 
     override fun bind(viewBinding: ItemFragmentScheduleRepoBinding, position: Int) {
 
-        viewBinding.tvScheduleRepoDesignation.text = scheduleData.DESIGNATION
-        viewBinding.tvScheduleRepoName.text = scheduleData.NAME
+        viewBinding.tvScheduleRepoDesignation.text = scheduleData.designation
+        viewBinding.tvScheduleRepoName.text = scheduleData.name
     }
 }
