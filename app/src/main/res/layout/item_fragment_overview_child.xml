@@ -80,7 +80,7 @@
             android:layout_marginTop="@dimen/margin_small"
             android:layout_marginEnd="@dimen/margin_large"
             android:textAllCaps="true"
-            android:textColor="@color/black"
+            android:textColor="@color/light_black"
             android:textSize="@dimen/text_size_small"
             app:layout_constraintEnd_toStartOf="@+id/tv_start_time"
             app:layout_constraintStart_toEndOf="@+id/icon_mctrack"

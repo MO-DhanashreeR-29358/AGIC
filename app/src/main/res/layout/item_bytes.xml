@@ -36,7 +36,7 @@
                 android:layout_weight="1.6"
                 android:layout_marginStart="@dimen/margin_extra_small"
                 android:gravity="start"
-                android:textColor="@color/lightGrey"
+                android:textColor="@color/light_black"
                 android:textSize="@dimen/text_size_small"
                 tools:text="@string/text_label_bytes_desc" />
 
