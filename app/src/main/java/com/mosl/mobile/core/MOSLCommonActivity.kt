@@ -147,7 +147,7 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
         )
 
         binding.tabLayout.addTab(
-            binding.tabLayout.newTab().setText(R.string.tab_label_panel).setIcon(R.drawable.navigation_icon).setTag(
+            binding.tabLayout.newTab().setText(R.string.tab_label_panel).setIcon(R.drawable.ic_panel_24dp).setTag(
                 NavigationConstants.NAVIGATE_TO_PANEL
             )
         )
