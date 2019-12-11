@@ -25,8 +25,6 @@ class BytesPresenter @Inject constructor(
     override fun start() {
 
 
-
-
         Observable.merge(view.swipeRefresh(), onFetchCalled(), onRetryCalled()).switchMap {
             repository.bytesData()
         }.compose(applyUiModel())

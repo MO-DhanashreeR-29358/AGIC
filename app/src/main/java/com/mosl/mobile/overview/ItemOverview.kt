@@ -27,12 +27,12 @@ class ItemOverview(
                 tvMore.text = String.format("...%d More", count)
             }
 
-            tvOverviewDesignation.text = itemData.companyName
-            tvOverviewName.text = itemData.rep[0].name
-            overviewTvTimeFrom.text = getTimeAMPM(itemData.startTime)
-            tvOverviewTimeTo.text = getTimeAMPM(itemData.endTime)
+            tvCorporateName.text = itemData.corporateName
+            tvName.text = itemData.rep[0].name
+            tvStartTime.text = getTimeAMPM(itemData.startTime)
+            tvEndTime.text = getTimeAMPM(itemData.endTime)
 
-            iconOverviewMctrack.apply {
+            iconMctrack.apply {
                 when (itemData.natureOfMeeting) {
                     "1-1" -> setImageResource(R.drawable.ic_1x1_small)
                     "2-1" -> setImageResource(R.drawable.ic_2x1_small)

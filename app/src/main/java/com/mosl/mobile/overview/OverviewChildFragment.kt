@@ -66,7 +66,7 @@ class OverviewChildFragment : MOSLCommonFragment(), OverviewChildContract {
         val groupAdapter = GroupAdapter<ViewHolder>()
         section = DataManagerSection(onRetryClick)
         groupAdapter.add(section)
-        binding.rvOverviewList.apply {
+        binding.recyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext())
             setHasFixedSize(true)
             adapter = groupAdapter
