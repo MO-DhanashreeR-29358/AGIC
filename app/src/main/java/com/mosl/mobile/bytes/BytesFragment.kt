@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jakewharton.rxbinding3.swiperefreshlayout.refreshes
+import com.mosl.app.core.error.ErrorModel
+import com.mosl.app.core.error.ErrorState
 import com.mosl.app.core.events.DataAction
 import com.mosl.app.core.prefs.StringPreference
 import com.mosl.commons.data.UiModel
@@ -73,19 +75,29 @@ class BytesFragment : MOSLCommonFragment(), BytesContract {
         }
 
         uiModel.onSuccess {
-            bytesDate.set(AppDateFormats.DF_JSON_DATE_4.format(Date()))
-            section.clearContent()
+            if (it.isNotEmpty()) {
+                bytesDate.set(AppDateFormats.DF_JSON_DATE_4.format(Date()))
+                section.clearContent()
 //            val sortedList = it.sortedWith(compareBy({ it.entryDate }))
-            val bytesList = getBytesData(it)
-            val items = mutableListOf<BindableItem<*>>()
-            for (header in bytesList) {
-                items.add(BytesHeaderItem(header.headerTime))
-                for (model in header.itemList) {
-                    items.add(ItemBytes(model))
-                }
+                val bytesList = getBytesData(it)
+                val items = mutableListOf<BindableItem<*>>()
+                for (header in bytesList) {
+                    items.add(BytesHeaderItem(header.headerTime))
+                    for (model in header.itemList) {
+                        items.add(ItemBytes(model))
+                    }
 
+                }
+                section.update(items)
+            } else {
+                section.showEmptyView(
+                    ErrorModel(
+                        NO_DATA_AVAILABLE_FOR_THE_DAY,
+                        ErrorState.NO_DATA_ERROR
+                    )
+                )
             }
-            section.update(items)
+
         }
     }
 
@@ -119,4 +131,7 @@ class BytesFragment : MOSLCommonFragment(), BytesContract {
         return bytesListData
     }
 
+    companion object {
+        const val NO_DATA_AVAILABLE_FOR_THE_DAY = "No data available for the day"
+    }
 }
