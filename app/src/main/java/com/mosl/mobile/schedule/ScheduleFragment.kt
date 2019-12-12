@@ -88,9 +88,8 @@ class ScheduleFragment : MOSLCommonFragment(), ScheduleContract {
                 (activity as MOSLCommonActivity).pdfLink = it.pdfLink!!
             }
             userManager.savePdf(it.pdfLink!!)
-
+            scheduleDate.set(AppDateFormats.DF_JSON_DATE_4.format(Date()))
             if (it.data.isNotEmpty()) {
-                scheduleDate.set(AppDateFormats.DF_JSON_DATE_4.format(Date()))
                 section.clearContent()
                 var curentPos = -1;
                 var curentPosBool = false;
