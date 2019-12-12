@@ -203,6 +203,7 @@ dependencies {
 
     implementation FirebaseDependencies.core
     implementation FirebaseDependencies.crashlytics
+    implementation FirebaseDependencies.remoteConfig
 
     implementation GroupieDependencies.core
     implementation GroupieDependencies.dataBinding
