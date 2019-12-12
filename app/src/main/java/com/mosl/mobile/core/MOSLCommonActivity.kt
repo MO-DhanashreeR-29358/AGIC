@@ -207,15 +207,12 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
 
     private fun navigateFragment(pageId: Int) {
         val bundle = Bundle()
-        when (pageId) {
-        }
-
         navigateTo(pageId, bundle, true)
     }
 
     private fun setColorFilter(drawable: Drawable?, color: Int) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            drawable?.colorFilter = BlendModeColorFilter(color, BlendMode.SRC_ATOP) as ColorFilter?
+            drawable?.colorFilter = BlendModeColorFilter(color, BlendMode.SRC_ATOP)
         } else {
             drawable?.colorFilter = PorterDuffColorFilter(color, PorterDuff.Mode.SRC_ATOP)
         }

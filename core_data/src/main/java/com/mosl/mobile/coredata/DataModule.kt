@@ -4,7 +4,6 @@ import com.mosl.mobile.coredata.interceptor.EncryptionInterceptor
 import com.mosl.mobile.coredata.util.CertPinProvider
 import com.mosl.mobile.coredata.util.HttpListenerFactory
 import com.mosl.mobile.coredata.util.interceptors.CacheInterceptor
-import com.mosl.mobile.coredata.util.interceptors.EncodingInterceptor
 import com.mosl.mobile.coredata.util.interceptors.HeaderInterceptor
 import dagger.Module
 import dagger.Provides
@@ -13,10 +12,13 @@ import okhttp3.Cache
 import okhttp3.CertificatePinner
 import okhttp3.OkHttpClient
 import java.util.concurrent.TimeUnit
+import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
 class DataModule {
+
+
     companion object {
         fun createOkHttpClient(pinner: CertificatePinner?): OkHttpClient.Builder {
             val builder = OkHttpClient.Builder()
@@ -29,18 +31,18 @@ class DataModule {
         }
     }
 
+
     @Provides
     @Singleton
-    internal fun provideOkHttpClient(
+    @Named("BaseOkClient")
+    internal fun provideBaseOkHttpClient(
         cacheInterceptor: CacheInterceptor,
-        encodingInterceptor: EncodingInterceptor,
         listenerFactory: HttpListenerFactory,
         okHttpCache: Cache,
         pinProvider: CertPinProvider
     ): OkHttpClient {
         return createOkHttpClient(pinProvider.getPinner())
             .addNetworkInterceptor(cacheInterceptor)
-            .addInterceptor(encodingInterceptor)
             .cache(okHttpCache)
             .eventListenerFactory(listenerFactory)
             .build()
@@ -48,9 +50,20 @@ class DataModule {
 
     @Provides
     @Singleton
+    internal fun provideOkHttpClient(
+        @Named("BaseOkClient") okHttpClient: OkHttpClient,
+        encryptionInterceptor: EncryptionInterceptor
+    ): OkHttpClient {
+        return okHttpClient.newBuilder()
+            .addInterceptor(encryptionInterceptor)
+            .build()
+    }
+
+    @Provides
+    @Singleton
     @InternalAPIClient
     internal fun provideInternalAPIOkHttpClient(
-        okHttpClient: OkHttpClient,
+        @Named("BaseOkClient") okHttpClient: OkHttpClient,
         headerInterceptor: HeaderInterceptor,
         encryptionInterceptor: EncryptionInterceptor
     ): OkHttpClient {
@@ -59,4 +72,6 @@ class DataModule {
             .addInterceptor(encryptionInterceptor)
             .build()
     }
+
+
 }

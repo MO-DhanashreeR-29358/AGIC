@@ -119,7 +119,7 @@ class BytesFragment : MOSLCommonFragment(), BytesContract {
 
         distinctDatesList.forEachIndexed { indexDate, filteredDates ->
             val childItemList = mutableListOf<BytesItemModel>()
-            dataList.forEachIndexed { index, bytesResponse ->
+            dataList.forEachIndexed { _, bytesResponse ->
                 if (bytesResponse.entryDate.contains(filteredDates)) {
                     childItemList.add(BytesItemModel(bytesResponse.byte, bytesResponse.entryDate))
                 }

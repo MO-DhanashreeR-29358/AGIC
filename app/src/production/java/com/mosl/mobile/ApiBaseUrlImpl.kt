@@ -1,6 +1,6 @@
 package com.mosl.mobile
 
-import com.mosl.mobile.data.ApiBaseUrls
+import com.mosl.mobile.coredata.ApiBaseUrls
 
 class ApiBaseUrlImpl:ApiBaseUrls {
   override fun getMoslApiUrl(): String {

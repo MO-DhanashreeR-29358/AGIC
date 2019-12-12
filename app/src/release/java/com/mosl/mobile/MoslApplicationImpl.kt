@@ -9,6 +9,12 @@ class MOSLApplicationImpl : MOSLApplication() {
   override fun init() {
 //    Timber.plant(CrashlyticsTree())
 
+//    Timber.plant(object : Timber.DebugTree() {
+//      override fun createStackElementTag(element: StackTraceElement): String? {
+//        return element.lineNumber.toString() + ":" + super.createStackElementTag(element)
+//      }
+//    })
+
     RxJavaPlugins.setErrorHandler { throwable -> Timber.tag("RxError").e(throwable) }
 
   }
