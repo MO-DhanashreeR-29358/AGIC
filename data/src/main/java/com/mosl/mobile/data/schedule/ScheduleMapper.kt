@@ -9,11 +9,12 @@ import com.mosl.mobile.domain.schedule.ScheduleResponseItemInfo
 
 object ScheduleMapper {
 
-
     fun getScheduleMap(scheduleResponseItemList: List<ScheduleResponseItem>?, pdf: String?,message:String): ScheduleResponse {
-        val responseList: List<ScheduleResponseItemInfo> = scheduleResponseItemList!!.map {
-            ScheduleResponseItemInfo(
 
+        if(scheduleResponseItemList.isNullOrEmpty()) return ScheduleResponse(emptyList(),pdf,message)
+
+        val responseList= scheduleResponseItemList
+            .map { ScheduleResponseItemInfo(
                 Rep = it.Rep.map {
                     ScheduleRepresentativeItemData(
                         name = it.name,
