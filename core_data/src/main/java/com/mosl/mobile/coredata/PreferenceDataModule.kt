@@ -5,9 +5,11 @@ import android.content.SharedPreferences
 import com.f2prateek.rx.preferences2.RxSharedPreferences
 import com.mosl.app.core.prefs.StringPreference
 import com.mosl.mobile.annotations.ClientCode
+import com.mosl.mobile.annotations.ImageSplashUrl
 import com.mosl.mobile.annotations.LastBytesDate
 import com.mosl.mobile.annotations.LastScheduleDate
 import com.mosl.mobile.app_user.BYTES_DATE_KEY
+import com.mosl.mobile.app_user.IMAGE_SPLASH_URL_KEY
 import com.mosl.mobile.app_user.SCHEDULE_DATE_KEY
 import com.mosl.mobile.app_user.helper.PrefStoreProvider.PREF_CLIENT_CODE
 import dagger.Module
@@ -41,6 +43,13 @@ class PreferenceDataModule {
     @Provides
     internal fun provideScheduleDatePref(prefs: SharedPreferences): StringPreference {
         return StringPreference(prefs, SCHEDULE_DATE_KEY, "")
+    }
+
+    @ImageSplashUrl
+    @Singleton
+    @Provides
+    internal fun provideImageSplashPref(prefs: SharedPreferences): StringPreference {
+        return StringPreference(prefs, IMAGE_SPLASH_URL_KEY, "")
     }
 
     @LastBytesDate
