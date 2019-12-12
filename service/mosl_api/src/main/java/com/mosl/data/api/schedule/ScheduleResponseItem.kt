@@ -8,34 +8,34 @@ data class ScheduleResponseItem(
     val Rep: List<ScheduleResponseItemRep>,
 
     @JvmField @SerializedName("record_no")
-    val record_no: String,
+    val recordNo: String,
 
     @JvmField @SerializedName("ReportURL")
     val ReportURL: List<String>,
 
     @JvmField @SerializedName("company_name")
-    val company_name: String,
+    val companyName: String,
 
     @JvmField @SerializedName("room_no")
-    val room_no: String,
+    val roomNo: String,
 
     @JvmField @SerializedName("Schedule_Date")
-    val Schedule_Date: String,
+    val ScheduleDate: String,
 
     @JvmField @SerializedName("fund_id")
-    val fund_id: Int,
+    val fundId: Int,
 
     @JvmField @SerializedName("start_time")
-    val start_time: String,
+    val startTime: String,
 
     @JvmField @SerializedName("end_time")
-    val end_time: String,
+    val endTime: String,
 
     @JvmField @SerializedName("Nature_of_meeting")
-    val Nature_of_meeting: String,
+    val NatureOfMeeting: String,
 
     @JvmField @SerializedName("updateflag")
-    val updateflag: String,
+    val updateFlag: String,
 
     @JvmField @SerializedName("@UpdateDate")
     val UpdateDate: String

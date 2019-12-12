@@ -57,9 +57,6 @@ class DashboardFragment : MOSLCommonFragment(), DashboardContract.View {
 
   private fun navigateDashboardFragment(pageId: Int) {
     val bundle = Bundle()
-    when (pageId) {
-    }
-
     navigateTo(pageId, bundle, true)
   }
 

@@ -25,10 +25,7 @@ class CustomNavigatorImpl @Inject constructor(
   private val disposable: CompositeDisposable = CompositeDisposable()
 
   override fun handle(entry: CustomNavigationEntry) {
-    val pageId = entry.pageId
-    when {
 
-    }
   }
 
   override fun isDisposed(): Boolean {

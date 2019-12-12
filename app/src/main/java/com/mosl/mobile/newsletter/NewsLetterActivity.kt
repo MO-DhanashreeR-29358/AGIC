@@ -168,7 +168,7 @@ class NewsLetterActivity : LeanBaseActivity(), NewsLetterView {
     }
 
     override fun renderSkip(uiModel: UiModel<Unit>) {
-        uiModel.onSuccess { data -> openDashboard() }
+        uiModel.onSuccess { _ -> openDashboard() }
     }
 
     fun Throwable.showOnFailurePopup() {

@@ -1,4 +1,4 @@
-package com.mosl.mobile.data.util
+package com.mosl.mobile.coredata.util
 
 public inline fun <T, R : Any> Iterable<T>.safeMap(transform: (T) -> R?): List<R> {
   return safeMapTo(ArrayList<R>(), transform)

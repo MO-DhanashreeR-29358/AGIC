@@ -6,7 +6,7 @@ object Versions {
 
     const val androidVersion = "3.5.2"
     const val kotlinVersion = "1.3.50"
-    const val fabric = "1.30.0"
+    const val fabric = "1.31.0"
     const val googleServices = "4.3.0"
 
     const val dexCountGradlePlugin = "0.8.6"
@@ -99,7 +99,7 @@ object FirebaseDependencies {
     const val messaging = "com.google.firebase:firebase-messaging:19.0.1"
     const val perf = "com.google.firebase:firebase-perf:18.0.1"
     const val remoteConfig = "com.google.firebase:firebase-config:18.0.0"
-    const val crashlytics = "com.crashlytics.sdk.android:crashlytics:2.9.9"
+    const val crashlytics = "com.crashlytics.sdk.android:crashlytics:2.10.1"
     const val jobDispatcher = "com.firebase:firebase-jobdispatcher:0.8.6"
 }
 

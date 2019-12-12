@@ -1,8 +1,9 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'io.fabric'
 
 def gitSha() {
     def p = 'git rev-parse --short HEAD'.execute([], project.rootDir)
@@ -34,6 +35,9 @@ android {
     Properties versionProps = new Properties()
     versionProps.load(new FileInputStream(file('../version.properties')))
 
+    Properties keystoreProps = new Properties()
+    keystoreProps.load(new FileInputStream(file('../keystore.properties')))
+
     defaultConfig {
         applicationId "com.mosl.agicapp"
         minSdkVersion Versions.minSdkVersion
@@ -46,6 +50,31 @@ android {
         vectorDrawables.useSupportLibrary = true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    signingConfigs {
+        uat {
+            try {
+                storeFile file('../agicapp.jks')
+                storePassword keystoreProps['KEYSTORE_PASSWORD']
+                keyAlias keystoreProps['UAT_ALIAS']
+                keyPassword keystoreProps['UAT_ALIAS_PASSWORD']
+            } catch (ex) {
+                throw new InvalidUserDataException(
+                        "You should define KEYSTORE_PASSWORD, UAT_ALIAS & UAT_ALIAS_PASSWORD in keystore.properties")
+            }
+        }
+        prod {
+            try {
+                storeFile file('../agicapp.jks')
+                storePassword keystoreProps['KEYSTORE_PASSWORD']
+                keyAlias keystoreProps['PROD_ALIAS']
+                keyPassword keystoreProps['PROD_ALIAS_PASSWORD']
+            } catch (ex) {
+                throw new InvalidUserDataException(
+                        "You should define KEYSTORE_PASSWORD, PROD_ALIAS & PROD_ALIAS_PASSWORD in keystore.properties")
+            }
+        }
     }
 
     dataBinding {
@@ -65,6 +94,7 @@ android {
             versionName versionProps['name']
             applicationIdSuffix '.internal'
             buildConfigField 'boolean', 'LOGOUT_ON_UPDATE', "${versionProps['clearUserLogin']}"
+            signingConfig signingConfigs.uat
             //TODO Remove below lines before giving UAT release
             minSdkVersion 21
             dimension 'releaseType'
@@ -73,6 +103,7 @@ android {
             versionCode versionProps['prodCode'].toInteger()
             versionName versionProps['prodName']
             buildConfigField 'boolean', 'LOGOUT_ON_UPDATE', "${versionProps['prodClearUserLogin']}"
+            signingConfig signingConfigs.prod
             dimension 'releaseType'
         }
     }
@@ -82,13 +113,20 @@ android {
             applicationIdSuffix '.debug'
             multiDexEnabled true
             ext.alwaysUpdateBuildId = false
+            ext.enableCrashlytics = false
+            manifestPlaceholders = [crashlyticsEnabled: false]
         }
         release {
+//            debuggable true
+            manifestPlaceholders = [crashlyticsEnabled: true]
             minifyEnabled true
             shrinkResources true
-            proguardFile 'proguard-moshi.pro'
+            proguardFile 'proguard-conceal.pro'
+            proguardFile 'proguard-crashlytics.pro'
             proguardFile 'proguard-retrofit.pro'
             proguardFile 'proguard-dagger.pro'
+            proguardFile 'proguard-gson.pro'
+            proguardFile 'proguard-okhttp.pro'
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -142,6 +180,7 @@ dependencies {
     implementation MofslArtifactDependencies.annotation
 
     implementation Dependencies.timber
+    implementation Dependencies.threeTen
 
     implementation RetrofitDependencies.core
     implementation RetrofitDependencies.rxJava
@@ -161,6 +200,9 @@ dependencies {
     implementation MofslArtifactDependencies.appCoreUI
     implementation MofslArtifactDependencies.validator
     implementation MofslArtifactDependencies.groupie
+
+    implementation FirebaseDependencies.core
+    implementation FirebaseDependencies.crashlytics
 
     implementation GroupieDependencies.core
     implementation GroupieDependencies.dataBinding

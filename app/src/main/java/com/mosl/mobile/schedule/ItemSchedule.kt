@@ -48,8 +48,8 @@ class ItemSchedule(
             try {
 
                 if (scheduleData.Rep.size > 0) {
-                    val scheduleName = scheduleData.Rep[0].NAME
-                    val scheduleDesignation = scheduleData.Rep[0].DESIGNATION
+                    val scheduleName = scheduleData.Rep[0].name
+                    val scheduleDesignation = scheduleData.Rep[0].designation
                     tvScheduleName.text =
                         String.format("%s - %s", scheduleName, scheduleDesignation)
                 }

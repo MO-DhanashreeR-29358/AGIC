@@ -1,6 +1,6 @@
 package com.mosl.mobile
 
-import com.mosl.mobile.data.util.CertPinProvider
+import com.mosl.mobile.coredata.util.CertPinProvider
 import okhttp3.CertificatePinner
 
 object CertPinProviderImpl : CertPinProvider {

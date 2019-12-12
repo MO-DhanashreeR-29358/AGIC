@@ -8,10 +8,15 @@ buildscript {
 
   repositories {
     google()
+    mavenCentral()
     jcenter()
+    maven {
+      url 'https://maven.fabric.io/public'
+    }
     maven {
       url "https://plugins.gradle.org/m2/"
     }
+    maven { url "https://jitpack.io" }
     maven {
       url 'http://192.168.103.116:9090/artifactory/libs-release-local'
     }
@@ -21,7 +26,10 @@ buildscript {
     classpath PluginsDependencies.kotlinGradlePlugin
     // NOTE: Do not place your application dependencies here; they belong
     // in the individual module build.gradle files
-  classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version" }
+    classpath PluginsDependencies.errorPronePlugin
+    classpath PluginsDependencies.googleServices
+    classpath PluginsDependencies.fabricPlugin
+  }
 
     
     }
@@ -29,7 +37,11 @@ buildscript {
 allprojects {
   repositories {
     google()
+    mavenCentral()
     jcenter()
+    maven {
+      url 'https://maven.fabric.io/public'
+    }
     maven {
       url "https://plugins.gradle.org/m2/"
     }

@@ -125,7 +125,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/_1sdp"
             android:layout_marginTop="@dimen/margin_normal"
-            android:background="@color/warmGrey"
+            android:background="@color/greyWhite"
             app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,4 @@
-package com.mosl.mobile.data.util
+package com.mosl.mobile.coredata.util
 
 import com.jakewharton.rxrelay2.PublishRelay
 import io.reactivex.Observable
@@ -7,11 +7,11 @@ import okhttp3.EventListener
 import java.util.concurrent.atomic.AtomicLong
 
 class HttpEventListener(
-    val callId: Long,
-    val callStartNanos: Long,
-    val apiStatsRelay: PublishRelay<Long>
+  val callId: Long,
+  val callStartNanos: Long,
+  val apiStatsRelay: PublishRelay<Long>
 ) : EventListener() {
-  override fun callEnd(call: Call?) {
+  override fun callEnd(call: Call) {
     apiStatsRelay.accept(System.nanoTime() - callStartNanos)
   }
 }

@@ -36,6 +36,7 @@ class PdfFragment : BaseDialogFragment(), PdfContract {
                 arguments?.getString(PDF_LINK)?.let {
                     requireContext().downloadDocument(it)
                 }
+                dialog?.dismiss()
 
             }
         }

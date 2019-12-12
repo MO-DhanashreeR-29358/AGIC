@@ -14,7 +14,6 @@ import java.net.Inet4Address
 import java.net.NetworkInterface
 import java.text.DateFormat
 import java.text.ParseException
-import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -90,35 +89,35 @@ fun getTimeAMPM(dateTime: String): String {
     return time
 }
 
-fun checkTimeIsBetween(string1: String, string2: String): Boolean {
+fun checkTimeIsBetween(starTime: String, endTime: String): Boolean {
     try {
 
-        val time1 = SimpleDateFormat("hh:mm a").parse(string1)
-        val calendar1 = Calendar.getInstance()
-        calendar1.time = time1
-        calendar1.add(Calendar.DATE, 1)
+        val startTimeDate = DF_TIME_hh.parse(starTime)
+        val startTimeCalendar = Calendar.getInstance()
+        startTimeCalendar.time = startTimeDate!!
+        startTimeCalendar.add(Calendar.DATE, 1)
 
 
-        val time2 = SimpleDateFormat("hh:mm a").parse(string2)
-        val calendar2 = Calendar.getInstance()
-        calendar2.time = time2
-        calendar2.add(Calendar.DATE, 1)
+        val endTimeDate = DF_TIME_hh.parse(endTime)
+        val endTimeCalendar = Calendar.getInstance()
+        endTimeCalendar.time = endTimeDate!!
+        endTimeCalendar.add(Calendar.DATE, 1)
 
-        val calendar3 = Calendar.getInstance()
-        val sdf = SimpleDateFormat("hh:mm a")
-        val currentTime = sdf.format(calendar3.time)
+        val currentTimeCalendar = Calendar.getInstance()
+        val currentTime = DF_TIME_hh.format(currentTimeCalendar.time)
 
-        val d = sdf.parse(currentTime)
-        calendar3.time = d
-        calendar3.add(Calendar.DATE, 1)
+        val currentTimeDate = DF_TIME_hh.parse(currentTime)
+        currentTimeCalendar.time = currentTimeDate!!
+        currentTimeCalendar.add(Calendar.DATE, 1)
 
-        val x = calendar3.time
-        if (x.after(calendar1.time) && x.before(calendar2.time)) {
-            return true
-        } else if (x.after(calendar2.time)) {
-            return false
-        } else if (x.before(calendar2.time)) {
-            return true
+        currentTimeCalendar.time.apply {
+            if (after(startTimeCalendar.time) && before(endTimeCalendar.time)) {
+                return true
+            } else if (after(endTimeCalendar.time)) {
+                return false
+            } else if (before(endTimeCalendar.time)) {
+                return true
+            }
         }
 
     } catch (e: ParseException) {
@@ -154,35 +153,24 @@ fun addToCalendart(
     startTime: String,
     endTime: String
 ) {
-    if (Build.VERSION.SDK_INT >= 15) {
-        val intent = Intent(Intent.ACTION_INSERT)
-            .setData(Events.CONTENT_URI)
-            .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, startTime)
-            .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, endTime)
-            .putExtra(CalendarContract.EXTRA_EVENT_ALL_DAY, true)
-            .putExtra(Events.TITLE, title)
-            .putExtra(Events.DESCRIPTION, description)
-            .putExtra(Events.EVENT_LOCATION, location)
-            .putExtra(Events.AVAILABILITY, Events.AVAILABILITY_BUSY)
-//            .putExtra(Intent.EXTRA_EMAIL, "rowan@example.com,trevor@example.com")
 
-        context.startActivity(intent)
+    val intent = Intent(Intent.ACTION_INSERT)
+        .setData(Events.CONTENT_URI)
+        .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, startTime)
+        .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, endTime)
+        .putExtra(CalendarContract.EXTRA_EVENT_ALL_DAY, true)
+        .putExtra(Events.TITLE, title)
+        .putExtra(Events.DESCRIPTION, description)
+        .putExtra(Events.EVENT_LOCATION, location)
+        .putExtra(Events.AVAILABILITY, Events.AVAILABILITY_BUSY)
 
-    } else {
-        val cal = Calendar.getInstance()
-        val intent = Intent(Intent.ACTION_EDIT)
-        intent.type = "vnd.android.cursor.item/event"
-        intent.putExtra("beginTime", startTime)
-        intent.putExtra("allDay", true)
-        intent.putExtra("rrule", "FREQ=YEARLY")
-        intent.putExtra("endTime", endTime)
-        intent.putExtra("title", title)
-        context.startActivity(intent)
-    }
+    context.startActivity(intent)
+
+
 }
 
-fun getMilliFromDate(dateFormat: String,formaterDate:DateFormat): String {
+fun getMilliFromDate(dateFormat: String, formaterDate: DateFormat): String {
     val date = formaterDate.parse(dateFormat)
 
-    return date.time.toString()
+    return date?.time.toString()
 }
