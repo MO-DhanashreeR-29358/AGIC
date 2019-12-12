@@ -1,13 +1,16 @@
 package com.mosl.mobile
 
+import com.crashlytics.android.Crashlytics
+import com.jakewharton.threetenabp.*
 import dagger.android.AndroidInjector
 import dagger.android.DaggerApplication
+import io.fabric.sdk.android.Fabric
 import io.reactivex.plugins.RxJavaPlugins
 import timber.log.Timber
 
 class MOSLApplicationImpl : MOSLApplication() {
-  override fun init() {
-//    Timber.plant(CrashlyticsTree())
+      override fun init() {
+    Timber.plant(CrashlyticsTree())
 
 //    Timber.plant(object : Timber.DebugTree() {
 //      override fun createStackElementTag(element: StackTraceElement): String? {
@@ -16,6 +19,8 @@ class MOSLApplicationImpl : MOSLApplication() {
 //    })
 
     RxJavaPlugins.setErrorHandler { throwable -> Timber.tag("RxError").e(throwable) }
+    AndroidThreeTen.init(this)
+    Fabric.with(this, Crashlytics())
 
   }
 

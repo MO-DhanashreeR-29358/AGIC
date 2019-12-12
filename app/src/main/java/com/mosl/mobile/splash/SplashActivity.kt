@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
+import com.crashlytics.android.Crashlytics
 import com.mosl.app.core.network.isNetworkConnected
 import com.mosl.app.core.utils.showConfirmation
 import com.mosl.mobile.R
@@ -45,6 +46,7 @@ class SplashActivity : AppCompatActivity() {
 
         //Navigate with delay
         mDelayHandler!!.postDelayed(mRunnable, SPLASH_DELAY)
+
     }
 
     override fun attachBaseContext(base: Context) {

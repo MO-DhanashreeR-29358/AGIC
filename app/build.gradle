@@ -1,8 +1,9 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'io.fabric'
 
 def gitSha() {
     def p = 'git rev-parse --short HEAD'.execute([], project.rootDir)
@@ -112,9 +113,12 @@ android {
             applicationIdSuffix '.debug'
             multiDexEnabled true
             ext.alwaysUpdateBuildId = false
+            ext.enableCrashlytics = false
+            manifestPlaceholders = [crashlyticsEnabled: false]
         }
         release {
 //            debuggable true
+            manifestPlaceholders = [crashlyticsEnabled: true]
             minifyEnabled true
             shrinkResources true
             proguardFile 'proguard-conceal.pro'
@@ -176,6 +180,7 @@ dependencies {
     implementation MofslArtifactDependencies.annotation
 
     implementation Dependencies.timber
+    implementation Dependencies.threeTen
 
     implementation RetrofitDependencies.core
     implementation RetrofitDependencies.rxJava
@@ -195,6 +200,9 @@ dependencies {
     implementation MofslArtifactDependencies.appCoreUI
     implementation MofslArtifactDependencies.validator
     implementation MofslArtifactDependencies.groupie
+
+    implementation FirebaseDependencies.core
+    implementation FirebaseDependencies.crashlytics
 
     implementation GroupieDependencies.core
     implementation GroupieDependencies.dataBinding
