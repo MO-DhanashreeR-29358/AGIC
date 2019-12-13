@@ -27,6 +27,7 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
 import com.jakewharton.rxbinding3.appcompat.navigationClicks
 import com.mosl.app.core.network.NetworkChangeEvent
 import com.mosl.app.core.network.NetworkReceiver
+import com.mosl.app.core.network.isNetworkConnected
 import com.mosl.app.core.prefs.StringPreference
 import com.mosl.app.core.utils.hide
 import com.mosl.app.core.utils.hideKeyBoard
@@ -111,8 +112,9 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
         setupObservables()
         setUpView()
         setUpTabs()
-        retrieveFromRemoteConfig()
-
+        if (this.isNetworkConnected()) {
+            retrieveFromRemoteConfig()
+        }
     }
 
 
