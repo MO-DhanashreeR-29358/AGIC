@@ -8,8 +8,7 @@ import com.mosl.mobile.app_user.login.user
 import com.mosl.mobile.domain.schedule.ScheduleRepository
 import com.mosl.mobile.domain.schedule.ScheduleRequestInfo
 import com.mosl.mobile.domain.schedule.ScheduleResponse
-import com.mosl.shared.AppDateFormats.DF_JSON_DATE_4
-import com.mosl.shared.AppDateFormats.DF_TIME_HH_ss
+import com.mosl.shared.AppDateFormats.*
 import com.mosl.shared.util.getFormatedDate
 import com.mosl.shared.util.getTodaysDate
 import io.reactivex.Observable
@@ -27,7 +26,7 @@ class ScheduleRepositoryImpl @Inject constructor(
     val date = if (scheduleDate.isNotSet) {
         NEW
     } else
-        getFormatedDate(scheduleDate.get(), DF_JSON_DATE_4, DF_TIME_HH_ss)
+        getFormatedDate(scheduleDate.get(), DF_JSON_DATE_12, DF_TIME_HH_ss)
 
     val scheduleRequest = ScheduleRequestInfo(
         clientID = userManager.user.clientId,

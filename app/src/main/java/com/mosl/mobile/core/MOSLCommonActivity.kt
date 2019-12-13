@@ -38,6 +38,9 @@ import com.mosl.app.coreui.base.ActivityDelegate
 import com.mosl.app.coreui.base.BaseActivity
 import com.mosl.app.coreui.base.NavigationElement
 import com.mosl.mobile.R
+import com.mosl.mobile.annotations.ImageSplashUrl
+import com.mosl.mobile.annotations.LastBytesDate
+import com.mosl.mobile.annotations.LastScheduleDate
 import com.mosl.mobile.annotations.RemoteConfigData
 import com.mosl.mobile.app_user.login.UserManager
 import com.mosl.mobile.app_user.login.user
@@ -87,7 +90,18 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
 
     @Inject
     @field:RemoteConfigData
-    lateinit var remoteCongigData: StringPreference
+    lateinit var remoteConfigData: StringPreference
+
+    @Inject
+    @field:LastScheduleDate
+    lateinit var lastScheduleDate: StringPreference
+    @Inject
+    @field:ImageSplashUrl
+    lateinit var imageSplashUrl: StringPreference
+    @Inject
+    @field:LastBytesDate
+    lateinit var lastBytesDate: StringPreference
+
     @Inject
     lateinit var gson: Gson
 
@@ -157,7 +171,7 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
         imageList = ArrayList()
 
         val banner: RemoteConfigModel =
-            gson.fromJson(remoteCongigData.get(), RemoteConfigModel::class.java)
+            gson.fromJson(remoteConfigData.get(), RemoteConfigModel::class.java)
         imageList.add(banner.logo)
 
         val handler = Handler()
@@ -371,6 +385,11 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
                 userCacheImpl.clearUser()
+                lastScheduleDate.set("")
+                imageSplashUrl.set("")
+                lastBytesDate.set("")
+                remoteConfigData.set("")
+
                 finish()
             }
             .setNegativeButton(R.string.text_label_no) { _, _ -> }

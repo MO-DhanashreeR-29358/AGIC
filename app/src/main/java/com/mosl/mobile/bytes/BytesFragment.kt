@@ -85,7 +85,6 @@ class BytesFragment : MOSLCommonFragment(), BytesContract {
         }
 
         uiModel.onSuccess {
-            bytesDate.set(AppDateFormats.DF_JSON_DATE_4.format(Date()))
             if (it.isNotEmpty()) {
                 section.clearContent()
 //            val sortedList = it.sortedWith(compareBy({ it.entryDate }))

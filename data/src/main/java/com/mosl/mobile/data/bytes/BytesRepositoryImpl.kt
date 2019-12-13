@@ -9,9 +9,8 @@ import com.mosl.mobile.app_user.login.user
 import com.mosl.mobile.domain.bytes.BytesRepository
 import com.mosl.mobile.domain.bytes.BytesRequest
 import com.mosl.mobile.domain.bytes.BytesResponse
-import com.mosl.shared.AppDateFormats
+import com.mosl.shared.AppDateFormats.DF_JSON_DATE_12
 import com.mosl.shared.AppDateFormats.DF_JSON_DATE_4
-import com.mosl.shared.util.getFormatedDate
 import com.mosl.shared.util.getMilliFromDate
 import io.reactivex.Observable
 import java.util.*
@@ -27,13 +26,13 @@ class BytesRepositoryImpl @Inject constructor(
     val bytesDate = if (lastBytesDate.isNotSet) {
         NEW
     } else
-        NEW
-//        getMilliFromDate(lastBytesDate.get(), DF_JSON_DATE_4)
+//        NEW
+        getMilliFromDate(lastBytesDate.get(), DF_JSON_DATE_12)
 
     val scheduleDate = if (lastScheduleDate.isNotSet) {
         getMilliFromDate(DF_JSON_DATE_4.format(Date()), DF_JSON_DATE_4)
     } else
-        getMilliFromDate(lastScheduleDate.get(), DF_JSON_DATE_4)
+        getMilliFromDate(lastScheduleDate.get(), DF_JSON_DATE_12)
 
     val bytesRequest = BytesRequest(
         bytesDate,
@@ -47,7 +46,7 @@ class BytesRepositoryImpl @Inject constructor(
 
 
         return agicApi.getByteDetails(requestMapper).map {
-//            lastBytesDate.set( DF_JSON_DATE_4.format(Date()))
+            //            lastBytesDate.set( DF_JSON_DATE_4.format(Date()))
             it.mapToBytesResponse()
         }
     }
