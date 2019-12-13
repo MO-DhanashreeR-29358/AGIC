@@ -8,6 +8,7 @@ import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.mosl.app.core.network.isNetworkConnected
 import com.mosl.app.core.prefs.StringPreference
+import com.mosl.app.core.utils.showConfirmation
 import com.mosl.app.coreui.base.LeanBaseActivity
 import com.mosl.mobile.R
 import com.mosl.mobile.annotations.ImageSplashUrl
@@ -85,36 +86,41 @@ class SplashActivity : LeanBaseActivity() {
         if (this.isNetworkConnected()) {
             initializeApp()
         } else {
-            Toast.makeText(
-                this,
-                R.string.msg_application_needs_network_to_proceed,
-                Toast.LENGTH_LONG
-            ).show()
-            initializeApp()
-//            if (count < 2) {
-//                count++
-//                showConfirmation(
-//                    message = getString(R.string.msg_application_needs_network_to_proceed),
-//                    cancelable = true,
-//                    title = getString(R.string.alert_dialog_title),
-//                    positiveButton = R.string.button_label_retrieve,
-//                    negativeButton = R.string.button_label_exit
-//                )
-//                { positiveClicked ->
-//                    if (positiveClicked) {
-//                        checkNetwork()
-//                    } else {
-//                        finish()
-//                    }
-//                    Unit
-//                }
-//            } else {
-//                showActionableAlert(
-//                    message =  getString(R.string.msg_application_needs_network_to_proceed),
-//                    buttonText = getString(R.string.button_label_exit)
-//                )
-//            }
-
+            if(userManager.isLoggedIn()) {
+                Toast.makeText(
+                    this,
+                    R.string.msg_application_needs_network_to_proceed,
+                    Toast.LENGTH_LONG
+                ).show()
+                initializeApp()
+            }else {
+                if (count < 2) {
+                    count++
+                    showConfirmation(
+                        message = getString(R.string.msg_application_needs_network_to_proceed),
+                        cancelable = true,
+                        title = getString(R.string.alert_dialog_title),
+                        positiveButton = R.string.button_label_retrieve,
+                        negativeButton = R.string.button_label_exit
+                    )
+                    { positiveClicked ->
+                        if (positiveClicked) {
+                            checkNetwork()
+                        } else {
+                            finish()
+                        }
+                        Unit
+                    }
+                } else {
+                    actionableAlert(
+                        message = getString(R.string.msg_application_needs_network_to_proceed),
+                        cancelable = false,
+                        buttonText = R.string.button_label_exit
+                    ) {
+                        finish()
+                    }
+                }
+            }
         }
     }
 

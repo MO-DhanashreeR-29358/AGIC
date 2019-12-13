@@ -157,7 +157,7 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
         imageList = ArrayList()
 
         imageList.add("https://galaxy.motilaloswal.com/Conference/BrochureImages/mod-service-icon-web@2x.png")
-        imageList.add("https://galaxy.motilaloswal.com/Conference/BrochureImages/live.jpg")
+//        imageList.add("https://galaxy.motilaloswal.com/Conference/BrochureImages/live.jpg")
 
         val handler = Handler()
         val runnable = object : Runnable {
@@ -175,7 +175,7 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
         handler.postDelayed(runnable, 5000)
     }
 
-    fun ImageViewAnimatedChange(context: Context, new_image: String) {
+    fun ImageViewAnimatedChange(context: Context, imageUrl: String) {
 
         val anim_out = AnimationUtils.loadAnimation(context, R.anim.fade_out_image)
         val anim_in = AnimationUtils.loadAnimation(context, R.anim.fade_in_image)
@@ -191,8 +191,8 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
 //                binding.img1.setImageResource(new_image)
 
                 Glide.with(context)
-                    .load(new_image.toString())
-                    .into(binding.img1);
+                    .load(imageUrl)
+                    .into(binding.imgLogo);
 
                 anim_in.setAnimationListener(object : Animation.AnimationListener {
                     override fun onAnimationStart(animation: Animation) {}
@@ -200,11 +200,11 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
                     override fun onAnimationEnd(animation: Animation) {}
                 })
 
-                binding.img1.startAnimation(anim_in)
+                binding.imgLogo.startAnimation(anim_in)
             }
         })
 
-        binding.img1.startAnimation(anim_out)
+        binding.imgLogo.startAnimation(anim_out)
     }
 
     var pdfLink: String? = null

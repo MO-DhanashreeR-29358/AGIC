@@ -66,7 +66,6 @@ class NewsLetterActivity : LeanBaseActivity(), NewsLetterView {
         imageList = ArrayList()
 
         imageList.add("https://galaxy.motilaloswal.com/Conference/BrochureImages/mod-service-icon-web@2x.png")
-        imageList.add("https://galaxy.motilaloswal.com/Conference/BrochureImages/live.jpg")
 
         val handler = Handler()
         val runnable = object : Runnable {
@@ -83,7 +82,7 @@ class NewsLetterActivity : LeanBaseActivity(), NewsLetterView {
         handler.postDelayed(runnable, 5000)
     }
 
-    fun ImageViewAnimatedChange(context: Context, new_image: String) {
+    fun ImageViewAnimatedChange(context: Context, imageUrl: String) {
 
         val anim_out = AnimationUtils.loadAnimation(context, R.anim.fade_out_image)
         val anim_in = AnimationUtils.loadAnimation(context, R.anim.fade_in_image)
@@ -99,7 +98,7 @@ class NewsLetterActivity : LeanBaseActivity(), NewsLetterView {
 //                binding.imgAgic.setImageResource(new_image)
 
                 Glide.with(context)
-                    .load(new_image)
+                    .load(imageUrl)
                     .into(binding.imgAgic);
 
                 anim_in.setAnimationListener(object : Animation.AnimationListener {

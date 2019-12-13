@@ -33,7 +33,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/img_agic"
             android:layout_width="@dimen/img_news_letter"
             android:layout_height="@dimen/img_news_letter"
@@ -43,7 +43,8 @@
             android:layout_marginRight="@dimen/margin_normal"
             android:layout_marginBottom="@dimen/margin_normal"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/agic_agic"/>
 
 
         <TextView
