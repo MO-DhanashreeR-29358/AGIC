@@ -1,6 +1,7 @@
 package com.mosl.mobile.bytes
 
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jakewharton.rxbinding3.swiperefreshlayout.refreshes
@@ -49,6 +50,15 @@ class BytesFragment : MOSLCommonFragment(), BytesContract {
         setupRecyclerView()
         presenter.start()
         dataActionSubject.onNext(DataAction.Fetch)
+
+        val handler = Handler()
+        val runnable = object : Runnable {
+            override fun run() {
+                dataActionSubject.onNext(DataAction.Fetch)
+                handler.postDelayed(this, API_INTERVAL_TIME)
+            }
+        }
+        handler.postDelayed(runnable, API_INTERVAL_TIME)
     }
 
     private fun setupRecyclerView() {
@@ -97,7 +107,6 @@ class BytesFragment : MOSLCommonFragment(), BytesContract {
                     )
                 )
             }
-
         }
     }
 
@@ -133,5 +142,6 @@ class BytesFragment : MOSLCommonFragment(), BytesContract {
 
     companion object {
         const val NO_DATA_AVAILABLE_FOR_THE_DAY = "No data available for the day"
+        const val API_INTERVAL_TIME = (60*2000).toLong()
     }
 }

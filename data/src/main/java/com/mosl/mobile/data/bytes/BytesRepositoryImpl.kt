@@ -27,8 +27,8 @@ class BytesRepositoryImpl @Inject constructor(
     val bytesDate = if (lastBytesDate.isNotSet) {
         NEW
     } else
-        getMilliFromDate(lastBytesDate.get(), DF_JSON_DATE_4)
-//        NEW
+        NEW
+//        getMilliFromDate(lastBytesDate.get(), DF_JSON_DATE_4)
 
     val scheduleDate = if (lastScheduleDate.isNotSet) {
         getMilliFromDate(DF_JSON_DATE_4.format(Date()), DF_JSON_DATE_4)

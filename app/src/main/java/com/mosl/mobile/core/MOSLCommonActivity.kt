@@ -3,23 +3,24 @@ package com.mosl.mobile.core
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import android.graphics.BlendMode
-import android.graphics.BlendModeColorFilter
-import android.graphics.PorterDuff
-import android.graphics.PorterDuffColorFilter
+import android.graphics.*
 import android.graphics.drawable.Drawable
 import android.net.ConnectivityManager
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
 import android.os.PersistableBundle
 import android.text.TextUtils
 import android.view.View
 import android.view.View.OnClickListener
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
@@ -44,6 +45,8 @@ import com.mosl.mobile.contactrm.ContactDialogFragment
 import com.mosl.mobile.coreui.LocaleManager
 import com.mosl.mobile.dashboard.ActivityNavigationHelper
 import com.mosl.mobile.databinding.ActivityCommonbaseBinding
+import com.mosl.mobile.domain.newsletter.NewsLetterResponseItemInfo
+import com.mosl.mobile.domain.schedule.ScheduleRepository
 import com.mosl.mobile.login.LoginActivity
 import com.mosl.mobile.login.UserCacheImpl
 import com.mosl.mobile.menu.ScreenNavigatorImpl
@@ -55,6 +58,7 @@ import timber.log.Timber
 import java.util.*
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
+import kotlin.collections.ArrayList
 
 class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
 
@@ -112,6 +116,7 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
         setupObservables()
         setUpView()
         setUpTabs()
+        changeImage()
         if (this.isNetworkConnected()) {
             retrieveFromRemoteConfig()
         }
@@ -143,6 +148,64 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
         }
     }
 
+//    var imageArray = arrayOf(R.drawable.agic_agic, R.drawable.agic_15);
+
+    lateinit var imageList: ArrayList<String>
+
+    fun changeImage() {
+
+        imageList = ArrayList()
+
+        imageList.add("https://galaxy.motilaloswal.com/Conference/BrochureImages/mod-service-icon-web@2x.png")
+        imageList.add("https://galaxy.motilaloswal.com/Conference/BrochureImages/live.jpg")
+
+        val handler = Handler()
+        val runnable = object : Runnable {
+            internal var i = 0
+
+            override fun run() {
+                ImageViewAnimatedChange(baseContext, imageList.get(i))
+                i++
+                if (i > imageList.size - 1) {
+                    i = 0
+                }
+                handler.postDelayed(this, 5000)
+            }
+        }
+        handler.postDelayed(runnable, 5000)
+    }
+
+    fun ImageViewAnimatedChange(context: Context, new_image: String) {
+
+        val anim_out = AnimationUtils.loadAnimation(context, R.anim.fade_out_image)
+        val anim_in = AnimationUtils.loadAnimation(context, R.anim.fade_in_image)
+
+        anim_out.setAnimationListener(object : Animation.AnimationListener {
+
+            override fun onAnimationStart(animation: Animation) {}
+
+            override fun onAnimationRepeat(animation: Animation) {}
+
+            override fun onAnimationEnd(animation: Animation) {
+
+//                binding.img1.setImageResource(new_image)
+
+                Glide.with(context)
+                    .load(new_image.toString())
+                    .into(binding.img1);
+
+                anim_in.setAnimationListener(object : Animation.AnimationListener {
+                    override fun onAnimationStart(animation: Animation) {}
+                    override fun onAnimationRepeat(animation: Animation) {}
+                    override fun onAnimationEnd(animation: Animation) {}
+                })
+
+                binding.img1.startAnimation(anim_in)
+            }
+        })
+
+        binding.img1.startAnimation(anim_out)
+    }
 
     var pdfLink: String? = null
 
