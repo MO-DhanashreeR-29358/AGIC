@@ -2,20 +2,28 @@ package com.mosl.mobile.splash
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.widget.Toast
 import com.bumptech.glide.Glide
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig
+import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
+import com.google.gson.Gson
 import com.mosl.app.core.network.isNetworkConnected
 import com.mosl.app.core.prefs.StringPreference
 import com.mosl.app.core.utils.showConfirmation
 import com.mosl.app.coreui.base.LeanBaseActivity
+import com.mosl.mobile.BuildConfig
 import com.mosl.mobile.R
 import com.mosl.mobile.annotations.ImageSplashUrl
+import com.mosl.mobile.annotations.RemoteConfigData
 import com.mosl.mobile.app_user.login.UserManager
 import com.mosl.mobile.constants.NavigationConstants
 import com.mosl.mobile.core.MOSLCommonActivity
 import com.mosl.mobile.coreui.LocaleManager
+import com.mosl.mobile.coreui.core.MSFDialog
+import com.mosl.mobile.data.RemoteConfigModel
 import com.mosl.mobile.databinding.ActivitySplashScreenBinding
 import com.mosl.mobile.login.LoginActivity
 import com.mosl.mobile.newsletter.NewsLetterActivity
@@ -37,10 +45,15 @@ class SplashActivity : LeanBaseActivity() {
 
     @Inject
     lateinit var userManager: UserManager
-
+    @Inject
+    lateinit var gson: Gson
     @Inject
     @field:ImageSplashUrl
     lateinit var splashImgUrl: StringPreference
+
+    @Inject
+    @field:RemoteConfigData
+    lateinit var remoteCongigData: StringPreference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,12 +67,13 @@ class SplashActivity : LeanBaseActivity() {
 
         val splashImageUrl = getSplashImageUrl()
         loadSplashImage(splashImageUrl)
+
         mDelayHandler.postDelayed(
             { checkNetwork() },
             (if (splashImageUrl == null) 0 else SPLASH_DELAY).toLong()
         )
-
     }
+
 
     private fun getSplashImageUrl(): String? {
         return if (!splashImgUrl.get().isEmpty()) {
@@ -84,16 +98,17 @@ class SplashActivity : LeanBaseActivity() {
 
     private fun checkNetwork() {
         if (this.isNetworkConnected()) {
-            initializeApp()
+//            initializeApp()
+            checkVersion()
         } else {
-            if(userManager.isLoggedIn()) {
+            if (userManager.isLoggedIn()) {
                 Toast.makeText(
                     this,
                     R.string.msg_application_needs_network_to_proceed,
                     Toast.LENGTH_LONG
                 ).show()
                 initializeApp()
-            }else {
+            } else {
                 if (count < 2) {
                     count++
                     showConfirmation(
@@ -124,6 +139,83 @@ class SplashActivity : LeanBaseActivity() {
         }
     }
 
+
+    private fun checkVersion() {
+
+        val remoteConfig = FirebaseRemoteConfig.getInstance()
+        val configSettings = FirebaseRemoteConfigSettings.Builder()
+            .setMinimumFetchIntervalInSeconds(3600)
+            .build()
+        remoteConfig.setConfigSettingsAsync(configSettings)
+
+        remoteConfig.fetchAndActivate()
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    val agicInit =
+                        remoteConfig.getString(getString(R.string.agic_init))
+                    if (agicInit != null && !agicInit.isEmpty()) {
+                        val banner: RemoteConfigModel =
+                            gson.fromJson(agicInit, RemoteConfigModel::class.java)
+                        splashImgUrl.set(banner.splash)
+                        remoteCongigData.set(agicInit)
+                        if (BuildConfig.VERSION_NAME.equals(banner.android.version)) {
+                            initializeApp()
+                        } else {
+
+                            if (banner.android.isMandatory) {
+
+                                MSFDialog.alertDialog(this@SplashActivity,
+                                    0,
+                                    resources.getString(R.string.main_app_name),
+                                    banner.android.releaseNote,
+                                    UPDATE,
+                                    false,
+                                    object : MSFDialog.DialogListener {
+                                        override fun alertDialogAction(
+                                            action: MSFDialog.Action,
+                                            vararg data: Any
+                                        ) {
+                                            if (action == MSFDialog.Action.OK) {
+                                                val i = Intent(
+                                                    Intent.ACTION_VIEW
+                                                )
+                                                i.data = Uri.parse(banner.android.appLink)
+                                                startActivity(i)
+                                                finish()
+                                            }
+                                        }
+                                    })
+                            } else {
+                                MSFDialog.alertDialog(this@SplashActivity,
+                                    0,
+                                    resources.getString(R.string.main_app_name),
+                                    banner.android.releaseNote,
+                                    UPDATE,
+                                    CONTINUE,
+                                    false,
+                                    object : MSFDialog.DialogListener {
+                                        override fun alertDialogAction(
+                                            action: MSFDialog.Action,
+                                            vararg data: Any
+                                        ) {
+                                            if (action == MSFDialog.Action.OK) {
+                                                val i = Intent(
+                                                    Intent.ACTION_VIEW
+                                                )
+                                                i.data = Uri.parse(banner.android.appLink)
+                                                startActivity(i)
+                                                finish()
+                                            } else if (action === MSFDialog.Action.CANCEL) {
+                                                initializeApp()
+                                            }
+                                        }
+                                    })
+                            }
+                        }
+                    }
+                }
+            }
+    }
 
     private fun initializeApp() {
         openDashboard()
@@ -156,6 +248,12 @@ class SplashActivity : LeanBaseActivity() {
             finish()
         }
 
+    }
+
+    companion object {
+        val UPDATE = "Update"
+        val CONTINUE = "Continue"
+        val GOOGLE_PLAY_URL = "https://play.google.com/store/apps/details?id=com.mosl.tabapp"
     }
 
 //    internal val mRunnable: Runnable = Runnable {

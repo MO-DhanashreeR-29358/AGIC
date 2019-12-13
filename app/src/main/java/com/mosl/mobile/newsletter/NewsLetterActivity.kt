@@ -9,16 +9,20 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.ExpandableListView.OnGroupExpandListener
 import com.bumptech.glide.Glide
+import com.google.gson.Gson
 import com.jakewharton.rxbinding3.view.clicks
 import com.mosl.app.core.error.getErrorOnFailure
 import com.mosl.app.core.events.DataAction
+import com.mosl.app.core.prefs.StringPreference
 import com.mosl.app.coreui.base.LeanBaseActivity
 import com.mosl.commons.data.UiModel
 import com.mosl.commons.data.onFailure
 import com.mosl.commons.data.onSuccess
 import com.mosl.mobile.R
+import com.mosl.mobile.annotations.RemoteConfigData
 import com.mosl.mobile.constants.NavigationConstants
 import com.mosl.mobile.core.MOSLCommonActivity
+import com.mosl.mobile.data.RemoteConfigModel
 import com.mosl.mobile.databinding.ActivityNewsLetterBinding
 import com.mosl.mobile.domain.newsletter.NewsLetterResponseInfo
 import com.mosl.mobile.login.LoginActivity
@@ -44,6 +48,12 @@ class NewsLetterActivity : LeanBaseActivity(), NewsLetterView {
     lateinit var userManager: UserManagerImpl
     private val dataActionSubject = PublishSubject.create<DataAction>()
 
+    @Inject
+    @field:RemoteConfigData
+    lateinit var remoteCongigData: StringPreference
+    @Inject
+    lateinit var gson: Gson
+
     override fun getLayout(): Int {
         return R.layout.activity_news_letter
     }
@@ -65,7 +75,10 @@ class NewsLetterActivity : LeanBaseActivity(), NewsLetterView {
 
         imageList = ArrayList()
 
-        imageList.add("https://galaxy.motilaloswal.com/Conference/BrochureImages/mod-service-icon-web@2x.png")
+        val banner: RemoteConfigModel =
+            gson.fromJson(remoteCongigData.get(), RemoteConfigModel::class.java)
+        binding.txtAgicYear.text = (getString(R.string.txt_label_agic_year) + " " + banner.year)
+        imageList.add(banner.logo)
 
         val handler = Handler()
         val runnable = object : Runnable {

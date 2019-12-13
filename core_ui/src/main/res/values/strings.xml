@@ -8,7 +8,7 @@
     <string name="txt_label_skip_to_login">Skip to Login</string>
     <string name="txt_label_stay_updated_with">Stay updated with our newsletter..</string>
     <string name="txt_label_welcome">Welcome</string>
-    <string name="txt_label_agic_year">Agic 2020</string>
+    <string name="txt_label_agic_year">Agic</string>
 
     <string name="text_label_day1">DAY 1</string>
     <string name="text_label_day2">DAY 2</string>
@@ -63,4 +63,5 @@
     <string name="txt_label_contact_rm">Contact your RM</string>
     <string name="call_alert_message">"Do you want to call?"</string>
     <string name="splash_screen_image_key">splash_image_url</string>
+    <string name="agic_init">agic_init</string>
 </resources>

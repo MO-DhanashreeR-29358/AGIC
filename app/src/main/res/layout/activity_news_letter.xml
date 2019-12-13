@@ -65,7 +65,6 @@
             android:layout_below="@+id/txt_welcome"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="@dimen/margin_medium"
-            android:text="@string/txt_label_agic_year"
             android:textSize="@dimen/text_size_medium"
             app:layout_constraintBottom_toTopOf="@+id/txt_warn_msg"
             app:layout_constraintEnd_toEndOf="parent"

@@ -3,7 +3,10 @@ package com.mosl.mobile.core
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import android.graphics.*
+import android.graphics.BlendMode
+import android.graphics.BlendModeColorFilter
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffColorFilter
 import android.graphics.drawable.Drawable
 import android.net.ConnectivityManager
 import android.os.Build
@@ -23,12 +26,10 @@ import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
-import com.google.firebase.remoteconfig.FirebaseRemoteConfig
-import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
+import com.google.gson.Gson
 import com.jakewharton.rxbinding3.appcompat.navigationClicks
 import com.mosl.app.core.network.NetworkChangeEvent
 import com.mosl.app.core.network.NetworkReceiver
-import com.mosl.app.core.network.isNetworkConnected
 import com.mosl.app.core.prefs.StringPreference
 import com.mosl.app.core.utils.hide
 import com.mosl.app.core.utils.hideKeyBoard
@@ -37,16 +38,15 @@ import com.mosl.app.coreui.base.ActivityDelegate
 import com.mosl.app.coreui.base.BaseActivity
 import com.mosl.app.coreui.base.NavigationElement
 import com.mosl.mobile.R
-import com.mosl.mobile.annotations.ImageSplashUrl
+import com.mosl.mobile.annotations.RemoteConfigData
 import com.mosl.mobile.app_user.login.UserManager
 import com.mosl.mobile.app_user.login.user
 import com.mosl.mobile.constants.NavigationConstants
 import com.mosl.mobile.contactrm.ContactDialogFragment
 import com.mosl.mobile.coreui.LocaleManager
 import com.mosl.mobile.dashboard.ActivityNavigationHelper
+import com.mosl.mobile.data.RemoteConfigModel
 import com.mosl.mobile.databinding.ActivityCommonbaseBinding
-import com.mosl.mobile.domain.newsletter.NewsLetterResponseItemInfo
-import com.mosl.mobile.domain.schedule.ScheduleRepository
 import com.mosl.mobile.login.LoginActivity
 import com.mosl.mobile.login.UserCacheImpl
 import com.mosl.mobile.menu.ScreenNavigatorImpl
@@ -86,8 +86,10 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
     lateinit var userManager: UserManager
 
     @Inject
-    @field:ImageSplashUrl
-    lateinit var splashImgUrl: StringPreference
+    @field:RemoteConfigData
+    lateinit var remoteCongigData: StringPreference
+    @Inject
+    lateinit var gson: Gson
 
     override fun getLayout(): Int {
         return R.layout.activity_commonbase
@@ -117,9 +119,7 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
         setUpView()
         setUpTabs()
         changeImage()
-        if (this.isNetworkConnected()) {
-            retrieveFromRemoteConfig()
-        }
+
     }
 
 
@@ -156,18 +156,19 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
 
         imageList = ArrayList()
 
-        imageList.add("https://galaxy.motilaloswal.com/Conference/BrochureImages/mod-service-icon-web@2x.png")
-//        imageList.add("https://galaxy.motilaloswal.com/Conference/BrochureImages/live.jpg")
+        val banner: RemoteConfigModel =
+            gson.fromJson(remoteCongigData.get(), RemoteConfigModel::class.java)
+        imageList.add(banner.logo)
 
         val handler = Handler()
         val runnable = object : Runnable {
-            internal var i = 0
+            var alternate = 0
 
             override fun run() {
-                ImageViewAnimatedChange(baseContext, imageList.get(i))
-                i++
-                if (i > imageList.size - 1) {
-                    i = 0
+                ImageViewAnimatedChange(baseContext, imageList.get(alternate))
+                alternate++
+                if (alternate > imageList.size - 1) {
+                    alternate = 0
                 }
                 handler.postDelayed(this, 5000)
             }
@@ -275,30 +276,6 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
             override fun onTabReselected(tab: TabLayout.Tab) {
             }
         })
-    }
-
-
-    private fun retrieveFromRemoteConfig() {
-
-        val remoteConfig = FirebaseRemoteConfig.getInstance()
-        val configSettings = FirebaseRemoteConfigSettings.Builder()
-            .setMinimumFetchIntervalInSeconds(3600)
-            .build()
-        remoteConfig.setConfigSettingsAsync(configSettings)
-
-        remoteConfig.fetchAndActivate()
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    val imageUrl =
-                        remoteConfig.getString(getString(R.string.splash_screen_image_key))
-                    if (imageUrl != null) {
-
-                        splashImgUrl.set(imageUrl)
-
-                    }
-                }
-            }
-
     }
 
     private fun Context.setColor(color: Int): Int {
