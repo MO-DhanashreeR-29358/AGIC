@@ -3,7 +3,10 @@ package com.mosl.mobile.core
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import android.graphics.*
+import android.graphics.BlendMode
+import android.graphics.BlendModeColorFilter
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffColorFilter
 import android.graphics.drawable.Drawable
 import android.net.ConnectivityManager
 import android.os.Build
@@ -19,9 +22,12 @@ import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig
+import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
 import com.jakewharton.rxbinding3.appcompat.navigationClicks
 import com.mosl.app.core.network.NetworkChangeEvent
 import com.mosl.app.core.network.NetworkReceiver
+import com.mosl.app.core.prefs.StringPreference
 import com.mosl.app.core.utils.hide
 import com.mosl.app.core.utils.hideKeyBoard
 import com.mosl.app.core.utils.show
@@ -29,6 +35,7 @@ import com.mosl.app.coreui.base.ActivityDelegate
 import com.mosl.app.coreui.base.BaseActivity
 import com.mosl.app.coreui.base.NavigationElement
 import com.mosl.mobile.R
+import com.mosl.mobile.annotations.ImageSplashUrl
 import com.mosl.mobile.app_user.login.UserManager
 import com.mosl.mobile.app_user.login.user
 import com.mosl.mobile.constants.NavigationConstants
@@ -36,7 +43,6 @@ import com.mosl.mobile.contactrm.ContactDialogFragment
 import com.mosl.mobile.coreui.LocaleManager
 import com.mosl.mobile.dashboard.ActivityNavigationHelper
 import com.mosl.mobile.databinding.ActivityCommonbaseBinding
-import com.mosl.mobile.domain.schedule.ScheduleRepository
 import com.mosl.mobile.login.LoginActivity
 import com.mosl.mobile.login.UserCacheImpl
 import com.mosl.mobile.menu.ScreenNavigatorImpl
@@ -74,6 +80,10 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
     @Inject
     lateinit var userManager: UserManager
 
+    @Inject
+    @field:ImageSplashUrl
+    lateinit var splashImgUrl: StringPreference
+
     override fun getLayout(): Int {
         return R.layout.activity_commonbase
     }
@@ -101,6 +111,7 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
         setupObservables()
         setUpView()
         setUpTabs()
+        retrieveFromRemoteConfig()
 
     }
 
@@ -199,6 +210,30 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
             override fun onTabReselected(tab: TabLayout.Tab) {
             }
         })
+    }
+
+
+    private fun retrieveFromRemoteConfig() {
+
+        val remoteConfig = FirebaseRemoteConfig.getInstance()
+        val configSettings = FirebaseRemoteConfigSettings.Builder()
+            .setMinimumFetchIntervalInSeconds(3600)
+            .build()
+        remoteConfig.setConfigSettingsAsync(configSettings)
+
+        remoteConfig.fetchAndActivate()
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    val imageUrl =
+                        remoteConfig.getString(getString(R.string.splash_screen_image_key))
+                    if (imageUrl != null) {
+
+                        splashImgUrl.set(imageUrl)
+
+                    }
+                }
+            }
+
     }
 
     private fun Context.setColor(color: Int): Int {

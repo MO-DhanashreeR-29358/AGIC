@@ -6,8 +6,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.widget.Toast
 import com.bumptech.glide.Glide
-import com.google.firebase.remoteconfig.FirebaseRemoteConfig
-import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
 import com.mosl.app.core.network.isNetworkConnected
 import com.mosl.app.core.prefs.StringPreference
 import com.mosl.app.coreui.base.LeanBaseActivity
@@ -27,8 +25,8 @@ class SplashActivity : LeanBaseActivity() {
 
     lateinit var binding: ActivitySplashScreenBinding
 
-    private var mDelayHandler: Handler? = null
-    private val SPLASH_DELAY: Long = 1000 //1 seconds
+    private var mDelayHandler: Handler = Handler()
+    private val SPLASH_DELAY: Long = 2000 //2 seconds
     private var count = 0
 
 
@@ -48,12 +46,34 @@ class SplashActivity : LeanBaseActivity() {
         AndroidInjection.inject(this)
         binding = ActivitySplashScreenBinding.bind(findViewById(R.id.splash_layout))
         //Initialize the Handler
-        mDelayHandler = Handler()
 
         //Navigate with delay
 
-        mDelayHandler!!.postDelayed(mRunnable, SPLASH_DELAY)
+//        mDelayHandler!!.postDelayed(mRunnable, SPLASH_DELAY)
 
+        val splashImageUrl = getSplashImageUrl()
+        loadSplashImage(splashImageUrl)
+        mDelayHandler.postDelayed(
+            { checkNetwork() },
+            (if (splashImageUrl == null) 0 else SPLASH_DELAY).toLong()
+        )
+
+    }
+
+    private fun getSplashImageUrl(): String? {
+        return if (!splashImgUrl.get().isEmpty()) {
+            splashImgUrl.get()
+        } else {
+            null
+        }
+    }
+
+    private fun loadSplashImage(imageUrl: String?) {
+        if (imageUrl != null) {
+            Glide.with(this)
+                .load(imageUrl)
+                .into(binding.ivSplash)
+        }
     }
 
 
@@ -70,7 +90,7 @@ class SplashActivity : LeanBaseActivity() {
                 R.string.msg_application_needs_network_to_proceed,
                 Toast.LENGTH_LONG
             ).show()
-            openDashboard()
+            initializeApp()
 //            if (count < 2) {
 //                count++
 //                showConfirmation(
@@ -107,33 +127,6 @@ class SplashActivity : LeanBaseActivity() {
         return false
     }
 
-    private fun retrieveFromRemoteConfig() {
-
-        val remoteConfig = FirebaseRemoteConfig.getInstance()
-        val configSettings = FirebaseRemoteConfigSettings.Builder()
-            .setMinimumFetchIntervalInSeconds(3600)
-            .build()
-        remoteConfig.setConfigSettingsAsync(configSettings)
-
-        remoteConfig.fetchAndActivate()
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    val imageUrl =
-                        remoteConfig.getString(getString(R.string.splash_screen_image_key))
-                    if (imageUrl != null) {
-                        Glide.with(this)
-                            .load(imageUrl)
-                            .into(binding.ivSplash)
-                        splashImgUrl.set(imageUrl)
-                        checkNetwork()
-
-                    }
-                } else {
-                    checkNetwork()
-                }
-            }
-
-    }
 
     internal fun openDashboard() {
         if (userManager.isLoggedIn()) {
@@ -159,18 +152,18 @@ class SplashActivity : LeanBaseActivity() {
 
     }
 
-    internal val mRunnable: Runnable = Runnable {
-        if (!isFinishing) {
-            if (splashImgUrl.isNotSet) {
-                retrieveFromRemoteConfig()
-            } else
-                Glide.with(this)
-                    .load(splashImgUrl.get())
-                    .into(binding.ivSplash)
-            checkNetwork()
-
+//    internal val mRunnable: Runnable = Runnable {
+//        if (!isFinishing) {
+//            if (splashImgUrl.isNotSet) {
+//                retrieveFromRemoteConfig()
+//            } else
+//                Glide.with(this)
+//                    .load(splashImgUrl.get())
+//                    .into(binding.ivSplash)
 //            checkNetwork()
-
-        }
-    }
+//
+////            checkNetwork()
+//
+//        }
+//    }
 }
