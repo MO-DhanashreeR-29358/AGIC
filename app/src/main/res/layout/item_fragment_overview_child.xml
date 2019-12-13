@@ -11,8 +11,8 @@
 
         <ImageView
             android:id="@+id/icon_mctrack"
-            android:layout_width="@dimen/imageIcons"
-            android:layout_height="@dimen/imageIcons"
+            android:layout_width="@dimen/dimens_35"
+            android:layout_height="@dimen/dimens_65"
             android:layout_gravity="center"
             android:padding="@dimen/padding_small"
             android:src="@drawable/ic_mtrack_small"
