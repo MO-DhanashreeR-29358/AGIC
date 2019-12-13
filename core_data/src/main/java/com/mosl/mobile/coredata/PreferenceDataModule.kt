@@ -64,4 +64,11 @@ class PreferenceDataModule {
         return StringPreference(prefs, REMOTE_CONFIG_DATA_KEY, "")
     }
 
+    @ScheduleData
+    @Singleton
+    @Provides
+    internal fun provideScheduleDataPref(prefs: SharedPreferences): StringPreference {
+        return StringPreference(prefs, REMOTE_CONFIG_DATA_KEY, "")
+    }
+
 }

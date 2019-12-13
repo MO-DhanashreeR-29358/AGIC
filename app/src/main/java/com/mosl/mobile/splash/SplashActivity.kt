@@ -154,20 +154,20 @@ class SplashActivity : LeanBaseActivity() {
                     val agicInit =
                         remoteConfig.getString(getString(R.string.agic_init))
                     if (agicInit != null && !agicInit.isEmpty()) {
-                        val banner: RemoteConfigModel =
+                        val remoteConfigModel: RemoteConfigModel =
                             gson.fromJson(agicInit, RemoteConfigModel::class.java)
-                        splashImgUrl.set(banner.splash)
+                        splashImgUrl.set(remoteConfigModel.splash)
                         remoteCongigData.set(agicInit)
-                        if (BuildConfig.VERSION_NAME.equals(banner.android.version)) {
+                        if (BuildConfig.VERSION_NAME.equals(remoteConfigModel.android.version)) {
                             initializeApp()
                         } else {
 
-                            if (banner.android.isMandatory) {
+                            if (remoteConfigModel.android.isMandatory) {
 
                                 MSFDialog.alertDialog(this@SplashActivity,
                                     0,
                                     resources.getString(R.string.main_app_name),
-                                    banner.android.releaseNote,
+                                    remoteConfigModel.android.releaseNote,
                                     UPDATE,
                                     false,
                                     object : MSFDialog.DialogListener {
@@ -179,7 +179,7 @@ class SplashActivity : LeanBaseActivity() {
                                                 val i = Intent(
                                                     Intent.ACTION_VIEW
                                                 )
-                                                i.data = Uri.parse(banner.android.appLink)
+                                                i.data = Uri.parse(remoteConfigModel.android.appLink)
                                                 startActivity(i)
                                                 finish()
                                             }
@@ -189,7 +189,7 @@ class SplashActivity : LeanBaseActivity() {
                                 MSFDialog.alertDialog(this@SplashActivity,
                                     0,
                                     resources.getString(R.string.main_app_name),
-                                    banner.android.releaseNote,
+                                    remoteConfigModel.android.releaseNote,
                                     UPDATE,
                                     CONTINUE,
                                     false,
@@ -202,7 +202,7 @@ class SplashActivity : LeanBaseActivity() {
                                                 val i = Intent(
                                                     Intent.ACTION_VIEW
                                                 )
-                                                i.data = Uri.parse(banner.android.appLink)
+                                                i.data = Uri.parse(remoteConfigModel.android.appLink)
                                                 startActivity(i)
                                                 finish()
                                             } else if (action === MSFDialog.Action.CANCEL) {

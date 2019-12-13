@@ -3,6 +3,7 @@ package com.mosl.mobile.schedule
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.gson.Gson
 import com.mosl.app.core.error.ErrorModel
 import com.mosl.app.core.error.ErrorState
 import com.mosl.app.core.events.DataAction
@@ -13,6 +14,7 @@ import com.mosl.commons.data.onSuccess
 import com.mosl.groupiex.section.DataManagerSection
 import com.mosl.mobile.R
 import com.mosl.mobile.annotations.LastScheduleDate
+import com.mosl.mobile.annotations.ScheduleData
 import com.mosl.mobile.core.MOSLCommonActivity
 import com.mosl.mobile.core.MOSLCommonFragment
 import com.mosl.mobile.databinding.FragmentScheduleBinding
@@ -22,7 +24,6 @@ import com.mosl.mobile.domain.schedule.ScheduleResponseItemInfo
 import com.mosl.mobile.login.UserManagerImpl
 import com.mosl.mobile.schedule.ScheduleUiEvent.ItemClick
 import com.mosl.mobile.schedule.ScheduleUiEvent.OnMoreClick
-import com.mosl.shared.AppDateFormats
 import com.mosl.shared.util.addToCalendart
 import com.mosl.shared.util.checkTimeIsBetween
 import com.mosl.shared.util.getTimeAMPM
@@ -31,7 +32,6 @@ import com.xwray.groupie.ViewHolder
 import io.reactivex.Observable
 import io.reactivex.rxkotlin.ofType
 import io.reactivex.subjects.PublishSubject
-import java.util.*
 import javax.inject.Inject
 
 
@@ -47,14 +47,21 @@ class ScheduleFragment : MOSLCommonFragment(), ScheduleContract {
     @Inject
     lateinit var userManager: UserManagerImpl
 
-    override fun getLayout(): Int {
-        return R.layout.fragment_schedule
-    }
-
+    @Inject
+    @field:ScheduleData
+    lateinit var scheduleData: StringPreference
 
     @Inject
     @field:LastScheduleDate
     lateinit var scheduleDate: StringPreference
+
+    @Inject
+    lateinit var gson: Gson
+
+    override fun getLayout(): Int {
+        return R.layout.fragment_schedule
+    }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -79,20 +86,33 @@ class ScheduleFragment : MOSLCommonFragment(), ScheduleContract {
     override fun renderScheduleData(uiModel: UiModel<ScheduleResponse>) {
         toggleProgressBar(uiModel.inProgress)
         uiModel.onFailure { it ->
-            section.showError(it)
+            if (scheduleData.isNotSet) {
+
+                section.showError(it)
+            } else {
+                val scheduleResponse: ScheduleResponse =
+                    gson.fromJson(scheduleData.get(), ScheduleResponse::class.java)
+                scheduleResponse.responseData()
+            }
 
         }
 
         uiModel.onSuccess {
-            activity?.let { activity ->
-                (activity as MOSLCommonActivity).pdfLink = it.pdfLink!!
-            }
-            userManager.savePdf(it.pdfLink!!)
-            if (it.data.isNotEmpty()) {
+            it.responseData()
+        }
+    }
+
+    private fun ScheduleResponse.responseData() {
+        activity?.let { activity ->
+            (activity as MOSLCommonActivity).pdfLink = pdfLink!!
+        }
+        userManager.savePdf(pdfLink!!)
+        data?.let {
+            if (it.isNotEmpty()) {
                 section.clearContent()
                 var curentPos = -1;
                 var curentPosBool = false;
-                val sortedList = it.data.sortedWith(compareBy({ it.startTime }))
+                val sortedList = it.sortedWith(compareBy({ it.startTime }))
 
                 for ((i, model) in sortedList.withIndex()) {
 
@@ -110,14 +130,13 @@ class ScheduleFragment : MOSLCommonFragment(), ScheduleContract {
             } else {
                 section.showEmptyView(
                     ErrorModel(
-                        it.message,
+                        message,
                         ErrorState.NO_DATA_ERROR
                     )
                 )
             }
         }
     }
-    
 
 
     override fun renderItemData(repList: List<ScheduleRepresentativeItemData>) {

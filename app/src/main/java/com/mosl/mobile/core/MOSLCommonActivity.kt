@@ -38,10 +38,7 @@ import com.mosl.app.coreui.base.ActivityDelegate
 import com.mosl.app.coreui.base.BaseActivity
 import com.mosl.app.coreui.base.NavigationElement
 import com.mosl.mobile.R
-import com.mosl.mobile.annotations.ImageSplashUrl
-import com.mosl.mobile.annotations.LastBytesDate
-import com.mosl.mobile.annotations.LastScheduleDate
-import com.mosl.mobile.annotations.RemoteConfigData
+import com.mosl.mobile.annotations.*
 import com.mosl.mobile.app_user.login.UserManager
 import com.mosl.mobile.app_user.login.user
 import com.mosl.mobile.constants.NavigationConstants
@@ -101,6 +98,10 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
     @Inject
     @field:LastBytesDate
     lateinit var lastBytesDate: StringPreference
+
+    @Inject
+    @field:ScheduleData
+    lateinit var scheduleData: StringPreference
 
     @Inject
     lateinit var gson: Gson
@@ -179,7 +180,7 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
             var alternate = 0
 
             override fun run() {
-                ImageViewAnimatedChange(baseContext, imageList.get(alternate))
+                ImageViewAnimatedChange(this@MOSLCommonActivity, imageList.get(alternate))
                 alternate++
                 if (alternate > imageList.size - 1) {
                     alternate = 0
@@ -389,6 +390,7 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
                 imageSplashUrl.set("")
                 lastBytesDate.set("")
                 remoteConfigData.set("")
+                scheduleData.set("")
 
                 finish()
             }
