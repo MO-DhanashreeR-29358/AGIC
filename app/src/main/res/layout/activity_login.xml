@@ -79,6 +79,7 @@
             android:textSize="@dimen/text_size_normal"
             app:layout_constraintBottom_toTopOf="@+id/txt_login"
             app:layout_constraintStart_toStartOf="parent"
+            android:textColor="@color/black"
             tools:ignore="UnusedAttribute" />
 
         <TextView
