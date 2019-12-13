@@ -73,7 +73,7 @@ class ItemSchedule(
                         "4-1" -> setImageResource(R.drawable.ic_4x1)
                         "Small Group" -> setImageResource(R.drawable.ic_group)
                         "Workshop" -> setImageResource(R.drawable.ic_mtrack)
-                        else -> setImageResource(R.drawable.ic_mtrack)
+                        else -> setImageResource(R.drawable.ic_1x1)
                     }
                 }
             } catch (e: ParseException) {
