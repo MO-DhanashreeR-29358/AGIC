@@ -11,7 +11,6 @@ import android.graphics.drawable.Drawable
 import android.net.ConnectivityManager
 import android.os.Build
 import android.os.Bundle
-import android.os.Handler
 import android.os.PersistableBundle
 import android.text.TextUtils
 import android.view.View
@@ -45,7 +44,6 @@ import com.mosl.mobile.constants.NavigationConstants
 import com.mosl.mobile.contactrm.ContactDialogFragment
 import com.mosl.mobile.coreui.LocaleManager
 import com.mosl.mobile.dashboard.ActivityNavigationHelper
-import com.mosl.mobile.data.RemoteConfigModel
 import com.mosl.mobile.databinding.ActivityCommonbaseBinding
 import com.mosl.mobile.login.LoginActivity
 import com.mosl.mobile.login.UserCacheImpl
@@ -58,7 +56,6 @@ import timber.log.Timber
 import java.util.*
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
-import kotlin.collections.ArrayList
 
 class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
 
@@ -102,6 +99,18 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
     @Inject
     @field:ScheduleData
     lateinit var scheduleData: StringPreference
+
+    @Inject
+    @field:PanelData
+    lateinit var panelData: StringPreference
+
+    @Inject
+    @field:OverViewData
+    lateinit var overViewData: StringPreference
+
+    @Inject
+    @field:LastBytesData
+    lateinit var bytesData: StringPreference
 
     @Inject
     lateinit var gson: Gson
@@ -169,26 +178,26 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
 
     fun changeImage() {
 
-        imageList = ArrayList()
-
-        val banner: RemoteConfigModel =
-            gson.fromJson(remoteConfigData.get(), RemoteConfigModel::class.java)
-        imageList.add(banner.logo)
-
-        val handler = Handler()
-        val runnable = object : Runnable {
-            var alternate = 0
-
-            override fun run() {
-                ImageViewAnimatedChange(this@MOSLCommonActivity, imageList.get(alternate))
-                alternate++
-                if (alternate > imageList.size - 1) {
-                    alternate = 0
-                }
-                handler.postDelayed(this, 5000)
-            }
-        }
-        handler.postDelayed(runnable, 5000)
+//        imageList = ArrayList()
+//
+//        val banner: RemoteConfigModel =
+//            gson.fromJson(remoteConfigData.get(), RemoteConfigModel::class.java)
+//        imageList.add(banner.logo)
+//
+//        val handler = Handler()
+//        val runnable = object : Runnable {
+//            var alternate = 0
+//
+//            override fun run() {
+//                ImageViewAnimatedChange(this@MOSLCommonActivity, imageList.get(alternate))
+//                alternate++
+//                if (alternate > imageList.size - 1) {
+//                    alternate = 0
+//                }
+//                handler.postDelayed(this, 5000)
+//            }
+//        }
+//        handler.postDelayed(runnable, 5000)
     }
 
     fun ImageViewAnimatedChange(context: Context, imageUrl: String) {
@@ -386,11 +395,14 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
                 userCacheImpl.clearUser()
-                lastScheduleDate.set("")
-                imageSplashUrl.set("")
-                lastBytesDate.set("")
-                remoteConfigData.set("")
-                scheduleData.set("")
+                lastScheduleDate.delete()
+                imageSplashUrl.delete()
+                lastBytesDate.delete()
+//                remoteConfigData.delete()
+                scheduleData.delete()
+                panelData.delete()
+                overViewData.delete()
+                bytesData.delete()
 
                 finish()
             }

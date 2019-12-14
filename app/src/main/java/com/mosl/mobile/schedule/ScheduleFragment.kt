@@ -98,6 +98,8 @@ class ScheduleFragment : MOSLCommonFragment(), ScheduleContract {
         }
 
         uiModel.onSuccess {
+            val json = gson.toJson(it)
+            scheduleData.set(json)
             it.responseData()
         }
     }

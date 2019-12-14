@@ -5,7 +5,7 @@ data class BytesItemModel(
     @JvmField  var entryDate:String
 )
 
-data class BytesData(
+ data class BytesData(
     @JvmField val headerTime: String,
     @JvmField val itemList: List<BytesItemModel>
 )

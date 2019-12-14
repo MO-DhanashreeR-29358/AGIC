@@ -1,11 +1,9 @@
 package com.mosl.mobile.data.schedule
 
-import com.google.gson.Gson
 import com.mosl.app.core.prefs.StringPreference
 import com.mosl.data.api.AGICApi
 import com.mosl.data.api.schedule.ScheduleResponseItem
 import com.mosl.mobile.annotations.LastScheduleDate
-import com.mosl.mobile.annotations.ScheduleData
 import com.mosl.mobile.app_user.login.UserManager
 import com.mosl.mobile.app_user.login.user
 import com.mosl.mobile.domain.schedule.*
@@ -19,44 +17,30 @@ import javax.inject.Inject
 class ScheduleRepositoryImpl @Inject constructor(
     internal val agicApi: AGICApi,
     val userManager: UserManager,
-    @LastScheduleDate val scheduleDate: StringPreference,
-    @ScheduleData val scheduleData: StringPreference,
-    val gson: Gson
+    @LastScheduleDate val scheduleDate: StringPreference
 ) : ScheduleRepository {
 
     private val mapper = ScheduleMapper
 
-    val date = if (scheduleDate.isNotSet) {
-        NEW
-    } else
-        getFormatedDate(scheduleDate.get(), DF_JSON_DATE_12, DF_TIME_HH_ss)
 
-    val scheduleRequest = ScheduleRequestInfo(
-        clientID = userManager.user.clientId,
-        schedule = getTodaysDate(),
-        timestamp = date
-    )
 
     override fun getScheduleData(): Observable<ScheduleResponse> {
+
+        val date = if (scheduleDate.isNotSet) {
+            NEW
+        } else
+            getFormatedDate(scheduleDate.get(), DF_JSON_DATE_12, DF_TIME_HH_ss)
+
+        val scheduleRequest = ScheduleRequestInfo(
+            clientID = userManager.user.clientId,
+            schedule = getTodaysDate(),
+            timestamp = date
+        )
 
         return agicApi.getScheduleDataAPI(mapper.getScheduleRequestMap(scheduleRequest))
 
             .map {
-                //                scheduleDate.set( DF_JSON_DATE_4.format(Date()))
-                if (it.IsSucess) {
-                    if (it.data == null) {
-                        val json =
-                            gson.toJson(ScheduleResponse(emptyList(), it.pdf, it.message))
-                        scheduleData.set(json)
-                    } else {
 
-                        val json =
-                            gson.toJson(ScheduleResponse(it.data?.dataMapper(), it.pdf, it.message))
-                        scheduleData.set(json)
-                    }
-
-
-                }
                 mapper.getScheduleMap(it.data, it.pdf, it.message)
             }
     }

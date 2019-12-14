@@ -23,25 +23,25 @@ class BytesRepositoryImpl @Inject constructor(
     @LastBytesDate val lastBytesDate: StringPreference
 ) : BytesRepository {
 
-    val bytesDate = if (lastBytesDate.isNotSet) {
-        NEW
-    } else
-//        NEW
-        getMilliFromDate(lastBytesDate.get(), DF_JSON_DATE_12)
 
-    val scheduleDate = if (lastScheduleDate.isNotSet) {
-        getMilliFromDate(DF_JSON_DATE_4.format(Date()), DF_JSON_DATE_4)
-    } else
-        getMilliFromDate(lastScheduleDate.get(), DF_JSON_DATE_12)
-
-    val bytesRequest = BytesRequest(
-        bytesDate,
-        scheduleDate,
-        userManager.user.clientId
-    )
 
     override fun bytesData(): Observable<List<BytesResponse>> {
 
+        val bytesDate = if (lastBytesDate.isNotSet) {
+            NEW
+        } else
+            getMilliFromDate(lastBytesDate.get(), DF_JSON_DATE_12)
+
+        val scheduleDate = if (lastScheduleDate.isNotSet) {
+            getMilliFromDate(DF_JSON_DATE_4.format(Date()), DF_JSON_DATE_4)
+        } else
+            getMilliFromDate(lastScheduleDate.get(), DF_JSON_DATE_12)
+
+        val bytesRequest = BytesRequest(
+            bytesDate,
+            scheduleDate,
+            userManager.user.clientId
+        )
         val requestMapper = bytesRequest.mapToBytesRequest()
 
 

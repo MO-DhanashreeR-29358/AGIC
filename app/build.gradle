@@ -241,7 +241,7 @@ dependencies {
     implementation RoomDependencies.runtime
     kapt RoomDependencies.compiler
 
-    implementation AndroidxDependencies.preferenceKotlin
+//    implementation AndroidxDependencies.preferenceKotlin
 
     implementation GsonDependencies.gson
 
