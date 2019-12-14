@@ -232,7 +232,6 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
         binding.imgLogo.startAnimation(anim_out)
     }
 
-    var pdfLink: String? = null
 
     private fun setUpTabs() {
         binding.tabLayout.addTab(
@@ -282,10 +281,10 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
                 if (tab.tag as Int == NavigationConstants.NAVIGATE_TO_PDF) {
                     val ft = getSupportFragmentManager().beginTransaction()
                     if (userManager.getPdf().isNotEmpty()) {
-                        pdfLink?.let {
-                            PdfFragment.newInstance(it)
-                                .show(ft, "")
-                        }
+
+                        PdfFragment.newInstance()
+                            .show(ft, "")
+
                     }
 
                 } else {

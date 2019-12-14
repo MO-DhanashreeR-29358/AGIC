@@ -105,9 +105,6 @@ class ScheduleFragment : MOSLCommonFragment(), ScheduleContract {
     }
 
     private fun ScheduleResponse.responseData() {
-        activity?.let { activity ->
-            (activity as MOSLCommonActivity).pdfLink = pdfLink!!
-        }
         userManager.savePdf(pdfLink!!)
         data?.let {
             if (it.isNotEmpty()) {
