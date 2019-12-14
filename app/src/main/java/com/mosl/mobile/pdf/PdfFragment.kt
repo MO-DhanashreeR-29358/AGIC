@@ -4,7 +4,9 @@ package com.mosl.mobile.pdf
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.mosl.app.core.network.isNetworkConnected
 import com.mosl.app.coreui.dialog.BaseDialogFragment
 import com.mosl.mobile.R
 import com.mosl.mobile.databinding.FragmentPdfBinding
@@ -33,8 +35,16 @@ class PdfFragment : BaseDialogFragment(), PdfContract {
             }
 
             tvPdfOk.setOnClickListener {
-                arguments?.getString(PDF_LINK)?.let {
-                    requireContext().downloadDocument(it)
+                if (requireContext().isNetworkConnected()) {
+                    arguments?.getString(PDF_LINK)?.let {
+                        requireContext().downloadDocument(it)
+                    }
+                } else {
+                    Toast.makeText(
+                        requireContext(),
+                        R.string.msg_pdf_needs_network_to_download,
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
                 dialog?.dismiss()
 

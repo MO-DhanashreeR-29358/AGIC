@@ -3,13 +3,16 @@ package com.mosl.mobile.overviewpager
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import com.google.gson.Gson
 import com.mosl.app.core.exception.ServiceFailureException
+import com.mosl.app.core.prefs.StringPreference
 import com.mosl.app.coreui.adapters.ViewPagerAdapter
 import com.mosl.commons.data.UiModel
 import com.mosl.commons.data.onFailure
 import com.mosl.commons.data.onSuccess
 import com.mosl.groupiex.section.DataManagerSection
 import com.mosl.mobile.R
+import com.mosl.mobile.annotations.OverViewData
 import com.mosl.mobile.core.MOSLCommonPager
 import com.mosl.mobile.databinding.FragmentOverviewBinding
 import com.mosl.mobile.domain.overviewpager.OverviewResponseDataInfo
@@ -29,6 +32,13 @@ class OverviewFragment : MOSLCommonPager(), OverviewPagerContract {
 
     lateinit var binding: FragmentOverviewBinding
     private lateinit var pagerAdapter: ViewPagerAdapter
+
+    @Inject
+    @field:OverViewData
+    lateinit var overViewData: StringPreference
+
+    @Inject
+    lateinit var gson: Gson
 
     override fun getLayout(): Int {
         return R.layout.fragment_overview
@@ -84,26 +94,39 @@ class OverviewFragment : MOSLCommonPager(), OverviewPagerContract {
     override fun renderScheduleData(uiModel: UiModel<OverviewResponseDataInfo>) {
         toggleProgressBar(uiModel.inProgress)
         uiModel.onFailure {
-            tabPublishSubject.onNext(UiModel.error(it))
+            if (overViewData.isNotSet) {
+
+                tabPublishSubject.onNext(UiModel.error(it))
+            } else {
+                val overViewResponse: OverviewResponseDataInfo =
+                    gson.fromJson(overViewData.get(), OverviewResponseDataInfo::class.java)
+                overViewResponse.responseData()
+            }
+
         }
 
         uiModel.onSuccess {
+            val json = gson.toJson(it)
+            overViewData.set(json)
+            it.responseData()
 
+        }
+    }
 
-            overViewDayWiseListData =
-                it.OverViewDayWiseListData() as MutableList<List<OverviewResponseDayItemInfo>>
-            val dayOverView = it.OverViewDayWiseListData().get(0)
-            if (dayOverView.isNotEmpty()) {
-                tabPublishSubject.onNext(UiModel.success(dayOverView))
-            } else {
-                tabPublishSubject.onNext(
-                    UiModel.error(
-                        ServiceFailureException(
-                            NO_DATA_AVAILABLE_FOR_THE_DAY
-                        )
+    private fun OverviewResponseDataInfo.responseData() {
+        overViewDayWiseListData =
+            OverViewDayWiseListData() as MutableList<List<OverviewResponseDayItemInfo>>
+        val dayOverView = OverViewDayWiseListData().get(0)
+        if (dayOverView.isNotEmpty()) {
+            tabPublishSubject.onNext(UiModel.success(dayOverView))
+        } else {
+            tabPublishSubject.onNext(
+                UiModel.error(
+                    ServiceFailureException(
+                        NO_DATA_AVAILABLE_FOR_THE_DAY
                     )
                 )
-            }
+            )
         }
     }
 
