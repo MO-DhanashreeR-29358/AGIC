@@ -11,6 +11,7 @@ import android.graphics.drawable.Drawable
 import android.net.ConnectivityManager
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
 import android.os.PersistableBundle
 import android.text.TextUtils
 import android.view.View
@@ -44,6 +45,7 @@ import com.mosl.mobile.constants.NavigationConstants
 import com.mosl.mobile.contactrm.ContactDialogFragment
 import com.mosl.mobile.coreui.LocaleManager
 import com.mosl.mobile.dashboard.ActivityNavigationHelper
+import com.mosl.mobile.data.RemoteConfigModel
 import com.mosl.mobile.databinding.ActivityCommonbaseBinding
 import com.mosl.mobile.login.LoginActivity
 import com.mosl.mobile.login.UserCacheImpl
@@ -174,36 +176,26 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
 
 //    var imageArray = arrayOf(R.drawable.agic_agic, R.drawable.agic_15);
 
-    lateinit var imageList: ArrayList<String>
 
     fun changeImage() {
 
-//        imageList = ArrayList()
-//
-//        val banner: RemoteConfigModel =
-//            gson.fromJson(remoteConfigData.get(), RemoteConfigModel::class.java)
-//        imageList.add(banner.logo)
-//
-//        val handler = Handler()
-//        val runnable = object : Runnable {
-//            var alternate = 0
-//
-//            override fun run() {
-//                ImageViewAnimatedChange(this@MOSLCommonActivity, imageList.get(alternate))
-//                alternate++
-//                if (alternate > imageList.size - 1) {
-//                    alternate = 0
-//                }
-//                handler.postDelayed(this, 5000)
-//            }
-//        }
-//        handler.postDelayed(runnable, 5000)
+        val handler = Handler()
+        val runnable = object : Runnable {
+
+            override fun run() {
+                ImageViewAnimatedChange()
+                handler.postDelayed(this, 10000)
+            }
+        }
+        handler.postDelayed(runnable, 5000)
     }
 
-    fun ImageViewAnimatedChange(context: Context, imageUrl: String) {
+    fun ImageViewAnimatedChange() {
 
-        val anim_out = AnimationUtils.loadAnimation(context, R.anim.fade_out_image)
-        val anim_in = AnimationUtils.loadAnimation(context, R.anim.fade_in_image)
+        val banner: RemoteConfigModel =
+            gson.fromJson(remoteConfigData.get(), RemoteConfigModel::class.java)
+        val anim_out = AnimationUtils.loadAnimation(this@MOSLCommonActivity, R.anim.fade_out_image)
+        val anim_in = AnimationUtils.loadAnimation(this@MOSLCommonActivity, R.anim.fade_in_image)
 
         anim_out.setAnimationListener(object : Animation.AnimationListener {
 
@@ -215,8 +207,8 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
 
 //                binding.img1.setImageResource(new_image)
 
-                Glide.with(context)
-                    .load(imageUrl)
+                Glide.with(this@MOSLCommonActivity)
+                    .load(banner.logo)
                     .into(binding.imgLogo);
 
                 anim_in.setAnimationListener(object : Animation.AnimationListener {

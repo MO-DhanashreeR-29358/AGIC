@@ -1,6 +1,5 @@
 package com.mosl.mobile.newsletter
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -69,36 +68,26 @@ class NewsLetterActivity : LeanBaseActivity(), NewsLetterView {
     }
 
     //    var imageArray = arrayOf(R.drawable.agic_agic, R.drawable.agic_15);
-    lateinit var imageList: ArrayList<String>
 
     fun changeImage() {
 
-        imageList = ArrayList()
-
-        val banner: RemoteConfigModel =
-            gson.fromJson(remoteCongigData.get(), RemoteConfigModel::class.java)
-        binding.txtAgicYear.text = (getString(R.string.txt_label_agic_year) + " " + banner.year)
-        imageList.add(banner.logo)
-
         val handler = Handler()
         val runnable = object : Runnable {
-            var i = 0
+
             override fun run() {
-                ImageViewAnimatedChange(baseContext, imageList.get(i))
-                i++
-                if (i > imageList.size - 1) {
-                    i = 0
-                }
-                handler.postDelayed(this, 5000)
+                ImageViewAnimatedChange()
+                handler.postDelayed(this, 10000)
             }
         }
         handler.postDelayed(runnable, 5000)
     }
 
-    fun ImageViewAnimatedChange(context: Context, imageUrl: String) {
+    fun ImageViewAnimatedChange() {
 
-        val anim_out = AnimationUtils.loadAnimation(context, R.anim.fade_out_image)
-        val anim_in = AnimationUtils.loadAnimation(context, R.anim.fade_in_image)
+        val banner: RemoteConfigModel =
+            gson.fromJson(remoteCongigData.get(), RemoteConfigModel::class.java)
+        val anim_out = AnimationUtils.loadAnimation(this@NewsLetterActivity, R.anim.fade_out_image)
+        val anim_in = AnimationUtils.loadAnimation(this@NewsLetterActivity, R.anim.fade_in_image)
 
         anim_out.setAnimationListener(object : Animation.AnimationListener {
 
@@ -108,10 +97,8 @@ class NewsLetterActivity : LeanBaseActivity(), NewsLetterView {
 
             override fun onAnimationEnd(animation: Animation) {
 
-//                binding.imgAgic.setImageResource(new_image)
-
-                Glide.with(context)
-                    .load(imageUrl)
+                Glide.with(this@NewsLetterActivity)
+                    .load(banner.logo)
                     .into(binding.imgAgic);
 
                 anim_in.setAnimationListener(object : Animation.AnimationListener {
