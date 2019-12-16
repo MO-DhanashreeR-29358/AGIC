@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/service/mock_data/AGIC_Client_Android-service-mock_data.iml" filepath="$PROJECT_DIR$/service/mock_data/AGIC_Client_Android-service-mock_data.iml" />
-      <module fileurl="file://$PROJECT_DIR$/service/mosl_api/AGIC_Client_Android-service-mosl_api.iml" filepath="$PROJECT_DIR$/service/mosl_api/AGIC_Client_Android-service-mosl_api.iml" />
-      <module fileurl="file://$PROJECT_DIR$/shared/AGIC_Client_Android-shared.iml" filepath="$PROJECT_DIR$/shared/AGIC_Client_Android-shared.iml" />
       <module fileurl="file://$PROJECT_DIR$/Agic.iml" filepath="$PROJECT_DIR$/Agic.iml" />
-      <module fileurl="file://$PROJECT_DIR$/buildSrc/Agic-buildSrc.iml" filepath="$PROJECT_DIR$/buildSrc/Agic-buildSrc.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Android-Agic.iml" filepath="$PROJECT_DIR$/Android-Agic.iml" />
-      <module fileurl="file://$PROJECT_DIR$/shared/Projects-AGIC_Client_Android-shared.iml" filepath="$PROJECT_DIR$/shared/Projects-AGIC_Client_Android-shared.iml" />
       <module fileurl="file://$PROJECT_DIR$/annotations/annotations.iml" filepath="$PROJECT_DIR$/annotations/annotations.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app_user/app_user.iml" filepath="$PROJECT_DIR$/app_user/app_user.iml" />
@@ -19,8 +13,6 @@
       <module fileurl="file://$PROJECT_DIR$/domain/domain.iml" filepath="$PROJECT_DIR$/domain/domain.iml" />
       <module fileurl="file://$PROJECT_DIR$/service/mock_data/mock_data.iml" filepath="$PROJECT_DIR$/service/mock_data/mock_data.iml" />
       <module fileurl="file://$PROJECT_DIR$/service/mosl_api/mosl_api.iml" filepath="$PROJECT_DIR$/service/mosl_api/mosl_api.iml" />
-      <module fileurl="file://$PROJECT_DIR$/service/mock_data/service-mock_data.iml" filepath="$PROJECT_DIR$/service/mock_data/service-mock_data.iml" />
-      <module fileurl="file://$PROJECT_DIR$/service/mosl_api/service-mosl_api.iml" filepath="$PROJECT_DIR$/service/mosl_api/service-mosl_api.iml" />
       <module fileurl="file://$PROJECT_DIR$/shared/shared.iml" filepath="$PROJECT_DIR$/shared/shared.iml" />
     </modules>
   </component>

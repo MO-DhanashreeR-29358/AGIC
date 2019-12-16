@@ -85,4 +85,7 @@ public class AppDateFormats {
 
 	private static final String JSON_DATE_12 = "E, dd MMM yyyy HH:mm:ss z";
 	public static final DateFormat DF_JSON_DATE_12 = new SimpleDateFormat(JSON_DATE_12, Locale.ENGLISH);
+
+	private static final String JSON_DATE_13 = "E, dd MMM yyyy";
+	public static final DateFormat DF_JSON_DATE_13 = new SimpleDateFormat(JSON_DATE_13, Locale.ENGLISH);
 }

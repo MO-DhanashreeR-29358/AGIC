@@ -3,6 +3,7 @@ package com.mosl.mobile.coredata.interceptor
 import com.mosl.app.core.prefs.StringPreference
 import com.mosl.mobile.annotations.LastBytesDate
 import com.mosl.mobile.annotations.LastScheduleDate
+import com.mosl.mobile.annotations.ScheduleData
 import com.mosl.shared.Encryptor.AESEncryptor
 import okhttp3.Interceptor
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -18,7 +19,9 @@ class EncryptionInterceptor @Inject constructor(
     @LastScheduleDate
     val scheduleDate: StringPreference,
     @LastBytesDate
-    val bytesDate: StringPreference
+    val bytesDate: StringPreference,
+    @ScheduleData
+    val scheduleData:StringPreference
 ) : Interceptor {
 
     @Throws(IOException::class)
@@ -49,6 +52,8 @@ class EncryptionInterceptor @Inject constructor(
             try {
                 val strResponse = response.body
                 val headerDate = response.header("Date") ?: ""
+
+               
                 if (response.code == 200 && last.contains("GetScheduleAPI")) {
                     scheduleDate.set(headerDate)
                 }

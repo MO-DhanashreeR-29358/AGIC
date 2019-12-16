@@ -146,6 +146,10 @@ android {
         check 'NewApi', 'SyntheticAccessor'
         ignoreWarnings false
     }
+
+    dexOptions {
+        javaMaxHeapSize "2g"
+    }
 }
 
 dependencies {
