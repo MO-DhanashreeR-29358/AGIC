@@ -22,12 +22,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:tabGravity="fill"
-            app:tabIconTint="@color/white"
-            app:tabIndicatorColor="@color/dark_blue"
+            app:tabIconTint="@color/day_tab_white"
+            app:tabIndicatorColor="@color/day_tab_indicatore_selected"
             app:tabIndicatorHeight="@dimen/margin_small"
             app:tabMode="fixed"
-            app:tabSelectedTextColor="@color/darkGrey"
-            app:tabTextAppearance="@style/MaxCustomTabText" />
+            app:tabSelectedTextColor="@color/day_tab_selected"
+            app:tabTextAppearance="@style/MaxCustomTabText"
+            app:tabTextColor="@color/day_tab_white" />
 
         <com.mosl.app.coreui.views.CustomViewPager
             android:id="@+id/pager"

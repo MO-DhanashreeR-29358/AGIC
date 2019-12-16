@@ -20,7 +20,8 @@
                 android:id="@+id/coordinator_layout"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:background="@color/white">
 
                 <com.google.android.material.appbar.AppBarLayout
                     android:id="@+id/app_bar"
@@ -123,9 +124,7 @@
 
                         </LinearLayout>
 
-
                     </androidx.appcompat.widget.Toolbar>
-
 
                 </com.google.android.material.appbar.AppBarLayout>
 
@@ -134,6 +133,7 @@
                     android:id="@+id/activityFrameLayout"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/margin_small"
                     app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 
@@ -143,7 +143,6 @@
                     android:layout_height="match_parent"
                     android:visibility="gone"
                     tools:visibility="visible" />
-
 
             </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
@@ -158,13 +157,16 @@
                 app:iconPadding="@dimen/padding_small"
                 app:layout_anchorGravity="bottom|center"
                 app:tabGravity="fill"
-                app:tabIconTint="@color/white"
-                app:tabIndicatorColor="@color/dark_blue"
+                app:tabIconTint="@color/bottom_tab_white"
+                app:tabIndicatorColor="@color/blue"
                 app:tabIndicatorHeight="0dp"
                 app:tabMode="auto"
-                app:tabSelectedTextColor="@color/dark_blue"
-                app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget" />
+                app:tabSelectedTextColor="@color/blue"
+                app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
+                app:tabTextColor="@color/bottom_tab_white" />
+
         </LinearLayout>
 
     </androidx.drawerlayout.widget.DrawerLayout>
+
 </layout>

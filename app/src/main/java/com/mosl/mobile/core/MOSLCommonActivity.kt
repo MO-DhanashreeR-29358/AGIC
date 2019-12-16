@@ -285,7 +285,7 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab) {
-                setColorFilter(tab.icon, baseContext.setColor(R.color.white))
+                setColorFilter(tab.icon, baseContext.setColor(R.color.bottom_tab_white))
             }
 
             override fun onTabReselected(tab: TabLayout.Tab) {

@@ -6,7 +6,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?android:colorBackground"
+        android:background="@color/news_letter_parent_txt_back"
         tools:ignore="HardcodedText">
 
         <ImageView
@@ -39,8 +39,8 @@
             android:id="@+id/tv_start_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/dark_purple"
             android:padding="@dimen/padding_small"
+            android:textColor="@color/dark_purple"
             android:textSize="@dimen/text_size_small"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -65,9 +65,9 @@
             android:id="@+id/tv_end_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:padding="@dimen/padding_small"
             android:textColor="@color/dark_purple"
             android:textSize="@dimen/text_size_small"
-            android:padding="@dimen/padding_small"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/img_more"
             tools:ignore="RtlSymmetry"

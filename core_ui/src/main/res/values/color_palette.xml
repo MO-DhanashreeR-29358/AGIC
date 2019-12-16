@@ -12,6 +12,34 @@
     <color name="red">#b00020</color>
     <color name="lightRed">#cf6679</color>
 
+    <color name="login_year_text_color">#dedede</color>
+    <color name="login_permission_text_color">#0091ea</color>
+    <color name="login_btn_text_color">#ffffff</color>
+    <color name="login_btn_back_color">#31B8E5</color>
+
+    <color name="news_letter_head_welcome">#006ab6</color>
+    <color name="news_letter_head">#dedede</color>
+    <color name="news_letter_warning">#ffffff</color>
+    <color name="news_letter_warning_background">#fcae16</color>
+    <color name="news_letter_skiplogin">#000000</color>
+    <color name="news_letter_skiplogin_back">#31B8E5</color>
+    <color name="news_letter_child_txt">#000000</color>
+    <color name="news_letter_child_txt_back">#f9f9f9</color>
+    <color name="news_letter_parent_txt_back">#FFFFFF</color>
+    <color name="news_letter_parent_txt">#006ab6</color>
+
+    <color name="bottom_tab_white">#ffffff</color>
+    <color name="bottom_tab_selected">#006ab6</color>
+
+    <color name="day_tab_white">#A7A7A7</color>
+    <color name="day_tab_selected">#535353</color>
+    <color name="day_tab_indicatore_selected">#006ab6</color>
+
+    <color name="schedule_company_name">#323232</color>
+    <color name="schedule_venue">#888888</color>
+    <color name="schedule_venue_icon">#202020</color>
+    <color name="schedule_divider">#dedede</color>
+
     <color name="white">#ffffff</color>
     <color name="alabaster">#F9F9F9</color>
 
@@ -23,6 +51,7 @@
     <color name="greyWhite">#dedede</color>
     <color name="light_orange">#FFE09A6B</color>
     <color name="green">#FF11E419</color>
+
 
     <color name="light_blue_700">#0091ea</color>
     <color name="dark_blue_700">#445278</color>

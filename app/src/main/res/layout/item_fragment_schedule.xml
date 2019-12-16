@@ -4,7 +4,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/news_letter_parent_txt_back">
 
         <View
             android:id="@+id/circleView"
@@ -36,10 +37,10 @@
             android:layout_marginTop="@dimen/margin_normal"
             android:layout_marginBottom="@dimen/margin_normal"
             android:src="@drawable/ic_mtrack"
-            app:layout_constraintEnd_toEndOf="parent"
-
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/view_divider"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             tools:ignore="ContentDescription" />
 
         <TextView
@@ -81,7 +82,7 @@
             android:layout_marginStart="@dimen/margin_small"
             android:maxLines="2"
             android:padding="@dimen/padding_extra_small"
-            android:textColor="@color/light_black"
+            android:textColor="@color/schedule_company_name"
             android:textSize="@dimen/text_size_small"
             app:layout_constraintEnd_toStartOf="@id/iv_icon_schedule"
             app:layout_constraintStart_toEndOf="@id/circleView"
@@ -111,13 +112,13 @@
             android:drawableStart="@drawable/ic_location"
             android:gravity="start|center_vertical"
             android:padding="@dimen/padding_extra_small"
-            android:textColor="@color/warmGrey"
+            android:textColor="@color/schedule_venue"
             android:textSize="@dimen/text_size_small"
             android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/view_divider"
             app:layout_constraintEnd_toStartOf="@id/iv_icon_schedule"
             app:layout_constraintStart_toEndOf="@id/circleView"
             app:layout_constraintTop_toBottomOf="@id/tv_schedule_name_more"
-            app:layout_constraintBottom_toTopOf="@id/view_divider"
             tools:ignore="RtlSymmetry"
             tools:text="Venue- Ballroom Level" />
 
@@ -126,7 +127,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/_1sdp"
             android:layout_marginTop="@dimen/margin_normal"
-            android:background="@color/greyWhite"
+            android:background="@color/schedule_divider"
             app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
