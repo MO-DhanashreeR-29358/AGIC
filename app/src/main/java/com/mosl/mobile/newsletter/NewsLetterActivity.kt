@@ -52,7 +52,7 @@ class NewsLetterActivity : LeanBaseActivity(), NewsLetterView {
     lateinit var remoteCongigData: StringPreference
     @Inject
     lateinit var gson: Gson
-
+    lateinit var remoteConfigModel: RemoteConfigModel;
     override fun getLayout(): Int {
         return R.layout.activity_news_letter
     }
@@ -63,6 +63,9 @@ class NewsLetterActivity : LeanBaseActivity(), NewsLetterView {
 
         presenter.start()
         dataActionSubject.onNext(DataAction.Fetch)
+        remoteConfigModel  =
+            gson.fromJson(remoteCongigData.get(), RemoteConfigModel::class.java)
+        binding.txtAgicYear.text = (getString(R.string.txt_label_agic_year) + " " + remoteConfigModel.year)
 
         changeImage()
     }
@@ -83,11 +86,9 @@ class NewsLetterActivity : LeanBaseActivity(), NewsLetterView {
     }
 
     fun ImageViewAnimatedChange() {
-        val banner: RemoteConfigModel =
-            gson.fromJson(remoteCongigData.get(), RemoteConfigModel::class.java)
+
         val anim_out = AnimationUtils.loadAnimation(this@NewsLetterActivity, R.anim.fade_out_image)
         val anim_in = AnimationUtils.loadAnimation(this@NewsLetterActivity, R.anim.fade_in_image)
-        binding.txtAgicYear.text = (getString(R.string.txt_label_agic_year) + " " + banner.year)
 
         anim_out.setAnimationListener(object : Animation.AnimationListener {
 
@@ -98,7 +99,7 @@ class NewsLetterActivity : LeanBaseActivity(), NewsLetterView {
             override fun onAnimationEnd(animation: Animation) {
 
                 Glide.with(this@NewsLetterActivity)
-                    .load(banner.logo)
+                    .load(remoteConfigModel.logo)
                     .into(binding.imgAgic);
 
                 anim_in.setAnimationListener(object : Animation.AnimationListener {
