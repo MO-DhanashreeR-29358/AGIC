@@ -2,18 +2,26 @@ package com.mosl.mobile.newsletter
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.ExpandableListView.OnGroupExpandListener
+import com.bumptech.glide.Glide
+import com.google.gson.Gson
 import com.jakewharton.rxbinding3.view.clicks
 import com.mosl.app.core.error.getErrorOnFailure
 import com.mosl.app.core.events.DataAction
+import com.mosl.app.core.prefs.StringPreference
 import com.mosl.app.coreui.base.LeanBaseActivity
 import com.mosl.commons.data.UiModel
 import com.mosl.commons.data.onFailure
 import com.mosl.commons.data.onSuccess
 import com.mosl.mobile.R
+import com.mosl.mobile.annotations.RemoteConfigData
 import com.mosl.mobile.constants.NavigationConstants
 import com.mosl.mobile.core.MOSLCommonActivity
+import com.mosl.mobile.data.RemoteConfigModel
 import com.mosl.mobile.databinding.ActivityNewsLetterBinding
 import com.mosl.mobile.domain.newsletter.NewsLetterResponseInfo
 import com.mosl.mobile.login.LoginActivity
@@ -21,6 +29,7 @@ import com.mosl.mobile.login.UserManagerImpl
 import io.reactivex.Observable
 import io.reactivex.subjects.PublishSubject
 import javax.inject.Inject
+
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -38,6 +47,12 @@ class NewsLetterActivity : LeanBaseActivity(), NewsLetterView {
     lateinit var userManager: UserManagerImpl
     private val dataActionSubject = PublishSubject.create<DataAction>()
 
+    @Inject
+    @field:RemoteConfigData
+    lateinit var remoteCongigData: StringPreference
+    @Inject
+    lateinit var gson: Gson
+
     override fun getLayout(): Int {
         return R.layout.activity_news_letter
     }
@@ -48,8 +63,56 @@ class NewsLetterActivity : LeanBaseActivity(), NewsLetterView {
 
         presenter.start()
         dataActionSubject.onNext(DataAction.Fetch)
+
+        changeImage()
     }
 
+    //    var imageArray = arrayOf(R.drawable.agic_agic, R.drawable.agic_15);
+
+    fun changeImage() {
+
+        val handler = Handler()
+        val runnable = object : Runnable {
+
+            override fun run() {
+                ImageViewAnimatedChange()
+                handler.postDelayed(this, 10000)
+            }
+        }
+        handler.postDelayed(runnable, 5000)
+    }
+
+    fun ImageViewAnimatedChange() {
+
+        val banner: RemoteConfigModel =
+            gson.fromJson(remoteCongigData.get(), RemoteConfigModel::class.java)
+        val anim_out = AnimationUtils.loadAnimation(this@NewsLetterActivity, R.anim.fade_out_image)
+        val anim_in = AnimationUtils.loadAnimation(this@NewsLetterActivity, R.anim.fade_in_image)
+
+        anim_out.setAnimationListener(object : Animation.AnimationListener {
+
+            override fun onAnimationStart(animation: Animation) {}
+
+            override fun onAnimationRepeat(animation: Animation) {}
+
+            override fun onAnimationEnd(animation: Animation) {
+
+                Glide.with(this@NewsLetterActivity)
+                    .load(banner.logo)
+                    .into(binding.imgAgic);
+
+                anim_in.setAnimationListener(object : Animation.AnimationListener {
+                    override fun onAnimationStart(animation: Animation) {}
+                    override fun onAnimationRepeat(animation: Animation) {}
+                    override fun onAnimationEnd(animation: Animation) {}
+                })
+
+                binding.imgAgic.startAnimation(anim_in)
+            }
+        })
+
+        binding.imgAgic.startAnimation(anim_out)
+    }
 
     internal fun openDashboard() {
         userManager.saveNewsLetterState(true)
@@ -78,12 +141,12 @@ class NewsLetterActivity : LeanBaseActivity(), NewsLetterView {
             else
                 binding.skipToLogin.visibility = View.GONE
 
-                listAdapter = ExpandableNewsLetterAdapter(data.Data)
+            listAdapter = ExpandableNewsLetterAdapter(data.Data)
 
-                binding.expandableList.setAdapter(listAdapter)
+            binding.expandableList.setAdapter(listAdapter)
 
-                binding.expandableList.setOnGroupExpandListener(object : OnGroupExpandListener {
-                    var previousGroup = -1
+            binding.expandableList.setOnGroupExpandListener(object : OnGroupExpandListener {
+                var previousGroup = -1
 
                 override fun onGroupExpand(groupPosition: Int) {
                     if (groupPosition != previousGroup)

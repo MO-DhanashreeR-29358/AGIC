@@ -22,5 +22,8 @@ data class BaseResponseAgic<T>(
     val IsActive: Boolean
         get() = isActive.equals("Y")
 
+    val IsSucess:Boolean
+    get() = success.equals("true",ignoreCase = true)
+
 
 }

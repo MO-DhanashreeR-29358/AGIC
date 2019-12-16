@@ -31,6 +31,10 @@
     <dimen name="login_img_large">@dimen/_100sdp</dimen>
     <dimen name="img_news_letter">@dimen/_50sdp</dimen>
     <dimen name="menu_icon">@dimen/_24sdp</dimen>
+    <dimen name="dimens_35">@dimen/_35sdp</dimen>
+    <dimen name="dimens_65">@dimen/_65sdp</dimen>
+    <dimen name="dimens_85">@dimen/_85sdp</dimen>
+    <dimen name="dimens_80">@dimen/_80sdp</dimen>
     <dimen name="text_size_extra_large">@dimen/_24ssp</dimen>
     <dimen name="tabIndicatorHeight">@dimen/_4sdp</dimen>
     <dimen name="editText_min_height">@dimen/_250sdp</dimen>

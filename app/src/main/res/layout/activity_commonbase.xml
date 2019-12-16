@@ -43,14 +43,28 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
 
-                            <androidx.appcompat.widget.AppCompatImageView
-                                android:id="@+id/img1"
-                                android:layout_width="@dimen/img_news_letter"
-                                android:layout_height="@dimen/img_news_letter"
-                                android:layout_gravity="center_vertical"
-                                android:layout_margin="@dimen/margin_small"
-                                android:layout_marginTop="@dimen/edittext_size"
-                                android:src="@drawable/agic_15" />
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:layout_width="@dimen/img_news_letter"
+                                    android:layout_height="@dimen/img_news_letter"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_margin="@dimen/margin_small"
+                                    android:layout_marginTop="@dimen/edittext_size"
+                                    android:src="@drawable/agic_agic" />
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/img_logo"
+                                    android:layout_width="@dimen/img_news_letter"
+                                    android:layout_height="@dimen/img_news_letter"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_margin="@dimen/margin_small"
+                                    android:layout_marginTop="@dimen/edittext_size" />
+
+
+                            </RelativeLayout>
 
                             <LinearLayout
                                 android:layout_width="0dp"
@@ -71,8 +85,7 @@
                                     android:scrollHorizontally="true"
                                     android:singleLine="true"
                                     android:textColor="@color/dark_blue"
-                                    android:textSize="@dimen/text_size_medium"
-                                    />
+                                    android:textSize="@dimen/text_size_medium" />
 
                                 <TextView
                                     android:id="@+id/txt_name"
@@ -136,10 +149,10 @@
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tabLayout"
-                android:background="@color/toolbar_color"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
+                android:background="@color/toolbar_color"
                 android:orientation="horizontal"
                 app:iconGravity="textStart"
                 app:iconPadding="@dimen/padding_small"

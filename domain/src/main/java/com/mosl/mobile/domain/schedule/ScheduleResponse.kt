@@ -2,7 +2,7 @@ package com.mosl.mobile.domain.schedule
 
 data class ScheduleResponse(
 
-    @JvmField var data: List<ScheduleResponseItemInfo>,
+    @JvmField var data: List<ScheduleResponseItemInfo>?,
     @JvmField val pdfLink: String?,
     @JvmField val message: String
 )

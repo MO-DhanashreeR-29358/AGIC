@@ -5,18 +5,23 @@ import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
+import com.google.gson.Gson
 import com.jakewharton.rxbinding3.view.clicks
 import com.jakewharton.rxbinding3.widget.editorActions
 import com.mosl.app.core.error.getErrorOnFailure
 import com.mosl.app.core.events.DataAction
+import com.mosl.app.core.prefs.StringPreference
 import com.mosl.app.coreui.base.LeanBaseActivity
 import com.mosl.commons.data.UiModel
 import com.mosl.commons.data.onFailure
 import com.mosl.commons.data.onSuccess
 import com.mosl.mobile.R
+import com.mosl.mobile.annotations.RemoteConfigData
 import com.mosl.mobile.app_user.model.User
 import com.mosl.mobile.constants.NavigationConstants
 import com.mosl.mobile.core.MOSLCommonActivity
+import com.mosl.mobile.data.RemoteConfigModel
 import com.mosl.mobile.databinding.ActivityLoginBinding
 import com.mosl.navigator.AppTitle
 import com.mosl.navigator.AuthorizationState
@@ -36,6 +41,12 @@ class LoginActivity : LeanBaseActivity(), Navigator, LoginView {
     @Inject
     lateinit var presenter: LoginPresenter
 
+    @Inject
+    @field:RemoteConfigData
+    lateinit var remoteCongigData: StringPreference
+    @Inject
+    lateinit var gson: Gson
+
     override fun getLayout(): Int {
         return R.layout.activity_login
     }
@@ -45,7 +56,16 @@ class LoginActivity : LeanBaseActivity(), Navigator, LoginView {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         binding = ActivityLoginBinding.bind(findViewById(R.id.constrainLaout))
         presenter.start()
+        initData()
+    }
 
+    private fun initData() {
+        val banner: RemoteConfigModel =
+            gson.fromJson(remoteCongigData.get(), RemoteConfigModel::class.java)
+        Glide.with(this)
+            .load(banner.logo)
+            .into(binding.imgBanner)
+        binding.txtYear.text = banner.year
     }
 
     internal fun openDashboard() {
@@ -67,7 +87,6 @@ class LoginActivity : LeanBaseActivity(), Navigator, LoginView {
     override fun onLoginClicked(): Observable<Unit> {
         return binding.txtLogin.clicks()
     }
-
 
 
     override fun onDoneClicked(): Observable<Int> {

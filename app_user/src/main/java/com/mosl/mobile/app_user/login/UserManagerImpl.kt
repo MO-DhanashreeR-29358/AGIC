@@ -16,14 +16,14 @@ class UserManagerImpl @Inject internal constructor(
 
     private var user: User?
     private var isActive: Boolean = false
-    lateinit var pdfLink: String
+    private var pdfLink: String = ""
 
     init {
         val user = userCache.getUser()
         val isActive = userCache.getNewsLetterState()
         this.user = user
         this.isActive = isActive
-        this.pdfLink =userCache.getPdf()
+        this.pdfLink = userCache.getPdf()
     }
 
     fun saveUser(user: User) {

@@ -4,11 +4,15 @@ package com.mosl.mobile.pdf
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.mosl.app.core.network.isNetworkConnected
 import com.mosl.app.coreui.dialog.BaseDialogFragment
 import com.mosl.mobile.R
 import com.mosl.mobile.databinding.FragmentPdfBinding
+import com.mosl.mobile.login.UserManagerImpl
 import com.mosl.mobile.util.downloadDocument
+import javax.inject.Inject
 
 
 /**
@@ -17,6 +21,9 @@ import com.mosl.mobile.util.downloadDocument
 class PdfFragment : BaseDialogFragment(), PdfContract {
 
     lateinit var binding: FragmentPdfBinding
+
+    @Inject
+    lateinit var userManager: UserManagerImpl
 
     override fun getLayout(): Int {
         return R.layout.fragment_pdf
@@ -33,8 +40,17 @@ class PdfFragment : BaseDialogFragment(), PdfContract {
             }
 
             tvPdfOk.setOnClickListener {
-                arguments?.getString(PDF_LINK)?.let {
-                    requireContext().downloadDocument(it)
+                if (requireContext().isNetworkConnected()) {
+
+                    if(userManager.getPdf().isNotEmpty())
+                    requireContext().downloadDocument(userManager.getPdf())
+
+                } else {
+                    Toast.makeText(
+                        requireContext(),
+                        R.string.msg_pdf_needs_network_to_download,
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
                 dialog?.dismiss()
 
@@ -58,11 +74,8 @@ class PdfFragment : BaseDialogFragment(), PdfContract {
         const val PDF_LINK = "pdf_link"
 
         @JvmStatic
-        fun newInstance(pdfLink: String): PdfFragment {
+        fun newInstance(): PdfFragment {
             val fragment = PdfFragment()
-            fragment.arguments = Bundle().apply {
-                putString(PDF_LINK, pdfLink)
-            }
             return fragment
         }
     }

@@ -19,7 +19,21 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <ImageView
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="@dimen/img_news_letter"
+            android:layout_height="@dimen/img_news_letter"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/margin_normal"
+            android:layout_marginTop="@dimen/margin_large"
+            android:layout_marginRight="@dimen/margin_normal"
+            android:layout_marginBottom="@dimen/margin_normal"
+            android:background="@drawable/agic_agic"
+            android:visibility="visible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/img_agic"
             android:layout_width="@dimen/img_news_letter"
             android:layout_height="@dimen/img_news_letter"
@@ -28,9 +42,9 @@
             android:layout_marginTop="@dimen/margin_large"
             android:layout_marginRight="@dimen/margin_normal"
             android:layout_marginBottom="@dimen/margin_normal"
-            android:src="@drawable/agic_15"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
 
         <TextView
             android:id="@+id/txt_welcome"
@@ -50,7 +64,6 @@
             android:layout_below="@+id/txt_welcome"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="@dimen/margin_medium"
-            android:text="@string/txt_label_agic_year"
             android:textSize="@dimen/text_size_medium"
             app:layout_constraintBottom_toTopOf="@+id/txt_warn_msg"
             app:layout_constraintEnd_toEndOf="parent"

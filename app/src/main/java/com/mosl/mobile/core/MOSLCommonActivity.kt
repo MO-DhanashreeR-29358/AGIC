@@ -3,25 +3,34 @@ package com.mosl.mobile.core
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import android.graphics.*
+import android.graphics.BlendMode
+import android.graphics.BlendModeColorFilter
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffColorFilter
 import android.graphics.drawable.Drawable
 import android.net.ConnectivityManager
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
 import android.os.PersistableBundle
 import android.text.TextUtils
 import android.view.View
 import android.view.View.OnClickListener
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
+import com.google.gson.Gson
 import com.jakewharton.rxbinding3.appcompat.navigationClicks
 import com.mosl.app.core.network.NetworkChangeEvent
 import com.mosl.app.core.network.NetworkReceiver
+import com.mosl.app.core.prefs.StringPreference
 import com.mosl.app.core.utils.hide
 import com.mosl.app.core.utils.hideKeyBoard
 import com.mosl.app.core.utils.show
@@ -29,14 +38,15 @@ import com.mosl.app.coreui.base.ActivityDelegate
 import com.mosl.app.coreui.base.BaseActivity
 import com.mosl.app.coreui.base.NavigationElement
 import com.mosl.mobile.R
+import com.mosl.mobile.annotations.*
 import com.mosl.mobile.app_user.login.UserManager
 import com.mosl.mobile.app_user.login.user
 import com.mosl.mobile.constants.NavigationConstants
 import com.mosl.mobile.contactrm.ContactDialogFragment
 import com.mosl.mobile.coreui.LocaleManager
 import com.mosl.mobile.dashboard.ActivityNavigationHelper
+import com.mosl.mobile.data.RemoteConfigModel
 import com.mosl.mobile.databinding.ActivityCommonbaseBinding
-import com.mosl.mobile.domain.schedule.ScheduleRepository
 import com.mosl.mobile.login.LoginActivity
 import com.mosl.mobile.login.UserCacheImpl
 import com.mosl.mobile.menu.ScreenNavigatorImpl
@@ -74,6 +84,39 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
     @Inject
     lateinit var userManager: UserManager
 
+    @Inject
+    @field:RemoteConfigData
+    lateinit var remoteConfigData: StringPreference
+
+    @Inject
+    @field:LastScheduleDate
+    lateinit var lastScheduleDate: StringPreference
+    @Inject
+    @field:ImageSplashUrl
+    lateinit var imageSplashUrl: StringPreference
+    @Inject
+    @field:LastBytesDate
+    lateinit var lastBytesDate: StringPreference
+
+    @Inject
+    @field:ScheduleData
+    lateinit var scheduleData: StringPreference
+
+    @Inject
+    @field:PanelData
+    lateinit var panelData: StringPreference
+
+    @Inject
+    @field:OverViewData
+    lateinit var overViewData: StringPreference
+
+    @Inject
+    @field:LastBytesData
+    lateinit var bytesData: StringPreference
+
+    @Inject
+    lateinit var gson: Gson
+
     override fun getLayout(): Int {
         return R.layout.activity_commonbase
     }
@@ -101,6 +144,7 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
         setupObservables()
         setUpView()
         setUpTabs()
+        changeImage()
 
     }
 
@@ -130,8 +174,56 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
         }
     }
 
+//    var imageArray = arrayOf(R.drawable.agic_agic, R.drawable.agic_15);
 
-    var pdfLink: String? = null
+
+    fun changeImage() {
+
+        val handler = Handler()
+        val runnable = object : Runnable {
+
+            override fun run() {
+                ImageViewAnimatedChange()
+                handler.postDelayed(this, 10000)
+            }
+        }
+        handler.postDelayed(runnable, 5000)
+    }
+
+    fun ImageViewAnimatedChange() {
+
+        val banner: RemoteConfigModel =
+            gson.fromJson(remoteConfigData.get(), RemoteConfigModel::class.java)
+        val anim_out = AnimationUtils.loadAnimation(this@MOSLCommonActivity, R.anim.fade_out_image)
+        val anim_in = AnimationUtils.loadAnimation(this@MOSLCommonActivity, R.anim.fade_in_image)
+
+        anim_out.setAnimationListener(object : Animation.AnimationListener {
+
+            override fun onAnimationStart(animation: Animation) {}
+
+            override fun onAnimationRepeat(animation: Animation) {}
+
+            override fun onAnimationEnd(animation: Animation) {
+
+//                binding.img1.setImageResource(new_image)
+
+                Glide.with(this@MOSLCommonActivity)
+                    .load(banner.logo)
+                    .into(binding.imgLogo);
+
+                anim_in.setAnimationListener(object : Animation.AnimationListener {
+                    override fun onAnimationStart(animation: Animation) {}
+                    override fun onAnimationRepeat(animation: Animation) {}
+                    override fun onAnimationEnd(animation: Animation) {}
+                })
+
+                binding.imgLogo.startAnimation(anim_in)
+            }
+        })
+
+        binding.imgLogo.startAnimation(anim_out)
+    }
+
 
     private fun setUpTabs() {
         binding.tabLayout.addTab(
@@ -181,10 +273,10 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
                 if (tab.tag as Int == NavigationConstants.NAVIGATE_TO_PDF) {
                     val ft = getSupportFragmentManager().beginTransaction()
                     if (userManager.getPdf().isNotEmpty()) {
-                        pdfLink?.let {
-                            PdfFragment.newInstance(it)
-                                .show(ft, "")
-                        }
+
+                        PdfFragment.newInstance()
+                            .show(ft, "")
+
                     }
 
                 } else {
@@ -294,6 +386,15 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
                 userCacheImpl.clearUser()
+                lastScheduleDate.delete()
+                imageSplashUrl.delete()
+                lastBytesDate.delete()
+//                remoteConfigData.delete()
+                scheduleData.delete()
+                panelData.delete()
+                overViewData.delete()
+                bytesData.delete()
+
                 finish()
             }
             .setNegativeButton(R.string.text_label_no) { _, _ -> }

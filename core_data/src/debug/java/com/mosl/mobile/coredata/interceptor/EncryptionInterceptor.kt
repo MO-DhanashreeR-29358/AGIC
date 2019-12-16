@@ -1,5 +1,8 @@
 package com.mosl.mobile.coredata.interceptor
 
+import com.mosl.app.core.prefs.StringPreference
+import com.mosl.mobile.annotations.LastBytesDate
+import com.mosl.mobile.annotations.LastScheduleDate
 import com.mosl.shared.Encryptor.AESEncryptor
 import okhttp3.Interceptor
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -11,47 +14,63 @@ import java.io.IOException
 import javax.inject.Inject
 
 class EncryptionInterceptor @Inject constructor(
-  val encryptor: AESEncryptor
+    val encryptor: AESEncryptor,
+    @LastScheduleDate
+    val scheduleDate: StringPreference,
+    @LastBytesDate
+    val bytesDate: StringPreference
 ) : Interceptor {
 
-  @Throws(IOException::class)
-  override fun intercept(chain: Interceptor.Chain): Response {
-    var request = chain.request()
-    val oldBody = request.body
-    var isEncrypted = false
+    @Throws(IOException::class)
+    override fun intercept(chain: Interceptor.Chain): Response {
+        var request = chain.request()
+        val oldBody = request.body
+        var isEncrypted = false
+        val last = request.url
+            .pathSegments
+            .last()
+        if (oldBody != null) {
+            val buffer = Buffer()
+            oldBody.writeTo(buffer)
+            val strOldBody = buffer.readUtf8()
 
-    if (oldBody != null) {
-      val buffer = Buffer()
-      oldBody.writeTo(buffer)
-      val strOldBody = buffer.readUtf8()
 
-      val mediaType = "application/json; charset=utf-8".toMediaTypeOrNull()
-      val strNewBody = encryptor.encrypt(strOldBody)
-      val body = strNewBody.toRequestBody(mediaType)
-      request = request.newBuilder()
-          .method(request.method, body)
-          .build()
-      isEncrypted = true
-    }
-
-    val response = chain.proceed(request)
-    if (isEncrypted && response.body != null) {
-      try {
-        val strResponse = response.body
-        val decrypted = encryptor.decrypt(strResponse!!.string())
-        if (decrypted != null) {
-          val decryptedBody = decrypted.toResponseBody("application/json; charset=utf-8".toMediaTypeOrNull())
-          return response.newBuilder()
-              .body(decryptedBody)
-              .build()
-        } else {
-          return response;
+            val mediaType = "application/json; charset=utf-8".toMediaTypeOrNull()
+            val strNewBody = encryptor.encrypt(strOldBody)
+            val body = strNewBody.toRequestBody(mediaType)
+            request = request.newBuilder()
+                .method(request.method, body)
+                .build()
+            isEncrypted = true
         }
-      } catch (e: Exception) {
-        return response
-      }
-    } else {
-      return response
+
+        val response = chain.proceed(request)
+        if (isEncrypted && response.body != null) {
+            try {
+                val strResponse = response.body
+                val headerDate = response.header("Date") ?: ""
+                if (response.code == 200 && last.contains("GetScheduleAPI")) {
+                    scheduleDate.set(headerDate)
+                }
+                if (response.code == 200 && last.contains("GetbyteDetails")) {
+                    bytesDate.set(headerDate)
+                }
+                scheduleDate
+                val decrypted = encryptor.decrypt(strResponse!!.string())
+                if (decrypted != null) {
+                    val decryptedBody =
+                        decrypted.toResponseBody("application/json; charset=utf-8".toMediaTypeOrNull())
+                    return response.newBuilder()
+                        .body(decryptedBody)
+                        .build()
+                } else {
+                    return response;
+                }
+            } catch (e: Exception) {
+                return response
+            }
+        } else {
+            return response
+        }
     }
-  }
 }
