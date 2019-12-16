@@ -117,7 +117,7 @@ android {
             manifestPlaceholders = [crashlyticsEnabled: false]
         }
         release {
-//            debuggable true
+            debuggable true
             manifestPlaceholders = [crashlyticsEnabled: true]
             minifyEnabled true
             shrinkResources true
@@ -241,7 +241,7 @@ dependencies {
     implementation RoomDependencies.runtime
     kapt RoomDependencies.compiler
 
-//    implementation AndroidxDependencies.preferenceKotlin
+    implementation AndroidxDependencies.preferenceKotlin
 
     implementation GsonDependencies.gson
 

@@ -1,17 +1,19 @@
 package com.mosl.mobile.data
 
+import com.google.gson.annotations.SerializedName
+
 data class RemoteConfigModel(
 
-    @JvmField var splash:String,
-    @JvmField var logo:String,
-    @JvmField var year:String,
-    @JvmField var android:AndroidModel
+    @JvmField @SerializedName("splash") var splash:String,
+    @JvmField @SerializedName("logo")var logo:String,
+    @JvmField @SerializedName("year")var year:String,
+    @JvmField @SerializedName("android")var android:AndroidModel
 )
 
 data class AndroidModel(
 
-    @JvmField var version:String,
-    @JvmField var releaseNote:String,
-    @JvmField var isMandatory:Boolean,
-    @JvmField var appLink:String
+    @JvmField @SerializedName("version")var version:String,
+    @JvmField @SerializedName("releaseNote")var releaseNote:String,
+    @JvmField @SerializedName("isMandatory")var isMandatory:Boolean,
+    @JvmField @SerializedName("appLink")var appLink:String
 )
