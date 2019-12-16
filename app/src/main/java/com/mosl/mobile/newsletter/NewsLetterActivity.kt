@@ -83,11 +83,11 @@ class NewsLetterActivity : LeanBaseActivity(), NewsLetterView {
     }
 
     fun ImageViewAnimatedChange() {
-
         val banner: RemoteConfigModel =
             gson.fromJson(remoteCongigData.get(), RemoteConfigModel::class.java)
         val anim_out = AnimationUtils.loadAnimation(this@NewsLetterActivity, R.anim.fade_out_image)
         val anim_in = AnimationUtils.loadAnimation(this@NewsLetterActivity, R.anim.fade_in_image)
+        binding.txtAgicYear.text = (getString(R.string.txt_label_agic_year) + " " + banner.year)
 
         anim_out.setAnimationListener(object : Animation.AnimationListener {
 
