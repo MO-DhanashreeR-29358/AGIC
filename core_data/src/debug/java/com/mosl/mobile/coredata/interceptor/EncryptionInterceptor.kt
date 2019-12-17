@@ -3,7 +3,10 @@ package com.mosl.mobile.coredata.interceptor
 import com.mosl.app.core.prefs.StringPreference
 import com.mosl.mobile.annotations.LastBytesDate
 import com.mosl.mobile.annotations.LastScheduleDate
+import com.mosl.mobile.annotations.ScheduleData
+import com.mosl.shared.AppDateFormats
 import com.mosl.shared.Encryptor.AESEncryptor
+import com.mosl.shared.util.getFormatedDate
 import okhttp3.Interceptor
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.toRequestBody
@@ -18,7 +21,9 @@ class EncryptionInterceptor @Inject constructor(
     @LastScheduleDate
     val scheduleDate: StringPreference,
     @LastBytesDate
-    val bytesDate: StringPreference
+    val bytesDate: StringPreference,
+    @ScheduleData
+    val scheduleData: StringPreference
 ) : Interceptor {
 
     @Throws(IOException::class)
@@ -49,13 +54,25 @@ class EncryptionInterceptor @Inject constructor(
             try {
                 val strResponse = response.body
                 val headerDate = response.header("Date") ?: ""
+                if (scheduleDate.isSet) {
+
+                    val formatedScheduleDate = getFormatedDate(
+                        scheduleDate.get(),
+                        AppDateFormats.DF_JSON_DATE_12,
+                        AppDateFormats.DF_JSON_DATE_13
+                    )
+                    if (headerDate.contains(formatedScheduleDate) && scheduleData.isSet) {
+                        scheduleData.delete()
+                    }
+                }
+
+
                 if (response.code == 200 && last.contains("GetScheduleAPI")) {
                     scheduleDate.set(headerDate)
                 }
                 if (response.code == 200 && last.contains("GetbyteDetails")) {
                     bytesDate.set(headerDate)
                 }
-                scheduleDate
                 val decrypted = encryptor.decrypt(strResponse!!.string())
                 if (decrypted != null) {
                     val decryptedBody =

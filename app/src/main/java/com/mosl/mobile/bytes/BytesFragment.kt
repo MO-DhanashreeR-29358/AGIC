@@ -176,7 +176,8 @@ class BytesFragment : MOSLCommonFragment(), BytesContract {
                     childItemList.add(BytesItemModel(bytesResponse.byte, bytesResponse.entryDate))
                 }
             }
-            bytesListData.add(indexDate, BytesData(filteredDates, childItemList))
+            val sortedList = childItemList.sortedWith(compareByDescending({ it.entryDate }))
+            bytesListData.add(indexDate, BytesData(filteredDates, sortedList))
 
         }
 

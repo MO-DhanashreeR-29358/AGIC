@@ -1,6 +1,12 @@
 package com.mosl.mobile.coredata.interceptor
 
+import com.mosl.app.core.prefs.StringPreference
+import com.mosl.mobile.annotations.LastBytesDate
+import com.mosl.mobile.annotations.LastScheduleDate
+import com.mosl.mobile.annotations.ScheduleData
+import com.mosl.shared.AppDateFormats
 import com.mosl.shared.Encryptor.AESEncryptor
+import com.mosl.shared.util.getFormatedDate
 import okhttp3.Interceptor
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.toRequestBody
@@ -11,7 +17,13 @@ import java.io.IOException
 import javax.inject.Inject
 
 class EncryptionInterceptor @Inject constructor(
-  val encryptor: AESEncryptor
+  val encryptor: AESEncryptor,
+  @LastScheduleDate
+  val scheduleDate: StringPreference,
+  @LastBytesDate
+  val bytesDate: StringPreference,
+  @ScheduleData
+  val scheduleData: StringPreference
 ) : Interceptor {
 
   @Throws(IOException::class)
@@ -19,11 +31,14 @@ class EncryptionInterceptor @Inject constructor(
     var request = chain.request()
     val oldBody = request.body
     var isEncrypted = false
-
+    val last = request.url
+      .pathSegments
+      .last()
     if (oldBody != null) {
       val buffer = Buffer()
       oldBody.writeTo(buffer)
       val strOldBody = buffer.readUtf8()
+
 
       val mediaType = "application/json; charset=utf-8".toMediaTypeOrNull()
       val strNewBody = encryptor.encrypt(strOldBody)
@@ -38,9 +53,30 @@ class EncryptionInterceptor @Inject constructor(
     if (isEncrypted && response.body != null) {
       try {
         val strResponse = response.body
+        val headerDate = response.header("Date") ?: ""
+        if (scheduleDate.isSet) {
+
+          val formatedScheduleDate = getFormatedDate(
+            scheduleDate.get(),
+            AppDateFormats.DF_JSON_DATE_12,
+            AppDateFormats.DF_JSON_DATE_13
+          )
+          if (headerDate.contains(formatedScheduleDate) && scheduleData.isSet) {
+            scheduleData.delete()
+          }
+        }
+
+
+        if (response.code == 200 && last.contains("GetScheduleAPI")) {
+          scheduleDate.set(headerDate)
+        }
+        if (response.code == 200 && last.contains("GetbyteDetails")) {
+          bytesDate.set(headerDate)
+        }
         val decrypted = encryptor.decrypt(strResponse!!.string())
         if (decrypted != null) {
-          val decryptedBody = decrypted.toResponseBody("application/json; charset=utf-8".toMediaTypeOrNull())
+          val decryptedBody =
+            decrypted.toResponseBody("application/json; charset=utf-8".toMediaTypeOrNull())
           return response.newBuilder()
             .body(decryptedBody)
             .build()
