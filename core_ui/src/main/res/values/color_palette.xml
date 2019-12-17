@@ -31,14 +31,19 @@
     <color name="bottom_tab_white">#ffffff</color>
     <color name="bottom_tab_selected">#006ab6</color>
 
-    <color name="day_tab_white">#A7A7A7</color>
-    <color name="day_tab_selected">#535353</color>
+    <color name="day_tab_white">#666666</color>
+    <color name="day_tab_selected">#292929</color>
     <color name="day_tab_indicatore_selected">#006ab6</color>
 
     <color name="schedule_company_name">#323232</color>
     <color name="schedule_venue">#888888</color>
     <color name="schedule_venue_icon">#202020</color>
     <color name="schedule_divider">#dedede</color>
+
+
+    <color name="pdf_popup_back">#424242</color>
+    <color name="pdf_popup_text">#ffffff</color>
+    <color name="pdf_popup_btm">#76D7C4</color>
 
     <color name="white">#ffffff</color>
     <color name="alabaster">#F9F9F9</color>

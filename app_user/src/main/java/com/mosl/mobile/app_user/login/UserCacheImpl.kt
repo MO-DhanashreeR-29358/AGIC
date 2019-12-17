@@ -60,6 +60,6 @@ class UserCacheImpl @Inject constructor(
 
     override fun clearUser() {
         userStore.clear()
-        newsLetterPrefStateStore.clear()
+        //newsLetterPrefStateStore.clear()
     }
 }

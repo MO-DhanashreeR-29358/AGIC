@@ -59,4 +59,8 @@ class UserManagerImpl @Inject internal constructor(
         return isActive
     }
 
+    override fun doLogout() {
+        user=null
+    }
+
 }

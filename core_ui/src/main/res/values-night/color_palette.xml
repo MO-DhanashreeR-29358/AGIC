@@ -41,6 +41,10 @@
     <color name="schedule_venue_icon">#E0DEDE</color>
     <color name="schedule_divider">#5C5B5B</color>
 
+    <color name="pdf_popup_back">#424242</color>
+    <color name="pdf_popup_text">#ffffff</color>
+    <color name="pdf_popup_btm">#76D7C4</color>
+
     <color name="white">#000000</color>
     <color name="alabaster">#F9F9F9</color>
 

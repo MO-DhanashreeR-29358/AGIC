@@ -14,6 +14,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.PersistableBundle
 import android.text.TextUtils
+import android.view.LayoutInflater
 import android.view.View
 import android.view.View.OnClickListener
 import android.view.animation.Animation
@@ -47,6 +48,7 @@ import com.mosl.mobile.coreui.LocaleManager
 import com.mosl.mobile.dashboard.ActivityNavigationHelper
 import com.mosl.mobile.data.RemoteConfigModel
 import com.mosl.mobile.databinding.ActivityCommonbaseBinding
+import com.mosl.mobile.databinding.LogoutDialogBinding
 import com.mosl.mobile.login.LoginActivity
 import com.mosl.mobile.login.UserCacheImpl
 import com.mosl.mobile.menu.ScreenNavigatorImpl
@@ -378,28 +380,73 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
 
     }
 
-    internal fun logoutCustomer() {
-        AlertDialog.Builder(this)
-            .setMessage(R.string.msg_logout)
-            .setCancelable(false)
-            .setPositiveButton(R.string.text_label_yes) { _, _ ->
-                val intent = Intent(this, LoginActivity::class.java)
-                startActivity(intent)
-                userCacheImpl.clearUser()
-                lastScheduleDate.delete()
-                imageSplashUrl.delete()
-                lastBytesDate.delete()
-//                remoteConfigData.delete()
-                scheduleData.delete()
-                panelData.delete()
-                overViewData.delete()
-                bytesData.delete()
+    lateinit var bindingDialog: LogoutDialogBinding
 
-                finish()
-            }
-            .setNegativeButton(R.string.text_label_no) { _, _ -> }
-            .show()
+    internal fun logoutCustomer() {
+
+        //Inflate the dialog with custom view
+        val mDialogView = LayoutInflater.from(this).inflate(R.layout.logout_dialog, null)
+
+        bindingDialog = LogoutDialogBinding.bind(mDialogView)
+
+
+        //AlertDialogBuilder
+        val mBuilder = AlertDialog.Builder(this)
+            .setView(mDialogView)
+            .setTitle("AGIC")
+        //show dialog
+        val mAlertDialog = mBuilder.show()
+        //login button click of custom layout
+
+
+        bindingDialog.btnLogout.setOnClickListener {
+            //dismiss dialog
+            userManager.doLogout()
+            userCacheImpl.clearUser()
+            lastScheduleDate.delete()
+            imageSplashUrl.delete()
+            lastBytesDate.delete()
+//                remoteConfigData.delete()
+            scheduleData.delete()
+            panelData.delete()
+            overViewData.delete()
+            bytesData.delete()
+
+
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+
+        }
+        //cancel button click of custom layout
+        bindingDialog.dialogCancelBtn.setOnClickListener {
+            //dismiss dialog
+            mAlertDialog.dismiss()
+        }
     }
+
+//    internal fun logoutCustomer() {
+//        AlertDialog.Builder(this)
+//            .setMessage(R.string.msg_logout)
+//            .setCancelable(false)
+//            .setPositiveButton(R.string.text_label_yes) { _, _ ->
+//                val intent = Intent(this, LoginActivity::class.java)
+//                startActivity(intent)
+//                userCacheImpl.clearUser()
+//                lastScheduleDate.delete()
+//                imageSplashUrl.delete()
+//                lastBytesDate.delete()
+////                remoteConfigData.delete()
+//                scheduleData.delete()
+//                panelData.delete()
+//                overViewData.delete()
+//                bytesData.delete()
+//
+//                finish()
+//            }
+//            .setNegativeButton(R.string.text_label_no) { _, _ -> }
+//            .show()
+//    }
 
 
     override fun setAppTitle(page: String, appTitle: AppTitle?) {

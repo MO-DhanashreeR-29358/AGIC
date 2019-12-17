@@ -5,27 +5,27 @@ import com.mosl.app.core.utils.matchesService
 import dagger.android.DaggerApplication
 
 abstract class MOSLApplication : DaggerApplication() {
-  lateinit var appComponent: ApplicationComponent
+    lateinit var appComponent: ApplicationComponent
 
-  init {
-    AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
-  }
+    init {
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
+    }
 
-  override fun onCreate() {
-    super.onCreate()
+    override fun onCreate() {
+        super.onCreate()
 
-    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+//    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
 
-    init()
-  }
+        init()
+    }
 
-  abstract fun init()
+    abstract fun init()
 
-  override fun getSystemService(name: String): Any? {
-    return if (matchesService(name, ApplicationComponent::class.java)) {
-      appComponent
-    } else super.getSystemService(name)
-  }
+    override fun getSystemService(name: String): Any? {
+        return if (matchesService(name, ApplicationComponent::class.java)) {
+            appComponent
+        } else super.getSystemService(name)
+    }
 
 //  override fun onLowMemory() {
 //    super.onLowMemory()

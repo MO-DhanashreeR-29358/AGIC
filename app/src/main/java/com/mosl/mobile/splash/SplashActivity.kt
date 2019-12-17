@@ -237,7 +237,7 @@ class SplashActivity : LeanBaseActivity() {
                 }
             startActivity(intent)
             finish()
-        } else if (!userManager.isLoggedIn() && userManager.isActive()) {
+        } else if (userManager.isActive()) {
             val intent = Intent(this, LoginActivity::class.java)
 
             startActivity(intent)
