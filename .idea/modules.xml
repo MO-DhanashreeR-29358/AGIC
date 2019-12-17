@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/service/mock_data/AGIC_Client_Android-service-mock_data.iml" filepath="$PROJECT_DIR$/service/mock_data/AGIC_Client_Android-service-mock_data.iml" />
+      <module fileurl="file://$PROJECT_DIR$/service/mosl_api/AGIC_Client_Android-service-mosl_api.iml" filepath="$PROJECT_DIR$/service/mosl_api/AGIC_Client_Android-service-mosl_api.iml" />
       <module fileurl="file://$PROJECT_DIR$/shared/AGIC_Client_Android-shared.iml" filepath="$PROJECT_DIR$/shared/AGIC_Client_Android-shared.iml" />
       <module fileurl="file://$PROJECT_DIR$/Agic.iml" filepath="$PROJECT_DIR$/Agic.iml" />
       <module fileurl="file://$PROJECT_DIR$/annotations/annotations.iml" filepath="$PROJECT_DIR$/annotations/annotations.iml" />
