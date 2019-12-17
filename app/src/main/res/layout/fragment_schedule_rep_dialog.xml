@@ -16,7 +16,7 @@
             android:layout_height="@dimen/img_height_width_default"
             android:contentDescription="@string/button_label_cancel"
             android:padding="@dimen/padding_small"
-            android:tint="@color/dark_grey"
+            android:tint="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_close_white_24dp" />
@@ -26,7 +26,6 @@
             android:id="@+id/rv_schedule_repo"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:background="@color/white"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/iv_close">
 

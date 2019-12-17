@@ -38,6 +38,13 @@
             tools:ignore="MissingConstraints"
             tools:text="@string/text_label_overview_designation" />
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:layout_marginTop="@dimen/margin_small"
+            android:background="@color/schedule_divider"
+            app:layout_constraintTop_toBottomOf="@id/tv_schedule_repo_designation" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
