@@ -393,7 +393,7 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
         //AlertDialogBuilder
         val mBuilder = AlertDialog.Builder(this)
             .setView(mDialogView)
-            .setTitle("AGIC")
+//            .setTitle("AGIC")
         //show dialog
         val mAlertDialog = mBuilder.show()
         //login button click of custom layout
