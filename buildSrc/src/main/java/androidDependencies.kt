@@ -7,7 +7,7 @@ object Versions {
     const val androidVersion = "3.5.2"
     const val kotlinVersion = "1.3.50"
     const val fabric = "1.31.0"
-    const val googleServices = "4.3.0"
+    const val googleServices = "4.2.0"
 
     const val dexCountGradlePlugin = "0.8.6"
     const val errorProne = "0.0.13"

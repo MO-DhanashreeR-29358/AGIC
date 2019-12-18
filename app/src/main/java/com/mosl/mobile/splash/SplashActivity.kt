@@ -30,6 +30,7 @@ import com.mosl.mobile.newsletter.NewsLetterActivity
 import dagger.android.AndroidInjection
 import javax.inject.Inject
 
+
 class SplashActivity : LeanBaseActivity() {
 
     lateinit var binding: ActivitySplashScreenBinding
@@ -59,6 +60,14 @@ class SplashActivity : LeanBaseActivity() {
         super.onCreate(savedInstanceState)
         AndroidInjection.inject(this)
         binding = ActivitySplashScreenBinding.bind(findViewById(R.id.splash_layout))
+
+
+
+//        FirebaseInstanceId.getInstance().instanceId.addOnSuccessListener { instanceIdResult ->
+//            val token = instanceIdResult.token
+//            Log.d("TOKEN", token)
+//            // send it to server
+//        }
         //Initialize the Handler
 
         //Navigate with delay
