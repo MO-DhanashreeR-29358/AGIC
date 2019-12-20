@@ -12,6 +12,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
+import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.mosl.mobile.R
@@ -27,6 +28,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
     override fun onNewToken(token: String?) {
         Log.d(TAG, "Refreshed token: " + token!!)
+        FirebaseMessaging.getInstance().subscribeToTopic("agic");
 //        sendRegistrationToServer(token)
     }
 

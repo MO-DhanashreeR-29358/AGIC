@@ -51,8 +51,8 @@
     <string name="text_label_pdf_desc">The Pdf you are about to download is as of 12 AM last night and will not conatin any changes you may have made today.\nThe most updated schedule will be shown on the app.</string>
     <string name="editText_hint" tools:ignore="TypographyEllipsis">Take notes here...</string>
 
-    <string name="button_label_retrieve">Retrieve</string>
-    <string name="button_label_exit">Exit</string>
+    <string name="button_label_retrieve"> Retrieve </string>
+    <string name="button_label_exit"> Exit </string>
     <string name="msg_application_needs_network_to_proceed">Application needs network to proceed</string>
     <string name="msg_pdf_needs_network_to_download">Please enable the internet for download pdf</string>
     <string name="msg_logout">Do you want to logout?</string>

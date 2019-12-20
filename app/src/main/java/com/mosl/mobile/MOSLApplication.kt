@@ -14,7 +14,7 @@ abstract class MOSLApplication : DaggerApplication() {
     override fun onCreate() {
         super.onCreate()
 
-//    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
 
         init()
     }
