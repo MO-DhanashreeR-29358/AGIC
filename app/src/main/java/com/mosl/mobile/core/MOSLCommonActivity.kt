@@ -186,11 +186,13 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
 
             override fun run() {
                 ImageViewAnimatedChange()
-                handler.postDelayed(this, 10000)
+                handler.postDelayed(this, 5000)
             }
         }
         handler.postDelayed(runnable, 5000)
     }
+
+    var i = 0
 
     fun ImageViewAnimatedChange() {
 
@@ -218,6 +220,15 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
                     override fun onAnimationRepeat(animation: Animation) {}
                     override fun onAnimationEnd(animation: Animation) {}
                 })
+
+
+                if (i == 0) {
+                    binding.imgLogo.setImageResource(R.drawable.agic_15)
+                    i = 1
+                } else {
+                    binding.imgLogo.setImageResource(R.drawable.agic_agic)
+                    i = 0
+                }
 
                 binding.imgLogo.startAnimation(anim_in)
             }

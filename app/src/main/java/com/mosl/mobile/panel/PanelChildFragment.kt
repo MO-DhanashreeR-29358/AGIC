@@ -2,7 +2,9 @@ package com.mosl.mobile.panel
 
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mosl.commons.data.UiModel
@@ -11,12 +13,14 @@ import com.mosl.commons.data.onSuccess
 import com.mosl.groupiex.section.DataManagerSection
 import com.mosl.mobile.R
 import com.mosl.mobile.core.MOSLPagerItemFragment
+import com.mosl.mobile.databinding.CalendarAddDialogBinding
 import com.mosl.mobile.databinding.FragmentPanelChildBinding
 import com.mosl.mobile.domain.panel.PanelDayResponse
 import com.mosl.mobile.panelpager.PanelFragment
 import com.mosl.mobile.panelpager.PanelListDayItemData
-import com.mosl.mobile.panelpager.PanelTabChangeEvent
 import com.mosl.shared.util.addToCalendart
+import com.mosl.shared.util.getDateJSON_DATE6
+import com.mosl.shared.util.getTimeAMPM
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
 import io.reactivex.Observable
@@ -82,15 +86,49 @@ class PanelChildFragment : MOSLPagerItemFragment(), PanelChildView {
         return publishSubject.ofType()
     }
 
+    lateinit var bindingDialog: CalendarAddDialogBinding
+
+    internal fun calendarDialog(panelDayResponse: PanelDayResponse) {
+
+        val mDialogView = LayoutInflater.from(context).inflate(R.layout.calendar_add_dialog, null)
+
+        bindingDialog = CalendarAddDialogBinding.bind(mDialogView)
+
+        bindingDialog.apply {
+
+            val mBuilder = AlertDialog.Builder(context!!).setView(mDialogView)
+
+            val mAlertDialog = mBuilder.show()
+
+            txtEvent.text =
+                panelDayResponse.cRepresentiveName + "\nDate: " + getDateJSON_DATE6(panelDayResponse.representativeStarttime) +
+                        "\nStart Time: " + getTimeAMPM(panelDayResponse.representativeStarttime) +
+                        "\nEnd Time: " + getTimeAMPM(panelDayResponse.representativeEndtime)
+
+
+            btnYes.setOnClickListener {
+                addToCalendart(
+                    context!!,
+                    panelDayResponse.cRepresentiveName,
+                    panelDayResponse.speakerIntroduction,
+                    "",
+                    panelDayResponse.representativeStarttime,
+                    panelDayResponse.representativeEndtime
+                )
+
+                mAlertDialog.dismiss()
+            }
+            //cancel button click of custom layout
+            btnNo.setOnClickListener {
+                //dismiss dialog
+                mAlertDialog.dismiss()
+            }
+        }
+    }
+
+
     override fun renderItemToCalender(panelDayResponse: PanelDayResponse) {
-        addToCalendart(
-            context!!,
-            panelDayResponse.cRepresentiveName,
-            panelDayResponse.speakerIntroduction,
-            "",
-            panelDayResponse.representativeStarttime,
-            panelDayResponse.representativeEndtime
-        )
+        calendarDialog(panelDayResponse)
     }
 
     override fun onItemClicked(): Observable<PanelUiEvent.ItemClick> {

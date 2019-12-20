@@ -65,4 +65,7 @@
     <string name="call_alert_message">"Do you want to call?"</string>
     <string name="splash_screen_image_key">splash_image_url</string>
     <string name="agic_init">agic_init</string>
+
+    <string name="msg_calendar">Are you sure you want to save this Event in your Calendar?</string>
+    <string name="conferences">Conferences</string>
 </resources>

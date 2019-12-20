@@ -7,6 +7,7 @@
     <color name="whiteTwo">#f9f9f9</color>
     <color name="lightPeach">#ffcda8</color>
     <color name="orangeYellow">#fcae16</color>
+    <color name="login_logo_back">#fcae16</color>
 
     <color name="blue">#03A9F4</color>
     <color name="red">#b00020</color>
@@ -48,6 +49,7 @@
     <color name="white">#ffffff</color>
     <color name="alabaster">#F9F9F9</color>
 
+<!--    <color name="black_prime">#ffffff</color>-->
     <color name="black">#000000</color>
     <color name="light_black">#323232</color>
     <color name="darkGrey">#121212</color>

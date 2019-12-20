@@ -69,24 +69,32 @@ fun isMockSettingsON(context: Context): Boolean {
 
 
 fun getTime(startDateTime: String, endDateTime: String): String {
-    val startTimeFormat = DF_TIME_HH_ss.parse(startDateTime.split()) ?: "00:00:00"
-    val endTimeFormat = DF_TIME_HH_ss.parse(endDateTime.split()) ?: "00:00:00"
+    val startTimeFormat = DF_TIME_HH_ss.parse(startDateTime.split(1)) ?: "00:00:00"
+    val endTimeFormat = DF_TIME_HH_ss.parse(endDateTime.split(1)) ?: "00:00:00"
     val startTime = DF_TIME_hh.format(startTimeFormat)
     val endTime = DF_TIME_hh.format(endTimeFormat)
     return startTime + '-' + endTime
 }
 
-fun String.split(): String {
-    return split("T").toTypedArray()[1]
+fun String.split(pos:Int): String {
+    return split("T").toTypedArray()[pos]
 }
 
 
 fun getTimeAMPM(dateTime: String): String {
 
-    val timeFormat = DF_TIME_HH_ss.parse(dateTime.split()) ?: "00:00:00"
+    val timeFormat = DF_TIME_HH_ss.parse(dateTime.split(1)) ?: "00:00:00"
     val time = DF_TIME_hh.format(timeFormat)
 
     return time
+}
+
+fun getDateJSON_DATE6(dateTime: String): String {
+
+    val dateFormat = df_Date6.parse(dateTime.split(0)) ?: "00:00:00"
+    val date = DF_JSON_DATE6.format(dateFormat)
+
+    return date
 }
 
 fun checkTimeIsBetween(starTime: String, endTime: String): Boolean {

@@ -27,7 +27,7 @@
             android:layout_marginTop="@dimen/margin_large"
             android:layout_marginRight="@dimen/margin_normal"
             android:layout_marginBottom="@dimen/margin_normal"
-            android:background="@drawable/agic_agic"
+            android:background="@drawable/agic_15"
             android:visibility="visible"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

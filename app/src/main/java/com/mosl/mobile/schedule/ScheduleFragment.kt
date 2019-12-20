@@ -1,7 +1,9 @@
 package com.mosl.mobile.schedule
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 import com.mosl.app.core.error.ErrorModel
@@ -15,8 +17,8 @@ import com.mosl.groupiex.section.DataManagerSection
 import com.mosl.mobile.R
 import com.mosl.mobile.annotations.LastScheduleDate
 import com.mosl.mobile.annotations.ScheduleData
-import com.mosl.mobile.core.MOSLCommonActivity
 import com.mosl.mobile.core.MOSLCommonFragment
+import com.mosl.mobile.databinding.CalendarAddDialogBinding
 import com.mosl.mobile.databinding.FragmentScheduleBinding
 import com.mosl.mobile.domain.schedule.ScheduleRepresentativeItemData
 import com.mosl.mobile.domain.schedule.ScheduleResponse
@@ -146,16 +148,51 @@ class ScheduleFragment : MOSLCommonFragment(), ScheduleContract {
         dialogFragment.show(childFragmentManager, "dialog")
     }
 
+
+    lateinit var bindingDialog: CalendarAddDialogBinding
+
+    internal fun calendarDialog(scheduleResponseItemInfo: ScheduleResponseItemInfo) {
+
+        val mDialogView = LayoutInflater.from(context).inflate(R.layout.calendar_add_dialog, null)
+
+        bindingDialog = CalendarAddDialogBinding.bind(mDialogView)
+
+        bindingDialog.apply {
+
+            val mBuilder = AlertDialog.Builder(context!!).setView(mDialogView)
+
+            val mAlertDialog = mBuilder.show()
+
+            txtEvent.text =
+                scheduleResponseItemInfo.companyName +
+                        "\nDate: " + scheduleResponseItemInfo.scheduleDate +
+                        "\nStart Time: " + getTimeAMPM(scheduleResponseItemInfo.startTime) +
+                        "\nEnd Time: " + getTimeAMPM(scheduleResponseItemInfo.endTime)
+
+
+            btnYes.setOnClickListener {
+                addToCalendart(
+                    requireContext(),
+                    scheduleResponseItemInfo.companyName,
+                    scheduleResponseItemInfo.natureOfMeeting,
+                    scheduleResponseItemInfo.roomNo,
+                    scheduleResponseItemInfo.startTime,
+                    scheduleResponseItemInfo.endTime
+                )
+
+                mAlertDialog.dismiss()
+            }
+            //cancel button click of custom layout
+            btnNo.setOnClickListener {
+                //dismiss dialog
+                mAlertDialog.dismiss()
+            }
+        }
+    }
+
     override fun renderItemToCalender(scheduleResponseItemInfo: ScheduleResponseItemInfo) {
 
-        addToCalendart(
-            requireContext(),
-            scheduleResponseItemInfo.companyName,
-            scheduleResponseItemInfo.natureOfMeeting,
-            scheduleResponseItemInfo.roomNo,
-            scheduleResponseItemInfo.startTime,
-            scheduleResponseItemInfo.endTime
-        )
+        calendarDialog(scheduleResponseItemInfo)
     }
 
     override fun isDataEmpty(): Boolean {
