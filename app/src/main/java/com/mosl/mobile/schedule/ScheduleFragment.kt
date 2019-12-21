@@ -159,16 +159,19 @@ class ScheduleFragment : MOSLCommonFragment(), ScheduleContract {
 
         bindingDialog.apply {
 
-            val mBuilder = AlertDialog.Builder(context!!).setView(mDialogView)
+            val mBuilder = AlertDialog.Builder(requireContext()).setView(mDialogView)
 
             val mAlertDialog = mBuilder.show()
 
-            txtEvent.text =
-                scheduleResponseItemInfo.companyName +
-                        "\nDate: " + scheduleResponseItemInfo.scheduleDate +
-                        "\nStart Time: " + getTimeAMPM(scheduleResponseItemInfo.startTime) +
-                        "\nEnd Time: " + getTimeAMPM(scheduleResponseItemInfo.endTime)
-
+            txtEvent.text = String.format(
+                "%s" + "\nDate: " + "%s" +
+                        "\nStart Time: " + "%s" +
+                        "\nEnd Time: " + "%s",
+                scheduleResponseItemInfo.companyName,
+                scheduleResponseItemInfo.scheduleDate,
+                getTimeAMPM(scheduleResponseItemInfo.startTime),
+                getTimeAMPM(scheduleResponseItemInfo.endTime)
+            )
 
             btnYes.setOnClickListener {
                 addToCalendart(

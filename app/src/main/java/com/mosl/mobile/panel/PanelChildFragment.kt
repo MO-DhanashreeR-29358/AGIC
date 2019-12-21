@@ -100,12 +100,15 @@ class PanelChildFragment : MOSLPagerItemFragment(), PanelChildView {
 
             val mAlertDialog = mBuilder.show()
 
-            txtEvent.text =
-                panelDayResponse.cRepresentiveName + "\nDate: " + getDateJSON_DATE6(panelDayResponse.representativeStarttime) +
-                        "\nStart Time: " + getTimeAMPM(panelDayResponse.representativeStarttime) +
-                        "\nEnd Time: " + getTimeAMPM(panelDayResponse.representativeEndtime)
-
-
+            txtEvent.text = String.format(
+                "%s" + "\nDate: " + "%s" +
+                        "\nStart Time: " + "%s" +
+                        "\nEnd Time: " + "%s",
+                panelDayResponse.cRepresentiveName,
+                getDateJSON_DATE6(panelDayResponse.representativeStarttime),
+                getTimeAMPM(panelDayResponse.representativeStarttime),
+                getTimeAMPM(panelDayResponse.representativeEndtime)
+            )
             btnYes.setOnClickListener {
                 addToCalendart(
                     context!!,

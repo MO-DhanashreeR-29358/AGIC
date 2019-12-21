@@ -63,9 +63,10 @@ class NewsLetterActivity : LeanBaseActivity(), NewsLetterView {
 
         presenter.start()
         dataActionSubject.onNext(DataAction.Fetch)
-        remoteConfigModel  =
+        remoteConfigModel =
             gson.fromJson(remoteCongigData.get(), RemoteConfigModel::class.java)
-        binding.txtAgicYear.text = (getString(R.string.txt_label_agic_year) + " " + remoteConfigModel.year)
+        binding.txtAgicYear.text =
+            (getString(R.string.txt_label_agic_year) + " " + remoteConfigModel.year)
 
         changeImage()
     }
@@ -79,13 +80,12 @@ class NewsLetterActivity : LeanBaseActivity(), NewsLetterView {
 
             override fun run() {
                 ImageViewAnimatedChange()
-                handler.postDelayed(this, 5000)
+                handler.postDelayed(this, 15000)
             }
         }
-        handler.postDelayed(runnable, 5000)
+        handler.postDelayed(runnable, 15000)
     }
 
-    var i = 0
 
     fun ImageViewAnimatedChange() {
 
@@ -110,13 +110,6 @@ class NewsLetterActivity : LeanBaseActivity(), NewsLetterView {
                     override fun onAnimationEnd(animation: Animation) {}
                 })
 
-                if (i == 0) {
-                    binding.imgAgic.setImageResource(R.drawable.agic_15)
-                    i = 1
-                } else {
-                    binding.imgAgic.setImageResource(R.drawable.agic_agic)
-                    i = 0
-                }
 
                 binding.imgAgic.startAnimation(anim_in)
             }

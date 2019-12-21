@@ -61,13 +61,6 @@ class SplashActivity : LeanBaseActivity() {
         AndroidInjection.inject(this)
         binding = ActivitySplashScreenBinding.bind(findViewById(R.id.splash_layout))
 
-
-
-//        FirebaseInstanceId.getInstance().instanceId.addOnSuccessListener { instanceIdResult ->
-//            val token = instanceIdResult.token
-//            Log.d("TOKEN", token)
-//            // send it to server
-//        }
         //Initialize the Handler
 
         //Navigate with delay
@@ -188,7 +181,8 @@ class SplashActivity : LeanBaseActivity() {
                                                 val i = Intent(
                                                     Intent.ACTION_VIEW
                                                 )
-                                                i.data = Uri.parse(remoteConfigModel.android.appLink)
+                                                i.data =
+                                                    Uri.parse(remoteConfigModel.android.appLink)
                                                 startActivity(i)
                                                 finish()
                                             }
@@ -211,7 +205,8 @@ class SplashActivity : LeanBaseActivity() {
                                                 val i = Intent(
                                                     Intent.ACTION_VIEW
                                                 )
-                                                i.data = Uri.parse(remoteConfigModel.android.appLink)
+                                                i.data =
+                                                    Uri.parse(remoteConfigModel.android.appLink)
                                                 startActivity(i)
                                                 finish()
                                             } else if (action === MSFDialog.Action.CANCEL) {

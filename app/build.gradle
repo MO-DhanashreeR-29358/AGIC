@@ -160,7 +160,6 @@ dependencies {
     implementation AndroidxDependencies.constraintLayout
     implementation AndroidxDependencies.material
 
-    implementation 'com.google.firebase:firebase-messaging:19.0.0'
     testImplementation TestingDependencies.junit
     androidTestImplementation AndroidxDependencies.testRunner
     androidTestImplementation AndroidxDependencies.testEspresso
@@ -208,7 +207,7 @@ dependencies {
 
     implementation FirebaseDependencies.core
     implementation FirebaseDependencies.crashlytics
-//    implementation FirebaseDependencies.messaging
+    implementation FirebaseDependencies.messaging
     implementation FirebaseDependencies.remoteConfig
 
     implementation GroupieDependencies.core

@@ -29,7 +29,7 @@ buildscript {
     classpath PluginsDependencies.errorPronePlugin
     classpath PluginsDependencies.googleServices
     classpath PluginsDependencies.fabricPlugin
-    classpath 'com.google.gms:google-services:4.2.0'
+    classpath PluginsDependencies.googleServices
   }
 
     
