@@ -78,6 +78,7 @@
             android:layout_marginRight="@dimen/margin_30"
             android:layout_marginBottom="@dimen/margin_large"
             android:autofillHints="@string/app_name"
+            android:maxLength="@integer/max_digit_id"
             android:background="@drawable/login_et_back"
             android:gravity="center"
             android:hint="@string/hint_label_digit_id"

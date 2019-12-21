@@ -23,6 +23,7 @@
 
     <string name="text_label_login">Login</string>
     <string name="hint_label_digit_id">5 Digit Id</string>
+    <integer name="max_digit_id">5</integer>
     <string name="text_label_agic">Annual Global Investor Conference</string>
     <string name="text_label_permission">Access permitted to registerd\nusers only</string>
     <string name="text_label_year">2020</string>
