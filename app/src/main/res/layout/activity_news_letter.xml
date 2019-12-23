@@ -20,27 +20,25 @@
 
 
         <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_agic_out"
             android:layout_width="@dimen/img_news_letter"
             android:layout_height="@dimen/img_news_letter"
-            android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/margin_normal"
             android:layout_marginTop="@dimen/margin_large"
             android:layout_marginRight="@dimen/margin_normal"
-            android:layout_marginBottom="@dimen/margin_normal"
-            android:background="@drawable/agic_15"
-            android:visibility="visible"
+            android:background="@drawable/agic_agic"
+            app:layout_constraintBottom_toTopOf="@+id/txt_warn_msg"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/img_agic"
+            android:id="@+id/img_agic_in"
             android:layout_width="@dimen/img_news_letter"
             android:layout_height="@dimen/img_news_letter"
-            android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/margin_normal"
             android:layout_marginTop="@dimen/margin_large"
             android:layout_marginRight="@dimen/margin_normal"
-            android:layout_marginBottom="@dimen/margin_normal"
+            app:layout_constraintBottom_toTopOf="@+id/txt_warn_msg"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -60,8 +58,6 @@
             android:id="@+id/txt_agic_year"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/txt_welcome"
-            android:layout_centerHorizontal="true"
             android:layout_marginBottom="@dimen/margin_medium"
             android:textColor="@color/black"
             android:textSize="@dimen/text_size_medium"
@@ -75,8 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_medium"
             android:background="@color/news_letter_warning_background"
-            android:gravity="left|center_vertical"
-            android:paddingLeft="@dimen/padding_medium"
+            android:paddingStart="@dimen/padding_medium"
             android:paddingTop="@dimen/padding_extra_small"
             android:paddingRight="@dimen/padding_small"
             android:paddingBottom="@dimen/padding_extra_small"
@@ -86,7 +81,7 @@
             app:layout_constraintBottom_toTopOf="@+id/expandable_list"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/img_agic" />
+            app:layout_constraintTop_toBottomOf="@+id/img_agic_in" />
 
         <ExpandableListView
             android:id="@+id/expandable_list"
