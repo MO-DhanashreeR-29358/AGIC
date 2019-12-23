@@ -24,9 +24,9 @@
     <color name="news_letter_warning_background">#fcae16</color>
     <color name="news_letter_skiplogin">#000000</color>
     <color name="news_letter_skiplogin_back">#31B8E5</color>
-    <color name="news_letter_child_txt">#000000</color>
-    <color name="news_letter_child_back">#f9f9f9</color>
-    <color name="news_letter_parent_back">@color/white</color>
+    <color name="item_child_txt">#000000</color>
+    <color name="item_child_background">#f9f9f9</color>
+    <color name="item_parent_background">@color/white</color>
     <color name="schedule_back">@color/white</color>
 
     <color name="bottom_tab_white">#ffffff</color>

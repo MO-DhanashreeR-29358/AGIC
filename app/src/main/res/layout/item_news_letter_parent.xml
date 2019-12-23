@@ -6,7 +6,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/news_letter_parent_back"
+        android:background="@color/item_parent_background"
         android:paddingLeft="@dimen/padding_normal"
         android:paddingTop="@dimen/padding_normal"
         android:paddingRight="@dimen/padding_normal">

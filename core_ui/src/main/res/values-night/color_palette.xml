@@ -25,9 +25,9 @@
     <color name="news_letter_warning_background">@color/_material_black_200</color>
     <color name="news_letter_skiplogin">@color/login_btn_text_color</color>
     <color name="news_letter_skiplogin_back">@color/_material_black_100</color>
-    <color name="news_letter_child_txt">@color/black</color>
-    <color name="news_letter_child_back">@color/_material_black_400</color>
-    <color name="news_letter_parent_back">@color/_material_black_300</color>
+    <color name="item_child_txt">@color/black</color>
+    <color name="item_child_background">@color/_material_black_400</color>
+    <color name="item_parent_background">@color/_material_black_300</color>
     <color name="schedule_back">@color/_material_black_100</color>
 
     <color name="bottom_tab_white">#A7A7A7</color>
