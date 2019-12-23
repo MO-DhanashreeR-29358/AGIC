@@ -90,7 +90,7 @@
             android:id="@+id/tv_panel_intro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/news_letter_child_txt_back"
+            android:background="@color/news_letter_child_back"
             android:paddingLeft="@dimen/margin_medium"
             android:paddingTop="@dimen/margin_medium"
             android:paddingRight="@dimen/padding_extra_small"
