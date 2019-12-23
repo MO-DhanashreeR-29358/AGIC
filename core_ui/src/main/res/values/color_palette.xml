@@ -26,7 +26,8 @@
     <color name="news_letter_skiplogin_back">#31B8E5</color>
     <color name="news_letter_child_txt">#000000</color>
     <color name="news_letter_child_txt_back">#f9f9f9</color>
-    <color name="news_letter_parent_txt_back">#FFFFFF</color>
+    <color name="news_letter_parent_txt_back">@color/white</color>
+    <color name="schedule_back">@color/white</color>
     <color name="news_letter_parent_txt">#006ab6</color>
 
     <color name="bottom_tab_white">#ffffff</color>

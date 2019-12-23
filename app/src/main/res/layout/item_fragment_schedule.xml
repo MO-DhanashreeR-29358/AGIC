@@ -5,7 +5,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/news_letter_parent_txt_back">
+        android:background="@color/schedule_back">
 
         <View
             android:id="@+id/circleView"

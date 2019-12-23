@@ -22,13 +22,14 @@
     <color name="news_letter_head_welcome">#D5D5D5</color>
     <color name="news_letter_head">#1C1C1E</color>
     <color name="news_letter_warning">#ffffff</color>
-    <color name="news_letter_warning_background">#1A1E28</color>
+    <color name="news_letter_warning_background">#404040</color>
     <color name="news_letter_skiplogin">#1F85FB</color>
-    <color name="news_letter_skiplogin_back">#1C1C1E</color>
-    <color name="news_letter_child_txt">#C5C5C5</color>
-    <color name="news_letter_child_txt_back">#1A1E28</color>
-    <color name="news_letter_parent_txt_back">#1C1C1E</color>
+    <color name="news_letter_skiplogin_back">@color/news_letter_head</color>
+    <color name="news_letter_child_txt">#ffffff</color>
+    <color name="news_letter_child_txt_back">#686868</color>
+    <color name="news_letter_parent_txt_back">#505050</color>
     <color name="news_letter_parent_txt">#ffffff</color>
+    <color name="schedule_back">#1C1C1E</color>
 
     <color name="bottom_tab_white">#A7A7A7</color>
     <color name="bottom_tab_selected">#ffffff</color>
