@@ -80,10 +80,10 @@ class NewsLetterActivity : LeanBaseActivity(), NewsLetterView {
 
             override fun run() {
                 ImageViewAnimatedChange()
-                handler.postDelayed(this, 15000)
+                handler.postDelayed(this, 20000)
             }
         }
-        handler.postDelayed(runnable, 15000)
+        handler.postDelayed(runnable, 5000)
     }
 
 
@@ -95,27 +95,27 @@ class NewsLetterActivity : LeanBaseActivity(), NewsLetterView {
         anim_out.setAnimationListener(object : Animation.AnimationListener {
 
             override fun onAnimationStart(animation: Animation) {}
-
             override fun onAnimationRepeat(animation: Animation) {}
-
             override fun onAnimationEnd(animation: Animation) {
 
                 Glide.with(this@NewsLetterActivity)
                     .load(remoteConfigModel.logo)
                     .into(binding.imgAgic);
-
                 anim_in.setAnimationListener(object : Animation.AnimationListener {
                     override fun onAnimationStart(animation: Animation) {}
                     override fun onAnimationRepeat(animation: Animation) {}
-                    override fun onAnimationEnd(animation: Animation) {}
+                    override fun onAnimationEnd(animation: Animation) {
+                        binding.imgAgic.setImageResource(R.drawable.agic_agic)
+
+                    }
                 })
-
-
                 binding.imgAgic.startAnimation(anim_in)
+
             }
         })
-
         binding.imgAgic.startAnimation(anim_out)
+
+
     }
 
     internal fun openDashboard() {

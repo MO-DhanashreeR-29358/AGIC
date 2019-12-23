@@ -118,7 +118,7 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
 
     @Inject
     lateinit var gson: Gson
-
+    lateinit var remoteConfigModel: RemoteConfigModel;
     override fun getLayout(): Int {
         return R.layout.activity_commonbase
     }
@@ -142,7 +142,8 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
             globalTitles =
                 savedInstanceState.getSerializable(PAGE_TITLES) as HashMap<String, AppTitle>
         }
-
+        remoteConfigModel =
+            gson.fromJson(remoteConfigData.get(), RemoteConfigModel::class.java)
         setupObservables()
         setUpView()
         setUpTabs()
@@ -186,45 +187,42 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
 
             override fun run() {
                 ImageViewAnimatedChange()
-                handler.postDelayed(this, 15000)
+                handler.postDelayed(this, 20000)
             }
         }
-        handler.postDelayed(runnable, 15000)
+        handler.postDelayed(runnable, 5000)
     }
 
 
     fun ImageViewAnimatedChange() {
 
-        val banner: RemoteConfigModel =
-            gson.fromJson(remoteConfigData.get(), RemoteConfigModel::class.java)
         val anim_out = AnimationUtils.loadAnimation(this@MOSLCommonActivity, R.anim.fade_out_image)
         val anim_in = AnimationUtils.loadAnimation(this@MOSLCommonActivity, R.anim.fade_in_image)
 
         anim_out.setAnimationListener(object : Animation.AnimationListener {
 
             override fun onAnimationStart(animation: Animation) {}
-
             override fun onAnimationRepeat(animation: Animation) {}
-
             override fun onAnimationEnd(animation: Animation) {
 
-
                 Glide.with(this@MOSLCommonActivity)
-                    .load(banner.logo)
+                    .load(remoteConfigModel.logo)
                     .into(binding.imgLogo);
-
                 anim_in.setAnimationListener(object : Animation.AnimationListener {
                     override fun onAnimationStart(animation: Animation) {}
                     override fun onAnimationRepeat(animation: Animation) {}
-                    override fun onAnimationEnd(animation: Animation) {}
+                    override fun onAnimationEnd(animation: Animation) {
+                        binding.imgLogo.setImageResource(R.drawable.agic_agic)
+
+                    }
                 })
-
-
                 binding.imgLogo.startAnimation(anim_in)
+
             }
         })
-
         binding.imgLogo.startAnimation(anim_out)
+
+
     }
 
 
