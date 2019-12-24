@@ -17,7 +17,7 @@ class ItemSchedule(
     private val scheduleData: ScheduleResponseItemInfo,
     private val publishSubject: PublishSubject<ScheduleUiEvent>,
     val context: Context,
-    val isCurrentTimeBetween: Boolean
+    val isCurrentTimePosition: Int
 ) :
     BindableItem<ItemFragmentScheduleBinding>(), Animation.AnimationListener, View.OnClickListener {
 
@@ -34,7 +34,7 @@ class ItemSchedule(
 
             animBlink.setAnimationListener(this@ItemSchedule)
 
-            if (isCurrentTimeBetween) {
+            if (position == isCurrentTimePosition) {
                 circleView.setBackgroundResource(R.drawable.bg_blue_circle)
                 circleView.startAnimation(animBlink)
 

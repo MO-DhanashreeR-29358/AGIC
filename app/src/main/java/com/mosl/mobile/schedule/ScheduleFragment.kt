@@ -112,15 +112,15 @@ class ScheduleFragment : MOSLCommonFragment(), ScheduleContract {
             if (it.isNotEmpty()) {
                 section.clearContent()
                 val sortedList = it.sortedWith(compareBy({ it.startTime }))
-                var curentPosBool = false
+                var currentTimeBetween = false
+                var currentPosition = -1
                 for ((i, model) in sortedList.withIndex()) {
                     val startTime = getTimeAMPM(model.startTime)
                     val endTime = getTimeAMPM(model.endTime)
 
-                    if (checkTimeIsBetween(startTime, endTime) && !curentPosBool) {
-                        curentPosBool = true
-                    }else {
-                        curentPosBool = false
+                    if (checkTimeIsBetween(startTime, endTime) && !currentTimeBetween) {
+                        currentTimeBetween = true
+                        currentPosition = i
                     }
 
                     section.add(
@@ -128,7 +128,7 @@ class ScheduleFragment : MOSLCommonFragment(), ScheduleContract {
                             model,
                             followUpUiEvent,
                             requireContext(),
-                            curentPosBool
+                            currentPosition
                         )
                     )
                 }
