@@ -1,5 +1,6 @@
 package com.mosl.mobile.core
 
+import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
@@ -25,21 +26,31 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
+import com.f2prateek.rx.preferences2.Preference
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import com.google.gson.Gson
 import com.jakewharton.rxbinding3.appcompat.navigationClicks
+import com.mosl.annotations.FcmToken
+import com.mosl.app.core.data.fcm.FcmTokenSyncHelper
+import com.mosl.app.core.error.getErrorOnFailure
 import com.mosl.app.core.network.NetworkChangeEvent
 import com.mosl.app.core.network.NetworkReceiver
 import com.mosl.app.core.prefs.StringPreference
+import com.mosl.app.core.rx.applyUiModel
+import com.mosl.app.core.utils.getUuid
 import com.mosl.app.core.utils.hide
 import com.mosl.app.core.utils.hideKeyBoard
 import com.mosl.app.core.utils.show
 import com.mosl.app.coreui.base.ActivityDelegate
 import com.mosl.app.coreui.base.BaseActivity
 import com.mosl.app.coreui.base.NavigationElement
+import com.mosl.commons.data.onFailure
+import com.mosl.commons.data.onSuccess
+import com.mosl.data.api.fcm_token.FcmTokenRequest
 import com.mosl.mobile.R
 import com.mosl.mobile.annotations.*
+import com.mosl.mobile.app_user.login.LoginRepositoryImpl
 import com.mosl.mobile.app_user.login.UserManager
 import com.mosl.mobile.app_user.login.user
 import com.mosl.mobile.constants.NavigationConstants
@@ -55,6 +66,7 @@ import com.mosl.mobile.menu.ScreenNavigatorImpl
 import com.mosl.mobile.pdf.PdfFragment
 import com.mosl.navigator.*
 import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.addTo
 import timber.log.Timber
 import java.util.*
@@ -119,6 +131,17 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
     @Inject
     lateinit var gson: Gson
     lateinit var remoteConfigModel: RemoteConfigModel;
+
+    @Inject
+    @field:FcmToken
+    lateinit var tokenPref: Preference<String>
+
+    @Inject
+    lateinit var fcmTokenSyncHelper: FcmTokenSyncHelper
+
+    @Inject
+    lateinit var loginRepository: LoginRepositoryImpl
+
     override fun getLayout(): Int {
         return R.layout.activity_commonbase
     }
@@ -389,33 +412,21 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
         bindingDialog = LogoutDialogBinding.bind(mDialogView)
 
 
-        //AlertDialogBuilder
         val mBuilder = AlertDialog.Builder(this)
             .setView(mDialogView)
-//            .setTitle("AGIC")
-        //show dialog
         val mAlertDialog = mBuilder.show()
-        //login button click of custom layout
 
 
         bindingDialog.btnLogout.setOnClickListener {
-            //dismiss dialog
-            userManager.doLogout()
-            userCacheImpl.clearUser()
             lastScheduleDate.delete()
             imageSplashUrl.delete()
             lastBytesDate.delete()
-//                remoteConfigData.delete()
             scheduleData.delete()
             panelData.delete()
             overViewData.delete()
             bytesData.delete()
-
-
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-            finish()
-
+            doLogout()
+            mAlertDialog.dismiss()
         }
         //cancel button click of custom layout
         bindingDialog.dialogCancelBtn.setOnClickListener {
@@ -424,29 +435,55 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
         }
     }
 
-//    internal fun logoutCustomer() {
-//        AlertDialog.Builder(this)
-//            .setMessage(R.string.msg_logout)
-//            .setCancelable(false)
-//            .setPositiveButton(R.string.text_label_yes) { _, _ ->
-//                val intent = Intent(this, LoginActivity::class.java)
-//                startActivity(intent)
-//                userCacheImpl.clearUser()
-//                lastScheduleDate.delete()
-//                imageSplashUrl.delete()
-//                lastBytesDate.delete()
-////                remoteConfigData.delete()
-//                scheduleData.delete()
-//                panelData.delete()
-//                overViewData.delete()
-//                bytesData.delete()
-//
-//                finish()
-//            }
-//            .setNegativeButton(R.string.text_label_no) { _, _ -> }
-//            .show()
-//    }
+    private fun doLogout() {
+        val notificationManager = getSystemService(
+            Context.NOTIFICATION_SERVICE
+        ) as NotificationManager
+        notificationManager.cancelAll()
+        val uuid = this.getUuid()
+        val tokenRequest = FcmTokenRequest(
+            tokenPref.get(),
+            uuid,
+            FcmTokenSyncHelper.PLATFORM,
+            userManager.user.clientId
+        )
+        disposable.add(loginRepository.logout(tokenRequest)
+            .toSingleDefault(true).toObservable()
+            .compose(applyUiModel())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe { uiModel ->
+                toggleProgressBar(uiModel.inProgress)
 
+                uiModel.onSuccess {
+                    Timber.d("Logout Successfully")
+
+                    openLogin()
+                }
+
+                uiModel.onFailure { error ->
+                    error.showOnFailurePopup()
+                }
+            })
+    }
+
+    fun Throwable.showOnFailurePopup() {
+        val errorOnFailure = this.getErrorOnFailure()
+        alert(message = errorOnFailure.getResolvedMessage(applicationContext))
+    }
+
+    private fun openLogin() {
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
+    fun toggleProgressBar(show: Boolean) {
+        if (show) {
+            showProgress()
+        } else {
+            hideProgress()
+        }
+    }
 
     override fun setAppTitle(page: String, appTitle: AppTitle?) {
         val title = appTitle ?: globalTitles[page] ?: AppTitle.EMPTY
@@ -499,9 +536,19 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
     }
 
     internal fun setupObservables() {
+
+        disposable.add(
+
+            tokenPref.asObservable().distinctUntilChanged()
+                .map { _ -> tokenPref.get() }
+                .filter { token -> !token.equals("0") }
+                .switchMap { token ->
+                    fcmTokenSyncHelper.saveToken(token)
+                        .compose(applyUiModel())
+                }
+                .subscribe())
+
         val mainThread = dispatchers.main
-
-
         networkReceiver.onNetworkChanged()
             .distinctUntilChanged()
             .observeOn(mainThread)
@@ -547,7 +594,6 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
 
     companion object {
         const val ARG_PAGE_ID = "pageId"
-        const val IS_FIRST_TIME = "isFirstTime"
         private const val PAGE_TITLES = "pageTitles"
     }
 

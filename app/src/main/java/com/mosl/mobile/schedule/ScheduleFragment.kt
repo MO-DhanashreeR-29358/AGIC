@@ -126,6 +126,7 @@ class ScheduleFragment : MOSLCommonFragment(), ScheduleContract {
                     section.add(
                         ItemSchedule(
                             model,
+
                             followUpUiEvent,
                             requireContext(),
                             currentPosition

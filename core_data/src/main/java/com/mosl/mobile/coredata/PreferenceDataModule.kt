@@ -2,7 +2,10 @@ package com.mosl.mobile.coredata
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.f2prateek.rx.preferences2.Preference
 import com.f2prateek.rx.preferences2.RxSharedPreferences
+import com.mosl.annotations.FcmToken
+import com.mosl.annotations.FcmTokenRequest
 import com.mosl.app.core.prefs.StringPreference
 import com.mosl.mobile.annotations.*
 import com.mosl.mobile.app_user.*
@@ -87,5 +90,20 @@ class PreferenceDataModule {
     @Provides
     internal fun provideBytesDataPref(prefs: SharedPreferences): StringPreference {
         return StringPreference(prefs, BYTES_DATA_KEY, "")
+    }
+
+
+    @FcmToken
+    @Singleton
+    @Provides
+    internal fun provideGcmToken(prefs: RxSharedPreferences): Preference<String?> {
+        return prefs.getString(GCM_TOKEN, "0")
+    }
+
+    @FcmTokenRequest
+    @Singleton
+    @Provides
+    internal fun provideFcmTokenRequest(prefs: SharedPreferences): StringPreference {
+        return StringPreference(prefs, SAVED_TOKEN_REQUEST)
     }
 }

@@ -12,24 +12,41 @@ import android.os.Bundle
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
+import com.f2prateek.rx.preferences2.Preference
 import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
+import com.mosl.annotations.FcmToken
 import com.mosl.mobile.R
 import com.mosl.mobile.splash.SplashActivity
+import dagger.android.AndroidInjection
 import timber.log.Timber
 import java.util.*
+import javax.inject.Inject
 
 
-class MyFirebaseMessagingService : FirebaseMessagingService() {
+class MessageReceiverIntentService : FirebaseMessagingService() {
 
     var TAG = "FirebaseMessagingService"
     var notificationCount = 0
 
+    @Inject
+    @field:FcmToken
+    lateinit var fcmtokenPref: Preference<String>
+
+    override fun onCreate() {
+        AndroidInjection.inject(this)
+        super.onCreate()
+    }
+
     override fun onNewToken(token: String?) {
         Log.d(TAG, "Refreshed token: " + token!!)
         FirebaseMessaging.getInstance().subscribeToTopic("agic");
-//        sendRegistrationToServer(token)
+        if (token.isNullOrBlank()) {
+            fcmtokenPref.delete()
+        } else {
+            fcmtokenPref.set(token)
+        }
     }
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {

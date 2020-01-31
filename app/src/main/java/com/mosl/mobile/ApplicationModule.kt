@@ -5,10 +5,11 @@ import android.content.Context
 import com.mosl.mobile.coredata.ApiModule
 import com.mosl.mobile.coredata.DataModule
 import com.mosl.mobile.data.CommonDataModule
+import com.mosl.mobile.notification.ServiceModule
 import dagger.Binds
 import dagger.Module
 
-@Module(includes = [UiModule::class,ApiModule::class,CommonDataModule::class, DataModule::class])
+@Module(includes = [UiModule::class,ApiModule::class,CommonDataModule::class, DataModule::class,ServiceModule::class])
 abstract class ApplicationModule {
   @Binds
   internal abstract fun provideApplication(application: MOSLApplication): Application

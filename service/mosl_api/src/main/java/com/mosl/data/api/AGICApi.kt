@@ -3,6 +3,8 @@ package com.mosl.data.api
 import com.mosl.data.api.bytes.BytesInfoRequest
 import com.mosl.data.api.bytes.BytesInfoResponse
 import com.mosl.data.api.demo.LoginInfo
+import com.mosl.data.api.fcm_token.FcmTokenRequest
+import com.mosl.data.api.fcm_token.FcmTokenResponse
 import com.mosl.data.api.login.LoginInfoRequest
 import com.mosl.data.api.login.LoginInfoResponse
 import com.mosl.data.api.newsletter.NewsLetterResponseItem
@@ -46,6 +48,12 @@ interface AGICApi {
     @Headers(CACHE_FOR_4HRS)
     fun getPanelDetails(): Observable<PanelDataResponse>
 
+
+    @POST("GetTokenForClient")
+    fun updateFCMToken(@Body fcmTokenRequest: FcmTokenRequest): Observable<FcmTokenResponse>
+
+    @POST("TokenDeregistration")
+    fun tokenDeregistration(@Body fcmTokenRequest: FcmTokenRequest): Observable<FcmTokenResponse>
 
     companion object {
         const val CACHE_FOR_4HRS = "Cache-For: 240"

@@ -6,6 +6,8 @@ import com.mosl.data.api.AGICApi
 import com.mosl.data.api.BaseResponseAgic
 import com.mosl.data.api.bytes.BytesInfoRequest
 import com.mosl.data.api.bytes.BytesInfoResponse
+import com.mosl.data.api.fcm_token.FcmTokenRequest
+import com.mosl.data.api.fcm_token.FcmTokenResponse
 import com.mosl.data.api.login.LoginInfoRequest
 import com.mosl.data.api.login.LoginInfoResponse
 import com.mosl.data.api.newsletter.NewsLetterResponseItem
@@ -38,6 +40,14 @@ class MockMoslApiServiceImpl(
     }
 
     override fun getPanelDetails(): Observable<PanelDataResponse> {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun updateFCMToken(fcmTokenRequest: FcmTokenRequest): Observable<FcmTokenResponse> {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun tokenDeregistration(fcmTokenRequest: FcmTokenRequest): Observable<FcmTokenResponse> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 

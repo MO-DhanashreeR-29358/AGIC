@@ -175,6 +175,7 @@ dependencies {
     implementation RxDependencies.kotlin
     implementation RxDependencies.relay
     implementation RxDependencies.android
+    implementation RxDependencies.preferences
     implementation RxBindingDependencies.bindingPlatform
     implementation RxBindingDependencies.bindingCore
     implementation RxBindingDependencies.bindingAppcompat

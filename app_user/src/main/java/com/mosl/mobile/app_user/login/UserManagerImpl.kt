@@ -61,6 +61,7 @@ class UserManagerImpl @Inject internal constructor(
 
     override fun doLogout() {
         user=null
+        userCache.clearUser()
     }
 
 }
