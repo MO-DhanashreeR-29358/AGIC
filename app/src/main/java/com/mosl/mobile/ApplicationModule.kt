@@ -5,7 +5,7 @@ import android.content.Context
 import com.mosl.mobile.coredata.ApiModule
 import com.mosl.mobile.coredata.DataModule
 import com.mosl.mobile.data.CommonDataModule
-import com.mosl.mobile.notification.ServiceModule
+import com.mosl.mobile.service.ServiceModule
 import dagger.Binds
 import dagger.Module
 

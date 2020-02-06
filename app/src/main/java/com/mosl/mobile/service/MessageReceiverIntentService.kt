@@ -1,4 +1,4 @@
-package com.mosl.mobile.notification
+package com.mosl.mobile.service
 
 import android.app.Notification
 import android.app.NotificationChannel

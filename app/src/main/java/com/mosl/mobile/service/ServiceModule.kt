@@ -1,4 +1,4 @@
-package com.mosl.mobile.notification
+package com.mosl.mobile.service
 
 import dagger.Module
 import dagger.android.ContributesAndroidInjector

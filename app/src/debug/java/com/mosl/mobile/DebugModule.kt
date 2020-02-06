@@ -6,7 +6,7 @@ import com.mosl.debugview.DebugViewModule
 import com.mosl.mobile.coredata.DebugApiModule
 import com.mosl.mobile.coredata.DebugDataModule
 import com.mosl.mobile.data.CommonDataModule
-import com.mosl.mobile.notification.ServiceModule
+import com.mosl.mobile.service.ServiceModule
 import com.mosl.mobile.ui.DebugUiModule
 import dagger.Binds
 import dagger.Module

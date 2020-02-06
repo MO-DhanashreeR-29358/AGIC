@@ -8,7 +8,6 @@ import com.mosl.mobile.app_user.model.User
 import com.mosl.mobile.app_user.model.mapToLoginRequest
 import com.mosl.mobile.app_user.model.mapToLoginResponse
 import com.mosl.mobile.login.UserManagerImpl
-import com.mosl.mobile.user.login.AppUserRepository
 import com.mosl.mobile.user.login.AppUserRepositoryImpl
 import io.reactivex.Completable
 import io.reactivex.Observable

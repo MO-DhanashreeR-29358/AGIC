@@ -7,7 +7,8 @@ import com.mosl.data.api.login.LoginInfoResponse
 fun LoginRequest.mapToLoginRequest(): LoginInfoRequest {
     return LoginInfoRequest(
 
-        uniqueId, deviceId
+        uniqueId=uniqueId,
+        deviceId = deviceId
 
     )
 }
@@ -16,7 +17,9 @@ fun LoginRequest.mapToLoginRequest(): LoginInfoRequest {
 fun LoginInfoResponse.mapToLoginResponse(): User {
     return User(
 
-        clientId, fundId, clientName, emailId, fundName, contactName1, contactName2, contactName3, contactMobile1, contactMobile2, contactMobile3, day
+        clientId=clientId, fundId = fundId,clientName =  clientName,emailId =  emailId,fundName =  fundName,
+        contactName1 =  contactName1,contactName2 =  contactName2,contactName3 =  contactName3,
+        contactMobile1 = contactMobile1,contactMobile2 =  contactMobile2,contactMobile3 =  contactMobile3,day =  day
 
 
     )

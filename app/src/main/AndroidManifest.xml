@@ -48,7 +48,7 @@
         </activity>
 
         <service
-            android:name="com.mosl.mobile.notification.MessageReceiverIntentService"
+            android:name="com.mosl.mobile.service.MessageReceiverIntentService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
