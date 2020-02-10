@@ -30,16 +30,6 @@ class OverviewChildFragment : MOSLCommonFragment(), OverviewChildContract {
 
     private val followUpUiEvent = PublishSubject.create<OverviewUiEvent>()
 
-    override fun onItemClicked(): Observable<OverviewUiEvent.OnMoreClick> {
-        return followUpUiEvent.ofType()
-    }
-
-    override fun renderItemData(repList: List<OverviewResponseRepresntativeInfo>) {
-        val dialogFragment = OverviewRepDialogFragment()
-
-        dialogFragment.setData(repList);
-        dialogFragment.show(childFragmentManager, "dialog")
-    }
 
     lateinit var binding: FragmentOverviewChildBinding
 
@@ -60,6 +50,17 @@ class OverviewChildFragment : MOSLCommonFragment(), OverviewChildContract {
         publishSubject =
             (parentFragment as? OverviewFragment)?.tabPublishSubject ?: Observable.empty()
         presenter.start()
+    }
+
+    override fun onItemClicked(): Observable<OverviewUiEvent.OnMoreClick> {
+        return followUpUiEvent.ofType()
+    }
+
+    override fun renderItemData(repList: List<OverviewResponseRepresntativeInfo>) {
+        val dialogFragment = OverviewRepDialogFragment()
+
+        dialogFragment.setData(repList);
+        dialogFragment.show(childFragmentManager, "dialog")
     }
 
     private fun setupRecyclerView() {

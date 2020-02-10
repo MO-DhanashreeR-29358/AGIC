@@ -250,35 +250,82 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
 
 
     private fun setUpTabs() {
-        binding.tabLayout.addTab(
-            binding.tabLayout.newTab().setText(R.string.tab_label_schedule).setIcon(R.drawable.ic_tab_schedule).setTag(
-                NavigationConstants.NAVIGATE_TO_SCHEDULE
-            )
-        )
 
-        binding.tabLayout.addTab(
-            binding.tabLayout.newTab().setText(R.string.tab_label_overview).setIcon(R.drawable.ic_tab_overview).setTag(
-                NavigationConstants.NAVIGATE_TO_OVERVIEW
+        if (userManager.user.role.equals(ROLE_CLIENT, ignoreCase = true)) {
+            binding.tabLayout.addTab(
+                binding.tabLayout.newTab().setText(R.string.tab_label_schedule).setIcon(R.drawable.ic_tab_schedule).setTag(
+                    NavigationConstants.NAVIGATE_TO_SCHEDULE
+                )
             )
-        )
 
-        binding.tabLayout.addTab(
-            binding.tabLayout.newTab().setText(R.string.tab_label_panel).setIcon(R.drawable.ic_panel_24dp).setTag(
-                NavigationConstants.NAVIGATE_TO_PANEL
+            binding.tabLayout.addTab(
+                binding.tabLayout.newTab().setText(R.string.tab_label_overview).setIcon(R.drawable.ic_tab_overview).setTag(
+                    NavigationConstants.NAVIGATE_TO_OVERVIEW
+                )
             )
-        )
 
-        binding.tabLayout.addTab(
-            binding.tabLayout.newTab().setText(R.string.tab_label_bytes).setIcon(R.drawable.ic_tab_bytes).setTag(
-                NavigationConstants.NAVIGATE_TO_BYTES
+            binding.tabLayout.addTab(
+                binding.tabLayout.newTab().setText(R.string.tab_label_notification).setIcon(R.drawable.ic_notification_24dp).setTag(
+                    NavigationConstants.NAVIGATE_TO_NOTIFICATION
+                )
             )
-        )
 
-        binding.tabLayout.addTab(
-            binding.tabLayout.newTab().setText(R.string.tab_label_pdf).setIcon(R.drawable.ic_tab_pdf).setTag(
-                NavigationConstants.NAVIGATE_TO_PDF
+
+            binding.tabLayout.addTab(
+                binding.tabLayout.newTab().setText(R.string.tab_label_pdf).setIcon(R.drawable.ic_tab_pdf).setTag(
+                    NavigationConstants.NAVIGATE_TO_PDF
+                )
             )
-        )
+        }else if(userManager.user.role.equals(ROLE_CORPORATE, ignoreCase = true)){
+            binding.tabLayout.addTab(
+                binding.tabLayout.newTab().setText(R.string.tab_label_schedule).setIcon(R.drawable.ic_tab_schedule).setTag(
+                    NavigationConstants.NAVIGATE_TO_SCHEDULE
+                )
+            )
+
+            binding.tabLayout.addTab(
+                binding.tabLayout.newTab().setText(R.string.tab_label_notification).setIcon(R.drawable.ic_notification_24dp).setTag(
+                    NavigationConstants.NAVIGATE_TO_NOTIFICATION
+                )
+            )
+
+            binding.tabLayout.addTab(
+                binding.tabLayout.newTab().setText(R.string.tab_label_pdf).setIcon(R.drawable.ic_tab_pdf).setTag(
+                    NavigationConstants.NAVIGATE_TO_PDF
+                )
+            )
+        }else {
+            binding.tabLayout.addTab(
+                binding.tabLayout.newTab().setText(R.string.tab_label_schedule).setIcon(R.drawable.ic_tab_schedule).setTag(
+                    NavigationConstants.NAVIGATE_TO_SCHEDULE
+                )
+            )
+
+            binding.tabLayout.addTab(
+                binding.tabLayout.newTab().setText(R.string.tab_label_overview).setIcon(R.drawable.ic_tab_overview).setTag(
+                    NavigationConstants.NAVIGATE_TO_OVERVIEW
+                )
+            )
+
+            binding.tabLayout.addTab(
+                binding.tabLayout.newTab().setText(R.string.tab_label_panel).setIcon(R.drawable.ic_panel_24dp).setTag(
+                    NavigationConstants.NAVIGATE_TO_PANEL
+                )
+            )
+
+            binding.tabLayout.addTab(
+                binding.tabLayout.newTab().setText(R.string.tab_label_bytes).setIcon(R.drawable.ic_tab_bytes).setTag(
+                    NavigationConstants.NAVIGATE_TO_BYTES
+                )
+            )
+
+            binding.tabLayout.addTab(
+                binding.tabLayout.newTab().setText(R.string.tab_label_pdf).setIcon(R.drawable.ic_tab_pdf).setTag(
+                    NavigationConstants.NAVIGATE_TO_PDF
+                )
+            )
+        }
+
 
         /* binding.tabLayout.addTab(
              binding.tabLayout.newTab().setText(R.string.tab_label_notes).setIcon(R.drawable.ic_tab_notes).setTag(
@@ -595,6 +642,8 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
     companion object {
         const val ARG_PAGE_ID = "pageId"
         private const val PAGE_TITLES = "pageTitles"
+        private const val ROLE_CORPORATE = "corporate"
+        private const val ROLE_CLIENT = "client"
     }
 
 }

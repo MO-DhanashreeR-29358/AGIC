@@ -7,6 +7,8 @@ import com.mosl.mobile.contactrm.ContactModule
 import com.mosl.mobile.demo.DemoFragmentProvider
 import com.mosl.mobile.notes.NotesFragment
 import com.mosl.mobile.notes.NotesModule
+import com.mosl.mobile.notification.NotificationHistoryFragment
+import com.mosl.mobile.notification.NotificationModule
 import com.mosl.mobile.overview.OverviewChildFragment
 import com.mosl.mobile.overview.OverviewChildModule
 import com.mosl.mobile.overview.OverviewRepDialogFragment
@@ -24,40 +26,44 @@ import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
 @Module(includes = [DemoFragmentProvider::class])
-abstract class FragmentProvider {
+interface FragmentProvider {
 
     @ContributesAndroidInjector(modules = [])
-    abstract fun provideScheduleRepDialogFragmentFactory(): ScheduleRepDialogFragment
+    fun provideScheduleRepDialogFragmentFactory(): ScheduleRepDialogFragment
 
     @ContributesAndroidInjector(modules = [])
-    abstract fun provideOverviewRepDialogFragmentFragmentFactory(): OverviewRepDialogFragment
+    fun provideOverviewRepDialogFragmentFragmentFactory(): OverviewRepDialogFragment
 
     @ContributesAndroidInjector(modules = [ContactModule::class])
-    abstract fun provideContactDialogFragmentFactory(): ContactDialogFragment
+    fun provideContactDialogFragmentFactory(): ContactDialogFragment
 
     @ContributesAndroidInjector(modules = [BytesModule::class])
-    abstract fun provideBytesFragmentFactory(): BytesFragment
+    fun provideBytesFragmentFactory(): BytesFragment
 
     @ContributesAndroidInjector(modules = [PanelModule::class])
-    abstract fun providePanelBAseFragmentFactory(): PanelFragment
+    fun providePanelBAseFragmentFactory(): PanelFragment
 
     @ContributesAndroidInjector(modules = [PanelChildModule::class])
-    abstract fun providePanelFragmentFactory(): PanelChildFragment
+    fun providePanelFragmentFactory(): PanelChildFragment
 
     @ContributesAndroidInjector(modules = [OverviewChildModule::class])
-    abstract fun provideOverviewFragmentChildFactory(): OverviewChildFragment
+    fun provideOverviewFragmentChildFactory(): OverviewChildFragment
 
     @ContributesAndroidInjector(modules = [])
-    abstract fun providePDFFragmentFactory(): PdfFragment
+    fun providePDFFragmentFactory(): PdfFragment
 
 
     @ContributesAndroidInjector(modules = [NotesModule::class])
-    abstract fun provideNotesFragmentFactory(): NotesFragment
+    fun provideNotesFragmentFactory(): NotesFragment
 
     @ContributesAndroidInjector(modules = [ScheduleModule::class])
-    abstract fun provideScheduleFragmentFactory(): ScheduleFragment
+    fun provideScheduleFragmentFactory(): ScheduleFragment
 
     @ContributesAndroidInjector(modules = [OverviewPagerModule::class])
-    abstract fun provideOverviewFragmentFactory(): OverviewFragment
+    fun provideOverviewFragmentFactory(): OverviewFragment
+
+    @ContributesAndroidInjector(modules = [NotificationModule::class])
+    fun provideNotificationHistoryFactory(): NotificationHistoryFragment
+
 
 }

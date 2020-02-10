@@ -103,7 +103,7 @@
                                 android:layout_height="@dimen/menuIcons"
                                 android:layout_gravity="center_vertical"
                                 android:layout_margin="@dimen/margin_small"
-                                android:src="@drawable/ic_call_green_24dp"
+                                app:srcCompat="@drawable/ic_call_green_24dp"
                                 android:visibility="gone" />
 
                             <androidx.appcompat.widget.AppCompatImageView
@@ -112,7 +112,7 @@
                                 android:layout_height="@dimen/menuIcons"
                                 android:layout_gravity="center_vertical"
                                 android:layout_margin="@dimen/margin_large"
-                                android:src="@drawable/ic_logout_red_24_dp" />
+                                app:srcCompat="@drawable/ic_logout_red_24_dp" />
 
                         </LinearLayout>
 

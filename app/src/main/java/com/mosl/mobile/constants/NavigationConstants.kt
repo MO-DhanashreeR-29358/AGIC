@@ -33,6 +33,7 @@ annotation class NavigationConstants {
         const val NAVIGATE_TO_OVERVIEW_CHILD = 6
         const val NAVIGATE_TO_PANEL_CHILD = 7
         const val NAVIGATE_TO_NOTES = 8
+        const val NAVIGATE_TO_NOTIFICATION = 9
 
 
     }

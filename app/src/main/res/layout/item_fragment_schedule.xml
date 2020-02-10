@@ -38,7 +38,6 @@
             android:layout_marginBottom="@dimen/margin_normal"
             android:src="@drawable/ic_mtrack"
             app:layout_constraintBottom_toTopOf="@+id/view_divider"
-
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="ContentDescription" />
