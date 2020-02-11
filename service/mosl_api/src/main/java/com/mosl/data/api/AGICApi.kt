@@ -2,6 +2,8 @@ package com.mosl.data.api
 
 import com.mosl.data.api.bytes.BytesInfoRequest
 import com.mosl.data.api.bytes.BytesInfoResponse
+import com.mosl.data.api.corporateschedulepager.CorporateScheduleRequest
+import com.mosl.data.api.corporateschedulepager.CorporateScheduleResponseData
 import com.mosl.data.api.demo.LoginInfo
 import com.mosl.data.api.fcm_token.FcmTokenRequest
 import com.mosl.data.api.fcm_token.FcmTokenResponse
@@ -54,6 +56,10 @@ interface AGICApi {
 
     @POST("TokenDeregistration")
     fun tokenDeregistration(@Body fcmTokenRequest: FcmTokenRequest): Observable<FcmTokenResponse>
+
+    @POST("GetCorporateSchedule")
+    @Headers(CACHE_FOR_4HRS)
+    fun getCorporateScheduleAPI(@Body request: CorporateScheduleRequest): Observable<CorporateScheduleResponseData>
 
     companion object {
         const val CACHE_FOR_4HRS = "Cache-For: 240"

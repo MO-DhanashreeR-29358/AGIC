@@ -125,6 +125,10 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
     lateinit var overViewData: StringPreference
 
     @Inject
+    @field:CorporateScheduleData
+    lateinit var corporateScheduleData: StringPreference
+
+    @Inject
     @field:LastBytesData
     lateinit var bytesData: StringPreference
 
@@ -276,7 +280,7 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
                     NavigationConstants.NAVIGATE_TO_PDF
                 )
             )
-        }else if(userManager.user.role.equals(ROLE_CORPORATE, ignoreCase = true)){
+        } else if (userManager.user.role.equals(ROLE_CORPORATE, ignoreCase = true)) {
             binding.tabLayout.addTab(
                 binding.tabLayout.newTab().setText(R.string.tab_label_schedule).setIcon(R.drawable.ic_tab_schedule).setTag(
                     NavigationConstants.NAVIGATE_TO_SCHEDULE
@@ -294,7 +298,7 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
                     NavigationConstants.NAVIGATE_TO_PDF
                 )
             )
-        }else {
+        } else {
             binding.tabLayout.addTab(
                 binding.tabLayout.newTab().setText(R.string.tab_label_schedule).setIcon(R.drawable.ic_tab_schedule).setTag(
                     NavigationConstants.NAVIGATE_TO_SCHEDULE

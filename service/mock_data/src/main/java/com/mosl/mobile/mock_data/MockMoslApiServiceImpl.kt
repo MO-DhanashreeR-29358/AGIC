@@ -1,11 +1,13 @@
 package com.mosl.mobile.mock_data
 
 import android.content.Context
-import com.mosl.data.api.demo.LoginInfo
 import com.mosl.data.api.AGICApi
 import com.mosl.data.api.BaseResponseAgic
 import com.mosl.data.api.bytes.BytesInfoRequest
 import com.mosl.data.api.bytes.BytesInfoResponse
+import com.mosl.data.api.corporateschedulepager.CorporateScheduleRequest
+import com.mosl.data.api.corporateschedulepager.CorporateScheduleResponseData
+import com.mosl.data.api.demo.LoginInfo
 import com.mosl.data.api.fcm_token.FcmTokenRequest
 import com.mosl.data.api.fcm_token.FcmTokenResponse
 import com.mosl.data.api.login.LoginInfoRequest
@@ -13,9 +15,9 @@ import com.mosl.data.api.login.LoginInfoResponse
 import com.mosl.data.api.newsletter.NewsLetterResponseItem
 import com.mosl.data.api.overviewpager.OverviewRequest
 import com.mosl.data.api.overviewpager.OverviewResponseData
+import com.mosl.data.api.panel.PanelDataResponse
 import com.mosl.data.api.schedule.ScheduleRequest
 import com.mosl.data.api.schedule.ScheduleResponseItem
-import com.mosl.data.api.panel.PanelDataResponse
 import com.mosl.mobile.demo.UserResponse
 import io.reactivex.Observable
 import retrofit2.mock.MockRetrofit
@@ -23,6 +25,10 @@ import retrofit2.mock.MockRetrofit
 class MockMoslApiServiceImpl(
     private val mockRetrofit: MockRetrofit,
     private val context: Context) : AGICApi {
+    override fun getCorporateScheduleAPI(request: CorporateScheduleRequest): Observable<CorporateScheduleResponseData> {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
     override fun getScheduleDataAPI(request: ScheduleRequest): Observable<BaseResponseAgic<List<ScheduleResponseItem>>> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }

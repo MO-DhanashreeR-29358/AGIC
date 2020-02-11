@@ -1,0 +1,77 @@
+{
+  "Message": "",
+  "Response": "true",
+  "PDFLink": "http://ftp.motilaloswal.com/emailer/Institution/Conference/Aegon Religare Life Insurance - Jyoti Prakash.pdf",
+  "UpdateAvailable": "",
+  "notificationPending": 0,
+  "Data": [
+    {
+      "shiftTiming": "09:00 AM",
+      "roomNumber": "345",
+      "Attendees": [
+        {
+          "FundName": "ICICI Prudential AMC",
+          "representative": [
+            {
+              "name": "Priyanka Singhal",
+              "designation": "Fund Manager"
+            },
+            {
+              "name": "Vishwas Katela",
+              "designation": "Asst. Fund Manager"
+            },
+            {
+              "name": "Raju Rastogi",
+              "designation": "AVP"
+            }
+          ]
+        },
+        {
+          "FundName": "Tech Mahindra",
+          "representative": [
+            {
+              "name": "Manoj Bhat",
+              "designation": "CFO"
+            },
+            {
+              "name": "Seema Chakrabaroty",
+              "designation": "CEO"
+            }
+          ]
+        }
+      ],
+      "natureOfMeeting": "Group",
+      "day": "day1"
+    },
+    {
+      "shiftTiming": "10:00 AM",
+      "roomNumber": "345",
+      "Attendees": [
+        {
+          "FundName": "India Infoline",
+          "representative": [
+            {
+              "name": "Amrut Singhania",
+              "designation": "Asst. Director"
+            },
+            {
+              "name": "Nayana Parmar",
+              "designation": "Vice President"
+            }
+          ]
+        },
+        {
+          "FundName": "State Bank of India",
+          "representative": [
+            {
+              "name": "Anand Agarwal",
+              "designation": "CEO"
+            }
+          ]
+        }
+      ],
+      "natureOfMeeting": "Group",
+      "day": "day1"
+    }
+  ]
+}
