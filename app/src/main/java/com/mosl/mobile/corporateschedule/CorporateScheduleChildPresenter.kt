@@ -1,6 +1,7 @@
 package com.mosl.mobile.corporateschedule
 
 import com.mosl.app.core.base.BasePresenter
+import io.reactivex.rxkotlin.addTo
 import javax.inject.Inject
 
 class CorporateScheduleChildPresenter @Inject constructor(view: CorporateChildContract) :
@@ -12,9 +13,9 @@ class CorporateScheduleChildPresenter @Inject constructor(view: CorporateChildCo
                 .subscribe(view::renderPage)
         )
 
-//        view.onItemClicked()
-//            .subscribe {
-//                view.renderItemData(it.Rep)
-//            }.addTo(disposable)
+        view.onItemClicked()
+            .subscribe {
+                view.renderItemData(it.Rep)
+            }.addTo(disposable)
     }
 }

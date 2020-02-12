@@ -19,7 +19,7 @@
             android:layout_marginEnd="@dimen/_5sdp"
             android:text="ICICI Prudential AMC"
             android:textColor="@color/blue"
-            android:textSize="@dimen/_14ssp"
+            android:textSize="@dimen/_13ssp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -33,7 +33,7 @@
             android:layout_marginEnd="@dimen/_5sdp"
             android:text="Priyanka Singhal"
             android:textColor="@color/black"
-            android:textSize="@dimen/_13ssp"
+            android:textSize="@dimen/_12ssp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_FundName" />
@@ -47,7 +47,7 @@
             android:layout_marginEnd="@dimen/_5sdp"
             android:text="ICICI Prudential AMC"
             android:textColor="@color/black"
-            android:textSize="@dimen/_13ssp"
+            android:textSize="@dimen/_12ssp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_representative1" />
@@ -61,7 +61,7 @@
             android:layout_marginEnd="@dimen/_5sdp"
             android:text="..1 more "
             android:textColor="@color/black"
-            android:textSize="@dimen/_13ssp"
+            android:textSize="@dimen/_12ssp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_representative2" />

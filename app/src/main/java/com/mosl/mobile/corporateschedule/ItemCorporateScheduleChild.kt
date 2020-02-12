@@ -11,9 +11,9 @@ class ItemCorporateScheduleChild(
     scheduleData: CorporateScheduleResponseDayAttendanceItemInfo,
     private val publishSubject: PublishSubject<CorporateScheduleUiEvent>
 ) :
-    BindableItem<ItemFragmentCorporateScheduleSubchildBinding>() {
-    private val itemData = scheduleData
+    BindableItem<ItemFragmentCorporateScheduleSubchildBinding>(), View.OnClickListener {
 
+    private val itemData = scheduleData
 
     override fun bind(viewBinding: ItemFragmentCorporateScheduleSubchildBinding, position: Int) {
 
@@ -22,11 +22,14 @@ class ItemCorporateScheduleChild(
             tvFundName.text = itemData.FundName
 
             if (itemData.representative.size == 2) {
-                tvRepresentative1.text = itemData.representative[0].name + ", " + itemData.representative[0].designation
-                tvRepresentative2.text = itemData.representative[1].name + ", " + itemData.representative[1].designation
+                tvRepresentative1.text =
+                    itemData.representative[0].name + ", " + itemData.representative[0].designation
+                tvRepresentative2.text =
+                    itemData.representative[1].name + ", " + itemData.representative[1].designation
                 tvMore.visibility = View.GONE
             } else if (itemData.representative.size == 1) {
-                tvRepresentative1.text = itemData.representative[0].name + ", " + itemData.representative[0].designation
+                tvRepresentative1.text =
+                    itemData.representative[0].name + ", " + itemData.representative[0].designation
                 tvRepresentative2.visibility = View.GONE
                 tvMore.visibility = View.GONE
             } else if (itemData.representative.size == 0) {
@@ -34,11 +37,14 @@ class ItemCorporateScheduleChild(
                 tvRepresentative2.visibility = View.GONE
                 tvMore.visibility = View.GONE
             } else if (itemData.representative.size > 2) {
-                tvRepresentative1.text = itemData.representative[0].name + ", " + itemData.representative[0].designation
-                tvRepresentative2.text = itemData.representative[1].name + ", " + itemData.representative[1].designation
+                tvRepresentative1.text =
+                    itemData.representative[0].name + ", " + itemData.representative[0].designation
+                tvRepresentative2.text =
+                    itemData.representative[1].name + ", " + itemData.representative[1].designation
                 tvMore.visibility = View.VISIBLE
 
-                tvMore.text = "..." + (itemData.representative.size - 1) + " more"
+                tvMore.text = String.format("...%d More", (itemData.representative.size - 2))
+                tvMore.setOnClickListener(this@ItemCorporateScheduleChild)
             }
         }
     }
@@ -48,9 +54,17 @@ class ItemCorporateScheduleChild(
 
     }
 
-
     override fun getLayout(): Int {
         return R.layout.item_fragment_corporate_schedule_subchild
     }
 
+    override fun onClick(v: View?) {
+        when {
+            v?.id == R.id.tv_more -> publishSubject.onNext(
+                CorporateScheduleUiEvent.OnMoreClick(
+                    itemData.representative
+                )
+            )
+        }
+    }
 }

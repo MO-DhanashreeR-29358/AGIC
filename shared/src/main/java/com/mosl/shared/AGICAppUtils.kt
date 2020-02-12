@@ -97,6 +97,37 @@ fun getDateJSON_DATE6(dateTime: String): String {
     return date
 }
 
+fun checkTimeIsBefore(shiftingTime: String): Boolean {
+    try {
+
+        val startTimeDate = DF_TIME_hh.parse(shiftingTime)
+        val startTimeCalendar = Calendar.getInstance()
+        startTimeCalendar.time = startTimeDate!!
+        startTimeCalendar.add(Calendar.DATE, 1)
+
+
+        val currentTimeCalendar = Calendar.getInstance()
+        val currentTime = DF_TIME_hh.format(currentTimeCalendar.time)
+
+        val currentTimeDate = DF_TIME_hh.parse(currentTime)
+        currentTimeCalendar.time = currentTimeDate!!
+        currentTimeCalendar.add(Calendar.DATE, 1)
+
+        currentTimeCalendar.time.apply {
+            if (before(startTimeCalendar.time)) {
+                return true
+            }
+            else return false
+        }
+
+    } catch (e: ParseException) {
+        e.printStackTrace()
+    }
+
+    return false
+}
+
+
 fun checkTimeIsBetween(starTime: String, endTime: String): Boolean {
     try {
 

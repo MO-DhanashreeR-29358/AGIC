@@ -16,6 +16,8 @@ import com.mosl.mobile.databinding.FragmentOverviewChildBinding
 import com.mosl.mobile.domain.corporateschedulepager.CorporateScheduleResponseDayItemInfo
 import com.mosl.mobile.domain.corporateschedulepager.CorporateScheduleResponseRepresentativeItemInfo
 import com.mosl.mobile.overview.OverviewChildFragment
+import com.mosl.shared.util.checkTimeIsBefore
+import com.mosl.shared.util.getTimeAMPM
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
 import io.reactivex.Observable
@@ -39,8 +41,6 @@ class CorporateScheduleFragment : MOSLCommonFragment(), CorporateChildContract {
 
     lateinit var section: DataManagerSection
 
-//    lateinit var publishSubject: Observable<UiModel<List<OverviewResponseDayItemInfo>>>
-
     lateinit var publishSubject: Observable<UiModel<List<CorporateScheduleResponseDayItemInfo>>>
 
     override fun getLayout(): Int {
@@ -62,9 +62,9 @@ class CorporateScheduleFragment : MOSLCommonFragment(), CorporateChildContract {
     }
 
     override fun renderItemData(repList: List<CorporateScheduleResponseRepresentativeItemInfo>) {
-//        val dialogFragment = OverviewRepDialogFragment()
-//        dialogFragment.setData(repList);
-//        dialogFragment.show(childFragmentManager, "dialog")
+        val dialogFragment = CorporateScheduleRepDialogFragment()
+        dialogFragment.setData(repList);
+        dialogFragment.show(childFragmentManager, "dialog")
     }
 
     private fun setupRecyclerView() {
@@ -102,8 +102,20 @@ class CorporateScheduleFragment : MOSLCommonFragment(), CorporateChildContract {
         uiModel.onSuccess {
             section.clearContent()
 
-            for (model in it) {
-                section.add(ItemCorporateSchedule(model, followUpUiEvent))
+            val sortedList = it.sortedWith(compareBy({ it.shiftTiming }))
+            var currentTimeBetween = false
+            var currentPosition = -1
+
+            for ((i, model) in sortedList.withIndex()) {
+
+                val startTime = getTimeAMPM(model.shiftTiming)
+
+                if (checkTimeIsBefore(startTime) && !currentTimeBetween) {
+                    currentTimeBetween = true
+                    currentPosition = i
+                }
+
+                section.add(ItemCorporateSchedule(model, followUpUiEvent, currentPosition))
             }
         }
     }

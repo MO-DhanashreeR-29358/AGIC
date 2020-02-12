@@ -11,16 +11,26 @@
         tools:ignore="HardcodedText">
 
         <RadioButton
+            android:id="@+id/rab"
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:enabled="false"
+            android:gravity="center"
+            android:text=""
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/tv_shiftTime"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
             android:id="@+id/tv_shiftTime"
             android:layout_width="0dp"
             android:layout_height="@dimen/_40sdp"
             android:gravity="center_vertical|start"
-            android:paddingStart="@dimen/_5sdp"
             android:text="09.00 AM"
             android:textColor="@color/dark_purple"
-            android:textSize="@dimen/_14ssp"
-            app:layout_constraintHorizontal_weight="3"
-            app:layout_constraintLeft_toLeftOf="parent"
+            android:textSize="@dimen/_13ssp"
+            app:layout_constraintLeft_toRightOf="@+id/rab"
             app:layout_constraintRight_toLeftOf="@+id/tv_roomNumber"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -31,21 +41,19 @@
             android:gravity="center"
             android:text="Room No.-345"
             android:textColor="@color/dark_purple"
-            android:textSize="@dimen/_14ssp"
-            app:layout_constraintHorizontal_weight="2"
+            android:textSize="@dimen/_13ssp"
             app:layout_constraintLeft_toRightOf="@+id/tv_shiftTime"
             app:layout_constraintRight_toLeftOf="@+id/img"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/img"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/_40sdp"
-            android:gravity="center_vertical|start"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_7sdp"
             android:padding="@dimen/_5sdp"
-            android:paddingStart="@dimen/_15sdp"
+            android:scaleType="fitStart"
             android:src="@drawable/agic_15"
-            app:layout_constraintHorizontal_weight="1.5"
             app:layout_constraintLeft_toRightOf="@+id/tv_roomNumber"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -64,7 +72,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/_5sdp"
             android:elevation="@dimen/_100sdp"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/img"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/barrier" />
 

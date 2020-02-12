@@ -7,6 +7,7 @@ import com.mosl.groupiex.section.DataManagerSection
 import com.mosl.mobile.R
 import com.mosl.mobile.databinding.ItemFragmentCorporateScheduleChildBinding
 import com.mosl.mobile.domain.corporateschedulepager.CorporateScheduleResponseDayItemInfo
+import com.mosl.shared.util.getTimeAMPM
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
 import com.xwray.groupie.databinding.BindableItem
@@ -14,7 +15,8 @@ import io.reactivex.subjects.PublishSubject
 
 class ItemCorporateSchedule(
     scheduleData: CorporateScheduleResponseDayItemInfo,
-    private val publishSubject: PublishSubject<CorporateScheduleUiEvent>
+    private val publishSubject: PublishSubject<CorporateScheduleUiEvent>,
+    private val currentPosition: Int
 ) :
     BindableItem<ItemFragmentCorporateScheduleChildBinding>() {
     private val itemData = scheduleData
@@ -24,25 +26,39 @@ class ItemCorporateSchedule(
 
         viewBinding.apply {
 
-            tvShiftTime.text = itemData.shiftTiming
+            tvShiftTime.text = getTimeAMPM(itemData.shiftTiming)
             tvRoomNumber.text = "Room No - " + itemData.roomNumber
+
+            img.apply {
+                when (itemData.natureOfMeeting) {
+                    "1-1" -> setImageResource(R.drawable.ic_1x1_small)
+                    "2-1" -> setImageResource(R.drawable.ic_2x1_small)
+                    "3-1" -> setImageResource(R.drawable.ic_3x1_small)
+                    "4-1" -> setImageResource(R.drawable.ic_4x1_small)
+                    "Small Group" -> setImageResource(R.drawable.ic_group_small)
+                    "Workshop" -> setImageResource(R.drawable.ic_mtrack_small)
+                    else -> setImageResource(R.drawable.ic_mtrack_small)
+                }
+            }
+
+            if (currentPosition == position) {
+                rab.isChecked = true
+                rab.isEnabled = true
+                recAttendees.visibility = View.VISIBLE
+            } else {
+                rab.isChecked = false
+                rab.isEnabled = false
+                recAttendees.visibility = View.GONE
+            }
 
             setupRecyclerView(viewBinding)
         }
     }
 
-//    @JvmField
-//    protected val onRetryClick = View.OnClickListener {
-//
-//
-//    }
-
     @JvmField
     protected val onRetryClick = View.OnClickListener {
 
     }
-
-    private val followUpUiEvent = PublishSubject.create<CorporateScheduleUiEvent>()
 
     private fun setupRecyclerView(binding: ItemFragmentCorporateScheduleChildBinding) {
 
@@ -74,13 +90,13 @@ class ItemCorporateSchedule(
             addItemDecoration(
                 DividerItemDecoration(
                     context,
-                    LinearLayoutManager.HORIZONTAL
+                    LinearLayoutManager.VERTICAL
                 )
             )
         }
 
         for (model in itemData.Attendees) {
-            section.add(ItemCorporateScheduleChild(model, followUpUiEvent))
+            section.add(ItemCorporateScheduleChild(model, publishSubject))
         }
     }
 
