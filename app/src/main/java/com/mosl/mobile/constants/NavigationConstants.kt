@@ -18,7 +18,8 @@ import kotlin.annotation.AnnotationRetention.SOURCE
     NavigationConstants.NAVIGATE_TO_PDF,
     NavigationConstants.NAVIGATE_TO_OVERVIEW_CHILD,
     NavigationConstants.NAVIGATE_TO_PANEL_CHILD,
-    NavigationConstants.NAVIGATE_TO_NOTES
+    NavigationConstants.NAVIGATE_TO_NOTES,
+    NavigationConstants.NAVIGATE_TO_NOTIFICATION
 
 )
 annotation class NavigationConstants {

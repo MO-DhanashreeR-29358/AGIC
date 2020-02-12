@@ -2,15 +2,16 @@ package com.mosl.mobile.notification
 
 import com.mosl.mobile.R
 import com.mosl.mobile.databinding.ItemFragmentOverviewChildBinding
+import com.mosl.mobile.databinding.ItemNotificationHeaderBinding
 import com.xwray.groupie.databinding.BindableItem
 
 class ItemNotificationHeader(
 
 ) :
-    BindableItem<ItemFragmentOverviewChildBinding>() {
+    BindableItem<ItemNotificationHeaderBinding>() {
 
 
-    override fun bind(viewBinding: ItemFragmentOverviewChildBinding, position: Int) {
+    override fun bind(viewBinding: ItemNotificationHeaderBinding, position: Int) {
 
         viewBinding.apply {
 
@@ -18,7 +19,7 @@ class ItemNotificationHeader(
     }
 
     override fun getLayout(): Int {
-        return R.layout.item_fragment_overview_child
+        return R.layout.item_notification_header
     }
 
 

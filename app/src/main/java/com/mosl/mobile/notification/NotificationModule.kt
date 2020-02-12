@@ -1,12 +1,20 @@
 package com.mosl.mobile.notification
 
-import dagger.Binds
+import com.mosl.mobile.data.notification.NotificationRepositoryImpl
+import com.mosl.mobile.domain.notification.NotificationRepository
 import dagger.Module
+import dagger.Provides
 
 @Module
-abstract class NotificationModule {
+class NotificationModule {
 
-    @Binds
-    abstract fun provideNotificationHistory(fragment: NotificationHistoryFragment):NotificationContract
+    @Provides
+    internal fun provideNotificationHistory(fragment: NotificationHistoryFragment): NotificationContract {
+        return fragment
+    }
 
+    @Provides
+    internal fun providerNotificationRepository(notificationRepositoryImpl: NotificationRepositoryImpl): NotificationRepository {
+        return notificationRepositoryImpl
+    }
 }
