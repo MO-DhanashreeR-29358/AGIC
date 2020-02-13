@@ -26,6 +26,11 @@ class CorporateSchedulePagerPresenter @Inject constructor(
             .subscribe {
                 view.renderPage(it)
             }.addTo(disposable)
+
+        view.onSearchItemClicked()
+            .subscribe {
+                view.renderSearchItemData(it.search)
+            }.addTo(disposable)
     }
 
     companion object {
