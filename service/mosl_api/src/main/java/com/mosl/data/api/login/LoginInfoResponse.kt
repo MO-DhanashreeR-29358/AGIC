@@ -15,7 +15,8 @@ data class LoginInfoResponse(
     @JvmField @SerializedName("contact_mobile1") val contactMobile1: String,
     @JvmField @SerializedName("contact_mobile2") val contactMobile2: String,
     @JvmField @SerializedName("contact_mobile3") val contactMobile3: String,
-    @JvmField @SerializedName("day") val day: String
+    @JvmField @SerializedName("day") val day: String,
+    @JvmField @SerializedName("role") val role: String
 
 )
 

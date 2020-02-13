@@ -646,8 +646,8 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
     companion object {
         const val ARG_PAGE_ID = "pageId"
         private const val PAGE_TITLES = "pageTitles"
-        private const val ROLE_CORPORATE = "corporate"
-        private const val ROLE_CLIENT = "client"
+        private const val ROLE_CORPORATE = "Corporate"
+        private const val ROLE_CLIENT = "Client"
     }
 
 }

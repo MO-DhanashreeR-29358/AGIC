@@ -14,7 +14,7 @@ data class User(
     @JvmField val contactMobile2: String,
     @JvmField val contactMobile3: String,
     @JvmField val day: String,
-    @JvmField val role: String ="corporate"
+    @JvmField val role: String
 
 ) {
     fun contactList(): List<ContactListItemData> {
