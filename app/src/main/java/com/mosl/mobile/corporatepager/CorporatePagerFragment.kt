@@ -22,9 +22,7 @@ import com.mosl.mobile.core.MOSLCommonPager
 import com.mosl.mobile.corporateschedule.CorporateScheduleFragment
 import com.mosl.mobile.databinding.FragmentCorporateSchedulePagerBinding
 import com.mosl.mobile.domain.corporateschedulepager.CorporateScheduleResponseDataInfo
-import com.mosl.mobile.domain.corporateschedulepager.CorporateScheduleResponseDayAttendanceItemInfo
 import com.mosl.mobile.domain.corporateschedulepager.CorporateScheduleResponseDayItemInfo
-import com.mosl.mobile.domain.corporateschedulepager.CorporateScheduleResponseRepresentativeItemInfo
 import com.mosl.mobile.panelpager.PanelFragment
 import io.reactivex.subjects.PublishSubject
 import java.text.SimpleDateFormat
@@ -82,8 +80,7 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
                         recSearch.visibility = View.VISIBLE
                         tabLayout.visibility = View.GONE
                         pager.visibility = View.GONE
-                    }
-                    else{
+                    } else {
                         recSearch.visibility = View.GONE
                         tabLayout.visibility = View.VISIBLE
                         pager.visibility = View.VISIBLE
@@ -91,7 +88,6 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
                 }
             })
         }
-
 
 
     }
@@ -140,14 +136,7 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
         toggleProgressBar(uiModel.inProgress)
         uiModel.onFailure {
             if (corporateScheduleData.isNotSet) {
-                sampleData()
-                val overViewResponse: CorporateScheduleResponseDataInfo =
-                    gson.fromJson(
-                        corporateScheduleData.get(),
-                        CorporateScheduleResponseDataInfo::class.java
-                    )
-                overViewResponse.responseData()
-//                tabPublishSubject.onNext(UiModel.error(it))
+                tabPublishSubject.onNext(UiModel.error(it))
             } else {
                 val overViewResponse: CorporateScheduleResponseDataInfo =
                     gson.fromJson(
@@ -159,9 +148,6 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
         }
 
         uiModel.onSuccess {
-
-            sampleData()
-
             val json = gson.toJson(it)
             corporateScheduleData.set(json)
             it.responseData()
@@ -186,110 +172,7 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
         else
             binding.pager.currentItem = 0
     }
-
-    fun sampleData() {
-
-        val obj0 = CorporateScheduleResponseRepresentativeItemInfo(
-            name = "ICL Android",
-            designation = "Android Developer"
-        )
-
-        val obj1 = CorporateScheduleResponseRepresentativeItemInfo(
-            name = "ICL Java",
-            designation = "Java Developer"
-        )
-
-        val obj2 = CorporateScheduleResponseRepresentativeItemInfo(
-            name = "ICL PHP",
-            designation = "PHP Developer"
-        )
-
-        var sasas: List<CorporateScheduleResponseRepresentativeItemInfo> = emptyList()
-        sasas = sasas + obj0
-        sasas = sasas + obj1
-        sasas += obj2
-        sasas += obj0
-
-
-        val obj10 = CorporateScheduleResponseDayAttendanceItemInfo(
-            FundName = "ICL FIND",
-            representative = sasas
-        )
-
-        var sa2: List<CorporateScheduleResponseDayAttendanceItemInfo> = emptyList()
-        sa2 += obj10
-        sa2 += obj10
-        sa2 += obj10
-
-
-        val objCorporateScheduleRequestInfo1 = CorporateScheduleResponseDayItemInfo(
-            shiftTiming = "2019-08-19T09:00:00",
-            roomNumber = "122",
-            Attendees = sa2,
-            natureOfMeeting = "1-1",
-            day = "day1"
-        )
-
-        val objCorporateScheduleRequestInfo6 = CorporateScheduleResponseDayItemInfo(
-            shiftTiming = "2019-08-19T19:00:00",
-            roomNumber = "122",
-            Attendees = sa2,
-            natureOfMeeting = "2-1",
-            day = "day1"
-        )
-
-
-        val objCorporateScheduleRequestInfo2 = CorporateScheduleResponseDayItemInfo(
-            shiftTiming = "2019-08-19T10:00:00",
-            roomNumber = "533",
-            Attendees = sa2,
-            natureOfMeeting = "3-1",
-            day = "day1"
-        )
-
-        val objCorporateScheduleRequestInfo3 = CorporateScheduleResponseDayItemInfo(
-            shiftTiming = "2019-08-19T12:00:00",
-            roomNumber = "120",
-            Attendees = sa2,
-            natureOfMeeting = "4-1",
-            day = "day2"
-        )
-
-        val objCorporateScheduleRequestInfo4 = CorporateScheduleResponseDayItemInfo(
-            shiftTiming = "2019-08-19T12:30:00",
-            roomNumber = "543",
-            Attendees = sa2,
-            natureOfMeeting = "Workshop",
-            day = "day3"
-        )
-
-        val objCorporateScheduleRequestInfo5 = CorporateScheduleResponseDayItemInfo(
-            shiftTiming = "2019-08-19T13:00:00",
-            roomNumber = "463",
-            Attendees = sa2,
-            natureOfMeeting = "Small Group",
-            day = "day3"
-        )
-
-        var sa13: List<CorporateScheduleResponseDayItemInfo> = emptyList()
-        var sa23: List<CorporateScheduleResponseDayItemInfo> = emptyList()
-        var sa33: List<CorporateScheduleResponseDayItemInfo> = emptyList()
-
-        sa13 += objCorporateScheduleRequestInfo1
-        sa13 += objCorporateScheduleRequestInfo2
-        sa13 += objCorporateScheduleRequestInfo3
-        sa13 += objCorporateScheduleRequestInfo6
-
-        sa23 += objCorporateScheduleRequestInfo4
-        sa23 += objCorporateScheduleRequestInfo5
-
-        sa33 += objCorporateScheduleRequestInfo6
-
-        overViewDayWiseListData.add(0, sa13)
-        overViewDayWiseListData.add(1, sa23)
-        overViewDayWiseListData.add(2, sa33)
-    }
-
+    
     private fun CorporateScheduleResponseDataInfo.responseData() {
         overViewDayWiseListData =
             CorporateScheduleDayWiseListData() as MutableList<List<CorporateScheduleResponseDayItemInfo>>

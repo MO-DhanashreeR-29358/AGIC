@@ -283,7 +283,7 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
         } else if (userManager.user.role.equals(ROLE_CORPORATE, ignoreCase = true)) {
             binding.tabLayout.addTab(
                 binding.tabLayout.newTab().setText(R.string.tab_label_schedule).setIcon(R.drawable.ic_tab_schedule).setTag(
-                    NavigationConstants.NAVIGATE_TO_SCHEDULE
+                    NavigationConstants.NAVIGATE_TO_CORPORATE_SCHEDULE
                 )
             )
 
