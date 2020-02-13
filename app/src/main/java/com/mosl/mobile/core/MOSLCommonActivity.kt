@@ -248,8 +248,6 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
             }
         })
         binding.imgLogo.startAnimation(anim_out)
-
-
     }
 
 
@@ -646,8 +644,8 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
     companion object {
         const val ARG_PAGE_ID = "pageId"
         private const val PAGE_TITLES = "pageTitles"
-        private const val ROLE_CORPORATE = "Corporate"
-        private const val ROLE_CLIENT = "Client"
+        const val ROLE_CORPORATE = "Corporate"
+        const val ROLE_CLIENT = "Client"
     }
 
 }

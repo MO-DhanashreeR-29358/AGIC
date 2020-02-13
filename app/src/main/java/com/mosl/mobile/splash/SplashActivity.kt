@@ -19,6 +19,7 @@ import com.mosl.mobile.R
 import com.mosl.mobile.annotations.ImageSplashUrl
 import com.mosl.mobile.annotations.RemoteConfigData
 import com.mosl.mobile.app_user.login.UserManager
+import com.mosl.mobile.app_user.login.user
 import com.mosl.mobile.constants.NavigationConstants
 import com.mosl.mobile.core.MOSLCommonActivity
 import com.mosl.mobile.coreui.LocaleManager
@@ -234,10 +235,21 @@ class SplashActivity : LeanBaseActivity() {
         if (userManager.isLoggedIn()) {
             val intent = Intent(this, MOSLCommonActivity::class.java)
                 .apply {
-                    putExtra(
-                        MOSLCommonActivity.ARG_PAGE_ID,
-                        NavigationConstants.NAVIGATE_TO_SCHEDULE
-                    )
+                    if (userManager.user.role.equals(
+                            MOSLCommonActivity.ROLE_CORPORATE,
+                            ignoreCase = true
+                        )
+                    ) {
+                        putExtra(
+                            MOSLCommonActivity.ARG_PAGE_ID,
+                            NavigationConstants.NAVIGATE_TO_CORPORATE_SCHEDULE
+                        )
+                    } else {
+                        putExtra(
+                            MOSLCommonActivity.ARG_PAGE_ID,
+                            NavigationConstants.NAVIGATE_TO_SCHEDULE
+                        )
+                    }
                 }
             startActivity(intent)
             finish()
