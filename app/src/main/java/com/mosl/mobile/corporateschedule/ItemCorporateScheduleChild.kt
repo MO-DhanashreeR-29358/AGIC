@@ -23,13 +23,25 @@ class ItemCorporateScheduleChild(
 
             if (itemData.representative.size == 2) {
                 tvRepresentative1.text =
-                    itemData.representative[0].name + ", " + itemData.representative[0].designation
+                    String.format(
+                        "%s, %s",
+                        itemData.representative[0].name,
+                        itemData.representative[0].designation
+                    )
                 tvRepresentative2.text =
-                    itemData.representative[1].name + ", " + itemData.representative[1].designation
+                    String.format(
+                        "%s, %s",
+                        itemData.representative[1].name,
+                        itemData.representative[1].designation
+                    )
                 tvMore.visibility = View.GONE
             } else if (itemData.representative.size == 1) {
                 tvRepresentative1.text =
-                    itemData.representative[0].name + ", " + itemData.representative[0].designation
+                    String.format(
+                        "%s, %s",
+                        itemData.representative[0].name,
+                        itemData.representative[0].designation
+                    )
                 tvRepresentative2.visibility = View.GONE
                 tvMore.visibility = View.GONE
             } else if (itemData.representative.size == 0) {
@@ -38,9 +50,17 @@ class ItemCorporateScheduleChild(
                 tvMore.visibility = View.GONE
             } else if (itemData.representative.size > 2) {
                 tvRepresentative1.text =
-                    itemData.representative[0].name + ", " + itemData.representative[0].designation
+                    String.format(
+                        "%s, %s",
+                        itemData.representative[0].name,
+                        itemData.representative[0].designation
+                    )
                 tvRepresentative2.text =
-                    itemData.representative[1].name + ", " + itemData.representative[1].designation
+                    String.format(
+                        "%s, %s",
+                        itemData.representative[1].name,
+                        itemData.representative[1].designation
+                    )
                 tvMore.visibility = View.VISIBLE
 
                 tvMore.text = String.format("...%d More", (itemData.representative.size - 2))

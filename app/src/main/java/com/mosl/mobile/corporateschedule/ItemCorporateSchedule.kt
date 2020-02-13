@@ -27,7 +27,7 @@ class ItemCorporateSchedule(
         viewBinding.apply {
 
             tvShiftTime.text = getTimeAMPM(itemData.shiftTiming)
-            tvRoomNumber.text = "Room No - " + itemData.roomNumber
+            tvRoomNumber.text = String.format("Room No - %s",itemData.roomNumber)
 
             img.apply {
                 when (itemData.natureOfMeeting) {
