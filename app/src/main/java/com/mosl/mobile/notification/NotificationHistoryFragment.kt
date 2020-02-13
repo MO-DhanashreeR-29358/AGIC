@@ -38,8 +38,8 @@ class NotificationHistoryFragment : MOSLCommonFragment(), NotificationContract {
 
     override fun render(uiModel: UiModel<List<NotificationResponse>>) {
         toggleProgressBar(uiModel.inProgress)
-        uiModel.onFailure {
-            showOnFailurePopup(it)
+        uiModel.onFailure { error ->
+            section.showError(error)
         }
         uiModel.onSuccess {
             section.clearContent()
