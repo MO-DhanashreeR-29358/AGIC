@@ -15,6 +15,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="@dimen/padding_small"
+            android:text="Date"
             android:textColor="@color/light_black"
             android:textSize="@dimen/text_size_normal"
             app:layout_constraintEnd_toStartOf="@id/guideline2"
@@ -28,8 +29,10 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="@dimen/padding_small"
+            android:text="Time"
             android:textColor="@color/light_black"
             android:textSize="@dimen/text_size_normal"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/guideline3"
             app:layout_constraintStart_toEndOf="@+id/guideline2"
             app:layout_constraintTop_toTopOf="parent"
@@ -41,6 +44,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="@dimen/padding_small"
+            android:text="Corporate"
             android:textColor="@color/light_black"
             android:textSize="@dimen/text_size_normal"
             app:layout_constraintEnd_toEndOf="parent"
@@ -50,40 +54,40 @@
 
         <View
             android:layout_width="0dp"
-            android:layout_height="@dimen/_5sdp"
+            android:layout_height="@dimen/_2sdp"
             android:layout_marginTop="@dimen/margin_small"
             android:layout_marginEnd="@dimen/margin_small"
-            android:background="@color/tab_bg_color"
+            android:background="@color/_material_grey_400"
             app:layout_constraintEnd_toStartOf="@id/guideline1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_header_date" />
 
         <View
             android:layout_width="0dp"
-            android:layout_height="@dimen/_5sdp"
+            android:layout_height="@dimen/_2sdp"
             android:layout_marginTop="@dimen/margin_small"
             android:layout_marginEnd="@dimen/margin_small"
-            android:background="@color/tab_bg_color"
+            android:background="@color/_material_grey_400"
             app:layout_constraintEnd_toStartOf="@id/guideline2"
             app:layout_constraintStart_toEndOf="@+id/guideline1"
             app:layout_constraintTop_toBottomOf="@id/tv_header_date" />
 
         <View
             android:layout_width="0dp"
-            android:layout_height="@dimen/_5sdp"
+            android:layout_height="@dimen/_2sdp"
             android:layout_marginTop="@dimen/margin_small"
             android:layout_marginEnd="@dimen/margin_small"
-            android:background="@color/tab_bg_color"
+            android:background="@color/_material_grey_400"
             app:layout_constraintEnd_toStartOf="@id/guideline3"
             app:layout_constraintStart_toEndOf="@+id/guideline2"
             app:layout_constraintTop_toBottomOf="@id/tv_header_date" />
 
         <View
             android:layout_width="0dp"
-            android:layout_height="@dimen/_5sdp"
+            android:layout_height="@dimen/_2sdp"
             android:layout_marginTop="@dimen/margin_small"
             android:layout_marginEnd="@dimen/margin_small"
-            android:background="@color/tab_bg_color"
+            android:background="@color/_material_grey_400"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/guideline3"
             app:layout_constraintTop_toBottomOf="@id/tv_header_date" />
@@ -94,7 +98,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.3"
+            app:layout_constraintGuide_percent="0.2"
             app:layout_constraintStart_toStartOf="parent"
             tools:ignore="MissingConstraints" />
 

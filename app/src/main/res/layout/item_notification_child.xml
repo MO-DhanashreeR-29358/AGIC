@@ -6,7 +6,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/schedule_back"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:layout_marginBottom="@dimen/margin_small"
+        android:background="@drawable/notification_child_background"
         tools:ignore="HardcodedText">
 
         <TextView
@@ -14,7 +16,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:padding="@dimen/padding_small"
             android:textColor="@color/red"
             android:textSize="@dimen/text_size_normal"
             app:layout_constraintEnd_toStartOf="@id/guideline1"
@@ -27,7 +28,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:padding="@dimen/padding_small"
             android:textColor="@color/light_black"
             android:textSize="@dimen/text_size_normal"
             app:layout_constraintEnd_toStartOf="@id/guideline2"
@@ -40,7 +40,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:padding="@dimen/padding_small"
             android:textColor="@color/light_black"
             android:textSize="@dimen/text_size_normal"
             app:layout_constraintEnd_toStartOf="@id/guideline3"
@@ -53,7 +52,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:padding="@dimen/padding_small"
             android:textColor="@color/light_black"
             android:textSize="@dimen/text_size_normal"
             app:layout_constraintEnd_toEndOf="parent"
@@ -66,7 +64,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:padding="@dimen/padding_small"
             android:textColor="@color/green"
             android:textSize="@dimen/text_size_normal"
             app:layout_constraintEnd_toStartOf="@id/guideline1"
@@ -79,7 +76,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:padding="@dimen/padding_small"
             android:textColor="@color/light_black"
             android:textSize="@dimen/text_size_normal"
             app:layout_constraintEnd_toStartOf="@id/guideline2"
@@ -92,7 +88,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:padding="@dimen/padding_small"
             android:textColor="@color/light_black"
             android:textSize="@dimen/text_size_normal"
             app:layout_constraintEnd_toStartOf="@id/guideline3"
@@ -105,7 +100,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:padding="@dimen/padding_small"
             android:textColor="@color/light_black"
             android:textSize="@dimen/text_size_normal"
             app:layout_constraintEnd_toEndOf="parent"
@@ -113,45 +107,71 @@
             app:layout_constraintTop_toBottomOf="@id/tv_previous"
             tools:text="SRF" />
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="@dimen/_3sdp"
-            android:layout_marginTop="@dimen/margin_small"
-            android:layout_marginEnd="@dimen/margin_small"
-            android:background="@color/tab_bg_color"
-            app:layout_constraintEnd_toStartOf="@id/guideline1"
+        <TextView
+            android:id="@+id/tv_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding_small"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_normal"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_new" />
+            app:layout_constraintTop_toBottomOf="@id/tv_new"
+            tools:text="New" />
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="@dimen/_3sdp"
-            android:layout_marginTop="@dimen/margin_small"
-            android:layout_marginEnd="@dimen/margin_small"
-            android:background="@color/tab_bg_color"
-            app:layout_constraintEnd_toStartOf="@id/guideline2"
-            app:layout_constraintStart_toEndOf="@+id/guideline1"
-            app:layout_constraintTop_toBottomOf="@id/tv_new" />
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/group_new_meeting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            app:constraint_referenced_ids="tv_new,tv_new_date,tv_new_time,tv_new_corporate" />
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="@dimen/_3sdp"
-            android:layout_marginTop="@dimen/margin_small"
-            android:layout_marginEnd="@dimen/margin_small"
-            android:background="@color/tab_bg_color"
-            app:layout_constraintEnd_toStartOf="@id/guideline3"
-            app:layout_constraintStart_toEndOf="@+id/guideline2"
-            app:layout_constraintTop_toBottomOf="@id/tv_new" />
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/group_prev_meeting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            app:constraint_referenced_ids="tv_previous,tv_prev_date,tv_prev_time,tv_prev_corporate" />
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="@dimen/_3sdp"
-            android:layout_marginTop="@dimen/margin_small"
-            android:layout_marginEnd="@dimen/margin_small"
-            android:background="@color/tab_bg_color"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/guideline3"
-            app:layout_constraintTop_toBottomOf="@id/tv_new" />
+        <!-- <View
+             android:layout_width="0dp"
+             android:layout_height="@dimen/_3sdp"
+             android:layout_marginTop="@dimen/margin_small"
+             android:layout_marginEnd="@dimen/margin_small"
+             android:background="@color/tab_bg_color"
+             app:layout_constraintEnd_toStartOf="@id/guideline1"
+             app:layout_constraintStart_toStartOf="parent"
+             app:layout_constraintTop_toBottomOf="@id/tv_message" />
+
+         <View
+             android:layout_width="0dp"
+             android:layout_height="@dimen/_3sdp"
+             android:layout_marginTop="@dimen/margin_small"
+             android:layout_marginEnd="@dimen/margin_small"
+             android:background="@color/tab_bg_color"
+             app:layout_constraintEnd_toStartOf="@id/guideline2"
+             app:layout_constraintStart_toEndOf="@+id/guideline1"
+             app:layout_constraintTop_toBottomOf="@id/tv_message" />
+
+         <View
+             android:layout_width="0dp"
+             android:layout_height="@dimen/_3sdp"
+             android:layout_marginTop="@dimen/margin_small"
+             android:layout_marginEnd="@dimen/margin_small"
+             android:background="@color/tab_bg_color"
+             app:layout_constraintEnd_toStartOf="@id/guideline3"
+             app:layout_constraintStart_toEndOf="@+id/guideline2"
+             app:layout_constraintTop_toBottomOf="@id/tv_message" />
+
+         <View
+             android:layout_width="0dp"
+             android:layout_height="@dimen/_3sdp"
+             android:layout_marginTop="@dimen/margin_small"
+             android:layout_marginEnd="@dimen/margin_small"
+             android:background="@color/tab_bg_color"
+             app:layout_constraintEnd_toEndOf="parent"
+             app:layout_constraintStart_toEndOf="@+id/guideline3"
+             app:layout_constraintTop_toBottomOf="@id/tv_message" />-->
 
 
         <androidx.constraintlayout.widget.Guideline
@@ -159,7 +179,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.3"
+            app:layout_constraintGuide_percent="0.2"
             app:layout_constraintStart_toStartOf="parent"
             tools:ignore="MissingConstraints" />
 

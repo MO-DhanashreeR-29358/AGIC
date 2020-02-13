@@ -21,42 +21,6 @@ class NotificationRepositoryImpl @Inject constructor(
         }
     }
 
-
-   /* private fun getNotificationList(): Observable<List<NotificationResponse>> {
-        return Observable.just(
-            listOf(
-                NotificationResponse(
-                    type = "MeetingCreate",
-                    corporateName = "Motilal Oswal AMC",
-                    meetingDateTime = "2020-02-05T14:00:00",
-                    previousDateTime = "",
-                    message = ""
-                ),
-                NotificationResponse(
-                    type = "MeetingUpdated",
-                    corporateName = "ICICI AMC",
-                    meetingDateTime = "2020-02-05T14:00:00",
-                    previousDateTime = "2020-02-05T13:00:00",
-                    message = ""
-                ),
-                NotificationResponse(
-                    type = "MeetingCancelled",
-                    corporateName = "AXIS BANK LTD",
-                    meetingDateTime = "2020-02-05T14:00:00",
-                    previousDateTime = "",
-                    message = ""
-                ),
-                NotificationResponse(
-                    type = "",
-                    corporateName = "MOTILAL OSWAL",
-                    meetingDateTime = "2020-02-05T14:00:00",
-                    previousDateTime = "",
-                    message = "Please have a look at the app for your live schedule for the conference"
-                )
-            )
-        )
-    }*/
-
     private fun getList(): Observable<List<NotificationResponseItem>> {
         return Observable.just(
             listOf(

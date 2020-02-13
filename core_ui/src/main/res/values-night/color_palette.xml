@@ -72,7 +72,7 @@
     <color name="_red">#ffd50a15</color>
     <color name="_red_disabled">#61d50a15</color>
     <color name="orange">#FBB230</color>
-
+    <color name="color_notification_child_bg">#1C1C1E</color>
     <color name="_material_grey_100">#F5F5F5</color>
     <color name="_material_grey_200">#212121</color>
     <color name="_material_grey_300">#424242</color>
