@@ -27,6 +27,7 @@ import com.mosl.mobile.domain.corporateschedulepager.CorporateScheduleResponseDa
 import com.mosl.mobile.domain.corporateschedulepager.CorporateScheduleResponseDayItemInfo
 import com.mosl.mobile.domain.corporateschedulepager.SearchCorporateScheduleItemInfo
 import com.mosl.mobile.panelpager.PanelFragment
+import com.mosl.shared.AppDateFormats.df_Date6
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
 import io.reactivex.Observable
@@ -260,13 +261,11 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
     fun pagerSelection(pos: Int) {
 
         if (pos == -1) {
-            val sdf = SimpleDateFormat("YYYY-MM-dd")
-            val currentDate = sdf.format(Date())
+            val currentDate = df_Date6.format(Date())
 
             val dayArr = userManager.user.day
 
             val separate1 = dayArr.split(",").toTypedArray()
-            Log.d("", separate1.toString())
 
             if (currentDate.equals(separate1[1]))
                 binding.pager.currentItem = 1
