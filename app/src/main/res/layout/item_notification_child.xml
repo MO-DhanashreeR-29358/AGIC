@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:background="@drawable/notification_child_background"
+        android:padding="@dimen/padding_small"
+        tools:ignore="HardcodedText">
+
+        <TextView
+            android:id="@+id/tv_previous"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/red"
+            android:textSize="@dimen/text_size_small"
+            app:layout_constraintEnd_toStartOf="@id/guideline1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/tv_new"
+            tools:text="Previous" />
+
+        <TextView
+            android:id="@+id/tv_prev_date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/light_black"
+            android:textSize="@dimen/text_size_small"
+            app:layout_constraintEnd_toStartOf="@id/guideline2"
+            app:layout_constraintStart_toEndOf="@+id/guideline1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/tv_new_date"
+            tools:text="23-04-20" />
+
+        <TextView
+            android:id="@+id/tv_prev_time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/light_black"
+            android:textSize="@dimen/text_size_small"
+            app:layout_constraintEnd_toStartOf="@id/guideline3"
+            app:layout_constraintStart_toEndOf="@+id/guideline2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/tv_new_time"
+            tools:text="11am" />
+
+        <TextView
+            android:id="@+id/tv_prev_corporate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/light_black"
+            android:textSize="@dimen/text_size_small"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/guideline3"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/tv_new_corporate"
+            tools:text="SRF" />
+
+        <TextView
+            android:id="@+id/tv_new"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/green"
+            android:textSize="@dimen/text_size_small"
+            app:layout_constraintEnd_toStartOf="@id/guideline1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_previous"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:text="New" />
+
+        <TextView
+            android:id="@+id/tv_new_date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/light_black"
+            android:textSize="@dimen/text_size_small"
+            app:layout_constraintEnd_toStartOf="@id/guideline2"
+            app:layout_constraintStart_toEndOf="@+id/guideline1"
+            app:layout_constraintTop_toBottomOf="@id/tv_previous"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:text="24-04-20" />
+
+        <TextView
+            android:id="@+id/tv_new_time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/light_black"
+            android:textSize="@dimen/text_size_small"
+            app:layout_constraintEnd_toStartOf="@id/guideline3"
+            app:layout_constraintStart_toEndOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@id/tv_previous"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:text="10am" />
+
+        <TextView
+            android:id="@+id/tv_new_corporate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/light_black"
+            android:textSize="@dimen/text_size_small"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@id/tv_previous"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:text="SRF" />
+
+        <TextView
+            android:id="@+id/tv_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding_small"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_small"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_new"
+            tools:text="New" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/group_new_meeting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            app:constraint_referenced_ids="tv_new,tv_new_date,tv_new_time,tv_new_corporate" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/group_prev_meeting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            app:constraint_referenced_ids="tv_previous,tv_prev_date,tv_prev_time,tv_prev_corporate" />
+
+        <!-- <View
+             android:layout_width="0dp"
+             android:layout_height="@dimen/_3sdp"
+             android:layout_marginTop="@dimen/margin_small"
+             android:layout_marginEnd="@dimen/margin_small"
+             android:background="@color/tab_bg_color"
+             app:layout_constraintEnd_toStartOf="@id/guideline1"
+             app:layout_constraintStart_toStartOf="parent"
+             app:layout_constraintTop_toBottomOf="@id/tv_message" />
+
+         <View
+             android:layout_width="0dp"
+             android:layout_height="@dimen/_3sdp"
+             android:layout_marginTop="@dimen/margin_small"
+             android:layout_marginEnd="@dimen/margin_small"
+             android:background="@color/tab_bg_color"
+             app:layout_constraintEnd_toStartOf="@id/guideline2"
+             app:layout_constraintStart_toEndOf="@+id/guideline1"
+             app:layout_constraintTop_toBottomOf="@id/tv_message" />
+
+         <View
+             android:layout_width="0dp"
+             android:layout_height="@dimen/_3sdp"
+             android:layout_marginTop="@dimen/margin_small"
+             android:layout_marginEnd="@dimen/margin_small"
+             android:background="@color/tab_bg_color"
+             app:layout_constraintEnd_toStartOf="@id/guideline3"
+             app:layout_constraintStart_toEndOf="@+id/guideline2"
+             app:layout_constraintTop_toBottomOf="@id/tv_message" />
+
+         <View
+             android:layout_width="0dp"
+             android:layout_height="@dimen/_3sdp"
+             android:layout_marginTop="@dimen/margin_small"
+             android:layout_marginEnd="@dimen/margin_small"
+             android:background="@color/tab_bg_color"
+             app:layout_constraintEnd_toEndOf="parent"
+             app:layout_constraintStart_toEndOf="@+id/guideline3"
+             app:layout_constraintTop_toBottomOf="@id/tv_message" />-->
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="85dp"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5"
+            app:layout_constraintStart_toEndOf="@id/guideline1"
+            tools:ignore="MissingConstraints" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.7"
+            app:layout_constraintStart_toEndOf="@id/guideline2"
+            tools:ignore="MissingConstraints" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

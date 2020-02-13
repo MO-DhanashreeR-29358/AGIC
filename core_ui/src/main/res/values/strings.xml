@@ -70,4 +70,6 @@
 
     <string name="msg_calendar">Are you sure you want to save this Event in your Calendar?</string>
     <string name="conferences">Conferences</string>
+
+    <string name="txt_lable_notification_history_lable">The changes will reflect in your live schedule</string>
 </resources>

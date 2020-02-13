@@ -13,6 +13,7 @@ import com.mosl.data.api.fcm_token.FcmTokenResponse
 import com.mosl.data.api.login.LoginInfoRequest
 import com.mosl.data.api.login.LoginInfoResponse
 import com.mosl.data.api.newsletter.NewsLetterResponseItem
+import com.mosl.data.api.notification.NotificationResponseItem
 import com.mosl.data.api.overviewpager.OverviewRequest
 import com.mosl.data.api.overviewpager.OverviewResponseData
 import com.mosl.data.api.panel.PanelDataResponse
@@ -57,7 +58,7 @@ class MockMoslApiServiceImpl(
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override suspend fun demoLogin(loginInfo: LoginInfo):UserResponse{
+    override suspend fun demoLogin(loginInfo: LoginInfo): UserResponse {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
@@ -65,5 +66,8 @@ class MockMoslApiServiceImpl(
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
+    override fun getNotification(): Observable<BaseResponseAgic<List<NotificationResponseItem>>> {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
 }

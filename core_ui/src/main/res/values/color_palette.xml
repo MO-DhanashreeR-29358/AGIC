@@ -74,6 +74,7 @@
     <color name="_red_disabled">#61d50a15</color>
 
     <color name="_material_grey_100">#F5F5F5</color>
+    <color name="color_notification_child_bg">@color/white</color>
 
 
     <color name="orange">#FBB230</color>

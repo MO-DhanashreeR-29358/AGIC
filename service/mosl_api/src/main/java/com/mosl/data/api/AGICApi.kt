@@ -10,6 +10,7 @@ import com.mosl.data.api.fcm_token.FcmTokenResponse
 import com.mosl.data.api.login.LoginInfoRequest
 import com.mosl.data.api.login.LoginInfoResponse
 import com.mosl.data.api.newsletter.NewsLetterResponseItem
+import com.mosl.data.api.notification.NotificationResponseItem
 import com.mosl.data.api.overviewpager.OverviewRequest
 import com.mosl.data.api.overviewpager.OverviewResponseData
 import com.mosl.data.api.panel.PanelDataResponse
@@ -56,6 +57,9 @@ interface AGICApi {
 
     @POST("TokenDeregistration")
     fun tokenDeregistration(@Body fcmTokenRequest: FcmTokenRequest): Observable<FcmTokenResponse>
+
+    @POST("TokenDeregistration")
+    fun getNotification(): Observable<BaseResponseAgic<List<NotificationResponseItem>>>
 
     @POST("GetCorporateSchedule")
     @Headers(CACHE_FOR_4HRS)
