@@ -27,39 +27,51 @@ class CorporateSchedulePagerRepositoryImpl @Inject constructor(
 
     fun sampleData(): Observable<CorporateScheduleResponseData> {
 
+        val obj0GOOD = CorporateScheduleResponseRepresentativeItemInfo(
+            name = "Sajid",
+            designation = "Android Developer"
+        )
 
         val obj0 = CorporateScheduleResponseRepresentativeItemInfo(
-            name = "ICL Android",
+            name = "Android",
             designation = "Android Developer"
         )
 
         val obj1 = CorporateScheduleResponseRepresentativeItemInfo(
-            name = "ICL Java",
+            name = "Java",
             designation = "Java Developer"
         )
 
         val obj2 = CorporateScheduleResponseRepresentativeItemInfo(
-            name = "ICL PHP",
+            name = "PHP",
             designation = "PHP Developer"
         )
 
-        var sasas: List<CorporateScheduleResponseRepresentativeItemInfo> = emptyList()
-        sasas = sasas + obj0
-        sasas = sasas + obj1
-        sasas += obj2
-        sasas += obj0
+        var representineItem: List<CorporateScheduleResponseRepresentativeItemInfo> = emptyList()
+        representineItem = representineItem + obj0GOOD
+
+        var representineItem2: List<CorporateScheduleResponseRepresentativeItemInfo> = emptyList()
+        representineItem2 += obj0
+        representineItem2 += obj1
+        representineItem2 += obj2
 
 
-        val obj10 = CorporateScheduleResponseDayAttendanceItemInfo(
+        val attendItem = CorporateScheduleResponseDayAttendanceItemInfo(
             FundName = "ICL FIND",
-            representative = sasas
+            representative = representineItem
+        )
+
+        val obj102aa = CorporateScheduleResponseDayAttendanceItemInfo(
+            FundName = "Good",
+            representative = representineItem2
         )
 
         var sa2: List<CorporateScheduleResponseDayAttendanceItemInfo> = emptyList()
-        sa2 += obj10
-        sa2 += obj10
-        sa2 += obj10
+        sa2 += obj102aa
+        sa2 += obj102aa
 
+        var sa3: List<CorporateScheduleResponseDayAttendanceItemInfo> = emptyList()
+        sa3 += attendItem
 
         val objCorporateScheduleRequestInfo1 = CorporateScheduleResponseDayItemInfo(
             shiftTiming = "2019-08-19T09:00:00",
@@ -74,7 +86,7 @@ class CorporateSchedulePagerRepositoryImpl @Inject constructor(
             roomNumber = "122",
             Attendees = sa2,
             natureOfMeeting = "2-1",
-            day = "day1"
+            day = "day3"
         )
 
 
@@ -91,23 +103,15 @@ class CorporateSchedulePagerRepositoryImpl @Inject constructor(
             roomNumber = "120",
             Attendees = sa2,
             natureOfMeeting = "4-1",
-            day = "day2"
-        )
-
-        val objCorporateScheduleRequestInfo4 = CorporateScheduleResponseDayItemInfo(
-            shiftTiming = "2019-08-19T12:30:00",
-            roomNumber = "543",
-            Attendees = sa2,
-            natureOfMeeting = "Workshop",
-            day = "day3"
+            day = "day1"
         )
 
         val objCorporateScheduleRequestInfo5 = CorporateScheduleResponseDayItemInfo(
             shiftTiming = "2019-08-19T13:00:00",
             roomNumber = "463",
-            Attendees = sa2,
+            Attendees = sa3,
             natureOfMeeting = "Small Group",
-            day = "day3"
+            day = "day2"
         )
 
         var sa13: List<CorporateScheduleResponseDayItemInfo> = emptyList()
@@ -117,9 +121,7 @@ class CorporateSchedulePagerRepositoryImpl @Inject constructor(
         sa13 += objCorporateScheduleRequestInfo1
         sa13 += objCorporateScheduleRequestInfo2
         sa13 += objCorporateScheduleRequestInfo3
-        sa13 += objCorporateScheduleRequestInfo6
 
-        sa23 += objCorporateScheduleRequestInfo4
         sa23 += objCorporateScheduleRequestInfo5
 
         sa33 += objCorporateScheduleRequestInfo6

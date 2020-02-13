@@ -3,8 +3,11 @@ package com.mosl.mobile.corporatepager
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import com.mosl.app.core.exception.ServiceFailureException
 import com.mosl.app.core.prefs.StringPreference
@@ -22,9 +25,14 @@ import com.mosl.mobile.corporateschedule.CorporateScheduleFragment
 import com.mosl.mobile.databinding.FragmentCorporateSchedulePagerBinding
 import com.mosl.mobile.domain.corporateschedulepager.CorporateScheduleResponseDataInfo
 import com.mosl.mobile.domain.corporateschedulepager.CorporateScheduleResponseDayItemInfo
+import com.mosl.mobile.domain.corporateschedulepager.SearchCorporateScheduleItemInfo
 import com.mosl.mobile.panelpager.PanelFragment
-import com.mosl.shared.AppDateFormats.df_Date6
+import com.xwray.groupie.GroupAdapter
+import com.xwray.groupie.ViewHolder
+import io.reactivex.Observable
+import io.reactivex.rxkotlin.ofType
 import io.reactivex.subjects.PublishSubject
+import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
 
@@ -37,7 +45,9 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
 
     val tabPublishSubject =
         PublishSubject.create<UiModel<List<CorporateScheduleResponseDayItemInfo>>>()
+
     private lateinit var section: DataManagerSection
+    private lateinit var searchSection: DataManagerSection
 
     @Inject
     lateinit var presenter: CorporateSchedulePagerPresenter
@@ -57,12 +67,17 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
         return R.layout.fragment_corporate_schedule_pager
     }
 
+    //    private val followUpUiEvent = PublishSubject.create<CorporateScheduleUiEvent>()
+    private val followUpUiEventPager = PublishSubject.create<CorporatePagerUiEvent>()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentCorporateSchedulePagerBinding.bind(view)
         setUpAdapter()
+
         presenter.start()
+
         binding.apply {
             editSearch.addTextChangedListener(object : TextWatcher {
                 override fun afterTextChanged(p0: Editable?) {
@@ -73,10 +88,80 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
 
                 override fun onTextChanged(p0: CharSequence, p1: Int, p2: Int, p3: Int) {
 
+                    val groupAdapterS = GroupAdapter<ViewHolder>()
+                    searchSection = DataManagerSection(onRetryClick)
+
+                    groupAdapterS.add(searchSection)
+                    recSearch.apply {
+                        layoutManager =
+                            LinearLayoutManager(requireContext()) as RecyclerView.LayoutManager?
+                        setHasFixedSize(true)
+                        adapter = groupAdapterS
+                    }
+
+                    recSearch.visibility = View.VISIBLE
+                    tabLayout.visibility = View.GONE
+                    pager.visibility = View.GONE
+
+
                     if (p0.length > 0) {
-                        recSearch.visibility = View.VISIBLE
-                        tabLayout.visibility = View.GONE
-                        pager.visibility = View.GONE
+                        overViewDayWiseListData!!.forEach { event ->
+
+                            for (x in 0..event.size - 1) {
+
+                                for (y in 0..((event[x].Attendees).size - 1)) {
+
+                                    if (event[x].Attendees[y].FundName.toLowerCase().contains(p0.toString().toLowerCase())) {
+
+                                        val sa: SearchCorporateScheduleItemInfo
+
+                                        sa = SearchCorporateScheduleItemInfo(
+                                            event[x].Attendees[y].FundName,
+                                            event[x].Attendees[y].FundName,
+                                            event[x].day,
+                                            event[x].shiftTiming
+                                        )
+
+                                        searchSection.add(
+                                            ItemSearchCorporateSchedule(
+                                                sa,
+                                                followUpUiEventPager
+                                            )
+                                        )
+
+                                    } else {
+
+                                        for (z in 0..((event[x].Attendees[y].representative).size - 1)) {
+
+                                            if (event[x].Attendees[y].representative[z].name.toLowerCase().contains(
+                                                    p0.toString().toLowerCase()
+                                                )
+                                            ) {
+                                                val sa: SearchCorporateScheduleItemInfo
+
+                                                sa = SearchCorporateScheduleItemInfo(
+                                                    event[x].Attendees[y].FundName,
+                                                    event[x].Attendees[y].representative[z].name,
+                                                    event[x].day,
+                                                    event[x].shiftTiming
+                                                )
+
+                                                searchSection.add(
+                                                    ItemSearchCorporateSchedule(
+                                                        sa,
+                                                        followUpUiEventPager
+                                                    )
+                                                )
+                                            }
+                                        }
+                                    }
+
+                                    groupAdapterS.notifyDataSetChanged()
+                                }
+                            }
+
+                        }
+
                     } else {
                         recSearch.visibility = View.GONE
                         tabLayout.visibility = View.VISIBLE
@@ -104,11 +189,31 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
 
     private fun setUpAdapter() {
         section = DataManagerSection(onRetryClick)
+
         pagerAdapter = ViewPagerAdapter(childFragmentManager, requireContext(), this)
         pagerAdapter.setFragmentTitles(R.array.tabTitles)
         mPager.adapter = pagerAdapter
         mPager.addOnPageChangeListener(pageChangeListener)
         mIndicator.setupWithViewPager(mPager)
+
+    }
+
+    override fun onSearchItemClicked(): Observable<CorporatePagerUiEvent.OnSearchClick> {
+        return followUpUiEventPager.ofType()
+    }
+
+    override fun renderSearchItemData(searchList: SearchCorporateScheduleItemInfo) {
+
+        binding.editSearch.setText("")
+
+        if (searchList.day.equals("day1"))
+            pagerSelection(0)
+        else if (searchList.day.equals("day2"))
+            pagerSelection(1)
+        else if (searchList.day.equals("day3"))
+            pagerSelection(2)
+        else
+            pagerSelection(0)
 
     }
 
@@ -149,19 +254,28 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
             it.responseData()
         }
 
-        pagerSelection()
+        pagerSelection(-1)
     }
 
-    fun pagerSelection() {
-        val currentDate = df_Date6.format(Date())
-        val dayArr = userManager.user.day
-        val separate1 = dayArr.split(",").toTypedArray()
-        if (currentDate.equals(separate1[1]))
-            binding.pager.currentItem = 1
-        else if (currentDate.equals(separate1[2]))
-            binding.pager.currentItem = 2
-        else
-            binding.pager.currentItem = 0
+    fun pagerSelection(pos: Int) {
+
+        if (pos == -1) {
+            val sdf = SimpleDateFormat("YYYY-MM-dd")
+            val currentDate = sdf.format(Date())
+
+            val dayArr = userManager.user.day
+
+            val separate1 = dayArr.split(",").toTypedArray()
+            Log.d("", separate1.toString())
+
+            if (currentDate.equals(separate1[1]))
+                binding.pager.currentItem = 1
+            else if (currentDate.equals(separate1[2]))
+                binding.pager.currentItem = 2
+            else
+                binding.pager.currentItem = 0
+        } else
+            binding.pager.currentItem = pos
     }
 
     private fun CorporateScheduleResponseDataInfo.responseData() {

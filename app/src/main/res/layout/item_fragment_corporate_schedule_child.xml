@@ -49,10 +49,10 @@
         <ImageView
             android:id="@+id/img"
             android:layout_width="@dimen/_40sdp"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/_40sdp"
             android:layout_marginEnd="@dimen/_7sdp"
-            android:padding="@dimen/_5sdp"
-            android:scaleType="fitStart"
+            android:padding="@dimen/_3sdp"
+            android:scaleType="fitCenter"
             android:src="@drawable/agic_15"
             app:layout_constraintLeft_toRightOf="@+id/tv_roomNumber"
             app:layout_constraintRight_toRightOf="parent"
