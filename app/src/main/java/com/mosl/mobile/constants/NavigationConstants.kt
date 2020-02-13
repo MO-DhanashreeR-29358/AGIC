@@ -19,10 +19,9 @@ import kotlin.annotation.AnnotationRetention.SOURCE
     NavigationConstants.NAVIGATE_TO_OVERVIEW_CHILD,
     NavigationConstants.NAVIGATE_TO_PANEL_CHILD,
     NavigationConstants.NAVIGATE_TO_NOTES,
-    NavigationConstants.NAVIGATE_TO_CORPORATE_SCHEDULE,
-    NavigationConstants.NAVIGATE_TO_SCHEDULE_CHILD
+    NavigationConstants.NAVIGATE_TO_CORPORATE_SCHEDULE
 
-)
+    )
 annotation class NavigationConstants {
     companion object {
         const val NAVIGATE_TO_PORTFOLIO = 101
@@ -37,7 +36,6 @@ annotation class NavigationConstants {
         const val NAVIGATE_TO_NOTES = 8
         const val NAVIGATE_TO_NOTIFICATION = 9
         const val NAVIGATE_TO_CORPORATE_SCHEDULE = 10
-        const val NAVIGATE_TO_SCHEDULE_CHILD = 11
 
 
     }

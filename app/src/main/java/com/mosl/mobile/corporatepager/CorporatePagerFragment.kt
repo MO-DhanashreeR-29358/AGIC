@@ -3,7 +3,6 @@ package com.mosl.mobile.corporatepager
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.google.gson.Gson
@@ -24,8 +23,8 @@ import com.mosl.mobile.databinding.FragmentCorporateSchedulePagerBinding
 import com.mosl.mobile.domain.corporateschedulepager.CorporateScheduleResponseDataInfo
 import com.mosl.mobile.domain.corporateschedulepager.CorporateScheduleResponseDayItemInfo
 import com.mosl.mobile.panelpager.PanelFragment
+import com.mosl.shared.AppDateFormats.df_Date6
 import io.reactivex.subjects.PublishSubject
-import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
 
@@ -63,9 +62,7 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentCorporateSchedulePagerBinding.bind(view)
         setUpAdapter()
-
         presenter.start()
-
         binding.apply {
             editSearch.addTextChangedListener(object : TextWatcher {
                 override fun afterTextChanged(p0: Editable?) {
@@ -107,7 +104,6 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
 
     private fun setUpAdapter() {
         section = DataManagerSection(onRetryClick)
-
         pagerAdapter = ViewPagerAdapter(childFragmentManager, requireContext(), this)
         pagerAdapter.setFragmentTitles(R.array.tabTitles)
         mPager.adapter = pagerAdapter
@@ -157,14 +153,9 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
     }
 
     fun pagerSelection() {
-        val sdf = SimpleDateFormat("YYYY-MM-dd")
-        val currentDate = sdf.format(Date())
-
+        val currentDate = df_Date6.format(Date())
         val dayArr = userManager.user.day
-
         val separate1 = dayArr.split(",").toTypedArray()
-        Log.d("", separate1.toString())
-
         if (currentDate.equals(separate1[1]))
             binding.pager.currentItem = 1
         else if (currentDate.equals(separate1[2]))
@@ -172,7 +163,7 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
         else
             binding.pager.currentItem = 0
     }
-    
+
     private fun CorporateScheduleResponseDataInfo.responseData() {
         overViewDayWiseListData =
             CorporateScheduleDayWiseListData() as MutableList<List<CorporateScheduleResponseDayItemInfo>>

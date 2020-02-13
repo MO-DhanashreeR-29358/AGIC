@@ -4,8 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentActivity
 import com.mosl.app.coreui.base.ActivityDelegate
 import com.mosl.mobile.FragmentProvider
-import com.mosl.mobile.data.schedule.ScheduleRepositoryImpl
-import com.mosl.mobile.domain.schedule.ScheduleRepository
 import com.mosl.mobile.menu.NavigatorAliceProvider
 import com.mosl.mobile.util.NavigationCallbackImpl
 import com.mosl.navigator.FragmentTransitionHelper
@@ -14,34 +12,30 @@ import com.mosl.navigator.NavigationCallback
 import com.mosl.navigator.Navigator
 import dagger.Binds
 import dagger.Module
-import dagger.Provides
-import javax.inject.Singleton
 
 @Module(includes = [FragmentProvider::class, NavigatorAliceProvider::class])
 abstract class CommonActivityModule {
-  @Binds
-  internal abstract fun provideNavigationCallback(
-    navigationCallback: NavigationCallbackImpl
-  ): NavigationCallback
+    @Binds
+    internal abstract fun provideNavigationCallback(
+        navigationCallback: NavigationCallbackImpl
+    ): NavigationCallback
 
-  @Binds
-  internal abstract fun provideFragmentTransitionHelper(
-    transitionHelper: FragmentTransitionHelperImpl
-  ): FragmentTransitionHelper
+    @Binds
+    internal abstract fun provideFragmentTransitionHelper(
+        transitionHelper: FragmentTransitionHelperImpl
+    ): FragmentTransitionHelper
 
-  @Binds
-  internal abstract fun provideFragmentActivity(activity: MOSLCommonActivity): FragmentActivity
+    @Binds
+    internal abstract fun provideFragmentActivity(activity: MOSLCommonActivity): FragmentActivity
 
-  @Binds
-  internal abstract fun provideAppCompatActivity(activity: MOSLCommonActivity): AppCompatActivity
+    @Binds
+    internal abstract fun provideAppCompatActivity(activity: MOSLCommonActivity): AppCompatActivity
 
-  @Binds
-  internal abstract fun provideNavigator(activity: MOSLCommonActivity): Navigator
+    @Binds
+    internal abstract fun provideNavigator(activity: MOSLCommonActivity): Navigator
 
-  @Binds
-  internal abstract fun provideActivityDelegate(activity: MOSLCommonActivity): ActivityDelegate
-
-
+    @Binds
+    internal abstract fun provideActivityDelegate(activity: MOSLCommonActivity): ActivityDelegate
 
 
 }
