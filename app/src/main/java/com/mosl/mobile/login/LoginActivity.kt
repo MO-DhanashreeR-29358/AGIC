@@ -68,9 +68,23 @@ class LoginActivity : LeanBaseActivity(), Navigator, LoginView {
         binding.txtYear.text = banner.year
     }
 
-    internal fun openDashboard() {
+    internal fun openDashboard(user: User) {
         val intent = Intent(this, MOSLCommonActivity::class.java).apply {
-            putExtra(MOSLCommonActivity.ARG_PAGE_ID, NavigationConstants.NAVIGATE_TO_SCHEDULE)
+            if (user.role.equals(
+                    MOSLCommonActivity.ROLE_CORPORATE,
+                    ignoreCase = true
+                )
+            ) {
+                putExtra(
+                    MOSLCommonActivity.ARG_PAGE_ID,
+                    NavigationConstants.NAVIGATE_TO_CORPORATE_SCHEDULE
+                )
+            } else {
+                putExtra(
+                    MOSLCommonActivity.ARG_PAGE_ID,
+                    NavigationConstants.NAVIGATE_TO_SCHEDULE
+                )
+            }
         }
         startActivity(intent)
         finish()
@@ -101,7 +115,7 @@ class LoginActivity : LeanBaseActivity(), Navigator, LoginView {
         }
 
         uiModel.onSuccess {
-            openDashboard()
+            openDashboard(it)
         }
     }
 

@@ -19,8 +19,6 @@ import com.mosl.commons.data.onFailure
 import com.mosl.commons.data.onSuccess
 import com.mosl.mobile.R
 import com.mosl.mobile.annotations.RemoteConfigData
-import com.mosl.mobile.constants.NavigationConstants
-import com.mosl.mobile.core.MOSLCommonActivity
 import com.mosl.mobile.data.RemoteConfigModel
 import com.mosl.mobile.databinding.ActivityNewsLetterBinding
 import com.mosl.mobile.domain.newsletter.NewsLetterResponseInfo
@@ -120,9 +118,7 @@ class NewsLetterActivity : LeanBaseActivity(), NewsLetterView {
 
     internal fun openDashboard() {
         userManager.saveNewsLetterState(true)
-        val intent = Intent(this, LoginActivity::class.java).apply {
-            putExtra(MOSLCommonActivity.ARG_PAGE_ID, NavigationConstants.NAVIGATE_TO_SCHEDULE)
-        }
+        val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
         finish()
     }
