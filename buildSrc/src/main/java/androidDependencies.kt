@@ -56,7 +56,7 @@ object PluginsDependencies {
 
 object AndroidxDependencies {
     const val annotation = "androidx.annotation:annotation:1.1.0"
-    const val material = "com.google.android.material:material:1.1.0-beta01"
+    const val material = "com.google.android.material:material:1.2.0-alpha04"
     const val appcompat = "androidx.appcompat:appcompat:1.1.0-rc01"
     const val constraintLayout = "androidx.constraintlayout:constraintlayout:1.1.3"
     const val recyclerView = "androidx.recyclerview:recyclerview:1.1.0-beta01"

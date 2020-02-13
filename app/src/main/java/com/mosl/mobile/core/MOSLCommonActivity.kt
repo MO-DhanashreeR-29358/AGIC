@@ -20,6 +20,7 @@ import android.view.View
 import android.view.View.OnClickListener
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
@@ -252,82 +253,81 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
 
 
     private fun setUpTabs() {
+        binding.tabLayout.apply {
+            if (userManager.user.role.equals(ROLE_CLIENT, ignoreCase = true)) {
+                addTab(
+                    newTab().setText(R.string.tab_label_schedule).setIcon(R.drawable.ic_tab_schedule).setTag(
+                        NavigationConstants.NAVIGATE_TO_SCHEDULE
+                    )
+                )
 
-        if (userManager.user.role.equals(ROLE_CLIENT, ignoreCase = true)) {
-            binding.tabLayout.addTab(
-                binding.tabLayout.newTab().setText(R.string.tab_label_schedule).setIcon(R.drawable.ic_tab_schedule).setTag(
-                    NavigationConstants.NAVIGATE_TO_SCHEDULE
+                addTab(
+                    newTab().setText(R.string.tab_label_overview).setIcon(R.drawable.ic_tab_overview).setTag(
+                        NavigationConstants.NAVIGATE_TO_OVERVIEW
+                    )
                 )
-            )
 
-            binding.tabLayout.addTab(
-                binding.tabLayout.newTab().setText(R.string.tab_label_overview).setIcon(R.drawable.ic_tab_overview).setTag(
-                    NavigationConstants.NAVIGATE_TO_OVERVIEW
+                addTab(
+                    newTab().setText(R.string.tab_label_notification).setIcon(R.drawable.ic_notification_24dp).setTag(
+                        NavigationConstants.NAVIGATE_TO_NOTIFICATION
+                    )
                 )
-            )
-
-            binding.tabLayout.addTab(
-                binding.tabLayout.newTab().setText(R.string.tab_label_notification).setIcon(R.drawable.ic_notification_24dp).setTag(
-                    NavigationConstants.NAVIGATE_TO_NOTIFICATION
-                )
-            )
 
 
-            binding.tabLayout.addTab(
-                binding.tabLayout.newTab().setText(R.string.tab_label_pdf).setIcon(R.drawable.ic_tab_pdf).setTag(
-                    NavigationConstants.NAVIGATE_TO_PDF
+                addTab(
+                    newTab().setText(R.string.tab_label_pdf).setIcon(R.drawable.ic_tab_pdf).setTag(
+                        NavigationConstants.NAVIGATE_TO_PDF
+                    )
                 )
-            )
-        } else if (userManager.user.role.equals(ROLE_CORPORATE, ignoreCase = true)) {
-            binding.tabLayout.addTab(
-                binding.tabLayout.newTab().setText(R.string.tab_label_schedule).setIcon(R.drawable.ic_tab_schedule).setTag(
-                    NavigationConstants.NAVIGATE_TO_CORPORATE_SCHEDULE
+            } else if (userManager.user.role.equals(ROLE_CORPORATE, ignoreCase = true)) {
+                addTab(
+                    newTab().setText(R.string.tab_label_schedule).setIcon(R.drawable.ic_tab_schedule).setTag(
+                        NavigationConstants.NAVIGATE_TO_CORPORATE_SCHEDULE
+                    )
                 )
-            )
 
-            binding.tabLayout.addTab(
-                binding.tabLayout.newTab().setText(R.string.tab_label_notification).setIcon(R.drawable.ic_notification_24dp).setTag(
-                    NavigationConstants.NAVIGATE_TO_NOTIFICATION
+                addTab(
+                    newTab().setText(R.string.tab_label_notification).setIcon(R.drawable.ic_notification_24dp).setTag(
+                        NavigationConstants.NAVIGATE_TO_NOTIFICATION
+                    )
                 )
-            )
+                addTab(
+                    newTab().setText(R.string.tab_label_pdf).setIcon(R.drawable.ic_tab_pdf).setTag(
+                        NavigationConstants.NAVIGATE_TO_PDF
+                    )
+                )
+            } else {
+                addTab(
+                    newTab().setText(R.string.tab_label_schedule).setIcon(R.drawable.ic_tab_schedule).setTag(
+                        NavigationConstants.NAVIGATE_TO_SCHEDULE
+                    )
+                )
 
-            binding.tabLayout.addTab(
-                binding.tabLayout.newTab().setText(R.string.tab_label_pdf).setIcon(R.drawable.ic_tab_pdf).setTag(
-                    NavigationConstants.NAVIGATE_TO_PDF
+                addTab(
+                    newTab().setText(R.string.tab_label_overview).setIcon(R.drawable.ic_tab_overview).setTag(
+                        NavigationConstants.NAVIGATE_TO_OVERVIEW
+                    )
                 )
-            )
-        } else {
-            binding.tabLayout.addTab(
-                binding.tabLayout.newTab().setText(R.string.tab_label_schedule).setIcon(R.drawable.ic_tab_schedule).setTag(
-                    NavigationConstants.NAVIGATE_TO_SCHEDULE
-                )
-            )
 
-            binding.tabLayout.addTab(
-                binding.tabLayout.newTab().setText(R.string.tab_label_overview).setIcon(R.drawable.ic_tab_overview).setTag(
-                    NavigationConstants.NAVIGATE_TO_OVERVIEW
+                addTab(
+                    newTab().setText(R.string.tab_label_panel).setIcon(R.drawable.ic_panel_24dp).setTag(
+                        NavigationConstants.NAVIGATE_TO_PANEL
+                    )
                 )
-            )
 
-            binding.tabLayout.addTab(
-                binding.tabLayout.newTab().setText(R.string.tab_label_panel).setIcon(R.drawable.ic_panel_24dp).setTag(
-                    NavigationConstants.NAVIGATE_TO_PANEL
+                addTab(
+                    newTab().setText(R.string.tab_label_bytes).setIcon(R.drawable.ic_tab_bytes).setTag(
+                        NavigationConstants.NAVIGATE_TO_BYTES
+                    )
                 )
-            )
 
-            binding.tabLayout.addTab(
-                binding.tabLayout.newTab().setText(R.string.tab_label_bytes).setIcon(R.drawable.ic_tab_bytes).setTag(
-                    NavigationConstants.NAVIGATE_TO_BYTES
+                addTab(
+                    newTab().setText(R.string.tab_label_pdf).setIcon(R.drawable.ic_tab_pdf).setTag(
+                        NavigationConstants.NAVIGATE_TO_PDF
+                    )
                 )
-            )
-
-            binding.tabLayout.addTab(
-                binding.tabLayout.newTab().setText(R.string.tab_label_pdf).setIcon(R.drawable.ic_tab_pdf).setTag(
-                    NavigationConstants.NAVIGATE_TO_PDF
-                )
-            )
+            }
         }
-
 
         /* binding.tabLayout.addTab(
              binding.tabLayout.newTab().setText(R.string.tab_label_notes).setIcon(R.drawable.ic_tab_notes).setTag(
