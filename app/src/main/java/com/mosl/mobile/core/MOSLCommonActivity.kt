@@ -328,8 +328,11 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
             }
         }
 
-
-        setColorFilter(binding.tabLayout.getTabAt(0)?.icon, baseContext.setColor(R.color.blue))
+        if (intent.isNotification()) {
+            setNotificationTab()
+        } else {
+            setColorFilter(binding.tabLayout.getTabAt(0)?.icon, baseContext.setColor(R.color.blue))
+        }
 
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
@@ -352,12 +355,30 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab) {
-                setColorFilter(tab.icon, baseContext.setColor(R.color.bottom_tab_white))
+                setColorFilter(
+                    binding.tabLayout.getTabAt(tab.position)?.icon,
+                    baseContext.setColor(R.color.bottom_tab_white)
+                )
             }
 
             override fun onTabReselected(tab: TabLayout.Tab) {
+                setColorFilter(tab.icon, baseContext.setColor(R.color.blue))
+                if (tab.tag as Int == NavigationConstants.NAVIGATE_TO_PDF) {
+                    val ft = getSupportFragmentManager().beginTransaction()
+                    if (userManager.getPdf().isNotEmpty()) {
+
+                        PdfFragment.newInstance()
+                            .show(ft, "")
+
+                    }
+
+                } else {
+                    navigateFragment(tab.tag as Int)
+                }
             }
         })
+
+
     }
 
     private fun Intent.isNotification(): Boolean {
@@ -368,11 +389,11 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
 
-        setNotificationYab()
+        setNotificationTab()
 
     }
 
-    private fun setNotificationYab(){
+    private fun setNotificationTab() {
         navigateFragment(NavigationConstants.NAVIGATE_TO_NOTIFICATION)
         setColorFilter(binding.tabLayout.getTabAt(1)?.icon, baseContext.setColor(R.color.blue))
         setColorFilter(

@@ -26,15 +26,22 @@ class ActivityNavigationHelper @Inject constructor(
 
     fun loadIntent(intent: Intent?) {
         intent ?: return
-        when {
+        Timber.d("Intent Received %s ", intent.toString())
+        if (intent.isNotification()) {
+            loadFragment(NavigationConstants.NAVIGATE_TO_NOTIFICATION)
+        } else {
+            when {
                 intent.extras.getPageId() == -1 -> screenNavigator.openHome()
                 else -> intent.extras?.setupFragment()
             }
-
+        }
 
     }
 
-
+    private fun Intent.isNotification(): Boolean {
+        val category: String? = getStringExtra(ARG_NOTIFICATION_CATEGORY)
+        if (category == null) return false else return true
+    }
 
     fun loadFragment(@NavigationConstants pageId: Int) {
         screenNavigator.openPage(pageId)
