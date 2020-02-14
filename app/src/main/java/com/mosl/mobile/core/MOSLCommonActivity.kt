@@ -173,7 +173,7 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
             gson.fromJson(remoteConfigData.get(), RemoteConfigModel::class.java)
         setupObservables()
         setUpView()
-        setUpTabs()
+        setUpTabs(intent)
         changeImage()
 
     }
@@ -251,7 +251,7 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
     }
 
 
-    private fun setUpTabs() {
+    private fun setUpTabs(intent: Intent) {
         binding.tabLayout.apply {
             if (userManager.user.role.equals(ROLE_CLIENT, ignoreCase = true)) {
                 addTab(
@@ -328,16 +328,8 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
             }
         }
 
-        /* binding.tabLayout.addTab(
-             binding.tabLayout.newTab().setText(R.string.tab_label_notes).setIcon(R.drawable.ic_tab_notes).setTag(
-                 NavigationConstants.NAVIGATE_TO_NOTES
-             )
-         )*/
-
 
         setColorFilter(binding.tabLayout.getTabAt(0)?.icon, baseContext.setColor(R.color.blue))
-
-
 
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
@@ -368,6 +360,35 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
         })
     }
 
+    private fun Intent.isNotification(): Boolean {
+        val category: String? = getStringExtra(ActivityNavigationHelper.ARG_NOTIFICATION_CATEGORY)
+        if (category == null) return false else return true
+    }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+
+        setNotificationYab()
+
+    }
+
+    private fun setNotificationYab(){
+        navigateFragment(NavigationConstants.NAVIGATE_TO_NOTIFICATION)
+        setColorFilter(binding.tabLayout.getTabAt(1)?.icon, baseContext.setColor(R.color.blue))
+        setColorFilter(
+            binding.tabLayout.getTabAt(0)?.icon,
+            baseContext.setColor(R.color.bottom_tab_white)
+        )
+        setColorFilter(
+            binding.tabLayout.getTabAt(2)?.icon,
+            baseContext.setColor(R.color.bottom_tab_white)
+        )
+        setColorFilter(
+            binding.tabLayout.getTabAt(3)?.icon,
+            baseContext.setColor(R.color.bottom_tab_white)
+        )
+        binding.tabLayout.getTabAt(1)?.removeBadge()
+    }
 
     fun setNotificationUpdate(count: Int) {
         if (count > 0) {

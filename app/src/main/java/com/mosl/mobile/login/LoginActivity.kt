@@ -69,23 +69,7 @@ class LoginActivity : LeanBaseActivity(), Navigator, LoginView {
     }
 
     internal fun openDashboard(user: User) {
-        val intent = Intent(this, MOSLCommonActivity::class.java).apply {
-            if (user.role.equals(
-                    MOSLCommonActivity.ROLE_CORPORATE,
-                    ignoreCase = true
-                )
-            ) {
-                putExtra(
-                    MOSLCommonActivity.ARG_PAGE_ID,
-                    NavigationConstants.NAVIGATE_TO_CORPORATE_SCHEDULE
-                )
-            } else {
-                putExtra(
-                    MOSLCommonActivity.ARG_PAGE_ID,
-                    NavigationConstants.NAVIGATE_TO_SCHEDULE
-                )
-            }
-        }
+        val intent = Intent(this, MOSLCommonActivity::class.java)
         startActivity(intent)
         finish()
     }
