@@ -20,7 +20,6 @@ import android.view.View
 import android.view.View.OnClickListener
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
@@ -353,6 +352,9 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
                     }
 
                 } else {
+                    if (tab.tag as Int == NavigationConstants.NAVIGATE_TO_NOTIFICATION) {
+                        binding.tabLayout.getTabAt(1)?.removeBadge()
+                    }
                     navigateFragment(tab.tag as Int)
                 }
             }
@@ -364,6 +366,13 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
             override fun onTabReselected(tab: TabLayout.Tab) {
             }
         })
+    }
+
+
+    fun setNotificationUpdate(count: Int) {
+        if (count > 0) {
+            binding.tabLayout.getTabAt(1)?.orCreateBadge?.number = count
+        }
     }
 
     private fun Context.setColor(color: Int): Int {

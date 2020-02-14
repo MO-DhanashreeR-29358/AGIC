@@ -285,6 +285,7 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
 
         if (dayOverView.isNotEmpty()) {
             tabPublishSubject.onNext(UiModel.success(dayOverView))
+            setNotificationUpdate(5)
         } else {
             tabPublishSubject.onNext(
                 UiModel.error(
