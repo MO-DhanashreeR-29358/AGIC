@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_7sdp"
-        android:background="@color/white"
+        android:background="@color/color_notification_child_bg"
         tools:ignore="HardcodedText">
 
         <RadioButton
@@ -15,6 +15,7 @@
             android:layout_width="@dimen/_25sdp"
             android:layout_height="@dimen/_40sdp"
             android:layout_marginStart="@dimen/_5sdp"
+            android:buttonTint="@color/_material_grey_400"
             android:enabled="false"
             android:gravity="center"
             android:text=""

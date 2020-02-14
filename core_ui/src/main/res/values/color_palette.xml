@@ -49,7 +49,7 @@
     <color name="white">#ffffff</color>
     <color name="alabaster">#F9F9F9</color>
 
-<!--    <color name="black_prime">#ffffff</color>-->
+    <!--    <color name="black_prime">#ffffff</color>-->
     <color name="black">#000000</color>
     <color name="light_black">#323232</color>
     <color name="darkGrey">#121212</color>
@@ -73,11 +73,11 @@
     <color name="_red">#ffd50a15</color>
     <color name="_red_disabled">#61d50a15</color>
 
-    <color name="_material_grey_100">#F5F5F5</color>
+    <color name="orange">#FBB230</color>
     <color name="color_notification_child_bg">@color/white</color>
 
 
-    <color name="orange">#FBB230</color>
+    <color name="_material_grey_100">#F5F5F5</color>
     <color name="_material_grey_200">#f0f0f0</color>
     <color name="_material_grey_300">#E0E0E0</color>
     <color name="_material_grey_400">#BDBDBD</color>

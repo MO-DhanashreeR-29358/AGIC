@@ -6,10 +6,10 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="@color/color_notification_child_bg"
         android:paddingBottom="@dimen/_5sdp"
         android:paddingStart="@dimen/_15sdp"
-        tools:ignore="HardcodedText">
+        tools:ignore="HardcodedText,RtlSymmetry">
 
         <TextView
             android:id="@+id/tv_FundName"
