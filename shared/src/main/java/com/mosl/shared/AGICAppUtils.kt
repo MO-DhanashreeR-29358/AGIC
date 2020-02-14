@@ -114,10 +114,7 @@ fun checkTimeIsBefore(shiftingTime: String): Boolean {
         currentTimeCalendar.add(Calendar.DATE, 1)
 
         currentTimeCalendar.time.apply {
-            if (before(startTimeCalendar.time)) {
-                return true
-            }
-            else return false
+            return before(startTimeCalendar.time)
         }
 
     } catch (e: ParseException) {

@@ -3,7 +3,6 @@ package com.mosl.mobile.corporatepager
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -33,7 +32,6 @@ import com.xwray.groupie.ViewHolder
 import io.reactivex.Observable
 import io.reactivex.rxkotlin.ofType
 import io.reactivex.subjects.PublishSubject
-import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
 
@@ -171,7 +169,6 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
                 }
             })
         }
-
 
     }
 

@@ -10,27 +10,27 @@
         android:background="@color/white"
         tools:ignore="HardcodedText">
 
-        <RadioButton
-            android:id="@+id/rab"
-            android:layout_width="@dimen/_25sdp"
-            android:layout_height="@dimen/_40sdp"
-            android:layout_marginStart="@dimen/_5sdp"
-            android:enabled="false"
-            android:gravity="center"
-            android:text=""
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@+id/tv_shiftTime"
-            app:layout_constraintTop_toTopOf="parent" />
+        <View
+            android:id="@+id/rabView"
+            android:layout_width="@dimen/_15sdp"
+            android:layout_height="@dimen/_15sdp"
+            android:layout_margin="@dimen/_5sdp"
+            android:background="@drawable/bg_grey_circle"
+            android:elevation="@dimen/_5sdp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_shiftTime"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_shiftTime" />
 
         <TextView
             android:id="@+id/tv_shiftTime"
             android:layout_width="0dp"
             android:layout_height="@dimen/_40sdp"
+            android:layout_marginStart="@dimen/_10sdp"
             android:gravity="center_vertical|start"
             android:text="09.00 AM"
             android:textColor="@color/dark_purple"
             android:textSize="@dimen/_13ssp"
-            app:layout_constraintLeft_toRightOf="@+id/rab"
+            app:layout_constraintLeft_toRightOf="@+id/rabView"
             app:layout_constraintRight_toLeftOf="@+id/tv_roomNumber"
             app:layout_constraintTop_toTopOf="parent" />
 

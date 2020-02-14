@@ -27,7 +27,7 @@ class ItemCorporateSchedule(
         viewBinding.apply {
 
             tvShiftTime.text = getTimeAMPM(itemData.shiftTiming)
-            tvRoomNumber.text = String.format("Room No - %s",itemData.roomNumber)
+            tvRoomNumber.text = String.format("Room No - %s", itemData.roomNumber)
 
             img.apply {
                 when (itemData.natureOfMeeting) {
@@ -42,12 +42,10 @@ class ItemCorporateSchedule(
             }
 
             if (currentPosition == position) {
-                rab.isChecked = true
-                rab.isEnabled = true
+                rabView.setBackgroundResource(R.drawable.bg_blue_circle)
                 recAttendees.visibility = View.VISIBLE
             } else {
-                rab.isChecked = false
-                rab.isEnabled = false
+                rabView.setBackgroundResource(R.drawable.bg_grey_circle)
                 recAttendees.visibility = View.GONE
             }
 
@@ -64,17 +62,25 @@ class ItemCorporateSchedule(
 
 
         binding.tvShiftTime.setOnClickListener(View.OnClickListener {
-            if (binding.recAttendees.visibility == View.VISIBLE)
+            if (binding.recAttendees.visibility == View.VISIBLE) {
                 binding.recAttendees.visibility = View.GONE
-            else
+                binding.rabView.setBackgroundResource(R.drawable.bg_grey_circle)
+            } else {
                 binding.recAttendees.visibility = View.VISIBLE
+                binding.rabView.setBackgroundResource(R.drawable.bg_blue_circle)
+            }
+
         })
 
         binding.tvRoomNumber.setOnClickListener(View.OnClickListener {
-            if (binding.recAttendees.visibility == View.VISIBLE)
+            if (binding.recAttendees.visibility == View.VISIBLE) {
                 binding.recAttendees.visibility = View.GONE
-            else
+                binding.rabView.setBackgroundResource(R.drawable.bg_grey_circle)
+            } else {
                 binding.recAttendees.visibility = View.VISIBLE
+                binding.rabView.setBackgroundResource(R.drawable.bg_blue_circle)
+            }
+
         })
 
         val groupAdapter = GroupAdapter<ViewHolder>()
