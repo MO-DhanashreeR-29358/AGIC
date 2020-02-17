@@ -89,6 +89,14 @@ class CorporateSchedulePagerRepositoryImpl @Inject constructor(
             day = "day3"
         )
 
+        val objCorporateScheduleRequestInfo63 = CorporateScheduleResponseDayItemInfo(
+            shiftTiming = "2019-08-19T15:00:00",
+            roomNumber = "122",
+            Attendees = sa2,
+            natureOfMeeting = "4-1",
+            day = "day3"
+        )
+
 
         val objCorporateScheduleRequestInfo2 = CorporateScheduleResponseDayItemInfo(
             shiftTiming = "2019-08-19T10:00:00",
@@ -125,6 +133,7 @@ class CorporateSchedulePagerRepositoryImpl @Inject constructor(
         sa23 += objCorporateScheduleRequestInfo5
 
         sa33 += objCorporateScheduleRequestInfo6
+        sa33 += objCorporateScheduleRequestInfo63
 
         overViewDayWiseListData.add(0, sa13)
         overViewDayWiseListData.add(1, sa23)
