@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import com.mosl.mobile.bytes.BytesFragment
 import com.mosl.mobile.constants.NavigationConstants
 import com.mosl.mobile.corporatepager.CorporatePagerFragment
+import com.mosl.mobile.feedback.FeedbackFragment
 import com.mosl.mobile.notes.NotesFragment
 import com.mosl.mobile.notification.NotificationHistoryFragment
 import com.mosl.mobile.overview.OverviewChildFragment
@@ -31,6 +32,7 @@ object MenuGetter {
             NavigationConstants.NAVIGATE_TO_CORPORATE_SCHEDULE -> CorporatePagerFragment()
             NavigationConstants.NAVIGATE_TO_NOTES -> NotesFragment()
             NavigationConstants.NAVIGATE_TO_NOTIFICATION -> NotificationHistoryFragment()
+            NavigationConstants.NAVIGATE_TO_FEEDBACK -> FeedbackFragment()
 
             else -> null
         }
@@ -49,6 +51,7 @@ object MenuGetter {
             NavigationConstants.NAVIGATE_TO_OVERVIEW_CHILD -> true
             NavigationConstants.NAVIGATE_TO_NOTES -> true
             NavigationConstants.NAVIGATE_TO_CORPORATE_SCHEDULE -> true
+            NavigationConstants.NAVIGATE_TO_FEEDBACK -> true
             else -> return false
         }
     }

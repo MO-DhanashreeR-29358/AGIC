@@ -10,6 +10,8 @@ import com.mosl.mobile.corporateschedule.CorporateScheduleChildModule
 import com.mosl.mobile.corporateschedule.CorporateScheduleFragment
 import com.mosl.mobile.corporateschedule.CorporateScheduleRepDialogFragment
 import com.mosl.mobile.demo.DemoFragmentProvider
+import com.mosl.mobile.feedback.FeedbackFragment
+import com.mosl.mobile.feedback.FeedbackModule
 import com.mosl.mobile.notes.NotesFragment
 import com.mosl.mobile.notes.NotesModule
 import com.mosl.mobile.notification.NotificationHistoryFragment
@@ -69,6 +71,9 @@ interface FragmentProvider {
 
     @ContributesAndroidInjector(modules = [NotificationModule::class])
     fun provideNotificationHistoryFactory(): NotificationHistoryFragment
+
+    @ContributesAndroidInjector(modules = [FeedbackModule::class])
+    fun provideFeedbackFactory():FeedbackFragment
 
     @ContributesAndroidInjector(modules = [CorporatePagerModule::class])
     fun provideCorporatePagerFragment(): CorporatePagerFragment
