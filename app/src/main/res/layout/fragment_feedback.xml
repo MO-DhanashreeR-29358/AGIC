@@ -26,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/margin_medium"
-            android:layout_marginBottom="@dimen/margin_medium"
+            android:layout_marginBottom="@dimen/margin_small"
             android:text="@string/btn_lable_submit"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"

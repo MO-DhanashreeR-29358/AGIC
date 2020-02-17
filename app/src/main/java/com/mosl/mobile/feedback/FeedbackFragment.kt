@@ -5,11 +5,13 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mosl.app.core.events.DataAction
 import com.mosl.commons.data.UiModel
+import com.mosl.commons.data.onFailure
+import com.mosl.commons.data.onSuccess
 import com.mosl.groupiex.section.DataManagerSection
 import com.mosl.mobile.R
 import com.mosl.mobile.core.MOSLCommonFragment
 import com.mosl.mobile.databinding.FragmentFeedbackBinding
-import com.mosl.mobile.domain.notification.NotificationResponse
+import com.mosl.mobile.domain.feedback.FeedbackResponse
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
 import javax.inject.Inject
@@ -48,7 +50,13 @@ class FeedbackFragment : MOSLCommonFragment(), FeedbackContract {
 
     }
 
-    override fun render(uiModel: UiModel<List<NotificationResponse>>) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun render(uiModel: UiModel<List<FeedbackResponse>>) {
+        toggleProgressBar(uiModel.inProgress)
+        uiModel.onFailure { error ->
+            section.showError(error)
+        }
+        uiModel.onSuccess {
+            section.clearContent()
+        }
     }
 }

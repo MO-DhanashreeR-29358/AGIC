@@ -1,16 +1,18 @@
 package com.mosl.mobile.feedback
 
-import com.mosl.mobile.data.notification.NotificationRepositoryImpl
-import com.mosl.mobile.domain.notification.NotificationRepository
+import com.mosl.mobile.data.feedback.FeedbackRepositoryImpl
+import com.mosl.mobile.domain.feedback.FeedbackRepository
+import dagger.Binds
 import dagger.Module
-import dagger.Provides
 
 @Module
-class FeedbackModule {
+abstract class FeedbackModule {
 
-    @Provides
-    internal fun provideFeedback(fragment: FeedbackFragment): FeedbackContract {
-        return fragment
-    }
+    @Binds
+    abstract fun provideFeedback(fragment: FeedbackFragment): FeedbackContract
+
+    @Binds
+    abstract fun provideRepository(repository: FeedbackRepositoryImpl): FeedbackRepository
+
 
 }
