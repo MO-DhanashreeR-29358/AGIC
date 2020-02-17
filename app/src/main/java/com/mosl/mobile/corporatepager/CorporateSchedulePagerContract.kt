@@ -10,5 +10,5 @@ interface CorporateSchedulePagerContract : BaseView {
     fun renderPage(uiModel: UiModel<CorporateScheduleResponseDataInfo>)
 
     fun onSearchItemClicked(): Observable<CorporatePagerUiEvent.OnSearchClick>
-    fun renderSearchItemData(repList: SearchCorporateScheduleItemInfo)
+    fun renderSearchItemData(searchCorporateScheduleItemInfo: SearchCorporateScheduleItemInfo)
 }

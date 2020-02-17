@@ -58,15 +58,15 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
     @field:CorporateScheduleData
     lateinit var corporateScheduleData: StringPreference
 
-
     @Inject
     lateinit var gson: Gson
+
+    private var time:String =""
 
     override fun getLayout(): Int {
         return R.layout.fragment_corporate_schedule_pager
     }
 
-    //    private val followUpUiEvent = PublishSubject.create<CorporateScheduleUiEvent>()
     private val followUpUiEventPager = PublishSubject.create<CorporatePagerUiEvent>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -200,15 +200,14 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
         return followUpUiEventPager.ofType()
     }
 
-    override fun renderSearchItemData(searchList: SearchCorporateScheduleItemInfo) {
-
+    override fun renderSearchItemData(searchCorporateScheduleItemInfo: SearchCorporateScheduleItemInfo) {
+        time =searchCorporateScheduleItemInfo.shiftTiming
         binding.editSearch.setText("")
-
-        if (searchList.day.equals("day1"))
+        if (searchCorporateScheduleItemInfo.day.equals("day1"))
             pagerSelection(0)
-        else if (searchList.day.equals("day2"))
+        else if (searchCorporateScheduleItemInfo.day.equals("day2"))
             pagerSelection(1)
-        else if (searchList.day.equals("day3"))
+        else if (searchCorporateScheduleItemInfo.day.equals("day3"))
             pagerSelection(2)
         else
             pagerSelection(0)
@@ -231,7 +230,7 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
                     SchedulePagerAction.PagerClick(
                         UiModel.success(
                             overViewDayWiseListData.get(position)
-                        )
+                        ),time
                     )
                 )
             }
@@ -299,7 +298,7 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
         val dayOverView = CorporateScheduleDayWiseListData().get(0)
 
         if (dayOverView.isNotEmpty()) {
-            tabPublishSubject.onNext(SchedulePagerAction.PagerClick(UiModel.success(dayOverView)))
+            tabPublishSubject.onNext(SchedulePagerAction.PagerClick(UiModel.success(dayOverView),time))
             setNotificationUpdate(5)
         } else {
             tabPublishSubject.onNext(
