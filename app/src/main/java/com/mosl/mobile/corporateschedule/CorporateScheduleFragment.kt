@@ -14,6 +14,7 @@ import com.mosl.mobile.app_user.login.UserManager
 import com.mosl.mobile.app_user.login.user
 import com.mosl.mobile.core.MOSLCommonFragment
 import com.mosl.mobile.corporatepager.CorporatePagerFragment
+import com.mosl.mobile.corporatepager.SchedulePagerAction
 import com.mosl.mobile.databinding.FragmentOverviewChildBinding
 import com.mosl.mobile.domain.corporateschedulepager.CorporateScheduleResponseDayItemInfo
 import com.mosl.mobile.domain.corporateschedulepager.CorporateScheduleResponseRepresentativeItemInfo
@@ -46,7 +47,7 @@ class CorporateScheduleFragment : MOSLCommonFragment(), CorporateChildContract {
 
     lateinit var section: DataManagerSection
 
-    lateinit var publishSubject: Observable<UiModel<List<CorporateScheduleResponseDayItemInfo>>>
+    lateinit var publishSubject: Observable<SchedulePagerAction>
 
     override fun getLayout(): Int {
         return R.layout.fragment_overview_child
@@ -94,7 +95,7 @@ class CorporateScheduleFragment : MOSLCommonFragment(), CorporateChildContract {
     }
 
 
-    override fun onTabClicked(): Observable<UiModel<List<CorporateScheduleResponseDayItemInfo>>> {
+    override fun onTabClicked(): Observable<SchedulePagerAction.PagerClick> {
         return publishSubject.ofType()
     }
 

@@ -43,7 +43,7 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
     var overViewDayWiseListData = mutableListOf<List<CorporateScheduleResponseDayItemInfo>>()
 
     val tabPublishSubject =
-        PublishSubject.create<UiModel<List<CorporateScheduleResponseDayItemInfo>>>()
+        PublishSubject.create<SchedulePagerAction>()
 
     private lateinit var section: DataManagerSection
     private lateinit var searchSection: DataManagerSection
@@ -219,12 +219,30 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
 
         if (overViewDayWiseListData.size > position) {
             if (overViewDayWiseListData.get(position).isNullOrEmpty()) {
-                tabPublishSubject.onNext(UiModel.error(ServiceFailureException(PanelFragment.NO_DATA_AVAILABLE_FOR_THE_DAY)))
+                tabPublishSubject.onNext(
+                    SchedulePagerAction.PagerClick(
+                        UiModel.error(
+                            ServiceFailureException(PanelFragment.NO_DATA_AVAILABLE_FOR_THE_DAY)
+                        )
+                    )
+                )
             } else {
-                tabPublishSubject.onNext(UiModel.success(overViewDayWiseListData.get(position)))
+                tabPublishSubject.onNext(
+                    SchedulePagerAction.PagerClick(
+                        UiModel.success(
+                            overViewDayWiseListData.get(position)
+                        )
+                    )
+                )
             }
         } else
-            tabPublishSubject.onNext(UiModel.error(ServiceFailureException(PanelFragment.NO_DATA_AVAILABLE_FOR_THE_DAY)))
+            tabPublishSubject.onNext(
+                SchedulePagerAction.PagerClick(
+                    UiModel.error(
+                        ServiceFailureException(PanelFragment.NO_DATA_AVAILABLE_FOR_THE_DAY)
+                    )
+                )
+            )
 
         super.onPageSelection(position)
     }
@@ -235,7 +253,7 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
         toggleProgressBar(uiModel.inProgress)
         uiModel.onFailure {
             if (corporateScheduleData.isNotSet) {
-                tabPublishSubject.onNext(UiModel.error(it))
+                tabPublishSubject.onNext(SchedulePagerAction.PagerClick(UiModel.error(it)))
             } else {
                 val overViewResponse: CorporateScheduleResponseDataInfo =
                     gson.fromJson(
@@ -281,13 +299,15 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
         val dayOverView = CorporateScheduleDayWiseListData().get(0)
 
         if (dayOverView.isNotEmpty()) {
-            tabPublishSubject.onNext(UiModel.success(dayOverView))
+            tabPublishSubject.onNext(SchedulePagerAction.PagerClick(UiModel.success(dayOverView)))
             setNotificationUpdate(5)
         } else {
             tabPublishSubject.onNext(
-                UiModel.error(
-                    ServiceFailureException(
-                        NO_DATA_AVAILABLE_FOR_THE_DAY
+                SchedulePagerAction.PagerClick(
+                    UiModel.error(
+                        ServiceFailureException(
+                            NO_DATA_AVAILABLE_FOR_THE_DAY
+                        )
                     )
                 )
             )
