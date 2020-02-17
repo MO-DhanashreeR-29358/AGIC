@@ -11,7 +11,7 @@ class CorporateScheduleChildPresenter @Inject constructor(view: CorporateChildCo
         disposable.add(
             view.onTabClicked()
                 .subscribe{
-                    view.renderPage(it.uiModel)
+                    view.renderPage(it.uiModel, it.shiftTiming)
                 }
         )
 

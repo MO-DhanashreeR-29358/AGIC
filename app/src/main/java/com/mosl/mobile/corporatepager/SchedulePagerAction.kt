@@ -5,7 +5,8 @@ import com.mosl.mobile.domain.corporateschedulepager.CorporateScheduleResponseDa
 
 sealed class SchedulePagerAction {
 
-    data class PagerClick(@JvmField val uiModel: UiModel<List<CorporateScheduleResponseDayItemInfo>>
-    , @JvmField val shiftTiming:String="") :
-        SchedulePagerAction()
+    data class PagerClick(
+        @JvmField val uiModel: UiModel<List<CorporateScheduleResponseDayItemInfo>>,
+        @JvmField val shiftTiming: String = ""
+    ) : SchedulePagerAction()
 }

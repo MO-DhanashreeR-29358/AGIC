@@ -2,6 +2,7 @@ package com.mosl.mobile.corporateschedule
 
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -110,7 +111,10 @@ class CorporateScheduleFragment : MOSLCommonFragment(), CorporateChildContract {
         }
     }
 
-    override fun renderPage(uiModel: UiModel<List<CorporateScheduleResponseDayItemInfo>>) {
+    override fun renderPage(
+        uiModel: UiModel<List<CorporateScheduleResponseDayItemInfo>>,
+        shiftTimingSearch: String
+    ) {
         toggleProgressBar(uiModel.inProgress)
         uiModel.onFailure { error ->
             section.showError(error)
@@ -118,25 +122,32 @@ class CorporateScheduleFragment : MOSLCommonFragment(), CorporateChildContract {
         uiModel.onSuccess {
             section.clearContent()
 
-            val currentDate = AppDateFormats.df_Date6.format(Date())
-//            val currentDate = "2019-08-02"
-            val dayArr = userManager.user.day
-            val separate1 = dayArr.split(",").toTypedArray()
 
-            if (currentDate.equals(separate1[1]) && it[0].day.equals("day2"))
-                selection(it, true)
-            else if (!currentDate.equals(separate1[1]) && it[0].day.equals("day2"))
-                selection(it, false)
+            Log.d("shiftTimingSearch", shiftTimingSearch)
 
-            else if (currentDate.equals(separate1[2]) && it[0].day.equals("day3"))
-                selection(it, true)
-            else if (!currentDate.equals(separate1[2]) && it[0].day.equals("day3"))
-                selection(it, false)
+            if (shiftTimingSearch.equals("")) {
+                val currentDate = AppDateFormats.df_Date6.format(Date())
+                val dayArr = userManager.user.day
+                val separate1 = dayArr.split(",").toTypedArray()
 
-            else if (it[0].day.equals("day1") && !currentDate.equals(separate1[1]) && !currentDate.equals(separate1[2]))
-                selection(it, true)
-            else
-                selection(it, false)
+                if (currentDate.equals(separate1[1]) && it[0].day.equals("day2"))
+                    selection(it, true)
+                else if (!currentDate.equals(separate1[1]) && it[0].day.equals("day2"))
+                    selection(it, false)
+                else if (currentDate.equals(separate1[2]) && it[0].day.equals("day3"))
+                    selection(it, true)
+                else if (!currentDate.equals(separate1[2]) && it[0].day.equals("day3"))
+                    selection(it, false)
+                else if (it[0].day.equals("day1") && !currentDate.equals(separate1[1]) && !currentDate.equals(
+                        separate1[2]
+                    )
+                )
+                    selection(it, true)
+                else
+                    selection(it, false)
+            } else {
+                selectionSearch(it, true, shiftTimingSearch)
+            }
         }
     }
 
@@ -167,4 +178,31 @@ class CorporateScheduleFragment : MOSLCommonFragment(), CorporateChildContract {
                 section.add(ItemCorporateSchedule(model, followUpUiEvent, -1))
         }
     }
+
+    fun selectionSearch(
+        it: List<CorporateScheduleResponseDayItemInfo>,
+        coll: Boolean,
+        shiftTimingSearch: String
+    ) {
+        val sortedList = it.sortedWith(compareBy({ it.shiftTiming }))
+        var currentTimeBetween = false
+        var currentPosition = -1
+
+        for ((i, model) in sortedList.withIndex()) {
+
+            val startTime = getTimeAMPM(model.shiftTiming)
+            val shiftTimingSearchN = getTimeAMPM(shiftTimingSearch)
+
+            if (startTime.equals(shiftTimingSearchN) && !currentTimeBetween) {
+                currentTimeBetween = true
+                currentPosition = i
+            }
+
+            if (currentTimeBetween)
+                section.add(ItemCorporateSchedule(model, followUpUiEvent, currentPosition))
+            else
+                section.add(ItemCorporateSchedule(model, followUpUiEvent, -1))
+        }
+    }
+
 }

@@ -61,7 +61,7 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
     @Inject
     lateinit var gson: Gson
 
-    private var time:String =""
+    private var time: String = ""
 
     override fun getLayout(): Int {
         return R.layout.fragment_corporate_schedule_pager
@@ -169,7 +169,6 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
                 }
             })
         }
-
     }
 
     override fun getItem(pos: Int): Fragment? {
@@ -201,7 +200,7 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
     }
 
     override fun renderSearchItemData(searchCorporateScheduleItemInfo: SearchCorporateScheduleItemInfo) {
-        time =searchCorporateScheduleItemInfo.shiftTiming
+        time = searchCorporateScheduleItemInfo.shiftTiming
         binding.editSearch.setText("")
         if (searchCorporateScheduleItemInfo.day.equals("day1"))
             pagerSelection(0)
@@ -213,6 +212,16 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
             pagerSelection(0)
 
     }
+
+    override fun onBackPressed(): Boolean {
+
+        if (binding.editSearch.text!!.length > 0) {
+            binding.editSearch.setText("")
+            return false
+        } else
+            return super.onBackPressed()
+    }
+
 
     override fun onPageSelection(position: Int) {
 
@@ -230,7 +239,7 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
                     SchedulePagerAction.PagerClick(
                         UiModel.success(
                             overViewDayWiseListData.get(position)
-                        ),time
+                        ), time
                     )
                 )
             }
@@ -274,6 +283,8 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
 
     fun pagerSelection(pos: Int) {
 
+        binding.pager.currentItem = 0
+
         if (pos == -1) {
             val currentDate = df_Date6.format(Date())
 
@@ -287,8 +298,12 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
                 binding.pager.currentItem = 2
             else
                 binding.pager.currentItem = 0
-        } else
+        } else if (pos == 1 || pos == 2)
             binding.pager.currentItem = pos
+        else {
+            binding.pager.currentItem = 1
+            binding.pager.currentItem = pos
+        }
     }
 
     private fun CorporateScheduleResponseDataInfo.responseData() {
@@ -298,7 +313,12 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
         val dayOverView = CorporateScheduleDayWiseListData().get(0)
 
         if (dayOverView.isNotEmpty()) {
-            tabPublishSubject.onNext(SchedulePagerAction.PagerClick(UiModel.success(dayOverView),time))
+            tabPublishSubject.onNext(
+                SchedulePagerAction.PagerClick(
+                    UiModel.success(dayOverView),
+                    time
+                )
+            )
             setNotificationUpdate(5)
         } else {
             tabPublishSubject.onNext(
@@ -312,7 +332,6 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
             )
         }
     }
-
 
     companion object {
         const val NO_DATA_AVAILABLE_FOR_THE_DAY = "No data available for the day"

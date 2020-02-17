@@ -9,7 +9,7 @@ import io.reactivex.Observable
 
 interface CorporateChildContract : BaseView {
 
-    fun renderPage(uiModel: UiModel<List<CorporateScheduleResponseDayItemInfo>>)
+    fun renderPage(uiModel: UiModel<List<CorporateScheduleResponseDayItemInfo>>, shiftTime: String)
     fun onTabClicked(): Observable<SchedulePagerAction.PagerClick>
     fun onItemClicked(): Observable<CorporateScheduleUiEvent.OnMoreClick>
     fun renderItemData(repList: List<CorporateScheduleResponseRepresentativeItemInfo>)
