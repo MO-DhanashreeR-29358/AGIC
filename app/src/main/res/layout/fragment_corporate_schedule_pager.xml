@@ -40,7 +40,7 @@
             app:tabGravity="fill"
             app:tabIconTint="@color/day_tab_white"
             app:tabIndicatorColor="@color/day_tab_indicatore_selected"
-            app:tabIndicatorHeight="@dimen/margin_small"
+            app:tabIndicatorHeight="0dp"
             app:tabMode="fixed"
             app:tabSelectedTextColor="@color/day_tab_selected"
             app:tabTextAppearance="@style/MaxCustomTabText"

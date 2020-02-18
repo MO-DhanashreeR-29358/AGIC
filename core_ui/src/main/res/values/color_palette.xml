@@ -33,7 +33,7 @@
     <color name="bottom_tab_selected">#006ab6</color>
 
     <color name="day_tab_white">#666666</color>
-    <color name="day_tab_selected">#292929</color>
+    <color name="day_tab_selected">#000000</color>
     <color name="day_tab_indicatore_selected">#006ab6</color>
 
     <color name="schedule_company_name">#323232</color>

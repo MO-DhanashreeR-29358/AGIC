@@ -78,96 +78,102 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
         presenter.start()
 
         binding.apply {
-            editSearch.addTextChangedListener(object : TextWatcher {
-                override fun afterTextChanged(p0: Editable?) {
+            editSearch.addTextChangedListener(watcher)
+        }
+    }
+
+    internal val watcher = object : TextWatcher {
+
+        override fun afterTextChanged(p0: Editable?) {
+        }
+
+        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+        }
+
+        override fun onTextChanged(p0: CharSequence, p1: Int, p2: Int, p3: Int) {
+
+            binding.apply {
+
+                val groupAdapterS = GroupAdapter<ViewHolder>()
+                searchSection = DataManagerSection(onRetryClick)
+
+                groupAdapterS.add(searchSection)
+                recSearch.apply {
+                    layoutManager =
+                        LinearLayoutManager(requireContext()) as RecyclerView.LayoutManager?
+                    setHasFixedSize(true)
+                    adapter = groupAdapterS
                 }
 
-                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                }
-
-                override fun onTextChanged(p0: CharSequence, p1: Int, p2: Int, p3: Int) {
-
-                    val groupAdapterS = GroupAdapter<ViewHolder>()
-                    searchSection = DataManagerSection(onRetryClick)
-
-                    groupAdapterS.add(searchSection)
-                    recSearch.apply {
-                        layoutManager =
-                            LinearLayoutManager(requireContext()) as RecyclerView.LayoutManager?
-                        setHasFixedSize(true)
-                        adapter = groupAdapterS
-                    }
-
-                    recSearch.visibility = View.VISIBLE
-                    tabLayout.visibility = View.GONE
-                    pager.visibility = View.GONE
+                recSearch.visibility = View.VISIBLE
+                tabLayout.visibility = View.GONE
+                pager.visibility = View.GONE
 
 
-                    if (p0.length > 0) {
-                        overViewDayWiseListData!!.forEach { event ->
+                if (p0.length > 0) {
+                    overViewDayWiseListData!!.forEach { event ->
 
-                            for (x in 0..event.size - 1) {
+                        for (x in 0..event.size - 1) {
 
-                                for (y in 0..((event[x].Attendees).size - 1)) {
+                            for (y in 0..((event[x].Attendees).size - 1)) {
 
-                                    if (event[x].Attendees[y].FundName.toLowerCase().contains(p0.toString().toLowerCase())) {
+                                if (event[x].Attendees[y].FundName.toLowerCase().contains(p0.toString().toLowerCase())) {
 
-                                        val sa: SearchCorporateScheduleItemInfo
+                                    val searchItem: SearchCorporateScheduleItemInfo
 
-                                        sa = SearchCorporateScheduleItemInfo(
-                                            event[x].Attendees[y].FundName,
-                                            event[x].Attendees[y].FundName,
-                                            event[x].day,
-                                            event[x].shiftTiming
+                                    searchItem = SearchCorporateScheduleItemInfo(
+                                        event[x].Attendees[y].FundName,
+                                        event[x].Attendees[y].FundName,
+                                        event[x].day,
+                                        event[x].shiftTiming
+                                    )
+
+                                    searchSection.add(
+                                        ItemSearchCorporateSchedule(
+                                            searchItem,
+                                            followUpUiEventPager
                                         )
+                                    )
 
-                                        searchSection.add(
-                                            ItemSearchCorporateSchedule(
-                                                sa,
-                                                followUpUiEventPager
+                                } else {
+
+                                    for (z in 0..((event[x].Attendees[y].representative).size - 1)) {
+
+                                        if (event[x].Attendees[y].representative[z].name.toLowerCase().contains(
+                                                p0.toString().toLowerCase()
                                             )
-                                        )
+                                        ) {
+                                            val searchItem: SearchCorporateScheduleItemInfo
 
-                                    } else {
+                                            searchItem = SearchCorporateScheduleItemInfo(
+                                                event[x].Attendees[y].FundName,
+                                                event[x].Attendees[y].representative[z].name,
+                                                event[x].day,
+                                                event[x].shiftTiming
+                                            )
 
-                                        for (z in 0..((event[x].Attendees[y].representative).size - 1)) {
-
-                                            if (event[x].Attendees[y].representative[z].name.toLowerCase().contains(
-                                                    p0.toString().toLowerCase()
+                                            searchSection.add(
+                                                ItemSearchCorporateSchedule(
+                                                    searchItem,
+                                                    followUpUiEventPager
                                                 )
-                                            ) {
-                                                val sa: SearchCorporateScheduleItemInfo
-
-                                                sa = SearchCorporateScheduleItemInfo(
-                                                    event[x].Attendees[y].FundName,
-                                                    event[x].Attendees[y].representative[z].name,
-                                                    event[x].day,
-                                                    event[x].shiftTiming
-                                                )
-
-                                                searchSection.add(
-                                                    ItemSearchCorporateSchedule(
-                                                        sa,
-                                                        followUpUiEventPager
-                                                    )
-                                                )
-                                            }
+                                            )
                                         }
                                     }
-
-                                    groupAdapterS.notifyDataSetChanged()
                                 }
-                            }
 
+                                groupAdapterS.notifyDataSetChanged()
+                            }
                         }
 
-                    } else {
-                        recSearch.visibility = View.GONE
-                        tabLayout.visibility = View.VISIBLE
-                        pager.visibility = View.VISIBLE
                     }
+
+                } else {
+                    recSearch.visibility = View.GONE
+                    tabLayout.visibility = View.VISIBLE
+                    pager.visibility = View.VISIBLE
                 }
-            })
+            }
         }
     }
 
