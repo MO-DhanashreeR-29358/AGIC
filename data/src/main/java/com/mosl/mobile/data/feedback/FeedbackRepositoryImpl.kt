@@ -44,7 +44,7 @@ class FeedbackRepositoryImpl @Inject constructor(
                     questionTitle = "Funds you would like to meet in the future",
                     questionType = "input",
                     options = mutableListOf(),
-                    defaultValue = ""
+                    defaultValue = "test"
                 ),
                 FeedbackResponseItem(
                     questionId = "6",
@@ -54,7 +54,7 @@ class FeedbackRepositoryImpl @Inject constructor(
                         OptionsResponseItem(
                             optionId = "1",
                             optionName = "UK , Europe",
-                            selected = false
+                            selected = true
                         ),
                         OptionsResponseItem(optionId = "2", optionName = "USA", selected = false),
                         OptionsResponseItem(
@@ -75,7 +75,7 @@ class FeedbackRepositoryImpl @Inject constructor(
                     questionTitle = "Other Comments : ",
                     questionType = "input",
                     options = mutableListOf(),
-                    defaultValue = ""
+                    defaultValue = "testing purpose"
                 )
 
             )

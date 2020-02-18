@@ -76,6 +76,9 @@ class TextQuestionItem(
                 tag = FeedbackOptionTag(data.questionId, "input")
                 addTextChangedListener(watcher)
             }
+            if (data.defaultValue.isNotEmpty()) {
+                editText.setText(data.defaultValue)
+            }
             viewMap[FeedbackOptionTag(data.questionId, "input")] = editText
         }
     }

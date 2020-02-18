@@ -60,6 +60,9 @@ class RatingBarQuestionItem(
                 tag = FeedbackOptionTag(data.questionId, "rating")
                 setOnRatingBarChangeListener(ratingBarChangeListner)
             }
+            if (data.defaultValue.isNotEmpty()) {
+                ratingBar.rating = data.defaultValue.toFloat()
+            }
             viewMap[FeedbackOptionTag(data.questionId, "rating")] = ratingBar
         }
     }

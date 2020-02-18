@@ -56,6 +56,7 @@ class CheckBoxQuestionItem(
                     }
                 }
             }
+            checkBox.isChecked = option.selected
 
             llVertical.addView(checkBox)
 
