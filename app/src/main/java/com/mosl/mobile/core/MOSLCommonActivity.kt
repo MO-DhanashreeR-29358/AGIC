@@ -18,6 +18,7 @@ import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.OnClickListener
+import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Toast
@@ -279,13 +280,13 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
                     )
                 )
 
-
-
                 addTab(
                     newTab().setText(R.string.tab_label_pdf).setIcon(R.drawable.ic_tab_pdf).setTag(
                         NavigationConstants.NAVIGATE_TO_PDF
                     )
                 )
+
+                disableTab(binding.tabLayout, 2)
 
             } else if (userManager.user.role.equals(ROLE_CORPORATE, ignoreCase = true)) {
                 addTab(
@@ -311,6 +312,8 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
                         NavigationConstants.NAVIGATE_TO_PDF
                     )
                 )
+
+                disableTab(binding.tabLayout, 1)
 
             } else {
                 addTab(
@@ -351,7 +354,6 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
             setColorFilter(binding.tabLayout.getTabAt(0)?.icon, baseContext.setColor(R.color.blue))
         }
 
-
         binding.tabLayout.addOnTabSelectedListener(tabSelectedListner)
 
     }
@@ -360,23 +362,12 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
     internal val tabSelectedListner = object : TabLayout.OnTabSelectedListener {
         override fun onTabSelected(tab: TabLayout.Tab) {
 
+            setColorFilter(tab.icon, baseContext.setColor(R.color.blue))
             if (tab.tag as Int == NavigationConstants.NAVIGATE_TO_PDF) {
-                setColorFilter(tab.icon, baseContext.setColor(R.color.blue))
                 val ft = getSupportFragmentManager().beginTransaction()
                 if (userManager.getPdf().isNotEmpty()) {
                     PdfFragment.newInstance()
                         .show(ft, "")
-                }
-            } else if (tab.tag as Int == NavigationConstants.NAVIGATE_TO_FEEDBACK) {
-                val currentDate = AppDateFormats.df_Date6.parse(getTodaysDate())
-                val day = userManager.user.day.split(",")
-                val loginDate = AppDateFormats.df_Date6.parse(day[0])
-                currentDate?.apply {
-                    if (this.after(loginDate)) {
-                        setColorFilter(tab.icon, baseContext.setColor(R.color.blue))
-                        navigateFragment(tab.tag as Int)
-                    }
-
                 }
             } else {
                 setColorFilter(tab.icon, baseContext.setColor(R.color.blue))
@@ -395,6 +386,18 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
         }
 
         override fun onTabReselected(tab: TabLayout.Tab) {
+        }
+    }
+
+    private fun disableTab(tabLayout: TabLayout, index: Int) {
+        val currentDate = AppDateFormats.df_Date6.parse(getTodaysDate())
+        val day = userManager.user.day.split(",")
+        val loginDate = AppDateFormats.df_Date6.parse(day[0])
+        currentDate?.apply {
+            if (!this.after(loginDate)) {
+                (tabLayout.getChildAt(0) as ViewGroup).getChildAt(index).isEnabled = false
+            }
+
         }
     }
 
