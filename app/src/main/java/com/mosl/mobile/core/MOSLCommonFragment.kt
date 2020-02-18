@@ -78,6 +78,12 @@ open class MOSLCommonFragment : BaseFragment() {
         (requireActivity() as MOSLCommonActivity).setNotificationUpdate(count)
     }
 
+    fun setFeedbackBadgeVisiblity(
+        status: Boolean
+    ) {
+        (requireActivity() as MOSLCommonActivity).FeedbackBadgeVisiblity(status)
+    }
+
     @CallSuper
     override fun onFragmentResume() {
         super.onFragmentResume()

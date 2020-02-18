@@ -80,6 +80,7 @@ class FeedbackFragment : MOSLCommonFragment(), FeedbackContract {
             section.showError(error)
         }
         uiModel.onSuccess {
+            setFeedbackBadgeVisiblity(true)
             section.clearContent()
             section.update(it.map { question ->
                 when (question.questionType) {
