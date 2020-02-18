@@ -332,7 +332,7 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
                     UiModel.error(
                         ServiceFailureException(
                             NO_DATA_AVAILABLE_FOR_THE_DAY
-                        )
+                        ) as Throwable
                     )
                 )
             )

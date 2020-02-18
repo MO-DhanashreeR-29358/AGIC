@@ -33,7 +33,7 @@
     <color name="bottom_tab_white">#A7A7A7</color>
     <color name="bottom_tab_selected">@color/black</color>
 
-    <color name="day_tab_white">#DFDDDD</color>
+    <color name="day_tab_white">#707070</color>
     <color name="day_tab_selected">@color/black</color>
     <color name="day_tab_indicatore_selected">@color/black</color>
 
