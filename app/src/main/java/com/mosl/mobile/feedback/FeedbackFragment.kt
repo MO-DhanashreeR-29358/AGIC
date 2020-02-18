@@ -11,7 +11,10 @@ import com.mosl.groupiex.section.DataManagerSection
 import com.mosl.mobile.R
 import com.mosl.mobile.core.MOSLCommonFragment
 import com.mosl.mobile.databinding.FragmentFeedbackBinding
-import com.mosl.mobile.domain.feedback.FeedbackResponse
+import com.mosl.mobile.domain.feedback.*
+import com.mosl.mobile.feedback.item.CheckBoxQuestionItem
+import com.mosl.mobile.feedback.item.RatingBarQuestionItem
+import com.mosl.mobile.feedback.item.TextQuestionItem
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
 import javax.inject.Inject
@@ -24,6 +27,7 @@ class FeedbackFragment : MOSLCommonFragment(), FeedbackContract {
 
     @Inject
     lateinit var presenter: FeedbackPresenter
+    private val questionAnswerMap = mutableMapOf<String, FeedbackAnswer>()
 
     override fun getLayout(): Int {
         return R.layout.fragment_feedback
@@ -50,6 +54,26 @@ class FeedbackFragment : MOSLCommonFragment(), FeedbackContract {
 
     }
 
+    private val onCheckBoxSelectedListener = object :
+        CheckBoxQuestionItem.OnCheckBoxSelectedListener {
+        override fun onCheckBoxSelected(answer: FeedbackAnswer) {
+            questionAnswerMap[answer.questionId] = answer
+        }
+    }
+
+    private val onTextEnteredListener = object : TextQuestionItem.OnTextEnteredListener {
+        override fun onTextEntered(answer: FeedbackAnswer) {
+            questionAnswerMap[answer.questionId] = answer
+        }
+    }
+
+    private val OnRatingBarSelectedListener =
+        object : RatingBarQuestionItem.OnRatingBarSelectedListener {
+            override fun onRatingBarSelected(answer: FeedbackAnswer) {
+                questionAnswerMap[answer.questionId] = answer
+            }
+        }
+
     override fun render(uiModel: UiModel<List<FeedbackResponse>>) {
         toggleProgressBar(uiModel.inProgress)
         uiModel.onFailure { error ->
@@ -57,6 +81,38 @@ class FeedbackFragment : MOSLCommonFragment(), FeedbackContract {
         }
         uiModel.onSuccess {
             section.clearContent()
+            section.update(it.map { question ->
+                when (question.questionType) {
+                    "rating" -> {
+                        questionAnswerMap[question.questionId] = RatingBarItem(
+                            questionId = question.questionId
+                        )
+                        RatingBarQuestionItem(question, OnRatingBarSelectedListener)
+                    }
+                    "options" -> {
+                        questionAnswerMap[question.questionId] = CheckBoxSelected(
+                            questionId = question.questionId,
+                            options = question.options
+                        )
+                        CheckBoxQuestionItem(question, onCheckBoxSelectedListener)
+                    }
+                    "input" -> {
+                        questionAnswerMap[question.questionId] = TextInputItem(
+                            questionId = question.questionId
+                        )
+                        TextQuestionItem(question, onTextEnteredListener)
+                    }
+
+                    else -> {
+                        questionAnswerMap[question.questionId] = TextInputItem(
+                            questionId = question.questionId
+                        )
+                        TextQuestionItem(question, onTextEnteredListener)
+                    }
+
+                }
+            })
+
         }
     }
 }
