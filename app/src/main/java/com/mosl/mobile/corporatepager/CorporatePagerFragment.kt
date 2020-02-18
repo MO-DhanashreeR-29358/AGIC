@@ -326,6 +326,7 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
                 )
             )
             setNotificationUpdate(5)
+            setFeedbackBadgeVisiblity(true)
         } else {
             tabPublishSubject.onNext(
                 SchedulePagerAction.PagerClick(

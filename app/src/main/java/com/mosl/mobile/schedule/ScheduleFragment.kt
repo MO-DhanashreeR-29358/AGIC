@@ -96,6 +96,7 @@ class ScheduleFragment : MOSLCommonFragment(), ScheduleContract {
                     gson.fromJson(scheduleData.get(), ScheduleResponse::class.java)
                 scheduleResponse.responseData()
             }
+            setFeedbackBadgeVisiblity(false)
 
         }
 
@@ -108,6 +109,8 @@ class ScheduleFragment : MOSLCommonFragment(), ScheduleContract {
 
     private fun ScheduleResponse.responseData() {
         userManager.savePdf(pdfLink!!)
+        setNotificationUpdate(5)
+        setFeedbackBadgeVisiblity(true)
         data?.let {
             if (it.isNotEmpty()) {
                 section.clearContent()
