@@ -50,4 +50,5 @@
 
 
     <string name="hint_lable_search">Search</string>
+    <string name="btn_lable_submit">Submit</string>
 </resources>
