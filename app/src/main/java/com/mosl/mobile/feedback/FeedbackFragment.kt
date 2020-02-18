@@ -2,13 +2,17 @@ package com.mosl.mobile.feedback
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.jakewharton.rxbinding3.view.clicks
 import com.mosl.app.core.events.DataAction
 import com.mosl.commons.data.UiModel
 import com.mosl.commons.data.onFailure
 import com.mosl.commons.data.onSuccess
 import com.mosl.groupiex.section.DataManagerSection
 import com.mosl.mobile.R
+import com.mosl.mobile.app_user.login.UserManager
+import com.mosl.mobile.app_user.login.user
 import com.mosl.mobile.core.MOSLCommonFragment
 import com.mosl.mobile.databinding.FragmentFeedbackBinding
 import com.mosl.mobile.domain.feedback.*
@@ -17,6 +21,7 @@ import com.mosl.mobile.feedback.item.RatingBarQuestionItem
 import com.mosl.mobile.feedback.item.TextQuestionItem
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
+import io.reactivex.Observable
 import javax.inject.Inject
 
 class FeedbackFragment : MOSLCommonFragment(), FeedbackContract {
@@ -28,7 +33,8 @@ class FeedbackFragment : MOSLCommonFragment(), FeedbackContract {
     @Inject
     lateinit var presenter: FeedbackPresenter
     private val questionAnswerMap = mutableMapOf<String, FeedbackAnswer>()
-
+    @Inject
+    lateinit var userManager: UserManager
     override fun getLayout(): Int {
         return R.layout.fragment_feedback
     }
@@ -80,6 +86,7 @@ class FeedbackFragment : MOSLCommonFragment(), FeedbackContract {
             section.showError(error)
         }
         uiModel.onSuccess {
+            setFeedbackBadgeVisiblity(true)
             section.clearContent()
             section.update(it.map { question ->
                 when (question.questionType) {
@@ -114,5 +121,28 @@ class FeedbackFragment : MOSLCommonFragment(), FeedbackContract {
             })
 
         }
+    }
+
+    override fun onSubmitButtonClicked(): Observable<Unit> {
+        return binding.btnSubmit.clicks()
+    }
+
+    override fun renderSubmit(uiModel: UiModel<String>) {
+        toggleProgressBar(uiModel.inProgress)
+        uiModel.onFailure { error ->
+            section.showError(error)
+            setFeedbackBadgeVisiblity(true)
+        }
+        uiModel.onSuccess {
+            setFeedbackBadgeVisiblity(false)
+            Toast.makeText(requireContext(),it,Toast.LENGTH_LONG).show()
+        }
+    }
+
+    override fun getSurveyRequest(): FeedbackRequest {
+        return FeedbackRequest(
+            userId = userManager.user.clientId,
+            answers = questionAnswerMap.values.toList()
+        )
     }
 }

@@ -18,6 +18,7 @@ import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.OnClickListener
+import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Toast
@@ -65,6 +66,8 @@ import com.mosl.mobile.login.UserCacheImpl
 import com.mosl.mobile.menu.ScreenNavigatorImpl
 import com.mosl.mobile.pdf.PdfFragment
 import com.mosl.navigator.*
+import com.mosl.shared.AppDateFormats
+import com.mosl.shared.util.getTodaysDate
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.addTo
@@ -265,6 +268,11 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
                         NavigationConstants.NAVIGATE_TO_OVERVIEW
                     )
                 )
+                addTab(
+                    newTab().setText(R.string.tab_label_feedback).setIcon(R.drawable.ic_tab_feedback).setTag(
+                        NavigationConstants.NAVIGATE_TO_FEEDBACK
+                    )
+                )
 
                 addTab(
                     newTab().setText(R.string.tab_label_notification).setIcon(R.drawable.ic_notification_24dp).setTag(
@@ -273,16 +281,13 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
                 )
 
                 addTab(
-                    newTab().setText(R.string.tab_label_feedback).setIcon(R.drawable.ic_tab_feedback).setTag(
-                        NavigationConstants.NAVIGATE_TO_FEEDBACK
-                    )
-                )
-
-                addTab(
                     newTab().setText(R.string.tab_label_pdf).setIcon(R.drawable.ic_tab_pdf).setTag(
                         NavigationConstants.NAVIGATE_TO_PDF
                     )
                 )
+
+                disableTab(binding.tabLayout, 2)
+
             } else if (userManager.user.role.equals(ROLE_CORPORATE, ignoreCase = true)) {
                 addTab(
                     newTab().setText(R.string.tab_label_schedule).setIcon(R.drawable.ic_tab_schedule).setTag(
@@ -291,20 +296,25 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
                 )
 
                 addTab(
-                    newTab().setText(R.string.tab_label_notification).setIcon(R.drawable.ic_notification_24dp).setTag(
-                        NavigationConstants.NAVIGATE_TO_NOTIFICATION
-                    )
-                )
-                addTab(
                     newTab().setText(R.string.tab_label_feedback).setIcon(R.drawable.ic_tab_feedback).setTag(
                         NavigationConstants.NAVIGATE_TO_FEEDBACK
                     )
                 )
+
+                addTab(
+                    newTab().setText(R.string.tab_label_notification).setIcon(R.drawable.ic_notification_24dp).setTag(
+                        NavigationConstants.NAVIGATE_TO_NOTIFICATION
+                    )
+                )
+
                 addTab(
                     newTab().setText(R.string.tab_label_pdf).setIcon(R.drawable.ic_tab_pdf).setTag(
                         NavigationConstants.NAVIGATE_TO_PDF
                     )
                 )
+
+                disableTab(binding.tabLayout, 1)
+
             } else {
                 addTab(
                     newTab().setText(R.string.tab_label_schedule).setIcon(R.drawable.ic_tab_schedule).setTag(
@@ -344,39 +354,72 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
             setColorFilter(binding.tabLayout.getTabAt(0)?.icon, baseContext.setColor(R.color.blue))
         }
 
-        binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-            override fun onTabSelected(tab: TabLayout.Tab) {
-                setColorFilter(tab.icon, baseContext.setColor(R.color.blue))
-                if (tab.tag as Int == NavigationConstants.NAVIGATE_TO_PDF) {
-                    val ft = getSupportFragmentManager().beginTransaction()
-                    if (userManager.getPdf().isNotEmpty()) {
-                        PdfFragment.newInstance()
-                            .show(ft, "")
-                    }
-                } else {
-                    if (tab.tag as Int == NavigationConstants.NAVIGATE_TO_NOTIFICATION) {
-                        binding.tabLayout.getTabAt(1)?.removeBadge()
-                    }
-                    navigateFragment(tab.tag as Int)
-                }
-            }
-
-            override fun onTabUnselected(tab: TabLayout.Tab) {
-                setColorFilter(
-                    binding.tabLayout.getTabAt(tab.position)?.icon,
-                    baseContext.setColor(R.color.bottom_tab_white)
-                )
-            }
-
-            override fun onTabReselected(tab: TabLayout.Tab) {
-            }
-        })
+        binding.tabLayout.addOnTabSelectedListener(tabSelectedListner)
 
     }
 
+
+    internal val tabSelectedListner = object : TabLayout.OnTabSelectedListener {
+        override fun onTabSelected(tab: TabLayout.Tab) {
+
+            setColorFilter(tab.icon, baseContext.setColor(R.color.blue))
+            if (tab.tag as Int == NavigationConstants.NAVIGATE_TO_PDF) {
+                val ft = getSupportFragmentManager().beginTransaction()
+                if (userManager.getPdf().isNotEmpty()) {
+                    PdfFragment.newInstance()
+                        .show(ft, "")
+                }
+            } else {
+                setColorFilter(tab.icon, baseContext.setColor(R.color.blue))
+                if (tab.tag as Int == NavigationConstants.NAVIGATE_TO_NOTIFICATION) {
+                    binding.tabLayout.getTabAt(1)?.removeBadge()
+                }
+                navigateFragment(tab.tag as Int)
+            }
+        }
+
+        override fun onTabUnselected(tab: TabLayout.Tab) {
+            setColorFilter(
+                binding.tabLayout.getTabAt(tab.position)?.icon,
+                baseContext.setColor(R.color.bottom_tab_white)
+            )
+        }
+
+        override fun onTabReselected(tab: TabLayout.Tab) {
+        }
+    }
+
+    private fun disableTab(tabLayout: TabLayout, index: Int) {
+        if (compareDate()) {
+            (tabLayout.getChildAt(0) as ViewGroup).getChildAt(index).isEnabled = true
+        } else {
+            (tabLayout.getChildAt(0) as ViewGroup).getChildAt(index).isEnabled = false
+
+        }
+    }
+
+
+    private fun compareDate(): Boolean {
+        val currentDate = AppDateFormats.df_Date6.parse(getTodaysDate())
+        val day = userManager.user.day.split(",")
+        val loginDate = AppDateFormats.df_Date6.parse(day[0])
+        currentDate?.apply {
+            if (this.after(loginDate)) {
+                return true
+            }
+        }
+        return false
+    }
+
     private fun setNotificationTab() {
-        setColorFilter(binding.tabLayout.getTabAt(1)?.icon, baseContext.setColor(R.color.blue))
-        binding.tabLayout.getTabAt(1)?.select()
+        if (userManager.user.role.equals(ROLE_CLIENT, ignoreCase = true)) {
+            setColorFilter(binding.tabLayout.getTabAt(3)?.icon, baseContext.setColor(R.color.blue))
+            binding.tabLayout.getTabAt(3)?.select()
+        } else if (userManager.user.role.equals(ROLE_CORPORATE, ignoreCase = true)) {
+            setColorFilter(binding.tabLayout.getTabAt(2)?.icon, baseContext.setColor(R.color.blue))
+            binding.tabLayout.getTabAt(2)?.select()
+        }
+
     }
 
     private fun Intent.isNotification(): Boolean {
@@ -391,8 +434,32 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
 
     fun setNotificationUpdate(count: Int) {
         if (count > 0) {
-            binding.tabLayout.getTabAt(1)?.orCreateBadge?.number = count
+            if (userManager.user.role.equals(ROLE_CLIENT, ignoreCase = true)) {
+                binding.tabLayout.getTabAt(3)?.orCreateBadge?.number = count
+
+            } else if (userManager.user.role.equals(ROLE_CORPORATE, ignoreCase = true)) {
+                binding.tabLayout.getTabAt(2)?.orCreateBadge?.number = count
+            }
         }
+    }
+
+    fun FeedbackBadgeVisiblity(status: Boolean) {
+        if (userManager.user.role.equals(ROLE_CLIENT, ignoreCase = true)) {
+            if (status && compareDate()) {
+                binding.tabLayout.getTabAt(2)?.orCreateBadge?.number = 1
+            } else {
+                binding.tabLayout.getTabAt(2)?.removeBadge()
+
+            }
+        } else if (userManager.user.role.equals(ROLE_CORPORATE, ignoreCase = true)) {
+            if (status && compareDate()) {
+                binding.tabLayout.getTabAt(1)?.orCreateBadge?.number = 1
+            } else {
+                binding.tabLayout.getTabAt(1)?.removeBadge()
+
+            }
+        }
+
     }
 
     private fun Context.setColor(color: Int): Int {
