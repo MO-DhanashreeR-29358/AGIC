@@ -4,6 +4,7 @@ import com.mosl.data.api.AGICApi
 import com.mosl.data.api.feedback.FeedbackResponseItem
 import com.mosl.data.api.feedback.OptionsResponseItem
 import com.mosl.mobile.domain.feedback.FeedbackRepository
+import com.mosl.mobile.domain.feedback.FeedbackRequest
 import com.mosl.mobile.domain.feedback.FeedbackResponse
 import io.reactivex.Observable
 import javax.inject.Inject
@@ -21,6 +22,11 @@ class FeedbackRepositoryImpl @Inject constructor(
             mapper.transformFeedback(it)
         }
     }
+
+    override fun submitFeedback(answer: FeedbackRequest): Observable<String> {
+        return Observable.just("Sucess")
+    }
+
 
     private fun getList(): Observable<List<FeedbackResponseItem>> {
         return Observable.just(

@@ -3,6 +3,7 @@ package com.mosl.mobile.feedback
 import com.mosl.app.core.base.BasePresenter
 import com.mosl.commons.rx.addTo
 import com.mosl.mobile.domain.feedback.FeedbackRepository
+import timber.log.Timber
 import javax.inject.Inject
 
 class FeedbackPresenter @Inject constructor(
@@ -19,5 +20,18 @@ class FeedbackPresenter @Inject constructor(
             .subscribe {
                 view.render(it)
             }.addTo(disposable)
+
+        view.onSubmitButtonClicked()
+            .map {
+                view.getSurveyRequest()
+            }
+            .switchMap { surveyRequest ->
+                repository.submitFeedback(surveyRequest)
+            }
+            .compose(applyUiModel())
+            .subscribe(view::renderSubmit, Timber::d)
+            .addTo(disposable)
+
+
     }
 }

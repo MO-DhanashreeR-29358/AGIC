@@ -390,15 +390,25 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
     }
 
     private fun disableTab(tabLayout: TabLayout, index: Int) {
+        if (compareDate()) {
+            (tabLayout.getChildAt(0) as ViewGroup).getChildAt(index).isEnabled = true
+        } else {
+            (tabLayout.getChildAt(0) as ViewGroup).getChildAt(index).isEnabled = false
+
+        }
+    }
+
+
+    private fun compareDate(): Boolean {
         val currentDate = AppDateFormats.df_Date6.parse(getTodaysDate())
         val day = userManager.user.day.split(",")
         val loginDate = AppDateFormats.df_Date6.parse(day[0])
         currentDate?.apply {
-            if (!this.after(loginDate)) {
-                (tabLayout.getChildAt(0) as ViewGroup).getChildAt(index).isEnabled = false
+            if (this.after(loginDate)) {
+                return true
             }
-
         }
+        return false
     }
 
     private fun setNotificationTab() {
@@ -434,16 +444,15 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
     }
 
     fun FeedbackBadgeVisiblity(status: Boolean) {
-
         if (userManager.user.role.equals(ROLE_CLIENT, ignoreCase = true)) {
-            if (status) {
+            if (status && compareDate()) {
                 binding.tabLayout.getTabAt(2)?.orCreateBadge?.number = 1
             } else {
                 binding.tabLayout.getTabAt(2)?.removeBadge()
 
             }
         } else if (userManager.user.role.equals(ROLE_CORPORATE, ignoreCase = true)) {
-            if (status) {
+            if (status && compareDate()) {
                 binding.tabLayout.getTabAt(1)?.orCreateBadge?.number = 1
             } else {
                 binding.tabLayout.getTabAt(1)?.removeBadge()

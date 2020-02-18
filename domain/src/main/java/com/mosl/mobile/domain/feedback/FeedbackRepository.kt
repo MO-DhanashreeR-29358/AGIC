@@ -4,4 +4,5 @@ import io.reactivex.Observable
 
 interface FeedbackRepository {
     fun getFeedbackData(): Observable<List<FeedbackResponse>>
+    fun submitFeedback(answer:FeedbackRequest): Observable<String>
 }
