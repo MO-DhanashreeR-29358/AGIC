@@ -1,18 +1,33 @@
 package com.mosl.mobile.data.corporateschedulepager
 
-import com.mosl.data.api.corporateschedulepager.*
+import com.mosl.data.api.corporateschedulepager.CorporateScheduleRequest
+import com.mosl.data.api.corporateschedulepager.CorporateScheduleResponseDayAttendanceItem
+import com.mosl.data.api.corporateschedulepager.CorporateScheduleResponseDayItem
+import com.mosl.data.api.corporateschedulepager.CorporateScheduleResponseRepresentativeItem
 import com.mosl.mobile.domain.corporateschedulepager.*
 
 object CorporateSchedulePagerMapper {
 
-    fun getScheduleMap(responseList: CorporateScheduleResponseData): CorporateScheduleResponseDataInfo {
+    fun getScheduleMap(
+        responseList: List<CorporateScheduleResponseDayItem>?, pdfLink: String, message: String,
+        notificationPending: Int, feedbackPending: Boolean
+    ): CorporateScheduleResponseDataInfo {
+        if (responseList.isNullOrEmpty())
+            return CorporateScheduleResponseDataInfo(
+                emptyList(), emptyList(), emptyList(), pdfLink, message,
+                notificationPending, feedbackPending
+            )
 
         return CorporateScheduleResponseDataInfo(
-
-            day1 = Day(responseList.day1),
-            day2 = Day(responseList.day2),
-            day3 = Day(responseList.day3)
+            day1 = Day(responseList.filter { it.day.equals("Day1", ignoreCase = true) }),
+            day2 = Day(responseList.filter { it.day.equals("Day2", ignoreCase = true) }),
+            day3 = Day(responseList.filter { it.day.equals("Day3", ignoreCase = true) }),
+            pdfLink = pdfLink,
+            message = message,
+            notificationPending = notificationPending,
+            feedbackPending = feedbackPending
         )
+
     }
 
     fun Day(it: List<CorporateScheduleResponseDayItem>): List<CorporateScheduleResponseDayItemInfo> {
@@ -52,7 +67,7 @@ object CorporateSchedulePagerMapper {
     fun getCorporateSchedulePagerRequestMap(requestList: CorporateScheduleRequestInfo): CorporateScheduleRequest {
         return CorporateScheduleRequest(
             ClientID = requestList.ClientID,
-            Over = requestList.Over
+            timestamp = requestList.timestamp
         )
     }
 }

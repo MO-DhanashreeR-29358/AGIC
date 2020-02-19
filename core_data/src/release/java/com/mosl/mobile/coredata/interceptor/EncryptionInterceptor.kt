@@ -22,6 +22,8 @@ class EncryptionInterceptor @Inject constructor(
     val scheduleDate: StringPreference,
     @LastCorporateScheduleDate
     val corporateScheduleDate: StringPreference,
+    @LastNotificationDate
+    val notificationDate: StringPreference,
     @LastBytesDate
     val bytesDate: StringPreference,
     @ScheduleData
@@ -89,6 +91,11 @@ class EncryptionInterceptor @Inject constructor(
                 if (response.code == 200 && last.contains("GetCorporateSchedule")) {
                     corporateScheduleDate.set(headerDate)
                 }
+
+                if (response.code == 200 && last.contains("GetNotification")) {
+                    notificationDate.set(headerDate)
+                }
+
                 val decrypted = encryptor.decrypt(strResponse!!.string())
                 if (decrypted != null) {
                     val decryptedBody =

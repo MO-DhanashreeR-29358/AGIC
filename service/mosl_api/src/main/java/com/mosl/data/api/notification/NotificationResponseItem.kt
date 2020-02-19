@@ -10,7 +10,7 @@ data class NotificationResponseItem(
     val meetingDateTime: String,
 
     @JvmField @SerializedName("previousDateTime")
-    val previousDateTime: String,
+    val previousDateTime: String?,
 
     @JvmField @SerializedName("type")
     val type: String,

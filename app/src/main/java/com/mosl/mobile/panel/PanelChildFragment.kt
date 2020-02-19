@@ -18,6 +18,7 @@ import com.mosl.mobile.databinding.FragmentPanelChildBinding
 import com.mosl.mobile.domain.panel.PanelDayResponse
 import com.mosl.mobile.panelpager.PanelFragment
 import com.mosl.mobile.panelpager.PanelListDayItemData
+import com.mosl.shared.AppDateFormats
 import com.mosl.shared.util.addToCalendart
 import com.mosl.shared.util.getDateJSON_DATE6
 import com.mosl.shared.util.getTimeAMPM

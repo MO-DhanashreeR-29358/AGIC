@@ -57,6 +57,13 @@ class PreferenceDataModule {
         return StringPreference(prefs, BYTES_DATE_KEY, "")
     }
 
+    @LastNotificationDate
+    @Singleton
+    @Provides
+    internal fun provideLastNotificationDatePref(prefs: SharedPreferences): StringPreference {
+        return StringPreference(prefs, LAST_NOTIFICATION_DATE, "")
+    }
+
     @RemoteConfigData
     @Singleton
     @Provides

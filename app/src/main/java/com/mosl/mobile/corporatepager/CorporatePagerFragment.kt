@@ -25,6 +25,7 @@ import com.mosl.mobile.databinding.FragmentCorporateSchedulePagerBinding
 import com.mosl.mobile.domain.corporateschedulepager.CorporateScheduleResponseDataInfo
 import com.mosl.mobile.domain.corporateschedulepager.CorporateScheduleResponseDayItemInfo
 import com.mosl.mobile.domain.corporateschedulepager.SearchCorporateScheduleItemInfo
+import com.mosl.mobile.login.UserManagerImpl
 import com.mosl.mobile.panelpager.PanelFragment
 import com.mosl.shared.AppDateFormats.df_Date6
 import com.xwray.groupie.GroupAdapter
@@ -39,6 +40,9 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
 
     @Inject
     lateinit var userManager: UserManager
+
+    @Inject
+    lateinit var userManagerImpl: UserManagerImpl
 
     var overViewDayWiseListData = mutableListOf<List<CorporateScheduleResponseDayItemInfo>>()
 
@@ -208,11 +212,11 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
     override fun renderSearchItemData(searchCorporateScheduleItemInfo: SearchCorporateScheduleItemInfo) {
         time = searchCorporateScheduleItemInfo.shiftTiming
         binding.editSearch.setText("")
-        if (searchCorporateScheduleItemInfo.day.equals("day1"))
+        if (searchCorporateScheduleItemInfo.day.equals("day1",ignoreCase = true))
             pagerSelection(0)
-        else if (searchCorporateScheduleItemInfo.day.equals("day2"))
+        else if (searchCorporateScheduleItemInfo.day.equals("day2",ignoreCase = true))
             pagerSelection(1)
-        else if (searchCorporateScheduleItemInfo.day.equals("day3"))
+        else if (searchCorporateScheduleItemInfo.day.equals("day3",ignoreCase = true))
             pagerSelection(2)
         else
             pagerSelection(0)
@@ -282,6 +286,8 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
             val json = gson.toJson(it)
             corporateScheduleData.set(json)
             it.responseData()
+            setNotificationUpdate(it.notificationPending)
+            setFeedbackBadgeVisiblity(it.feedbackPending)
         }
 
         pagerSelection(-1)
@@ -313,6 +319,7 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
     }
 
     private fun CorporateScheduleResponseDataInfo.responseData() {
+        userManagerImpl.savePdf(pdfLink!!)
         overViewDayWiseListData =
             CorporateScheduleDayWiseListData() as MutableList<List<CorporateScheduleResponseDayItemInfo>>
 
@@ -325,8 +332,7 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
                     time
                 )
             )
-            setNotificationUpdate(5)
-            setFeedbackBadgeVisiblity(true)
+
         } else {
             tabPublishSubject.onNext(
                 SchedulePagerAction.PagerClick(

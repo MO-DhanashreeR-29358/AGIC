@@ -3,13 +3,14 @@ package com.mosl.data.api
 import com.mosl.data.api.bytes.BytesInfoRequest
 import com.mosl.data.api.bytes.BytesInfoResponse
 import com.mosl.data.api.corporateschedulepager.CorporateScheduleRequest
-import com.mosl.data.api.corporateschedulepager.CorporateScheduleResponseData
+import com.mosl.data.api.corporateschedulepager.CorporateScheduleResponseDayItem
 import com.mosl.data.api.demo.LoginInfo
 import com.mosl.data.api.fcm_token.FcmTokenRequest
 import com.mosl.data.api.fcm_token.FcmTokenResponse
 import com.mosl.data.api.login.LoginInfoRequest
 import com.mosl.data.api.login.LoginInfoResponse
 import com.mosl.data.api.newsletter.NewsLetterResponseItem
+import com.mosl.data.api.notification.NotificationRequest
 import com.mosl.data.api.notification.NotificationResponseItem
 import com.mosl.data.api.overviewpager.OverviewRequest
 import com.mosl.data.api.overviewpager.OverviewResponseData
@@ -24,16 +25,16 @@ import retrofit2.http.POST
 
 interface AGICApi {
 
-  @POST("QMS2API/api/Login/authorize")
-  suspend fun demoLogin(
-    @Body request: LoginInfo
-  ): UserResponse
+    @POST("QMS2API/api/Login/authorize")
+    suspend fun demoLogin(
+        @Body request: LoginInfo
+    ): UserResponse
 
-  @POST("GetClientDetails")
-   fun userLogin(@Body request: LoginInfoRequest): Observable<LoginInfoResponse>
+    @POST("GetClientDetails")
+    fun userLogin(@Body request: LoginInfoRequest): Observable<LoginInfoResponse>
 
-  @POST("GetBroucherDetails")
-   fun getBrochureData(): Observable<BaseResponseAgic<List<NewsLetterResponseItem>>>
+    @POST("GetBroucherDetails")
+    fun getBrochureData(): Observable<BaseResponseAgic<List<NewsLetterResponseItem>>>
 
     @POST("GetScheduleAPI")
     @Headers(CACHE_FOR_4HRS)
@@ -58,12 +59,12 @@ interface AGICApi {
     @POST("TokenDeregistration")
     fun tokenDeregistration(@Body fcmTokenRequest: FcmTokenRequest): Observable<FcmTokenResponse>
 
-    @POST("TokenDeregistration")
-    fun getNotification(): Observable<BaseResponseAgic<List<NotificationResponseItem>>>
+    @POST("NotificationHistory")
+    fun getNotification(@Body notificationRequest: NotificationRequest): Observable<List<NotificationResponseItem>>
 
     @POST("GetCorporateSchedule")
     @Headers(CACHE_FOR_4HRS)
-    fun getCorporateScheduleAPI(@Body request: CorporateScheduleRequest): Observable<CorporateScheduleResponseData>
+    fun getCorporateScheduleAPI(@Body request: CorporateScheduleRequest): Observable<BaseResponseAgic<List<CorporateScheduleResponseDayItem>>>
 
     companion object {
         const val CACHE_FOR_4HRS = "Cache-For: 240"

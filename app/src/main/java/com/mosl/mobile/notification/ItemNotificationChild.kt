@@ -26,7 +26,7 @@ class ItemNotificationChild(
                     groupNewMeeting.visibility = View.VISIBLE
                     groupPrevMeeting.visibility = View.GONE
                     tvMessage.visibility = View.GONE
-                    tvNew.text = "New Meeting"
+                    tvNew.text = NEW_MEETING
                     tvNewCorporate.text = notificationData.corporateName
                     tvNewDate.text = date
                     tvNewTime.text = time
@@ -37,21 +37,21 @@ class ItemNotificationChild(
                     groupPrevMeeting.visibility = View.VISIBLE
                     groupNewMeeting.visibility = View.VISIBLE
                     tvMessage.visibility = View.GONE
-                    tvNew.text = "New"
+                    tvNew.text = NEW
                     tvNewCorporate.text = notificationData.corporateName
                     tvNewDate.text = date
                     tvNewTime.text = time
 
-                    tvPrevious.text = "Previous"
+                    tvPrevious.text = PREVIOUS
                     tvPrevCorporate.text = notificationData.corporateName
-                    tvPrevDate.text = getDateJSON_DATE6(notificationData.previousDateTime)
-                    tvPrevTime.text = getTimeAMPM(notificationData.previousDateTime)
+                    tvPrevDate.text = getDateJSON_DATE6(notificationData.previousDateTime?:"2020-03-01T00:00:00")
+                    tvPrevTime.text = getTimeAMPM(notificationData.previousDateTime?:"2020-03-01T00:00:00")
                 }
                 MEETING_CANCEL -> {
                     groupPrevMeeting.visibility = View.VISIBLE
                     groupNewMeeting.visibility = View.GONE
                     tvMessage.visibility = View.GONE
-                    tvPrevious.text = "Cancelled Meeting"
+                    tvPrevious.text = CANCELLED_MEETING
                     tvPrevCorporate.text = notificationData.corporateName
                     tvPrevDate.text = date
                     tvPrevTime.text = time
@@ -73,9 +73,13 @@ class ItemNotificationChild(
     }
 
     companion object {
-        const val MEETING_CREATE = "MeetingCreate"
-        const val MEETING_UPDATE = "MeetingUpdated"
-        const val MEETING_CANCEL = "MeetingCancelled"
+        const val MEETING_CREATE = "Meeting Created"
+        const val MEETING_UPDATE = "Meeting Updated"
+        const val MEETING_CANCEL = "Meeting Cancelled"
+        const val CANCELLED_MEETING = "Cancelled Meeting"
+        const val PREVIOUS = "Previous"
+        const val NEW = "New"
+        const val NEW_MEETING = "New Meeting"
 
     }
 }

@@ -21,7 +21,6 @@ import com.mosl.mobile.domain.corporateschedulepager.CorporateScheduleResponseDa
 import com.mosl.mobile.domain.corporateschedulepager.CorporateScheduleResponseRepresentativeItemInfo
 import com.mosl.shared.AppDateFormats
 import com.mosl.shared.util.checkTimeIsBetween
-import com.mosl.shared.util.getTimeAMPM
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
 import io.reactivex.Observable
@@ -160,8 +159,8 @@ class CorporateScheduleFragment : MOSLCommonFragment(), CorporateChildContract {
 
             if (i + 1 < sortedList.size) {
 
-                val startTime = getTimeAMPM(model.shiftTiming)
-                val nextStartTime = getTimeAMPM(sortedList[i + 1].shiftTiming)
+                val startTime = (model.shiftTiming)
+                val nextStartTime = (sortedList[i + 1].shiftTiming)
 
                 if (checkTimeIsBetween(startTime, nextStartTime) && !currentTimeBetween) {
                     currentTimeBetween = true
@@ -190,8 +189,8 @@ class CorporateScheduleFragment : MOSLCommonFragment(), CorporateChildContract {
 
         for ((i, model) in sortedList.withIndex()) {
 
-            val startTime = getTimeAMPM(model.shiftTiming)
-            val shiftTimingSearchN = getTimeAMPM(shiftTimingSearch)
+            val startTime = (model.shiftTiming)
+            val shiftTimingSearchN = (shiftTimingSearch)
 
             if (startTime.equals(shiftTimingSearchN) && !currentTimeBetween) {
                 currentTimeBetween = true

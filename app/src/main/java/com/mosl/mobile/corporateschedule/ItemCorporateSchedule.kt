@@ -7,7 +7,6 @@ import com.mosl.groupiex.section.DataManagerSection
 import com.mosl.mobile.R
 import com.mosl.mobile.databinding.ItemFragmentCorporateScheduleChildBinding
 import com.mosl.mobile.domain.corporateschedulepager.CorporateScheduleResponseDayItemInfo
-import com.mosl.shared.util.getTimeAMPM
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
 import com.xwray.groupie.databinding.BindableItem
@@ -26,7 +25,7 @@ class ItemCorporateSchedule(
 
         viewBinding.apply {
 
-            tvShiftTime.text = getTimeAMPM(itemData.shiftTiming)
+            tvShiftTime.text = (itemData.shiftTiming)
             tvRoomNumber.text = String.format("Room No - %s", itemData.roomNumber)
 
             img.apply {

@@ -6,7 +6,7 @@ data class CorporateScheduleRequest(
     @JvmField @SerializedName("ClientID")
     val ClientID: String,
 
-    @JvmField @SerializedName("Over")
-    val Over: String
+    @JvmField @SerializedName("timestamp")
+    val timestamp: String
 
 )

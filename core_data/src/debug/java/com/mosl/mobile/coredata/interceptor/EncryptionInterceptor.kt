@@ -20,6 +20,8 @@ class EncryptionInterceptor @Inject constructor(
     val scheduleDate: StringPreference,
     @LastCorporateScheduleDate
     val corporateScheduleDate: StringPreference,
+    @LastNotificationDate
+    val notificationDate: StringPreference,
     @LastBytesDate
     val bytesDate: StringPreference,
     @ScheduleData
@@ -64,20 +66,22 @@ class EncryptionInterceptor @Inject constructor(
                         AppDateFormats.DF_JSON_DATE_13
                     )
 
+                    if (headerDate.contains(formatedScheduleDate) && scheduleData.isSet) {
+                        scheduleData.delete()
+                    }
+                }
+
+                if (corporateScheduleDate.isSet)
+                {
                     val formatedCorpScheduleDate = getFormatedDate(
                         corporateScheduleDate.get(),
                         AppDateFormats.DF_JSON_DATE_12,
                         AppDateFormats.DF_JSON_DATE_13
                     )
-
-                    if (headerDate.contains(formatedScheduleDate) && scheduleData.isSet) {
-                        scheduleData.delete()
-                    }
                     if (headerDate.contains(formatedCorpScheduleDate) && corporateScheduleData.isSet) {
                         corporateScheduleData.delete()
                     }
                 }
-
 
                 if (response.code == 200 && last.contains("GetScheduleAPI")) {
                     scheduleDate.set(headerDate)
@@ -85,6 +89,10 @@ class EncryptionInterceptor @Inject constructor(
 
                 if (response.code == 200 && last.contains("GetCorporateSchedule")) {
                     corporateScheduleDate.set(headerDate)
+                }
+
+                if (response.code == 200 && last.contains("NotificationHistory")) {
+                    notificationDate.set(headerDate)
                 }
 
                 if (response.code == 200 && last.contains("GetbyteDetails")) {

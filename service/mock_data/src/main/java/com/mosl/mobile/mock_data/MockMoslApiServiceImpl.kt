@@ -6,13 +6,14 @@ import com.mosl.data.api.BaseResponseAgic
 import com.mosl.data.api.bytes.BytesInfoRequest
 import com.mosl.data.api.bytes.BytesInfoResponse
 import com.mosl.data.api.corporateschedulepager.CorporateScheduleRequest
-import com.mosl.data.api.corporateschedulepager.CorporateScheduleResponseData
+import com.mosl.data.api.corporateschedulepager.CorporateScheduleResponseDayItem
 import com.mosl.data.api.demo.LoginInfo
 import com.mosl.data.api.fcm_token.FcmTokenRequest
 import com.mosl.data.api.fcm_token.FcmTokenResponse
 import com.mosl.data.api.login.LoginInfoRequest
 import com.mosl.data.api.login.LoginInfoResponse
 import com.mosl.data.api.newsletter.NewsLetterResponseItem
+import com.mosl.data.api.notification.NotificationRequest
 import com.mosl.data.api.notification.NotificationResponseItem
 import com.mosl.data.api.overviewpager.OverviewRequest
 import com.mosl.data.api.overviewpager.OverviewResponseData
@@ -25,8 +26,9 @@ import retrofit2.mock.MockRetrofit
 
 class MockMoslApiServiceImpl(
     private val mockRetrofit: MockRetrofit,
-    private val context: Context) : AGICApi {
-    override fun getCorporateScheduleAPI(request: CorporateScheduleRequest): Observable<CorporateScheduleResponseData> {
+    private val context: Context
+) : AGICApi {
+    override fun getCorporateScheduleAPI(request: CorporateScheduleRequest): Observable<BaseResponseAgic<List<CorporateScheduleResponseDayItem>>> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
@@ -66,7 +68,7 @@ class MockMoslApiServiceImpl(
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun getNotification(): Observable<BaseResponseAgic<List<NotificationResponseItem>>> {
+    override fun getNotification(notificationRequestInfo: NotificationRequest): Observable<List<NotificationResponseItem>> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 

@@ -15,7 +15,6 @@ import com.mosl.commons.data.onFailure
 import com.mosl.commons.data.onSuccess
 import com.mosl.groupiex.section.DataManagerSection
 import com.mosl.mobile.R
-import com.mosl.mobile.annotations.LastScheduleDate
 import com.mosl.mobile.annotations.ScheduleData
 import com.mosl.mobile.core.MOSLCommonFragment
 import com.mosl.mobile.databinding.CalendarAddDialogBinding
@@ -85,14 +84,12 @@ class ScheduleFragment : MOSLCommonFragment(), ScheduleContract {
         toggleProgressBar(uiModel.inProgress)
         uiModel.onFailure { it ->
             if (scheduleData.isNotSet) {
-
                 section.showError(it)
             } else {
                 val scheduleResponse: ScheduleResponse =
                     gson.fromJson(scheduleData.get(), ScheduleResponse::class.java)
                 scheduleResponse.responseData()
             }
-            setFeedbackBadgeVisiblity(false)
 
         }
 
@@ -100,13 +97,13 @@ class ScheduleFragment : MOSLCommonFragment(), ScheduleContract {
             val json = gson.toJson(it)
             scheduleData.set(json)
             it.responseData()
+            setNotificationUpdate(5)
+            setFeedbackBadgeVisiblity(true)
         }
     }
 
     private fun ScheduleResponse.responseData() {
         userManager.savePdf(pdfLink!!)
-        setNotificationUpdate(5)
-        setFeedbackBadgeVisiblity(true)
         data?.let {
             if (it.isNotEmpty()) {
                 section.clearContent()

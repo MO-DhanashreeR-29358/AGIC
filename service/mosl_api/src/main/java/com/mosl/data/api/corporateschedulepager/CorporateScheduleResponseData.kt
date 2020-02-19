@@ -12,5 +12,11 @@ data class CorporateScheduleResponseData(
     val day2: List<CorporateScheduleResponseDayItem>,
 
     @JvmField @SerializedName("Day3")
-    val day3: List<CorporateScheduleResponseDayItem>
+    val day3: List<CorporateScheduleResponseDayItem>,
+
+
+    @JvmField val pdfLink: String?,
+    @JvmField val message: String,
+    @JvmField val notificationPending: String,
+    @JvmField val feedbackPending: String
 )

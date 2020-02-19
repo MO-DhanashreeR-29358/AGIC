@@ -5,7 +5,7 @@ data class NotificationResponse(
 
     @JvmField val meetingDateTime: String,
 
-    @JvmField val previousDateTime: String,
+    @JvmField val previousDateTime: String?,
 
     @JvmField val type: String,
 
