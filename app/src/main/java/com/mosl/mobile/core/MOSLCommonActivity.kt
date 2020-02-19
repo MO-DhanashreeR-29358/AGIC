@@ -368,14 +368,11 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
                 if (userManager.getPdf().isNotEmpty()) {
                     PdfFragment.newInstance()
                         .show(ft, "")
-                }else{
-                    alert(message =PDF_FILE_NOT_YET_UPLOADED)
+                } else {
+                    alert(message = PDF_FILE_NOT_YET_UPLOADED)
                 }
             } else {
                 setColorFilter(tab.icon, baseContext.setColor(R.color.blue))
-                if (tab.tag as Int == NavigationConstants.NAVIGATE_TO_NOTIFICATION) {
-                    binding.tabLayout.getTabAt(1)?.removeBadge()
-                }
                 navigateFragment(tab.tag as Int)
             }
         }
@@ -441,6 +438,13 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
 
             } else if (userManager.user.role.equals(ROLE_CORPORATE, ignoreCase = true)) {
                 binding.tabLayout.getTabAt(2)?.orCreateBadge?.number = count
+            }
+        } else {
+            if (userManager.user.role.equals(ROLE_CLIENT, ignoreCase = true)) {
+                binding.tabLayout.getTabAt(3)?.removeBadge()
+
+            } else if (userManager.user.role.equals(ROLE_CORPORATE, ignoreCase = true)) {
+                binding.tabLayout.getTabAt(2)?.removeBadge()
             }
         }
     }

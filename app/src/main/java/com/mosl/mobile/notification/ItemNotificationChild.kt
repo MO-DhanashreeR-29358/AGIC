@@ -8,6 +8,7 @@ import com.mosl.mobile.domain.notification.NotificationResponse
 import com.mosl.shared.util.getDateJSON_DATE6
 import com.mosl.shared.util.getTimeAMPM
 import com.xwray.groupie.databinding.BindableItem
+import java.util.*
 
 
 class ItemNotificationChild(
@@ -21,7 +22,7 @@ class ItemNotificationChild(
         val time = getTimeAMPM(notificationData.meetingDateTime)
 
         viewBinding.apply {
-            when (notificationData.type) {
+            when (notificationData.type.toLowerCase(Locale.ENGLISH)) {
                 MEETING_CREATE -> {
                     groupNewMeeting.visibility = View.VISIBLE
                     groupPrevMeeting.visibility = View.GONE
@@ -73,9 +74,9 @@ class ItemNotificationChild(
     }
 
     companion object {
-        const val MEETING_CREATE = "Meeting Created"
-        const val MEETING_UPDATE = "Meeting Updated"
-        const val MEETING_CANCEL = "Meeting Cancelled"
+        const val MEETING_CREATE = "meeting created"
+        const val MEETING_UPDATE = "meeting updated"
+        const val MEETING_CANCEL = "meeting deleted"
         const val CANCELLED_MEETING = "Cancelled Meeting"
         const val PREVIOUS = "Previous"
         const val NEW = "New"

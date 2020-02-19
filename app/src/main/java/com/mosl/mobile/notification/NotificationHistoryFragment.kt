@@ -3,12 +3,16 @@ package com.mosl.mobile.notification
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import com.mosl.app.core.events.DataAction
+import com.mosl.app.core.prefs.StringPreference
 import com.mosl.commons.data.UiModel
 import com.mosl.commons.data.onFailure
 import com.mosl.commons.data.onSuccess
 import com.mosl.groupiex.section.DataManagerSection
 import com.mosl.mobile.R
+import com.mosl.mobile.annotations.NotificationData
 import com.mosl.mobile.core.MOSLCommonFragment
 import com.mosl.mobile.databinding.FragmentNotificationHistoryBinding
 import com.mosl.mobile.domain.notification.NotificationResponse
@@ -22,6 +26,13 @@ class NotificationHistoryFragment : MOSLCommonFragment(), NotificationContract {
     lateinit var section: DataManagerSection
     @Inject
     lateinit var presenter: NotificationPresenter
+
+    @Inject
+    @field:NotificationData
+    lateinit var notificationData: StringPreference
+
+    @Inject
+    lateinit var gson: Gson
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -39,13 +50,29 @@ class NotificationHistoryFragment : MOSLCommonFragment(), NotificationContract {
     override fun render(uiModel: UiModel<List<NotificationResponse>>) {
         toggleProgressBar(uiModel.inProgress)
         uiModel.onFailure { error ->
-            section.showError(error)
+            if (notificationData.isNotSet) {
+                section.showError(error)
+            } else {
+                section.clearContent()
+                setNotificationUpdate(0)
+                val type = object : TypeToken<List<NotificationResponse>>() {}.type
+                val notificationResponse: List<NotificationResponse> =
+                    gson.fromJson(notificationData.get(), type)
+                notificationResponse.responseData()
+            }
         }
         uiModel.onSuccess {
             section.clearContent()
-            for (model in it) {
-                section.add(ItemNotificationChild(model))
-            }
+            setNotificationUpdate(0)
+            it.responseData()
+            val json = gson.toJson(it)
+            notificationData.set(json)
+        }
+    }
+
+    private fun List<NotificationResponse>.responseData() {
+        for (model in this) {
+            section.add(ItemNotificationChild(model))
         }
     }
 
