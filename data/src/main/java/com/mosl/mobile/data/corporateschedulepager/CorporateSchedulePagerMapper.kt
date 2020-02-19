@@ -9,7 +9,7 @@ import com.mosl.mobile.domain.corporateschedulepager.*
 object CorporateSchedulePagerMapper {
 
     fun getScheduleMap(
-        responseList: List<CorporateScheduleResponseDayItem>?, pdfLink: String, message: String,
+        responseList: List<CorporateScheduleResponseDayItem>?, pdfLink: String?, message: String,
         notificationPending: Int, feedbackPending: Boolean
     ): CorporateScheduleResponseDataInfo {
         if (responseList.isNullOrEmpty())

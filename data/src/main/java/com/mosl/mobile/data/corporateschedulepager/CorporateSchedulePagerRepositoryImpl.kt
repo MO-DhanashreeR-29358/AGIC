@@ -24,7 +24,7 @@ class CorporateSchedulePagerRepositoryImpl @Inject constructor(
             .map {
                 mapper.getScheduleMap(
                     it.data,
-                    it.pdf!!,
+                    it.pdf,
                     it.message,
                     it.notificationPending,
                     it.feedbackPending

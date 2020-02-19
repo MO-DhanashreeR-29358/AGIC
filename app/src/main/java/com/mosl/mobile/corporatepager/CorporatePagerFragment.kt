@@ -17,7 +17,6 @@ import com.mosl.commons.data.onSuccess
 import com.mosl.groupiex.section.DataManagerSection
 import com.mosl.mobile.R
 import com.mosl.mobile.annotations.CorporateScheduleData
-import com.mosl.mobile.app_user.login.UserManager
 import com.mosl.mobile.app_user.login.user
 import com.mosl.mobile.core.MOSLCommonPager
 import com.mosl.mobile.corporateschedule.CorporateScheduleFragment
@@ -39,10 +38,7 @@ import javax.inject.Inject
 class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract {
 
     @Inject
-    lateinit var userManager: UserManager
-
-    @Inject
-    lateinit var userManagerImpl: UserManagerImpl
+    lateinit var userManager: UserManagerImpl
 
     var overViewDayWiseListData = mutableListOf<List<CorporateScheduleResponseDayItemInfo>>()
 
@@ -319,7 +315,9 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
     }
 
     private fun CorporateScheduleResponseDataInfo.responseData() {
-        userManagerImpl.savePdf(pdfLink!!)
+        pdfLink?.apply {
+            userManager.savePdf(this)
+        }
         overViewDayWiseListData =
             CorporateScheduleDayWiseListData() as MutableList<List<CorporateScheduleResponseDayItemInfo>>
 

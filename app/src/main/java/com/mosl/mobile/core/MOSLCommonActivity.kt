@@ -368,6 +368,8 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
                 if (userManager.getPdf().isNotEmpty()) {
                     PdfFragment.newInstance()
                         .show(ft, "")
+                }else{
+                    alert(message =PDF_FILE_NOT_YET_UPLOADED)
                 }
             } else {
                 setColorFilter(tab.icon, baseContext.setColor(R.color.blue))
@@ -742,6 +744,7 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
         private const val PAGE_TITLES = "pageTitles"
         const val ROLE_CORPORATE = "Corporate"
         const val ROLE_CLIENT = "Client"
+        const val PDF_FILE_NOT_YET_UPLOADED = "PDF file Not yet uploaded"
     }
 
 }

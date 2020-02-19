@@ -103,7 +103,9 @@ class ScheduleFragment : MOSLCommonFragment(), ScheduleContract {
     }
 
     private fun ScheduleResponse.responseData() {
-        userManager.savePdf(pdfLink!!)
+        pdfLink?.apply {
+            userManager.savePdf(this)
+        }
         data?.let {
             if (it.isNotEmpty()) {
                 section.clearContent()
