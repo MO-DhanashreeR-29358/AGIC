@@ -17,7 +17,9 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:minLines="3"
-            tools:text="1. How well do Our products meet your needs?" />
+            android:textColor="@color/light_black"
+            tools:text="1. How well do Our products meet your needs?"
+            android:textSize="@dimen/text_size_small" />
 
         <LinearLayout
             android:id="@+id/ll_vertical"

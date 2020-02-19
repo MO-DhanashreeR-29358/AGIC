@@ -2,6 +2,8 @@ package com.mosl.mobile.feedback.item
 
 import android.content.Context
 import android.widget.CheckBox
+import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.getColor
 import com.mosl.mobile.R
 import com.mosl.mobile.databinding.ItemFeedbackCheckboxBinding
 import com.mosl.mobile.domain.feedback.*
