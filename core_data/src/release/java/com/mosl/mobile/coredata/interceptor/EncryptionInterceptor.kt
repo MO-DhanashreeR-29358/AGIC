@@ -17,77 +17,93 @@ import java.io.IOException
 import javax.inject.Inject
 
 class EncryptionInterceptor @Inject constructor(
-  val encryptor: AESEncryptor,
-  @LastScheduleDate
-  val scheduleDate: StringPreference,
-  @LastBytesDate
-  val bytesDate: StringPreference,
-  @ScheduleData
-  val scheduleData: StringPreference
+    val encryptor: AESEncryptor,
+    @LastScheduleDate
+    val scheduleDate: StringPreference,
+    @LastCorporateScheduleDate
+    val corporateScheduleDate: StringPreference,
+    @LastBytesDate
+    val bytesDate: StringPreference,
+    @ScheduleData
+    val scheduleData: StringPreference,
+    @CorporateScheduleData
+    val corporateScheduleData: StringPreference
 ) : Interceptor {
 
-  @Throws(IOException::class)
-  override fun intercept(chain: Interceptor.Chain): Response {
-    var request = chain.request()
-    val oldBody = request.body
-    var isEncrypted = false
-    val last = request.url
-      .pathSegments
-      .last()
-    if (oldBody != null) {
-      val buffer = Buffer()
-      oldBody.writeTo(buffer)
-      val strOldBody = buffer.readUtf8()
+    @Throws(IOException::class)
+    override fun intercept(chain: Interceptor.Chain): Response {
+        var request = chain.request()
+        val oldBody = request.body
+        var isEncrypted = false
+        val last = request.url
+            .pathSegments
+            .last()
+        if (oldBody != null) {
+            val buffer = Buffer()
+            oldBody.writeTo(buffer)
+            val strOldBody = buffer.readUtf8()
 
 
-      val mediaType = "application/json; charset=utf-8".toMediaTypeOrNull()
-      val strNewBody = encryptor.encrypt(strOldBody)
-      val body = strNewBody.toRequestBody(mediaType)
-      request = request.newBuilder()
-        .method(request.method, body)
-        .build()
-      isEncrypted = true
-    }
-
-    val response = chain.proceed(request)
-    if (isEncrypted && response.body != null) {
-      try {
-        val strResponse = response.body
-        val headerDate = response.header("Date") ?: ""
-        if (scheduleDate.isSet) {
-
-          val formatedScheduleDate = getFormatedDate(
-            scheduleDate.get(),
-            AppDateFormats.DF_JSON_DATE_12,
-            AppDateFormats.DF_JSON_DATE_13
-          )
-          if (headerDate.contains(formatedScheduleDate) && scheduleData.isSet) {
-            scheduleData.delete()
-          }
+            val mediaType = "application/json; charset=utf-8".toMediaTypeOrNull()
+            val strNewBody = encryptor.encrypt(strOldBody)
+            val body = strNewBody.toRequestBody(mediaType)
+            request = request.newBuilder()
+                .method(request.method, body)
+                .build()
+            isEncrypted = true
         }
 
+        val response = chain.proceed(request)
+        if (isEncrypted && response.body != null) {
+            try {
+                val strResponse = response.body
+                val headerDate = response.header("Date") ?: ""
+                if (scheduleDate.isSet) {
 
-        if (response.code == 200 && last.contains("GetScheduleAPI")) {
-          scheduleDate.set(headerDate)
-        }
-        if (response.code == 200 && last.contains("GetbyteDetails")) {
-          bytesDate.set(headerDate)
-        }
-        val decrypted = encryptor.decrypt(strResponse!!.string())
-        if (decrypted != null) {
-          val decryptedBody =
-            decrypted.toResponseBody("application/json; charset=utf-8".toMediaTypeOrNull())
-          return response.newBuilder()
-            .body(decryptedBody)
-            .build()
+                    val formatedScheduleDate = getFormatedDate(
+                        scheduleDate.get(),
+                        AppDateFormats.DF_JSON_DATE_12,
+                        AppDateFormats.DF_JSON_DATE_13
+                    )
+                    if (headerDate.contains(formatedScheduleDate) && scheduleData.isSet) {
+                        scheduleData.delete()
+                    }
+                    val formatedCorpScheduleDate = getFormatedDate(
+                        corporateScheduleDate.get(),
+                        AppDateFormats.DF_JSON_DATE_12,
+                        AppDateFormats.DF_JSON_DATE_13
+                    )
+
+                    if (headerDate.contains(formatedCorpScheduleDate) && corporateScheduleData.isSet) {
+                        corporateScheduleData.delete()
+                    }
+
+                }
+
+                if (response.code == 200 && last.contains("GetScheduleAPI")) {
+                    scheduleDate.set(headerDate)
+                }
+                if (response.code == 200 && last.contains("GetbyteDetails")) {
+                    bytesDate.set(headerDate)
+                }
+                if (response.code == 200 && last.contains("GetCorporateSchedule")) {
+                    corporateScheduleDate.set(headerDate)
+                }
+                val decrypted = encryptor.decrypt(strResponse!!.string())
+                if (decrypted != null) {
+                    val decryptedBody =
+                        decrypted.toResponseBody("application/json; charset=utf-8".toMediaTypeOrNull())
+                    return response.newBuilder()
+                        .body(decryptedBody)
+                        .build()
+                } else {
+                    return response;
+                }
+            } catch (e: Exception) {
+                return response
+            }
         } else {
-          return response;
+            return response
         }
-      } catch (e: Exception) {
-        return response
-      }
-    } else {
-      return response
     }
-  }
 }

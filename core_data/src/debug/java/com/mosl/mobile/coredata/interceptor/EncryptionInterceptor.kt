@@ -1,9 +1,7 @@
 package com.mosl.mobile.coredata.interceptor
 
 import com.mosl.app.core.prefs.StringPreference
-import com.mosl.mobile.annotations.LastBytesDate
-import com.mosl.mobile.annotations.LastScheduleDate
-import com.mosl.mobile.annotations.ScheduleData
+import com.mosl.mobile.annotations.*
 import com.mosl.shared.AppDateFormats
 import com.mosl.shared.Encryptor.AESEncryptor
 import com.mosl.shared.util.getFormatedDate
@@ -20,10 +18,14 @@ class EncryptionInterceptor @Inject constructor(
     val encryptor: AESEncryptor,
     @LastScheduleDate
     val scheduleDate: StringPreference,
+    @LastCorporateScheduleDate
+    val corporateScheduleDate: StringPreference,
     @LastBytesDate
     val bytesDate: StringPreference,
     @ScheduleData
-    val scheduleData: StringPreference
+    val scheduleData: StringPreference,
+    @CorporateScheduleData
+    val corporateScheduleData: StringPreference
 ) : Interceptor {
 
     @Throws(IOException::class)
@@ -61,8 +63,18 @@ class EncryptionInterceptor @Inject constructor(
                         AppDateFormats.DF_JSON_DATE_12,
                         AppDateFormats.DF_JSON_DATE_13
                     )
+
+                    val formatedCorpScheduleDate = getFormatedDate(
+                        corporateScheduleDate.get(),
+                        AppDateFormats.DF_JSON_DATE_12,
+                        AppDateFormats.DF_JSON_DATE_13
+                    )
+
                     if (headerDate.contains(formatedScheduleDate) && scheduleData.isSet) {
                         scheduleData.delete()
+                    }
+                    if (headerDate.contains(formatedCorpScheduleDate) && corporateScheduleData.isSet) {
+                        corporateScheduleData.delete()
                     }
                 }
 
@@ -70,6 +82,11 @@ class EncryptionInterceptor @Inject constructor(
                 if (response.code == 200 && last.contains("GetScheduleAPI")) {
                     scheduleDate.set(headerDate)
                 }
+
+                if (response.code == 200 && last.contains("GetCorporateSchedule")) {
+                    corporateScheduleDate.set(headerDate)
+                }
+
                 if (response.code == 200 && last.contains("GetbyteDetails")) {
                     bytesDate.set(headerDate)
                 }

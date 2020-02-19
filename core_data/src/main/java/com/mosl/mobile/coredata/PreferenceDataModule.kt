@@ -82,7 +82,13 @@ class PreferenceDataModule {
     @Singleton
     @Provides
     internal fun provideCorporateScheduleDataPref(prefs: SharedPreferences): StringPreference {
-        return StringPreference(prefs, Corporate_Schedule_DATA_KEY, "")
+        return StringPreference(prefs, CORPORATE_SCHEDULE_DATA_KEY, "")
+    }
+    @LastCorporateScheduleDate
+    @Singleton
+    @Provides
+    internal fun provideCorporateScheduleDatePref(prefs: SharedPreferences): StringPreference {
+        return StringPreference(prefs, CORPORATE_SCHEDULE_DATE_KEY, "")
     }
 
     @PanelData

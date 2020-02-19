@@ -54,10 +54,6 @@ class ScheduleFragment : MOSLCommonFragment(), ScheduleContract {
     lateinit var scheduleData: StringPreference
 
     @Inject
-    @field:LastScheduleDate
-    lateinit var scheduleDate: StringPreference
-
-    @Inject
     lateinit var gson: Gson
 
     override fun getLayout(): Int {
