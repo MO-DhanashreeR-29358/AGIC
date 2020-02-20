@@ -51,4 +51,5 @@
 
     <string name="hint_lable_search">Search</string>
     <string name="btn_lable_submit">Submit</string>
+    <string name="txt_lable_feedback">It is our endeavor to constantly improve, and hence, we request you to provide your valuable feedback</string>
 </resources>
