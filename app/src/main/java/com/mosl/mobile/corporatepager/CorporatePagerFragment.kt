@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import com.mosl.app.core.exception.ServiceFailureException
+import com.mosl.app.core.prefs.BooleanPreference
 import com.mosl.app.core.prefs.StringPreference
 import com.mosl.app.coreui.adapters.ViewPagerAdapter
 import com.mosl.commons.data.UiModel
@@ -17,6 +18,8 @@ import com.mosl.commons.data.onSuccess
 import com.mosl.groupiex.section.DataManagerSection
 import com.mosl.mobile.R
 import com.mosl.mobile.annotations.CorporateScheduleData
+import com.mosl.mobile.annotations.FeedbackStatus
+import com.mosl.mobile.annotations.NotificationStatus
 import com.mosl.mobile.app_user.login.user
 import com.mosl.mobile.core.MOSLCommonPager
 import com.mosl.mobile.corporateschedule.CorporateScheduleFragment
@@ -60,6 +63,14 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
 
     @Inject
     lateinit var gson: Gson
+
+    @Inject
+    @field:FeedbackStatus
+    lateinit var feedbackStatus: BooleanPreference
+
+    @Inject
+    @field:NotificationStatus
+    lateinit var notificationStatus: BooleanPreference
 
     private var time: String = ""
 
@@ -208,11 +219,11 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
     override fun renderSearchItemData(searchCorporateScheduleItemInfo: SearchCorporateScheduleItemInfo) {
         time = searchCorporateScheduleItemInfo.shiftTiming
         binding.editSearch.setText("")
-        if (searchCorporateScheduleItemInfo.day.equals("day1",ignoreCase = true))
+        if (searchCorporateScheduleItemInfo.day.equals("day1", ignoreCase = true))
             pagerSelection(0)
-        else if (searchCorporateScheduleItemInfo.day.equals("day2",ignoreCase = true))
+        else if (searchCorporateScheduleItemInfo.day.equals("day2", ignoreCase = true))
             pagerSelection(1)
-        else if (searchCorporateScheduleItemInfo.day.equals("day3",ignoreCase = true))
+        else if (searchCorporateScheduleItemInfo.day.equals("day3", ignoreCase = true))
             pagerSelection(2)
         else
             pagerSelection(0)
@@ -269,12 +280,21 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
             if (corporateScheduleData.isNotSet) {
                 tabPublishSubject.onNext(SchedulePagerAction.PagerClick(UiModel.error(it)))
             } else {
-                val overViewResponse: CorporateScheduleResponseDataInfo =
+                val corporateResponse: CorporateScheduleResponseDataInfo =
                     gson.fromJson(
                         corporateScheduleData.get(),
-                        CorporateScheduleResponseDataInfo::class.java
-                    )
-                overViewResponse.responseData()
+                        CorporateScheduleResponseDataInfo::class.java)
+                corporateResponse.responseData()
+                if (notificationStatus.get()) {
+                    setNotificationUpdate(0)
+                } else {
+                    setNotificationUpdate(corporateResponse.notificationPending)
+                }
+                if (feedbackStatus.get()) {
+                    setFeedbackBadgeVisiblity(false)
+                } else {
+                    setFeedbackBadgeVisiblity(corporateResponse.feedbackPending)
+                }
             }
         }
 

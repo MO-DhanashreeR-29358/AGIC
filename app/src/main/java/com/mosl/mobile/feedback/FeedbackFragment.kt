@@ -2,15 +2,19 @@ package com.mosl.mobile.feedback
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.gson.Gson
 import com.jakewharton.rxbinding3.view.clicks
+import com.mosl.app.core.error.ErrorModel
+import com.mosl.app.core.error.ErrorState
 import com.mosl.app.core.events.DataAction
+import com.mosl.app.core.prefs.BooleanPreference
 import com.mosl.commons.data.UiModel
 import com.mosl.commons.data.onFailure
 import com.mosl.commons.data.onSuccess
 import com.mosl.groupiex.section.DataManagerSection
 import com.mosl.mobile.R
+import com.mosl.mobile.annotations.FeedbackStatus
 import com.mosl.mobile.app_user.login.UserManager
 import com.mosl.mobile.app_user.login.user
 import com.mosl.mobile.core.MOSLCommonFragment
@@ -35,6 +39,13 @@ class FeedbackFragment : MOSLCommonFragment(), FeedbackContract {
     private val questionAnswerMap = mutableMapOf<String, FeedbackAnswer>()
     @Inject
     lateinit var userManager: UserManager
+    @Inject
+    lateinit var gson: Gson
+
+    @Inject
+    @field:FeedbackStatus
+    lateinit var feedbackStatus: BooleanPreference
+
     override fun getLayout(): Int {
         return R.layout.fragment_feedback
     }
@@ -43,8 +54,13 @@ class FeedbackFragment : MOSLCommonFragment(), FeedbackContract {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentFeedbackBinding.bind(view)
         setupRecyclerView()
-        presenter.start()
-        dataActionSubject.onNext(DataAction.Fetch)
+        if (feedbackStatus.get()) {
+            renderSuccess()
+        } else {
+            presenter.start()
+            dataActionSubject.onNext(DataAction.Fetch)
+        }
+
     }
 
 
@@ -134,9 +150,22 @@ class FeedbackFragment : MOSLCommonFragment(), FeedbackContract {
             setFeedbackBadgeVisiblity(true)
         }
         uiModel.onSuccess {
-            setFeedbackBadgeVisiblity(false)
-            Toast.makeText(requireContext(),it,Toast.LENGTH_LONG).show()
+            renderSuccess()
+            feedbackStatus.set(true)
         }
+    }
+
+    private fun renderSuccess() {
+        setFeedbackBadgeVisiblity(false)
+        binding.textView.visibility = View.GONE
+        binding.btnSubmit.visibility = View.GONE
+        section.showEmptyView(
+            ErrorModel(
+                SUCCESS_MSG,
+                ErrorState.NO_DATA_ERROR
+            )
+        )
+
     }
 
     override fun getSurveyRequest(): FeedbackRequest {
@@ -144,5 +173,9 @@ class FeedbackFragment : MOSLCommonFragment(), FeedbackContract {
             userId = userManager.user.clientId,
             answers = questionAnswerMap.values.toList()
         )
+    }
+
+    companion object {
+        const val SUCCESS_MSG = "Thank you we have received your valuable feddback"
     }
 }

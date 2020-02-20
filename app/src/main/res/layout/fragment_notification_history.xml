@@ -18,6 +18,7 @@
             android:padding="@dimen/padding_small"
             android:text="@string/txt_lable_notification_history_lable"
             android:textSize="@dimen/text_size_medium"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

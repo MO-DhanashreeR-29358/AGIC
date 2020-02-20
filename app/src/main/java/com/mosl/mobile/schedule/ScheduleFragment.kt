@@ -9,12 +9,15 @@ import com.google.gson.Gson
 import com.mosl.app.core.error.ErrorModel
 import com.mosl.app.core.error.ErrorState
 import com.mosl.app.core.events.DataAction
+import com.mosl.app.core.prefs.BooleanPreference
 import com.mosl.app.core.prefs.StringPreference
 import com.mosl.commons.data.UiModel
 import com.mosl.commons.data.onFailure
 import com.mosl.commons.data.onSuccess
 import com.mosl.groupiex.section.DataManagerSection
 import com.mosl.mobile.R
+import com.mosl.mobile.annotations.FeedbackStatus
+import com.mosl.mobile.annotations.NotificationStatus
 import com.mosl.mobile.annotations.ScheduleData
 import com.mosl.mobile.core.MOSLCommonFragment
 import com.mosl.mobile.databinding.CalendarAddDialogBinding
@@ -55,6 +58,14 @@ class ScheduleFragment : MOSLCommonFragment(), ScheduleContract {
     @Inject
     lateinit var gson: Gson
 
+    @Inject
+    @field:FeedbackStatus
+    lateinit var feedbackStatus: BooleanPreference
+
+    @Inject
+    @field:NotificationStatus
+    lateinit var notificationStatus: BooleanPreference
+
     override fun getLayout(): Int {
         return R.layout.fragment_schedule
     }
@@ -89,6 +100,17 @@ class ScheduleFragment : MOSLCommonFragment(), ScheduleContract {
                 val scheduleResponse: ScheduleResponse =
                     gson.fromJson(scheduleData.get(), ScheduleResponse::class.java)
                 scheduleResponse.responseData()
+
+//               if (notificationStatus.get()) {
+//                    setNotificationUpdate(0)
+//                } else {
+//                    setNotificationUpdate(scheduleResponse.notificationPending)
+//                }
+//                if (feedbackStatus.get()) {
+//                    setFeedbackBadgeVisiblity(false)
+//                } else {
+//                    setFeedbackBadgeVisiblity(scheduleResponse.feedbackPending)
+//                }
             }
 
         }
@@ -97,8 +119,8 @@ class ScheduleFragment : MOSLCommonFragment(), ScheduleContract {
             val json = gson.toJson(it)
             scheduleData.set(json)
             it.responseData()
-            setNotificationUpdate(5)
-            setFeedbackBadgeVisiblity(true)
+//            setNotificationUpdate(it.notificationPending)
+//            setFeedbackBadgeVisiblity(it.feedbackPending)
         }
     }
 

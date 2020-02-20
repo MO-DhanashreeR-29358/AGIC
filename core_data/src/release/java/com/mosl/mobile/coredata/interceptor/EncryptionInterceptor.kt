@@ -70,16 +70,19 @@ class EncryptionInterceptor @Inject constructor(
                     if (headerDate.contains(formatedScheduleDate) && scheduleData.isSet) {
                         scheduleData.delete()
                     }
+
+                }
+
+                if (corporateScheduleDate.isSet)
+                {
                     val formatedCorpScheduleDate = getFormatedDate(
                         corporateScheduleDate.get(),
                         AppDateFormats.DF_JSON_DATE_12,
                         AppDateFormats.DF_JSON_DATE_13
                     )
-
                     if (headerDate.contains(formatedCorpScheduleDate) && corporateScheduleData.isSet) {
                         corporateScheduleData.delete()
                     }
-
                 }
 
                 if (response.code == 200 && last.contains("GetScheduleAPI")) {
@@ -92,7 +95,7 @@ class EncryptionInterceptor @Inject constructor(
                     corporateScheduleDate.set(headerDate)
                 }
 
-                if (response.code == 200 && last.contains("GetNotification")) {
+                if (response.code == 200 && last.contains("NotificationHistory")) {
                     notificationDate.set(headerDate)
                 }
 

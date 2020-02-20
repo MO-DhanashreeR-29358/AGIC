@@ -5,7 +5,10 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.mosl.app.core.error.ErrorModel
+import com.mosl.app.core.error.ErrorState
 import com.mosl.app.core.events.DataAction
+import com.mosl.app.core.prefs.BooleanPreference
 import com.mosl.app.core.prefs.StringPreference
 import com.mosl.commons.data.UiModel
 import com.mosl.commons.data.onFailure
@@ -13,6 +16,7 @@ import com.mosl.commons.data.onSuccess
 import com.mosl.groupiex.section.DataManagerSection
 import com.mosl.mobile.R
 import com.mosl.mobile.annotations.NotificationData
+import com.mosl.mobile.annotations.NotificationStatus
 import com.mosl.mobile.core.MOSLCommonFragment
 import com.mosl.mobile.databinding.FragmentNotificationHistoryBinding
 import com.mosl.mobile.domain.notification.NotificationResponse
@@ -30,6 +34,10 @@ class NotificationHistoryFragment : MOSLCommonFragment(), NotificationContract {
     @Inject
     @field:NotificationData
     lateinit var notificationData: StringPreference
+
+    @Inject
+    @field:NotificationStatus
+    lateinit var notificationStatus: BooleanPreference
 
     @Inject
     lateinit var gson: Gson
@@ -52,9 +60,9 @@ class NotificationHistoryFragment : MOSLCommonFragment(), NotificationContract {
         uiModel.onFailure { error ->
             if (notificationData.isNotSet) {
                 section.showError(error)
+                section.removeHeader()
+                binding.textView.visibility = View.GONE
             } else {
-                section.clearContent()
-                setNotificationUpdate(0)
                 val type = object : TypeToken<List<NotificationResponse>>() {}.type
                 val notificationResponse: List<NotificationResponse> =
                     gson.fromJson(notificationData.get(), type)
@@ -62,17 +70,31 @@ class NotificationHistoryFragment : MOSLCommonFragment(), NotificationContract {
             }
         }
         uiModel.onSuccess {
-            section.clearContent()
-            setNotificationUpdate(0)
             it.responseData()
             val json = gson.toJson(it)
             notificationData.set(json)
+            notificationStatus.set(true)
         }
     }
 
     private fun List<NotificationResponse>.responseData() {
-        for (model in this) {
-            section.add(ItemNotificationChild(model))
+        if (this.isNotEmpty()) {
+            for (model in this) {
+                section.clearContent()
+                setNotificationUpdate(0)
+                binding.textView.visibility = View.VISIBLE
+                section.setHeader(ItemNotificationHeader())
+                section.add(ItemNotificationChild(model))
+            }
+        } else {
+            binding.textView.visibility = View.GONE
+            section.removeHeader()
+            section.showEmptyView(
+                ErrorModel(
+                    NO_DATA_AVAILABLE_FOR_THE_DAY,
+                    ErrorState.NO_DATA_ERROR
+                )
+            )
         }
     }
 
@@ -85,7 +107,9 @@ class NotificationHistoryFragment : MOSLCommonFragment(), NotificationContract {
             setHasFixedSize(true)
             adapter = groupAdapter
         }
-        section.setHeader(ItemNotificationHeader())
+    }
 
+    companion object {
+        const val NO_DATA_AVAILABLE_FOR_THE_DAY = "No data available for the day"
     }
 }
