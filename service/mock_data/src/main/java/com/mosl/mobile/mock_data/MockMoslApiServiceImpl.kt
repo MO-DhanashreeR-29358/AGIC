@@ -10,6 +10,8 @@ import com.mosl.data.api.corporateschedulepager.CorporateScheduleResponseDayItem
 import com.mosl.data.api.demo.LoginInfo
 import com.mosl.data.api.fcm_token.FcmTokenRequest
 import com.mosl.data.api.fcm_token.FcmTokenResponse
+import com.mosl.data.api.feedback.FeedbackRequest
+import com.mosl.data.api.feedback.FeedbackResponseItem
 import com.mosl.data.api.login.LoginInfoRequest
 import com.mosl.data.api.login.LoginInfoResponse
 import com.mosl.data.api.newsletter.NewsLetterResponseItem
@@ -68,7 +70,11 @@ class MockMoslApiServiceImpl(
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun getNotification(notificationRequestInfo: NotificationRequest): Observable<List<NotificationResponseItem>> {
+    override fun getNotification(notificationRequest: NotificationRequest): Observable<List<NotificationResponseItem>> {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun getFeedback(feedbackRequest: FeedbackRequest): Observable<List<FeedbackResponseItem>> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 

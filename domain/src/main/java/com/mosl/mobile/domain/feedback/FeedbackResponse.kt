@@ -12,7 +12,7 @@ data class FeedbackResponse(
     @JvmField val defaultValue: String
 )
 
-data class FeedbackRequest(
+data class FeedbackAnswerRequest(
     @JvmField val userId: String,
     @JvmField val answers: List<FeedbackAnswer>
 )

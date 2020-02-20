@@ -20,46 +20,9 @@ class NotificationRepositoryImpl @Inject constructor(
         return agicApi.getNotification(mapper.getNotificationRequestMap(notPagerInfo)).map {
             mapper.transformNotification(it)
         }
-//        return getList().map {
-//            mapper.transformNotification(it)
-//        }
+
     }
 
-    private fun getList(): Observable<List<NotificationResponseItem>> {
-        return Observable.just(
-            listOf(
-                NotificationResponseItem(
-                    corporateName = "Motilal Oswal AMC",
-                    meetingDateTime = "2020-02-05T14:00:00",
-                    previousDateTime = "",
-                    type = "MeetingCreate",
-                    message = ""
-                ),
-                NotificationResponseItem(
-                    type = "MeetingUpdated",
-                    corporateName = "ICICI AMC",
-                    meetingDateTime = "2020-02-05T14:00:00",
-                    previousDateTime = "2020-02-05T13:00:00",
-                    message = ""
-                ),
-                NotificationResponseItem(
-                    type = "MeetingCancelled",
-                    corporateName = "AXIS BANK LTD",
-                    meetingDateTime = "2020-02-05T14:00:00",
-                    previousDateTime = "",
-                    message = ""
-                ),
-                NotificationResponseItem(
-                    type = "",
-                    corporateName = "MOTILAL OSWAL",
-                    meetingDateTime = "2020-02-05T14:00:00",
-                    previousDateTime = "",
-                    message = "Please have a look at the app for your live schedule for the conference"
-                )
-
-            )
-        )
-    }
 }
 
 

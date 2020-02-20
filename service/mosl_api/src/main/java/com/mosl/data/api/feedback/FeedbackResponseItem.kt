@@ -14,7 +14,7 @@ data class FeedbackResponseItem(
     val questionType: String,
 
     @JvmField @SerializedName("options")
-    val options: List<OptionsResponseItem>,
+    val options: List<OptionsResponseItem>?,
 
     @JvmField @SerializedName("defaultValue")
     val defaultValue: String

@@ -7,6 +7,8 @@ import com.mosl.data.api.corporateschedulepager.CorporateScheduleResponseDayItem
 import com.mosl.data.api.demo.LoginInfo
 import com.mosl.data.api.fcm_token.FcmTokenRequest
 import com.mosl.data.api.fcm_token.FcmTokenResponse
+import com.mosl.data.api.feedback.FeedbackRequest
+import com.mosl.data.api.feedback.FeedbackResponseItem
 import com.mosl.data.api.login.LoginInfoRequest
 import com.mosl.data.api.login.LoginInfoResponse
 import com.mosl.data.api.newsletter.NewsLetterResponseItem
@@ -60,7 +62,11 @@ interface AGICApi {
     fun tokenDeregistration(@Body fcmTokenRequest: FcmTokenRequest): Observable<FcmTokenResponse>
 
     @POST("NotificationHistory")
+    @Headers(CACHE_FOR_4HRS)
     fun getNotification(@Body notificationRequest: NotificationRequest): Observable<List<NotificationResponseItem>>
+
+    @POST("GetFeedbackQuestions")
+    fun getFeedback(@Body feedbackRequest: FeedbackRequest): Observable<List<FeedbackResponseItem>>
 
     @POST("GetCorporateSchedule")
     @Headers(CACHE_FOR_4HRS)

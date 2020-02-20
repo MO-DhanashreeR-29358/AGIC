@@ -6,9 +6,9 @@ data class OptionsResponseItem(
     @JvmField @SerializedName("optionId")
     val optionId: String,
 
-    @JvmField @SerializedName("optionId")
+    @JvmField @SerializedName("optionName")
     val optionName: String,
 
-    @JvmField @SerializedName("optionId")
+    @JvmField @SerializedName("selected")
     val selected: Boolean
 )

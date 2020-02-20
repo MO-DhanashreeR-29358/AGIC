@@ -1,9 +1,7 @@
 package com.mosl.mobile.coredata.interceptor
 
 import com.mosl.app.core.prefs.StringPreference
-import com.mosl.mobile.annotations.LastBytesDate
-import com.mosl.mobile.annotations.LastScheduleDate
-import com.mosl.mobile.annotations.ScheduleData
+import com.mosl.mobile.annotations.*
 import com.mosl.shared.AppDateFormats
 import com.mosl.shared.Encryptor.AESEncryptor
 import com.mosl.shared.util.getFormatedDate
