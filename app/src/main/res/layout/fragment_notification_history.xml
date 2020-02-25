@@ -16,7 +16,7 @@
             android:background="@color/tab_bg_color"
             android:textColor="@color/light_black"
             android:padding="@dimen/padding_small"
-            android:text="@string/txt_lable_notification_history_lable"
+            android:text="@string/txt_label_notification_history_label"
             android:textSize="@dimen/text_size_medium"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"

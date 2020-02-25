@@ -6,8 +6,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/schedule_back"
-        tools:ignore="HardcodedText">
+        android:background="@color/schedule_back">
 
         <TextView
             android:id="@+id/tv_header_date"
@@ -15,7 +14,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="@dimen/padding_small"
-            android:text="Date"
+            android:text="@string/txt_label_date"
             android:textColor="@color/light_black"
             android:textSize="@dimen/text_size_normal"
             app:layout_constraintEnd_toStartOf="@id/guideline2"
@@ -30,7 +29,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="@dimen/padding_small"
-            android:text="Time"
+            android:text="@string/txt_label_time"
             android:textColor="@color/light_black"
             android:textSize="@dimen/text_size_normal"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -46,7 +45,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="@dimen/padding_small"
-            android:text="Corporate"
+            android:text="@string/txt_label_corporate"
             android:textColor="@color/light_black"
             android:textSize="@dimen/text_size_normal"
             app:layout_constraintEnd_toEndOf="parent"

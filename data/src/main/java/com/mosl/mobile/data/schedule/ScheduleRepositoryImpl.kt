@@ -41,7 +41,7 @@ class ScheduleRepositoryImpl @Inject constructor(
 
             .map {
 
-                mapper.getScheduleMap(it.data, it.pdf, it.message)
+                mapper.getScheduleMap(it.data, it.pdf, it.message,it.feedbackPending,it.notificationPending)
             }
     }
 

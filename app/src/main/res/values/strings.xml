@@ -49,7 +49,5 @@
     <string name="text_label_pdf_desc">The Pdf you are about to download is as of 12 AM last night and will not conatin any changes you may have made today</string>-->
 
 
-    <string name="hint_lable_search">Search</string>
-    <string name="btn_lable_submit">Submit</string>
-    <string name="txt_lable_feedback">It is our endeavor to constantly improve, and hence, we request you to provide your valuable feedback</string>
+
 </resources>

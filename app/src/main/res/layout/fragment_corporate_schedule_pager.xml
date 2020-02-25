@@ -15,7 +15,7 @@
             android:layout_marginStart="@dimen/_5sdp"
             android:layout_marginEnd="@dimen/_5sdp"
             android:gravity="center_vertical"
-            android:hint="@string/hint_lable_search"
+            android:hint="@string/hint_label_search"
             android:inputType="text"
             android:minHeight="@dimen/_45sdp"
             android:paddingStart="@dimen/_10sdp"

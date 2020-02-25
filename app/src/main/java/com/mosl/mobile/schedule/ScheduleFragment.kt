@@ -101,16 +101,16 @@ class ScheduleFragment : MOSLCommonFragment(), ScheduleContract {
                     gson.fromJson(scheduleData.get(), ScheduleResponse::class.java)
                 scheduleResponse.responseData()
 
-//               if (notificationStatus.get()) {
-//                    setNotificationUpdate(0)
-//                } else {
-//                    setNotificationUpdate(scheduleResponse.notificationPending)
-//                }
-//                if (feedbackStatus.get()) {
-//                    setFeedbackBadgeVisiblity(false)
-//                } else {
-//                    setFeedbackBadgeVisiblity(scheduleResponse.feedbackPending)
-//                }
+               if (notificationStatus.get()) {
+                    setNotificationUpdate(0)
+                } else {
+                    setNotificationUpdate(scheduleResponse.notificationPending)
+                }
+                if (feedbackStatus.get()) {
+                    setFeedbackBadgeVisiblity(false)
+                } else {
+                    setFeedbackBadgeVisiblity(scheduleResponse.feedbackPending)
+                }
             }
 
         }
@@ -119,8 +119,8 @@ class ScheduleFragment : MOSLCommonFragment(), ScheduleContract {
             val json = gson.toJson(it)
             scheduleData.set(json)
             it.responseData()
-//            setNotificationUpdate(it.notificationPending)
-//            setFeedbackBadgeVisiblity(it.feedbackPending)
+            setNotificationUpdate(it.notificationPending)
+            setFeedbackBadgeVisiblity(it.feedbackPending)
         }
     }
 

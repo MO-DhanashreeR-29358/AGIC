@@ -17,6 +17,8 @@ import com.mosl.groupiex.section.DataManagerSection
 import com.mosl.mobile.R
 import com.mosl.mobile.annotations.NotificationData
 import com.mosl.mobile.annotations.NotificationStatus
+import com.mosl.mobile.app_user.login.UserManager
+import com.mosl.mobile.app_user.login.user
 import com.mosl.mobile.core.MOSLCommonFragment
 import com.mosl.mobile.databinding.FragmentNotificationHistoryBinding
 import com.mosl.mobile.domain.notification.NotificationResponse
@@ -41,6 +43,9 @@ class NotificationHistoryFragment : MOSLCommonFragment(), NotificationContract {
 
     @Inject
     lateinit var gson: Gson
+
+    @Inject
+    lateinit var userManager: UserManager
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -83,7 +88,7 @@ class NotificationHistoryFragment : MOSLCommonFragment(), NotificationContract {
                 section.clearContent()
                 setNotificationUpdate(0)
                 binding.textView.visibility = View.VISIBLE
-                section.setHeader(ItemNotificationHeader())
+                section.setHeader(ItemNotificationHeader(userManager.user.role))
                 section.add(ItemNotificationChild(model))
             }
         } else {
