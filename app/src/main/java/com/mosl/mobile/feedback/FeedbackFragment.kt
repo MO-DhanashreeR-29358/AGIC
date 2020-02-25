@@ -54,12 +54,12 @@ class FeedbackFragment : MOSLCommonFragment(), FeedbackContract {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentFeedbackBinding.bind(view)
         setupRecyclerView()
-//        if (feedbackStatus.get()) {
-//            renderSuccess()
-//        } else {
-        presenter.start()
-        dataActionSubject.onNext(DataAction.Fetch)
-//        }
+        if (!feedbackStatus.get()) {
+            renderSuccess()
+        } else {
+            presenter.start()
+            dataActionSubject.onNext(DataAction.Fetch)
+        }
 
     }
 
@@ -148,19 +148,19 @@ class FeedbackFragment : MOSLCommonFragment(), FeedbackContract {
             section.showError(error)
         }
         uiModel.onSuccess {
-            renderSuccess(it)
-            feedbackStatus.set(true)
+            feedbackStatus.set(false)
+            renderSuccess()
         }
     }
 
-    private fun renderSuccess(message: String) {
-        feedbackStatus.set(false)
+    private fun renderSuccess() {
+
         setFeedbackBadgeVisiblity()
         binding.textView.visibility = View.GONE
         binding.btnSubmit.visibility = View.GONE
         section.showEmptyView(
             ErrorModel(
-                message,
+                SUCCESS_MSG,
                 ErrorState.NO_DATA_ERROR
             )
         )
