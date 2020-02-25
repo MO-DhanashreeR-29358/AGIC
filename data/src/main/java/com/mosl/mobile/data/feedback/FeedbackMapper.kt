@@ -1,12 +1,7 @@
 package com.mosl.mobile.data.feedback
 
-import com.mosl.data.api.feedback.FeedbackRequest
-import com.mosl.data.api.feedback.FeedbackResponseItem
-import com.mosl.data.api.feedback.OptionsResponseItem
-import com.mosl.data.api.notification.NotificationRequest
-import com.mosl.mobile.domain.feedback.FeedbackRequestInfo
-import com.mosl.mobile.domain.feedback.FeedbackResponse
-import com.mosl.mobile.domain.feedback.OptionsResponse
+import com.mosl.data.api.feedback.*
+import com.mosl.mobile.domain.feedback.*
 
 object FeedbackMapper {
     fun transformFeedback(
@@ -46,6 +41,63 @@ object FeedbackMapper {
             ClientID = feedbackRequest.ClientID,
             Role = feedbackRequest.Role
         )
+    }
+
+
+    fun transformSubmitRequest(
+        answerRequest: FeedbackSubmitModel
+    ): SubmitFeedbackRequest {
+        return SubmitFeedbackRequest(
+            userId = answerRequest.userId,
+            role = answerRequest.role,
+            answers = transformAnswer(answerRequest.answers)
+        )
+    }
+
+    fun transformAnswer(
+        responseList: List<FeedbackAnswer>
+    ): List<FeedbackAnswerRequest> {
+        return responseList.map {
+
+            when (it) {
+                is CheckBoxSelected -> {
+                    FeedbackAnswerRequest(
+                        questionId = it.questionId,
+                        value = it.value,
+                        options = transformAnswerOptions(it.options)
+                    )
+                }
+
+                is RatingBarItem -> {
+                    FeedbackAnswerRequest(
+                        questionId = it.questionId,
+                        value = it.value,
+                        options = mutableListOf()
+                    )
+                }
+                is TextInputItem -> {
+                    FeedbackAnswerRequest(
+                        questionId = it.questionId,
+                        value = it.value,
+                        options = mutableListOf()
+                    )
+                }
+
+            }
+
+
+        }
+    }
+
+    fun transformAnswerOptions(
+        optionsList: List<OptionsResponse>
+    ): List<OptionsSubmitItem> {
+        return optionsList.map {
+            OptionsSubmitItem(
+                optionId = it.optionId,
+                selected = it.selected
+            )
+        }
     }
 
 

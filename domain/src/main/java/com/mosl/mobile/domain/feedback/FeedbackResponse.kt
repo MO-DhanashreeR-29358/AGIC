@@ -12,8 +12,9 @@ data class FeedbackResponse(
     @JvmField val defaultValue: String
 )
 
-data class FeedbackAnswerRequest(
+data class FeedbackSubmitModel(
     @JvmField val userId: String,
+    @JvmField val role: String,
     @JvmField val answers: List<FeedbackAnswer>
 )
 

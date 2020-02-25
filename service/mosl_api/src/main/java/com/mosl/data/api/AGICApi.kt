@@ -9,6 +9,7 @@ import com.mosl.data.api.fcm_token.FcmTokenRequest
 import com.mosl.data.api.fcm_token.FcmTokenResponse
 import com.mosl.data.api.feedback.FeedbackRequest
 import com.mosl.data.api.feedback.FeedbackResponseItem
+import com.mosl.data.api.feedback.SubmitFeedbackRequest
 import com.mosl.data.api.login.LoginInfoRequest
 import com.mosl.data.api.login.LoginInfoResponse
 import com.mosl.data.api.newsletter.NewsLetterResponseItem
@@ -67,6 +68,9 @@ interface AGICApi {
 
     @POST("GetFeedbackQuestions")
     fun getFeedback(@Body feedbackRequest: FeedbackRequest): Observable<List<FeedbackResponseItem>>
+
+    @POST("SubmitFeedback")
+    fun submitFeedback(@Body feedbackRequest: SubmitFeedbackRequest): Observable<String>
 
     @POST("GetCorporateSchedule")
     @Headers(CACHE_FOR_4HRS)

@@ -3,10 +3,7 @@ package com.mosl.mobile.data.feedback
 import com.mosl.data.api.AGICApi
 import com.mosl.mobile.app_user.login.UserManager
 import com.mosl.mobile.app_user.login.user
-import com.mosl.mobile.domain.feedback.FeedbackAnswerRequest
-import com.mosl.mobile.domain.feedback.FeedbackRepository
-import com.mosl.mobile.domain.feedback.FeedbackRequestInfo
-import com.mosl.mobile.domain.feedback.FeedbackResponse
+import com.mosl.mobile.domain.feedback.*
 import io.reactivex.Observable
 import javax.inject.Inject
 
@@ -27,8 +24,9 @@ class FeedbackRepositoryImpl @Inject constructor(
         }
     }
 
-    override fun submitFeedback(answer: FeedbackAnswerRequest): Observable<String> {
-        return Observable.just("Sucess")
+    override fun submitFeedback(answer: FeedbackSubmitModel): Observable<String> {
+        val requestInfo = mapper.transformSubmitRequest(answer)
+        return agicApi.submitFeedback(requestInfo)
     }
 
 

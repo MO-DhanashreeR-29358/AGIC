@@ -12,6 +12,7 @@ import com.mosl.data.api.fcm_token.FcmTokenRequest
 import com.mosl.data.api.fcm_token.FcmTokenResponse
 import com.mosl.data.api.feedback.FeedbackRequest
 import com.mosl.data.api.feedback.FeedbackResponseItem
+import com.mosl.data.api.feedback.SubmitFeedbackRequest
 import com.mosl.data.api.login.LoginInfoRequest
 import com.mosl.data.api.login.LoginInfoResponse
 import com.mosl.data.api.newsletter.NewsLetterResponseItem
@@ -75,6 +76,10 @@ class MockMoslApiServiceImpl(
     }
 
     override fun getFeedback(feedbackRequest: FeedbackRequest): Observable<List<FeedbackResponseItem>> {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun submitFeedback(feedbackRequest: SubmitFeedbackRequest): Observable<String> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 

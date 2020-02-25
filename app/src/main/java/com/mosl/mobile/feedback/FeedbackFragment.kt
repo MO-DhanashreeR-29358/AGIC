@@ -168,10 +168,11 @@ class FeedbackFragment : MOSLCommonFragment(), FeedbackContract {
 
     }
 
-    override fun getSurveyRequest(): FeedbackAnswerRequest {
-        return FeedbackAnswerRequest(
+    override fun getSurveyRequest(): FeedbackSubmitModel {
+        return FeedbackSubmitModel(
             userId = userManager.user.clientId,
-            answers = questionAnswerMap.values.toList()
+            answers = questionAnswerMap.values.toList(),
+            role = userManager.user.role
         )
     }
 
