@@ -100,17 +100,6 @@ class ScheduleFragment : MOSLCommonFragment(), ScheduleContract {
                 val scheduleResponse: ScheduleResponse =
                     gson.fromJson(scheduleData.get(), ScheduleResponse::class.java)
                 scheduleResponse.responseData()
-
-               if (notificationStatus.get()) {
-                    setNotificationUpdate(0)
-                } else {
-                    setNotificationUpdate(scheduleResponse.notificationPending)
-                }
-                if (feedbackStatus.get()) {
-                    setFeedbackBadgeVisiblity(false)
-                } else {
-                    setFeedbackBadgeVisiblity(scheduleResponse.feedbackPending)
-                }
             }
 
         }
@@ -119,12 +108,20 @@ class ScheduleFragment : MOSLCommonFragment(), ScheduleContract {
             val json = gson.toJson(it)
             scheduleData.set(json)
             it.responseData()
-            setNotificationUpdate(it.notificationPending)
-            setFeedbackBadgeVisiblity(it.feedbackPending)
         }
     }
 
     private fun ScheduleResponse.responseData() {
+        if (notificationStatus.get()) {
+            setNotificationUpdate(0)
+        } else {
+            setNotificationUpdate(notificationPending)
+        }
+        if (feedbackStatus.get()) {
+            setFeedbackBadgeVisiblity(false)
+        } else {
+            setFeedbackBadgeVisiblity(feedbackPending)
+        }
         pdfLink?.apply {
             userManager.savePdf(this)
         }

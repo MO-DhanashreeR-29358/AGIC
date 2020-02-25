@@ -283,18 +283,10 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
                 val corporateResponse: CorporateScheduleResponseDataInfo =
                     gson.fromJson(
                         corporateScheduleData.get(),
-                        CorporateScheduleResponseDataInfo::class.java)
+                        CorporateScheduleResponseDataInfo::class.java
+                    )
                 corporateResponse.responseData()
-                if (notificationStatus.get()) {
-                    setNotificationUpdate(0)
-                } else {
-                    setNotificationUpdate(corporateResponse.notificationPending)
-                }
-                if (feedbackStatus.get()) {
-                    setFeedbackBadgeVisiblity(false)
-                } else {
-                    setFeedbackBadgeVisiblity(corporateResponse.feedbackPending)
-                }
+
             }
         }
 
@@ -302,8 +294,7 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
             val json = gson.toJson(it)
             corporateScheduleData.set(json)
             it.responseData()
-            setNotificationUpdate(it.notificationPending)
-            setFeedbackBadgeVisiblity(it.feedbackPending)
+
         }
 
         pagerSelection(-1)
@@ -335,6 +326,16 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
     }
 
     private fun CorporateScheduleResponseDataInfo.responseData() {
+        if (notificationStatus.get()) {
+            setNotificationUpdate(0)
+        } else {
+            setNotificationUpdate(notificationPending)
+        }
+        if (feedbackStatus.get()) {
+            setFeedbackBadgeVisiblity(false)
+        } else {
+            setFeedbackBadgeVisiblity(feedbackPending)
+        }
         pdfLink?.apply {
             userManager.savePdf(this)
         }
