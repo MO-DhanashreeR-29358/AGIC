@@ -17,7 +17,7 @@ import com.mosl.commons.data.onFailure
 import com.mosl.commons.data.onSuccess
 import com.mosl.groupiex.section.DataManagerSection
 import com.mosl.mobile.R
-import com.mosl.mobile.annotations.FeedbackStatus
+import com.mosl.mobile.annotations.FeedbackPendingStatus
 import com.mosl.mobile.annotations.NotificationCount
 import com.mosl.mobile.annotations.ScheduleData
 import com.mosl.mobile.core.MOSLCommonFragment
@@ -60,8 +60,8 @@ class ScheduleFragment : MOSLCommonFragment(), ScheduleContract {
     lateinit var gson: Gson
 
     @Inject
-    @field:FeedbackStatus
-    lateinit var feedbackStatus: BooleanPreference
+    @field:FeedbackPendingStatus
+    lateinit var feedbackPendingStatus: BooleanPreference
 
     @Inject
     @field:NotificationCount
@@ -108,7 +108,7 @@ class ScheduleFragment : MOSLCommonFragment(), ScheduleContract {
         uiModel.onSuccess {
             val json = gson.toJson(it)
             scheduleData.set(json)
-            feedbackStatus.set(it.feedbackPending)
+            feedbackPendingStatus.set(it.feedbackPending)
             notificationCount.set(it.notificationPending)
             it.responseData()
         }

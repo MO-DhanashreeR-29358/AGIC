@@ -14,7 +14,7 @@ import com.mosl.commons.data.onFailure
 import com.mosl.commons.data.onSuccess
 import com.mosl.groupiex.section.DataManagerSection
 import com.mosl.mobile.R
-import com.mosl.mobile.annotations.FeedbackStatus
+import com.mosl.mobile.annotations.FeedbackPendingStatus
 import com.mosl.mobile.app_user.login.UserManager
 import com.mosl.mobile.app_user.login.user
 import com.mosl.mobile.core.MOSLCommonFragment
@@ -43,8 +43,8 @@ class FeedbackFragment : MOSLCommonFragment(), FeedbackContract {
     lateinit var gson: Gson
 
     @Inject
-    @field:FeedbackStatus
-    lateinit var feedbackStatus: BooleanPreference
+    @field:FeedbackPendingStatus
+    lateinit var feedbackPendingStatus: BooleanPreference
 
     override fun getLayout(): Int {
         return R.layout.fragment_feedback
@@ -54,7 +54,7 @@ class FeedbackFragment : MOSLCommonFragment(), FeedbackContract {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentFeedbackBinding.bind(view)
         setupRecyclerView()
-        if (!feedbackStatus.get()) {
+        if (!feedbackPendingStatus.get()) {
             renderSuccess()
         } else {
             presenter.start()
@@ -148,7 +148,7 @@ class FeedbackFragment : MOSLCommonFragment(), FeedbackContract {
             section.showError(error)
         }
         uiModel.onSuccess {
-            feedbackStatus.set(false)
+            feedbackPendingStatus.set(false)
             renderSuccess()
         }
     }

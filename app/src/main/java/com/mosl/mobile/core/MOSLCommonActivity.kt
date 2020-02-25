@@ -160,8 +160,8 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
     lateinit var tokenPref: Preference<String>
 
     @Inject
-    @field:FeedbackStatus
-    lateinit var feedbackStatus: BooleanPreference
+    @field:FeedbackPendingStatus
+    lateinit var feedbackPendingStatus: BooleanPreference
 
     @Inject
     lateinit var fcmTokenSyncHelper: FcmTokenSyncHelper
@@ -471,7 +471,7 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
     }
 
     fun FeedbackBadgeVisiblity() {
-        val status = feedbackStatus.get()
+        val status = feedbackPendingStatus.get()
         if (userManager.user.role.equals(ROLE_CLIENT, ignoreCase = true)) {
             if (status && compareDate()) {
                 binding.tabLayout.getTabAt(2)?.orCreateBadge?.number = 1
@@ -610,7 +610,7 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
         overViewData.delete()
         bytesData.delete()
         corporateScheduleData.delete()
-        feedbackStatus.delete()
+        feedbackPendingStatus.delete()
         lastCorporateScheduleDate.delete()
         lastNotificationDate.delete()
         notificationDate.delete()

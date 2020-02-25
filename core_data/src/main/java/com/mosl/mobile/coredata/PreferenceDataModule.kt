@@ -135,7 +135,7 @@ class PreferenceDataModule {
         return StringPreference(prefs, SAVED_TOKEN_REQUEST)
     }
 
-    @FeedbackStatus
+    @FeedbackPendingStatus
     @Singleton
     @Provides
     internal fun provideFeedbackStatus(prefs: SharedPreferences): BooleanPreference {
