@@ -175,6 +175,6 @@ class FeedbackFragment : MOSLCommonFragment(), FeedbackContract {
     }
 
     companion object {
-        const val SUCCESS_MSG = "Thank you we have received your valuable feddback"
+        const val SUCCESS_MSG = "Thank you we have received your valuable feedback"
     }
 }
