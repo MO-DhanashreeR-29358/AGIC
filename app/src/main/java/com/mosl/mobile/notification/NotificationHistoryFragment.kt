@@ -8,15 +8,15 @@ import com.google.gson.reflect.TypeToken
 import com.mosl.app.core.error.ErrorModel
 import com.mosl.app.core.error.ErrorState
 import com.mosl.app.core.events.DataAction
-import com.mosl.app.core.prefs.BooleanPreference
+import com.mosl.app.core.prefs.IntegerPreference
 import com.mosl.app.core.prefs.StringPreference
 import com.mosl.commons.data.UiModel
 import com.mosl.commons.data.onFailure
 import com.mosl.commons.data.onSuccess
 import com.mosl.groupiex.section.DataManagerSection
 import com.mosl.mobile.R
+import com.mosl.mobile.annotations.NotificationCount
 import com.mosl.mobile.annotations.NotificationData
-import com.mosl.mobile.annotations.NotificationStatus
 import com.mosl.mobile.app_user.login.UserManager
 import com.mosl.mobile.app_user.login.user
 import com.mosl.mobile.core.MOSLCommonFragment
@@ -38,8 +38,8 @@ class NotificationHistoryFragment : MOSLCommonFragment(), NotificationContract {
     lateinit var notificationData: StringPreference
 
     @Inject
-    @field:NotificationStatus
-    lateinit var notificationStatus: BooleanPreference
+    @field:NotificationCount
+    lateinit var notificationCount: IntegerPreference
 
     @Inject
     lateinit var gson: Gson
@@ -75,18 +75,18 @@ class NotificationHistoryFragment : MOSLCommonFragment(), NotificationContract {
             }
         }
         uiModel.onSuccess {
-            it.responseData()
             val json = gson.toJson(it)
             notificationData.set(json)
-            notificationStatus.set(true)
+            notificationCount.set(0)
+            it.responseData()
         }
     }
 
     private fun List<NotificationResponse>.responseData() {
         if (this.isNotEmpty()) {
+            setNotificationUpdate()
+            section.clearContent()
             for (model in this) {
-                section.clearContent()
-                setNotificationUpdate(0)
                 binding.textView.visibility = View.VISIBLE
                 section.setHeader(ItemNotificationHeader(userManager.user.role))
                 section.add(ItemNotificationChild(model))

@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import com.mosl.app.core.exception.ServiceFailureException
 import com.mosl.app.core.prefs.BooleanPreference
+import com.mosl.app.core.prefs.IntegerPreference
 import com.mosl.app.core.prefs.StringPreference
 import com.mosl.app.coreui.adapters.ViewPagerAdapter
 import com.mosl.commons.data.UiModel
@@ -19,7 +20,7 @@ import com.mosl.groupiex.section.DataManagerSection
 import com.mosl.mobile.R
 import com.mosl.mobile.annotations.CorporateScheduleData
 import com.mosl.mobile.annotations.FeedbackStatus
-import com.mosl.mobile.annotations.NotificationStatus
+import com.mosl.mobile.annotations.NotificationCount
 import com.mosl.mobile.app_user.login.user
 import com.mosl.mobile.core.MOSLCommonPager
 import com.mosl.mobile.corporateschedule.CorporateScheduleFragment
@@ -69,8 +70,8 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
     lateinit var feedbackStatus: BooleanPreference
 
     @Inject
-    @field:NotificationStatus
-    lateinit var notificationStatus: BooleanPreference
+    @field:NotificationCount
+    lateinit var notificationCount: IntegerPreference
 
     private var time: String = ""
 
@@ -293,6 +294,8 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
         uiModel.onSuccess {
             val json = gson.toJson(it)
             corporateScheduleData.set(json)
+            feedbackStatus.set(it.feedbackPending)
+            notificationCount.set(it.notificationPending)
             it.responseData()
 
         }
@@ -326,16 +329,8 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
     }
 
     private fun CorporateScheduleResponseDataInfo.responseData() {
-        if (notificationStatus.get()) {
-            setNotificationUpdate(0)
-        } else {
-            setNotificationUpdate(notificationPending)
-        }
-        if (feedbackStatus.get()) {
-            setFeedbackBadgeVisiblity(false)
-        } else {
-            setFeedbackBadgeVisiblity(feedbackPending)
-        }
+        setNotificationUpdate()
+        setFeedbackBadgeVisiblity()
         pdfLink?.apply {
             userManager.savePdf(this)
         }

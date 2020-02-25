@@ -73,15 +73,14 @@ open class MOSLCommonFragment : BaseFragment() {
     }
 
     fun setNotificationUpdate(
-        count: Int
     ) {
-        (requireActivity() as MOSLCommonActivity).setNotificationUpdate(count)
+        (requireActivity() as MOSLCommonActivity).setNotificationUpdate()
     }
 
     fun setFeedbackBadgeVisiblity(
-        status: Boolean
+
     ) {
-        (requireActivity() as MOSLCommonActivity).FeedbackBadgeVisiblity(status)
+        (requireActivity() as MOSLCommonActivity).FeedbackBadgeVisiblity()
     }
 
     @CallSuper

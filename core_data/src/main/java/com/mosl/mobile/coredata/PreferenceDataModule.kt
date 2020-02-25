@@ -7,6 +7,7 @@ import com.f2prateek.rx.preferences2.RxSharedPreferences
 import com.mosl.annotations.FcmToken
 import com.mosl.annotations.FcmTokenRequest
 import com.mosl.app.core.prefs.BooleanPreference
+import com.mosl.app.core.prefs.IntegerPreference
 import com.mosl.app.core.prefs.StringPreference
 import com.mosl.mobile.annotations.*
 import com.mosl.mobile.app_user.*
@@ -140,10 +141,10 @@ class PreferenceDataModule {
     internal fun provideFeedbackStatus(prefs: SharedPreferences): BooleanPreference {
         return BooleanPreference(prefs, FEEDBACK_STATUS)
     }
-    @NotificationStatus
+    @NotificationCount
     @Singleton
     @Provides
-    internal fun provideNotificationStatus(prefs: SharedPreferences): BooleanPreference {
-        return BooleanPreference(prefs, NOTIFICATION_STATUS)
+    internal fun provideNotificationStatus(prefs: SharedPreferences): IntegerPreference {
+        return IntegerPreference(prefs, NOTIFICATION_COUNT)
     }
 }

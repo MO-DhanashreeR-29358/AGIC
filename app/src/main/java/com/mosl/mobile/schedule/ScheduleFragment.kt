@@ -10,6 +10,7 @@ import com.mosl.app.core.error.ErrorModel
 import com.mosl.app.core.error.ErrorState
 import com.mosl.app.core.events.DataAction
 import com.mosl.app.core.prefs.BooleanPreference
+import com.mosl.app.core.prefs.IntegerPreference
 import com.mosl.app.core.prefs.StringPreference
 import com.mosl.commons.data.UiModel
 import com.mosl.commons.data.onFailure
@@ -17,7 +18,7 @@ import com.mosl.commons.data.onSuccess
 import com.mosl.groupiex.section.DataManagerSection
 import com.mosl.mobile.R
 import com.mosl.mobile.annotations.FeedbackStatus
-import com.mosl.mobile.annotations.NotificationStatus
+import com.mosl.mobile.annotations.NotificationCount
 import com.mosl.mobile.annotations.ScheduleData
 import com.mosl.mobile.core.MOSLCommonFragment
 import com.mosl.mobile.databinding.CalendarAddDialogBinding
@@ -63,8 +64,8 @@ class ScheduleFragment : MOSLCommonFragment(), ScheduleContract {
     lateinit var feedbackStatus: BooleanPreference
 
     @Inject
-    @field:NotificationStatus
-    lateinit var notificationStatus: BooleanPreference
+    @field:NotificationCount
+    lateinit var notificationCount: IntegerPreference
 
     override fun getLayout(): Int {
         return R.layout.fragment_schedule
@@ -107,21 +108,15 @@ class ScheduleFragment : MOSLCommonFragment(), ScheduleContract {
         uiModel.onSuccess {
             val json = gson.toJson(it)
             scheduleData.set(json)
+            feedbackStatus.set(it.feedbackPending)
+            notificationCount.set(it.notificationPending)
             it.responseData()
         }
     }
 
     private fun ScheduleResponse.responseData() {
-        if (notificationStatus.get()) {
-            setNotificationUpdate(0)
-        } else {
-            setNotificationUpdate(notificationPending)
-        }
-        if (feedbackStatus.get()) {
-            setFeedbackBadgeVisiblity(false)
-        } else {
-            setFeedbackBadgeVisiblity(feedbackPending)
-        }
+        setNotificationUpdate()
+        setFeedbackBadgeVisiblity()
         pdfLink?.apply {
             userManager.savePdf(this)
         }

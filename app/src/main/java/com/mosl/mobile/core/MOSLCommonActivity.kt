@@ -38,6 +38,7 @@ import com.mosl.app.core.error.getErrorOnFailure
 import com.mosl.app.core.network.NetworkChangeEvent
 import com.mosl.app.core.network.NetworkReceiver
 import com.mosl.app.core.prefs.BooleanPreference
+import com.mosl.app.core.prefs.IntegerPreference
 import com.mosl.app.core.prefs.StringPreference
 import com.mosl.app.core.rx.applyUiModel
 import com.mosl.app.core.utils.getUuid
@@ -143,8 +144,8 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
     lateinit var notificationDate: StringPreference
 
     @Inject
-    @field:NotificationStatus
-    lateinit var notificationStatus: BooleanPreference
+    @field:NotificationCount
+    lateinit var notificationCount: IntegerPreference
 
     @Inject
     @field:LastBytesData
@@ -450,7 +451,8 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
         setNotificationTab()
     }
 
-    fun setNotificationUpdate(count: Int) {
+    fun setNotificationUpdate() {
+        val count = notificationCount.get()
         if (count > 0) {
             if (userManager.user.role.equals(ROLE_CLIENT, ignoreCase = true)) {
                 binding.tabLayout.getTabAt(3)?.orCreateBadge?.number = count
@@ -468,7 +470,8 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
         }
     }
 
-    fun FeedbackBadgeVisiblity(status: Boolean) {
+    fun FeedbackBadgeVisiblity() {
+        val status = feedbackStatus.get()
         if (userManager.user.role.equals(ROLE_CLIENT, ignoreCase = true)) {
             if (status && compareDate()) {
                 binding.tabLayout.getTabAt(2)?.orCreateBadge?.number = 1
@@ -611,7 +614,7 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
         lastCorporateScheduleDate.delete()
         lastNotificationDate.delete()
         notificationDate.delete()
-        notificationStatus.delete()
+        notificationCount.delete()
     }
 
     private fun doLogout() {
