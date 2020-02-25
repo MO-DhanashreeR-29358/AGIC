@@ -53,15 +53,6 @@ class CorporateScheduleFragment : MOSLCommonFragment(), CorporateChildContract {
         return R.layout.fragment_overview_child
     }
 
-
-    fun newInstance(shiftTiming: String): CorporateScheduleFragment {
-        val fragmentFirst = CorporateScheduleFragment()
-        val args = Bundle()
-        args.putString("shiftTiming", shiftTiming)
-        fragmentFirst.setArguments(args)
-        return fragmentFirst
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentOverviewChildBinding.bind(view)
@@ -112,7 +103,7 @@ class CorporateScheduleFragment : MOSLCommonFragment(), CorporateChildContract {
 
     override fun renderPage(
         uiModel: UiModel<List<CorporateScheduleResponseDayItemInfo>>,
-        shiftTimingSearch: String
+        shiftTime: String
     ) {
         toggleProgressBar(uiModel.inProgress)
         uiModel.onFailure { error ->
@@ -121,10 +112,7 @@ class CorporateScheduleFragment : MOSLCommonFragment(), CorporateChildContract {
         uiModel.onSuccess {
             section.clearContent()
 
-
-            Log.d("shiftTimingSearch", shiftTimingSearch)
-
-            if (shiftTimingSearch.equals("")) {
+            if (shiftTime.equals("")) {
                 val currentDate = AppDateFormats.df_Date6.format(Date())
                 val dayArr = userManager.user.day
                 val separate1 = dayArr.split(",").toTypedArray()
@@ -145,7 +133,7 @@ class CorporateScheduleFragment : MOSLCommonFragment(), CorporateChildContract {
                 else
                     selection(it, false)
             } else {
-                selectionSearch(it, true, shiftTimingSearch)
+                selectionSearch(it,  shiftTime)
             }
         }
     }
@@ -180,8 +168,7 @@ class CorporateScheduleFragment : MOSLCommonFragment(), CorporateChildContract {
 
     fun selectionSearch(
         it: List<CorporateScheduleResponseDayItemInfo>,
-        coll: Boolean,
-        shiftTimingSearch: String
+        shiftTime: String
     ) {
         val sortedList = it.sortedWith(compareBy({ it.shiftTiming }))
         var currentTimeBetween = false
@@ -190,13 +177,11 @@ class CorporateScheduleFragment : MOSLCommonFragment(), CorporateChildContract {
         for ((i, model) in sortedList.withIndex()) {
 
             val startTime = (model.shiftTiming)
-            val shiftTimingSearchN = (shiftTimingSearch)
-
+            val shiftTimingSearchN = (shiftTime)
             if (startTime.equals(shiftTimingSearchN) && !currentTimeBetween) {
                 currentTimeBetween = true
                 currentPosition = i
             }
-
             if (currentTimeBetween)
                 section.add(ItemCorporateSchedule(model, followUpUiEvent, currentPosition))
             else
