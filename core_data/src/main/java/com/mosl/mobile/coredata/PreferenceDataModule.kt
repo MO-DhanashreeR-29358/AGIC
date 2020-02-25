@@ -89,7 +89,7 @@ class PreferenceDataModule {
     @Singleton
     @Provides
     internal fun provideNotificationDataPref(prefs: SharedPreferences): StringPreference {
-        return StringPreference(prefs, OVERVIEW_DATA_KEY, "")
+        return StringPreference(prefs, NOTIFICATION_DATA_KEY, "")
     }
 
     @CorporateScheduleData
