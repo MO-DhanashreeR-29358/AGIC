@@ -123,13 +123,14 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
 
 
                 if (p0.length > 0) {
-                    overViewDayWiseListData!!.forEach { event ->
+                    overViewDayWiseListData.forEach { event ->
 
                         for (x in 0..event.size - 1) {
 
                             for (y in 0..((event[x].Attendees).size - 1)) {
 
-                                if (event[x].Attendees[y].FundName.toLowerCase().contains(p0.toString().toLowerCase())) {
+                                if (event[x].Attendees[y].FundName.toLowerCase(locale = Locale.ENGLISH)
+                                        .contains(p0.toString().toLowerCase(locale = Locale.ENGLISH))) {
 
                                     val searchItem: SearchCorporateScheduleItemInfo
 
@@ -151,8 +152,8 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
 
                                     for (z in 0..((event[x].Attendees[y].representative).size - 1)) {
 
-                                        if (event[x].Attendees[y].representative[z].name.toLowerCase().contains(
-                                                p0.toString().toLowerCase()
+                                        if (event[x].Attendees[y].representative[z].name.toLowerCase(locale = Locale.ENGLISH).contains(
+                                                p0.toString().toLowerCase(locale = Locale.ENGLISH)
                                             )
                                         ) {
                                             val searchItem: SearchCorporateScheduleItemInfo
