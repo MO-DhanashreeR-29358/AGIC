@@ -27,6 +27,7 @@ import com.mosl.mobile.databinding.ActivitySplashScreenBinding
 import com.mosl.mobile.login.LoginActivity
 import com.mosl.mobile.newsletter.NewsLetterActivity
 import dagger.android.AndroidInjection
+import java.util.*
 import javax.inject.Inject
 
 
@@ -59,16 +60,9 @@ class SplashActivity : LeanBaseActivity() {
         super.onCreate(savedInstanceState)
         AndroidInjection.inject(this)
         binding = ActivitySplashScreenBinding.bind(findViewById(R.id.splash_layout))
-
-        //Initialize the Handler
-
-        //Navigate with delay
-
-//        mDelayHandler!!.postDelayed(mRunnable, SPLASH_DELAY)
-
         val splashImageUrl = getSplashImageUrl()
         loadSplashImage(splashImageUrl)
-
+        setupView()
         mDelayHandler.postDelayed(
             { checkNetwork() },
             (if (splashImageUrl == null) 0 else SPLASH_DELAY).toLong()
@@ -92,6 +86,13 @@ class SplashActivity : LeanBaseActivity() {
         }
     }
 
+    fun setupView() {
+        binding.txtAppInfo.text = java.lang.String.format(
+            Locale.ENGLISH, "App Version : %s(%d)", BuildConfig.VERSION_NAME,
+            BuildConfig.VERSION_CODE)
+
+    }
+
 
     override fun attachBaseContext(base: Context) {
         super.attachBaseContext(LocaleManager.withLocale(base))
@@ -99,7 +100,6 @@ class SplashActivity : LeanBaseActivity() {
 
     private fun checkNetwork() {
         if (this.isNetworkConnected()) {
-//            initializeApp()
             checkVersion()
         } else {
             if (userManager.isLoggedIn()) {
@@ -251,19 +251,4 @@ class SplashActivity : LeanBaseActivity() {
         val CONTINUE = "Continue"
         val GOOGLE_PLAY_URL = "https://play.google.com/store/apps/details?id=com.mosl.tabapp"
     }
-
-//    internal val mRunnable: Runnable = Runnable {
-//        if (!isFinishing) {
-//            if (splashImgUrl.isNotSet) {
-//                retrieveFromRemoteConfig()
-//            } else
-//                Glide.with(this)
-//                    .load(splashImgUrl.get())
-//                    .into(binding.ivSplash)
-//            checkNetwork()
-//
-////            checkNetwork()
-//
-//        }
-//    }
 }

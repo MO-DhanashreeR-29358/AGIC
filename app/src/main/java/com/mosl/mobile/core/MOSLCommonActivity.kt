@@ -37,6 +37,7 @@ import com.mosl.app.core.data.fcm.FcmTokenSyncHelper
 import com.mosl.app.core.error.getErrorOnFailure
 import com.mosl.app.core.network.NetworkChangeEvent
 import com.mosl.app.core.network.NetworkReceiver
+import com.mosl.app.core.prefs.BooleanPreference
 import com.mosl.app.core.prefs.StringPreference
 import com.mosl.app.core.rx.applyUiModel
 import com.mosl.app.core.utils.getUuid
@@ -130,6 +131,20 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
     @Inject
     @field:CorporateScheduleData
     lateinit var corporateScheduleData: StringPreference
+    @Inject
+    @field:LastCorporateScheduleDate
+    lateinit var lastCorporateScheduleDate: StringPreference
+
+    @Inject
+    @field:LastNotificationDate
+    lateinit var lastNotificationDate: StringPreference
+    @Inject
+    @field:NotificationData
+    lateinit var notificationDate: StringPreference
+
+    @Inject
+    @field:NotificationStatus
+    lateinit var notificationStatus: BooleanPreference
 
     @Inject
     @field:LastBytesData
@@ -142,6 +157,10 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
     @Inject
     @field:FcmToken
     lateinit var tokenPref: Preference<String>
+
+    @Inject
+    @field:FeedbackStatus
+    lateinit var feedbackStatus: BooleanPreference
 
     @Inject
     lateinit var fcmTokenSyncHelper: FcmTokenSyncHelper
@@ -569,13 +588,6 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
 
 
         bindingDialog.btnLogout.setOnClickListener {
-            lastScheduleDate.delete()
-            imageSplashUrl.delete()
-            lastBytesDate.delete()
-            scheduleData.delete()
-            panelData.delete()
-            overViewData.delete()
-            bytesData.delete()
             doLogout()
             mAlertDialog.dismiss()
         }
@@ -584,6 +596,22 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
             //dismiss dialog
             mAlertDialog.dismiss()
         }
+    }
+
+    private fun preferenceClear() {
+        lastScheduleDate.delete()
+        imageSplashUrl.delete()
+        lastBytesDate.delete()
+        scheduleData.delete()
+        panelData.delete()
+        overViewData.delete()
+        bytesData.delete()
+        corporateScheduleData.delete()
+        feedbackStatus.delete()
+        lastCorporateScheduleDate.delete()
+        lastNotificationDate.delete()
+        notificationDate.delete()
+        notificationStatus.delete()
     }
 
     private fun doLogout() {
@@ -606,9 +634,8 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
                 toggleProgressBar(uiModel.inProgress)
 
                 uiModel.onSuccess {
-                    Timber.d("Logout Successfully")
-
                     openLogin()
+                    preferenceClear()
                 }
 
                 uiModel.onFailure { error ->
