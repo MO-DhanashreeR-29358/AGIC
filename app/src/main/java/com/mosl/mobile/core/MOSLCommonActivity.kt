@@ -37,7 +37,7 @@ import com.mosl.app.core.data.fcm.FcmTokenSyncHelper
 import com.mosl.app.core.error.getErrorOnFailure
 import com.mosl.app.core.network.NetworkChangeEvent
 import com.mosl.app.core.network.NetworkReceiver
-import com.mosl.app.core.prefs.BooleanPreference
+import com.mosl.app.core.network.isNetworkConnected
 import com.mosl.app.core.prefs.IntegerPreference
 import com.mosl.app.core.prefs.StringPreference
 import com.mosl.app.core.rx.applyUiModel
@@ -161,7 +161,7 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
 
     @Inject
     @field:FeedbackPendingStatus
-    lateinit var feedbackPendingStatus: BooleanPreference
+    lateinit var feedbackPendingStatus: StringPreference
 
     @Inject
     lateinit var fcmTokenSyncHelper: FcmTokenSyncHelper
@@ -227,16 +227,14 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
         }
     }
 
-//    var imageArray = arrayOf(R.drawable.agic_agic, R.drawable.agic_15);
-
-
     fun changeImage() {
 
         val handler = Handler()
         val runnable = object : Runnable {
-
             override fun run() {
-                ImageViewAnimatedChange()
+                if (isNetworkConnected()) {
+                    ImageViewAnimatedChange()
+                }
                 handler.postDelayed(this, 20000)
             }
         }
@@ -471,7 +469,11 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
     }
 
     fun FeedbackBadgeVisiblity() {
-        val status = feedbackPendingStatus.get()
+        val status = if (feedbackPendingStatus.get().equals("true", ignoreCase = true)) {
+            true
+        } else {
+            false
+        }
         if (userManager.user.role.equals(ROLE_CLIENT, ignoreCase = true)) {
             if (status && compareDate()) {
                 binding.tabLayout.getTabAt(2)?.orCreateBadge?.number = 1
@@ -602,19 +604,19 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
     }
 
     private fun preferenceClear() {
-        lastScheduleDate.delete()
-        imageSplashUrl.delete()
-        lastBytesDate.delete()
-        scheduleData.delete()
-        panelData.delete()
-        overViewData.delete()
-        bytesData.delete()
-        corporateScheduleData.delete()
-        feedbackPendingStatus.delete()
-        lastCorporateScheduleDate.delete()
-        lastNotificationDate.delete()
-        notificationDate.delete()
-        notificationCount.delete()
+        lastScheduleDate.set("")
+        imageSplashUrl.set("")
+        lastBytesDate.set("")
+        scheduleData.set("")
+        panelData.set("")
+        overViewData.set("")
+        bytesData.set("")
+        corporateScheduleData.set("")
+        feedbackPendingStatus.set("")
+        lastCorporateScheduleDate.set("")
+        lastNotificationDate.set("")
+        notificationDate.set("")
+        notificationCount.set(0)
     }
 
     private fun doLogout() {

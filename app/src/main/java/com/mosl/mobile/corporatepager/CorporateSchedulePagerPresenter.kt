@@ -21,7 +21,7 @@ class CorporateSchedulePagerPresenter @Inject constructor(
 
     override fun start() {
 
-        val notificationDateDate = if (lLastNotificationDate.isNotSet) {
+        val notificationDateDate = if (lLastNotificationDate.get().isEmpty()) {
             NEW
         } else {
             getMilliFromDate(lLastNotificationDate.get(), AppDateFormats.DF_JSON_DATE_12)

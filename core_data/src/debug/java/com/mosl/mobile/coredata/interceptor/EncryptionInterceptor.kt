@@ -58,8 +58,7 @@ class EncryptionInterceptor @Inject constructor(
             try {
                 val strResponse = response.body
                 val headerDate = response.header("Date") ?: ""
-                if (scheduleDate.isSet) {
-
+                if (scheduleDate.get().isNotEmpty()) {
                     val formatedScheduleDate = getFormatedDate(
                         scheduleDate.get(),
                         AppDateFormats.DF_JSON_DATE_12,
@@ -71,7 +70,7 @@ class EncryptionInterceptor @Inject constructor(
                     }
                 }
 
-                if (corporateScheduleDate.isSet)
+                if (corporateScheduleDate.get().isNotEmpty())
                 {
                     val formatedCorpScheduleDate = getFormatedDate(
                         corporateScheduleDate.get(),

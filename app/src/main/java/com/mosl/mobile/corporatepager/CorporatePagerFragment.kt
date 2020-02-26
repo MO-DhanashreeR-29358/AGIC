@@ -67,7 +67,7 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
 
     @Inject
     @field:FeedbackPendingStatus
-    lateinit var feedbackPendingStatus: BooleanPreference
+    lateinit var feedbackPendingStatus: StringPreference
 
     @Inject
     @field:NotificationCount
@@ -279,8 +279,9 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
 
         toggleProgressBar(uiModel.inProgress)
         uiModel.onFailure {
-            if (corporateScheduleData.isNotSet) {
+            if (corporateScheduleData.get().isEmpty()) {
                 tabPublishSubject.onNext(SchedulePagerAction.PagerClick(UiModel.error(it)))
+                feedbackPendingStatus.set("")
             } else {
                 val corporateResponse: CorporateScheduleResponseDataInfo =
                     gson.fromJson(
@@ -295,7 +296,7 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
         uiModel.onSuccess {
             val json = gson.toJson(it)
             corporateScheduleData.set(json)
-            feedbackPendingStatus.set(it.feedbackPending)
+            feedbackPendingStatus.set(it.feedbackPending.toString())
             notificationCount.set(it.notificationPending)
             it.responseData()
 

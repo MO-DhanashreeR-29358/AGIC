@@ -1,6 +1,5 @@
 package com.mosl.mobile.core
 
-import android.net.Uri
 import android.os.Bundle
 import androidx.annotation.CallSuper
 import com.mosl.app.core.events.DataAction
@@ -29,29 +28,11 @@ open class MOSLCommonFragment : BaseFragment() {
         return dataActionSubject.filter { event -> event === DataAction.Refresh }
     }
 
-    /* fun isLoggedIn(): Boolean {
-       return userManager.isLoggedIn()
-     }*/
-
-    /* fun isMFICustomer(): Boolean {
-       return userManager.isMFICustomer()
-     }*/
-
-    /* fun isMFDCustomer(): Boolean {
-       return userManager.isMFDCustomer()
-     }*/
-
     fun pageNotAccessible() {
         screenNavigator.pageNotAccessible()
     }
 
-    fun openWebUrl(url: Uri) {
-//    requireContext().openWebUrl(url)
-    }
 
-    /*
-    Navigation Handling
-     */
     fun navigateTo(
         id: Int,
         bundle: Bundle,

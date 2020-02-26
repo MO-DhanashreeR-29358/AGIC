@@ -6,6 +6,7 @@ import com.mosl.mobile.app_user.login.UserManager
 import com.mosl.mobile.app_user.login.user
 import com.mosl.mobile.domain.notification.NotificationRepository
 import com.mosl.mobile.domain.notification.NotificationRequestInfo
+import io.reactivex.Observable
 import javax.inject.Inject
 
 class NotificationPresenter @Inject constructor(
@@ -21,8 +22,7 @@ class NotificationPresenter @Inject constructor(
             Role = userManager.user.role
         )
 
-
-        onFetchCalled()
+        Observable.merge(onFetchCalled(), onRetryCalled())
             .switchMap {
                 repository.getNotificationData(objNotificationRequestInfo)
             }

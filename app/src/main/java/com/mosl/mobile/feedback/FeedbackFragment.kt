@@ -8,7 +8,7 @@ import com.jakewharton.rxbinding3.view.clicks
 import com.mosl.app.core.error.ErrorModel
 import com.mosl.app.core.error.ErrorState
 import com.mosl.app.core.events.DataAction
-import com.mosl.app.core.prefs.BooleanPreference
+import com.mosl.app.core.prefs.StringPreference
 import com.mosl.commons.data.UiModel
 import com.mosl.commons.data.onFailure
 import com.mosl.commons.data.onSuccess
@@ -44,7 +44,7 @@ class FeedbackFragment : MOSLCommonFragment(), FeedbackContract {
 
     @Inject
     @field:FeedbackPendingStatus
-    lateinit var feedbackPendingStatus: BooleanPreference
+    lateinit var feedbackPendingStatus: StringPreference
 
     override fun getLayout(): Int {
         return R.layout.fragment_feedback
@@ -54,7 +54,7 @@ class FeedbackFragment : MOSLCommonFragment(), FeedbackContract {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentFeedbackBinding.bind(view)
         setupRecyclerView()
-        if (!feedbackPendingStatus.get()) {
+        if (feedbackPendingStatus.get().equals("false",ignoreCase = true)) {
             renderSuccess()
         } else {
             presenter.start()
@@ -100,6 +100,8 @@ class FeedbackFragment : MOSLCommonFragment(), FeedbackContract {
         toggleProgressBar(uiModel.inProgress)
         uiModel.onFailure { error ->
             section.showError(error)
+            binding.textView.visibility = View.GONE
+            binding.btnSubmit.visibility = View.GONE
         }
         uiModel.onSuccess {
             section.clearContent()
@@ -143,12 +145,12 @@ class FeedbackFragment : MOSLCommonFragment(), FeedbackContract {
     }
 
     override fun renderSubmit(uiModel: UiModel<String>) {
-        toggleProgressBar(uiModel.inProgress)
+        section.toggleProgress(uiModel.inProgress)
         uiModel.onFailure { error ->
             section.showError(error)
         }
         uiModel.onSuccess {
-            feedbackPendingStatus.set(false)
+            feedbackPendingStatus.set("false")
             renderSuccess()
         }
     }
@@ -165,6 +167,10 @@ class FeedbackFragment : MOSLCommonFragment(), FeedbackContract {
             )
         )
 
+    }
+
+    override fun isDataEmpty(): Boolean {
+        return section.isDataEmpty
     }
 
     override fun getSurveyRequest(): FeedbackSubmitModel {

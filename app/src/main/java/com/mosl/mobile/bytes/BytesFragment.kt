@@ -84,7 +84,7 @@ class BytesFragment : MOSLCommonFragment(), BytesContract {
     override fun renderData(uiModel: UiModel<List<BytesResponse>>) {
         binding.swipeRefresh.toggleProgressBar(section, uiModel.inProgress)
         uiModel.onFailure { it ->
-            if (bytesData.isNotSet) {
+            if (bytesData.get().isEmpty()) {
                 section.showError(it)
             } else {
                 val type = object : TypeToken<List<BytesResponse>>() {}.type
@@ -97,7 +97,7 @@ class BytesFragment : MOSLCommonFragment(), BytesContract {
         uiModel.onSuccess {
 
             if (it.isEmpty()) {
-                if (bytesData.isSet) {
+                if (bytesData.get().isNotEmpty()) {
                     val type = object : TypeToken<MutableList<BytesResponse>>() {}.type
                     val bytesResponse: MutableList<BytesResponse> =
                         gson.fromJson(bytesData.get(), type)
@@ -108,7 +108,7 @@ class BytesFragment : MOSLCommonFragment(), BytesContract {
                     bytesData.set(json)
                 }
             } else {
-                if (bytesData.isSet) {
+                if (bytesData.get().isNotEmpty()) {
                     val type = object : TypeToken<MutableList<BytesResponse>>() {}.type
                     val bytesResponse: MutableList<BytesResponse> =
                         gson.fromJson(bytesData.get(), type)

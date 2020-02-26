@@ -108,7 +108,7 @@ class PanelFragment : MOSLCommonPager(), PanelView {
         toggleProgressBar(uiModel.inProgress)
 
         uiModel.onFailure { error ->
-            if (panelData.isNotSet) {
+            if (panelData.get().isEmpty()) {
 
                 tabPublishSubject.onNext(UiModel.error(error))
             } else {

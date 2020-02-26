@@ -61,9 +61,9 @@ class NotificationHistoryFragment : MOSLCommonFragment(), NotificationContract {
 
 
     override fun render(uiModel: UiModel<List<NotificationResponse>>) {
-        toggleProgressBar(uiModel.inProgress)
+        section.toggleProgress(uiModel.inProgress)
         uiModel.onFailure { error ->
-            if (notificationData.isNotSet) {
+            if (notificationData.get().isEmpty()) {
                 section.showError(error)
                 section.removeHeader()
                 binding.textView.visibility = View.GONE
@@ -112,6 +112,10 @@ class NotificationHistoryFragment : MOSLCommonFragment(), NotificationContract {
             setHasFixedSize(true)
             adapter = groupAdapter
         }
+    }
+
+    override fun isDataEmpty(): Boolean {
+        return true
     }
 
     companion object {

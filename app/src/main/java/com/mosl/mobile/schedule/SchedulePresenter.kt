@@ -17,8 +17,7 @@ class SchedulePresenter @Inject constructor(
 
         Observable.merge(onFetchCalled(), onRetryCalled()).switchMap {
             repository.getScheduleData()
-        }
-            .compose(applyUiModel())
+        }.compose(applyUiModel())
             .subscribe {
                 view.renderScheduleData(it)
             }.addTo(disposable)

@@ -26,7 +26,7 @@ class ScheduleRepositoryImpl @Inject constructor(
 
     override fun getScheduleData(): Observable<ScheduleResponse> {
 
-        val date = if (scheduleDate.isNotSet) {
+        val date = if (scheduleDate.get().isEmpty()) {
             NEW
         } else
             getFormatedDate(scheduleDate.get(), DF_JSON_DATE_12, DF_TIME_HH_ss)

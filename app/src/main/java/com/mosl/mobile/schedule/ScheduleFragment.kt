@@ -61,7 +61,7 @@ class ScheduleFragment : MOSLCommonFragment(), ScheduleContract {
 
     @Inject
     @field:FeedbackPendingStatus
-    lateinit var feedbackPendingStatus: BooleanPreference
+    lateinit var feedbackPendingStatus: StringPreference
 
     @Inject
     @field:NotificationCount
@@ -93,10 +93,11 @@ class ScheduleFragment : MOSLCommonFragment(), ScheduleContract {
     }
 
     override fun renderScheduleData(uiModel: UiModel<ScheduleResponse>) {
-        toggleProgressBar(uiModel.inProgress)
+        section.toggleProgress(uiModel.inProgress)
         uiModel.onFailure { it ->
-            if (scheduleData.isNotSet) {
+            if (scheduleData.get().isEmpty()) {
                 section.showError(it)
+                feedbackPendingStatus.set("")
             } else {
                 val scheduleResponse: ScheduleResponse =
                     gson.fromJson(scheduleData.get(), ScheduleResponse::class.java)
@@ -108,7 +109,7 @@ class ScheduleFragment : MOSLCommonFragment(), ScheduleContract {
         uiModel.onSuccess {
             val json = gson.toJson(it)
             scheduleData.set(json)
-            feedbackPendingStatus.set(it.feedbackPending)
+            feedbackPendingStatus.set(it.feedbackPending.toString())
             notificationCount.set(it.notificationPending)
             it.responseData()
         }

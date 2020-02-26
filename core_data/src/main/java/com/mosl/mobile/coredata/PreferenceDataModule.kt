@@ -138,8 +138,8 @@ class PreferenceDataModule {
     @FeedbackPendingStatus
     @Singleton
     @Provides
-    internal fun provideFeedbackStatus(prefs: SharedPreferences): BooleanPreference {
-        return BooleanPreference(prefs, FEEDBACK_STATUS)
+    internal fun provideFeedbackStatus(prefs: SharedPreferences): StringPreference {
+        return StringPreference(prefs, FEEDBACK_STATUS)
     }
     @NotificationCount
     @Singleton

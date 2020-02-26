@@ -12,6 +12,7 @@ import com.google.gson.Gson
 import com.jakewharton.rxbinding3.view.clicks
 import com.mosl.app.core.error.getErrorOnFailure
 import com.mosl.app.core.events.DataAction
+import com.mosl.app.core.network.isNetworkConnected
 import com.mosl.app.core.prefs.StringPreference
 import com.mosl.app.coreui.base.LeanBaseActivity
 import com.mosl.commons.data.UiModel
@@ -77,7 +78,9 @@ class NewsLetterActivity : LeanBaseActivity(), NewsLetterView {
         val runnable = object : Runnable {
 
             override fun run() {
-                ImageViewAnimatedChange()
+                if (isNetworkConnected()) {
+                    ImageViewAnimatedChange()
+                }
                 handler.postDelayed(this, 20000)
             }
         }

@@ -82,7 +82,7 @@ class OverviewFragment : MOSLCommonPager(), OverviewPagerContract {
 
     override fun onPageSelection(position: Int) {
 
-        if (overViewDayWiseListData.get(position).isNullOrEmpty()) {
+        if (overViewDayWiseListData.size>0) {
             tabPublishSubject.onNext(UiModel.error(ServiceFailureException(PanelFragment.NO_DATA_AVAILABLE_FOR_THE_DAY)))
         } else {
             tabPublishSubject.onNext(UiModel.success(overViewDayWiseListData.get(position)))
@@ -94,7 +94,7 @@ class OverviewFragment : MOSLCommonPager(), OverviewPagerContract {
     override fun renderScheduleData(uiModel: UiModel<OverviewResponseDataInfo>) {
         toggleProgressBar(uiModel.inProgress)
         uiModel.onFailure {
-            if (overViewData.isNotSet) {
+            if (overViewData.get().isEmpty()) {
 
                 tabPublishSubject.onNext(UiModel.error(it))
             } else {
