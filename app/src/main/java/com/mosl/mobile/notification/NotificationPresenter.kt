@@ -22,7 +22,7 @@ class NotificationPresenter @Inject constructor(
             Role = userManager.user.role
         )
 
-        Observable.merge(onFetchCalled(), onRetryCalled())
+        Observable.merge(view.swipeRefresh(),onFetchCalled(), onRetryCalled())
             .switchMap {
                 repository.getNotificationData(objNotificationRequestInfo)
             .compose(applyUiModel())

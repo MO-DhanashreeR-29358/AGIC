@@ -5,6 +5,7 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.jakewharton.rxbinding3.swiperefreshlayout.refreshes
 import com.mosl.app.core.error.ErrorModel
 import com.mosl.app.core.error.ErrorState
 import com.mosl.app.core.events.DataAction
@@ -21,9 +22,16 @@ import com.mosl.mobile.app_user.login.UserManager
 import com.mosl.mobile.app_user.login.user
 import com.mosl.mobile.core.MOSLCommonFragment
 import com.mosl.mobile.databinding.FragmentNotificationHistoryBinding
+import com.mosl.mobile.domain.notification.NotificationItemModel
+import com.mosl.mobile.domain.notification.NotificationModel
 import com.mosl.mobile.domain.notification.NotificationResponse
+import com.mosl.mobile.util.toggleProgressBar
+import com.mosl.shared.AppDateFormats
+import com.mosl.shared.util.getFormatedDate
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
+import com.xwray.groupie.databinding.BindableItem
+import io.reactivex.Observable
 import javax.inject.Inject
 
 class NotificationHistoryFragment : MOSLCommonFragment(), NotificationContract {
@@ -61,8 +69,7 @@ class NotificationHistoryFragment : MOSLCommonFragment(), NotificationContract {
 
 
     override fun render(uiModel: UiModel<List<NotificationResponse>>) {
-        section.toggleProgress(uiModel.inProgress)
-
+        binding.swipeRefresh.toggleProgressBar(section, uiModel.inProgress)
         uiModel.onFailure { error ->
             if (notificationData.get().isEmpty()) {
                 section.showError(error)
@@ -84,13 +91,27 @@ class NotificationHistoryFragment : MOSLCommonFragment(), NotificationContract {
         }
     }
 
+    override fun swipeRefresh(): Observable<Unit> {
+        return binding.swipeRefresh.refreshes()
+    }
+
     private fun List<NotificationResponse>.responseData() {
         if (this.isNotEmpty()) {
             setNotificationUpdate()
             section.clearContent()
-            section.setHeader(ItemNotificationHeader(userManager.user.role))
+//            section.setHeader(ItemNotificationHeader(userManager.user.role))
             binding.textView.visibility = View.VISIBLE
-            section.setContent(this.map(::ItemNotificationChild))
+            val notificatioList = getNotificationData(this)
+            val items = mutableListOf<BindableItem<*>>()
+            notificatioList.map {
+                items.add(ItemNotificationHeaderDate(it.headerTime))
+                it.itemList.map { model ->
+                    items.add(ItemNotificationChild(model))
+                }
+            }
+
+            section.update(items)
+//            section.setContent(this.map(::ItemNotificationChild))
         } else {
             binding.textView.visibility = View.GONE
             section.removeHeader()
@@ -101,6 +122,48 @@ class NotificationHistoryFragment : MOSLCommonFragment(), NotificationContract {
                 )
             )
         }
+    }
+
+    fun getNotificationData(dataList: List<NotificationResponse>): List<NotificationModel> {
+        val notificationListData = mutableListOf<NotificationModel>()
+
+
+        val distinctDatesList = dataList
+            .map {
+                getFormatedDate(
+                    it.meetingDateTime,
+                    AppDateFormats.DF_JSON_DATE_4,
+                    AppDateFormats.DF_JSON_DATE6
+                )
+            }
+            .distinctBy { it }
+
+
+        distinctDatesList.forEachIndexed { indexDate, filteredDates ->
+            val childItemList = mutableListOf<NotificationItemModel>()
+            dataList.forEachIndexed { _, notificationResponse ->
+                if (getFormatedDate(
+                        notificationResponse.meetingDateTime,
+                        AppDateFormats.DF_JSON_DATE_4,
+                        AppDateFormats.DF_JSON_DATE6
+                    ).contains(filteredDates)
+                ) {
+                    childItemList.add(
+                        NotificationItemModel(
+                            notificationResponse.corporateName,
+                            notificationResponse.meetingDateTime,
+                            notificationResponse.previousDateTime,
+                            notificationResponse.type,
+                            notificationResponse.message
+                        )
+                    )
+                }
+            }
+            val sortedList = childItemList.sortedWith(compareByDescending({ it.meetingDateTime }))
+            notificationListData.add(indexDate, NotificationModel(filteredDates, sortedList))
+        }
+
+        return notificationListData
     }
 
     private fun setupRecyclerView() {

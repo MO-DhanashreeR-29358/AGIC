@@ -24,18 +24,7 @@
             app:layout_constraintBottom_toTopOf="@+id/tv_new"
             tools:text="Previous" />
 
-        <TextView
-            android:id="@+id/tv_prev_date"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textColor="@color/light_black"
-            android:textSize="@dimen/text_size_small"
-            app:layout_constraintEnd_toStartOf="@id/guideline2"
-            app:layout_constraintStart_toEndOf="@+id/guideline1"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/tv_new_date"
-            tools:text="23-04-20" />
+
 
         <TextView
             android:id="@+id/tv_prev_time"
@@ -44,8 +33,8 @@
             android:gravity="center"
             android:textColor="@color/light_black"
             android:textSize="@dimen/text_size_small"
-            app:layout_constraintEnd_toStartOf="@id/guideline3"
-            app:layout_constraintStart_toEndOf="@+id/guideline2"
+            app:layout_constraintEnd_toStartOf="@id/guideline2"
+            app:layout_constraintStart_toEndOf="@+id/guideline1"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/tv_new_time"
             tools:text="11am" />
@@ -58,7 +47,7 @@
             android:textColor="@color/light_black"
             android:textSize="@dimen/text_size_small"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/guideline3"
+            app:layout_constraintStart_toEndOf="@+id/guideline2"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/tv_new_corporate"
             tools:text="SRF" />
@@ -76,18 +65,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             tools:text="New" />
 
-        <TextView
-            android:id="@+id/tv_new_date"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textColor="@color/light_black"
-            android:textSize="@dimen/text_size_small"
-            app:layout_constraintEnd_toStartOf="@id/guideline2"
-            app:layout_constraintStart_toEndOf="@+id/guideline1"
-            app:layout_constraintTop_toBottomOf="@id/tv_previous"
-            app:layout_constraintBottom_toBottomOf="parent"
-            tools:text="24-04-20" />
+
 
         <TextView
             android:id="@+id/tv_new_time"
@@ -96,8 +74,8 @@
             android:gravity="center"
             android:textColor="@color/light_black"
             android:textSize="@dimen/text_size_small"
-            app:layout_constraintEnd_toStartOf="@id/guideline3"
-            app:layout_constraintStart_toEndOf="@+id/guideline2"
+            app:layout_constraintEnd_toStartOf="@id/guideline2"
+            app:layout_constraintStart_toEndOf="@+id/guideline1"
             app:layout_constraintTop_toBottomOf="@id/tv_previous"
             app:layout_constraintBottom_toBottomOf="parent"
             tools:text="10am" />
@@ -110,7 +88,7 @@
             android:textColor="@color/light_black"
             android:textSize="@dimen/text_size_small"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/guideline3"
+            app:layout_constraintStart_toEndOf="@+id/guideline2"
             app:layout_constraintTop_toBottomOf="@id/tv_previous"
             app:layout_constraintBottom_toBottomOf="parent"
             tools:text="SRF" />
@@ -132,14 +110,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="visible"
-            app:constraint_referenced_ids="tv_new,tv_new_date,tv_new_time,tv_new_corporate" />
+            app:constraint_referenced_ids="tv_new,tv_new_time,tv_new_corporate" />
 
         <androidx.constraintlayout.widget.Group
             android:id="@+id/group_prev_meeting"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="visible"
-            app:constraint_referenced_ids="tv_previous,tv_prev_date,tv_prev_time,tv_prev_corporate" />
+            app:constraint_referenced_ids="tv_previous,tv_prev_time,tv_prev_corporate" />
 
         <!-- <View
              android:layout_width="0dp"
@@ -187,7 +165,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_begin="85dp"
+            app:layout_constraintGuide_percent=".2"
             app:layout_constraintStart_toStartOf="parent"
             tools:ignore="MissingConstraints" />
 
@@ -196,7 +174,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.5"
+            app:layout_constraintGuide_percent="0.4"
             app:layout_constraintStart_toEndOf="@id/guideline1"
             tools:ignore="MissingConstraints" />
 

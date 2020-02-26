@@ -4,6 +4,7 @@ package com.mosl.mobile.notification
 import android.view.View
 import com.mosl.mobile.R
 import com.mosl.mobile.databinding.ItemNotificationChildBinding
+import com.mosl.mobile.domain.notification.NotificationItemModel
 import com.mosl.mobile.domain.notification.NotificationResponse
 import com.mosl.shared.util.getDateJSON_DATE6
 import com.mosl.shared.util.getTimeAMPM
@@ -12,7 +13,7 @@ import java.util.*
 
 
 class ItemNotificationChild(
-    private val notificationData: NotificationResponse
+    private val notificationData: NotificationItemModel
 ) :
     BindableItem<ItemNotificationChildBinding>() {
 
@@ -29,7 +30,6 @@ class ItemNotificationChild(
                     tvMessage.visibility = View.GONE
                     tvNew.text = NEW_MEETING
                     tvNewCorporate.text = notificationData.corporateName
-                    tvNewDate.text = date
                     tvNewTime.text = time
 
                 }
@@ -40,12 +40,10 @@ class ItemNotificationChild(
                     tvMessage.visibility = View.GONE
                     tvNew.text = NEW
                     tvNewCorporate.text = notificationData.corporateName
-                    tvNewDate.text = date
                     tvNewTime.text = time
 
                     tvPrevious.text = PREVIOUS
                     tvPrevCorporate.text = notificationData.corporateName
-                    tvPrevDate.text = getDateJSON_DATE6(notificationData.previousDateTime?:"2020-03-01T00:00:00")
                     tvPrevTime.text = getTimeAMPM(notificationData.previousDateTime?:"2020-03-01T00:00:00")
                 }
                 MEETING_CANCEL -> {
@@ -54,7 +52,6 @@ class ItemNotificationChild(
                     tvMessage.visibility = View.GONE
                     tvPrevious.text = CANCELLED_MEETING
                     tvPrevCorporate.text = notificationData.corporateName
-                    tvPrevDate.text = date
                     tvPrevTime.text = time
                 }
                 else -> {
