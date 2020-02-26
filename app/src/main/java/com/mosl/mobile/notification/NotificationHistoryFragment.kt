@@ -62,6 +62,7 @@ class NotificationHistoryFragment : MOSLCommonFragment(), NotificationContract {
 
     override fun render(uiModel: UiModel<List<NotificationResponse>>) {
         section.toggleProgress(uiModel.inProgress)
+
         uiModel.onFailure { error ->
             if (notificationData.get().isEmpty()) {
                 section.showError(error)
@@ -74,6 +75,7 @@ class NotificationHistoryFragment : MOSLCommonFragment(), NotificationContract {
                 notificationResponse.responseData()
             }
         }
+
         uiModel.onSuccess {
             val json = gson.toJson(it)
             notificationData.set(json)
@@ -86,11 +88,9 @@ class NotificationHistoryFragment : MOSLCommonFragment(), NotificationContract {
         if (this.isNotEmpty()) {
             setNotificationUpdate()
             section.clearContent()
-            for (model in this) {
-                binding.textView.visibility = View.VISIBLE
-                section.setHeader(ItemNotificationHeader(userManager.user.role))
-                section.add(ItemNotificationChild(model))
-            }
+            section.setHeader(ItemNotificationHeader(userManager.user.role))
+            binding.textView.visibility = View.VISIBLE
+            section.setContent(this.map(::ItemNotificationChild))
         } else {
             binding.textView.visibility = View.GONE
             section.removeHeader()
@@ -106,6 +106,7 @@ class NotificationHistoryFragment : MOSLCommonFragment(), NotificationContract {
     private fun setupRecyclerView() {
         val groupAdapter = GroupAdapter<ViewHolder>()
         section = DataManagerSection(onRetryClick)
+        section.retrySubject = dataActionSubject
         groupAdapter.add(section)
         binding.recyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext())
@@ -115,7 +116,7 @@ class NotificationHistoryFragment : MOSLCommonFragment(), NotificationContract {
     }
 
     override fun isDataEmpty(): Boolean {
-        return true
+        return section.isDataEmpty
     }
 
     companion object {

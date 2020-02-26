@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.google.gson.Gson
+import com.mosl.app.core.events.DataAction
 import com.mosl.app.core.exception.ServiceFailureException
 import com.mosl.app.core.prefs.StringPreference
 import com.mosl.app.coreui.adapters.ViewPagerAdapter
@@ -51,6 +52,7 @@ class OverviewFragment : MOSLCommonPager(), OverviewPagerContract {
         setUpAdapter()
 
         presenter.start()
+        dataActionSubject.onNext(DataAction.Fetch)
 
     }
 
@@ -82,7 +84,7 @@ class OverviewFragment : MOSLCommonPager(), OverviewPagerContract {
 
     override fun onPageSelection(position: Int) {
 
-        if (overViewDayWiseListData.size>0) {
+        if (overViewDayWiseListData.get(position).isNullOrEmpty()) {
             tabPublishSubject.onNext(UiModel.error(ServiceFailureException(PanelFragment.NO_DATA_AVAILABLE_FOR_THE_DAY)))
         } else {
             tabPublishSubject.onNext(UiModel.success(overViewDayWiseListData.get(position)))

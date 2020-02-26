@@ -31,12 +31,12 @@ class CorporateSchedulePagerPresenter @Inject constructor(
             ClientID = userManager.user.clientId,
             timestamp = notificationDateDate
         )
-
-        repository.getCorporateScheduleRepository(objCorporateScheduleRequestInfo)
-            .compose(applyUiModel())
-            .subscribe {
-                view.renderPage(it)
-            }.addTo(disposable)
+        onFetchCalled().switchMap {
+            repository.getCorporateScheduleRepository(objCorporateScheduleRequestInfo)
+                .compose(applyUiModel())
+        }.subscribe {
+            view.renderPage(it)
+        }.addTo(disposable)
 
         view.onSearchItemClicked()
             .subscribe {

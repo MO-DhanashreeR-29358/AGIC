@@ -16,8 +16,8 @@ class FeedbackPresenter @Inject constructor(
         Observable.merge(onFetchCalled(), onRetryCalled())
             .switchMap {
                 repository.getFeedbackData()
+                    .compose(applyUiModel())
             }
-            .compose(applyUiModel())
             .subscribe {
                 view.render(it)
             }.addTo(disposable)
@@ -28,8 +28,8 @@ class FeedbackPresenter @Inject constructor(
             }
             .switchMap { surveyRequest ->
                 repository.submitFeedback(surveyRequest)
+                    .compose(applyUiModel())
             }
-            .compose(applyUiModel())
             .subscribe(view::renderSubmit, Timber::d)
             .addTo(disposable)
 

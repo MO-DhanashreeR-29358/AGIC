@@ -8,8 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
+import com.mosl.app.core.events.DataAction
 import com.mosl.app.core.exception.ServiceFailureException
-import com.mosl.app.core.prefs.BooleanPreference
 import com.mosl.app.core.prefs.IntegerPreference
 import com.mosl.app.core.prefs.StringPreference
 import com.mosl.app.coreui.adapters.ViewPagerAdapter
@@ -49,9 +49,7 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
     val tabPublishSubject =
         PublishSubject.create<SchedulePagerAction>()
 
-    private lateinit var section: DataManagerSection
     private lateinit var searchSection: DataManagerSection
-
     @Inject
     lateinit var presenter: CorporateSchedulePagerPresenter
 
@@ -88,7 +86,7 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
         setUpAdapter()
 
         presenter.start()
-
+        dataActionSubject.onNext(DataAction.Fetch)
         binding.apply {
             editSearch.addTextChangedListener(watcher)
         }
@@ -130,7 +128,8 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
                             for (y in 0..((event[x].Attendees).size - 1)) {
 
                                 if (event[x].Attendees[y].FundName.toLowerCase(locale = Locale.ENGLISH)
-                                        .contains(p0.toString().toLowerCase(locale = Locale.ENGLISH))) {
+                                        .contains(p0.toString().toLowerCase(locale = Locale.ENGLISH))
+                                ) {
 
                                     val searchItem: SearchCorporateScheduleItemInfo
 
@@ -152,7 +151,9 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
 
                                     for (z in 0..((event[x].Attendees[y].representative).size - 1)) {
 
-                                        if (event[x].Attendees[y].representative[z].name.toLowerCase(locale = Locale.ENGLISH).contains(
+                                        if (event[x].Attendees[y].representative[z].name.toLowerCase(
+                                                locale = Locale.ENGLISH
+                                            ).contains(
                                                 p0.toString().toLowerCase(locale = Locale.ENGLISH)
                                             )
                                         ) {
@@ -204,8 +205,6 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
     }
 
     private fun setUpAdapter() {
-        section = DataManagerSection(onRetryClick)
-
         pagerAdapter = ViewPagerAdapter(childFragmentManager, requireContext(), this)
         pagerAdapter.setFragmentTitles(R.array.tabTitles)
         mPager.adapter = pagerAdapter

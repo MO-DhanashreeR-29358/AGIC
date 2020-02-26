@@ -17,8 +17,8 @@ class NewsLetterPresenter @Inject constructor(
         Observable.merge(onFetchCalled(), onRetryCalled())
             .switchMap {
                 repository.brochureData()
+                    .compose(applyUiModel())
             }
-            .compose(applyUiModel())
             .subscribe {
                 view.renderBrochureData(it)
             }

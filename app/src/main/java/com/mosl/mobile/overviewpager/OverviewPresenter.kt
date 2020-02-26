@@ -20,10 +20,10 @@ class OverviewPresenter @Inject constructor(
             ClientID = userManager.user.clientId,
             Over = Over
         )
-
-        repository.getOverviewData(objOverviewPagerRequestInfo)
-            .compose(applyUiModel())
-            .subscribe {
+        onFetchCalled().switchMap {
+            repository.getOverviewData(objOverviewPagerRequestInfo)
+                .compose(applyUiModel())
+        }.subscribe {
                 view.renderScheduleData(it)
             }.addTo(disposable)
     }

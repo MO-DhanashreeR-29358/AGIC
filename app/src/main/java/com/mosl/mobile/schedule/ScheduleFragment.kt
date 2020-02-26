@@ -217,7 +217,7 @@ class ScheduleFragment : MOSLCommonFragment(), ScheduleContract {
     }
 
     override fun isDataEmpty(): Boolean {
-        return true
+        return section.isDataEmpty
     }
 
     override fun onItemClicked(): Observable<OnMoreClick> {

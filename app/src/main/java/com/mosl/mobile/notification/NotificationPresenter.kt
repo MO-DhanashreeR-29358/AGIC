@@ -25,8 +25,8 @@ class NotificationPresenter @Inject constructor(
         Observable.merge(onFetchCalled(), onRetryCalled())
             .switchMap {
                 repository.getNotificationData(objNotificationRequestInfo)
-            }
             .compose(applyUiModel())
+            }
             .subscribe {
              view.render(it)
             }.addTo(disposable)
