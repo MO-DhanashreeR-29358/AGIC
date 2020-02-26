@@ -22,7 +22,7 @@ class CorporateSchedulePagerPresenter @Inject constructor(
     override fun start() {
 
         val notificationDateDate = if (lLastNotificationDate.get().isEmpty()) {
-            NEW
+            ZERO
         } else {
             getMilliFromDate(lLastNotificationDate.get(), AppDateFormats.DF_JSON_DATE_12)
         }
@@ -45,6 +45,6 @@ class CorporateSchedulePagerPresenter @Inject constructor(
     }
 
     companion object {
-        const val NEW = "New"
+        const val ZERO = "0"
     }
 }

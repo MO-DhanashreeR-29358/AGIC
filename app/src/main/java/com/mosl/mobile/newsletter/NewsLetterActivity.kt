@@ -70,13 +70,11 @@ class NewsLetterActivity : LeanBaseActivity(), NewsLetterView {
         changeImage()
     }
 
-    //    var imageArray = arrayOf(R.drawable.agic_agic, R.drawable.agic_15);
 
     fun changeImage() {
 
         val handler = Handler()
         val runnable = object : Runnable {
-
             override fun run() {
                 if (isNetworkConnected()) {
                     ImageViewAnimatedChange()
