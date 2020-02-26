@@ -5,6 +5,7 @@ import com.mosl.mobile.app_user.login.UserManager
 import com.mosl.mobile.app_user.login.user
 import com.mosl.mobile.domain.overviewpager.OverviewRepository
 import com.mosl.mobile.domain.overviewpager.OverviewRequestInfo
+import io.reactivex.Observable
 import io.reactivex.rxkotlin.addTo
 import javax.inject.Inject
 
@@ -20,10 +21,11 @@ class OverviewPresenter @Inject constructor(
             ClientID = userManager.user.clientId,
             Over = Over
         )
-        onFetchCalled().switchMap {
-            repository.getOverviewData(objOverviewPagerRequestInfo)
-                .compose(applyUiModel())
-        }.subscribe {
+        Observable.merge(onFetchCalled(), onRetryCalled())
+            .switchMap {
+                repository.getOverviewData(objOverviewPagerRequestInfo)
+                    .compose(applyUiModel())
+            }.subscribe {
                 view.renderScheduleData(it)
             }.addTo(disposable)
     }
