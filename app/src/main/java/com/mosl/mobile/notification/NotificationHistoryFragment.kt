@@ -20,6 +20,7 @@ import com.mosl.mobile.annotations.NotificationCount
 import com.mosl.mobile.annotations.NotificationData
 import com.mosl.mobile.app_user.login.UserManager
 import com.mosl.mobile.app_user.login.user
+import com.mosl.mobile.core.MOSLCommonActivity
 import com.mosl.mobile.core.MOSLCommonFragment
 import com.mosl.mobile.databinding.FragmentNotificationHistoryBinding
 import com.mosl.mobile.domain.notification.NotificationItemModel
@@ -59,8 +60,17 @@ class NotificationHistoryFragment : MOSLCommonFragment(), NotificationContract {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentNotificationHistoryBinding.bind(view)
         setupRecyclerView()
+        setUpView()
         presenter.start()
         dataActionSubject.onNext(DataAction.Fetch)
+    }
+
+    private fun setUpView() {
+        if (userManager.user.role.equals(MOSLCommonActivity.ROLE_CLIENT, ignoreCase = true)) {
+            binding.header.tvHeaderCorporate.setText(ItemNotificationHeader.CORPORATE)
+        } else {
+            binding.header.tvHeaderCorporate.setText(ItemNotificationHeader.FUND)
+        }
     }
 
     override fun getLayout(): Int {
@@ -99,7 +109,6 @@ class NotificationHistoryFragment : MOSLCommonFragment(), NotificationContract {
         if (this.isNotEmpty()) {
             setNotificationUpdate()
             section.clearContent()
-//            section.setHeader(ItemNotificationHeader(userManager.user.role))
             binding.textView.visibility = View.VISIBLE
             val notificatioList = getNotificationData(this)
             val items = mutableListOf<BindableItem<*>>()
@@ -111,7 +120,6 @@ class NotificationHistoryFragment : MOSLCommonFragment(), NotificationContract {
             }
 
             section.update(items)
-//            section.setContent(this.map(::ItemNotificationChild))
         } else {
             binding.textView.visibility = View.GONE
             section.removeHeader()
@@ -136,7 +144,7 @@ class NotificationHistoryFragment : MOSLCommonFragment(), NotificationContract {
                     AppDateFormats.DF_JSON_DATE6
                 )
             }
-            .distinctBy { it }
+            .distinctBy { it }.sortedWith(compareByDescending({ it }))
 
 
         distinctDatesList.forEachIndexed { indexDate, filteredDates ->
