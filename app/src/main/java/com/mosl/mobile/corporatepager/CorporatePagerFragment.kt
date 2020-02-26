@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
+import com.mosl.app.core.error.getErrorOnFailure
 import com.mosl.app.core.events.DataAction
 import com.mosl.app.core.exception.ServiceFailureException
 import com.mosl.app.core.prefs.IntegerPreference
@@ -36,6 +37,9 @@ import com.xwray.groupie.ViewHolder
 import io.reactivex.Observable
 import io.reactivex.rxkotlin.ofType
 import io.reactivex.subjects.PublishSubject
+import java.net.ConnectException
+import java.net.SocketTimeoutException
+import java.net.UnknownHostException
 import java.util.*
 import javax.inject.Inject
 
@@ -44,7 +48,7 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
     @Inject
     lateinit var userManager: UserManagerImpl
 
-    var overViewDayWiseListData = mutableListOf<List<CorporateScheduleResponseDayItemInfo>>()
+    var corporateListData = mutableListOf<List<CorporateScheduleResponseDayItemInfo>>()
 
     val tabPublishSubject =
         PublishSubject.create<SchedulePagerAction>()
@@ -83,10 +87,9 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
 
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentCorporateSchedulePagerBinding.bind(view)
-        setUpAdapter()
-
         presenter.start()
         dataActionSubject.onNext(DataAction.Fetch)
+        setUpAdapter()
         binding.apply {
             editSearch.addTextChangedListener(watcher)
         }
@@ -104,24 +107,19 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
 
             binding.apply {
 
-                val groupAdapterS = GroupAdapter<ViewHolder>()
+                val groupAdapter = GroupAdapter<ViewHolder>()
                 searchSection = DataManagerSection(onRetryClick)
 
-                groupAdapterS.add(searchSection)
+                groupAdapter.add(searchSection)
                 recSearch.apply {
                     layoutManager =
                         LinearLayoutManager(requireContext()) as RecyclerView.LayoutManager?
                     setHasFixedSize(true)
-                    adapter = groupAdapterS
+                    adapter = groupAdapter
                 }
 
-                recSearch.visibility = View.VISIBLE
-                tabLayout.visibility = View.GONE
-                pager.visibility = View.GONE
-
-
                 if (p0.length > 0) {
-                    overViewDayWiseListData.forEach { event ->
+                    corporateListData.forEach { event ->
 
                         for (x in 0..event.size - 1) {
 
@@ -176,11 +174,15 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
                                     }
                                 }
 
-                                groupAdapterS.notifyDataSetChanged()
+                                groupAdapter.notifyDataSetChanged()
                             }
                         }
 
                     }
+
+                    recSearch.visibility = View.VISIBLE
+                    tabLayout.visibility = View.GONE
+                    pager.visibility = View.GONE
 
                 } else {
                     recSearch.visibility = View.GONE
@@ -243,8 +245,8 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
 
     override fun onPageSelection(position: Int) {
 
-        if (overViewDayWiseListData.size > position) {
-            if (overViewDayWiseListData.get(position).isNullOrEmpty()) {
+        if (corporateListData.size > position) {
+            if (corporateListData.get(position).isNullOrEmpty()) {
                 tabPublishSubject.onNext(
                     SchedulePagerAction.PagerClick(
                         UiModel.error(
@@ -256,7 +258,7 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
                 tabPublishSubject.onNext(
                     SchedulePagerAction.PagerClick(
                         UiModel.success(
-                            overViewDayWiseListData.get(position)
+                            corporateListData.get(position)
                         ), time
                     )
                 )
@@ -278,18 +280,30 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
 
         toggleProgressBar(uiModel.inProgress)
         uiModel.onFailure {
-            if (corporateScheduleData.get().isEmpty()) {
-                tabPublishSubject.onNext(SchedulePagerAction.PagerClick(UiModel.error(it)))
-                feedbackPendingStatus.set("")
-            } else {
-                val corporateResponse: CorporateScheduleResponseDataInfo =
-                    gson.fromJson(
-                        corporateScheduleData.get(),
-                        CorporateScheduleResponseDataInfo::class.java
-                    )
-                corporateResponse.responseData()
-
-            }
+//            if (corporateScheduleData.get().isEmpty()) {
+//                feedbackPendingStatus.set("")
+//                binding.groupData.visibility = View.GONE
+//                binding.btnRetry.setOnClickListener(onRetryClick)
+//                showMessage(
+//                    it.getErrorOnFailure().getResolvedMessage(requireContext()),
+//                    checkException(it)
+//                )
+//            } else {
+//                setUpAdapter()
+//                val corporateResponse: CorporateScheduleResponseDataInfo =
+//                    gson.fromJson(
+//                        corporateScheduleData.get(),
+//                        CorporateScheduleResponseDataInfo::class.java
+//                    )
+//                corporateResponse.responseData()
+//
+//            }
+            binding.groupData.visibility = View.GONE
+            binding.btnRetry.setOnClickListener(onRetryClick)
+            showMessage(
+                it.getErrorOnFailure().getResolvedMessage(requireContext()),
+                checkException(it)
+            )
         }
 
         uiModel.onSuccess {
@@ -330,12 +344,14 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
     }
 
     private fun CorporateScheduleResponseDataInfo.responseData() {
+        binding.groupError.visibility = View.GONE
+        binding.groupData.visibility = View.VISIBLE
         setNotificationUpdate()
         setFeedbackBadgeVisiblity()
         pdfLink?.apply {
             userManager.savePdf(this)
         }
-        overViewDayWiseListData =
+        corporateListData =
             CorporateScheduleDayWiseListData() as MutableList<List<CorporateScheduleResponseDayItemInfo>>
 
         val dayOverView = CorporateScheduleDayWiseListData().get(0)
@@ -361,7 +377,49 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
         }
     }
 
+    override fun isDataEmpty(): Boolean {
+        return corporateListData.isEmpty()
+    }
+
+    fun showMessage(message: String?, typeOfError: Int) {
+        binding.txtErrorMessage.text = message
+        showIcon(typeOfError)
+        binding.groupError.visibility = View.VISIBLE
+    }
+
+    fun checkException(t: Throwable?): Int {
+        return if (t is UnknownHostException || t is ConnectException) {
+            NETWORK_FAILURE_ERROR
+        } else if (t is SocketTimeoutException) {
+            SERVICE_FAILURE_ERROR
+        } else if (t is ServiceFailureException) {
+            DATA_NOT_PRESENT
+        } else {
+            UNKNOWN_FAILURE
+        }
+    }
+
+    private fun showIcon(typeOfError: Int) {
+        val iconDrawable: Int
+        if (typeOfError == DATA_NOT_PRESENT) {
+            iconDrawable = R.drawable.ic_description
+            binding.btnRetry.setVisibility(View.GONE)
+        } else if (typeOfError == NETWORK_FAILURE_ERROR) {
+            iconDrawable = R.drawable.ic_network
+            binding.btnRetry.setVisibility(View.VISIBLE)
+        } else {
+            iconDrawable = R.drawable.ic_service
+            binding.btnRetry.setVisibility(View.VISIBLE)
+        }
+        binding.imgErrorIcon.setVisibility(View.VISIBLE)
+        binding.imgErrorIcon.setImageResource(iconDrawable)
+    }
+
     companion object {
         const val NO_DATA_AVAILABLE_FOR_THE_DAY = "No data available for the day"
+        const val NETWORK_FAILURE_ERROR = 0
+        const val SERVICE_FAILURE_ERROR: Int = 1
+        const val DATA_NOT_PRESENT = 2
+        const val UNKNOWN_FAILURE: Int = 3
     }
 }

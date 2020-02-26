@@ -9,6 +9,7 @@ import com.mosl.mobile.domain.corporateschedulepager.CorporateScheduleRepository
 import com.mosl.mobile.domain.corporateschedulepager.CorporateScheduleRequestInfo
 import com.mosl.shared.AppDateFormats
 import com.mosl.shared.util.getMilliFromDate
+import io.reactivex.Observable
 import io.reactivex.rxkotlin.addTo
 import javax.inject.Inject
 
@@ -31,7 +32,7 @@ class CorporateSchedulePagerPresenter @Inject constructor(
             ClientID = userManager.user.clientId,
             timestamp = notificationDateDate
         )
-        onFetchCalled().switchMap {
+        Observable.merge(onFetchCalled(), onRetryCalled()).switchMap {
             repository.getCorporateScheduleRepository(objCorporateScheduleRequestInfo)
                 .compose(applyUiModel())
         }.subscribe {
