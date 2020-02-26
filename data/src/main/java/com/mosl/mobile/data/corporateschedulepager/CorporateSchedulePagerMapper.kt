@@ -15,7 +15,7 @@ object CorporateSchedulePagerMapper {
         if (responseList.isNullOrEmpty())
             return CorporateScheduleResponseDataInfo(
                 emptyList(), emptyList(), emptyList(), pdfLink, message,
-                notificationPending, feedbackPending
+                notificationPending, feedbackPending, emptyList()
             )
 
         return CorporateScheduleResponseDataInfo(
@@ -25,7 +25,8 @@ object CorporateSchedulePagerMapper {
             pdfLink = pdfLink,
             message = message,
             notificationPending = notificationPending,
-            feedbackPending = feedbackPending
+            feedbackPending = feedbackPending,
+            data = responseList.responseTransform()
         )
 
     }
@@ -34,6 +35,19 @@ object CorporateSchedulePagerMapper {
         return it.map {
             CorporateScheduleResponseDayItemInfo(
 
+                day = it.day,
+                shiftTiming = it.shiftTiming,
+                roomNumber = it.roomNumber,
+                natureOfMeeting = it.natureOfMeeting,
+                Attendees = DayAttendance(it.Attendees)
+
+            )
+        }
+    }
+
+    fun List<CorporateScheduleResponseDayItem>.responseTransform(): List<CorporateScheduleResponseDayItemInfo> {
+        return map {
+            CorporateScheduleResponseDayItemInfo(
                 day = it.day,
                 shiftTiming = it.shiftTiming,
                 roomNumber = it.roomNumber,

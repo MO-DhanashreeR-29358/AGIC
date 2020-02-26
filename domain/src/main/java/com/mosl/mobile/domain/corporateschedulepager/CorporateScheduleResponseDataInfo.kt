@@ -8,7 +8,9 @@ data class CorporateScheduleResponseDataInfo(
     val pdfLink: String?,
     val message: String,
     val notificationPending: Int,
-    val feedbackPending: Boolean
+    val feedbackPending: Boolean,
+    val data: List<CorporateScheduleResponseDayItemInfo>
+
 
 ){
     fun CorporateScheduleDayWiseListData(): List<List<CorporateScheduleResponseDayItemInfo>> {
