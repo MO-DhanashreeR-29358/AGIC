@@ -16,5 +16,8 @@ data class NotificationResponseItem(
     val type: String,
 
     @JvmField @SerializedName("message")
-    val message: String
+    val message: String,
+
+    @JvmField @SerializedName("clientList")
+    val clientList: List<String>?
 )

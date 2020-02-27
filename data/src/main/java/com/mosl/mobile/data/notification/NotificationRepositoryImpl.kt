@@ -14,10 +14,10 @@ class NotificationRepositoryImpl @Inject constructor(
 
     private val mapper = NotificationMapper
 
-    override fun getNotificationData(notPagerInfo: NotificationRequestInfo): Observable<List<NotificationResponse>> {
+    override fun getNotificationData(notificationRequestInfo: NotificationRequestInfo): Observable<List<NotificationResponse>> {
 
 
-        return agicApi.getNotification(mapper.getNotificationRequestMap(notPagerInfo)).map {
+        return agicApi.getNotification(mapper.getNotificationRequestMap(notificationRequestInfo)).map {
             mapper.transformNotification(it)
         }
 

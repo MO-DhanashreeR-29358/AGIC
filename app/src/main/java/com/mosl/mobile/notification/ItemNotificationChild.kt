@@ -4,7 +4,6 @@ package com.mosl.mobile.notification
 import android.view.View
 import com.mosl.mobile.R
 import com.mosl.mobile.databinding.ItemNotificationChildBinding
-import com.mosl.mobile.domain.notification.NotificationItemModel
 import com.mosl.mobile.domain.notification.NotificationResponse
 import com.mosl.shared.AppDateFormats
 import com.mosl.shared.util.getFormatedDate
@@ -54,6 +53,12 @@ class ItemNotificationChild(
 
 
         viewBinding.apply {
+            notificationData.clientList?.apply {
+                if (this.size > 0) {
+                    tvNewMore.visibility=View.VISIBLE
+                    tvNewMore.text = String.format("(%d Reps)", (this.size))
+                }
+            }
             when (notificationData.type.toLowerCase(Locale.ENGLISH)) {
                 MEETING_CREATE -> {
                     groupNewMeeting.visibility = View.VISIBLE

@@ -9,7 +9,8 @@ data class NotificationResponse(
 
     @JvmField val type: String,
 
-    @JvmField val message: String
+    @JvmField val message: String,
+    @JvmField val clientList: List<String>?
 )
 
 data class NotificationItemModel(

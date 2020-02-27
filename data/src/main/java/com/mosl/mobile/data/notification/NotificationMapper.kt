@@ -15,7 +15,8 @@ object NotificationMapper {
                 meetingDateTime = it.meetingDateTime,
                 previousDateTime = it.previousDateTime,
                 type = it.type,
-                message = it.message
+                message = it.message,
+                clientList = it.clientList
             )
         }
     }

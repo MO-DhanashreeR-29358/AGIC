@@ -45,6 +45,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/light_black"
             android:textSize="@dimen/text_size_small"
+            android:layout_marginStart="@dimen/margin_medium"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/guideline2"
             app:layout_constraintTop_toTopOf="parent"
@@ -85,9 +86,23 @@
             android:layout_height="wrap_content"
             android:textColor="@color/light_black"
             android:textSize="@dimen/text_size_small"
+            android:layout_marginStart="@dimen/margin_medium"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/guideline2"
             app:layout_constraintTop_toBottomOf="@id/tv_previous"
+            tools:text="SRF" />
+
+        <TextView
+            android:id="@+id/tv_new_more"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/blue"
+            android:visibility="visible"
+            android:textSize="@dimen/text_size_small"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="@dimen/margin_medium"
+            app:layout_constraintStart_toEndOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/tv_new_corporate"
             app:layout_constraintBottom_toBottomOf="parent"
             tools:text="SRF" />
 
@@ -133,17 +148,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.4"
+            app:layout_constraintGuide_percent="0.45"
             app:layout_constraintStart_toEndOf="@id/guideline1"
             tools:ignore="MissingConstraints" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.7"
-            app:layout_constraintStart_toEndOf="@id/guideline2"
-            tools:ignore="MissingConstraints" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
