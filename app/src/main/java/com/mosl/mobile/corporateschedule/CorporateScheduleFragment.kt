@@ -2,7 +2,6 @@ package com.mosl.mobile.corporateschedule
 
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -133,7 +132,7 @@ class CorporateScheduleFragment : MOSLCommonFragment(), CorporateChildContract {
                 else
                     selection(it, false)
             } else {
-                selectionSearch(it,  shiftTime)
+                selectionSearch(it, shiftTime)
             }
         }
     }
@@ -142,27 +141,32 @@ class CorporateScheduleFragment : MOSLCommonFragment(), CorporateChildContract {
         val sortedList = it.sortedWith(compareBy({ it.shiftTiming }))
         var currentTimeBetween = false
         var currentPosition = -1
+        var expandPosition = -1
 
         for ((i, model) in sortedList.withIndex()) {
 
-            if (i + 1 < sortedList.size) {
+            val startTime = model.shiftTiming
+            val nextStartTime = model.shiftEndTime
 
-                val startTime = (model.shiftTiming)
-                val nextStartTime = (sortedList[i + 1].shiftTiming)
-
-                if (checkTimeIsBetween(startTime, nextStartTime) && !currentTimeBetween) {
-                    currentTimeBetween = true
-                    currentPosition = i
-                }
-            } else if (!currentTimeBetween) {
-                currentPosition = i
+            if (checkTimeIsBetween(startTime, nextStartTime) && !currentTimeBetween) {
                 currentTimeBetween = true
+                currentPosition = i
+                expandPosition = i + 1
             }
 
-            if (coll)
-                section.add(ItemCorporateSchedule(model, followUpUiEvent, currentPosition))
-            else
-                section.add(ItemCorporateSchedule(model, followUpUiEvent, -1))
+
+             if (coll)
+                 section.add(
+                     ItemCorporateSchedule(
+                         model,
+                         followUpUiEvent,
+                         currentPosition,
+                         requireContext(),
+                         expandPosition
+                     )
+                 )
+             else
+                 section.add(ItemCorporateSchedule(model, followUpUiEvent, -1, requireContext(), -1))
         }
     }
 
@@ -173,19 +177,33 @@ class CorporateScheduleFragment : MOSLCommonFragment(), CorporateChildContract {
         val sortedList = it.sortedWith(compareBy({ it.shiftTiming }))
         var currentTimeBetween = false
         var currentPosition = -1
+        var expandPosition = -1
 
         for ((i, model) in sortedList.withIndex()) {
-
-            val startTime = (model.shiftTiming)
-            val shiftTimingSearchN = (shiftTime)
-            if (startTime.equals(shiftTimingSearchN) && !currentTimeBetween) {
+            val startTime = model.shiftTiming
+            val serachShiftTiming = shiftTime
+            if (startTime.equals(serachShiftTiming) &&
+                checkTimeIsBetween(startTime, model.shiftEndTime) && !currentTimeBetween
+            ) {
                 currentTimeBetween = true
                 currentPosition = i
+                expandPosition = i + 1
             }
+
             if (currentTimeBetween)
-                section.add(ItemCorporateSchedule(model, followUpUiEvent, currentPosition))
+                section.add(
+                    ItemCorporateSchedule(
+                        model,
+                        followUpUiEvent,
+                        currentPosition,
+                        requireContext(),
+                        expandPosition
+                    )
+                )
             else
-                section.add(ItemCorporateSchedule(model, followUpUiEvent, -1))
+                section.add(
+                    ItemCorporateSchedule(model, followUpUiEvent, -1, requireContext(), -1)
+                )
         }
     }
 

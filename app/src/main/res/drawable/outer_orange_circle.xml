@@ -9,7 +9,7 @@
         <shape android:shape="oval">
             <stroke
                 android:width="@dimen/_2sdp"
-                android:color="@color/warmGrey" />
+                android:color="@color/light_orange" />
         </shape>
 
     </item>
@@ -22,7 +22,7 @@
         <shape android:shape="oval">
             <stroke
                 android:width="@dimen/_2sdp"
-                android:color="@color/warmGrey" />
+                android:color="@color/light_orange" />
         </shape>
     </item>
 </layer-list>

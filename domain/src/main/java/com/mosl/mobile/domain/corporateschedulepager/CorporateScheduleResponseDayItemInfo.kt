@@ -10,5 +10,6 @@ data class CorporateScheduleResponseDayItemInfo(
 
     @JvmField val natureOfMeeting: String,
 
-    @JvmField val day: String
+    @JvmField val day: String,
+    @JvmField val shiftEndTime: String
 )

@@ -128,7 +128,8 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
                             shiftTiming = it.shiftTiming,
                             roomNumber = it.roomNumber,
                             natureOfMeeting = it.natureOfMeeting,
-                            day = it.day
+                            day = it.day,
+                            shiftEndTime = it.shiftEndTime
                         )
 
                     }.toMutableList()

@@ -6,6 +6,8 @@ data class CorporateScheduleResponseDayItem(
 
     @JvmField @SerializedName("shiftTiming")
     val shiftTiming: String,
+    @JvmField @SerializedName("shiftEndTime")
+    val shiftEndTime: String,
 
     @JvmField @SerializedName("roomNumber")
     val roomNumber: String,

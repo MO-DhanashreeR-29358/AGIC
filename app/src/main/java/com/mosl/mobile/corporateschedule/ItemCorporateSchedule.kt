@@ -1,6 +1,9 @@
 package com.mosl.mobile.corporateschedule
 
+import android.content.Context
 import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mosl.groupiex.section.DataManagerSection
@@ -15,15 +18,21 @@ import io.reactivex.subjects.PublishSubject
 class ItemCorporateSchedule(
     scheduleData: CorporateScheduleResponseDayItemInfo,
     private val publishSubject: PublishSubject<CorporateScheduleUiEvent>,
-    private val currentPosition: Int
+    private val currentPosition: Int,
+    val context: Context,
+    private val expandPosition: Int
 ) :
-    BindableItem<ItemFragmentCorporateScheduleChildBinding>() {
+    BindableItem<ItemFragmentCorporateScheduleChildBinding>(), Animation.AnimationListener {
     private val itemData = scheduleData
 
-
+    lateinit var animBlink: Animation
     override fun bind(viewBinding: ItemFragmentCorporateScheduleChildBinding, position: Int) {
 
         viewBinding.apply {
+
+            animBlink = AnimationUtils.loadAnimation(context, R.anim.blink_anim)
+
+            animBlink.setAnimationListener(this@ItemCorporateSchedule)
 
             tvShiftTime.text = (itemData.shiftTiming)
             tvRoomNumber.text = String.format("Room No - %s", itemData.roomNumber)
@@ -41,10 +50,14 @@ class ItemCorporateSchedule(
             }
 
             if (currentPosition == position) {
-                rabView.setBackgroundResource(R.drawable.bg_blue_circle)
+                rabView.setBackgroundResource(R.drawable.bg_gif_orange_circle)
+                rabView.startAnimation(animBlink)
+                recAttendees.visibility = View.VISIBLE
+            } else if (expandPosition == position) {
+                rabView.setBackgroundResource(R.drawable.bg_light_orange_circle)
                 recAttendees.visibility = View.VISIBLE
             } else {
-                rabView.setBackgroundResource(R.drawable.bg_grey_circle)
+                rabView.setBackgroundResource(R.drawable.bg_light_orange_circle)
                 recAttendees.visibility = View.GONE
             }
 
@@ -60,24 +73,24 @@ class ItemCorporateSchedule(
     private fun setupRecyclerView(binding: ItemFragmentCorporateScheduleChildBinding) {
 
 
-        binding.tvShiftTime.setOnClickListener(View.OnClickListener {
+        binding.tvShiftTime.setOnClickListener({
             if (binding.recAttendees.visibility == View.VISIBLE) {
                 binding.recAttendees.visibility = View.GONE
-                binding.rabView.setBackgroundResource(R.drawable.bg_grey_circle)
+                binding.rabView.setBackgroundResource(R.drawable.bg_light_orange_circle)
             } else {
                 binding.recAttendees.visibility = View.VISIBLE
-                binding.rabView.setBackgroundResource(R.drawable.bg_blue_circle)
+                binding.rabView.setBackgroundResource(R.drawable.bg_light_orange_circle)
             }
 
         })
 
-        binding.tvRoomNumber.setOnClickListener(View.OnClickListener {
+        binding.tvRoomNumber.setOnClickListener( {
             if (binding.recAttendees.visibility == View.VISIBLE) {
                 binding.recAttendees.visibility = View.GONE
-                binding.rabView.setBackgroundResource(R.drawable.bg_grey_circle)
+                binding.rabView.setBackgroundResource(R.drawable.bg_light_orange_circle)
             } else {
                 binding.recAttendees.visibility = View.VISIBLE
-                binding.rabView.setBackgroundResource(R.drawable.bg_blue_circle)
+                binding.rabView.setBackgroundResource(R.drawable.bg_light_orange_circle)
             }
 
         })
@@ -108,6 +121,24 @@ class ItemCorporateSchedule(
 
     override fun getLayout(): Int {
         return R.layout.item_fragment_corporate_schedule_child
+    }
+
+    override fun onAnimationRepeat(animation: Animation) {
+        if (animation == animBlink) {
+            animation.start()
+        }
+    }
+
+    override fun onAnimationEnd(animation: Animation) {
+        if (animation == animBlink) {
+            animation.start()
+        }
+    }
+
+    override fun onAnimationStart(animation: Animation) {
+        if (animation == animBlink) {
+            animation.start()
+        }
     }
 
 }

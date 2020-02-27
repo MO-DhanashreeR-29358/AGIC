@@ -34,9 +34,9 @@ object CorporateSchedulePagerMapper {
     fun Day(it: List<CorporateScheduleResponseDayItem>): List<CorporateScheduleResponseDayItemInfo> {
         return it.map {
             CorporateScheduleResponseDayItemInfo(
-
                 day = it.day,
                 shiftTiming = it.shiftTiming,
+                shiftEndTime = it.shiftEndTime,
                 roomNumber = it.roomNumber,
                 natureOfMeeting = it.natureOfMeeting,
                 Attendees = DayAttendance(it.Attendees)
@@ -50,9 +50,10 @@ object CorporateSchedulePagerMapper {
             CorporateScheduleResponseDayItemInfo(
                 day = it.day,
                 shiftTiming = it.shiftTiming,
+                shiftEndTime = it.shiftEndTime,
                 roomNumber = it.roomNumber,
                 natureOfMeeting = it.natureOfMeeting,
-                Attendees = DayAttendance(it.Attendees)
+                Attendees = AttendeeList(it.Attendees)
 
             )
         }
@@ -72,6 +73,25 @@ object CorporateSchedulePagerMapper {
         return it.map {
             CorporateScheduleResponseRepresentativeItemInfo(
                 name = it.name,
+                designation = it.designation
+            )
+        }
+    }
+
+    fun AttendeeList(it: List<CorporateScheduleResponseDayAttendanceItem>): List<CorporateScheduleResponseDayAttendanceItemInfo> {
+        return it.map {
+            CorporateScheduleResponseDayAttendanceItemInfo(
+                FundName = String.format("%s (Fund)",it.FundName),
+                representative = clientList(it.representative)
+            )
+        }
+    }
+
+
+    fun clientList(it: List<CorporateScheduleResponseRepresentativeItem>): List<CorporateScheduleResponseRepresentativeItemInfo> {
+        return it.map {
+            CorporateScheduleResponseRepresentativeItemInfo(
+                name = String.format("%s (Client)",it.name),
                 designation = it.designation
             )
         }

@@ -15,7 +15,7 @@
             android:layout_width="@dimen/_15sdp"
             android:layout_height="@dimen/_15sdp"
             android:layout_margin="@dimen/_5sdp"
-            android:background="@drawable/bg_grey_circle"
+            android:background="@drawable/bg_light_orange_circle"
             android:elevation="@dimen/_5sdp"
             app:layout_constraintBottom_toBottomOf="@+id/tv_shiftTime"
             app:layout_constraintStart_toStartOf="parent"
