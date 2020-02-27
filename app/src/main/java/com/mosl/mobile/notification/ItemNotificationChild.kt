@@ -5,7 +5,6 @@ import android.view.View
 import com.mosl.mobile.R
 import com.mosl.mobile.databinding.ItemNotificationChildBinding
 import com.mosl.mobile.domain.notification.NotificationResponse
-import com.mosl.mobile.schedule.ScheduleUiEvent
 import com.mosl.shared.AppDateFormats
 import com.mosl.shared.util.getFormatedDate
 import com.mosl.shared.util.getTimeAMPM
@@ -18,15 +17,16 @@ class ItemNotificationChild(
     private val notificationData: NotificationResponse,
     private val publishSubject: PublishSubject<NotificationUiEvent>
 
-    ) :
-    BindableItem<ItemNotificationChildBinding>(),View.OnClickListener {
+) :
+    BindableItem<ItemNotificationChildBinding>(), View.OnClickListener {
 
 
     override fun bind(viewBinding: ItemNotificationChildBinding, position: Int) {
-        val currentDate = getFormatedDate(
+        var currentDate = getFormatedDate(
             notificationData.meetingDateTime, AppDateFormats.DF_JSON_DATE_4,
             AppDateFormats.DF_DAY
         )
+        currentDate = ordinalOf(currentDate.toInt())
         var currentTime = getTimeAMPM(notificationData.meetingDateTime)
 
         if (currentTime.contains(":00")) {
@@ -34,7 +34,7 @@ class ItemNotificationChild(
         }
 
         val curentDateTime = String.format(
-            "%s - %s", currentDate, currentTime
+            "%s %s", currentDate, currentTime
         )
         var previousDateTime: String = ""
 
@@ -50,7 +50,7 @@ class ItemNotificationChild(
             }
 
             previousDateTime = String.format(
-                "%s - %s", previousDate, previousTime
+                "%s %s", ordinalOf(previousDate.toInt()), previousTime
             )
         }
 
@@ -59,7 +59,7 @@ class ItemNotificationChild(
         viewBinding.apply {
             notificationData.clientList?.apply {
                 if (this.size > 0) {
-                    tvNewMore.visibility=View.VISIBLE
+                    tvNewMore.visibility = View.VISIBLE
                     tvNewMore.text = String.format("(%d Reps)", (this.size))
                 }
             }
@@ -106,6 +106,13 @@ class ItemNotificationChild(
         }
     }
 
+    fun ordinalOf(i: Int) = "$i" + if (i % 100 in 11..13) "th" else when (i % 10) {
+        1 -> "st"
+        2 -> "nd"
+        3 -> "rd"
+        else -> "th"
+    }
+
     override fun getLayout(): Int {
         return R.layout.item_notification_child
     }
@@ -116,7 +123,7 @@ class ItemNotificationChild(
                 notificationData.clientList?.apply {
                     publishSubject.onNext(
                         NotificationUiEvent.OnMoreClick(
-                           this
+                            this
                         )
                     )
                 }
