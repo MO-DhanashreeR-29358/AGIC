@@ -42,8 +42,6 @@ import javax.inject.Inject
 
 class ScheduleFragment : MOSLCommonFragment(), ScheduleContract {
 
-    private val followUpUiEvent = PublishSubject.create<ScheduleUiEvent>()
-
     @Inject
     lateinit var presenter: SchedulePresenter
 
@@ -66,6 +64,8 @@ class ScheduleFragment : MOSLCommonFragment(), ScheduleContract {
     @Inject
     @field:NotificationCount
     lateinit var notificationCount: IntegerPreference
+
+    private val followUpUiEvent = PublishSubject.create<ScheduleUiEvent>()
 
     override fun getLayout(): Int {
         return R.layout.fragment_schedule

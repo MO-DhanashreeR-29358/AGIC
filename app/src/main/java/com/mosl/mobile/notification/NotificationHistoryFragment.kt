@@ -65,6 +65,18 @@ class NotificationHistoryFragment : MOSLCommonFragment(), NotificationContract {
         dataActionSubject.onNext(DataAction.Fetch)
     }
 
+    private fun setupRecyclerView() {
+        val groupAdapter = GroupAdapter<ViewHolder>()
+        section = DataManagerSection(onRetryClick)
+        section.retrySubject = dataActionSubject
+        groupAdapter.add(section)
+        binding.recyclerView.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            setHasFixedSize(true)
+            adapter = groupAdapter
+        }
+    }
+
     private fun setUpView() {
         if (userManager.user.role.equals(MOSLCommonActivity.ROLE_CLIENT, ignoreCase = true)) {
             binding.header.tvHeaderCorporate.setText(ItemNotificationHeader.CORPORATE)
@@ -78,7 +90,7 @@ class NotificationHistoryFragment : MOSLCommonFragment(), NotificationContract {
     }
 
 
-    override fun render(uiModel: UiModel<List<NotificationResponse>>) {
+    override fun renderData(uiModel: UiModel<List<NotificationResponse>>) {
         binding.swipeRefresh.toggleProgressBar(section, uiModel.inProgress)
         uiModel.onFailure { error ->
             if (notificationData.get().isEmpty()) {
@@ -110,16 +122,7 @@ class NotificationHistoryFragment : MOSLCommonFragment(), NotificationContract {
             setNotificationUpdate()
             section.clearContent()
             binding.textView.visibility = View.VISIBLE
-            val notificatioList = getNotificationData(this)
-            val items = mutableListOf<BindableItem<*>>()
-            notificatioList.map {
-                items.add(ItemNotificationHeaderDate(it.headerTime))
-                it.itemList.map { model ->
-                    items.add(ItemNotificationChild(model))
-                }
-            }
-
-            section.update(items)
+            getNotificationData(this).renderUi()
         } else {
             binding.textView.visibility = View.GONE
             section.removeHeader()
@@ -130,6 +133,18 @@ class NotificationHistoryFragment : MOSLCommonFragment(), NotificationContract {
                 )
             )
         }
+    }
+
+    fun List<NotificationModel>.renderUi() {
+        val items = mutableListOf<BindableItem<*>>()
+        map {
+            items.add(ItemNotificationHeaderDate(it.headerTime))
+            it.itemList.map { model ->
+                items.add(ItemNotificationChild(model))
+            }
+        }
+
+        section.update(items)
     }
 
     fun getNotificationData(dataList: List<NotificationResponse>): List<NotificationModel> {
@@ -174,17 +189,6 @@ class NotificationHistoryFragment : MOSLCommonFragment(), NotificationContract {
         return notificationListData
     }
 
-    private fun setupRecyclerView() {
-        val groupAdapter = GroupAdapter<ViewHolder>()
-        section = DataManagerSection(onRetryClick)
-        section.retrySubject = dataActionSubject
-        groupAdapter.add(section)
-        binding.recyclerView.apply {
-            layoutManager = LinearLayoutManager(requireContext())
-            setHasFixedSize(true)
-            adapter = groupAdapter
-        }
-    }
 
     override fun isDataEmpty(): Boolean {
         return section.isDataEmpty
