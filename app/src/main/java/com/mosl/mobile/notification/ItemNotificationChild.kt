@@ -6,21 +6,52 @@ import com.mosl.mobile.R
 import com.mosl.mobile.databinding.ItemNotificationChildBinding
 import com.mosl.mobile.domain.notification.NotificationItemModel
 import com.mosl.mobile.domain.notification.NotificationResponse
-import com.mosl.shared.util.getDateJSON_DATE6
+import com.mosl.shared.AppDateFormats
+import com.mosl.shared.util.getFormatedDate
 import com.mosl.shared.util.getTimeAMPM
 import com.xwray.groupie.databinding.BindableItem
 import java.util.*
 
 
 class ItemNotificationChild(
-    private val notificationData: NotificationItemModel
+    private val notificationData: NotificationResponse
 ) :
     BindableItem<ItemNotificationChildBinding>() {
 
 
     override fun bind(viewBinding: ItemNotificationChildBinding, position: Int) {
-        val date = getDateJSON_DATE6(notificationData.meetingDateTime)
-        val time = getTimeAMPM(notificationData.meetingDateTime)
+        val currentDate = getFormatedDate(
+            notificationData.meetingDateTime, AppDateFormats.DF_JSON_DATE_4,
+            AppDateFormats.DF_DAY
+        )
+        var currentTime = getTimeAMPM(notificationData.meetingDateTime)
+
+        if (currentTime.contains(":00")) {
+            currentTime = currentTime.replace(":00", "")
+        }
+
+        val curentDateTime = String.format(
+            "%s - %s", currentDate, currentTime
+        )
+        var previousDateTime: String = ""
+
+        notificationData.previousDateTime?.apply {
+            val previousDate = getFormatedDate(
+                this, AppDateFormats.DF_JSON_DATE_4,
+                AppDateFormats.DF_DAY
+            )
+            var previousTime = getTimeAMPM(this)
+
+            if (previousTime.contains(":00")) {
+                previousTime = previousTime.replace(":00", "")
+            }
+
+            previousDateTime = String.format(
+                "%s - %s", previousDate, previousTime
+            )
+        }
+
+
 
         viewBinding.apply {
             when (notificationData.type.toLowerCase(Locale.ENGLISH)) {
@@ -30,7 +61,7 @@ class ItemNotificationChild(
                     tvMessage.visibility = View.GONE
                     tvNew.text = NEW_MEETING
                     tvNewCorporate.text = notificationData.corporateName
-                    tvNewTime.text = time
+                    tvNewTime.text = curentDateTime
 
                 }
                 MEETING_UPDATE -> {
@@ -40,11 +71,11 @@ class ItemNotificationChild(
                     tvMessage.visibility = View.GONE
                     tvNew.text = NEW
                     tvNewCorporate.text = notificationData.corporateName
-                    tvNewTime.text = time
+                    tvNewTime.text = curentDateTime
 
                     tvPrevious.text = PREVIOUS
                     tvPrevCorporate.text = notificationData.corporateName
-                    tvPrevTime.text = getTimeAMPM(notificationData.previousDateTime?:"2020-03-01T00:00:00")
+                    tvPrevTime.text = previousDateTime
                 }
                 MEETING_CANCEL -> {
                     groupPrevMeeting.visibility = View.VISIBLE
@@ -52,13 +83,12 @@ class ItemNotificationChild(
                     tvMessage.visibility = View.GONE
                     tvPrevious.text = CANCELLED_MEETING
                     tvPrevCorporate.text = notificationData.corporateName
-                    tvPrevTime.text = time
+                    tvPrevTime.text = curentDateTime
                 }
                 else -> {
                     groupPrevMeeting.visibility = View.GONE
                     groupNewMeeting.visibility = View.GONE
                     tvMessage.visibility = View.VISIBLE
-
                     tvMessage.text = notificationData.message
                 }
             }

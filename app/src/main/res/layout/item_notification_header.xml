@@ -10,7 +10,7 @@
 
 
         <TextView
-            android:id="@+id/tv_header_time"
+            android:id="@+id/tv_time"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -18,15 +18,15 @@
             android:text="@string/txt_label_time"
             android:textColor="@color/light_black"
             android:textSize="@dimen/text_size_normal"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/guideline2"
             app:layout_constraintStart_toEndOf="@+id/guideline1"
             app:layout_constraintTop_toTopOf="parent"
-            android:textStyle="bold"
             tools:text="Time" />
 
         <TextView
-            android:id="@+id/tv_header_corporate"
+            android:id="@+id/tv_corporate"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -34,11 +34,13 @@
             android:text="@string/txt_label_corporate"
             android:textColor="@color/light_black"
             android:textSize="@dimen/text_size_normal"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/guideline2"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Corporate"
-            android:textStyle="bold" />
+            tools:text="Corporate" />
+
+
 
         <View
             android:layout_width="0dp"
@@ -48,8 +50,7 @@
             android:background="@color/_material_grey_400"
             app:layout_constraintEnd_toStartOf="@id/guideline1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_header_time" />
-
+            app:layout_constraintTop_toBottomOf="@id/tv_time" />
 
 
         <View
@@ -60,7 +61,7 @@
             android:background="@color/_material_grey_400"
             app:layout_constraintEnd_toStartOf="@id/guideline2"
             app:layout_constraintStart_toEndOf="@+id/guideline1"
-            app:layout_constraintTop_toBottomOf="@id/tv_header_time" />
+            app:layout_constraintTop_toBottomOf="@id/tv_time" />
 
         <View
             android:layout_width="0dp"
@@ -70,7 +71,9 @@
             android:background="@color/_material_grey_400"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/guideline2"
-            app:layout_constraintTop_toBottomOf="@id/tv_header_time" />
+            app:layout_constraintTop_toBottomOf="@id/tv_time" />
+
+
 
 
         <androidx.constraintlayout.widget.Guideline
@@ -79,8 +82,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.2"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:ignore="MissingConstraints" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline2"
@@ -88,16 +90,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.4"
-            app:layout_constraintStart_toEndOf="@id/guideline1"
-            tools:ignore="MissingConstraints" />
+            app:layout_constraintStart_toEndOf="@id/guideline1" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.6"
-            app:layout_constraintStart_toEndOf="@id/guideline2"
-            tools:ignore="MissingConstraints" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

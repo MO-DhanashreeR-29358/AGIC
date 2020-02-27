@@ -23,15 +23,10 @@ import com.mosl.mobile.app_user.login.user
 import com.mosl.mobile.core.MOSLCommonActivity
 import com.mosl.mobile.core.MOSLCommonFragment
 import com.mosl.mobile.databinding.FragmentNotificationHistoryBinding
-import com.mosl.mobile.domain.notification.NotificationItemModel
-import com.mosl.mobile.domain.notification.NotificationModel
 import com.mosl.mobile.domain.notification.NotificationResponse
 import com.mosl.mobile.util.toggleProgressBar
-import com.mosl.shared.AppDateFormats
-import com.mosl.shared.util.getFormatedDate
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
-import com.xwray.groupie.databinding.BindableItem
 import io.reactivex.Observable
 import javax.inject.Inject
 
@@ -79,9 +74,10 @@ class NotificationHistoryFragment : MOSLCommonFragment(), NotificationContract {
 
     private fun setUpView() {
         if (userManager.user.role.equals(MOSLCommonActivity.ROLE_CLIENT, ignoreCase = true)) {
-            binding.header.tvHeaderCorporate.setText(ItemNotificationHeader.CORPORATE)
+            binding.header.tvCorporate.setText(CORPORATE)
+
         } else {
-            binding.header.tvHeaderCorporate.setText(ItemNotificationHeader.FUND)
+            binding.header.tvCorporate.setText(FUND)
         }
     }
 
@@ -97,6 +93,7 @@ class NotificationHistoryFragment : MOSLCommonFragment(), NotificationContract {
                 section.showError(error)
                 section.removeHeader()
                 binding.textView.visibility = View.GONE
+                binding.header.root.visibility = View.GONE
             } else {
                 val type = object : TypeToken<List<NotificationResponse>>() {}.type
                 val notificationResponse: List<NotificationResponse> =
@@ -122,7 +119,8 @@ class NotificationHistoryFragment : MOSLCommonFragment(), NotificationContract {
             setNotificationUpdate()
             section.clearContent()
             binding.textView.visibility = View.VISIBLE
-            getNotificationData(this).renderUi()
+            section.setContent(this.map(::ItemNotificationChild))
+//            getNotificationData(this).renderUi()
         } else {
             binding.textView.visibility = View.GONE
             section.removeHeader()
@@ -135,59 +133,59 @@ class NotificationHistoryFragment : MOSLCommonFragment(), NotificationContract {
         }
     }
 
-    fun List<NotificationModel>.renderUi() {
-        val items = mutableListOf<BindableItem<*>>()
-        map {
-            items.add(ItemNotificationHeaderDate(it.headerTime))
-            it.itemList.map { model ->
-                items.add(ItemNotificationChild(model))
-            }
-        }
-
-        section.update(items)
-    }
-
-    fun getNotificationData(dataList: List<NotificationResponse>): List<NotificationModel> {
-        val notificationListData = mutableListOf<NotificationModel>()
-
-
-        val distinctDatesList = dataList
-            .map {
-                getFormatedDate(
-                    it.meetingDateTime,
-                    AppDateFormats.DF_JSON_DATE_4,
-                    AppDateFormats.DF_JSON_DATE6
-                )
-            }
-            .distinctBy { it }.sortedWith(compareByDescending({ it }))
-
-
-        distinctDatesList.forEachIndexed { indexDate, filteredDates ->
-            val childItemList = mutableListOf<NotificationItemModel>()
-            dataList.forEachIndexed { _, notificationResponse ->
-                if (getFormatedDate(
-                        notificationResponse.meetingDateTime,
-                        AppDateFormats.DF_JSON_DATE_4,
-                        AppDateFormats.DF_JSON_DATE6
-                    ).contains(filteredDates)
-                ) {
-                    childItemList.add(
-                        NotificationItemModel(
-                            notificationResponse.corporateName,
-                            notificationResponse.meetingDateTime,
-                            notificationResponse.previousDateTime,
-                            notificationResponse.type,
-                            notificationResponse.message
-                        )
-                    )
-                }
-            }
-            val sortedList = childItemList.sortedWith(compareByDescending({ it.meetingDateTime }))
-            notificationListData.add(indexDate, NotificationModel(filteredDates, sortedList))
-        }
-
-        return notificationListData
-    }
+//    fun List<NotificationModel>.renderUi() {
+//        val items = mutableListOf<BindableItem<*>>()
+//        map {
+//            items.add(ItemNotificationHeaderDate(it.headerTime))
+//            it.itemList.map { model ->
+//                items.add(ItemNotificationChild(model))
+//            }
+//        }
+//
+//        section.update(items)
+//    }
+//
+//    fun getNotificationData(dataList: List<NotificationResponse>): List<NotificationModel> {
+//        val notificationListData = mutableListOf<NotificationModel>()
+//
+//
+//        val distinctDatesList = dataList
+//            .map {
+//                getFormatedDate(
+//                    it.meetingDateTime,
+//                    AppDateFormats.DF_JSON_DATE_4,
+//                    AppDateFormats.DF_JSON_DATE6
+//                )
+//            }
+//            .distinctBy { it }.sortedWith(compareByDescending({ it }))
+//
+//
+//        distinctDatesList.forEachIndexed { indexDate, filteredDates ->
+//            val childItemList = mutableListOf<NotificationItemModel>()
+//            dataList.forEachIndexed { _, notificationResponse ->
+//                if (getFormatedDate(
+//                        notificationResponse.meetingDateTime,
+//                        AppDateFormats.DF_JSON_DATE_4,
+//                        AppDateFormats.DF_JSON_DATE6
+//                    ).contains(filteredDates)
+//                ) {
+//                    childItemList.add(
+//                        NotificationItemModel(
+//                            notificationResponse.corporateName,
+//                            notificationResponse.meetingDateTime,
+//                            notificationResponse.previousDateTime,
+//                            notificationResponse.type,
+//                            notificationResponse.message
+//                        )
+//                    )
+//                }
+//            }
+//            val sortedList = childItemList.sortedWith(compareByDescending({ it.meetingDateTime }))
+//            notificationListData.add(indexDate, NotificationModel(filteredDates, sortedList))
+//        }
+//
+//        return notificationListData
+//    }
 
 
     override fun isDataEmpty(): Boolean {
@@ -196,5 +194,8 @@ class NotificationHistoryFragment : MOSLCommonFragment(), NotificationContract {
 
     companion object {
         const val NO_DATA_AVAILABLE_FOR_THE_DAY = "No data available for the day"
+        const val CORPORATE = "Corporate"
+        const val FUND = "Fund"
+
     }
 }

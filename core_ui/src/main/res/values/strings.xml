@@ -79,4 +79,5 @@
     <string name="txt_label_date">Date</string>
     <string name="txt_label_time">Time</string>
     <string name="txt_label_corporate">Corporate</string>
+    <string name="txt_label_client">Client</string>
 </resources>
