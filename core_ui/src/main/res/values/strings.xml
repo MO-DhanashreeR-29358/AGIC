@@ -65,6 +65,7 @@
     <string name="text_label_ok">OK</string>
     <string name="text_label_no">NO</string>
     <string name="txt_label_contact_rm">Contact your RM</string>
+    <string name="txt_label_rm">Representatives</string>
     <string name="call_alert_message">"Do you want to call?"</string>
     <string name="splash_screen_image_key">splash_image_url</string>
     <string name="agic_init">agic_init</string>

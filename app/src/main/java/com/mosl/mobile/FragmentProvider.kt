@@ -16,6 +16,7 @@ import com.mosl.mobile.notes.NotesFragment
 import com.mosl.mobile.notes.NotesModule
 import com.mosl.mobile.notification.NotificationHistoryFragment
 import com.mosl.mobile.notification.NotificationModule
+import com.mosl.mobile.notification.NotificationRepsDialogFragment
 import com.mosl.mobile.overview.OverviewChildFragment
 import com.mosl.mobile.overview.OverviewChildModule
 import com.mosl.mobile.overview.OverviewRepDialogFragment
@@ -37,6 +38,9 @@ interface FragmentProvider {
 
     @ContributesAndroidInjector(modules = [])
     fun provideScheduleRepDialogFragmentFactory(): ScheduleRepDialogFragment
+
+    @ContributesAndroidInjector(modules = [])
+    fun provideNotificationRepsDialogFragmentFactory(): NotificationRepsDialogFragment
 
     @ContributesAndroidInjector(modules = [])
     fun provideOverviewRepDialogFragmentFragmentFactory(): OverviewRepDialogFragment

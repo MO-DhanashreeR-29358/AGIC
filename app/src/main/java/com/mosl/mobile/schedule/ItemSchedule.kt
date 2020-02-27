@@ -46,7 +46,6 @@ class ItemSchedule(
             tvScheduleTime.setOnClickListener(this@ItemSchedule)
 
             try {
-
                 if (scheduleData.Rep.size > 0) {
                     val scheduleName = scheduleData.Rep[0].name
                     val scheduleDesignation = scheduleData.Rep[0].designation

@@ -28,6 +28,8 @@ import com.mosl.mobile.util.toggleProgressBar
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
 import io.reactivex.Observable
+import io.reactivex.rxkotlin.ofType
+import io.reactivex.subjects.PublishSubject
 import javax.inject.Inject
 
 class NotificationHistoryFragment : MOSLCommonFragment(), NotificationContract {
@@ -47,9 +49,11 @@ class NotificationHistoryFragment : MOSLCommonFragment(), NotificationContract {
 
     @Inject
     lateinit var gson: Gson
-
     @Inject
     lateinit var userManager: UserManager
+
+    private val repsUiEvent = PublishSubject.create<NotificationUiEvent>()
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -110,6 +114,7 @@ class NotificationHistoryFragment : MOSLCommonFragment(), NotificationContract {
         }
     }
 
+
     override fun swipeRefresh(): Observable<Unit> {
         return binding.swipeRefresh.refreshes()
     }
@@ -119,7 +124,7 @@ class NotificationHistoryFragment : MOSLCommonFragment(), NotificationContract {
             setNotificationUpdate()
             section.clearContent()
             binding.textView.visibility = View.VISIBLE
-            section.setContent(this.map(::ItemNotificationChild))
+            section.setContent(this.map { ItemNotificationChild(it, repsUiEvent) })
 //            getNotificationData(this).renderUi()
         } else {
             binding.textView.visibility = View.GONE
@@ -131,6 +136,18 @@ class NotificationHistoryFragment : MOSLCommonFragment(), NotificationContract {
                 )
             )
         }
+    }
+
+    override fun onItemClicked(): Observable<NotificationUiEvent.OnMoreClick> {
+        return repsUiEvent.ofType()
+    }
+
+    override fun renderItemData(repList: List<String>) {
+
+        val dialogFragment = NotificationRepsDialogFragment()
+
+        dialogFragment.setData(repList);
+        dialogFragment.show(childFragmentManager, "dialog")
     }
 
 //    fun List<NotificationModel>.renderUi() {

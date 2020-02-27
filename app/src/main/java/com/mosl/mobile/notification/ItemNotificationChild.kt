@@ -5,17 +5,21 @@ import android.view.View
 import com.mosl.mobile.R
 import com.mosl.mobile.databinding.ItemNotificationChildBinding
 import com.mosl.mobile.domain.notification.NotificationResponse
+import com.mosl.mobile.schedule.ScheduleUiEvent
 import com.mosl.shared.AppDateFormats
 import com.mosl.shared.util.getFormatedDate
 import com.mosl.shared.util.getTimeAMPM
 import com.xwray.groupie.databinding.BindableItem
+import io.reactivex.subjects.PublishSubject
 import java.util.*
 
 
 class ItemNotificationChild(
-    private val notificationData: NotificationResponse
-) :
-    BindableItem<ItemNotificationChildBinding>() {
+    private val notificationData: NotificationResponse,
+    private val publishSubject: PublishSubject<NotificationUiEvent>
+
+    ) :
+    BindableItem<ItemNotificationChildBinding>(),View.OnClickListener {
 
 
     override fun bind(viewBinding: ItemNotificationChildBinding, position: Int) {
@@ -59,6 +63,7 @@ class ItemNotificationChild(
                     tvNewMore.text = String.format("(%d Reps)", (this.size))
                 }
             }
+            tvNewMore.setOnClickListener(this@ItemNotificationChild)
             when (notificationData.type.toLowerCase(Locale.ENGLISH)) {
                 MEETING_CREATE -> {
                     groupNewMeeting.visibility = View.VISIBLE
@@ -103,6 +108,21 @@ class ItemNotificationChild(
 
     override fun getLayout(): Int {
         return R.layout.item_notification_child
+    }
+
+    override fun onClick(v: View?) {
+        when {
+            v?.id == R.id.tv_new_more -> {
+                notificationData.clientList?.apply {
+                    publishSubject.onNext(
+                        NotificationUiEvent.OnMoreClick(
+                           this
+                        )
+                    )
+                }
+
+            }
+        }
     }
 
     companion object {
