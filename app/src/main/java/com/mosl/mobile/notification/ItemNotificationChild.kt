@@ -27,11 +27,7 @@ class ItemNotificationChild(
             AppDateFormats.DF_DAY
         )
         currentDate = ordinalOf(currentDate.toInt())
-        var currentTime = getTimeAMPM(notificationData.meetingDateTime)
-
-        if (currentTime.contains(":00")) {
-            currentTime = currentTime.replace(":00", "")
-        }
+        val currentTime = getTimeAMPM(notificationData.meetingDateTime)
 
         val curentDateTime = String.format(
             "%s %s", currentDate, currentTime
@@ -43,11 +39,7 @@ class ItemNotificationChild(
                 this, AppDateFormats.DF_JSON_DATE_4,
                 AppDateFormats.DF_DAY
             )
-            var previousTime = getTimeAMPM(this)
-
-            if (previousTime.contains(":00")) {
-                previousTime = previousTime.replace(":00", "")
-            }
+            val previousTime = getTimeAMPM(this)
 
             previousDateTime = String.format(
                 "%s %s", ordinalOf(previousDate.toInt()), previousTime
