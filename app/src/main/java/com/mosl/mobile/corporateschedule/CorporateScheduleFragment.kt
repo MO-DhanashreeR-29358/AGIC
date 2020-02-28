@@ -138,12 +138,11 @@ class CorporateScheduleFragment : MOSLCommonFragment(), CorporateChildContract {
     }
 
     fun selection(it: List<CorporateScheduleResponseDayItemInfo>, coll: Boolean) {
-        val sortedList = it.sortedWith(compareBy({ it.shiftTiming }))
         var currentTimeBetween = false
         var currentPosition = -1
         var expandPosition = -1
 
-        for ((i, model) in sortedList.withIndex()) {
+        for ((i, model) in it.withIndex()) {
 
             val startTime = model.shiftTiming
             val nextStartTime = model.shiftEndTime
@@ -174,12 +173,11 @@ class CorporateScheduleFragment : MOSLCommonFragment(), CorporateChildContract {
         it: List<CorporateScheduleResponseDayItemInfo>,
         shiftTime: String
     ) {
-        val sortedList = it.sortedWith(compareBy({ it.shiftTiming }))
         var currentTimeBetween = false
         var currentPosition = -1
         var expandPosition = -1
 
-        for ((i, model) in sortedList.withIndex()) {
+        for ((i, model) in it.withIndex()) {
             val startTime = model.shiftTiming
             val serachShiftTiming = shiftTime
             if (startTime.equals(serachShiftTiming) &&

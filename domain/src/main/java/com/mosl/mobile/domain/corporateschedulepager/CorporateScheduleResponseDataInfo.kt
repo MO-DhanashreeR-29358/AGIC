@@ -19,13 +19,9 @@ data class CorporateScheduleResponseDataInfo(
 
         panelDayWiseListData.apply {
 
-            val sortedList1 = day1.sortedWith(compareBy({ it.shiftTiming }))
-            val sortedList2 = day2.sortedWith(compareBy({ it.shiftTiming }))
-            val sortedList3 = day3.sortedWith(compareBy({ it.shiftTiming }))
-
-            add(sortedList1)
-            add(sortedList2)
-            add(sortedList3)
+            add(day1)
+            add(day2)
+            add(day3)
         }
         return panelDayWiseListData
 

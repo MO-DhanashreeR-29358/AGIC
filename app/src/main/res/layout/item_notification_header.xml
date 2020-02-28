@@ -29,7 +29,6 @@
             android:id="@+id/tv_corporate"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:padding="@dimen/padding_small"
             android:text="@string/txt_label_corporate"
             android:textColor="@color/light_black"
