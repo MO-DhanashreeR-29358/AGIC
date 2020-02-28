@@ -37,15 +37,15 @@ class ItemCorporateSchedule(
             tvShiftTime.text = (itemData.shiftTiming)
             tvRoomNumber.text = String.format("Room No - %s", itemData.roomNumber)
 
-            img.apply {
+            imageView.apply {
                 when (itemData.natureOfMeeting) {
-                    "1-1" -> setImageResource(R.drawable.ic_1x1_small)
-                    "2-1" -> setImageResource(R.drawable.ic_2x1_small)
-                    "3-1" -> setImageResource(R.drawable.ic_3x1_small)
-                    "4-1" -> setImageResource(R.drawable.ic_4x1_small)
-                    "Small Group" -> setImageResource(R.drawable.ic_group_small)
-                    "Workshop" -> setImageResource(R.drawable.ic_mtrack_small)
-                    else -> setImageResource(R.drawable.ic_mtrack_small)
+                    "1-1" -> setImageResource(R.drawable.ic_1x1_small_h)
+                    "2-1" -> setImageResource(R.drawable.ic_2x1_small_h)
+                    "3-1" -> setImageResource(R.drawable.ic_3x1_small_h)
+                    "4-1" -> setImageResource(R.drawable.ic_4x1_small_h)
+                    "Small Group" -> setImageResource(R.drawable.ic_group_small_h)
+                    "Workshop" -> setImageResource(R.drawable.ic_mtrack_small_h)
+                    else -> setImageResource(R.drawable.ic_mtrack_small_h)
                 }
             }
 

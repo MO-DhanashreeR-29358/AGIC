@@ -121,19 +121,7 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
                 tabLayout.visibility = View.GONE
                 pager.visibility = View.GONE
                 if (charSequence.length > 0) {
-                    var sortedList = mutableListOf<CorporateScheduleResponseDayItemInfo>()
-                    sortedList = searchList.map {
-                        CorporateScheduleResponseDayItemInfo(
-                            Attendees = it.Attendees.sortedWith(compareBy({ it.FundName })),
-                            shiftTiming = it.shiftTiming,
-                            roomNumber = it.roomNumber,
-                            natureOfMeeting = it.natureOfMeeting,
-                            day = it.day,
-                            shiftEndTime = it.shiftEndTime
-                        )
-
-                    }.toMutableList()
-
+                    val renderSearchList = mutableListOf<SearchCorporateScheduleItemInfo>()
                     searchList.forEach { event ->
                         for (y in 0..((event.Attendees).size - 1)) {
                             if (event.Attendees[y].FundName.toLowerCase(locale = Locale.ENGLISH)
@@ -146,47 +134,40 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
                                     event.day,
                                     event.shiftTiming
                                 )
+                                renderSearchList.add(searchItem)
 
-                                searchSection.add(
-                                    ItemSearchCorporateSchedule(
-                                        searchItem,
-                                        followUpUiEventPager
+                            }
+                            for (z in 0..((event.Attendees[y].representative).size - 1)) {
+                                if (event.Attendees[y].representative[z].name.toLowerCase(
+                                        locale = Locale.ENGLISH
+                                    ).contains(
+                                        charSequence.toString().toLowerCase(locale = Locale.ENGLISH)
                                     )
-                                )
-
-                            } else {
-                                for (z in 0..((event.Attendees[y].representative).size - 1)) {
-
-                                    if (event.Attendees[y].representative[z].name.toLowerCase(
-                                            locale = Locale.ENGLISH
-                                        ).contains(
-                                            charSequence.toString().toLowerCase(locale = Locale.ENGLISH)
-                                        )
-                                    ) {
-                                        val searchItem: SearchCorporateScheduleItemInfo
-
-                                        searchItem = SearchCorporateScheduleItemInfo(
-                                            event.Attendees[y].FundName,
-                                            event.Attendees[y].representative[z].name,
-                                            event.day,
-                                            event.shiftTiming
-                                        )
-
-                                        searchSection.add(
-                                            ItemSearchCorporateSchedule(
-                                                searchItem,
-                                                followUpUiEventPager
-                                            )
-                                        )
-                                    }
+                                ) {
+                                    val searchItem: SearchCorporateScheduleItemInfo
+                                    searchItem = SearchCorporateScheduleItemInfo(
+                                        event.Attendees[y].FundName,
+                                        event.Attendees[y].representative[z].name,
+                                        event.day,
+                                        event.shiftTiming
+                                    )
+                                    renderSearchList.add(searchItem)
                                 }
                             }
-                            groupAdapter.notifyDataSetChanged()
+
 
                         }
 
                     }
 
+                    val sortingList = renderSearchList.sortedWith(compareBy({ it.represntiveName }))
+                    searchSection.setContent(sortingList.map {
+                        ItemSearchCorporateSchedule(
+                            it,
+                            followUpUiEventPager
+                        )
+                    })
+                    groupAdapter.notifyDataSetChanged()
                 } else {
                     recSearch.visibility = View.GONE
                     tabLayout.visibility = View.VISIBLE
