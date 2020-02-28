@@ -159,7 +159,6 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
                         }
 
                     }
-
                     val sortingList = renderSearchList.sortedWith(compareBy({ it.represntiveName }))
                     searchSection.setContent(sortingList.map {
                         ItemSearchCorporateSchedule(
