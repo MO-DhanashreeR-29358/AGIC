@@ -407,12 +407,7 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
     }
 
     private fun disableTab(tabLayout: TabLayout, index: Int) {
-        if (compareDate()) {
-            (tabLayout.getChildAt(0) as ViewGroup).getChildAt(index).isEnabled = true
-        } else {
-            (tabLayout.getChildAt(0) as ViewGroup).getChildAt(index).isEnabled = false
-
-        }
+        (tabLayout.getChildAt(0) as ViewGroup).getChildAt(index).isEnabled = compareDate()
     }
 
 
@@ -441,7 +436,7 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
 
     private fun Intent.isNotification(): Boolean {
         val category: String? = getStringExtra(ActivityNavigationHelper.ARG_NOTIFICATION_CATEGORY)
-        if (category == null) return false else return true
+        return category != null
     }
 
     override fun onNewIntent(intent: Intent?) {
