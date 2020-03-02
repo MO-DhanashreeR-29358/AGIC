@@ -1,9 +1,13 @@
 package com.mosl.data.api.corporateschedulepager
 
+import com.google.gson.annotations.SerializedName
+
 data class CorporateScheduleResponseDayAttendanceItem(
 
-    @JvmField val FundName: String,
+    @JvmField @SerializedName("FundName")
+    val FundName: String,
 
-    @JvmField val representative: List<CorporateScheduleResponseRepresentativeItem>
+    @JvmField @SerializedName("representative")
+    val representative: List<CorporateScheduleResponseRepresentativeItem>
 
 )

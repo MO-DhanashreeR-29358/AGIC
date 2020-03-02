@@ -22,3 +22,7 @@
 -keep class com.mosl.mobile.login.UserType {*;}
 
 -keep class  com.gamooga.pushamplify.bridge.BridgePushHandler
+-keepclassmembers enum * { *; }
+-keep class com.mosl.mobile.app_user.model.User
+-keep class com.mosl.mobile.domain.** { *; }
+-keep class com.mosl.mobile.data.** { *; }
