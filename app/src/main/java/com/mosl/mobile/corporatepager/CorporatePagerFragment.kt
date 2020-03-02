@@ -336,7 +336,10 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
         }
         corporateListData =
             CorporateScheduleDayWiseListData() as MutableList<List<CorporateScheduleResponseDayItemInfo>>
-        searchList = data as MutableList<CorporateScheduleResponseDayItemInfo>
+        if(data.size>0){
+            searchList = data as MutableList<CorporateScheduleResponseDayItemInfo>
+
+        }
         val dayOverView = CorporateScheduleDayWiseListData().get(0)
 
         if (dayOverView.isNotEmpty()) {
