@@ -51,6 +51,7 @@ object MenuGetter {
             NavigationConstants.NAVIGATE_TO_OVERVIEW_CHILD -> true
             NavigationConstants.NAVIGATE_TO_NOTES -> true
             NavigationConstants.NAVIGATE_TO_CORPORATE_SCHEDULE -> true
+            NavigationConstants.NAVIGATE_TO_NOTIFICATION -> true
             NavigationConstants.NAVIGATE_TO_FEEDBACK -> true
             else -> return false
         }
