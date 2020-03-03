@@ -2,8 +2,10 @@ package com.mosl.mobile.login
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
 import android.view.inputmethod.EditorInfo
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.google.gson.Gson
@@ -19,10 +21,10 @@ import com.mosl.commons.data.onSuccess
 import com.mosl.mobile.R
 import com.mosl.mobile.annotations.RemoteConfigData
 import com.mosl.mobile.app_user.model.User
-import com.mosl.mobile.constants.NavigationConstants
 import com.mosl.mobile.core.MOSLCommonActivity
 import com.mosl.mobile.data.RemoteConfigModel
 import com.mosl.mobile.databinding.ActivityLoginBinding
+import com.mosl.mobile.databinding.AlertDialogBinding
 import com.mosl.navigator.AppTitle
 import com.mosl.navigator.AuthorizationState
 import com.mosl.navigator.FragmentNavigationEntry
@@ -105,7 +107,29 @@ class LoginActivity : LeanBaseActivity(), Navigator, LoginView {
 
     fun Throwable.showOnFailurePopup() {
         val errorOnFailure = this.getErrorOnFailure()
-        alert(message = errorOnFailure.getResolvedMessage(applicationContext))
+        alertMessage(message = errorOnFailure.getResolvedMessage(applicationContext))
+    }
+
+    lateinit var bindingDialog: AlertDialogBinding
+
+    internal fun alertMessage(message: String) {
+
+        //Inflate the dialog with custom view
+        val mDialogView = LayoutInflater.from(this).inflate(R.layout.alert_dialog, null)
+
+        bindingDialog = AlertDialogBinding.bind(mDialogView)
+
+
+        val mBuilder = AlertDialog.Builder(this)
+            .setView(mDialogView)
+        val mAlertDialog = mBuilder.show()
+        bindingDialog.txtError.text = message
+
+        //cancel button click of custom layout
+        bindingDialog.btnOk.setOnClickListener {
+            //dismiss dialog
+            mAlertDialog.dismiss()
+        }
     }
 
     override fun getUniqueCode(): String {

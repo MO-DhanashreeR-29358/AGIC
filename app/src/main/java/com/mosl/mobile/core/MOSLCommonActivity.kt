@@ -62,6 +62,7 @@ import com.mosl.mobile.coreui.LocaleManager
 import com.mosl.mobile.dashboard.ActivityNavigationHelper
 import com.mosl.mobile.data.RemoteConfigModel
 import com.mosl.mobile.databinding.ActivityCommonbaseBinding
+import com.mosl.mobile.databinding.AlertDialogBinding
 import com.mosl.mobile.databinding.LogoutDialogBinding
 import com.mosl.mobile.login.LoginActivity
 import com.mosl.mobile.login.UserCacheImpl
@@ -168,6 +169,9 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
 
     @Inject
     lateinit var loginRepository: LoginRepositoryImpl
+
+    lateinit var alertBindingDialog: AlertDialogBinding
+    lateinit var bindingDialog: LogoutDialogBinding
 
     override fun getLayout(): Int {
         return R.layout.activity_commonbase
@@ -387,7 +391,7 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
                     PdfFragment.newInstance()
                         .show(ft, "")
                 } else {
-                    alert(message = PDF_FILE_NOT_YET_UPLOADED)
+                    alertMessage(message = PDF_FILE_NOT_YET_UPLOADED)
                 }
             } else {
                 setColorFilter(tab.icon, baseContext.setColor(R.color.blue))
@@ -572,7 +576,26 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
 
     }
 
-    lateinit var bindingDialog: LogoutDialogBinding
+
+    internal fun alertMessage(message: String) {
+
+        //Inflate the dialog with custom view
+        val mDialogView = LayoutInflater.from(this).inflate(R.layout.alert_dialog, null)
+
+        alertBindingDialog = AlertDialogBinding.bind(mDialogView)
+
+
+        val mBuilder = AlertDialog.Builder(this)
+            .setView(mDialogView)
+        val mAlertDialog = mBuilder.show()
+        alertBindingDialog.txtError.text = message
+
+        //cancel button click of custom layout
+        alertBindingDialog.btnOk.setOnClickListener {
+            //dismiss dialog
+            mAlertDialog.dismiss()
+        }
+    }
 
     internal fun logoutCustomer() {
 
@@ -646,7 +669,7 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
 
     fun Throwable.showOnFailurePopup() {
         val errorOnFailure = this.getErrorOnFailure()
-        alert(message = errorOnFailure.getResolvedMessage(applicationContext))
+        alertMessage(message = errorOnFailure.getResolvedMessage(applicationContext))
     }
 
     private fun openLogin() {
