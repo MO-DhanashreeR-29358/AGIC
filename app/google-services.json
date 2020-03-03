@@ -1,0 +1,155 @@
+{
+  "project_info": {
+    "project_number": "486598385892",
+    "firebase_url": "https://motilal-oswal-conferences.firebaseio.com",
+    "project_id": "motilal-oswal-conferences",
+    "storage_bucket": "motilal-oswal-conferences.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:486598385892:android:cdff0586df9f3f59ad8cf1",
+        "android_client_info": {
+          "package_name": "com.mosl.agicapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "486598385892-j8j8g7fv7trsn13ei5b7ua8rndck5r7d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBeHaEkDQMLpMOyd2JbLIRoE4NpoZvFjiI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "486598385892-j8j8g7fv7trsn13ei5b7ua8rndck5r7d.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "486598385892-b39sgd5uf46q1k3e7duo7fm8d2mvipvb.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mosl.agicappbeta"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:486598385892:android:795d807593983a6ead8cf1",
+        "android_client_info": {
+          "package_name": "com.mosl.agicapp.debug"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "486598385892-j8j8g7fv7trsn13ei5b7ua8rndck5r7d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBeHaEkDQMLpMOyd2JbLIRoE4NpoZvFjiI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "486598385892-j8j8g7fv7trsn13ei5b7ua8rndck5r7d.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "486598385892-b39sgd5uf46q1k3e7duo7fm8d2mvipvb.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mosl.agicappbeta"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:486598385892:android:9892e5ec3c3bd0a4ad8cf1",
+        "android_client_info": {
+          "package_name": "com.mosl.agicapp.internal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "486598385892-j8j8g7fv7trsn13ei5b7ua8rndck5r7d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBeHaEkDQMLpMOyd2JbLIRoE4NpoZvFjiI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "486598385892-j8j8g7fv7trsn13ei5b7ua8rndck5r7d.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "486598385892-b39sgd5uf46q1k3e7duo7fm8d2mvipvb.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mosl.agicappbeta"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:486598385892:android:914e9f0a67bcde23ad8cf1",
+        "android_client_info": {
+          "package_name": "com.mosl.agicapp.internal.debug"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "486598385892-j8j8g7fv7trsn13ei5b7ua8rndck5r7d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBeHaEkDQMLpMOyd2JbLIRoE4NpoZvFjiI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "486598385892-j8j8g7fv7trsn13ei5b7ua8rndck5r7d.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "486598385892-b39sgd5uf46q1k3e7duo7fm8d2mvipvb.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mosl.agicappbeta"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
