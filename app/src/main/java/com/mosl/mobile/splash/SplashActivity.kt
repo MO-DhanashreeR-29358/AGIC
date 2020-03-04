@@ -22,6 +22,8 @@ import com.mosl.mobile.app_user.login.UserManager
 import com.mosl.mobile.core.MOSLCommonActivity
 import com.mosl.mobile.coreui.LocaleManager
 import com.mosl.mobile.coreui.core.MSFDialog
+import com.mosl.mobile.dashboard.ActivityNavigationHelper
+import com.mosl.mobile.dashboard.ActivityNavigationHelper.Companion.ARG_NOTIFICATION_CATEGORY
 import com.mosl.mobile.data.RemoteConfigModel
 import com.mosl.mobile.databinding.ActivitySplashScreenBinding
 import com.mosl.mobile.login.LoginActivity
@@ -64,7 +66,7 @@ class SplashActivity : LeanBaseActivity() {
         loadSplashImage(splashImageUrl)
         setupView()
         mDelayHandler.postDelayed(
-            { checkNetwork() },
+            { checkNetwork(intent) },
             (if (splashImageUrl == null) 0 else SPLASH_DELAY).toLong()
         )
     }
@@ -89,7 +91,8 @@ class SplashActivity : LeanBaseActivity() {
     fun setupView() {
         binding.txtAppInfo.text = java.lang.String.format(
             Locale.ENGLISH, "App Version : %s(%d)", BuildConfig.VERSION_NAME,
-            BuildConfig.VERSION_CODE)
+            BuildConfig.VERSION_CODE
+        )
 
     }
 
@@ -98,9 +101,9 @@ class SplashActivity : LeanBaseActivity() {
         super.attachBaseContext(LocaleManager.withLocale(base))
     }
 
-    private fun checkNetwork() {
+    private fun checkNetwork(intent: Intent) {
         if (this.isNetworkConnected()) {
-            checkVersion()
+            checkVersion(intent)
         } else {
             if (userManager.isLoggedIn()) {
                 Toast.makeText(
@@ -108,7 +111,7 @@ class SplashActivity : LeanBaseActivity() {
                     R.string.msg_application_needs_network_to_proceed,
                     Toast.LENGTH_LONG
                 ).show()
-                initializeApp()
+                initializeApp(intent)
             } else {
                 if (count < 2) {
                     count++
@@ -121,7 +124,7 @@ class SplashActivity : LeanBaseActivity() {
                     )
                     { positiveClicked ->
                         if (positiveClicked) {
-                            checkNetwork()
+                            checkNetwork(intent)
                         } else {
                             finish()
                         }
@@ -141,7 +144,7 @@ class SplashActivity : LeanBaseActivity() {
     }
 
 
-    private fun checkVersion() {
+    private fun checkVersion(intent: Intent) {
 
         val remoteConfig = FirebaseRemoteConfig.getInstance()
         val configSettings = FirebaseRemoteConfigSettings.Builder()
@@ -160,7 +163,7 @@ class SplashActivity : LeanBaseActivity() {
                         splashImgUrl.set(remoteConfigModel.splash)
                         remoteCongigData.set(agicInit)
                         if (BuildConfig.VERSION_NAME.equals(remoteConfigModel.android.version)) {
-                            initializeApp()
+                            initializeApp(intent)
                         } else {
 
                             if (remoteConfigModel.android.isMandatory) {
@@ -209,7 +212,7 @@ class SplashActivity : LeanBaseActivity() {
                                                 startActivity(i)
                                                 finish()
                                             } else if (action === MSFDialog.Action.CANCEL) {
-                                                initializeApp()
+                                                initializeApp(intent)
                                             }
                                         }
                                     })
@@ -220,8 +223,8 @@ class SplashActivity : LeanBaseActivity() {
             }
     }
 
-    private fun initializeApp() {
-        openDashboard()
+    private fun initializeApp(intent: Intent) {
+        openDashboard(intent)
     }
 
     override fun clearWindowBackground(): Boolean {
@@ -229,21 +232,36 @@ class SplashActivity : LeanBaseActivity() {
     }
 
 
-    internal fun openDashboard() {
+    internal fun openDashboard(instanseIntent: Intent) {
         if (userManager.isLoggedIn()) {
-            val intent = Intent(this, MOSLCommonActivity::class.java)
-            startActivity(intent)
-            finish()
+            if (instanseIntent.isNotification()) {
+                val intent = Intent(this@SplashActivity, MOSLCommonActivity::class.java)
+                intent.putExtra(
+                    ARG_NOTIFICATION_CATEGORY,
+                    instanseIntent.getStringExtra(ARG_NOTIFICATION_CATEGORY)
+                )
+                startActivity(intent)
+                finish()
+            } else {
+                val intent = Intent(this@SplashActivity, MOSLCommonActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
         } else if (userManager.isActive()) {
-            val intent = Intent(this, LoginActivity::class.java)
+            val intent = Intent(this@SplashActivity, LoginActivity::class.java)
             startActivity(intent)
             finish()
         } else {
-            val intent = Intent(this, NewsLetterActivity::class.java)
+            val intent = Intent(this@SplashActivity, NewsLetterActivity::class.java)
             startActivity(intent)
             finish()
         }
 
+    }
+
+    private fun Intent.isNotification(): Boolean {
+        val category: String? = getStringExtra(ActivityNavigationHelper.ARG_NOTIFICATION_CATEGORY)
+        return category != null
     }
 
     companion object {
