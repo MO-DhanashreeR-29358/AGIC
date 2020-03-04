@@ -116,21 +116,13 @@ class CorporateScheduleFragment : MOSLCommonFragment(), CorporateChildContract {
                 val dayArr = userManager.user.day
                 val separate1 = dayArr.split(",").toTypedArray()
 
-                if (currentDate.equals(separate1[1]) && it[0].day.equals("day2"))
+                if (currentDate.equals(separate1[0]) && it[0].day.equals("day1",ignoreCase = true))
                     selection(it, true)
-                else if (!currentDate.equals(separate1[1]) && it[0].day.equals("day2"))
-                    selection(it, false)
-                else if (currentDate.equals(separate1[2]) && it[0].day.equals("day3"))
+                else if (currentDate.equals(separate1[1]) && it[0].day.equals("day2",ignoreCase = true))
                     selection(it, true)
-                else if (!currentDate.equals(separate1[2]) && it[0].day.equals("day3"))
-                    selection(it, false)
-                else if (it[0].day.equals("day1") && !currentDate.equals(separate1[1]) && !currentDate.equals(
-                        separate1[2]
-                    )
-                )
+                else if (currentDate.equals(separate1[2]) && it[0].day.equals("day3",ignoreCase = true))
                     selection(it, true)
-                else
-                    selection(it, false)
+                else selection(it, false)
             } else {
                 selectionSearch(it, shiftTime)
             }
@@ -152,9 +144,7 @@ class CorporateScheduleFragment : MOSLCommonFragment(), CorporateChildContract {
                 currentPosition = i
                 expandPosition = i + 1
             }
-
-
-             if (coll)
+            if (coll)
                  section.add(
                      ItemCorporateSchedule(
                          model,
