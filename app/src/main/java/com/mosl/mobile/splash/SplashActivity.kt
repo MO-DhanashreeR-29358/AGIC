@@ -22,7 +22,6 @@ import com.mosl.mobile.app_user.login.UserManager
 import com.mosl.mobile.core.MOSLCommonActivity
 import com.mosl.mobile.coreui.LocaleManager
 import com.mosl.mobile.coreui.core.MSFDialog
-import com.mosl.mobile.dashboard.ActivityNavigationHelper
 import com.mosl.mobile.dashboard.ActivityNavigationHelper.Companion.ARG_NOTIFICATION_CATEGORY
 import com.mosl.mobile.data.RemoteConfigModel
 import com.mosl.mobile.databinding.ActivitySplashScreenBinding
@@ -40,12 +39,6 @@ class SplashActivity : LeanBaseActivity() {
     private var mDelayHandler: Handler = Handler()
     private val SPLASH_DELAY: Long = 2000 //2 seconds
     private var count = 0
-
-
-    override fun getLayout(): Int {
-        return R.layout.activity_splash_screen
-    }
-
     @Inject
     lateinit var userManager: UserManager
     @Inject
@@ -53,11 +46,10 @@ class SplashActivity : LeanBaseActivity() {
     @Inject
     @field:ImageSplashUrl
     lateinit var splashImgUrl: StringPreference
-
     @Inject
     @field:RemoteConfigData
     lateinit var remoteCongigData: StringPreference
-
+    lateinit var instanseIntent:Intent
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         AndroidInjection.inject(this)
@@ -65,12 +57,16 @@ class SplashActivity : LeanBaseActivity() {
         val splashImageUrl = getSplashImageUrl()
         loadSplashImage(splashImageUrl)
         setupView()
+        instanseIntent=intent
         mDelayHandler.postDelayed(
-            { checkNetwork(intent) },
+            { checkNetwork() },
             (if (splashImageUrl == null) 0 else SPLASH_DELAY).toLong()
         )
     }
 
+    override fun getLayout(): Int {
+        return R.layout.activity_splash_screen
+    }
 
     private fun getSplashImageUrl(): String? {
         return if (!splashImgUrl.get().isEmpty()) {
@@ -101,9 +97,9 @@ class SplashActivity : LeanBaseActivity() {
         super.attachBaseContext(LocaleManager.withLocale(base))
     }
 
-    private fun checkNetwork(intent: Intent) {
+    private fun checkNetwork() {
         if (this.isNetworkConnected()) {
-            checkVersion(intent)
+            checkVersion()
         } else {
             if (userManager.isLoggedIn()) {
                 Toast.makeText(
@@ -111,7 +107,7 @@ class SplashActivity : LeanBaseActivity() {
                     R.string.msg_application_needs_network_to_proceed,
                     Toast.LENGTH_LONG
                 ).show()
-                initializeApp(intent)
+                initializeApp()
             } else {
                 if (count < 2) {
                     count++
@@ -124,7 +120,7 @@ class SplashActivity : LeanBaseActivity() {
                     )
                     { positiveClicked ->
                         if (positiveClicked) {
-                            checkNetwork(intent)
+                            checkNetwork()
                         } else {
                             finish()
                         }
@@ -144,7 +140,7 @@ class SplashActivity : LeanBaseActivity() {
     }
 
 
-    private fun checkVersion(intent: Intent) {
+    private fun checkVersion() {
 
         val remoteConfig = FirebaseRemoteConfig.getInstance()
         val configSettings = FirebaseRemoteConfigSettings.Builder()
@@ -163,7 +159,7 @@ class SplashActivity : LeanBaseActivity() {
                         splashImgUrl.set(remoteConfigModel.splash)
                         remoteCongigData.set(agicInit)
                         if (BuildConfig.VERSION_NAME.equals(remoteConfigModel.android.version)) {
-                            initializeApp(intent)
+                            initializeApp()
                         } else {
 
                             if (remoteConfigModel.android.isMandatory) {
@@ -212,7 +208,7 @@ class SplashActivity : LeanBaseActivity() {
                                                 startActivity(i)
                                                 finish()
                                             } else if (action === MSFDialog.Action.CANCEL) {
-                                                initializeApp(intent)
+                                                initializeApp()
                                             }
                                         }
                                     })
@@ -223,8 +219,8 @@ class SplashActivity : LeanBaseActivity() {
             }
     }
 
-    private fun initializeApp(intent: Intent) {
-        openDashboard(intent)
+    private fun initializeApp() {
+        openDashboard()
     }
 
     override fun clearWindowBackground(): Boolean {
@@ -232,7 +228,7 @@ class SplashActivity : LeanBaseActivity() {
     }
 
 
-    internal fun openDashboard(instanseIntent: Intent) {
+    internal fun openDashboard() {
         if (userManager.isLoggedIn()) {
             if (instanseIntent.isNotification()) {
                 val intent = Intent(this@SplashActivity, MOSLCommonActivity::class.java)
@@ -260,13 +256,12 @@ class SplashActivity : LeanBaseActivity() {
     }
 
     private fun Intent.isNotification(): Boolean {
-        val category: String? = getStringExtra(ActivityNavigationHelper.ARG_NOTIFICATION_CATEGORY)
+        val category: String? = getStringExtra(ARG_NOTIFICATION_CATEGORY)
         return category != null
     }
 
     companion object {
         val UPDATE = "Update"
         val CONTINUE = "Continue"
-        val GOOGLE_PLAY_URL = "https://play.google.com/store/apps/details?id=com.mosl.tabapp"
     }
 }
