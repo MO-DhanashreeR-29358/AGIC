@@ -17,7 +17,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/MoslTheme"
-        android:hardwareAccelerated="false">
+        android:hardwareAccelerated="true">
         <activity
             android:name=".newsletter.NewsLetterActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
