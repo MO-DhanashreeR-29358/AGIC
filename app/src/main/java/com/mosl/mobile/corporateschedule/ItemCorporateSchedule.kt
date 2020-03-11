@@ -22,10 +22,14 @@ class ItemCorporateSchedule(
     val context: Context,
     private val expandPosition: Int
 ) :
-    BindableItem<ItemFragmentCorporateScheduleChildBinding>(), Animation.AnimationListener {
+    BindableItem<ItemFragmentCorporateScheduleChildBinding>(), Animation.AnimationListener,
+    View.OnClickListener {
     private val itemData = scheduleData
 
     lateinit var animBlink: Animation
+
+    lateinit var binding: ItemFragmentCorporateScheduleChildBinding
+
     override fun bind(viewBinding: ItemFragmentCorporateScheduleChildBinding, position: Int) {
 
         viewBinding.apply {
@@ -54,13 +58,13 @@ class ItemCorporateSchedule(
                 rabView.startAnimation(animBlink)
                 recAttendees.visibility = View.VISIBLE
             } else if (expandPosition == position) {
-                rabView.setBackgroundResource(R.drawable.bg_light_orange_circle)
+                rabView.setBackgroundResource(R.drawable.bg_orange_circle)
                 recAttendees.visibility = View.VISIBLE
             } else {
                 rabView.setBackgroundResource(R.drawable.bg_light_orange_circle)
                 recAttendees.visibility = View.GONE
             }
-
+            binding = viewBinding
             setupRecyclerView(viewBinding)
         }
     }
@@ -72,28 +76,10 @@ class ItemCorporateSchedule(
 
     private fun setupRecyclerView(binding: ItemFragmentCorporateScheduleChildBinding) {
 
-
-        binding.tvShiftTime.setOnClickListener({
-            if (binding.recAttendees.visibility == View.VISIBLE) {
-                binding.recAttendees.visibility = View.GONE
-                binding.rabView.setBackgroundResource(R.drawable.bg_light_orange_circle)
-            } else {
-                binding.recAttendees.visibility = View.VISIBLE
-                binding.rabView.setBackgroundResource(R.drawable.bg_light_orange_circle)
-            }
-
-        })
-
-        binding.tvRoomNumber.setOnClickListener( {
-            if (binding.recAttendees.visibility == View.VISIBLE) {
-                binding.recAttendees.visibility = View.GONE
-                binding.rabView.setBackgroundResource(R.drawable.bg_light_orange_circle)
-            } else {
-                binding.recAttendees.visibility = View.VISIBLE
-                binding.rabView.setBackgroundResource(R.drawable.bg_light_orange_circle)
-            }
-
-        })
+        binding.tvRoomNumber.setOnClickListener(this)
+        binding.imageView.setOnClickListener(this)
+        binding.tvShiftTime.setOnClickListener(this)
+        binding.rabView.setOnClickListener(this)
 
         val groupAdapter = GroupAdapter<ViewHolder>()
 
@@ -138,6 +124,20 @@ class ItemCorporateSchedule(
     override fun onAnimationStart(animation: Animation) {
         if (animation == animBlink) {
             animation.start()
+        }
+    }
+
+    override fun onClick(v: View?) {
+        when (v?.id) {
+            R.id.tv_roomNumber, R.id.imageView, R.id.tv_shiftTime, R.id.rabView -> {
+                if (binding.recAttendees.visibility == View.VISIBLE) {
+                    binding.recAttendees.visibility = View.GONE
+                    binding.rabView.setBackgroundResource(R.drawable.bg_light_orange_circle)
+                } else {
+                    binding.recAttendees.visibility = View.VISIBLE
+                    binding.rabView.setBackgroundResource(R.drawable.bg_orange_circle)
+                }
+            }
         }
     }
 

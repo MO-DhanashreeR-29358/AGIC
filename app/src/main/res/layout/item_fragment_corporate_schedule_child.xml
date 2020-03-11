@@ -30,37 +30,37 @@
             android:text="09.00 AM"
             android:textColor="@color/dark_purple"
             android:textSize="@dimen/_13ssp"
+            app:layout_constraintEnd_toStartOf="@+id/imageView"
             app:layout_constraintHorizontal_weight=".2"
             app:layout_constraintStart_toEndOf="@+id/rabView"
-            app:layout_constraintEnd_toStartOf="@+id/imageView"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imageView"
             android:layout_width="0dp"
             android:layout_height="@dimen/_40sdp"
+            android:layout_marginStart="@dimen/margin_extra_small"
             android:padding="@dimen/_3sdp"
             android:scaleType="fitCenter"
-            app:layout_constraintHorizontal_weight="0.35"
             android:src="@drawable/ic_1x1_small_h"
-            app:layout_constraintStart_toEndOf="@+id/tv_shiftTime"
             app:layout_constraintEnd_toStartOf="@+id/tv_roomNumber"
+            app:layout_constraintHorizontal_weight="0.35"
+            app:layout_constraintStart_toEndOf="@+id/tv_shiftTime"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tv_roomNumber"
             android:layout_width="0dp"
             android:layout_height="@dimen/_40sdp"
+            android:layout_marginEnd="@dimen/margin_medium"
             android:gravity="center"
             android:text="Room No.-345"
             android:textColor="@color/dark_purple"
             android:textSize="@dimen/_13ssp"
-            app:layout_constraintHorizontal_weight="0.45"
-            android:layout_marginEnd="@dimen/margin_medium"
-            app:layout_constraintStart_toEndOf="@+id/imageView"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_weight="0.45"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
             app:layout_constraintTop_toTopOf="parent" />
-
 
 
         <androidx.constraintlayout.widget.Barrier

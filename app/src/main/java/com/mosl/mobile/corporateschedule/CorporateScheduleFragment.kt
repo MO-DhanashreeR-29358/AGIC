@@ -185,7 +185,7 @@ class CorporateScheduleFragment : MOSLCommonFragment(), CorporateChildContract {
                         followUpUiEvent,
                         currentPosition,
                         requireContext(),
-                        expandPosition
+                        -1
                     )
                 )
             else
