@@ -69,7 +69,7 @@ class CorporateScheduleFragment : MOSLCommonFragment(), CorporateChildContract {
 
     override fun renderItemData(repList: List<CorporateScheduleResponseRepresentativeItemInfo>) {
         val dialogFragment = CorporateScheduleRepDialogFragment()
-        dialogFragment.setData(repList);
+        dialogFragment.setData(repList)
         dialogFragment.show(childFragmentManager, "dialog")
     }
 
@@ -116,11 +116,19 @@ class CorporateScheduleFragment : MOSLCommonFragment(), CorporateChildContract {
                 val dayArr = userManager.user.day
                 val separate1 = dayArr.split(",").toTypedArray()
 
-                if (currentDate.equals(separate1[0]) && it[0].day.equals("day1",ignoreCase = true))
+                if (currentDate.equals(separate1[0]) && it[0].day.equals("day1", ignoreCase = true))
                     selection(it, true)
-                else if (currentDate.equals(separate1[1]) && it[0].day.equals("day2",ignoreCase = true))
+                else if (currentDate.equals(separate1[1]) && it[0].day.equals(
+                        "day2",
+                        ignoreCase = true
+                    )
+                )
                     selection(it, true)
-                else if (currentDate.equals(separate1[2]) && it[0].day.equals("day3",ignoreCase = true))
+                else if (currentDate.equals(separate1[2]) && it[0].day.equals(
+                        "day3",
+                        ignoreCase = true
+                    )
+                )
                     selection(it, true)
                 else selection(it, false)
             } else {
@@ -145,17 +153,17 @@ class CorporateScheduleFragment : MOSLCommonFragment(), CorporateChildContract {
                 expandPosition = i + 1
             }
             if (coll)
-                 section.add(
-                     ItemCorporateSchedule(
-                         model,
-                         followUpUiEvent,
-                         currentPosition,
-                         requireContext(),
-                         expandPosition
-                     )
-                 )
-             else
-                 section.add(ItemCorporateSchedule(model, followUpUiEvent, -1, requireContext(), -1))
+                section.add(
+                    ItemCorporateSchedule(
+                        model,
+                        followUpUiEvent,
+                        currentPosition,
+                        requireContext(),
+                        expandPosition
+                    )
+                )
+            else
+                section.add(ItemCorporateSchedule(model, followUpUiEvent, -1, requireContext(), -1))
         }
     }
 
@@ -170,24 +178,25 @@ class CorporateScheduleFragment : MOSLCommonFragment(), CorporateChildContract {
         for ((i, model) in it.withIndex()) {
             val startTime = model.shiftTiming
             val serachShiftTiming = shiftTime
-            if (startTime.equals(serachShiftTiming) &&
-                checkTimeIsBetween(startTime, model.shiftEndTime) && !currentTimeBetween
+            if (startTime.equals(serachShiftTiming) && !currentTimeBetween
             ) {
                 currentTimeBetween = true
                 currentPosition = i
                 expandPosition = i + 1
             }
 
-            if (currentTimeBetween)
+            if (currentTimeBetween) {
+                binding.recyclerView.scrollToPosition(currentPosition)
                 section.add(
                     ItemCorporateSchedule(
                         model,
                         followUpUiEvent,
-                        currentPosition,
+                        -1,
                         requireContext(),
-                        -1
+                        currentPosition
                     )
                 )
+            }
             else
                 section.add(
                     ItemCorporateSchedule(model, followUpUiEvent, -1, requireContext(), -1)
