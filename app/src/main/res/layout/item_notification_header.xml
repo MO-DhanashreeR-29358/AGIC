@@ -10,6 +10,22 @@
 
 
         <TextView
+            android:id="@+id/tv_status"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/padding_small"
+            android:textColor="@color/light_black"
+            android:textStyle="bold"
+            android:text="@string/txt_label_status"
+            android:textSize="@dimen/text_size_normal"
+            app:layout_constraintEnd_toStartOf="@id/guideline1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+        <TextView
             android:id="@+id/tv_time"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -31,6 +47,7 @@
             android:layout_height="wrap_content"
             android:padding="@dimen/padding_small"
             android:text="@string/txt_label_corporate"
+            android:gravity="center"
             android:textColor="@color/light_black"
             android:textSize="@dimen/text_size_normal"
             android:textStyle="bold"
