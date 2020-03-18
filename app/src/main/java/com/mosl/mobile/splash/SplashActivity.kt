@@ -49,7 +49,7 @@ class SplashActivity : LeanBaseActivity() {
     @Inject
     @field:RemoteConfigData
     lateinit var remoteCongigData: StringPreference
-    lateinit var instanseIntent:Intent
+    lateinit var notificationIntent:Intent
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         AndroidInjection.inject(this)
@@ -57,7 +57,7 @@ class SplashActivity : LeanBaseActivity() {
         val splashImageUrl = getSplashImageUrl()
         loadSplashImage(splashImageUrl)
         setupView()
-        instanseIntent=intent
+        notificationIntent=intent
         mDelayHandler.postDelayed(
             { checkNetwork() },
             (if (splashImageUrl == null) 0 else SPLASH_DELAY).toLong()
@@ -230,11 +230,11 @@ class SplashActivity : LeanBaseActivity() {
 
     internal fun openDashboard() {
         if (userManager.isLoggedIn()) {
-            if (instanseIntent.isNotification()) {
+            if (notificationIntent.isNotification()) {
                 val intent = Intent(this@SplashActivity, MOSLCommonActivity::class.java)
                 intent.putExtra(
                     ARG_NOTIFICATION_CATEGORY,
-                    instanseIntent.getStringExtra(ARG_NOTIFICATION_CATEGORY)
+                    notificationIntent.getStringExtra(ARG_NOTIFICATION_CATEGORY)
                 )
                 startActivity(intent)
                 finish()
