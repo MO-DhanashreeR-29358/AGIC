@@ -1,9 +1,9 @@
 package com.mosl.mobile.login
 
 import com.google.gson.Gson
-import com.mosl.mobile.app_user.helper.NewsLetterPrefStateStore
-import com.mosl.mobile.app_user.helper.UserPrefStore
-import com.mosl.mobile.app_user.model.User
+import com.mosl.mobile.appuser.helper.NewsLetterPrefStateStore
+import com.mosl.mobile.appuser.helper.UserPrefStore
+import com.mosl.mobile.appuser.model.User
 import javax.inject.Inject
 import javax.inject.Singleton
 

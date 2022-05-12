@@ -1,4 +1,4 @@
-package com.mosl.mobile.app_user.util
+package com.mosl.mobile.appuser.util
 
 import okhttp3.Interceptor
 import okhttp3.Interceptor.Chain

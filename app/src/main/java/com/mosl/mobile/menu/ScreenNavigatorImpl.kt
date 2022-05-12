@@ -6,8 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.mosl.annotations.ActivityScoped
 import com.mosl.app.core.prefs.StringPreference
 import com.mosl.mobile.annotations.ClientCode
-import com.mosl.mobile.app_user.login.UserManager
-import com.mosl.mobile.app_user.login.user
+import com.mosl.mobile.appuser.login.UserManager
+import com.mosl.mobile.appuser.login.user
 import com.mosl.mobile.constants.NavigationConstants
 import com.mosl.mobile.core.MOSLCommonActivity
 import com.mosl.mobile.helper.CustomNavigator

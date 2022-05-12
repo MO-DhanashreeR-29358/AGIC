@@ -1,4 +1,4 @@
-package com.mosl.mobile.app_user
+package com.mosl.mobile.appuser
 
 import org.junit.Test
 

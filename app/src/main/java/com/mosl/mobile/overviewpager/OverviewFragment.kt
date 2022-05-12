@@ -73,7 +73,13 @@ class OverviewFragment : MOSLCommonPager(), OverviewPagerContract {
     private fun setUpAdapter() {
         binding.tabLayout.visibility = View.VISIBLE
         pagerAdapter = ViewPagerAdapter(childFragmentManager, requireContext(), this)
-        pagerAdapter.setFragmentTitles(R.array.tabTitles)
+        var noOfDays = 2
+        var tabArray = mutableListOf<String>()
+        for(i in 1..noOfDays){
+            tabArray.add(i,"Days $i")
+        }
+
+        pagerAdapter.setFragmentTitles(tabArray)
         mPager.adapter = pagerAdapter
         mPager.addOnPageChangeListener(pageChangeListener)
         mIndicator.setupWithViewPager(mPager)

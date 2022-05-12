@@ -6,12 +6,11 @@ import com.f2prateek.rx.preferences2.Preference
 import com.f2prateek.rx.preferences2.RxSharedPreferences
 import com.mosl.annotations.FcmToken
 import com.mosl.annotations.FcmTokenRequest
-import com.mosl.app.core.prefs.BooleanPreference
 import com.mosl.app.core.prefs.IntegerPreference
 import com.mosl.app.core.prefs.StringPreference
 import com.mosl.mobile.annotations.*
-import com.mosl.mobile.app_user.*
-import com.mosl.mobile.app_user.helper.PrefStoreProvider.PREF_CLIENT_CODE
+import com.mosl.mobile.appuser.*
+import com.mosl.mobile.appuser.helper.PrefStoreProvider.PREF_CLIENT_CODE
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

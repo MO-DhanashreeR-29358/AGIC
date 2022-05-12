@@ -50,12 +50,12 @@ import com.mosl.app.coreui.base.BaseActivity
 import com.mosl.app.coreui.base.NavigationElement
 import com.mosl.commons.data.onFailure
 import com.mosl.commons.data.onSuccess
-import com.mosl.data.api.fcm_token.FcmTokenRequest
+import com.mosl.data.api.fcmtoken.FcmTokenRequest
 import com.mosl.mobile.R
 import com.mosl.mobile.annotations.*
-import com.mosl.mobile.app_user.login.LoginRepositoryImpl
-import com.mosl.mobile.app_user.login.UserManager
-import com.mosl.mobile.app_user.login.user
+import com.mosl.mobile.appuser.login.LoginRepositoryImpl
+import com.mosl.mobile.appuser.login.UserManager
+import com.mosl.mobile.appuser.login.user
 import com.mosl.mobile.constants.NavigationConstants
 import com.mosl.mobile.contactrm.ContactDialogFragment
 import com.mosl.mobile.coreui.LocaleManager

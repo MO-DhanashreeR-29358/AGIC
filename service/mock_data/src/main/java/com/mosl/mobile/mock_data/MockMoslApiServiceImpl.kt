@@ -8,8 +8,8 @@ import com.mosl.data.api.bytes.BytesInfoResponse
 import com.mosl.data.api.corporateschedulepager.CorporateScheduleRequest
 import com.mosl.data.api.corporateschedulepager.CorporateScheduleResponseDayItem
 import com.mosl.data.api.demo.LoginInfo
-import com.mosl.data.api.fcm_token.FcmTokenRequest
-import com.mosl.data.api.fcm_token.FcmTokenResponse
+import com.mosl.data.api.fcmtoken.FcmTokenRequest
+import com.mosl.data.api.fcmtoken.FcmTokenResponse
 import com.mosl.data.api.feedback.FeedbackRequest
 import com.mosl.data.api.feedback.FeedbackResponseItem
 import com.mosl.data.api.feedback.SubmitFeedbackRequest

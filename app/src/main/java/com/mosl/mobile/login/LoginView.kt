@@ -6,7 +6,7 @@ import io.reactivex.Observable
 
 interface LoginView : BaseView {
   fun onLoginClicked(): Observable<Unit>
-  fun renderLogin(uiModel: UiModel<com.mosl.mobile.app_user.model.User>)
+  fun renderLogin(uiModel: UiModel<com.mosl.mobile.appuser.model.User>)
   fun getUniqueCode(): String
   fun getDeviceId(): String
   fun onDoneClicked(): Observable<Int>

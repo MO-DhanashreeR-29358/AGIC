@@ -10,8 +10,8 @@ import com.mosl.commons.data.onFailure
 import com.mosl.commons.data.onSuccess
 import com.mosl.groupiex.section.DataManagerSection
 import com.mosl.mobile.R
-import com.mosl.mobile.app_user.login.UserManager
-import com.mosl.mobile.app_user.login.user
+import com.mosl.mobile.appuser.login.UserManager
+import com.mosl.mobile.appuser.login.user
 import com.mosl.mobile.core.MOSLCommonFragment
 import com.mosl.mobile.corporatepager.CorporatePagerFragment
 import com.mosl.mobile.corporatepager.SchedulePagerAction

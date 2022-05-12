@@ -4,8 +4,8 @@ import com.mosl.app.core.prefs.StringPreference
 import com.mosl.data.api.AGICApi
 import com.mosl.mobile.annotations.LastBytesDate
 import com.mosl.mobile.annotations.LastScheduleDate
-import com.mosl.mobile.app_user.login.UserManager
-import com.mosl.mobile.app_user.login.user
+import com.mosl.mobile.appuser.login.UserManager
+import com.mosl.mobile.appuser.login.user
 import com.mosl.mobile.domain.bytes.BytesRepository
 import com.mosl.mobile.domain.bytes.BytesRequest
 import com.mosl.mobile.domain.bytes.BytesResponse

@@ -1,8 +1,8 @@
-package com.mosl.mobile.app_user.login
+package com.mosl.mobile.appuser.login
 
-import com.mosl.data.api.fcm_token.FcmTokenRequest
-import com.mosl.mobile.app_user.model.LoginRequest
-import com.mosl.mobile.app_user.model.User
+import com.mosl.data.api.fcmtoken.FcmTokenRequest
+import com.mosl.mobile.appuser.model.LoginRequest
+import com.mosl.mobile.appuser.model.User
 import io.reactivex.Completable
 import io.reactivex.Observable
 

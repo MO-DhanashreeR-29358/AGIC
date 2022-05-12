@@ -20,7 +20,7 @@ import com.mosl.commons.data.onFailure
 import com.mosl.commons.data.onSuccess
 import com.mosl.mobile.R
 import com.mosl.mobile.annotations.RemoteConfigData
-import com.mosl.mobile.app_user.model.User
+import com.mosl.mobile.appuser.model.User
 import com.mosl.mobile.core.MOSLCommonActivity
 import com.mosl.mobile.data.RemoteConfigModel
 import com.mosl.mobile.databinding.ActivityLoginBinding

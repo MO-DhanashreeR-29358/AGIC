@@ -3,8 +3,8 @@ package com.mosl.mobile.corporatepager
 import com.mosl.app.core.base.BasePresenter
 import com.mosl.app.core.prefs.StringPreference
 import com.mosl.mobile.annotations.LastNotificationDate
-import com.mosl.mobile.app_user.login.UserManager
-import com.mosl.mobile.app_user.login.user
+import com.mosl.mobile.appuser.login.UserManager
+import com.mosl.mobile.appuser.login.user
 import com.mosl.mobile.domain.corporateschedulepager.CorporateScheduleRepository
 import com.mosl.mobile.domain.corporateschedulepager.CorporateScheduleRequestInfo
 import com.mosl.shared.AppDateFormats

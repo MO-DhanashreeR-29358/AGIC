@@ -1,4 +1,4 @@
-package com.mosl.mobile.app_user.helper
+package com.mosl.mobile.appuser.helper
 
 import android.content.SharedPreferences
 import com.mosl.app.core.prefs.BooleanPreference

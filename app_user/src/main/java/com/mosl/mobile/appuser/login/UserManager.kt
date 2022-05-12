@@ -1,6 +1,6 @@
-package com.mosl.mobile.app_user.login
+package com.mosl.mobile.appuser.login
 
-import com.mosl.mobile.app_user.model.User
+import com.mosl.mobile.appuser.model.User
 
 /**
  * Created by lalkishore on 3/6/2017.

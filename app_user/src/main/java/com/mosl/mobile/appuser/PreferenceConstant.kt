@@ -1,4 +1,4 @@
-package com.mosl.mobile.app_user
+package com.mosl.mobile.appuser
 
 const val SCHEDULE_DATE_KEY = "ScheduleDate"
 const val BYTES_DATE_KEY = "BytesDate"

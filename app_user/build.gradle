@@ -37,6 +37,7 @@ dependencies {
   implementation RetrofitDependencies.gson
 
   implementation DaggerDependencies.core
+  implementation DaggerDependencies.javaAnnotations
   kapt DaggerDependencies.compiler
 
   implementation OkHttpDependencies.core

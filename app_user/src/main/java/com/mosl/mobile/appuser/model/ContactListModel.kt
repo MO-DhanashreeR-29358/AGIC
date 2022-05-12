@@ -1,4 +1,4 @@
-package com.mosl.mobile.app_user.model
+package com.mosl.mobile.appuser.model
 
 import android.os.Parcel
 import android.os.Parcelable

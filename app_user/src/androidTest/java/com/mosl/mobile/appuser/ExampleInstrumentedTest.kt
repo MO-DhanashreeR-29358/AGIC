@@ -1,4 +1,4 @@
-package com.mosl.mobile.app_user
+package com.mosl.mobile.appuser
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.runner.AndroidJUnit4

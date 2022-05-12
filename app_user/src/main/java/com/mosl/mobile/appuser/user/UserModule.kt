@@ -1,16 +1,16 @@
-package com.mosl.mobile.app_user.user
+package com.mosl.mobile.appuser.user
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.mosl.mobile.app_user.UserPreference
-import com.mosl.mobile.app_user.helper.NewsLetterPrefStateStore
-import com.mosl.mobile.app_user.helper.PrefStoreProvider
-import com.mosl.mobile.app_user.helper.UserPrefStore
-import com.mosl.mobile.app_user.helper.getPref
-import com.mosl.mobile.app_user.login.UserManager
+import com.mosl.mobile.appuser.UserPreference
+import com.mosl.mobile.appuser.helper.NewsLetterPrefStateStore
+import com.mosl.mobile.appuser.helper.PrefStoreProvider
+import com.mosl.mobile.appuser.helper.UserPrefStore
+import com.mosl.mobile.appuser.helper.getPref
+import com.mosl.mobile.appuser.login.UserManager
 import com.mosl.mobile.login.UserCache
 import com.mosl.mobile.login.UserCacheImpl
-import com.mosl.mobile.login.UserManagerImpl
+import com.mosl.mobile.appuser.login.UserManagerImpl
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

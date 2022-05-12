@@ -1,7 +1,7 @@
 package com.mosl.mobile.login
 
 import com.mosl.mobile.R
-import com.mosl.mobile.app_user.model.LoginRequest
+import com.mosl.mobile.appuser.model.LoginRequest
 import com.mosl.validator.core.Validator
 import com.mosl.validator.data.ValidationResult
 

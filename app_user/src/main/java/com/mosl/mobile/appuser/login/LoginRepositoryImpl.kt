@@ -1,14 +1,12 @@
-package com.mosl.mobile.app_user.login
+package com.mosl.mobile.appuser.login
 
 import com.mosl.data.api.AGICApi
-import com.mosl.data.api.fcm_token.FcmTokenRequest
+import com.mosl.data.api.fcmtoken.FcmTokenRequest
 import com.mosl.data.api.login.LoginInfoResponse
-import com.mosl.mobile.app_user.model.LoginRequest
-import com.mosl.mobile.app_user.model.User
-import com.mosl.mobile.app_user.model.mapToLoginRequest
-import com.mosl.mobile.app_user.model.mapToLoginResponse
-import com.mosl.mobile.login.UserManagerImpl
-import com.mosl.mobile.user.login.AppUserRepositoryImpl
+import com.mosl.mobile.appuser.model.LoginRequest
+import com.mosl.mobile.appuser.model.User
+import com.mosl.mobile.appuser.model.mapToLoginRequest
+import com.mosl.mobile.appuser.model.mapToLoginResponse
 import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
@@ -19,7 +17,6 @@ class LoginRepositoryImpl @Inject constructor(
     internal val agicApi: AGICApi,
     internal val userManager: UserManagerImpl,
     internal val userRepository: AppUserRepositoryImpl
-
     ) : LoginRepository {
     override fun login(loginInfo: LoginRequest): Observable<User> {
 

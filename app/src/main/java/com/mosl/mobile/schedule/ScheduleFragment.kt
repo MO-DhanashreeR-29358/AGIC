@@ -9,7 +9,6 @@ import com.google.gson.Gson
 import com.mosl.app.core.error.ErrorModel
 import com.mosl.app.core.error.ErrorState
 import com.mosl.app.core.events.DataAction
-import com.mosl.app.core.prefs.BooleanPreference
 import com.mosl.app.core.prefs.IntegerPreference
 import com.mosl.app.core.prefs.StringPreference
 import com.mosl.commons.data.UiModel
@@ -26,7 +25,7 @@ import com.mosl.mobile.databinding.FragmentScheduleBinding
 import com.mosl.mobile.domain.schedule.ScheduleRepresentativeItemData
 import com.mosl.mobile.domain.schedule.ScheduleResponse
 import com.mosl.mobile.domain.schedule.ScheduleResponseItemInfo
-import com.mosl.mobile.login.UserManagerImpl
+import com.mosl.mobile.appuser.login.UserManagerImpl
 import com.mosl.mobile.schedule.ScheduleUiEvent.ItemClick
 import com.mosl.mobile.schedule.ScheduleUiEvent.OnMoreClick
 import com.mosl.shared.util.addToCalendart

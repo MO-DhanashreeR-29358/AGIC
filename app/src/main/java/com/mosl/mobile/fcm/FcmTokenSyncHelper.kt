@@ -6,8 +6,8 @@ import com.mosl.annotations.FcmTokenRequest
 import com.mosl.app.core.prefs.StringPreference
 import com.mosl.app.core.utils.getUuid
 import com.mosl.data.api.AGICApi
-import com.mosl.mobile.app_user.login.UserManager
-import com.mosl.mobile.app_user.login.user
+import com.mosl.mobile.appuser.login.UserManager
+import com.mosl.mobile.appuser.login.user
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
@@ -23,7 +23,7 @@ class FcmTokenSyncHelper @Inject constructor(
     fun saveToken(token: String): Observable<String> {
         return Observable.fromCallable {
             val uuid = context.getUuid()
-            com.mosl.data.api.fcm_token.FcmTokenRequest(
+            com.mosl.data.api.fcmtoken.FcmTokenRequest(
                 token,
                 uuid,
                 PLATFORM,

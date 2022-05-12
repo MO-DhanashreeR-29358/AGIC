@@ -1,7 +1,7 @@
 package com.mosl.mobile
 
 import com.mosl.annotations.ActivityScoped
-import com.mosl.mobile.app_user.user.UserModule
+import com.mosl.mobile.appuser.user.UserModule
 import com.mosl.mobile.login.LoginActivity
 import com.mosl.mobile.login.LoginActivityModule
 import com.mosl.mobile.newsletter.NewsLetterActivity

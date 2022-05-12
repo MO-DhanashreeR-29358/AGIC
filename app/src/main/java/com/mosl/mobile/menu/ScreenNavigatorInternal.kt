@@ -2,7 +2,7 @@ package com.mosl.mobile.menu
 
 import androidx.appcompat.app.AppCompatActivity
 import com.mosl.app.core.prefs.StringPreference
-import com.mosl.mobile.app_user.login.UserManager
+import com.mosl.mobile.appuser.login.UserManager
 import com.mosl.mobile.helper.CustomNavigator
 import com.mosl.navigator.NavigationHelper
 import com.mosl.navigator.Navigator

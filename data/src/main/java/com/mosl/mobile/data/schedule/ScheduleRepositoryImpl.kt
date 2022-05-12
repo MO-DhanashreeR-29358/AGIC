@@ -4,8 +4,8 @@ import com.mosl.app.core.prefs.StringPreference
 import com.mosl.data.api.AGICApi
 import com.mosl.data.api.schedule.ScheduleResponseItem
 import com.mosl.mobile.annotations.LastScheduleDate
-import com.mosl.mobile.app_user.login.UserManager
-import com.mosl.mobile.app_user.login.user
+import com.mosl.mobile.appuser.login.UserManager
+import com.mosl.mobile.appuser.login.user
 import com.mosl.mobile.domain.schedule.*
 import com.mosl.shared.AppDateFormats.DF_JSON_DATE_12
 import com.mosl.shared.AppDateFormats.DF_TIME_HH_ss

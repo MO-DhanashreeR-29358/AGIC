@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.mosl.app.coreui.dialog.BaseDialogFragment
 import com.mosl.groupiex.section.DataManagerSection
 import com.mosl.mobile.R
-import com.mosl.mobile.app_user.model.ContactListItemData
+import com.mosl.mobile.appuser.model.ContactListItemData
 import com.mosl.mobile.databinding.FragmentContactDialogBinding
 import com.mosl.mobile.menu.ScreenNavigator
 import com.mosl.mobile.util.initiateCall

@@ -1,7 +1,7 @@
-package com.mosl.mobile.login
+package com.mosl.mobile.appuser.login
 
-import com.mosl.mobile.app_user.login.UserManager
-import com.mosl.mobile.app_user.model.User
+import com.mosl.mobile.appuser.model.User
+import com.mosl.mobile.login.UserCache
 import javax.inject.Inject
 import javax.inject.Singleton
 

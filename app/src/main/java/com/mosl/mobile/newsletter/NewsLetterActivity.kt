@@ -24,7 +24,7 @@ import com.mosl.mobile.data.RemoteConfigModel
 import com.mosl.mobile.databinding.ActivityNewsLetterBinding
 import com.mosl.mobile.domain.newsletter.NewsLetterResponseInfo
 import com.mosl.mobile.login.LoginActivity
-import com.mosl.mobile.login.UserManagerImpl
+import com.mosl.mobile.appuser.login.UserManagerImpl
 import io.reactivex.Observable
 import io.reactivex.subjects.PublishSubject
 import javax.inject.Inject
@@ -99,7 +99,7 @@ class NewsLetterActivity : LeanBaseActivity(), NewsLetterView {
 
                 Glide.with(this@NewsLetterActivity)
                     .load(remoteConfigModel.logo)
-                    .into(binding.imgAgic);
+                    .into(binding.imgAgic)
                 anim_in.setAnimationListener(object : Animation.AnimationListener {
                     override fun onAnimationStart(animation: Animation) {}
                     override fun onAnimationRepeat(animation: Animation) {}

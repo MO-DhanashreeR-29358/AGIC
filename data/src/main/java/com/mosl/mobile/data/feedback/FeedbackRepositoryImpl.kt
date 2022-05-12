@@ -1,8 +1,8 @@
 package com.mosl.mobile.data.feedback
 
 import com.mosl.data.api.AGICApi
-import com.mosl.mobile.app_user.login.UserManager
-import com.mosl.mobile.app_user.login.user
+import com.mosl.mobile.appuser.login.UserManager
+import com.mosl.mobile.appuser.login.user
 import com.mosl.mobile.domain.feedback.*
 import io.reactivex.Observable
 import javax.inject.Inject

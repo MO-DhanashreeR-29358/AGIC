@@ -4,8 +4,8 @@ object Versions {
     const val minSdkVersion = 17
     const val buildToolsVersion = "29.0.2"
 
-    const val androidVersion = "3.5.2"
-    const val kotlinVersion = "1.3.50"
+    const val androidVersion = "4.0.1"
+    const val kotlinVersion = "1.4.30"
     const val fabric = "1.31.0"
     const val googleServices = "4.2.0"
 
@@ -16,7 +16,7 @@ object Versions {
     const val timber = "4.7.1"
     const val groupie = "2.3.0"
     const val retrofit = "2.6.0"
-    const val dagger = "2.23.1"
+    const val dagger = "2.28.3"
     const val leakCanary = "1.6.3"
     const val rxBinding = "3.0.0"
     const val room = "2.1.0"
@@ -141,6 +141,7 @@ object DaggerDependencies {
     const val androidCompiler =
         "com.google.dagger:dagger-android-processor:${Versions.dagger}"
     const val javax = "javax.inject:javax.inject:1"
+    const val javaAnnotations =  "javax.annotation:javax.annotation-api:1.3.2"
 }
 
 object GroupieDependencies {

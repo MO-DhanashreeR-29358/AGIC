@@ -18,7 +18,7 @@ import com.mosl.mobile.BuildConfig
 import com.mosl.mobile.R
 import com.mosl.mobile.annotations.ImageSplashUrl
 import com.mosl.mobile.annotations.RemoteConfigData
-import com.mosl.mobile.app_user.login.UserManager
+import com.mosl.mobile.appuser.login.UserManager
 import com.mosl.mobile.core.MOSLCommonActivity
 import com.mosl.mobile.coreui.LocaleManager
 import com.mosl.mobile.coreui.core.MSFDialog

@@ -1,6 +1,6 @@
 package com.mosl.mobile.login
 
-import com.mosl.mobile.app_user.model.User
+import com.mosl.mobile.appuser.model.User
 
 
 /**

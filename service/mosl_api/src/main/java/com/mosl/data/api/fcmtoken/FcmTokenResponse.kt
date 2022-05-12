@@ -1,4 +1,4 @@
-package com.mosl.data.api.fcm_token
+package com.mosl.data.api.fcmtoken
 
 import com.google.gson.annotations.SerializedName
 

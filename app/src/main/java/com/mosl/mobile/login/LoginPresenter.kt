@@ -1,7 +1,7 @@
 package com.mosl.mobile.login
 
 import com.mosl.app.core.base.BasePresenter
-import com.mosl.mobile.app_user.login.LoginRepository
+import com.mosl.mobile.appuser.login.LoginRepository
 import io.reactivex.Observable
 import javax.inject.Inject
 

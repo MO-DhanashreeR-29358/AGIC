@@ -2,10 +2,10 @@ package com.mosl.mobile.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.mosl.mobile.app_user.login.LoginRepository;
-import com.mosl.mobile.app_user.login.LoginRepositoryImpl;
-import com.mosl.mobile.user.login.AppUserRepository;
-import com.mosl.mobile.user.login.AppUserRepositoryImpl;
+import com.mosl.mobile.appuser.login.LoginRepository;
+import com.mosl.mobile.appuser.login.LoginRepositoryImpl;
+import com.mosl.mobile.appuser.login.AppUserRepository;
+import com.mosl.mobile.appuser.login.AppUserRepositoryImpl;
 
 import dagger.Binds;
 import dagger.Module;

@@ -166,6 +166,7 @@ dependencies {
 
     //Dagger
     implementation DaggerDependencies.core
+    implementation DaggerDependencies.javaAnnotations
     kapt DaggerDependencies.compiler
     implementation DaggerDependencies.android
     kapt DaggerDependencies.androidCompiler

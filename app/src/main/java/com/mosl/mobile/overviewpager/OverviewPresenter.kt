@@ -1,8 +1,8 @@
 package com.mosl.mobile.overviewpager
 
 import com.mosl.app.core.base.BasePresenter
-import com.mosl.mobile.app_user.login.UserManager
-import com.mosl.mobile.app_user.login.user
+import com.mosl.mobile.appuser.login.UserManager
+import com.mosl.mobile.appuser.login.user
 import com.mosl.mobile.domain.overviewpager.OverviewRepository
 import com.mosl.mobile.domain.overviewpager.OverviewRequestInfo
 import io.reactivex.Observable
