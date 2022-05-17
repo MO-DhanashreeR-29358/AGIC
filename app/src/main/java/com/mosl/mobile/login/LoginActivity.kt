@@ -68,6 +68,7 @@ class LoginActivity : LeanBaseActivity(), Navigator, LoginView {
             .load(banner.logo)
             .into(binding.imgBanner)
         binding.txtYear.text = banner.year
+        binding.txtAgic.text = banner.conferenceName
     }
 
     internal fun openDashboard(user: User) {

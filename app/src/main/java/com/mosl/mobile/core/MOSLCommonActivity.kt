@@ -21,6 +21,7 @@ import android.view.View.OnClickListener
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
@@ -83,18 +84,22 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
 
     @Inject
     lateinit var fragmentResolver: FragmentResolver
+
     @Inject
     lateinit var networkReceiver: NetworkReceiver
     lateinit var binding: ActivityCommonbaseBinding
     internal var snackbar: Snackbar? = null
     private var globalTitles = HashMap<String, AppTitle>()
     private var doubleBackToExitPressedOnce = false
+
     @Inject
     lateinit var navigationHelper: NavigationHelper
     internal val currentFragment: Fragment?
         get() = navigationHelper.currentFragment
+
     @Inject
     lateinit var screenNavigator: ScreenNavigatorImpl
+
     @Inject
     lateinit var activityNavHelper: ActivityNavigationHelper
 
@@ -111,9 +116,11 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
     @Inject
     @field:LastScheduleDate
     lateinit var lastScheduleDate: StringPreference
+
     @Inject
     @field:ImageSplashUrl
     lateinit var imageSplashUrl: StringPreference
+
     @Inject
     @field:LastBytesDate
     lateinit var lastBytesDate: StringPreference
@@ -133,6 +140,7 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
     @Inject
     @field:CorporateScheduleData
     lateinit var corporateScheduleData: StringPreference
+
     @Inject
     @field:LastCorporateScheduleDate
     lateinit var lastCorporateScheduleDate: StringPreference
@@ -140,6 +148,7 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
     @Inject
     @field:LastNotificationDate
     lateinit var lastNotificationDate: StringPreference
+
     @Inject
     @field:NotificationData
     lateinit var notificationDate: StringPreference
@@ -233,6 +242,14 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
 
     fun changeImage() {
 
+        Glide.with(this@MOSLCommonActivity)
+            .load(remoteConfigModel.logo)
+            .into(binding.imgLogo)
+
+        Glide.with(this@MOSLCommonActivity)
+            .load(remoteConfigModel.conferenceLogo)
+            .into(binding.imgLogoTemp)
+
         val handler = Handler()
         val runnable = object : Runnable {
             override fun run() {
@@ -256,16 +273,16 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
             override fun onAnimationStart(animation: Animation) {}
             override fun onAnimationRepeat(animation: Animation) {}
             override fun onAnimationEnd(animation: Animation) {
+                binding.imgLogo.visibility = View.GONE
+                binding.imgLogoTemp.visibility = View.VISIBLE
 
-                Glide.with(this@MOSLCommonActivity)
-                    .load(remoteConfigModel.logo)
-                    .into(binding.imgLogo);
                 anim_in.setAnimationListener(object : Animation.AnimationListener {
                     override fun onAnimationStart(animation: Animation) {}
                     override fun onAnimationRepeat(animation: Animation) {}
                     override fun onAnimationEnd(animation: Animation) {
-                        binding.imgLogo.setImageResource(R.drawable.agic_agic)
-
+//                        binding.imgLogo.setImageResource(R.drawable.ideation_conference)
+                        binding.imgLogo.visibility = View.VISIBLE
+                        binding.imgLogoTemp.visibility = View.GONE
                     }
                 })
                 binding.imgLogo.startAnimation(anim_in)
@@ -280,24 +297,28 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
         binding.tabLayout.apply {
             if (userManager.user.role.equals(ROLE_CLIENT, ignoreCase = true)) {
                 addTab(
-                    newTab().setText(R.string.tab_label_schedule).setIcon(R.drawable.ic_tab_schedule).setTag(
+                    newTab().setText(R.string.tab_label_schedule)
+                        .setIcon(R.drawable.ic_tab_schedule).setTag(
                         NavigationConstants.NAVIGATE_TO_SCHEDULE
                     )
                 )
 
                 addTab(
-                    newTab().setText(R.string.tab_label_overview).setIcon(R.drawable.ic_tab_overview).setTag(
+                    newTab().setText(R.string.tab_label_overview)
+                        .setIcon(R.drawable.ic_tab_overview).setTag(
                         NavigationConstants.NAVIGATE_TO_OVERVIEW
                     )
                 )
                 addTab(
-                    newTab().setText(R.string.tab_label_feedback).setIcon(R.drawable.ic_tab_feedback).setTag(
+                    newTab().setText(R.string.tab_label_feedback)
+                        .setIcon(R.drawable.ic_tab_feedback).setTag(
                         NavigationConstants.NAVIGATE_TO_FEEDBACK
                     )
                 )
 
                 addTab(
-                    newTab().setText(R.string.tab_label_notification).setIcon(R.drawable.ic_notification_24dp).setTag(
+                    newTab().setText(R.string.tab_label_notification)
+                        .setIcon(R.drawable.ic_notification_24dp).setTag(
                         NavigationConstants.NAVIGATE_TO_NOTIFICATION
                     )
                 )
@@ -312,19 +333,22 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
 
             } else if (userManager.user.role.equals(ROLE_CORPORATE, ignoreCase = true)) {
                 addTab(
-                    newTab().setText(R.string.tab_label_schedule).setIcon(R.drawable.ic_tab_schedule).setTag(
+                    newTab().setText(R.string.tab_label_schedule)
+                        .setIcon(R.drawable.ic_tab_schedule).setTag(
                         NavigationConstants.NAVIGATE_TO_CORPORATE_SCHEDULE
                     )
                 )
 
                 addTab(
-                    newTab().setText(R.string.tab_label_feedback).setIcon(R.drawable.ic_tab_feedback).setTag(
+                    newTab().setText(R.string.tab_label_feedback)
+                        .setIcon(R.drawable.ic_tab_feedback).setTag(
                         NavigationConstants.NAVIGATE_TO_FEEDBACK
                     )
                 )
 
                 addTab(
-                    newTab().setText(R.string.tab_label_notification).setIcon(R.drawable.ic_notification_24dp).setTag(
+                    newTab().setText(R.string.tab_label_notification)
+                        .setIcon(R.drawable.ic_notification_24dp).setTag(
                         NavigationConstants.NAVIGATE_TO_NOTIFICATION
                     )
                 )
@@ -339,27 +363,31 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
 
             } else {
                 addTab(
-                    newTab().setText(R.string.tab_label_schedule).setIcon(R.drawable.ic_tab_schedule).setTag(
+                    newTab().setText(R.string.tab_label_schedule)
+                        .setIcon(R.drawable.ic_tab_schedule).setTag(
                         NavigationConstants.NAVIGATE_TO_SCHEDULE
                     )
                 )
 
                 addTab(
-                    newTab().setText(R.string.tab_label_overview).setIcon(R.drawable.ic_tab_overview).setTag(
+                    newTab().setText(R.string.tab_label_overview)
+                        .setIcon(R.drawable.ic_tab_overview).setTag(
                         NavigationConstants.NAVIGATE_TO_OVERVIEW
                     )
                 )
 
                 addTab(
-                    newTab().setText(R.string.tab_label_panel).setIcon(R.drawable.ic_panel_24dp).setTag(
-                        NavigationConstants.NAVIGATE_TO_PANEL
-                    )
+                    newTab().setText(R.string.tab_label_panel).setIcon(R.drawable.ic_panel_24dp)
+                        .setTag(
+                            NavigationConstants.NAVIGATE_TO_PANEL
+                        )
                 )
 
                 addTab(
-                    newTab().setText(R.string.tab_label_bytes).setIcon(R.drawable.ic_tab_bytes).setTag(
-                        NavigationConstants.NAVIGATE_TO_BYTES
-                    )
+                    newTab().setText(R.string.tab_label_bytes).setIcon(R.drawable.ic_tab_bytes)
+                        .setTag(
+                            NavigationConstants.NAVIGATE_TO_BYTES
+                        )
                 )
 
                 addTab(

@@ -98,14 +98,18 @@ class NewsLetterActivity : LeanBaseActivity(), NewsLetterView {
             override fun onAnimationEnd(animation: Animation) {
 
                 Glide.with(this@NewsLetterActivity)
-                    .load(remoteConfigModel.logo)
+                    .load(remoteConfigModel.conferenceLogo)
                     .into(binding.imgAgic)
+//                Glide.with(this@NewsLetterActivity)
+//                    .load(remoteConfigModel.conferenceLogo)
+//                    .into(binding.imgAgicTemp)
+
                 anim_in.setAnimationListener(object : Animation.AnimationListener {
                     override fun onAnimationStart(animation: Animation) {}
                     override fun onAnimationRepeat(animation: Animation) {}
                     override fun onAnimationEnd(animation: Animation) {
-                        binding.imgAgic.setImageResource(R.drawable.agic_agic)
-
+                        binding.imgAgic.setImageResource(R.drawable.ideation_conference)
+//                        binding.imgAgic.setImageDrawable(binding.imgAgicTemp.drawable)
                     }
                 })
                 binding.imgAgic.startAnimation(anim_in)

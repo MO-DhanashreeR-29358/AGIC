@@ -7,6 +7,8 @@ data class RemoteConfigModel(
     @JvmField @SerializedName("splash") var splash:String,
     @JvmField @SerializedName("logo")var logo:String,
     @JvmField @SerializedName("year")var year:String,
+    @JvmField @SerializedName("conferenceName")var conferenceName:String,
+    @JvmField @SerializedName("conferenceLogo")var conferenceLogo:String,
     @JvmField @SerializedName("android")var android:AndroidModel
 )
 

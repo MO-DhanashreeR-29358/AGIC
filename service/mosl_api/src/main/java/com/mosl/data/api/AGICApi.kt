@@ -34,6 +34,7 @@ interface AGICApi {
     ): UserResponse
 
     @POST("GetClientDetails")
+//    @POST("GetRMData")
     fun userLogin(@Body request: LoginInfoRequest): Observable<LoginInfoResponse>
 
     @POST("GetBroucherDetails")
