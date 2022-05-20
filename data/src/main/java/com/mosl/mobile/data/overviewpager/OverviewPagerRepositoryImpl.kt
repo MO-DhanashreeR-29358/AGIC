@@ -1,9 +1,7 @@
 package com.mosl.mobile.data.overviewpager
 
 import com.mosl.data.api.AGICApi
-import com.mosl.mobile.domain.overviewpager.OverviewRepository
-import com.mosl.mobile.domain.overviewpager.OverviewRequestInfo
-import com.mosl.mobile.domain.overviewpager.OverviewResponseDataInfo
+import com.mosl.mobile.domain.overviewpager.*
 import io.reactivex.Observable
 import javax.inject.Inject
 
@@ -15,8 +13,16 @@ class OverviewPagerRepositoryImpl @Inject constructor(
 
     override fun getOverviewData(overviewPagerInfo: OverviewRequestInfo): Observable<OverviewResponseDataInfo> {
         return agicApi.getClientIDOverAPI(mapper.getOverviewPagerRequestMap(overviewPagerInfo))
+//        return agicApi.getClientIDOverAPI("6554")
             .map {
                 mapper.getScheduleMap(it)
+            }
+    }
+
+    override fun getRmOverviewData(overviewPagerInfo: RmOverviewRequestInfo): Observable<RmOverviewResponseDataInfo> {
+        return agicApi.getRMDayWiseDataAPI(mapper.getRmOverviewPagerRequestMap(overviewPagerInfo))
+            .map {
+                mapper.getRmDayWiseMap(it)
             }
     }
 }

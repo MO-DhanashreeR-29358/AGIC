@@ -20,6 +20,8 @@ import com.mosl.data.api.notification.NotificationRequest
 import com.mosl.data.api.notification.NotificationResponseItem
 import com.mosl.data.api.overviewpager.OverviewRequest
 import com.mosl.data.api.overviewpager.OverviewResponseData
+import com.mosl.data.api.overviewpager.RMDayWiseDataRequest
+import com.mosl.data.api.overviewpager.RmOverViewResponseData
 import com.mosl.data.api.panel.PanelDataResponse
 import com.mosl.data.api.schedule.ScheduleRequest
 import com.mosl.data.api.schedule.ScheduleResponseItem
@@ -37,6 +39,14 @@ class MockMoslApiServiceImpl(
 
     override fun getScheduleDataAPI(request: ScheduleRequest): Observable<BaseResponseAgic<List<ScheduleResponseItem>>> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun getClientIDOverAPI(request: String): Observable<OverviewResponseData> {
+        TODO("Not yet implemented")
+    }
+
+    override fun getRMDayWiseDataAPI(request: RMDayWiseDataRequest): Observable<RmOverViewResponseData> {
+        TODO("Not yet implemented")
     }
 
     override fun getByteDetails(request: BytesInfoRequest): Observable<List<BytesInfoResponse>> {

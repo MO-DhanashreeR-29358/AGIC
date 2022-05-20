@@ -62,10 +62,10 @@ class NewsLetterActivity : LeanBaseActivity(), NewsLetterView {
 
         presenter.start()
         dataActionSubject.onNext(DataAction.Fetch)
-        remoteConfigModel =
-            gson.fromJson(remoteCongigData.get(), RemoteConfigModel::class.java)
+        /*remoteConfigModel =
+            gson.fromJson(remoteCongigData.get(), RemoteConfigModel::class.java)*/
         binding.txtAgicYear.text =
-            (getString(R.string.txt_label_agic_year) + " " + remoteConfigModel.year)
+            (getString(R.string.txt_label_agic_year))
 
         changeImage()
     }
@@ -97,9 +97,9 @@ class NewsLetterActivity : LeanBaseActivity(), NewsLetterView {
             override fun onAnimationRepeat(animation: Animation) {}
             override fun onAnimationEnd(animation: Animation) {
 
-                Glide.with(this@NewsLetterActivity)
+                /*Glide.with(this@NewsLetterActivity)
                     .load(remoteConfigModel.conferenceLogo)
-                    .into(binding.imgAgic)
+                    .into(binding.imgAgic)*/
 //                Glide.with(this@NewsLetterActivity)
 //                    .load(remoteConfigModel.conferenceLogo)
 //                    .into(binding.imgAgicTemp)

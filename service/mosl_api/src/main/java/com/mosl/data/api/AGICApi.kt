@@ -17,14 +17,14 @@ import com.mosl.data.api.notification.NotificationRequest
 import com.mosl.data.api.notification.NotificationResponseItem
 import com.mosl.data.api.overviewpager.OverviewRequest
 import com.mosl.data.api.overviewpager.OverviewResponseData
+import com.mosl.data.api.overviewpager.RMDayWiseDataRequest
+import com.mosl.data.api.overviewpager.RmOverViewResponseData
 import com.mosl.data.api.panel.PanelDataResponse
 import com.mosl.data.api.schedule.ScheduleRequest
 import com.mosl.data.api.schedule.ScheduleResponseItem
 import com.mosl.mobile.demo.UserResponse
 import io.reactivex.Observable
-import retrofit2.http.Body
-import retrofit2.http.Headers
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface AGICApi {
 
@@ -34,7 +34,6 @@ interface AGICApi {
     ): UserResponse
 
     @POST("GetClientDetails")
-//    @POST("GetRMData")
     fun userLogin(@Body request: LoginInfoRequest): Observable<LoginInfoResponse>
 
     @POST("GetBroucherDetails")
@@ -47,6 +46,14 @@ interface AGICApi {
     @POST("GetClientIDOver")
     @Headers(CACHE_FOR_4HRS)
     fun getClientIDOverAPI(@Body request: OverviewRequest): Observable<OverviewResponseData>
+
+    @POST("GetRMDaywiseData")
+    @Headers(CACHE_FOR_4HRS)
+    fun getRMDayWiseDataAPI(@Body request: RMDayWiseDataRequest): Observable<RmOverViewResponseData>
+
+    @GET("GetRMDaywiseData")
+    @Headers(CACHE_FOR_4HRS)
+    fun getClientIDOverAPI(@Query("ClientId") request: String): Observable<OverviewResponseData>
 
     @POST("GetbyteDetails")
     @Headers(CACHE_FOR_4HRS)

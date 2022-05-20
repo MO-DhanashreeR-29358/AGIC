@@ -2,9 +2,8 @@ package com.mosl.mobile.overviewpager
 
 import com.mosl.app.core.base.BasePresenter
 import com.mosl.mobile.appuser.login.UserManager
-import com.mosl.mobile.appuser.login.user
 import com.mosl.mobile.domain.overviewpager.OverviewRepository
-import com.mosl.mobile.domain.overviewpager.OverviewRequestInfo
+import com.mosl.mobile.domain.overviewpager.RmOverviewRequestInfo
 import io.reactivex.Observable
 import io.reactivex.rxkotlin.addTo
 import javax.inject.Inject
@@ -17,13 +16,13 @@ class OverviewPresenter @Inject constructor(
 
     override fun start() {
 
-        val objOverviewPagerRequestInfo = OverviewRequestInfo(
-            ClientID = userManager.user.clientId,
-            Over = Over
+        val objOverviewPagerRequestInfo = RmOverviewRequestInfo(
+            ClientID = "6554",
         )
         Observable.merge(onFetchCalled(), onRetryCalled())
             .switchMap {
-                repository.getOverviewData(objOverviewPagerRequestInfo)
+//                repository.getOverviewData(objOverviewPagerRequestInfo)
+                repository.getRmOverviewData(objOverviewPagerRequestInfo)
                     .compose(applyUiModel())
             }.subscribe {
                 view.renderScheduleData(it)

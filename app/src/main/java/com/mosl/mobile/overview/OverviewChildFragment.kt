@@ -3,8 +3,8 @@ package com.mosl.mobile.overview
 
 import android.os.Bundle
 import android.view.View
+import android.widget.ExpandableListView
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.mosl.commons.data.UiModel
 import com.mosl.commons.data.onFailure
 import com.mosl.commons.data.onSuccess
@@ -12,11 +12,9 @@ import com.mosl.groupiex.section.DataManagerSection
 import com.mosl.mobile.R
 import com.mosl.mobile.core.MOSLCommonFragment
 import com.mosl.mobile.databinding.FragmentOverviewChildBinding
-import com.mosl.mobile.domain.overviewpager.OverviewResponseDayItemInfo
 import com.mosl.mobile.domain.overviewpager.OverviewResponseRepresntativeInfo
+import com.mosl.mobile.domain.overviewpager.RmOverViewMeetingResponseInfo
 import com.mosl.mobile.overviewpager.OverviewFragment
-import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.ViewHolder
 import io.reactivex.Observable
 import io.reactivex.rxkotlin.ofType
 import io.reactivex.subjects.PublishSubject
@@ -32,12 +30,14 @@ class OverviewChildFragment : MOSLCommonFragment(), OverviewChildContract {
 
 
     lateinit var binding: FragmentOverviewChildBinding
+    lateinit var expandAdapter: ExpandableOverViewAdapter
 
     @Inject
     lateinit var presenter: OverviewChildPresenter
     lateinit var section: DataManagerSection
+    var listData: MutableList<RmOverViewMeetingResponseInfo> = ArrayList()
 
-    lateinit var publishSubject: Observable<UiModel<List<OverviewResponseDayItemInfo>>>
+    lateinit var publishSubject: Observable<UiModel<List<RmOverViewMeetingResponseInfo>>>
 
     override fun getLayout(): Int {
         return R.layout.fragment_overview_child
@@ -64,18 +64,22 @@ class OverviewChildFragment : MOSLCommonFragment(), OverviewChildContract {
     }
 
     private fun setupRecyclerView() {
-        val groupAdapter = GroupAdapter<ViewHolder>()
-        section = DataManagerSection(onRetryClick)
-        groupAdapter.add(section)
-        binding.recyclerView.apply {
-            layoutManager = LinearLayoutManager(requireContext())
-            setHasFixedSize(true)
-            adapter = groupAdapter
-        }
+//        val groupAdapter = GroupAdapter<ViewHolder>()
+//        section = DataManagerSection(onRetryClick)
+//        groupAdapter.add(section)
+//        binding.recyclerView.apply {
+//            layoutManager = LinearLayoutManager(requireContext())
+//            setHasFixedSize(true)
+//            adapter = ItemOverviewExpandable(requireContext(),listData)
+////            adapter = groupAdapter
+//        }
+
+
+
     }
 
 
-    override fun onTabClicked(): Observable<UiModel<List<OverviewResponseDayItemInfo>>> {
+    override fun onTabClicked(): Observable<UiModel<List<RmOverViewMeetingResponseInfo>>> {
         return publishSubject.ofType()
     }
 
@@ -90,17 +94,31 @@ class OverviewChildFragment : MOSLCommonFragment(), OverviewChildContract {
         }
     }
 
-    override fun renderPage(uiModel: UiModel<List<OverviewResponseDayItemInfo>>) {
+    override fun renderPage(uiModel: UiModel<List<RmOverViewMeetingResponseInfo>>) {
         toggleProgressBar(uiModel.inProgress)
         uiModel.onFailure { error ->
-            section.showError(error)
+//            section.showError(error)
         }
         uiModel.onSuccess {
-            section.clearContent()
+//            section.clearContent()
+            listData.clear()
+            listData.addAll(it)
+            expandAdapter = ExpandableOverViewAdapter(listData)
+            binding.expandableList.setAdapter(expandAdapter)
+            binding.expandableList.setOnGroupExpandListener(object :
+                ExpandableListView.OnGroupExpandListener {
+                var previousGroup = -1
 
-            for (model in it) {
+                override fun onGroupExpand(groupPosition: Int) {
+                    if (groupPosition != previousGroup)
+                        binding.expandableList.collapseGroup(previousGroup)
+                    previousGroup = groupPosition
+                }
+            })
+
+            /*for (model in it) {
                 section.add(ItemOverview(model, followUpUiEvent))
-            }
+            }*/
         }
     }
 }

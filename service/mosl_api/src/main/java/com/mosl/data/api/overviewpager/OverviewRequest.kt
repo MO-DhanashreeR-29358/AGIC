@@ -10,3 +10,9 @@ data class OverviewRequest (
     val Over: String
 
 )
+
+data class RMDayWiseDataRequest(
+    @JvmField
+    @SerializedName("ClientID")
+    val ClientID: String
+)

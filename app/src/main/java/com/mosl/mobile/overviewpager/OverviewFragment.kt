@@ -16,8 +16,7 @@ import com.mosl.mobile.R
 import com.mosl.mobile.annotations.OverViewData
 import com.mosl.mobile.core.MOSLCommonPager
 import com.mosl.mobile.databinding.FragmentOverviewBinding
-import com.mosl.mobile.domain.overviewpager.OverviewResponseDataInfo
-import com.mosl.mobile.domain.overviewpager.OverviewResponseDayItemInfo
+import com.mosl.mobile.domain.overviewpager.*
 import com.mosl.mobile.overview.OverviewChildFragment
 import com.mosl.mobile.panelpager.PanelFragment
 import io.reactivex.subjects.PublishSubject
@@ -29,7 +28,7 @@ import javax.inject.Inject
 
 class OverviewFragment : MOSLCommonPager(), OverviewPagerContract {
 
-    val tabPublishSubject = PublishSubject.create<UiModel<List<OverviewResponseDayItemInfo>>>()
+    val tabPublishSubject = PublishSubject.create<UiModel<List<RmOverViewMeetingResponseInfo>>>()
     @Inject
     lateinit var presenter: OverviewPresenter
 
@@ -80,7 +79,7 @@ class OverviewFragment : MOSLCommonPager(), OverviewPagerContract {
         binding.group.visibility = View.GONE
     }
 
-    var overViewDayWiseListData = mutableListOf<List<OverviewResponseDayItemInfo>>()
+    var overViewDayWiseListData = mutableListOf<List<RmOverViewMeetingResponseInfo>>()
 
     override fun onPageSelection(position: Int) {
 
@@ -93,7 +92,7 @@ class OverviewFragment : MOSLCommonPager(), OverviewPagerContract {
     }
 
 
-    override fun renderScheduleData(uiModel: UiModel<OverviewResponseDataInfo>) {
+    override fun renderScheduleData(uiModel: UiModel<RmOverviewResponseDataInfo>) {
         toggleProgressBar(uiModel.inProgress)
         uiModel.onFailure {
             if (overViewData.get().isEmpty()) {
@@ -101,8 +100,8 @@ class OverviewFragment : MOSLCommonPager(), OverviewPagerContract {
                 showMessage( it.getErrorOnFailure().getResolvedMessage(requireContext()),checkException(it))
             } else {
                 setUpAdapter()
-                val overViewResponse: OverviewResponseDataInfo =
-                    gson.fromJson(overViewData.get(), OverviewResponseDataInfo::class.java)
+                val overViewResponse: RmOverviewResponseDataInfo =
+                    gson.fromJson(overViewData.get(), RmOverviewResponseDataInfo::class.java)
                 overViewResponse.responseData()
             }
 
@@ -151,10 +150,10 @@ class OverviewFragment : MOSLCommonPager(), OverviewPagerContract {
     }
 
 
-    private fun OverviewResponseDataInfo.responseData() {
+    private fun RmOverviewResponseDataInfo.responseData() {
         overViewDayWiseListData =
-            OverViewDayWiseListData() as MutableList<List<OverviewResponseDayItemInfo>>
-        val dayOverView = OverViewDayWiseListData().get(0)
+            RmOverViewDayWiseListData() as MutableList<List<RmOverViewMeetingResponseInfo>>
+        val dayOverView = RmOverViewDayWiseListData().get(0)
         if (dayOverView.isNotEmpty()) {
             tabPublishSubject.onNext(UiModel.success(dayOverView))
         } else {

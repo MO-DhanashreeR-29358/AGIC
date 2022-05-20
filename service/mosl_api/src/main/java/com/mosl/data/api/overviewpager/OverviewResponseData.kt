@@ -13,3 +13,9 @@ data class OverviewResponseData(
     @JvmField @SerializedName("Day3")
     val Day3: List<OverviewResponseDayItem>
 )
+
+data class RmOverViewResponseData(
+
+    @JvmField @SerializedName("AGICMeeting")
+    val AGICMeeting: List<RmDayWiseResponseItem>
+)

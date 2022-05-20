@@ -4,4 +4,5 @@ import io.reactivex.Observable
 
 interface OverviewRepository {
     fun getOverviewData(overviewPagerInfo: OverviewRequestInfo): Observable<OverviewResponseDataInfo>
+    fun getRmOverviewData(overviewPagerInfo: RmOverviewRequestInfo): Observable<RmOverviewResponseDataInfo>
 }

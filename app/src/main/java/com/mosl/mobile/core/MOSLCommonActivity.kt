@@ -199,14 +199,9 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
             IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
         )
         binding.toolBar.navigationClicks().subscribe { openMenuDrawer() }.addTo(disposable)
-        if (savedInstanceState == null) {
-            activityNavHelper.loadIntent(intent)
-        } else {
-            globalTitles =
-                savedInstanceState.getSerializable(PAGE_TITLES) as HashMap<String, AppTitle>
-        }
-        remoteConfigModel =
-            gson.fromJson(remoteConfigData.get(), RemoteConfigModel::class.java)
+
+        /*remoteConfigModel =
+            gson.fromJson(remoteConfigData.get(), RemoteConfigModel::class.java)*/
         setupObservables()
         setUpView()
         setUpTabs(intent)
@@ -242,13 +237,13 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
 
     fun changeImage() {
 
-        Glide.with(this@MOSLCommonActivity)
+        /*Glide.with(this@MOSLCommonActivity)
             .load(remoteConfigModel.logo)
             .into(binding.imgLogo)
 
         Glide.with(this@MOSLCommonActivity)
             .load(remoteConfigModel.conferenceLogo)
-            .into(binding.imgLogoTemp)
+            .into(binding.imgLogoTemp)*/
 
         val handler = Handler()
         val runnable = object : Runnable {
@@ -294,117 +289,7 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
 
 
     private fun setUpTabs(intent: Intent) {
-        binding.tabLayout.apply {
-            if (userManager.user.role.equals(ROLE_CLIENT, ignoreCase = true)) {
-                addTab(
-                    newTab().setText(R.string.tab_label_schedule)
-                        .setIcon(R.drawable.ic_tab_schedule).setTag(
-                        NavigationConstants.NAVIGATE_TO_SCHEDULE
-                    )
-                )
-
-                addTab(
-                    newTab().setText(R.string.tab_label_overview)
-                        .setIcon(R.drawable.ic_tab_overview).setTag(
-                        NavigationConstants.NAVIGATE_TO_OVERVIEW
-                    )
-                )
-                addTab(
-                    newTab().setText(R.string.tab_label_feedback)
-                        .setIcon(R.drawable.ic_tab_feedback).setTag(
-                        NavigationConstants.NAVIGATE_TO_FEEDBACK
-                    )
-                )
-
-                addTab(
-                    newTab().setText(R.string.tab_label_notification)
-                        .setIcon(R.drawable.ic_notification_24dp).setTag(
-                        NavigationConstants.NAVIGATE_TO_NOTIFICATION
-                    )
-                )
-
-                addTab(
-                    newTab().setText(R.string.tab_label_pdf).setIcon(R.drawable.ic_tab_pdf).setTag(
-                        NavigationConstants.NAVIGATE_TO_PDF
-                    )
-                )
-
-                disableTab(binding.tabLayout, 2)
-
-            } else if (userManager.user.role.equals(ROLE_CORPORATE, ignoreCase = true)) {
-                addTab(
-                    newTab().setText(R.string.tab_label_schedule)
-                        .setIcon(R.drawable.ic_tab_schedule).setTag(
-                        NavigationConstants.NAVIGATE_TO_CORPORATE_SCHEDULE
-                    )
-                )
-
-                addTab(
-                    newTab().setText(R.string.tab_label_feedback)
-                        .setIcon(R.drawable.ic_tab_feedback).setTag(
-                        NavigationConstants.NAVIGATE_TO_FEEDBACK
-                    )
-                )
-
-                addTab(
-                    newTab().setText(R.string.tab_label_notification)
-                        .setIcon(R.drawable.ic_notification_24dp).setTag(
-                        NavigationConstants.NAVIGATE_TO_NOTIFICATION
-                    )
-                )
-
-                addTab(
-                    newTab().setText(R.string.tab_label_pdf).setIcon(R.drawable.ic_tab_pdf).setTag(
-                        NavigationConstants.NAVIGATE_TO_PDF
-                    )
-                )
-
-                disableTab(binding.tabLayout, 1)
-
-            } else {
-                addTab(
-                    newTab().setText(R.string.tab_label_schedule)
-                        .setIcon(R.drawable.ic_tab_schedule).setTag(
-                        NavigationConstants.NAVIGATE_TO_SCHEDULE
-                    )
-                )
-
-                addTab(
-                    newTab().setText(R.string.tab_label_overview)
-                        .setIcon(R.drawable.ic_tab_overview).setTag(
-                        NavigationConstants.NAVIGATE_TO_OVERVIEW
-                    )
-                )
-
-                addTab(
-                    newTab().setText(R.string.tab_label_panel).setIcon(R.drawable.ic_panel_24dp)
-                        .setTag(
-                            NavigationConstants.NAVIGATE_TO_PANEL
-                        )
-                )
-
-                addTab(
-                    newTab().setText(R.string.tab_label_bytes).setIcon(R.drawable.ic_tab_bytes)
-                        .setTag(
-                            NavigationConstants.NAVIGATE_TO_BYTES
-                        )
-                )
-
-                addTab(
-                    newTab().setText(R.string.tab_label_pdf).setIcon(R.drawable.ic_tab_pdf).setTag(
-                        NavigationConstants.NAVIGATE_TO_PDF
-                    )
-                )
-            }
-        }
-
-        if (intent.isNotification()) {
-            setNotificationTab()
-        } else {
-            setColorFilter(binding.tabLayout.getTabAt(0)?.icon, baseContext.setColor(R.color.blue))
-        }
-
-        binding.tabLayout.addOnTabSelectedListener(tabSelectedListner)
+        screenNavigator.openPage(NavigationConstants.NAVIGATE_TO_OVERVIEW)
 
     }
 

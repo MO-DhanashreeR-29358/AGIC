@@ -77,11 +77,11 @@ class CorporateScheduleFragment : MOSLCommonFragment(), CorporateChildContract {
         val groupAdapter = GroupAdapter<ViewHolder>()
         section = DataManagerSection(onRetryClick)
         groupAdapter.add(section)
-        binding.recyclerView.apply {
+        /*binding.recyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext())
             setHasFixedSize(true)
             adapter = groupAdapter
-        }
+        }*/
     }
 
 
@@ -186,7 +186,7 @@ class CorporateScheduleFragment : MOSLCommonFragment(), CorporateChildContract {
             }
 
             if (currentTimeBetween) {
-                binding.recyclerView.scrollToPosition(currentPosition)
+//                binding.recyclerView.scrollToPosition(currentPosition)
                 section.add(
                     ItemCorporateSchedule(
                         model,
