@@ -15,13 +15,11 @@ import com.mosl.data.api.feedback.FeedbackResponseItem
 import com.mosl.data.api.feedback.SubmitFeedbackRequest
 import com.mosl.data.api.login.LoginInfoRequest
 import com.mosl.data.api.login.LoginInfoResponse
+import com.mosl.data.api.login.RmDataResponse
 import com.mosl.data.api.newsletter.NewsLetterResponseItem
 import com.mosl.data.api.notification.NotificationRequest
 import com.mosl.data.api.notification.NotificationResponseItem
-import com.mosl.data.api.overviewpager.OverviewRequest
-import com.mosl.data.api.overviewpager.OverviewResponseData
-import com.mosl.data.api.overviewpager.RMDayWiseDataRequest
-import com.mosl.data.api.overviewpager.RmOverViewResponseData
+import com.mosl.data.api.overviewpager.*
 import com.mosl.data.api.panel.PanelDataResponse
 import com.mosl.data.api.schedule.ScheduleRequest
 import com.mosl.data.api.schedule.ScheduleResponseItem
@@ -46,6 +44,10 @@ class MockMoslApiServiceImpl(
     }
 
     override fun getRMDayWiseDataAPI(request: RMDayWiseDataRequest): Observable<RmOverViewResponseData> {
+        TODO("Not yet implemented")
+    }
+
+    override fun getRMClientWiseDataAPI(request: RMDayWiseDataRequest): Observable<RmClientWiseResponseData> {
         TODO("Not yet implemented")
     }
 
@@ -77,7 +79,7 @@ class MockMoslApiServiceImpl(
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun userLogin(request: LoginInfoRequest): Observable<LoginInfoResponse> {
+    override fun userLogin(request: LoginInfoRequest): Observable<BaseResponseAgic<List<RmDataResponse>>> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 

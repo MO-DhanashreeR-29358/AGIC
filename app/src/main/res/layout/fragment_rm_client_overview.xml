@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constrainLaout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?android:colorBackground">
+
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/toolbar_color"
+            app:iconGravity="textStart"
+            app:iconPadding="@dimen/_4sdp"
+            app:layout_anchorGravity="bottom|center"
+            app:layout_constraintBottom_toTopOf="@+id/pager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tabGravity="fill"
+            app:tabIconTint="@color/day_tab_white"
+            app:tabIndicatorColor="@color/day_tab_indicatore_selected"
+            app:tabIndicatorHeight="@dimen/margin_small"
+            app:tabMode="fixed"
+            app:tabSelectedTextColor="@color/day_tab_selected"
+            app:tabTextAppearance="@style/MaxCustomTabText"
+            app:tabTextColor="@color/day_tab_white"
+            android:visibility="gone"/>
+
+        <com.mosl.app.coreui.views.CustomViewPager
+            android:id="@+id/pager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tab_layout" />
+
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_error_icon"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:visibility="visible"
+            tools:src="@drawable/ic_service"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+        <TextView
+            android:id="@+id/rm_client_txt_error_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/margin_medium"
+            android:gravity="center"
+            android:textSize="@dimen/text_size_medium"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_error_icon"
+            />
+        <Button
+            android:id="@+id/rm_client_btn_retry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:text="@string/button_label_retry"
+            android:textColor="@color/red"
+            android:visibility="gone"
+            tools:visibility="visible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_error_message"
+            />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/group"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="rm_client_btn_retry,rm_client_txt_error_message,img_error_icon"
+            />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

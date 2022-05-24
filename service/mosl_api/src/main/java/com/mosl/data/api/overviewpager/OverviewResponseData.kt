@@ -19,3 +19,9 @@ data class RmOverViewResponseData(
     @JvmField @SerializedName("AGICMeeting")
     val AGICMeeting: List<RmDayWiseResponseItem>
 )
+
+data class RmClientWiseResponseData(
+
+    @JvmField @SerializedName("AGICMeeting")
+    val AGICMeeting: List<RmClientWiseResponseItem>
+)

@@ -29,7 +29,7 @@ class CorporateSchedulePagerPresenter @Inject constructor(
         }
 
         val objCorporateScheduleRequestInfo = CorporateScheduleRequestInfo(
-            ClientID = userManager.user.clientId,
+            ClientID = userManager.user.empCode,
             timestamp = notificationDateDate
         )
         Observable.merge(onFetchCalled(), onRetryCalled()).switchMap {

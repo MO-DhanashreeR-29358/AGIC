@@ -13,6 +13,8 @@ import com.mosl.mobile.overviewpager.OverviewFragment
 import com.mosl.mobile.panel.PanelChildFragment
 import com.mosl.mobile.panelpager.PanelFragment
 import com.mosl.mobile.pdf.PdfFragment
+import com.mosl.mobile.rmclientwise.RmClientWiseFragment
+import com.mosl.mobile.rmclientwisepager.RmClientOverviewFragment
 import com.mosl.mobile.schedule.ScheduleFragment
 
 object MenuGetter {
@@ -24,11 +26,13 @@ object MenuGetter {
         return when (menuCode) {
             NavigationConstants.NAVIGATE_TO_SCHEDULE -> ScheduleFragment()
             NavigationConstants.NAVIGATE_TO_OVERVIEW -> OverviewFragment()
+            NavigationConstants.NAVIGATE_TO_RM_CLIENT_OVERVIEW -> RmClientOverviewFragment()
             NavigationConstants.NAVIGATE_TO_PANEL -> PanelFragment()
             NavigationConstants.NAVIGATE_TO_BYTES -> BytesFragment()
             NavigationConstants.NAVIGATE_TO_PDF -> PdfFragment()
             NavigationConstants.NAVIGATE_TO_PANEL_CHILD -> PanelChildFragment()
             NavigationConstants.NAVIGATE_TO_OVERVIEW_CHILD -> OverviewChildFragment()
+            NavigationConstants.NAVIGATE_TO_RM_CLIENT_CHILD -> RmClientWiseFragment()
             NavigationConstants.NAVIGATE_TO_CORPORATE_SCHEDULE -> CorporatePagerFragment()
             NavigationConstants.NAVIGATE_TO_NOTES -> NotesFragment()
             NavigationConstants.NAVIGATE_TO_NOTIFICATION -> NotificationHistoryFragment()
@@ -44,6 +48,7 @@ object MenuGetter {
         return when (pageId) {
             NavigationConstants.NAVIGATE_TO_SCHEDULE -> true
             NavigationConstants.NAVIGATE_TO_OVERVIEW -> true
+            NavigationConstants.NAVIGATE_TO_RM_CLIENT_OVERVIEW -> true
             NavigationConstants.NAVIGATE_TO_PANEL -> true
             NavigationConstants.NAVIGATE_TO_BYTES -> true
             NavigationConstants.NAVIGATE_TO_PDF -> true

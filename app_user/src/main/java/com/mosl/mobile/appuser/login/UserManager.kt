@@ -1,5 +1,6 @@
 package com.mosl.mobile.appuser.login
 
+import com.mosl.mobile.appuser.model.RmUser
 import com.mosl.mobile.appuser.model.User
 
 /**
@@ -9,13 +10,13 @@ import com.mosl.mobile.appuser.model.User
 interface UserManager {
 
     fun getPdf(): String
-    fun getUser(): User?
+    fun getUser(): RmUser?
     fun isLoggedIn(): Boolean
     fun isActive(): Boolean
     fun doLogout()
 }
 
-val UserManager.user: User
+val UserManager.user: RmUser
     get() {
         return getUser() ?: error("Not Logged In")
     }

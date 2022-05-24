@@ -305,7 +305,7 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
         if (pos == -1) {
             val currentDate = df_Date6.format(Date())
 
-            val dayArr = userManager.user.day
+            val dayArr = ""
 
             val separate1 = dayArr.split(",").toTypedArray()
 

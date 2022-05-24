@@ -36,7 +36,7 @@ class ScreenNavigatorImpl @Inject constructor(
     }
 
     override fun openHome() {
-        if (userManager.user.role.equals(
+        if (userManager.user.roomNo.equals(
                 MOSLCommonActivity.ROLE_CORPORATE,
                 ignoreCase = true
             )

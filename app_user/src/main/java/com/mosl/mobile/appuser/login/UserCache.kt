@@ -1,5 +1,6 @@
 package com.mosl.mobile.login
 
+import com.mosl.mobile.appuser.model.RmUser
 import com.mosl.mobile.appuser.model.User
 
 
@@ -10,9 +11,9 @@ import com.mosl.mobile.appuser.model.User
 internal interface UserCache {
 
     fun savePdf(pdfLink: String)
-    fun saveUser(user: User)
+    fun saveUser(user: RmUser)
     fun getPdf(): String
-    fun getUser(): User?
+    fun getUser(): RmUser?
     fun clearUser()
     fun saveNewsLetterState(isActive:Boolean)
     fun getNewsLetterState():Boolean

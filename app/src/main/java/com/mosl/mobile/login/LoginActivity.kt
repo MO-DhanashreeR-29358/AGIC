@@ -20,6 +20,7 @@ import com.mosl.commons.data.onFailure
 import com.mosl.commons.data.onSuccess
 import com.mosl.mobile.R
 import com.mosl.mobile.annotations.RemoteConfigData
+import com.mosl.mobile.appuser.model.RmUser
 import com.mosl.mobile.appuser.model.User
 import com.mosl.mobile.core.MOSLCommonActivity
 import com.mosl.mobile.data.RemoteConfigModel
@@ -62,16 +63,16 @@ class LoginActivity : LeanBaseActivity(), Navigator, LoginView {
     }
 
     private fun initData() {
-        /*val banner: RemoteConfigModel =
+        val banner: RemoteConfigModel =
             gson.fromJson(remoteCongigData.get(), RemoteConfigModel::class.java)
         Glide.with(this)
             .load(banner.logo)
             .into(binding.imgBanner)
         binding.txtYear.text = banner.year
-        binding.txtAgic.text = banner.conferenceName*/
+        binding.txtAgic.text = banner.conferenceName
     }
 
-    internal fun openDashboard(user: User) {
+    internal fun openDashboard() {
         val intent = Intent(this, MOSLCommonActivity::class.java)
         startActivity(intent)
         finish()
@@ -94,7 +95,7 @@ class LoginActivity : LeanBaseActivity(), Navigator, LoginView {
         return binding.editUniqueCode.editorActions { event -> event == EditorInfo.IME_ACTION_DONE }
     }
 
-    override fun renderLogin(uiModel: UiModel<User>) {
+    override fun renderLogin(uiModel: UiModel<RmUser>) {
         toggleProgressBar(uiModel.inProgress)
 
         uiModel.onFailure { error ->
@@ -102,7 +103,7 @@ class LoginActivity : LeanBaseActivity(), Navigator, LoginView {
         }
 
         uiModel.onSuccess {
-            openDashboard(it)
+            openDashboard()
         }
     }
 

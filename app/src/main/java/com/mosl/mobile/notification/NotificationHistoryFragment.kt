@@ -77,7 +77,7 @@ class NotificationHistoryFragment : MOSLCommonFragment(), NotificationContract {
     }
 
     private fun setUpView() {
-        if (userManager.user.role.equals(MOSLCommonActivity.ROLE_CLIENT, ignoreCase = true)) {
+        if (userManager.user.roomNo.equals(MOSLCommonActivity.ROLE_CLIENT, ignoreCase = true)) {
             binding.header.tvCorporate.setText(CORPORATE)
 
         } else {

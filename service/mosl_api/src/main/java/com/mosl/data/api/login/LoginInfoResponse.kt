@@ -20,3 +20,15 @@ data class LoginInfoResponse(
 
 )
 
+data class RmDataResponse(
+    @JvmField @SerializedName("Empcode") val empCode: String,
+    @JvmField @SerializedName("Name") val name: String,
+    @JvmField @SerializedName("fund_id") val fundId: String,
+    @JvmField @SerializedName("fund_name") val fundName: String,
+    @JvmField @SerializedName("room_no") val roomNO: String,
+    @JvmField @SerializedName("company_name") val companyName: String,
+    @JvmField @SerializedName("contact_name1") val contactName1: String?,
+    @JvmField @SerializedName("contact_name2") val contactName2: String?,
+    @JvmField @SerializedName("contact_name3") val contactName3: String?
+)
+

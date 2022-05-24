@@ -88,6 +88,40 @@
             app:constraint_referenced_ids="btn_retry,txt_error_message,img_error_icon"
             />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimens_35"
+            android:orientation="horizontal"
+            android:layout_gravity="bottom"
+            android:gravity="center_vertical"
+            android:background="@color/toolbar_color"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <TextView
+                android:id="@+id/btnDayWise"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_label_dayWise"
+                android:textSize="@dimen/text_size_normal"
+                android:textColor="@color/day_tab_selected"
+                android:padding="@dimen/margin_extra_small"
+                android:background="@color/bottom_tab_white"
+                android:layout_margin="@dimen/margin_small"/>
+
+            <TextView
+                android:id="@+id/btnClientWise"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_label_clientWise"
+                android:textSize="@dimen/text_size_normal"
+                android:textColor="@color/day_tab_selected"
+                android:padding="@dimen/margin_extra_small"
+                android:background="@color/bottom_tab_white"
+                android:layout_margin="@dimen/margin_small"/>
+
+        </LinearLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

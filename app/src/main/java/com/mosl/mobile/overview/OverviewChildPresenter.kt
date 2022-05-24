@@ -12,6 +12,10 @@ class OverviewChildPresenter @Inject constructor(view: OverviewChildContract) :
             view.onTabClicked()
                 .subscribe(view::renderPage)
         )
+        disposable.add(
+            view.onTabClickedClientWise()
+                .subscribe(view::renderPageClientData)
+        )
 
         view.onItemClicked()
             .subscribe {

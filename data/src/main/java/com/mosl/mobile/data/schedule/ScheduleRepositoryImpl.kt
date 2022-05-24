@@ -32,7 +32,7 @@ class ScheduleRepositoryImpl @Inject constructor(
             getFormatedDate(scheduleDate.get(), DF_JSON_DATE_12, DF_TIME_HH_ss)
 
         val scheduleRequest = ScheduleRequestInfo(
-            clientID = userManager.user.clientId,
+            clientID = userManager.user.empCode,
             schedule = getTodaysDate(),
             timestamp = date
         )

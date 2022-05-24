@@ -113,7 +113,7 @@ class CorporateScheduleFragment : MOSLCommonFragment(), CorporateChildContract {
 
             if (shiftTime.equals("")) {
                 val currentDate = AppDateFormats.df_Date6.format(Date())
-                val dayArr = userManager.user.day
+                val dayArr = ""
                 val separate1 = dayArr.split(",").toTypedArray()
 
                 if (currentDate.equals(separate1[0]) && it[0].day.equals("day1", ignoreCase = true))

@@ -3,6 +3,7 @@ package com.mosl.mobile.login
 import com.google.gson.Gson
 import com.mosl.mobile.appuser.helper.NewsLetterPrefStateStore
 import com.mosl.mobile.appuser.helper.UserPrefStore
+import com.mosl.mobile.appuser.model.RmUser
 import com.mosl.mobile.appuser.model.User
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -42,17 +43,17 @@ class UserCacheImpl @Inject constructor(
         }
     }
 
-    override fun saveUser(user: User) {
+    override fun saveUser(user: RmUser) {
         userStore.userInfo.set(gson.toJson(user))
     }
 
 
 
-    override fun getUser(): User? {
+    override fun getUser(): RmUser? {
         return when {
             userStore.userInfo.isSet -> gson.fromJson(
                 userStore.userInfo.get(),
-                User::class.java
+                RmUser::class.java
             )
             else -> null
         }

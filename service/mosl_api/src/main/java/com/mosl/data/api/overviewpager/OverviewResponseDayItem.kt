@@ -60,7 +60,7 @@ data class RmDayWiseResponseItem(
 
     @JvmField
     @SerializedName("MeetingSlot")
-    var meetingTimeDisplay : List<MeetingSlot>,
+    var meetingTimeDisplay : List<MeetingSlot>
 )
 
 data class MeetingSlot(
@@ -120,6 +120,88 @@ data class MeetingTimeListItem(
 
     @JvmField
     @SerializedName("rep")
+    var rep: List<OverviewResponseRepository>,
+
+    @JvmField
+    @SerializedName("MeetingLastModified" )
+    var meetingLastModified : String?=null
+)
+
+data class RmClientWiseResponseItem(
+    @JvmField
+    @SerializedName("MeetingDay")
+    var day : String,
+
+    @JvmField
+    @SerializedName("FundList")
+    var fundList : List<FundList>
+)
+
+data class FundList(
+    @JvmField
+    @SerializedName("FundID")
+    var fundID: String,
+
+    @JvmField
+    @SerializedName("FundName")
+    var FundName: String,
+
+    @JvmField
+    @SerializedName("FundRepresentative")
+    var FundRepresentative: List<FundRepresentative>
+)
+
+data class FundRepresentative(
+    @JvmField
+    @SerializedName("FundRepresentativeName")
+    var fundRepresentativeName: String,
+
+    @JvmField
+    @SerializedName("MeetingSlot")
+    var meetingTimeDisplay : List<ClientWiseMeetingSlot>
+)
+
+data class ClientWiseMeetingSlot(
+    @JvmField
+    @SerializedName("MeetingSLotTime")
+    var meetingSlotTime: String,
+
+    @JvmField
+    @SerializedName("MeetingList")
+    var meeting: List<Meeting>
+)
+
+data class Meeting(
+    @JvmField
+    @SerializedName("Empcode")
+    var empCode: String?=null,
+
+    @JvmField
+    @SerializedName("Name")
+    var name: String?=null,
+
+    @JvmField
+    @SerializedName("CorporateName")
+    var corporateName: String?=null,
+
+    @JvmField
+    @SerializedName("room_no")
+    var roomNo: String?=null,
+
+    @JvmField
+    @SerializedName("contact_name1")
+    var contactName1: String?=null,
+
+    @JvmField
+    @SerializedName("start_time")
+    var startTime: String?=null,
+
+    @JvmField
+    @SerializedName("Nature_of_meeting")
+    var natureOfMeeting: String?=null,
+
+    @JvmField
+    @SerializedName("CorporateRep")
     var rep: List<OverviewResponseRepository>,
 
     @JvmField

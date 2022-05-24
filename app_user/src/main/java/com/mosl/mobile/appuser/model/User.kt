@@ -35,3 +35,17 @@ data class User(
 
 }
 
+data class RmUser(
+
+    @JvmField val empCode: String,
+    @JvmField val fundId: String,
+    @JvmField val name: String,
+    @JvmField val fundName: String,
+    @JvmField val contactName1: String,
+    @JvmField val contactName2: String,
+    @JvmField val contactName3: String,
+    @JvmField val roomNo: String,
+    @JvmField val companyName: String,
+    @JvmField val message: String,
+)
+

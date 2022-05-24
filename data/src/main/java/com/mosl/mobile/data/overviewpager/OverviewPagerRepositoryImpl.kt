@@ -25,4 +25,11 @@ class OverviewPagerRepositoryImpl @Inject constructor(
                 mapper.getRmDayWiseMap(it)
             }
     }
+
+    override fun getRmClientOverviewData(overviewPagerInfo: RmOverviewRequestInfo): Observable<RmClientWiseResponseDataInfo> {
+        return agicApi.getRMClientWiseDataAPI(mapper.getRmOverviewPagerRequestMap(overviewPagerInfo))
+            .map {
+                mapper.getRmClientWiseMap(it)
+            }
+    }
 }

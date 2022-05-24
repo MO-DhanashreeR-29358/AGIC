@@ -1,6 +1,7 @@
 package com.mosl.mobile.data.overviewpager
 
 import com.mosl.data.api.overviewpager.*
+import com.mosl.data.api.overviewpager.ClientWiseMeetingSlot
 import com.mosl.mobile.domain.overviewpager.*
 
 object OverviewPagerMapper {
@@ -25,11 +26,30 @@ object OverviewPagerMapper {
         )
     }
 
+    fun getRmClientWiseMap(data: RmClientWiseResponseData): RmClientWiseResponseDataInfo{
+
+        return RmClientWiseResponseDataInfo(
+            day1 = fundData(data.AGICMeeting[0].fundList),
+            day2 = fundData(data.AGICMeeting[1].fundList),
+            day3 = fundData(data.AGICMeeting[2].fundList)
+        )
+    }
+
     fun meetingTimeSlotData(it: List<MeetingSlot>) : List<RmOverViewMeetingResponseInfo>{
         return it.map {
             RmOverViewMeetingResponseInfo(
                 meetingTime = it.meetingSlotTime,
                 meetingList = DayWiseData(it.meeting)
+            )
+        }
+    }
+
+    fun fundData(fundData: List<FundList>): List<RmClientWiseResponseInfo>{
+        return fundData.map {
+            RmClientWiseResponseInfo(
+                fundID = it.fundID,
+                FundName = it.FundName,
+                FundRepresentative = fundRepresentativeData(it.FundRepresentative)
             )
         }
     }
@@ -48,6 +68,39 @@ object OverviewPagerMapper {
                 contactName1 = it.contactName1?:"",
                 startTime = it.startTime?:"",
                 natureOfMeeting = it.natureOfMeeting?:"",
+            )
+        }
+    }
+
+    fun fundRepresentativeData(fundRepData: List<FundRepresentative>) : List<FundRepresentativeItemInfo>{
+        return fundRepData.map {
+            FundRepresentativeItemInfo(
+                fundRepresentativeName = it.fundRepresentativeName,
+                meetingTimeDisplay = clientWiseMeetingSlot(it.meetingTimeDisplay)
+            )
+        }
+    }
+
+    fun clientWiseMeetingSlot(clientWiseResponseData: List<ClientWiseMeetingSlot>): List<ClientWiseMeetingSlotItemInfo>{
+        return clientWiseResponseData.map {
+            ClientWiseMeetingSlotItemInfo(
+                meetingSlotTime = it.meetingSlotTime,
+                meeting = clientMeetingItemInfo(it.meeting)
+            )
+        }
+    }
+
+    fun clientMeetingItemInfo(data: List<Meeting>): List<MeetingItemInfo>{
+        return data.map {
+            MeetingItemInfo(
+                empCode = it.empCode?:"",
+                name = it.name?:"",
+                corporateName = it.corporateName?:"",
+                roomNo = it.roomNo?:"",
+                contactName1 = it.contactName1?:"",
+                startTime = it.startTime?:"",
+                natureOfMeeting = it.natureOfMeeting?:"",
+                meetingLastModified = it.meetingLastModified?:""
             )
         }
     }

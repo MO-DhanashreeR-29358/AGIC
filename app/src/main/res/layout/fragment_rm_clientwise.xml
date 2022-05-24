@@ -1,0 +1,30 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?background">
+
+       <!-- <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/margin_small"
+            app:layout_constraintTop_toTopOf="parent" />-->
+
+        <ExpandableListView
+            android:id="@+id/rm_client_wise_expandable_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:childDivider="@color/warmGrey"
+            android:divider="@color/greyWhite"
+            android:dividerHeight="@dimen/_1sdp"
+            android:groupIndicator="@null"
+            android:layoutAnimation="@anim/layout_animation"
+            android:layout_margin="@dimen/margin_small"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

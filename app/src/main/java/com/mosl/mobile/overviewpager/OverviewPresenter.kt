@@ -2,6 +2,7 @@ package com.mosl.mobile.overviewpager
 
 import com.mosl.app.core.base.BasePresenter
 import com.mosl.mobile.appuser.login.UserManager
+import com.mosl.mobile.appuser.login.user
 import com.mosl.mobile.domain.overviewpager.OverviewRepository
 import com.mosl.mobile.domain.overviewpager.RmOverviewRequestInfo
 import io.reactivex.Observable
@@ -17,11 +18,24 @@ class OverviewPresenter @Inject constructor(
     override fun start() {
 
         val objOverviewPagerRequestInfo = RmOverviewRequestInfo(
-            ClientID = "6554",
+            ClientID = userManager.user.empCode,
         )
         Observable.merge(onFetchCalled(), onRetryCalled())
             .switchMap {
-//                repository.getOverviewData(objOverviewPagerRequestInfo)
+                repository.getRmOverviewData(objOverviewPagerRequestInfo)
+                    .compose(applyUiModel())
+            }.subscribe {
+                view.renderScheduleData(it)
+            }.addTo(disposable)
+
+        view.onClientWiseClicked()
+            .switchMap { repository.getRmClientOverviewData(objOverviewPagerRequestInfo)
+                .compose(applyRvUiModel())}
+            .subscribe { view.renderClientWiseData(it) }
+            .addTo(disposable)
+
+        view.onDayWiseClicked()
+            .switchMap {
                 repository.getRmOverviewData(objOverviewPagerRequestInfo)
                     .compose(applyUiModel())
             }.subscribe {

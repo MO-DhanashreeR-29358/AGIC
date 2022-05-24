@@ -27,6 +27,10 @@ import com.mosl.mobile.panel.PanelChildModule
 import com.mosl.mobile.panelpager.PanelFragment
 import com.mosl.mobile.panelpager.PanelModule
 import com.mosl.mobile.pdf.PdfFragment
+import com.mosl.mobile.rmclientwise.RmClientWiseFragment
+import com.mosl.mobile.rmclientwise.RmClientWiseModule
+import com.mosl.mobile.rmclientwisepager.RmClientOverviewFragment
+import com.mosl.mobile.rmclientwisepager.RmClientOverviewPagerModule
 import com.mosl.mobile.schedule.ScheduleFragment
 import com.mosl.mobile.schedule.ScheduleModule
 import com.mosl.mobile.schedule.ScheduleRepDialogFragment
@@ -60,6 +64,10 @@ interface FragmentProvider {
     @ContributesAndroidInjector(modules = [OverviewChildModule::class])
     fun provideOverviewFragmentChildFactory(): OverviewChildFragment
 
+    @ContributesAndroidInjector(modules = [RmClientWiseModule::class])
+    fun provideRmChildWiseFragmentFactory(): RmClientWiseFragment
+
+
     @ContributesAndroidInjector(modules = [])
     fun providePDFFragmentFactory(): PdfFragment
 
@@ -72,6 +80,9 @@ interface FragmentProvider {
 
     @ContributesAndroidInjector(modules = [OverviewPagerModule::class])
     fun provideOverviewFragmentFactory(): OverviewFragment
+
+    @ContributesAndroidInjector(modules = [RmClientOverviewPagerModule::class])
+    fun provideRmClientOverviewFragmentFactory(): RmClientOverviewFragment
 
     @ContributesAndroidInjector(modules = [NotificationModule::class])
     fun provideNotificationHistoryFactory(): NotificationHistoryFragment

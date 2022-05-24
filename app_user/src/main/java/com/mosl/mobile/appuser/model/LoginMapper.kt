@@ -2,6 +2,8 @@ package com.mosl.mobile.appuser.model
 
 import com.mosl.data.api.login.LoginInfoRequest
 import com.mosl.data.api.login.LoginInfoResponse
+import com.mosl.data.api.login.RmDataResponse
+import com.mosl.data.api.schedule.ScheduleResponseItem
 
 fun LoginRequest.mapToLoginRequest(): LoginInfoRequest {
     return LoginInfoRequest(
@@ -25,5 +27,21 @@ fun LoginInfoResponse.mapToLoginResponse(): User {
         contactMobile3 = contactMobile3,
         day = day,
         role = role
+    )
+}
+
+fun RmDataResponse.mapToRmData(rmResponseData:
+                   RmDataResponse, message:String): RmUser {
+    return RmUser(
+        empCode = rmResponseData.empCode,
+        fundId = rmResponseData.fundId,
+        name = rmResponseData.name,
+        fundName = rmResponseData.fundName,
+        contactName1 = rmResponseData.contactName1?:"",
+        contactName2 = rmResponseData.contactName2?:"",
+        contactName3 = rmResponseData.contactName3?:"",
+        roomNo = rmResponseData.roomNO,
+        companyName = rmResponseData.companyName,
+        message = message
     )
 }

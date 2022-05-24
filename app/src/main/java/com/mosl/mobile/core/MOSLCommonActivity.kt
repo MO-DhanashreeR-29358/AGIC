@@ -200,8 +200,14 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
         )
         binding.toolBar.navigationClicks().subscribe { openMenuDrawer() }.addTo(disposable)
 
-        /*remoteConfigModel =
-            gson.fromJson(remoteConfigData.get(), RemoteConfigModel::class.java)*/
+        if (savedInstanceState == null) {
+            activityNavHelper.loadFragment(NavigationConstants.NAVIGATE_TO_OVERVIEW)
+        } else {
+            globalTitles =
+                savedInstanceState.getSerializable(PAGE_TITLES) as HashMap<String, AppTitle>
+        }
+        remoteConfigModel =
+            gson.fromJson(remoteConfigData.get(), RemoteConfigModel::class.java)
         setupObservables()
         setUpView()
         setUpTabs(intent)
@@ -213,37 +219,37 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
     private fun setUpView() {
 
         binding.txtFundName.setText(userManager.user.fundName)
-        binding.txtName.setText(userManager.user.clientName)
+        binding.txtName.setText(userManager.user.name)
         binding.txtFundName.setEllipsize(TextUtils.TruncateAt.MARQUEE)
         binding.txtName.setEllipsize(TextUtils.TruncateAt.MARQUEE)
         binding.txtFundName.isSelected = true
         binding.txtName.isSelected = true
 
-        if (userManager.user.contactList().isEmpty()) {
+        /*if (userManager.user.contactList().isEmpty()) {
             binding.imgCall.visibility = View.GONE
         } else {
             binding.imgCall.visibility = View.VISIBLE
-        }
+        }*/
 
         binding.imgLogout.setOnClickListener {
             logoutCustomer()
         }
 
-        binding.imgCall.setOnClickListener {
+        /*binding.imgCall.setOnClickListener {
             ContactDialogFragment.newInstance(userManager.user.contactList())
                 .show(supportFragmentManager, "dialog")
-        }
+        }*/
     }
 
     fun changeImage() {
 
-        /*Glide.with(this@MOSLCommonActivity)
+        Glide.with(this@MOSLCommonActivity)
             .load(remoteConfigModel.logo)
             .into(binding.imgLogo)
 
         Glide.with(this@MOSLCommonActivity)
             .load(remoteConfigModel.conferenceLogo)
-            .into(binding.imgLogoTemp)*/
+            .into(binding.imgLogoTemp)
 
         val handler = Handler()
         val runnable = object : Runnable {
@@ -289,8 +295,24 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
 
 
     private fun setUpTabs(intent: Intent) {
-        screenNavigator.openPage(NavigationConstants.NAVIGATE_TO_OVERVIEW)
+        binding.tabLayout.apply {
+            addTab(
+                newTab().setText(R.string.txt_label_dayWise)
+                    .setIcon(R.drawable.ic_tab_schedule).setTag(
+                        NavigationConstants.NAVIGATE_TO_OVERVIEW
+                    )
+            )
+            addTab(
+                newTab().setText(R.string.txt_label_clientWise)
+                    .setIcon(R.drawable.ic_tab_schedule).setTag(
+                        NavigationConstants.NAVIGATE_TO_RM_CLIENT_OVERVIEW
+                    )
+            )
+            binding.tabLayout.addOnTabSelectedListener(tabSelectedListner)
 
+//            screenNavigator.openPage(NavigationConstants.NAVIGATE_TO_OVERVIEW)
+
+        }
     }
 
 
@@ -329,25 +351,25 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
 
 
     private fun compareDate(): Boolean {
-        val currentDate = AppDateFormats.df_Date6.parse(getTodaysDate())
+        /*val currentDate = AppDateFormats.df_Date6.parse(getTodaysDate())
         val day = userManager.user.day.split(",")
         val loginDate = AppDateFormats.df_Date6.parse(day[0])
         currentDate?.apply {
             if (this.after(loginDate)) {
                 return true
             }
-        }
+        }*/
         return false
     }
 
     private fun setNotificationTab() {
-        if (userManager.user.role.equals(ROLE_CLIENT, ignoreCase = true)) {
+       /* if (userManager.user.role.equals(ROLE_CLIENT, ignoreCase = true)) {
             setColorFilter(binding.tabLayout.getTabAt(3)?.icon, baseContext.setColor(R.color.blue))
             binding.tabLayout.getTabAt(3)?.select()
         } else if (userManager.user.role.equals(ROLE_CORPORATE, ignoreCase = true)) {
             setColorFilter(binding.tabLayout.getTabAt(2)?.icon, baseContext.setColor(R.color.blue))
             binding.tabLayout.getTabAt(2)?.select()
-        }
+        }*/
 
     }
 
@@ -362,7 +384,7 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
     }
 
     fun setNotificationUpdate() {
-        val count = notificationCount.get()
+        /*val count = notificationCount.get()
         if (count > 0) {
             if (userManager.user.role.equals(ROLE_CLIENT, ignoreCase = true)) {
                 binding.tabLayout.getTabAt(3)?.orCreateBadge?.number = count
@@ -377,11 +399,11 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
             } else if (userManager.user.role.equals(ROLE_CORPORATE, ignoreCase = true)) {
                 binding.tabLayout.getTabAt(2)?.removeBadge()
             }
-        }
+        }*/
     }
 
     fun FeedbackBadgeVisiblity() {
-        val status = if (feedbackPendingStatus.get().equals("true", ignoreCase = true)) {
+        /*val status = if (feedbackPendingStatus.get().equals("true", ignoreCase = true)) {
             true
         } else {
             false
@@ -400,7 +422,7 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
                 binding.tabLayout.getTabAt(1)?.removeBadge()
 
             }
-        }
+        }*/
 
     }
 
@@ -560,7 +582,7 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
             tokenPref.get(),
             uuid,
             FcmTokenSyncHelper.PLATFORM,
-            userManager.user.clientId
+            userManager.user.empCode
         )
         disposable.add(loginRepository.logout(tokenRequest)
             .toSingleDefault(true).toObservable()

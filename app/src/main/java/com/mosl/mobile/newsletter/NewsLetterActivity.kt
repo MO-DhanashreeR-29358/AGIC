@@ -62,8 +62,8 @@ class NewsLetterActivity : LeanBaseActivity(), NewsLetterView {
 
         presenter.start()
         dataActionSubject.onNext(DataAction.Fetch)
-        /*remoteConfigModel =
-            gson.fromJson(remoteCongigData.get(), RemoteConfigModel::class.java)*/
+        remoteConfigModel =
+            gson.fromJson(remoteCongigData.get(), RemoteConfigModel::class.java)
         binding.txtAgicYear.text =
             (getString(R.string.txt_label_agic_year))
 
@@ -72,6 +72,14 @@ class NewsLetterActivity : LeanBaseActivity(), NewsLetterView {
 
 
     fun changeImage() {
+
+        Glide.with(this@NewsLetterActivity)
+            .load(remoteConfigModel.logo)
+            .into(binding.imgAgic)
+
+        Glide.with(this@NewsLetterActivity)
+            .load(remoteConfigModel.conferenceLogo)
+            .into(binding.imgAgicTemp)
 
         val handler = Handler()
         val runnable = object : Runnable {
@@ -96,20 +104,14 @@ class NewsLetterActivity : LeanBaseActivity(), NewsLetterView {
             override fun onAnimationStart(animation: Animation) {}
             override fun onAnimationRepeat(animation: Animation) {}
             override fun onAnimationEnd(animation: Animation) {
-
-                /*Glide.with(this@NewsLetterActivity)
-                    .load(remoteConfigModel.conferenceLogo)
-                    .into(binding.imgAgic)*/
-//                Glide.with(this@NewsLetterActivity)
-//                    .load(remoteConfigModel.conferenceLogo)
-//                    .into(binding.imgAgicTemp)
-
+                binding.imgAgic.visibility = View.GONE
+                binding.imgAgicTemp.visibility = View.VISIBLE
                 anim_in.setAnimationListener(object : Animation.AnimationListener {
                     override fun onAnimationStart(animation: Animation) {}
                     override fun onAnimationRepeat(animation: Animation) {}
                     override fun onAnimationEnd(animation: Animation) {
-                        binding.imgAgic.setImageResource(R.drawable.ideation_conference)
-//                        binding.imgAgic.setImageDrawable(binding.imgAgicTemp.drawable)
+                        binding.imgAgic.visibility = View.VISIBLE
+                        binding.imgAgicTemp.visibility = View.GONE
                     }
                 })
                 binding.imgAgic.startAnimation(anim_in)

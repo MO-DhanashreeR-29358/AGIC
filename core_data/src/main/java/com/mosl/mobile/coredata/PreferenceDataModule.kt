@@ -6,6 +6,7 @@ import com.f2prateek.rx.preferences2.Preference
 import com.f2prateek.rx.preferences2.RxSharedPreferences
 import com.mosl.annotations.FcmToken
 import com.mosl.annotations.FcmTokenRequest
+import com.mosl.app.core.prefs.BooleanPreference
 import com.mosl.app.core.prefs.IntegerPreference
 import com.mosl.app.core.prefs.StringPreference
 import com.mosl.mobile.annotations.*
@@ -85,6 +86,14 @@ class PreferenceDataModule {
     internal fun provideOverViewDataPref(prefs: SharedPreferences): StringPreference {
         return StringPreference(prefs, OVERVIEW_DATA_KEY, "")
     }
+
+    @ClientViewType
+    @Singleton
+    @Provides
+    internal fun provideClientViewType(prefs: SharedPreferences): BooleanPreference{
+        return BooleanPreference(prefs, CLIENT_VIEW_DATA_KEY, true)
+    }
+
     @NotificationData
     @Singleton
     @Provides

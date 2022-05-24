@@ -12,13 +12,11 @@ import com.mosl.data.api.feedback.FeedbackResponseItem
 import com.mosl.data.api.feedback.SubmitFeedbackRequest
 import com.mosl.data.api.login.LoginInfoRequest
 import com.mosl.data.api.login.LoginInfoResponse
+import com.mosl.data.api.login.RmDataResponse
 import com.mosl.data.api.newsletter.NewsLetterResponseItem
 import com.mosl.data.api.notification.NotificationRequest
 import com.mosl.data.api.notification.NotificationResponseItem
-import com.mosl.data.api.overviewpager.OverviewRequest
-import com.mosl.data.api.overviewpager.OverviewResponseData
-import com.mosl.data.api.overviewpager.RMDayWiseDataRequest
-import com.mosl.data.api.overviewpager.RmOverViewResponseData
+import com.mosl.data.api.overviewpager.*
 import com.mosl.data.api.panel.PanelDataResponse
 import com.mosl.data.api.schedule.ScheduleRequest
 import com.mosl.data.api.schedule.ScheduleResponseItem
@@ -33,8 +31,8 @@ interface AGICApi {
         @Body request: LoginInfo
     ): UserResponse
 
-    @POST("GetClientDetails")
-    fun userLogin(@Body request: LoginInfoRequest): Observable<LoginInfoResponse>
+    @POST("GetRMData")
+    fun userLogin(@Body request: LoginInfoRequest): Observable<BaseResponseAgic<List<RmDataResponse>>>
 
     @POST("GetBroucherDetails")
     fun getBrochureData(): Observable<BaseResponseAgic<List<NewsLetterResponseItem>>>
@@ -50,6 +48,10 @@ interface AGICApi {
     @POST("GetRMDaywiseData")
     @Headers(CACHE_FOR_4HRS)
     fun getRMDayWiseDataAPI(@Body request: RMDayWiseDataRequest): Observable<RmOverViewResponseData>
+
+    @POST("GetRMClientwiseData")
+    @Headers(CACHE_FOR_4HRS)
+    fun getRMClientWiseDataAPI(@Body request: RMDayWiseDataRequest): Observable<RmClientWiseResponseData>
 
     @GET("GetRMDaywiseData")
     @Headers(CACHE_FOR_4HRS)

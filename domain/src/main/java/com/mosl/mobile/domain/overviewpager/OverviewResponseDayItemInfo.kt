@@ -81,3 +81,59 @@ data class RmOverviewResponseDayItemInfo(
     @JvmField
     var natureOfMeeting: String
 )
+
+data class RmClientWiseResponseInfo(
+    @JvmField
+    var fundID: String,
+
+    @JvmField
+    var FundName: String,
+
+    @JvmField
+    var FundRepresentative: List<FundRepresentativeItemInfo>
+)
+
+data class FundRepresentativeItemInfo(
+    @JvmField
+    var fundRepresentativeName: String,
+
+    @JvmField
+    var meetingTimeDisplay : List<ClientWiseMeetingSlotItemInfo>
+)
+
+data class ClientWiseMeetingSlotItemInfo(
+    @JvmField
+    var meetingSlotTime: String,
+
+    @JvmField
+    var meeting: List<MeetingItemInfo>
+)
+
+data class MeetingItemInfo(
+    @JvmField
+    var empCode: String?=null,
+
+    @JvmField
+    var name: String?=null,
+
+    @JvmField
+    var corporateName: String?=null,
+
+    @JvmField
+    var roomNo: String?=null,
+
+    @JvmField
+    var contactName1: String?=null,
+
+    @JvmField
+    var startTime: String?=null,
+
+    @JvmField
+    var natureOfMeeting: String?=null,
+
+   /* @JvmField
+    var rep: List<OverviewResponseRepository>,*/
+
+    @JvmField
+    var meetingLastModified : String?=null
+)

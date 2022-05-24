@@ -40,7 +40,7 @@ class BytesRepositoryImpl @Inject constructor(
         val bytesRequest = BytesRequest(
             bytesDate,
             scheduleDate,
-            userManager.user.clientId
+            userManager.user.empCode
         )
         val requestMapper = bytesRequest.mapToBytesRequest()
 

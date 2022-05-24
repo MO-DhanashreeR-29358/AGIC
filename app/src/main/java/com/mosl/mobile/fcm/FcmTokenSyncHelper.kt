@@ -27,7 +27,7 @@ class FcmTokenSyncHelper @Inject constructor(
                 token,
                 uuid,
                 PLATFORM,
-                userManager.user.clientId
+                userManager.user.empCode
 
             )
         }

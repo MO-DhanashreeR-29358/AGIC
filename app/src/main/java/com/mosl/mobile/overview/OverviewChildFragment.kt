@@ -13,8 +13,10 @@ import com.mosl.mobile.R
 import com.mosl.mobile.core.MOSLCommonFragment
 import com.mosl.mobile.databinding.FragmentOverviewChildBinding
 import com.mosl.mobile.domain.overviewpager.OverviewResponseRepresntativeInfo
+import com.mosl.mobile.domain.overviewpager.RmClientWiseResponseInfo
 import com.mosl.mobile.domain.overviewpager.RmOverViewMeetingResponseInfo
 import com.mosl.mobile.overviewpager.OverviewFragment
+import com.mosl.mobile.rmclientwise.ExpandableClientViewAdapter
 import io.reactivex.Observable
 import io.reactivex.rxkotlin.ofType
 import io.reactivex.subjects.PublishSubject
@@ -31,13 +33,16 @@ class OverviewChildFragment : MOSLCommonFragment(), OverviewChildContract {
 
     lateinit var binding: FragmentOverviewChildBinding
     lateinit var expandAdapter: ExpandableOverViewAdapter
+    lateinit var expandAdapterClient: ExpandableClientViewAdapter
 
     @Inject
     lateinit var presenter: OverviewChildPresenter
     lateinit var section: DataManagerSection
     var listData: MutableList<RmOverViewMeetingResponseInfo> = ArrayList()
+    var listDataClient: MutableList<RmClientWiseResponseInfo> = ArrayList()
 
     lateinit var publishSubject: Observable<UiModel<List<RmOverViewMeetingResponseInfo>>>
+    lateinit var publishSubjectClient: Observable<UiModel<List<RmClientWiseResponseInfo>>>
 
     override fun getLayout(): Int {
         return R.layout.fragment_overview_child
@@ -49,6 +54,8 @@ class OverviewChildFragment : MOSLCommonFragment(), OverviewChildContract {
         setupRecyclerView()
         publishSubject =
             (parentFragment as? OverviewFragment)?.tabPublishSubject ?: Observable.empty()
+        publishSubjectClient =
+            (parentFragment as? OverviewFragment)?.tabClientViewPublishSubject ?: Observable.empty()
         presenter.start()
     }
 
@@ -83,6 +90,10 @@ class OverviewChildFragment : MOSLCommonFragment(), OverviewChildContract {
         return publishSubject.ofType()
     }
 
+    override fun onTabClickedClientWise(): Observable<UiModel<List<RmClientWiseResponseInfo>>> {
+        return publishSubjectClient.ofType()
+    }
+
     companion object {
 
         @JvmStatic
@@ -97,10 +108,10 @@ class OverviewChildFragment : MOSLCommonFragment(), OverviewChildContract {
     override fun renderPage(uiModel: UiModel<List<RmOverViewMeetingResponseInfo>>) {
         toggleProgressBar(uiModel.inProgress)
         uiModel.onFailure { error ->
-//            section.showError(error)
         }
         uiModel.onSuccess {
-//            section.clearContent()
+            listDataClient.clear()
+//            expandAdapterClient.notifyDataSetChanged()
             listData.clear()
             listData.addAll(it)
             expandAdapter = ExpandableOverViewAdapter(listData)
@@ -115,10 +126,30 @@ class OverviewChildFragment : MOSLCommonFragment(), OverviewChildContract {
                     previousGroup = groupPosition
                 }
             })
+        }
+    }
 
-            /*for (model in it) {
-                section.add(ItemOverview(model, followUpUiEvent))
-            }*/
+    override fun renderPageClientData(uiModel: UiModel<List<RmClientWiseResponseInfo>>) {
+        toggleProgressBar(uiModel.inProgress)
+        uiModel.onFailure { error ->
+        }
+        uiModel.onSuccess {
+            listData.clear()
+//            expandAdapter.notifyDataSetChanged()
+            listDataClient.clear()
+            listDataClient.addAll(it)
+            expandAdapterClient = ExpandableClientViewAdapter(requireContext(),listDataClient)
+            binding.expandableList.setAdapter(expandAdapterClient)
+            binding.expandableList.setOnGroupExpandListener(object :
+                ExpandableListView.OnGroupExpandListener {
+                var previousGroup = -1
+
+                override fun onGroupExpand(groupPosition: Int) {
+                    if (groupPosition != previousGroup)
+                        binding.expandableList.collapseGroup(previousGroup)
+                    previousGroup = groupPosition
+                }
+            })
         }
     }
 }

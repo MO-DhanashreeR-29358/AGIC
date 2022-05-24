@@ -15,8 +15,8 @@ class FeedbackRepositoryImpl @Inject constructor(
     private val mapper = FeedbackMapper
     override fun getFeedbackData(): Observable<List<FeedbackResponse>> {
         val feedbackRequestInfo = FeedbackRequestInfo(
-            ClientID = userManager.user.clientId,
-            Role = userManager.user.role
+            ClientID = userManager.user.empCode,
+            Role = userManager.user.roomNo
         )
         val requestInfo = mapper.getFeedbackRequestMap(feedbackRequestInfo)
         return agicApi.getFeedback(requestInfo).map {

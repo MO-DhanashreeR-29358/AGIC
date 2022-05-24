@@ -99,8 +99,7 @@ class SplashActivity : LeanBaseActivity() {
 
     private fun checkNetwork() {
         if (this.isNetworkConnected()) {
-//            checkVersion()
-            initializeApp()
+            checkVersion()
         } else {
             if (userManager.isLoggedIn()) {
                 Toast.makeText(
@@ -159,9 +158,11 @@ class SplashActivity : LeanBaseActivity() {
                             gson.fromJson(agicInit, RemoteConfigModel::class.java)
                         splashImgUrl.set(remoteConfigModel.splash)
                         remoteCongigData.set(agicInit)
-                        if (BuildConfig.VERSION_NAME.equals(remoteConfigModel.android.version)) {
+                        initializeApp()
+                        /*if (BuildConfig.VERSION_NAME.equals(remoteConfigModel.android.version)) {
                             initializeApp()
-                        } else {
+                        }
+                        else {
 
                             if (remoteConfigModel.android.isMandatory) {
 
@@ -214,7 +215,7 @@ class SplashActivity : LeanBaseActivity() {
                                         }
                                     })
                             }
-                        }
+                        }*/
                     }
                 }
             }
