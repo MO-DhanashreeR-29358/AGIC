@@ -44,6 +44,7 @@ class ExpandableOverViewAdapter(
         binding.tvFundName.text = childText.fundName
         binding.tvRoomNumber.text = childText.roomNo
         binding.tvName.text = childText.companyName
+        binding.tvClientName.text = childText.clientName
         binding.iconRmGroup.apply {
             when (childText.natureOfMeeting) {
                 "1-1" -> setImageResource(R.drawable.ic_1x1_small)
