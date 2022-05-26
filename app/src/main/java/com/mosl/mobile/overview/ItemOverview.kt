@@ -31,7 +31,7 @@ class ItemOverview(
             tvName.text = itemData.rep[0].name
             tvStartTime.text = getTimeAMPM(itemData.startTime)
             tvEndTime.text = getTimeAMPM(itemData.endTime)
-
+            tvRoomNo.text = itemData.roomNo
             iconMctrack.apply {
                 when (itemData.natureOfMeeting) {
                     "1-1" -> setImageResource(R.drawable.ic_1x1_small)

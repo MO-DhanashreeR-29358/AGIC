@@ -5,6 +5,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
+import android.view.View
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
@@ -80,7 +81,8 @@ class SplashActivity : LeanBaseActivity() {
         if (imageUrl != null) {
             Glide.with(this)
                 .load(imageUrl)
-                .into(binding.ivSplash)
+                .into(binding.imgSplash)
+            binding.progressBar.visibility = View.GONE
         }
     }
 
@@ -156,6 +158,7 @@ class SplashActivity : LeanBaseActivity() {
                     if (agicInit != null && !agicInit.isEmpty()) {
                         val remoteConfigModel: RemoteConfigModel =
                             gson.fromJson(agicInit, RemoteConfigModel::class.java)
+                        loadSplashImage(remoteConfigModel.splash)
                         splashImgUrl.set(remoteConfigModel.splash)
                         remoteCongigData.set(agicInit)
                         if (BuildConfig.VERSION_NAME.equals(remoteConfigModel.android.version)) {

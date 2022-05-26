@@ -32,5 +32,7 @@ data class OverviewResponseDayItemInfo(
 
     @JvmField val representativeStartTime: String,
 
-    @JvmField val representativeEndTime: String
+    @JvmField val representativeEndTime: String,
+
+    @JvmField val roomNo: String,
 )

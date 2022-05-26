@@ -50,5 +50,8 @@ data class OverviewResponseDayItem(
     val representativeStartTime: String,
 
     @JvmField @SerializedName("RepresentativeEndtime")
-    val representativeEndTime: String
+    val representativeEndTime: String,
+
+    @JvmField @SerializedName("room_no")
+    val roomNo: String?=null,
 )

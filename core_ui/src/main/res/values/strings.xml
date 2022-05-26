@@ -56,6 +56,7 @@
 
     <string name="button_label_retrieve"> Retrieve </string>
     <string name="button_label_exit"> Exit </string>
+    <string name="btv_room_no_label"> Room No </string>
     <string name="msg_application_needs_network_to_proceed">Application needs network to proceed</string>
     <string name="msg_pdf_needs_network_to_download">Please enable the internet for download pdf</string>
     <string name="msg_logout">Do you want to logout?</string>

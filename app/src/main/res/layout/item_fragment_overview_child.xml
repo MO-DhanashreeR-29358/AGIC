@@ -90,6 +90,31 @@
             tools:text="@string/text_label_overview_name" />
 
         <TextView
+            android:id="@+id/tv_roomNo_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_small"
+            android:paddingEnd="@dimen/padding_small"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_end_time"
+            tools:ignore="RtlSymmetry"
+            android:text="@string/btv_room_no_label" />
+
+        <TextView
+            android:id="@+id/tv_roomNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingEnd="@dimen/padding_small"
+            android:textColor="@color/light_blue_700"
+            android:textSize="@dimen/text_size_small"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_roomNo_label"
+            tools:ignore="RtlSymmetry"
+            tools:text="@string/text_label_overview_time" />
+
+
+        <TextView
             android:id="@+id/tv_more"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -102,7 +127,7 @@
             android:visibility="gone"
             app:layout_constraintEnd_toStartOf="@+id/tv_start_time"
             app:layout_constraintStart_toEndOf="@+id/icon_mctrack"
-            app:layout_constraintTop_toBottomOf="@+id/tv_name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_roomNo"
             tools:text="more" />
 
         <View

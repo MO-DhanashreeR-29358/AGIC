@@ -41,7 +41,8 @@ object OverviewPagerMapper {
                 designation = it.designation,
                 representativeDate = it.representativeDate,
                 representativeStartTime = it.representativeStartTime,
-                representativeEndTime = it.representativeEndTime
+                representativeEndTime = it.representativeEndTime,
+                roomNo = it.roomNo?:""
             )
         }
     }
