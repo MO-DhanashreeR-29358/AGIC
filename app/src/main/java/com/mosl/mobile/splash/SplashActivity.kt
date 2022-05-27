@@ -158,6 +158,7 @@ class SplashActivity : LeanBaseActivity() {
                             gson.fromJson(agicInit, RemoteConfigModel::class.java)
                         splashImgUrl.set(remoteConfigModel.splash)
                         remoteCongigData.set(agicInit)
+                        loadSplashImage(remoteConfigModel.splash)
                         initializeApp()
                         /*if (BuildConfig.VERSION_NAME.equals(remoteConfigModel.android.version)) {
                             initializeApp()

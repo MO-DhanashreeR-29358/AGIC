@@ -65,7 +65,7 @@ class NewsLetterActivity : LeanBaseActivity(), NewsLetterView {
         remoteConfigModel =
             gson.fromJson(remoteCongigData.get(), RemoteConfigModel::class.java)
         binding.txtAgicYear.text =
-            (getString(R.string.txt_label_agic_year))
+            (remoteConfigModel.conferenceName+" "+remoteConfigModel.year)
 
         changeImage()
     }
