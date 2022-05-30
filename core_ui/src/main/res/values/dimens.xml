@@ -32,6 +32,7 @@
     <dimen name="img_news_letter">@dimen/_50sdp</dimen>
     <dimen name="menu_icon">@dimen/_24sdp</dimen>
     <dimen name="dimens_35">@dimen/_35sdp</dimen>
+    <dimen name="dimens_40">@dimen/_40sdp</dimen>
     <dimen name="dimens_65">@dimen/_65sdp</dimen>
     <dimen name="dimens_85">@dimen/_85sdp</dimen>
     <dimen name="dimens_80">@dimen/_80sdp</dimen>
