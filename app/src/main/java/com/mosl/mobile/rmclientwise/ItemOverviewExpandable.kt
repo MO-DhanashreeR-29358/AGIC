@@ -1,5 +1,6 @@
 package com.mosl.mobile.rmclientwise
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,8 +9,12 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.mosl.mobile.R
 import com.mosl.mobile.domain.overviewpager.ClientWiseMeetingSlotItemInfo
+import com.mosl.mobile.overview.OverviewRepDialogFragment
+import com.mosl.mobile.overview.OverviewUiEvent
+import io.reactivex.subjects.PublishSubject
 
-class ItemOverviewExpandable(val list: List<ClientWiseMeetingSlotItemInfo>)
+class ItemOverviewExpandable(private val publishSubject: PublishSubject<OverviewUiEvent>
+                                 ,val list: List<ClientWiseMeetingSlotItemInfo>)
     : RecyclerView.Adapter<ItemOverviewExpandable.ViewHolder>() {
 
     // create new views
@@ -31,6 +36,17 @@ class ItemOverviewExpandable(val list: List<ClientWiseMeetingSlotItemInfo>)
             textViewMeetingTime.text = ItemsViewModel.meetingSlotTime
             textViewRoomNo.text = ItemsViewModel.meeting[0].roomNo
             textViewName.text = ItemsViewModel.meeting[0].corporateName
+            textViewClientName.text = ItemsViewModel.meeting[0].rep[0].name
+
+            if (ItemsViewModel.meeting[0].rep.size > 1) {
+                textViewMore.visibility = View.VISIBLE
+                val count = ItemsViewModel.meeting[0].rep.size - 1
+                textViewMore.text = String.format("...%d More", count)
+            }
+
+            textViewMore.setOnClickListener {
+                publishSubject.onNext(OverviewUiEvent.OnMoreClick(ItemsViewModel.meeting[0].rep))
+            }
 
             imageView.apply {
                 when (ItemsViewModel.meeting[0].natureOfMeeting) {
@@ -59,6 +75,8 @@ class ItemOverviewExpandable(val list: List<ClientWiseMeetingSlotItemInfo>)
         val textViewMeetingTime: TextView = itemView.findViewById(R.id.tv_fund_name)
         val textViewRoomNo: TextView = itemView.findViewById(R.id.tv_roomNumber)
         val textViewName: TextView = itemView.findViewById(R.id.tv_name)
+        val textViewClientName: TextView = itemView.findViewById(R.id.tv_client_name)
+        val textViewMore: TextView = itemView.findViewById(R.id.tv_more)
     }
 
 }

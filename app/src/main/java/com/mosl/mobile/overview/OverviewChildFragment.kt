@@ -114,7 +114,7 @@ class OverviewChildFragment : MOSLCommonFragment(), OverviewChildContract {
 //            expandAdapterClient.notifyDataSetChanged()
             listData.clear()
             listData.addAll(it)
-            expandAdapter = ExpandableOverViewAdapter(listData)
+            expandAdapter = ExpandableOverViewAdapter(followUpUiEvent,listData)
             binding.expandableList.setAdapter(expandAdapter)
             binding.expandableList.setOnGroupExpandListener(object :
                 ExpandableListView.OnGroupExpandListener {
@@ -134,22 +134,7 @@ class OverviewChildFragment : MOSLCommonFragment(), OverviewChildContract {
         uiModel.onFailure { error ->
         }
         uiModel.onSuccess {
-            listData.clear()
-//            expandAdapter.notifyDataSetChanged()
-            listDataClient.clear()
-            listDataClient.addAll(it)
-            expandAdapterClient = ExpandableClientViewAdapter(requireContext(),listDataClient)
-            binding.expandableList.setAdapter(expandAdapterClient)
-            binding.expandableList.setOnGroupExpandListener(object :
-                ExpandableListView.OnGroupExpandListener {
-                var previousGroup = -1
 
-                override fun onGroupExpand(groupPosition: Int) {
-                    if (groupPosition != previousGroup)
-                        binding.expandableList.collapseGroup(previousGroup)
-                    previousGroup = groupPosition
-                }
-            })
         }
     }
 }

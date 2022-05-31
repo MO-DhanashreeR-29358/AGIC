@@ -202,7 +202,7 @@ data class Meeting(
 
     @JvmField
     @SerializedName("CorporateRep")
-    var rep: List<OverviewResponseRepository>,
+    var rep: List<CorporateRepository>,
 
     @JvmField
     @SerializedName("MeetingLastModified" )

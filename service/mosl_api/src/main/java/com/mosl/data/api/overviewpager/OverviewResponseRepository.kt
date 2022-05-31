@@ -11,3 +11,13 @@ data class OverviewResponseRepository(
     val designation: String
 
 )
+
+data class CorporateRepository(
+
+    @JvmField @SerializedName("Name")
+    val name: String,
+
+    @JvmField @SerializedName("Designation")
+    val designation: String
+
+)

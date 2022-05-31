@@ -10,9 +10,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.mosl.mobile.R
 import com.mosl.mobile.databinding.*
 import com.mosl.mobile.domain.overviewpager.*
+import com.mosl.mobile.overview.OverviewUiEvent
+import io.reactivex.subjects.PublishSubject
 
 class ExpandableClientViewAdapter(
-    val context : Context,
+    private val publishSubject: PublishSubject<OverviewUiEvent>,
    val data: List<RmClientWiseResponseInfo>
 ) : BaseExpandableListAdapter() {
 
@@ -43,7 +45,7 @@ class ExpandableClientViewAdapter(
             var meetingListData : ClientWiseMeetingSlotItemInfo = childText.meetingTimeDisplay[i]
             meetingTimeStringBuffer.append(meetingListData.meetingSlotTime+"\n")
         }
-        val groupAdapter = ItemOverviewExpandable(childText.meetingTimeDisplay)
+        val groupAdapter = ItemOverviewExpandable(publishSubject,childText.meetingTimeDisplay)
         binding.rvClientMeetingList.apply {
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)

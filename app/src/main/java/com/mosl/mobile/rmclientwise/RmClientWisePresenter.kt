@@ -12,5 +12,10 @@ class RmClientWisePresenter @Inject constructor(view: RmClientWiseContract) :
             view.onTabClicked()
                 .subscribe(view::renderPage)
         )
+
+        view.onItemClicked()
+            .subscribe {
+                view.renderItemData(it.Rep)
+            }.addTo(disposable)
     }
 }

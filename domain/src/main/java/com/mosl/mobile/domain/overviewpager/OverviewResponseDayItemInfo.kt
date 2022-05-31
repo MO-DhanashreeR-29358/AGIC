@@ -79,7 +79,10 @@ data class RmOverviewResponseDayItemInfo(
     var startTime: String,
 
     @JvmField
-    var natureOfMeeting: String
+    var natureOfMeeting: String,
+
+    @JvmField
+    var rep: List<OverviewResponseRepresntativeInfo>,
 )
 
 data class RmClientWiseResponseInfo(
@@ -131,8 +134,8 @@ data class MeetingItemInfo(
     @JvmField
     var natureOfMeeting: String?=null,
 
-   /* @JvmField
-    var rep: List<OverviewResponseRepository>,*/
+    @JvmField
+    var rep: List<OverviewResponseRepresntativeInfo>,
 
     @JvmField
     var meetingLastModified : String?=null

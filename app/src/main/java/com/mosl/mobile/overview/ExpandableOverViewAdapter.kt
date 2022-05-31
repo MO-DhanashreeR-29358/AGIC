@@ -15,8 +15,9 @@ import com.mosl.mobile.domain.newsletter.NewsLetterResponseItemInfo
 import com.mosl.mobile.domain.overviewpager.OverviewResponseDayItemInfo
 import com.mosl.mobile.domain.overviewpager.RmOverViewMeetingResponseInfo
 import com.mosl.mobile.domain.overviewpager.RmOverviewResponseDayItemInfo
+import io.reactivex.subjects.PublishSubject
 
-class ExpandableOverViewAdapter(
+class ExpandableOverViewAdapter(private val publishSubject: PublishSubject<OverviewUiEvent>,
    val data: List<RmOverViewMeetingResponseInfo>
 ) : BaseExpandableListAdapter() {
 
@@ -44,7 +45,16 @@ class ExpandableOverViewAdapter(
         binding.tvFundName.text = childText.fundName
         binding.tvRoomNumber.text = childText.roomNo
         binding.tvName.text = childText.companyName
-        binding.tvClientName.text = childText.clientName
+        binding.tvClientName.text = childText.rep[0].name
+        if (childText.rep.size > 1) {
+            binding.tvMore.visibility = View.VISIBLE
+            val count = childText.rep.size - 1
+            binding.tvMore.text = String.format("...%d More", count)
+        }
+
+        binding.tvMore.setOnClickListener {
+            publishSubject.onNext(OverviewUiEvent.OnMoreClick(childText.rep))
+        }
         binding.iconRmGroup.apply {
             when (childText.natureOfMeeting) {
                 "1-1" -> setImageResource(R.drawable.ic_1x1_small)

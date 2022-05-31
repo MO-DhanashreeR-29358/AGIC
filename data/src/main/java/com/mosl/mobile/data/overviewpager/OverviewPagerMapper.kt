@@ -68,6 +68,7 @@ object OverviewPagerMapper {
                 contactName1 = it.contactName1?:"",
                 startTime = it.startTime?:"",
                 natureOfMeeting = it.natureOfMeeting?:"",
+                rep = DayRepo(it.rep)
             )
         }
     }
@@ -100,7 +101,8 @@ object OverviewPagerMapper {
                 contactName1 = it.contactName1?:"",
                 startTime = it.startTime?:"",
                 natureOfMeeting = it.natureOfMeeting?:"",
-                meetingLastModified = it.meetingLastModified?:""
+                meetingLastModified = it.meetingLastModified?:"",
+                rep = CorporateRepo(it.rep)
             )
         }
     }
@@ -130,6 +132,15 @@ object OverviewPagerMapper {
     }
 
     fun DayRepo(it: List<OverviewResponseRepository>): List<OverviewResponseRepresntativeInfo> {
+        return it.map {
+            OverviewResponseRepresntativeInfo(
+                name = it.name,
+                designation = it.designation
+            )
+        }
+    }
+
+    fun CorporateRepo(it: List<CorporateRepository>): List<OverviewResponseRepresntativeInfo> {
         return it.map {
             OverviewResponseRepresntativeInfo(
                 name = it.name,

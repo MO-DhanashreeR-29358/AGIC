@@ -9,16 +9,20 @@ import com.mosl.commons.data.onSuccess
 import com.mosl.mobile.R
 import com.mosl.mobile.core.MOSLCommonFragment
 import com.mosl.mobile.databinding.FragmentRmClientwiseBinding
+import com.mosl.mobile.domain.overviewpager.OverviewResponseRepresntativeInfo
 import com.mosl.mobile.domain.overviewpager.RmClientWiseResponseInfo
 import com.mosl.mobile.overview.OverviewChildFragment
+import com.mosl.mobile.overview.OverviewRepDialogFragment
+import com.mosl.mobile.overview.OverviewUiEvent
 import com.mosl.mobile.rmclientwisepager.RmClientOverviewFragment
 import io.reactivex.Observable
 import io.reactivex.rxkotlin.ofType
+import io.reactivex.subjects.PublishSubject
 import javax.inject.Inject
 
 class RmClientWiseFragment : MOSLCommonFragment(), RmClientWiseContract {
 
-
+    private val followUpUiEvent = PublishSubject.create<OverviewUiEvent>()
     lateinit var binding: FragmentRmClientwiseBinding
     lateinit var expandAdapterClient: ExpandableClientViewAdapter
 
@@ -44,6 +48,16 @@ class RmClientWiseFragment : MOSLCommonFragment(), RmClientWiseContract {
         return publishSubjectClient.ofType()
     }
 
+    override fun onItemClicked(): Observable<OverviewUiEvent.OnMoreClick> {
+        return followUpUiEvent.ofType()
+    }
+
+    override fun renderItemData(repList: List<OverviewResponseRepresntativeInfo>) {
+        val dialogFragment = OverviewRepDialogFragment()
+        dialogFragment.setData(repList);
+        dialogFragment.show(childFragmentManager, "dialog")
+    }
+
     companion object {
 
         @JvmStatic
@@ -63,7 +77,7 @@ class RmClientWiseFragment : MOSLCommonFragment(), RmClientWiseContract {
 
             listDataClient.clear()
             listDataClient.addAll(it)
-            expandAdapterClient = ExpandableClientViewAdapter(requireContext(),listDataClient)
+            expandAdapterClient = ExpandableClientViewAdapter(followUpUiEvent,listDataClient)
             binding.rmClientWiseExpandableList.setAdapter(expandAdapterClient)
             binding.rmClientWiseExpandableList.setOnGroupExpandListener(object :
                 ExpandableListView.OnGroupExpandListener {
