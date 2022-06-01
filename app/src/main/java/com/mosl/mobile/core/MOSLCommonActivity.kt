@@ -218,11 +218,11 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
 
     private fun setUpView() {
 
-        binding.txtFundName.setText(userManager.user.fundName)
+//        binding.txtFundName.setText(userManager.user.fundName)
         binding.txtName.setText(userManager.user.name)
-        binding.txtFundName.setEllipsize(TextUtils.TruncateAt.MARQUEE)
+//        binding.txtFundName.setEllipsize(TextUtils.TruncateAt.MARQUEE)
         binding.txtName.setEllipsize(TextUtils.TruncateAt.MARQUEE)
-        binding.txtFundName.isSelected = true
+//        binding.txtFundName.isSelected = true
         binding.txtName.isSelected = true
 
         /*if (userManager.user.contactList().isEmpty()) {

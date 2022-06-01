@@ -85,6 +85,7 @@
                                     android:marqueeRepeatLimit="marquee_forever"
                                     android:scrollHorizontally="true"
                                     android:singleLine="true"
+                                    android:visibility="gone"
                                     android:textColor="@color/dark_blue"
                                     android:textSize="@dimen/text_size_medium" />
 

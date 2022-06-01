@@ -36,10 +36,10 @@ object OverviewPagerMapper {
     }
 
     fun meetingTimeSlotData(it: List<MeetingSlot>) : List<RmOverViewMeetingResponseInfo>{
-        return it.map {
+        return it.map {meetingData ->
             RmOverViewMeetingResponseInfo(
-                meetingTime = it.meetingSlotTime,
-                meetingList = DayWiseData(it.meeting)
+                meetingTime = meetingData.meetingSlotTime,
+                meetingList = DayWiseData(meetingData.meeting.sortedWith(compareBy { it.fundName }))
             )
         }
     }
@@ -49,7 +49,8 @@ object OverviewPagerMapper {
             RmClientWiseResponseInfo(
                 fundID = it.fundID,
                 FundName = it.FundName,
-                FundRepresentative = fundRepresentativeData(it.FundRepresentative)
+                FundRepresentative = fundRepresentativeData(it.FundRepresentative.sortedWith(
+                    compareBy { it.fundRepresentativeName }))
             )
         }
     }

@@ -36,7 +36,7 @@ class ExpandableClientViewAdapter(
         var binding: ItemRmClientWiseDataChildBinding = DataBindingUtil.inflate(
             LayoutInflater.from(parent.context),
             R.layout.item_rm_client_wise_data_child, parent, false
-        );
+        )
 
 
         binding.tvFundRepresentativeName.text = childText.fundRepresentativeName

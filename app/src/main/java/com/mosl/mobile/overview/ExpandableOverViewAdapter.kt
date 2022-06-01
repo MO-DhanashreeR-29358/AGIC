@@ -7,10 +7,7 @@ import android.widget.BaseExpandableListAdapter
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import com.mosl.mobile.R
-import com.mosl.mobile.databinding.ItemNewsLetterChildBinding
-import com.mosl.mobile.databinding.ItemNewsLetterParentBinding
-import com.mosl.mobile.databinding.ItemRmDataChildBinding
-import com.mosl.mobile.databinding.ItemRmDataParentBinding
+import com.mosl.mobile.databinding.*
 import com.mosl.mobile.domain.newsletter.NewsLetterResponseItemInfo
 import com.mosl.mobile.domain.overviewpager.OverviewResponseDayItemInfo
 import com.mosl.mobile.domain.overviewpager.RmOverViewMeetingResponseInfo
@@ -36,15 +33,16 @@ class ExpandableOverViewAdapter(private val publishSubject: PublishSubject<Overv
 
         val childText = getChild(groupPosition, childPosition) as RmOverviewResponseDayItemInfo
 
-        var binding: ItemRmDataChildBinding = DataBindingUtil.inflate(
+        var binding: ItemRmDaywiseDataChildBinding = DataBindingUtil.inflate(
             LayoutInflater.from(parent.context),
-            R.layout.item_rm_data_child, parent, false
+            R.layout.item_rm_daywise_data_child, parent, false
         );
 
 
         binding.tvFundName.text = childText.fundName
         binding.tvRoomNumber.text = childText.roomNo
         binding.tvName.text = childText.companyName
+        binding.tvClientsName.text = childText.clientName
         binding.tvClientName.text = childText.rep[0].name
         if (childText.rep.size > 1) {
             binding.tvMore.visibility = View.VISIBLE
