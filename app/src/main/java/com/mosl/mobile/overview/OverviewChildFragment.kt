@@ -111,9 +111,13 @@ class OverviewChildFragment : MOSLCommonFragment(), OverviewChildContract {
         }
         uiModel.onSuccess {
             listDataClient.clear()
-//            expandAdapterClient.notifyDataSetChanged()
             listData.clear()
             listData.addAll(it)
+            if (listData.isEmpty()){
+                binding.errorMSG.visibility = View.VISIBLE
+            }else{
+                binding.errorMSG.visibility = View.GONE
+            }
             expandAdapter = ExpandableOverViewAdapter(followUpUiEvent,listData)
             binding.expandableList.setAdapter(expandAdapter)
             binding.expandableList.setOnGroupExpandListener(object :

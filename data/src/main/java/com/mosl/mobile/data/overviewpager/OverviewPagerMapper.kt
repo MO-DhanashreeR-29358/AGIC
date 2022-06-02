@@ -22,7 +22,11 @@ object OverviewPagerMapper {
         return RmOverviewResponseDataInfo(
             day1 = meetingTimeSlotData(data.AGICMeeting[0].meetingTimeDisplay),
             day2 = meetingTimeSlotData(data.AGICMeeting[1].meetingTimeDisplay),
-            day3 = meetingTimeSlotData(data.AGICMeeting[2].meetingTimeDisplay)
+            day3 = if (data.AGICMeeting.size > 2) {
+                meetingTimeSlotData(data.AGICMeeting[2].meetingTimeDisplay)
+            }else{
+                meetingTimeSlotData(emptyList())
+            }
         )
     }
 
@@ -31,7 +35,12 @@ object OverviewPagerMapper {
         return RmClientWiseResponseDataInfo(
             day1 = fundData(data.AGICMeeting[0].fundList),
             day2 = fundData(data.AGICMeeting[1].fundList),
-            day3 = fundData(data.AGICMeeting[2].fundList)
+            day3 = if (data.AGICMeeting.size > 2) {
+                fundData(data.AGICMeeting[0].fundList)
+            }else{
+                fundData(emptyList())
+            }
+
         )
     }
 

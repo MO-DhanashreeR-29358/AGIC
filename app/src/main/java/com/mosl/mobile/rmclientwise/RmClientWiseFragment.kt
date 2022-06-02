@@ -77,6 +77,11 @@ class RmClientWiseFragment : MOSLCommonFragment(), RmClientWiseContract {
 
             listDataClient.clear()
             listDataClient.addAll(it)
+            if (listDataClient.isEmpty()){
+                binding.errorMSG.visibility = View.VISIBLE
+            }else{
+                binding.errorMSG.visibility = View.GONE
+            }
             expandAdapterClient = ExpandableClientViewAdapter(followUpUiEvent,listDataClient)
             binding.rmClientWiseExpandableList.setAdapter(expandAdapterClient)
             binding.rmClientWiseExpandableList.setOnGroupExpandListener(object :
