@@ -33,15 +33,15 @@ fun LoginInfoResponse.mapToLoginResponse(): User {
 fun RmDataResponse.mapToRmData(rmResponseData:
                    RmDataResponse, message:String): RmUser {
     return RmUser(
-        empCode = rmResponseData.empCode,
-        fundId = rmResponseData.fundId,
-        name = rmResponseData.name,
-        fundName = rmResponseData.fundName,
+        empCode = rmResponseData.empCode?:"",
+        fundId = rmResponseData.fundId?:"",
+        name = rmResponseData.name?:"",
+        fundName = rmResponseData.fundName?:"",
         contactName1 = rmResponseData.contactName1?:"",
         contactName2 = rmResponseData.contactName2?:"",
         contactName3 = rmResponseData.contactName3?:"",
-        roomNo = rmResponseData.roomNO,
-        companyName = rmResponseData.companyName,
+        roomNo = rmResponseData.roomNO?:"",
+        companyName = rmResponseData.companyName?:"",
         message = message
     )
 }
