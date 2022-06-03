@@ -18,7 +18,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/tv_corporate_name"
             app:layout_constraintEnd_toStartOf="@id/tv_roomNo_label"
-            android:layout_marginEnd="@dimen/margin_medium"
+            android:layout_marginEnd="@dimen/margin_normal_large"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_mtrack_small"
             tools:ignore="ContentDescription" />
@@ -104,10 +104,11 @@
             android:paddingEnd="@dimen/padding_small"
             android:textColor="@color/light_blue_700"
             android:textSize="@dimen/text_size_small"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:paddingStart="@dimen/margin_small"
+            app:layout_constraintStart_toStartOf="@id/tv_roomNo_label"
             app:layout_constraintTop_toBottomOf="@+id/tv_roomNo_label"
             tools:ignore="RtlSymmetry"
-            tools:text="" />
+            tools:text="8562" />
 
 
         <TextView

@@ -67,7 +67,7 @@ class NewsLetterActivity : LeanBaseActivity(), NewsLetterView {
         binding.txtAgicYear.text =
             (remoteConfigModel?.conferenceName + " " + remoteConfigModel?.year)
 
-//        changeImage()
+        changeImage()
     }
 
 
