@@ -36,6 +36,7 @@ import com.xwray.groupie.ViewHolder
 import io.reactivex.Observable
 import io.reactivex.rxkotlin.ofType
 import io.reactivex.subjects.PublishSubject
+import timber.log.Timber
 import java.net.ConnectException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
@@ -311,8 +312,8 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
 
             if (currentDate.equals(separate1[1]))
                 binding.pager.currentItem = 1
-            else if (currentDate.equals(separate1[2]))
-                binding.pager.currentItem = 2
+            /*else if (currentDate.equals(separate1[2]))
+                binding.pager.currentItem = 2*/
             else
                 binding.pager.currentItem = 0
         } else if (pos == 1 || pos == 2)
@@ -341,6 +342,7 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
 
         }
         val dayOverView = CorporateScheduleDayWiseListData().get(0)
+        Timber.i("DAY ${dayOverView.size}")
 
         if (dayOverView.isNotEmpty()) {
             tabPublishSubject.onNext(

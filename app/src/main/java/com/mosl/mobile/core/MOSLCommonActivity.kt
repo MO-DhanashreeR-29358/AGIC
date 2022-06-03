@@ -163,7 +163,7 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
 
     @Inject
     lateinit var gson: Gson
-    lateinit var remoteConfigModel: RemoteConfigModel;
+    var remoteConfigModel: RemoteConfigModel?=null
 
     @Inject
     @field:FcmToken
@@ -243,11 +243,11 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
     fun changeImage() {
 
         Glide.with(this@MOSLCommonActivity)
-            .load(remoteConfigModel.logo)
+            .load(remoteConfigModel?.logo)
             .into(binding.imgLogo)
 
         Glide.with(this@MOSLCommonActivity)
-            .load(remoteConfigModel.conferenceLogo)
+            .load(remoteConfigModel?.conferenceLogo)
             .into(binding.imgLogoTemp)
 
         val handler = Handler()

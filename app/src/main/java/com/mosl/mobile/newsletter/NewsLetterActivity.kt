@@ -51,7 +51,7 @@ class NewsLetterActivity : LeanBaseActivity(), NewsLetterView {
     lateinit var remoteCongigData: StringPreference
     @Inject
     lateinit var gson: Gson
-    lateinit var remoteConfigModel: RemoteConfigModel;
+    var remoteConfigModel: RemoteConfigModel?=null
     override fun getLayout(): Int {
         return R.layout.activity_news_letter
     }
@@ -65,20 +65,20 @@ class NewsLetterActivity : LeanBaseActivity(), NewsLetterView {
         remoteConfigModel =
             gson.fromJson(remoteCongigData.get(), RemoteConfigModel::class.java)
         binding.txtAgicYear.text =
-            (remoteConfigModel.conferenceName + " " + remoteConfigModel.year)
+            (remoteConfigModel?.conferenceName + " " + remoteConfigModel?.year)
 
-        changeImage()
+//        changeImage()
     }
 
 
     fun changeImage() {
 
         Glide.with(this@NewsLetterActivity)
-            .load(remoteConfigModel.logo)
+            .load(remoteConfigModel?.logo)
             .into(binding.imgAgic)
 
         Glide.with(this@NewsLetterActivity)
-            .load(remoteConfigModel.conferenceLogo)
+            .load(remoteConfigModel?.conferenceLogo)
             .into(binding.imgAgicTemp)
 
         val handler = Handler()

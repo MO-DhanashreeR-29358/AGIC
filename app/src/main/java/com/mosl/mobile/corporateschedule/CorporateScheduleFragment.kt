@@ -25,6 +25,7 @@ import com.xwray.groupie.ViewHolder
 import io.reactivex.Observable
 import io.reactivex.rxkotlin.ofType
 import io.reactivex.subjects.PublishSubject
+import timber.log.Timber
 import java.util.*
 import javax.inject.Inject
 
@@ -116,21 +117,40 @@ class CorporateScheduleFragment : MOSLCommonFragment(), CorporateChildContract {
                 val dayArr = userManager.user.day
                 val separate1 = dayArr.split(",").toTypedArray()
 
-                if (currentDate.equals(separate1[0]) && it[0].day.equals("day1", ignoreCase = true))
-                    selection(it, true)
-                else if (currentDate.equals(separate1[1]) && it[0].day.equals(
-                        "day2",
-                        ignoreCase = true
+                if (separate1.size > 2) {
+                    if (currentDate.equals(separate1[0]) && it[0].day.equals(
+                            "day1",
+                            ignoreCase = true
+                        )
                     )
-                )
-                    selection(it, true)
-                else if (currentDate.equals(separate1[2]) && it[0].day.equals(
-                        "day3",
-                        ignoreCase = true
+                        selection(it, true)
+                    else if (currentDate.equals(separate1[1]) && it[0].day.equals(
+                            "day2",
+                            ignoreCase = true
+                        )
                     )
-                )
-                    selection(it, true)
-                else selection(it, false)
+                        selection(it, true)
+                    else if (currentDate.equals(separate1[2]) && it[0].day.equals(
+                            "day3",
+                            ignoreCase = true
+                        )
+                    )
+                        selection(it, true)
+                    else selection(it, false)
+                }else{
+                    if (currentDate.equals(separate1[0]) && it[0].day.equals(
+                            "day1",
+                            ignoreCase = true
+                        )
+                    )
+                        selection(it, true)
+                    else if (currentDate.equals(separate1[1]) && it[0].day.equals(
+                            "day2",
+                            ignoreCase = true
+                        )
+                    )
+                        selection(it, true)
+                }
             } else {
                 selectionSearch(it, shiftTime)
             }

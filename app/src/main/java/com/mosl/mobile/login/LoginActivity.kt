@@ -58,7 +58,7 @@ class LoginActivity : LeanBaseActivity(), Navigator, LoginView {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         binding = ActivityLoginBinding.bind(findViewById(R.id.constrainLaout))
         presenter.start()
-        initData()
+//        initData()
     }
 
     private fun initData() {

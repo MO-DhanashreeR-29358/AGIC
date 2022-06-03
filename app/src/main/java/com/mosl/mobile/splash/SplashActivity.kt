@@ -101,7 +101,8 @@ class SplashActivity : LeanBaseActivity() {
 
     private fun checkNetwork() {
         if (this.isNetworkConnected()) {
-            checkVersion()
+//            checkVersion()
+            initializeApp()
         } else {
             if (userManager.isLoggedIn()) {
                 Toast.makeText(
