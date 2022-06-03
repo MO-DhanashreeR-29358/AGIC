@@ -117,40 +117,26 @@ class CorporateScheduleFragment : MOSLCommonFragment(), CorporateChildContract {
                 val dayArr = userManager.user.day
                 val separate1 = dayArr.split(",").toTypedArray()
 
-                if (separate1.size > 2) {
-                    if (currentDate.equals(separate1[0]) && it[0].day.equals(
-                            "day1",
-                            ignoreCase = true
-                        )
+
+                if (it[0].day.equals(
+                        "day1",
+                        ignoreCase = true
                     )
-                        selection(it, true)
-                    else if (currentDate.equals(separate1[1]) && it[0].day.equals(
-                            "day2",
-                            ignoreCase = true
-                        )
+                )
+                    selection(it, true)
+                else if (it[0].day.equals(
+                        "day2",
+                        ignoreCase = true
                     )
-                        selection(it, true)
-                    else if (currentDate.equals(separate1[2]) && it[0].day.equals(
-                            "day3",
-                            ignoreCase = true
-                        )
+                )
+                    selection(it, true)
+                else if (it[0].day.equals(
+                        "day3",
+                        ignoreCase = true
                     )
-                        selection(it, true)
-                    else selection(it, false)
-                }else{
-                    if (currentDate.equals(separate1[0]) && it[0].day.equals(
-                            "day1",
-                            ignoreCase = true
-                        )
-                    )
-                        selection(it, true)
-                    else if (currentDate.equals(separate1[1]) && it[0].day.equals(
-                            "day2",
-                            ignoreCase = true
-                        )
-                    )
-                        selection(it, true)
-                }
+                )
+                    selection(it, true)
+                else selection(it, false)
             } else {
                 selectionSearch(it, shiftTime)
             }
@@ -216,8 +202,7 @@ class CorporateScheduleFragment : MOSLCommonFragment(), CorporateChildContract {
                         currentPosition
                     )
                 )
-            }
-            else
+            } else
                 section.add(
                     ItemCorporateSchedule(model, followUpUiEvent, -1, requireContext(), -1)
                 )

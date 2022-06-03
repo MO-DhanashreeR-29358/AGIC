@@ -310,11 +310,11 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
 
             val separate1 = dayArr.split(",").toTypedArray()
 
-            if (currentDate.equals(separate1[1]))
+            /*if (currentDate.equals(separate1[1]))
                 binding.pager.currentItem = 1
-            /*else if (currentDate.equals(separate1[2]))
-                binding.pager.currentItem = 2*/
-            else
+            *//*else if (currentDate.equals(separate1[2]))
+                binding.pager.currentItem = 2*//*
+            else*/
                 binding.pager.currentItem = 0
         } else if (pos == 1 || pos == 2)
             binding.pager.currentItem = pos
