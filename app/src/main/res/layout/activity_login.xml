@@ -83,7 +83,7 @@
             android:gravity="center"
             android:hint="@string/hint_label_digit_id"
             android:imeOptions="actionDone"
-            android:inputType="number"
+            android:inputType="textNoSuggestions"
             android:textSize="@dimen/text_size_normal"
             app:layout_constraintBottom_toTopOf="@+id/txt_login"
             app:layout_constraintStart_toStartOf="parent"
