@@ -4,7 +4,9 @@ import android.app.DownloadManager
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import androidx.core.content.ContextCompat.startActivity
 import timber.log.Timber
+
 
 private const val SMS_URI = "smsto:"
 private const val SMS_EXTRA = "sms_body"
@@ -29,6 +31,11 @@ fun Context.downloadDocument(url: String) {
 
   val dm = getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
   dm.enqueue(request)
+}
+
+fun Context.openUrlInBrowser(url: String) {
+  val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+  startActivity(browserIntent)
 }
 
 fun Context.initiateMessage(

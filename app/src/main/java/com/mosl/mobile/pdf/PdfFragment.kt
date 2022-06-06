@@ -12,6 +12,7 @@ import com.mosl.mobile.R
 import com.mosl.mobile.databinding.FragmentPdfBinding
 import com.mosl.mobile.appuser.login.UserManagerImpl
 import com.mosl.mobile.util.downloadDocument
+import com.mosl.mobile.util.openUrlInBrowser
 import javax.inject.Inject
 
 
@@ -43,7 +44,7 @@ class PdfFragment : BaseDialogFragment(), PdfContract {
                 if (requireContext().isNetworkConnected()) {
 
                     if(userManager.getPdf().isNotEmpty())
-                    requireContext().downloadDocument(userManager.getPdf())
+                    requireContext().openUrlInBrowser(userManager.getPdf())
 
                 } else {
                     Toast.makeText(
