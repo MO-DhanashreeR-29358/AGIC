@@ -1,10 +1,12 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="?background">
+        android:background="?background"
+        android:orientation="vertical">
 
        <!-- <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
@@ -12,6 +14,23 @@
             android:layout_height="match_parent"
             android:layout_margin="@dimen/margin_small"
             app:layout_constraintTop_toTopOf="parent" />-->
+
+        <TextView
+            android:id="@+id/errorMSG"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="@dimen/margin_large"
+            android:gravity="center"
+            android:text="@string/txt_label_no_conference"
+            android:textColor="@color/darkGrey"
+            android:textSize="@dimen/text_size_medium"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ExpandableListView
             android:id="@+id/rm_client_wise_expandable_list"
@@ -23,25 +42,11 @@
             android:groupIndicator="@null"
             android:layoutAnimation="@anim/layout_animation"
             android:layout_margin="@dimen/margin_small"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:listitem="@layout/item_rm_data_child"/>
 
-        <TextView
-            android:id="@+id/errorMSG"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:layout_margin="@dimen/margin_large"
-            android:gravity="center"
-            android:text="@string/txt_label_conference_over"
-            android:textColor="@color/darkGrey"
-            android:textSize="@dimen/text_size_medium"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
 
 </layout>

@@ -108,6 +108,7 @@ class OverviewChildFragment : MOSLCommonFragment(), OverviewChildContract {
     override fun renderPage(uiModel: UiModel<List<RmOverViewMeetingResponseInfo>>) {
         toggleProgressBar(uiModel.inProgress)
         uiModel.onFailure { error ->
+            binding.errorMSG.visibility = View.VISIBLE
         }
         uiModel.onSuccess {
             listDataClient.clear()

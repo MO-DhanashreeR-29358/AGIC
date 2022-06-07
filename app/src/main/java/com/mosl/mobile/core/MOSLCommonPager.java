@@ -56,6 +56,7 @@ public abstract class MOSLCommonPager extends MOSLCommonFragment
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mPager = view.findViewById(R.id.pager);
+        mPager.setOffscreenPageLimit(3);
         mIndicator = view.findViewById(R.id.tab_layout);
     }
 

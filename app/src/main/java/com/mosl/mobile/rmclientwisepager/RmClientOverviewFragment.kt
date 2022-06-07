@@ -80,6 +80,7 @@ class RmClientOverviewFragment : MOSLCommonPager(), RmClientOverviewPagerContrac
         pagerAdapter = ViewPagerAdapter(childFragmentManager, requireContext(), this)
         pagerAdapter.setFragmentTitles(R.array.tabTitles)
         mPager.adapter = pagerAdapter
+        mPager.offscreenPageLimit = 3
         mPager.addOnPageChangeListener(pageChangeListener)
         mIndicator.setupWithViewPager(mPager)
         binding.group.visibility = View.GONE

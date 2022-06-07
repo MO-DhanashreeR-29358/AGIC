@@ -5,6 +5,7 @@
     <string name="msg_unique_code_empty">Please enter your 5 digit id to Login</string>
 
     <string name="txt_label_conference_over">The Conference got over.</string>
+    <string name="txt_label_no_conference">No data available for the day.</string>
     <string name="txt_label_skip_to_login">Skip to Login</string>
     <string name="txt_label_stay_updated_with">Stay updated with our newsletter..</string>
     <string name="txt_label_welcome">Welcome</string>

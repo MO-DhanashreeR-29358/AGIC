@@ -63,13 +63,13 @@ class LoginActivity : LeanBaseActivity(), Navigator, LoginView {
     }
 
     private fun initData() {
-        val banner: RemoteConfigModel =
+        val banner: RemoteConfigModel? =
             gson.fromJson(remoteCongigData.get(), RemoteConfigModel::class.java)
         Glide.with(this)
-            .load(banner.logo)
+            .load(banner?.logo)
             .into(binding.imgBanner)
-        binding.txtYear.text = banner.year
-        binding.txtAgic.text = banner.conferenceName
+        binding.txtYear.text = banner?.year
+        binding.txtAgic.text = banner?.conferenceName
     }
 
     internal fun openDashboard() {

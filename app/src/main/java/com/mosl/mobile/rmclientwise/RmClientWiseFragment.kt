@@ -72,6 +72,7 @@ class RmClientWiseFragment : MOSLCommonFragment(), RmClientWiseContract {
     override fun renderPage(uiModel: UiModel<List<RmClientWiseResponseInfo>>) {
         toggleProgressBar(uiModel.inProgress)
         uiModel.onFailure { error ->
+            binding.errorMSG.visibility = View.VISIBLE
         }
         uiModel.onSuccess {
 

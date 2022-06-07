@@ -19,28 +19,157 @@ object OverviewPagerMapper {
 
     fun getRmDayWiseMap(data: RmOverViewResponseData): RmOverviewResponseDataInfo{
 
+        when(data.AGICMeeting.size)
+        {
+            1->{
+                when {
+                    data.AGICMeeting[0].day.equals("Day1") -> {
+                        return RmOverviewResponseDataInfo(
+                            day1 = meetingTimeSlotData(data.AGICMeeting[0].meetingTimeDisplay),
+                            day2 = meetingTimeSlotData(emptyList()),
+                            day3 = meetingTimeSlotData(emptyList())
+                        )
+                    }
+                    data.AGICMeeting[0].day.equals("Day2") -> {
+                        return RmOverviewResponseDataInfo(
+                            day1 = meetingTimeSlotData(emptyList()),
+                            day2 = meetingTimeSlotData(data.AGICMeeting[0].meetingTimeDisplay),
+                            day3 = meetingTimeSlotData(emptyList())
+                        )
+                    }
+                    data.AGICMeeting[0].day.equals("Day3") -> {
+                        return RmOverviewResponseDataInfo(
+                            day1 = meetingTimeSlotData(emptyList()),
+                            day2 = meetingTimeSlotData(emptyList()),
+                            day3 = meetingTimeSlotData(data.AGICMeeting[0].meetingTimeDisplay)
+                        )
+                    }
+                }
+            }
+            2->{
+                when {
+                    data.AGICMeeting[0].day.equals("Day1") && data.AGICMeeting[1].day.equals("Day2")-> {
+                        return RmOverviewResponseDataInfo(
+                            day1 = meetingTimeSlotData(data.AGICMeeting[0].meetingTimeDisplay),
+                            day2 = meetingTimeSlotData(data.AGICMeeting[1].meetingTimeDisplay),
+                            day3 = meetingTimeSlotData(emptyList())
+                        )
+                    }
+                    data.AGICMeeting[0].day.equals("Day2") && data.AGICMeeting[1].day.equals("Day3")-> {
+                        return RmOverviewResponseDataInfo(
+                            day1 = meetingTimeSlotData(emptyList()),
+                            day2 = meetingTimeSlotData(data.AGICMeeting[0].meetingTimeDisplay),
+                            day3 = meetingTimeSlotData(data.AGICMeeting[1].meetingTimeDisplay)
+                        )
+                    }
+                    data.AGICMeeting[0].day.equals("Day1") && data.AGICMeeting[1].day.equals("Day3")-> {
+                        return RmOverviewResponseDataInfo(
+                            day1 = meetingTimeSlotData(data.AGICMeeting[0].meetingTimeDisplay),
+                            day2 = meetingTimeSlotData(emptyList()),
+                            day3 = meetingTimeSlotData(data.AGICMeeting[1].meetingTimeDisplay)
+                        )
+                    }
+                }
+            }
+            3->{
+                return RmOverviewResponseDataInfo(
+                    day1 = meetingTimeSlotData(data.AGICMeeting[0].meetingTimeDisplay),
+                    day2 = meetingTimeSlotData(data.AGICMeeting[1].meetingTimeDisplay),
+                    day3 = meetingTimeSlotData(data.AGICMeeting[2].meetingTimeDisplay)
+                )
+            }
+        }
+
         return RmOverviewResponseDataInfo(
-            day1 = meetingTimeSlotData(data.AGICMeeting[0].meetingTimeDisplay),
+            day1 = meetingTimeSlotData(emptyList()),
+            day2 = meetingTimeSlotData(emptyList()),
+            day3 = meetingTimeSlotData(data.AGICMeeting[2].meetingTimeDisplay)
+        )
+
+
+        /*return RmOverviewResponseDataInfo(
+            day1 =if(data.AGICMeeting.isNotEmpty() &&
+                data.AGICMeeting[0].equals("Day1")){
+                meetingTimeSlotData(data.AGICMeeting[0].meetingTimeDisplay)
+            }else{
+                meetingTimeSlotData(emptyList())
+            },
             day2 = meetingTimeSlotData(data.AGICMeeting[1].meetingTimeDisplay),
             day3 = if (data.AGICMeeting.size > 2) {
                 meetingTimeSlotData(data.AGICMeeting[2].meetingTimeDisplay)
             }else{
                 meetingTimeSlotData(emptyList())
             }
-        )
+        )*/
     }
 
     fun getRmClientWiseMap(data: RmClientWiseResponseData): RmClientWiseResponseDataInfo{
 
-        return RmClientWiseResponseDataInfo(
-            day1 = fundData(data.AGICMeeting[0].fundList),
-            day2 = fundData(data.AGICMeeting[1].fundList),
-            day3 = if (data.AGICMeeting.size > 2) {
-                fundData(data.AGICMeeting[0].fundList)
-            }else{
-                fundData(emptyList())
+        when(data.AGICMeeting.size)
+        {
+            1->{
+                when {
+                    data.AGICMeeting[0].day.equals("Day1") -> {
+                        return RmClientWiseResponseDataInfo(
+                            day1 = fundData(data.AGICMeeting[0].fundList),
+                            day2 = fundData(emptyList()),
+                            day3 = fundData(emptyList())
+                        )
+                    }
+                    data.AGICMeeting[0].day.equals("Day2") -> {
+                        return RmClientWiseResponseDataInfo(
+                            day1 = fundData(emptyList()),
+                            day2 = fundData(data.AGICMeeting[0].fundList),
+                            day3 = fundData(emptyList())
+                        )
+                    }
+                    data.AGICMeeting[0].day.equals("Day3") -> {
+                        return RmClientWiseResponseDataInfo(
+                            day1 = fundData(emptyList()),
+                            day2 = fundData(emptyList()),
+                            day3 = fundData(data.AGICMeeting[0].fundList)
+                        )
+                    }
+                }
             }
+            2->{
+                when {
+                    data.AGICMeeting[0].day.equals("Day1") && data.AGICMeeting[1].day.equals("Day2")-> {
+                        return RmClientWiseResponseDataInfo(
+                            day1 = fundData(data.AGICMeeting[0].fundList),
+                            day2 = fundData(data.AGICMeeting[1].fundList),
+                            day3 = fundData(emptyList())
+                        )
+                    }
+                    data.AGICMeeting[0].day.equals("Day2") && data.AGICMeeting[1].day.equals("Day3")-> {
+                        return RmClientWiseResponseDataInfo(
+                            day1 = fundData(emptyList()),
+                            day2 = fundData(data.AGICMeeting[0].fundList),
+                            day3 = fundData(data.AGICMeeting[1].fundList)
+                        )
+                    }
+                    data.AGICMeeting[0].day.equals("Day1") && data.AGICMeeting[1].day.equals("Day3")-> {
+                        return RmClientWiseResponseDataInfo(
+                            day1 = fundData(data.AGICMeeting[0].fundList),
+                            day2 = fundData(emptyList()),
+                            day3 = fundData(data.AGICMeeting[1].fundList)
+                        )
+                    }
+                }
+            }
+            3->{
+                return RmClientWiseResponseDataInfo(
+                    day1 = fundData(data.AGICMeeting[0].fundList),
+                    day2 = fundData(data.AGICMeeting[1].fundList),
+                    day3 = fundData(data.AGICMeeting[2].fundList)
+                )
+            }
+        }
 
+        return RmClientWiseResponseDataInfo(
+            day1 = fundData(emptyList()),
+            day2 = fundData(emptyList()),
+            day3 = fundData(data.AGICMeeting[2].fundList)
         )
     }
 
