@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="leafyGreen">#5eb73b</color>
+    <color name="copper">#d53b23</color>
+
+    <color name="pumpkinTwo">#eb6400</color>
+    <color name="whiteTwo">#f9f9f9</color>
+    <color name="lightPeach">#ffcda8</color>
+    <color name="orangeYellow">#fcae16</color>
+    <color name="login_logo_back">#fcae16</color>
+
+    <color name="blue">#03A9F4</color>
+    <color name="red">#b00020</color>
+    <color name="lightRed">#cf6679</color>
+
+    <color name="login_year_text_color">#dedede</color>
+    <color name="login_permission_text_color">#0091ea</color>
+    <color name="login_btn_text_color">#ffffff</color>
+    <color name="login_btn_back_color">#31B8E5</color>
+
+    <color name="news_letter_head_welcome">#006ab6</color>
+    <color name="news_letter_toolbar">#dedede</color>
+    <color name="news_letter_warning">#ffffff</color>
+    <color name="news_letter_warning_background">#fcae16</color>
+    <color name="news_letter_skiplogin">#000000</color>
+    <color name="news_letter_skiplogin_back">#31B8E5</color>
+    <color name="item_child_txt">#000000</color>
+    <color name="item_child_background">#f9f9f9</color>
+    <color name="item_parent_background">@color/white</color>
+    <color name="schedule_back">@color/white</color>
+
+    <color name="bottom_tab_white">#ffffff</color>
+    <color name="bottom_tab_selected">#006ab6</color>
+
+    <color name="day_tab_white">#818181</color>
+    <color name="day_tab_selected">@color/black</color>
+    <color name="day_tab_indicatore_selected">#006ab6</color>
+
+    <color name="schedule_company_name">#323232</color>
+    <color name="schedule_venue">#888888</color>
+    <color name="schedule_venue_icon">#202020</color>
+    <color name="schedule_divider">#dedede</color>
+
+
+    <color name="pdf_popup_back">#424242</color>
+    <color name="pdf_popup_text">#ffffff</color>
+    <color name="pdf_popup_btm">#76D7C4</color>
+
+    <color name="white">#ffffff</color>
+    <color name="alabaster">#F9F9F9</color>
+
+    <!--    <color name="black_prime">#ffffff</color>-->
+    <color name="black">#000000</color>
+    <color name="light_black">#323232</color>
+    <color name="darkGrey">#121212</color>
+    <color name="lightGrey">#272727</color>
+    <color name="warmGrey">#888888</color>
+    <color name="greyWhite">#dedede</color>
+    <color name="light_orange">#FFE09A6B</color>
+    <color name="green">#FF11E419</color>
+
+
+    <color name="light_blue_700">#0091ea</color>
+    <color name="dark_blue_700">#445278</color>
+    <color name="dark_blue_900">#297ca0</color>
+
+    <color name="text_color_primary_black">#dd000000</color>
+    <color name="text_color_secondary_black">#89000000</color>
+    <color name="text_color_disabled_black">@color/_material_grey_500</color>
+
+    <color name="_green">#ff5aaa3a</color>
+    <color name="light_teal">#76D7C4</color>
+    <color name="_red">#ffd50a15</color>
+    <color name="_red_disabled">#61d50a15</color>
+
+    <color name="orange">#FBB230</color>
+    <color name="color_notification_child_bg">@color/white</color>
+
+
+    <color name="_material_grey_100">#F5F5F5</color>
+    <color name="_material_grey_200">#f0f0f0</color>
+    <color name="_material_grey_300">#E0E0E0</color>
+    <color name="_material_grey_400">#BDBDBD</color>
+    <color name="_material_grey_500">#9E9E9E</color>
+    <color name="_material_grey_800">#424242</color>
+    <color name="_material_grey_900">#212121</color>
+    <color name="transparent">#00000000</color>
+    <color name="dark_grey">#202020</color>
+    <color name="tab_bg_color">#BEBEBE</color>
+
+    <color name="dashboard_background_color">#F0F0F0</color>
+    <color name="tile_color_converted">#61CA79</color>
+    <color name="tile_color_not_interested">#E3554F</color>
+    <color name="tile_color_interested">#EE7950</color>
+    <color name="button_bg_color">#363636</color>
+    <color name="light_cyan_color">#31B8E5</color>
+    <color name="dark_blue">#006ab6</color>
+    <color name="dark_purple">#FF9C27B0</color>
+
+    <color name="_material_black_100">#1C1C1E</color>
+    <color name="_material_black_200">#404040</color>
+    <color name="_material_black_300">#505050</color>
+    <color name="_material_black_400">#686868</color>
+
+</resources>

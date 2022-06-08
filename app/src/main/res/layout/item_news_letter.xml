@@ -1,0 +1,69 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_large">
+
+        <ImageView
+            android:id="@+id/imgProfileIcon"
+            android:layout_width="@dimen/img_news_letter"
+            android:layout_height="@dimen/img_news_letter"
+            android:layout_marginStart="@dimen/margin_medium"
+            app:srcCompat="@mipmap/ic_launcher_round"
+            tools:ignore="ContentDescription" />
+
+
+        <TextView
+            android:id="@+id/txtName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_large"
+            android:layout_toEndOf="@+id/imgProfileIcon"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/text_size_normal"
+            tools:text="Ms.Nandini Maheshwari" />
+
+
+        <ImageView
+            android:id="@+id/icon_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imgProfileIcon"
+            android:layout_centerHorizontal="true"
+            app:srcCompat="@drawable/ic_more_horiz"
+            tools:ignore="ContentDescription" />
+
+        <View
+            android:id="@+id/ssView"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_2sdp"
+            android:layout_below="@+id/icon_more"
+            android:background="@color/greyWhite" />
+
+        <TextView
+            android:id="@+id/txtDesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ssView"
+            android:layout_marginBottom="@dimen/margin_small"
+            android:padding="@dimen/padding_small"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_small"
+            android:visibility="gone"
+            tools:text="Are attitudes changing globally towards 'owning' a vehicle?" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_2sdp"
+            android:layout_below="@+id/txtDesc"
+            android:layout_marginTop="@dimen/margin_small"
+            android:background="@color/greyWhite"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+</layout>

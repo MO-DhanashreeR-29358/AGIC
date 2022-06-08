@@ -1,0 +1,262 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'io.fabric'
+
+def gitSha() {
+    def p = 'git rev-parse --short HEAD'.execute([], project.rootDir)
+    p.waitFor()
+    if (p.exitValue() != 0) {
+        throw new RuntimeException(p.errorStream.text)
+    }
+
+    return p.text.trim()
+}
+
+def gitTimestamp() {
+    def p = 'git log -n 1 --format=%at'.execute([], rootDir)
+    p.waitFor()
+    if (p.exitValue() != 0) {
+        throw new RuntimeException(p.errorStream.text)
+    }
+
+    return p.text.trim()
+}
+
+android {
+    packagingOptions {
+        exclude 'META-INF/annotations.kotlin_module'
+    }
+    compileSdkVersion Versions.compileSdkVersion
+    buildToolsVersion Versions.buildToolsVersion
+
+    Properties versionProps = new Properties()
+    versionProps.load(new FileInputStream(file('../version.properties')))
+
+    Properties keystoreProps = new Properties()
+    keystoreProps.load(new FileInputStream(file('../keystore.properties')))
+
+    defaultConfig {
+        applicationId "com.mosl.agicapp"
+        minSdkVersion Versions.minSdkVersion
+        targetSdkVersion Versions.targetSdkVersion
+
+        buildConfigField 'String', 'GIT_SHA', "\"${gitSha()}\""
+        buildConfigField 'long', 'GIT_TIMESTAMP', "${gitTimestamp()}L"
+
+        resConfigs "en", "hi"
+        vectorDrawables.useSupportLibrary = true
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    signingConfigs {
+        uat {
+            try {
+                storeFile file('../agicapp.jks')
+                storePassword keystoreProps['KEYSTORE_PASSWORD']
+                keyAlias keystoreProps['UAT_ALIAS']
+                keyPassword keystoreProps['UAT_ALIAS_PASSWORD']
+            } catch (ex) {
+                throw new InvalidUserDataException(
+                        "You should define KEYSTORE_PASSWORD, UAT_ALIAS & UAT_ALIAS_PASSWORD in keystore.properties")
+            }
+        }
+        prod {
+            try {
+                storeFile file('../agicapp.jks')
+                storePassword keystoreProps['KEYSTORE_PASSWORD']
+                keyAlias keystoreProps['PROD_ALIAS']
+                keyPassword keystoreProps['PROD_ALIAS_PASSWORD']
+            } catch (ex) {
+                throw new InvalidUserDataException(
+                        "You should define KEYSTORE_PASSWORD, PROD_ALIAS & PROD_ALIAS_PASSWORD in keystore.properties")
+            }
+        }
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+    bundle {
+        language {
+            enableSplit = false
+        }
+    }
+
+    flavorDimensions 'releaseType'
+    productFlavors {
+        internal {
+            versionCode versionProps['code'].toInteger()
+            versionName versionProps['name']
+            applicationIdSuffix '.internal'
+            buildConfigField 'boolean', 'LOGOUT_ON_UPDATE', "${versionProps['clearUserLogin']}"
+            signingConfig signingConfigs.uat
+            //TODO Remove below lines before giving UAT release
+            minSdkVersion 21
+            dimension 'releaseType'
+        }
+        production {
+            versionCode versionProps['prodCode'].toInteger()
+            versionName versionProps['prodName']
+            buildConfigField 'boolean', 'LOGOUT_ON_UPDATE', "${versionProps['prodClearUserLogin']}"
+            signingConfig signingConfigs.prod
+            dimension 'releaseType'
+        }
+    }
+
+    buildTypes {
+        debug {
+            applicationIdSuffix '.debug'
+            multiDexEnabled true
+            ext.alwaysUpdateBuildId = false
+            ext.enableCrashlytics = false
+            manifestPlaceholders = [crashlyticsEnabled: false]
+        }
+        release {
+            debuggable false
+            manifestPlaceholders = [crashlyticsEnabled: true]
+            minifyEnabled true
+            shrinkResources true
+            proguardFile 'proguard-conceal.pro'
+            proguardFile 'proguard-crashlytics.pro'
+            proguardFile 'proguard-retrofit.pro'
+            proguardFile 'proguard-dagger.pro'
+            proguardFile 'proguard-gson.pro'
+            proguardFile 'proguard-okhttp.pro'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    android.applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "${project.name}-${variant.name}-${variant.versionName}.apk"
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    lintOptions {
+        check 'NewApi', 'SyntheticAccessor'
+        ignoreWarnings false
+    }
+
+    dexOptions {
+        javaMaxHeapSize "2g"
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation KotlinDependencies.kotlin
+    implementation AndroidxDependencies.appcompat
+    implementation KotlinDependencies.ktxCore
+    implementation AndroidxDependencies.constraintLayout
+    implementation AndroidxDependencies.material
+
+    testImplementation TestingDependencies.junit
+    androidTestImplementation AndroidxDependencies.testRunner
+    androidTestImplementation AndroidxDependencies.testEspresso
+
+    //Dagger
+    implementation DaggerDependencies.core
+    implementation DaggerDependencies.javaAnnotations
+    kapt DaggerDependencies.compiler
+    implementation DaggerDependencies.android
+    kapt DaggerDependencies.androidCompiler
+
+    //RxJava 2.0
+    implementation RxDependencies.java
+    implementation RxDependencies.kotlin
+    implementation RxDependencies.relay
+    implementation RxDependencies.android
+    implementation RxDependencies.preferences
+    implementation RxBindingDependencies.bindingPlatform
+    implementation RxBindingDependencies.bindingCore
+    implementation RxBindingDependencies.bindingAppcompat
+    implementation RxBindingDependencies.bindingSwipeRefresh
+
+    implementation MofslArtifactDependencies.appCore
+    implementation MofslArtifactDependencies.annotation
+
+    implementation Dependencies.timber
+    implementation Dependencies.threeTen
+
+    implementation RetrofitDependencies.core
+    implementation RetrofitDependencies.rxJava
+    debugImplementation RetrofitDependencies.mock
+    implementation MoshiDependencies.retrofitConvertor
+
+    implementation MoshiDependencies.core
+    kapt MoshiDependencies.codegen
+
+    implementation OkHttpDependencies.core
+    implementation OkHttpDependencies.okio
+    debugImplementation OkHttpDependencies.logger
+
+    debugImplementation MofslArtifactDependencies.debugViewCore
+    debugImplementation MofslArtifactDependencies.debugView
+    debugImplementation AndroidxDependencies.multiDex
+    implementation MofslArtifactDependencies.appCoreUI
+    implementation MofslArtifactDependencies.validator
+    implementation MofslArtifactDependencies.groupie
+
+    implementation FirebaseDependencies.core
+    implementation FirebaseDependencies.crashlytics
+    implementation FirebaseDependencies.messaging
+    implementation FirebaseDependencies.remoteConfig
+
+    implementation GroupieDependencies.core
+    implementation GroupieDependencies.dataBinding
+
+    //StethoDependencies
+    debugImplementation StethoDependencies.core
+    debugImplementation StethoDependencies.okHttp
+
+    implementation DimensionDependencies.ssp
+    implementation DimensionDependencies.sdp
+
+    implementation GlideDependencies.glide
+
+    implementation project(':data')
+    implementation project(':domain')
+    implementation project(":mosl_api")
+    implementation project(':annotations')
+    implementation project(':app_user')
+    implementation project(':core_ui')
+    implementation project(':core_data')
+    implementation project(':shared')
+
+    // demo
+
+    implementation CoroutinesDependencies.core
+    implementation CoroutinesDependencies.android
+
+    implementation LifeCycleDependencies.viewModel
+    implementation LifeCycleDependencies.extension
+    implementation LifeCycleDependencies.liveData
+    implementation KotlinDependencies.ktxFragment
+
+    //Android Room
+    implementation RoomDependencies.ktx
+    implementation RoomDependencies.runtime
+    kapt RoomDependencies.compiler
+
+    implementation AndroidxDependencies.preferenceKotlin
+
+    implementation GsonDependencies.gson
+
+
+}
+
+kapt {
+    javacOptions {
+        option("-Xmaxerrs", 2000)
+    }
+}

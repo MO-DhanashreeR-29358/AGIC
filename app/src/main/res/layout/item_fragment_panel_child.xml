@@ -1,0 +1,114 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_small"
+        android:background="@color/schedule_back"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constrainLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_medium"
+            android:layout_marginEnd="@dimen/margin_medium">
+
+            <ImageView
+                android:id="@+id/img_panel_profile"
+                android:layout_width="@dimen/img_large"
+                android:layout_height="@dimen/img_large"
+                android:layout_marginTop="@dimen/margin_large"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@mipmap/ic_launcher_round"
+                tools:ignore="ContentDescription" />
+
+
+            <TextView
+                android:id="@+id/tv_panel_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:padding="@dimen/padding_extra_small"
+                android:textAllCaps="true"
+                android:textColor="@color/dark_blue"
+                android:textSize="@dimen/text_size_normal"
+                app:layout_constraintEnd_toStartOf="@id/img_panel_profile"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@string/text_label_overview_name" />
+
+            <TextView
+                android:id="@+id/tv_panel_time"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_time"
+                android:drawablePadding="@dimen/padding_medium"
+                android:padding="@dimen/padding_extra_small"
+                android:textColor="@color/dark_purple"
+                android:textSize="@dimen/text_size_small"
+                app:layout_constraintEnd_toStartOf="@id/img_panel_profile"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_panel_name"
+                tools:text="@string/text_label_panel_time" />
+
+            <TextView
+                android:id="@+id/tv_panel_designation"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/padding_extra_small"
+                android:textColor="@color/light_black"
+                android:textSize="@dimen/text_size_small"
+                app:layout_constraintEnd_toStartOf="@id/img_panel_profile"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_panel_time"
+                tools:text="@string/text_label_panel_designation" />
+
+            <ImageView
+                android:id="@+id/icon_more"
+                android:layout_width="@dimen/menuIcons"
+                android:layout_height="@dimen/menuIcons"
+                android:layout_marginTop="@dimen/margin_small"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_panel_designation"
+                app:srcCompat="@drawable/ic_more_horiz"
+                tools:ignore="ContentDescription" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:layout_marginTop="@dimen/margin_small"
+            android:background="@color/greyWhite" />
+
+        <TextView
+            android:id="@+id/tv_panel_intro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/item_child_background"
+            android:paddingLeft="@dimen/margin_medium"
+            android:paddingTop="@dimen/margin_medium"
+            android:paddingRight="@dimen/padding_extra_small"
+            android:paddingBottom="@dimen/margin_medium"
+            android:textColor="@color/item_child_txt"
+            android:textSize="@dimen/text_size_small"
+            android:visibility="gone"
+            tools:text="Are attitudes changing globally towards 'owning' a vehicle?" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:layout_marginTop="@dimen/margin_small"
+            android:background="@color/greyWhite"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+
+</layout>

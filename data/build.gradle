@@ -1,0 +1,85 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+  compileSdkVersion Versions.compileSdkVersion
+  buildToolsVersion Versions.buildToolsVersion
+
+  defaultConfig {
+    minSdkVersion Versions.minSdkVersion
+    targetSdkVersion Versions.targetSdkVersion
+    versionCode 1
+    versionName "1.0"
+
+    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    consumerProguardFiles 'consumer-rules.pro'
+  }
+
+  buildTypes {
+    release {
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+    }
+  }
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
+}
+
+dependencies {
+  implementation fileTree(dir: 'libs', include: ['*.jar'])
+  implementation KotlinDependencies.kotlin
+  implementation AndroidxDependencies.appcompat
+  implementation KotlinDependencies.ktxCore
+  testImplementation TestingDependencies.junit
+  androidTestImplementation AndroidxDependencies.testRunner
+  androidTestImplementation AndroidxDependencies.testEspresso
+
+  //Dagger
+  implementation DaggerDependencies.core
+  kapt DaggerDependencies.compiler
+
+  implementation RetrofitDependencies.core
+  implementation RetrofitDependencies.rxJava
+  debugImplementation RetrofitDependencies.mock
+
+  implementation MoshiDependencies.core
+  implementation MoshiDependencies.retrofitConvertor
+  kapt MoshiDependencies.codegen
+
+  //RxJava 2.0
+  implementation RxDependencies.java
+  implementation RxDependencies.kotlin
+  implementation RxDependencies.relay
+  implementation RxDependencies.android
+  implementation RxDependencies.preferences
+
+
+  //StethoDependencies
+  debugImplementation StethoDependencies.core
+  debugImplementation StethoDependencies.okHttp
+
+  implementation Dependencies.timber
+
+  debugImplementation OkHttpDependencies.logger
+  implementation MofslArtifactDependencies.conceal
+
+  implementation MofslArtifactDependencies.moslCommons
+  implementation MofslArtifactDependencies.appCore
+  debugImplementation MofslArtifactDependencies.debugViewCore
+
+  implementation LifeCycleDependencies.liveData
+  implementation MofslArtifactDependencies.annotation
+  implementation RetrofitDependencies.gson
+  implementation MofslArtifactDependencies.apiCore
+  implementation project(':mosl_api')
+  implementation project (':domain')
+  implementation project (':annotations')
+  implementation project (':app_user')
+  implementation project (':mock_data')
+  implementation project (':shared')
+}

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+        android:id="@+id/calendarC"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_medium"
+        android:orientation="vertical"
+        android:padding="@dimen/padding_normal">
+
+        <TextView
+            android:id="@+id/titleTXT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/padding_small"
+            android:text="@string/conferences"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_medium" />
+
+
+        <TextView
+            android:id="@+id/dialogNameEt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/titleTXT"
+            android:gravity="center"
+            android:padding="@dimen/padding_small"
+            android:text="@string/msg_calendar"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_normal" />
+
+        <TextView
+            android:id="@+id/txt_event"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dialogNameEt"
+            android:gravity="center"
+            android:padding="@dimen/padding_small"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_small" />
+
+        <View
+            android:id="@+id/vHor"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:layout_below="@+id/txt_event"
+            android:layout_marginTop="@dimen/margin_large"
+            android:background="@color/greyWhite" />
+
+
+        <TextView
+            android:id="@+id/btn_yes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/vHor"
+            android:layout_marginRight="@dimen/margin_small"
+            android:layout_toLeftOf="@+id/vVer"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="@dimen/padding_small"
+            android:text="@string/text_label_yes"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/text_size_normal" />
+
+        <View
+            android:id="@+id/vVer"
+            android:layout_width="@dimen/_1sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_below="@id/vHor"
+            android:layout_centerHorizontal="true"
+            android:background="@color/greyWhite" />
+
+        <TextView
+            android:id="@+id/btn_no"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/vHor"
+            android:layout_marginRight="@dimen/margin_small"
+            android:layout_toRightOf="@+id/vVer"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="@dimen/padding_small"
+            android:text="@string/text_label_no"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/text_size_normal" />
+
+
+    </RelativeLayout>
+
+</layout>

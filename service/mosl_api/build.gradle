@@ -1,0 +1,16 @@
+apply plugin: 'java-library'
+apply plugin: 'kotlin'
+
+dependencies {
+    implementation AndroidxDependencies.annotation
+    implementation KotlinDependencies.kotlin
+    compileOnly RetrofitDependencies.core
+    implementation RxDependencies.java
+    api MofslArtifactDependencies.appCore
+    implementation GsonDependencies.gson
+    //Android Room
+    implementation RoomDependencies.runtime
+}
+
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_large"
+        android:background="@color/pdf_popup_back"
+        tools:ignore="HardcodedText">
+
+        <TextView
+            android:id="@+id/tv_pdf_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/padding_normal"
+            android:paddingTop="@dimen/padding_medium"
+            android:paddingEnd="@dimen/padding_normal"
+            android:text="@string/text_label_confirm"
+            android:textColor="@color/pdf_popup_text"
+            android:textSize="@dimen/text_size_large"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_pdf_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/padding_normal"
+            android:paddingTop="@dimen/padding_small"
+            android:paddingEnd="@dimen/padding_normal"
+            android:text="@string/text_label_pdf_desc"
+            android:textColor="@color/pdf_popup_text"
+            android:textSize="@dimen/text_size_normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_pdf_title" />
+
+
+        <TextView
+            android:id="@+id/tv_pdf_cancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding_medium"
+            android:text="@string/text_label_cancel"
+            android:textColor="@color/pdf_popup_btm"
+            android:textSize="@dimen/text_size_small"
+            app:layout_constraintEnd_toStartOf="@+id/tv_pdf_ok"
+            app:layout_constraintTop_toBottomOf="@id/tv_pdf_desc" />
+
+
+        <TextView
+            android:id="@+id/tv_pdf_ok"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="@dimen/padding_medium"
+            android:layout_marginEnd="@dimen/margin_normal"
+            android:text="@string/text_label_ok"
+            android:textColor="@color/pdf_popup_btm"
+            android:textSize="@dimen/text_size_small"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_pdf_desc"
+            tools:text="@string/text_label_ok" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

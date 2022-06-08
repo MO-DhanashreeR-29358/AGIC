@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Widget.MoslTheme.Button" parent="Widget.MaterialComponents.Button">
+
+    </style>
+
+    <style name="Widget.MoslTheme.PrimaryButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="strokeColor">?colorPrimary</item>
+    </style>
+
+    <style name="Widget.MoslTheme.SecondaryButton" parent="Widget.MoslTheme.Button">
+
+    </style>
+
+    <style name="Widget.MoslTheme.SellButton" parent="Widget.MoslTheme.Button">
+        <item name="backgroundTint">@color/sell_color</item>
+    </style>
+
+    <style name="Widget.MoslTheme.BuyButton" parent="Widget.MoslTheme.Button">
+        <item name="backgroundTint">@color/buy_color</item>
+    </style>
+
+    <style name="widget.MoslTheme.ActionButton" parent="Widget.MaterialComponents.Button.TextButton">
+
+    </style>
+
+    <style name="Widget.MoslTheme.PrimaryActionButton" parent="widget.MoslTheme.ActionButton">
+
+    </style>
+
+    <style name="Widget.MoslTheme.SecondaryActionButton" parent="widget.MoslTheme.ActionButton">
+        <item name="android:textColor">?android:textColorSecondary</item>
+    </style>
+
+</resources>

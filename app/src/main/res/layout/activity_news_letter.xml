@@ -1,0 +1,139 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/relativeLayoutMain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context="com.mosl.mobile.newsletter.NewsLetterActivity">
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/news_letter_toolbar"
+            app:layout_constraintBottom_toTopOf="@+id/txt_warn_msg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/lytHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_agic"
+                android:layout_width="@dimen/img_news_letter"
+                android:layout_height="@dimen/img_news_letter"
+                android:layout_marginLeft="@dimen/margin_normal"
+                android:layout_marginTop="@dimen/margin_large"
+                android:layout_marginRight="@dimen/margin_normal"
+                app:layout_constraintBottom_toTopOf="@+id/txt_warn_msg"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_agic_temp"
+                android:layout_width="@dimen/img_news_letter"
+                android:layout_height="@dimen/img_news_letter"
+                android:layout_marginLeft="@dimen/margin_normal"
+                android:layout_marginTop="@dimen/margin_large"
+                android:layout_marginRight="@dimen/margin_normal"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@+id/txt_warn_msg"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:id="@+id/txt_welcome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_label_welcome"
+                android:textColor="@color/dark_blue"
+                android:textSize="@dimen/text_size_medium"
+                app:layout_constraintBottom_toTopOf="@+id/txt_agic_year"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/txt_agic_year"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_medium"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_medium"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/txt_warn_msg"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_small"
+            android:background="@color/news_letter_warning_background"
+            android:paddingStart="@dimen/padding_medium"
+            android:paddingTop="@dimen/padding_extra_small"
+            android:paddingRight="@dimen/padding_small"
+            android:paddingBottom="@dimen/padding_extra_small"
+            android:text="@string/txt_label_stay_updated_with"
+            android:textColor="@color/news_letter_warning"
+            android:textSize="@dimen/text_size_normal"
+            app:layout_constraintBottom_toTopOf="@+id/expandable_list"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lytHeader" />
+
+        <ExpandableListView
+            android:id="@+id/expandable_list"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:childDivider="@color/warmGrey"
+            android:divider="@color/greyWhite"
+            android:dividerHeight="@dimen/_1sdp"
+            android:groupIndicator="@null"
+            android:layoutAnimation="@anim/layout_animation"
+            app:layout_constraintBottom_toTopOf="@+id/skip_to_login"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_warn_msg" />
+
+        <TextView
+            android:id="@+id/skip_to_login"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/news_letter_skiplogin_back"
+            android:gravity="center"
+            android:padding="@dimen/padding_small"
+            android:text="@string/txt_label_skip_to_login"
+            android:textColor="@color/news_letter_skiplogin"
+            android:textSize="@dimen/text_size_normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/expandable_list" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

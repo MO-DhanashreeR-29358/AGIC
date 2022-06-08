@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--DARK COLOR THEME-->
+    <!--The same color values are defined for dark theme, but with values more appropriate for -->
+    <!--low-luminance UIs. These colors will be used by night/themes.xml.-->
+
+    <color name="color_primary">@color/black</color>
+    <color name="color_primary_variant">@color/lightPeach</color>
+    <color name="color_secondary">@color/orangeYellow</color>
+    <color name="color_secondary_variant">@color/orangeYellow</color>
+
+    <color name="color_background">@color/darkGrey</color>
+    <color name="color_surface">@color/lightGrey</color>
+    <color name="color_error">@color/lightRed</color>
+
+    <color name="color_on_primary">@color/white</color>
+    <color name="color_on_secondary">@color/black</color>
+    <color name="color_on_background">@color/white</color>
+    <color name="color_on_surface">@color/white</color>
+    <color name="color_on_error">@color/black</color>
+    <color name="icon_color">@color/white</color>
+
+    <color name="primary_text_color">@color/white</color>
+    <color name="secondary_text_color">@color/alabaster</color>
+
+    <color name="sell_color">@color/copper</color>
+    <color name="buy_color">@color/leafyGreen</color>
+
+    <color name="toolbar_color">@color/news_letter_toolbar</color>
+    <color name="divider_color">@color/greyWhite</color>
+    <color name="quote_item_header_color">@color/whiteTwo</color>
+
+</resources>

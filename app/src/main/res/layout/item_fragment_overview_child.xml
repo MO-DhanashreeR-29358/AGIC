@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/schedule_back"
+        tools:ignore="HardcodedText">
+
+        <ImageView
+            android:id="@+id/icon_mctrack"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dimens_65"
+            android:layout_gravity="center"
+            android:padding="@dimen/padding_small"
+            app:srcCompat="@drawable/ic_mtrack_small"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
+
+        <TextView
+            android:id="@+id/tv_corporate_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_large"
+            android:padding="@dimen/margin_medium"
+            android:textColor="@color/dark_blue"
+            android:textSize="@dimen/text_size_small"
+            app:layout_constraintEnd_toStartOf="@+id/tv_start_time"
+            app:layout_constraintStart_toEndOf="@+id/icon_mctrack"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/text_label_overview_designation" />
+
+
+        <TextView
+            android:id="@+id/tv_start_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding_small"
+            android:textColor="@color/dark_purple"
+            android:textSize="@dimen/text_size_small"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="RtlSymmetry"
+            tools:text="@string/text_label_overview_time" />
+
+        <ImageView
+            android:id="@+id/img_more"
+            android:layout_width="@dimen/margin_normal"
+            android:layout_height="@dimen/margin_normal"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="@dimen/margin_normal"
+            android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginBottom="@dimen/margin_small"
+            app:srcCompat="@drawable/ic_more_ver"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_corporate_name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_start_time"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/tv_end_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding_small"
+            android:textColor="@color/dark_purple"
+            android:textSize="@dimen/text_size_small"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_more"
+            tools:ignore="RtlSymmetry"
+            tools:text="@string/text_label_overview_time" />
+
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_small"
+            android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginEnd="@dimen/margin_large"
+            android:textAllCaps="true"
+            android:textColor="@color/light_black"
+            android:textSize="@dimen/text_size_small"
+            app:layout_constraintEnd_toStartOf="@+id/tv_start_time"
+            app:layout_constraintStart_toEndOf="@+id/icon_mctrack"
+            app:layout_constraintTop_toBottomOf="@+id/tv_corporate_name"
+            tools:text="@string/text_label_overview_name" />
+
+        <TextView
+            android:id="@+id/tv_more"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_small"
+            android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginEnd="@dimen/margin_large"
+            android:textAllCaps="true"
+            android:textColor="@color/dark_blue"
+            android:textSize="@dimen/text_size_small"
+            android:visibility="gone"
+            app:layout_constraintEnd_toStartOf="@+id/tv_start_time"
+            app:layout_constraintStart_toEndOf="@+id/icon_mctrack"
+            app:layout_constraintTop_toBottomOf="@+id/tv_name"
+            tools:text="more" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:background="@color/greyWhite"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_more" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

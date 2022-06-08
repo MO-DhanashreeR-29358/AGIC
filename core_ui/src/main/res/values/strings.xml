@@ -1,0 +1,89 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <string name="main_app_name">Motilal Oswal Conferences</string>
+    <string name="network_unavailable">Network Not Available</string>
+    <string name="msg_unique_code_empty">Please enter your 5 digit id to Login</string>
+
+    <string name="txt_label_conference_over">The Conference got over.</string>
+    <string name="txt_label_no_conference">No data available for the day.</string>
+    <string name="txt_label_skip_to_login">Skip to Login</string>
+    <string name="txt_label_stay_updated_with">Stay updated with our newsletter..</string>
+    <string name="txt_label_welcome">Welcome</string>
+    <string name="txt_label_agic_year">AGIC</string>
+
+    <string name="text_label_day1">DAY 1</string>
+    <string name="text_label_day2">DAY 2</string>
+    <string name="text_label_day3">DAY 3</string>
+
+    <string name="tab_label_schedule">Schedule</string>
+    <string name="tab_label_overview">Overview</string>
+    <string name="tab_label_panel">Panel</string>
+    <string name="tab_label_bytes">Bytes</string>
+    <string name="tab_label_pdf">PDF</string>
+    <string name="tab_label_notes">Notes</string>
+    <string name="tab_label_notification">Notification</string>
+    <string name="tab_label_feedback" tools:ignore="ExtraTranslation">Feedback</string>
+
+    <string name="text_label_login">Login</string>
+    <string name="hint_label_digit_id">5 Digit Id</string>
+    <integer name="max_digit_id">5</integer>
+    <string name="text_label_agic">Annual Global Ideation Conference</string>
+    <string name="text_label_permission">Access permitted to registered\nusers only</string>
+    <string name="text_label_year">2020</string>
+
+    <string name="title_activity_login">Login</string>
+    <string name="title_activity_news_letter">News Letter</string>
+
+    <string-array name="tabTitles">
+        <item>@string/text_label_day1</item>
+        <item>@string/text_label_day2</item>
+        <item>@string/text_label_day3</item>
+
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="text_label_overview_name">Mr.Prasan Basu</string>
+    <string name="text_label_overview_designation">Mr.Prasan Basu President South Asia, Nielsen</string>
+    <string name="text_label_overview_time">04:00 pm</string>
+    <string name="text_label_panel_time">10:00 am - 11:00 am</string>
+    <string name="text_label_panel_designation">Business Development Head,Uber</string>
+    <string name="text_label_bytes_desc">Day 3 ends now.Thank you for joining us.#MOAGIC"</string>
+    <string name="text_label_pdf_title">home.html</string>
+    <string name="text_label_byte_header">August 21,2019</string>
+    <string name="text_label_pdf_desc">The Pdf you are about to download is as of 12 AM last night and will not conatin any changes you may have made today.\nThe most updated schedule will be shown on the app.</string>
+    <string name="editText_hint" tools:ignore="TypographyEllipsis">Take notes here...</string>
+
+    <string name="button_label_retrieve"> Retrieve </string>
+    <string name="button_label_exit"> Exit </string>
+    <string name="msg_application_needs_network_to_proceed">Application needs network to proceed</string>
+    <string name="msg_pdf_needs_network_to_download">Please enable the internet for download pdf</string>
+    <string name="msg_logout">Do you want to logout?</string>
+    <string name="text_label_confirm">Confirm</string>
+    <string name="text_label_yes">YES</string>
+    <string name="text_label_cancel">CANCEL</string>
+    <string name="text_label_ok">OK</string>
+    <string name="text_label_no">NO</string>
+    <string name="txt_label_contact_rm">Contact your RM</string>
+    <string name="txt_label_rm">Representatives</string>
+    <string name="call_alert_message">"Do you want to call?"</string>
+    <string name="splash_screen_image_key">splash_image_url</string>
+    <string name="agic_init">agic_init</string>
+
+    <string name="msg_calendar">Are you sure you want to save this Event in your Calendar?</string>
+    <string name="conferences">Conferences</string>
+
+    <string name="txt_label_notification_history_label">The changes will reflect in your live schedule</string>
+    <string name="hint_label_search">Search</string>
+    <string name="btn_label_submit">Submit</string>
+    <string name="txt_label_feedback">It is our endeavor to constantly improve, and hence, we request you to provide your valuable feedback</string>
+    <string name="txt_label_date">Date</string>
+    <string name="txt_label_time">Time</string>
+    <string name="txt_label_status">Status</string>
+    <string name="txt_label_corporate">Corporate</string>
+    <string name="txt_label_client">Client</string>
+    <string name="txt_label_dayWise">Day Wise</string>
+    <string name="txt_label_clientWise">Client Wise</string>
+    <string name="txt_label_roomNo">Room No</string>
+</resources>

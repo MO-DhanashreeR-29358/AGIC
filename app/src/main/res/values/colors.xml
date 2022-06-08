@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+<!--    <color name="black_overlay">#66000000</color>-->
+
+<!--    <color name="colorPrimary">@color/branding_color_primary</color>-->
+<!--    <color name="colorPrimaryDark">@color/branding_color_primary_dark</color>-->
+<!--    <color name="colorAccent">@color/light_blue_700</color>-->
+
+<!--    <color name="brown">#63420C</color>-->
+<!--    <color name="black">#000000</color>-->
+
+<!--    &lt;!&ndash;Background Colors&ndash;&gt;-->
+<!--    <color name="primary_background_color">@color/white</color>-->
+<!--    <color name="primary_background_color_light">@color/_material_grey_100</color>-->
+<!--    <color name="alternate_background_color">@color/colorPrimary</color>-->
+
+<!--    <color name="primary_background_color_alternate">@color/_material_grey_800</color>-->
+<!--    <color name="title_bar_background_color">@color/primary_background_color_alternate</color>-->
+
+<!--    <color name="tab_background_color">@color/primary_background_color_light</color>-->
+<!--    <color name="tab_indicator_color">@color/branding_color_primary</color>-->
+<!--    <color name="side_indicator_color">@color/branding_color_primary</color>-->
+
+<!--    <color name="progress_bar_background_color">#AA000000</color>-->
+
+<!--    &lt;!&ndash;List Background Colors&ndash;&gt;-->
+<!--    <color name="list_item_bg">@color/_material_grey_100</color>-->
+<!--    <color name="list_item_alternate_bg">@color/white</color>-->
+
+<!--    &lt;!&ndash;Text Colors&ndash;&gt;-->
+<!--    <color name="text_color_primary">@color/text_color_primary_black</color>-->
+<!--    <color name="text_color_secondary">@color/text_color_secondary_black</color>-->
+<!--    <color name="text_color_disabled">@color/text_color_disabled_black</color>-->
+<!--    <color name="text_color_primary_alternate">@color/white</color>-->
+
+<!--    <color name="text_color_red">@color/_red</color>-->
+<!--    <color name="background_dark_grey">@color/dark_grey</color>-->
+<!--    <color name="background_black">@color/black</color>-->
+
+<!--    <color name="drawer_list_color">@color/colorPrimary</color>-->
+<!--    <color name="customer_form_primary_background_color">@color/_material_grey_300</color>-->
+<!--    <color name="color_negative">@color/_red</color>-->
+<!--    <color name="button_primary_ripple">@color/colorPrimaryDark</color>-->
+<!--    <color name="button_primary_background_color">@color/colorPrimary</color>-->
+<!--    <color name="button_primary_disabled_background_color">@color/_material_grey_400</color>-->
+<!--    <color name="button_text_color">@color/white</color>-->
+<!--    <color name="alternate_background">@color/_material_grey_200</color>-->
+<!--    <color name="text_color_header">@color/branding_color_accent</color>-->
+
+<!--    <color name="tab_background_selected">@color/_material_grey_800</color>-->
+<!--    <color name="tab_background_unselected">@color/_material_grey_500</color>-->
+<!--    <color name="dark_blue">#006ab6</color>-->
+<!--    <color name="dark_purple">#FF9C27B0</color>-->
+</resources>
