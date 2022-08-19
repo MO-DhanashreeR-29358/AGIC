@@ -217,26 +217,26 @@ object GamoogaDependencies {
 
 
 object MofslArtifactDependencies {
-    const val scanner = "MofslArtifacts:scannerapi:1.0.6"
-    const val wear = "MofslArtifacts:wearapi:1.0.5"
+    /*const val scanner = "MofslArtifacts:scannerapi:1.0.6"
+    const val wear = "MofslArtifacts:wearapi:1.0.5"*/
     const val apiCore = "MofslArtifacts:apicore:1.0.3"
     const val loginApi = "MofslArtifacts:loginapi:1.0.11"
     const val validator = "MofslArtifacts:validator:1.1.1"
     const val annotation = "MofslArtifacts:annotations:1.0.2"
     const val moslCommons = "MofslArtifacts:moslcommons:1.1.0-alpha4"
     const val appCore = "MofslArtifacts:appcore:1.1.0-alpha6"
-    const val navigator = "MofslArtifacts:navigator:1.0.7"
-    const val appCoreUI = "MofslArtifacts:appcoreui:1.1.1-alpha1"
+    const val navigator = "MofslArtifacts:navigator:1.0.9"
+    const val appCoreUI = "MofslArtifacts:appcoreui:1.1.1-alpha2"
     const val tokenManager = "MofslArtifacts:tokenmanager:1.1.0"
     const val groupie = "MofslArtifacts:groupie_extensions:1.0.8"
     const val tableView = "MofslArtifacts:tableview:1.1.0"
     const val tableViewX = "MofslArtifacts:tableview_extensions:1.1.0"
-    const val tradingCore = "MofslArtifacts:tradingcore:1.0.4"
-    const val tradingCoreUi = "MofslArtifacts:tradingcoreui:1.0.3-alpha1"
+   /* const val tradingCore = "MofslArtifacts:tradingcore:1.0.4"
+    const val tradingCoreUi = "MofslArtifacts:tradingcoreui:1.0.3-alpha1"*/
     const val debugViewCore = "MofslArtifacts:debugviewcore:1.0.2"
     const val contactPicker = "MofslArtifacts:contactpicker:1.0.2"
-    const val sockets = "TradingArtifacts:sockets:1.2.0-alpha8"
-    const val conceal = "MofslArtifacts:conceal:1.0.0"
-    const val debugView = "MofslArtifacts:debugview:1.0.6"
+   /* const val sockets = "TradingArtifacts:sockets:1.2.0-alpha8"
+    const val conceal = "MofslArtifacts:conceal:1.0.0"*/
+    const val debugView = "MofslArtifacts:debugview:2.1.3"
     const val protoModels = "MofslArtifacts:protomodels:0.0.1"
 }

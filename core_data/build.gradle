@@ -65,7 +65,7 @@ dependencies {
 
   debugImplementation OkHttpDependencies.logger
   debugImplementation OkHttpDependencies.core
-  implementation MofslArtifactDependencies.conceal
+//  implementation MofslArtifactDependencies.conceal
 
   implementation MofslArtifactDependencies.moslCommons
   implementation MofslArtifactDependencies.appCore

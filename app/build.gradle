@@ -201,7 +201,7 @@ dependencies {
     debugImplementation OkHttpDependencies.logger
 
     debugImplementation MofslArtifactDependencies.debugViewCore
-    debugImplementation MofslArtifactDependencies.debugView
+//    debugImplementation MofslArtifactDependencies.debugView
     debugImplementation AndroidxDependencies.multiDex
     implementation MofslArtifactDependencies.appCoreUI
     implementation MofslArtifactDependencies.validator
