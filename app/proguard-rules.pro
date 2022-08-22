@@ -19,10 +19,10 @@
 
 # Other App related rules
 
--keep class com.mosl.mobile.login.UserType {*;}
+-keep class com.mosl.volunteer.login.UserType {*;}
 
 -keep class  com.gamooga.pushamplify.bridge.BridgePushHandler
 -keepclassmembers enum * { *; }
--keep class com.mosl.mobile.appuser.model.User
--keep class com.mosl.mobile.domain.** { *; }
--keep class com.mosl.mobile.data.** { *; }
+-keep class com.mosl.volunteer.appuser.model.User
+-keep class com.mosl.volunteer.domain.** { *; }
+-keep class com.mosl.volunteer.data.** { *; }

@@ -39,7 +39,7 @@ android {
     keystoreProps.load(new FileInputStream(file('../keystore.properties')))
 
     defaultConfig {
-        applicationId "com.mosl.agicapp"
+        applicationId "com.mosl.volunteer"
         minSdkVersion Versions.minSdkVersion
         targetSdkVersion Versions.targetSdkVersion
 

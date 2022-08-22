@@ -11,7 +11,6 @@ import com.mosl.data.api.feedback.FeedbackRequest
 import com.mosl.data.api.feedback.FeedbackResponseItem
 import com.mosl.data.api.feedback.SubmitFeedbackRequest
 import com.mosl.data.api.login.LoginInfoRequest
-import com.mosl.data.api.login.LoginInfoResponse
 import com.mosl.data.api.login.RmDataResponse
 import com.mosl.data.api.newsletter.NewsLetterResponseItem
 import com.mosl.data.api.notification.NotificationRequest
@@ -20,7 +19,7 @@ import com.mosl.data.api.overviewpager.*
 import com.mosl.data.api.panel.PanelDataResponse
 import com.mosl.data.api.schedule.ScheduleRequest
 import com.mosl.data.api.schedule.ScheduleResponseItem
-import com.mosl.mobile.demo.UserResponse
+import com.mosl.volunteer.demo.UserResponse
 import io.reactivex.Observable
 import retrofit2.http.*
 

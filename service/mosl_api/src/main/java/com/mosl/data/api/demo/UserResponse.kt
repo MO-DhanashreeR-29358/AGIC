@@ -1,4 +1,4 @@
-package com.mosl.mobile.demo
+package com.mosl.volunteer.demo
 
 
 data class UserResponse(

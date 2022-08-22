@@ -7,7 +7,7 @@
 
         <variable
             name="viewmodel"
-            type="com.mosl.mobile.demo.AuthViewModel"
+            type="com.mosl.volunteer.demo.AuthViewModel"
             />
 
     </data>

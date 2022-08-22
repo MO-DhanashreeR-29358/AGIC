@@ -1,0 +1,72 @@
+package com.mosl.volunteer.core
+
+import android.os.Bundle
+import androidx.annotation.CallSuper
+import com.mosl.app.core.events.DataAction
+import com.mosl.app.core.prefs.StringPreference
+import com.mosl.app.coreui.base.BaseFragment
+import com.mosl.volunteer.annotations.ClientCode
+import com.mosl.volunteer.menu.ScreenNavigator
+import io.reactivex.Observable
+import javax.inject.Inject
+
+open class MOSLCommonFragment : BaseFragment() {
+    @field:ClientCode
+    lateinit var clientCode: StringPreference
+    @Inject
+    lateinit var screenNavigator: ScreenNavigator
+
+    protected fun onFetchCalled(): Observable<DataAction> {
+        return dataActionSubject.filter { event -> event === DataAction.Fetch }
+    }
+
+    protected fun onRetryCalled(): Observable<DataAction> {
+        return dataActionSubject.filter { event -> event === DataAction.Retry && isDataEmpty() }
+    }
+
+    protected fun onRefreshCalled(): Observable<DataAction> {
+        return dataActionSubject.filter { event -> event === DataAction.Refresh }
+    }
+
+    fun pageNotAccessible() {
+        screenNavigator.pageNotAccessible()
+    }
+
+
+    fun navigateTo(
+        id: Int,
+        bundle: Bundle,
+        addStack: Boolean
+    ) {
+        val activity = activity
+        if (activity != null) {
+            hideKeyboard(activity.currentFocus)
+            screenNavigator.openPage(id, bundle, addStack)
+        }
+    }
+
+    fun goBackOnce() {
+        screenNavigator.goBack()
+    }
+
+    fun goBackWithResult(args: Bundle) {
+        screenNavigator.goBack(args)
+    }
+
+    fun setNotificationUpdate(
+    ) {
+        (requireActivity() as MOSLCommonActivity).setNotificationUpdate()
+    }
+
+    fun setFeedbackBadgeVisiblity(
+
+    ) {
+        (requireActivity() as MOSLCommonActivity).FeedbackBadgeVisiblity()
+    }
+
+    @CallSuper
+    override fun onFragmentResume() {
+        super.onFragmentResume()
+//    Crashlytics.setString("VisiblePage", this.toString())
+    }
+}
