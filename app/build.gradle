@@ -39,7 +39,7 @@ android {
     keystoreProps.load(new FileInputStream(file('../keystore.properties')))
 
     defaultConfig {
-        applicationId "com.mosl.volunteer"
+        applicationId "com.mosl.mobile.volunteer"
         minSdkVersion Versions.minSdkVersion
         targetSdkVersion Versions.targetSdkVersion
 

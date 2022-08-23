@@ -1,4 +1,4 @@
-package com.mosl.volunteer;
+package com.mosl.mobile.volunteer;
 
 import android.util.Log;
 import androidx.annotation.NonNull;

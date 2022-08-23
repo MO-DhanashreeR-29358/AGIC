@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:486598385892:android:cdff0586df9f3f59ad8cf1",
         "android_client_info": {
-          "package_name": "com.mosl.agicapp"
+          "package_name": "com.mosl.mobile.volunteer"
         }
       },
       "oauth_client": [
@@ -46,7 +46,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:486598385892:android:795d807593983a6ead8cf1",
         "android_client_info": {
-          "package_name": "com.mosl.agicapp.debug"
+          "package_name": "com.mosl.mobile.volunteer.debug"
         }
       },
       "oauth_client": [
@@ -118,7 +118,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:486598385892:android:914e9f0a67bcde23ad8cf1",
         "android_client_info": {
-          "package_name": "com.mosl.agicapp.internal.debug"
+          "package_name": "com.mosl.mobile.volunteer.internal.debug"
         }
       },
       "oauth_client": [

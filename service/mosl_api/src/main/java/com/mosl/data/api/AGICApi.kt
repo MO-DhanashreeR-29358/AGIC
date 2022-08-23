@@ -19,7 +19,7 @@ import com.mosl.data.api.overviewpager.*
 import com.mosl.data.api.panel.PanelDataResponse
 import com.mosl.data.api.schedule.ScheduleRequest
 import com.mosl.data.api.schedule.ScheduleResponseItem
-import com.mosl.volunteer.demo.UserResponse
+import com.mosl.mobile.volunteer.demo.UserResponse
 import io.reactivex.Observable
 import retrofit2.http.*
 
