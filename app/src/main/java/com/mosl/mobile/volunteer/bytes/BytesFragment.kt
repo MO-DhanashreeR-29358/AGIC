@@ -6,6 +6,7 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.jakewharton.rxbinding3.swiperefreshlayout.refreshes
 import com.mosl.app.core.error.ErrorModel
 import com.mosl.app.core.error.ErrorState
 import com.mosl.app.core.events.DataAction
@@ -21,6 +22,7 @@ import com.mosl.mobile.volunteer.databinding.FragmentBytesBinding
 import com.mosl.mobile.volunteer.domain.bytes.BytesData
 import com.mosl.mobile.volunteer.domain.bytes.BytesItemModel
 import com.mosl.mobile.volunteer.domain.bytes.BytesResponse
+import com.mosl.mobile.volunteer.util.toggleProgressBar
 import com.mosl.shared.AppDateFormats
 import com.mosl.shared.util.getFormatedDate
 import com.xwray.groupie.GroupAdapter

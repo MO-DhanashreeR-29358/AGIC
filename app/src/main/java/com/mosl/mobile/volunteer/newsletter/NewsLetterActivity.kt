@@ -9,6 +9,7 @@ import android.view.animation.AnimationUtils
 import android.widget.ExpandableListView.OnGroupExpandListener
 import com.bumptech.glide.Glide
 import com.google.gson.Gson
+import com.jakewharton.rxbinding3.view.clicks
 import com.mosl.app.core.error.getErrorOnFailure
 import com.mosl.app.core.events.DataAction
 import com.mosl.app.core.network.isNetworkConnected

@@ -31,6 +31,7 @@ import com.f2prateek.rx.preferences2.Preference
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import com.google.gson.Gson
+import com.jakewharton.rxbinding3.appcompat.navigationClicks
 import com.mosl.annotations.FcmToken
 import com.mosl.app.core.data.fcm.FcmTokenSyncHelper
 import com.mosl.app.core.error.getErrorOnFailure
@@ -41,7 +42,9 @@ import com.mosl.app.core.prefs.IntegerPreference
 import com.mosl.app.core.prefs.StringPreference
 import com.mosl.app.core.rx.applyUiModel
 import com.mosl.app.core.utils.getUuid
+import com.mosl.app.core.utils.hide
 import com.mosl.app.core.utils.hideKeyBoard
+import com.mosl.app.core.utils.show
 import com.mosl.app.coreui.base.ActivityDelegate
 import com.mosl.app.coreui.base.BaseActivity
 import com.mosl.app.coreui.base.NavigationElement

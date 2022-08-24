@@ -237,6 +237,6 @@ object MofslArtifactDependencies {
     const val contactPicker = "MofslArtifacts:contactpicker:1.0.2"
    /* const val sockets = "TradingArtifacts:sockets:1.2.0-alpha8"
     const val conceal = "MofslArtifacts:conceal:1.0.0"*/
-    const val debugView = "MofslArtifacts:debugview:2.1.3"
+    const val debugView = "MofslArtifacts:debugview:1.0.7"
     const val protoModels = "MofslArtifacts:protomodels:0.0.1"
 }

@@ -5,6 +5,7 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.jakewharton.rxbinding3.swiperefreshlayout.refreshes
 import com.mosl.app.core.error.ErrorModel
 import com.mosl.app.core.error.ErrorState
 import com.mosl.app.core.events.DataAction
@@ -23,6 +24,7 @@ import com.mosl.mobile.volunteer.core.MOSLCommonActivity
 import com.mosl.mobile.volunteer.core.MOSLCommonFragment
 import com.mosl.mobile.volunteer.databinding.FragmentNotificationHistoryBinding
 import com.mosl.mobile.volunteer.domain.notification.NotificationResponse
+import com.mosl.mobile.volunteer.util.toggleProgressBar
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
 import io.reactivex.Observable
