@@ -56,7 +56,7 @@ class LoginActivity : LeanBaseActivity(), Navigator, LoginView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        binding = ActivityLoginBinding.bind(findViewById(R.id.layout))
+        binding = ActivityLoginBinding.bind(findViewById(R.id.login_layout))
         presenter.start()
         initData()
     }
