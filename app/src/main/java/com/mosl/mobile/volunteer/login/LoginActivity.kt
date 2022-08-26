@@ -45,7 +45,7 @@ class LoginActivity : LeanBaseActivity(), Navigator, LoginView {
 
     @Inject
     @field:RemoteConfigData
-    lateinit var remoteCongigData: StringPreference
+    lateinit var remoteConfigData: StringPreference
     @Inject
     lateinit var gson: Gson
 
@@ -56,19 +56,17 @@ class LoginActivity : LeanBaseActivity(), Navigator, LoginView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        binding = ActivityLoginBinding.bind(findViewById(R.id.constrainLaout))
+        binding = ActivityLoginBinding.bind(findViewById(R.id.layout))
         presenter.start()
         initData()
     }
 
     private fun initData() {
         val banner: RemoteConfigModel? =
-            gson.fromJson(remoteCongigData.get(), RemoteConfigModel::class.java)
+            gson.fromJson(remoteConfigData.get(), RemoteConfigModel::class.java)
         Glide.with(this)
             .load(banner?.logo)
             .into(binding.imgBanner)
-        binding.txtYear.text = banner?.year
-        binding.txtAgic.text = banner?.conferenceName
     }
 
     internal fun openDashboard() {
@@ -89,9 +87,8 @@ class LoginActivity : LeanBaseActivity(), Navigator, LoginView {
         return binding.txtLogin.clicks()
     }
 
-
     override fun onDoneClicked(): Observable<Int> {
-        return binding.editUniqueCode.editorActions { event -> event == EditorInfo.IME_ACTION_DONE }
+        return binding.etUserId.editorActions { event -> event == EditorInfo.IME_ACTION_DONE }
     }
 
     override fun renderLogin(uiModel: UiModel<RmUser>) {
@@ -111,18 +108,18 @@ class LoginActivity : LeanBaseActivity(), Navigator, LoginView {
         alertMessage(message = errorOnFailure.getResolvedMessage(applicationContext))
     }
 
-    lateinit var bindingDialog: AlertDialogBinding
+    private lateinit var bindingDialog: AlertDialogBinding
 
-    internal fun alertMessage(message: String) {
+    private fun alertMessage(message: String) {
 
         //Inflate the dialog with custom view
-        val mDialogView = LayoutInflater.from(this).inflate(R.layout.alert_dialog, null)
+        val dialogView = LayoutInflater.from(this).inflate(R.layout.alert_dialog, null)
 
-        bindingDialog = AlertDialogBinding.bind(mDialogView)
+        bindingDialog = AlertDialogBinding.bind(dialogView)
 
 
         val mBuilder = AlertDialog.Builder(this)
-            .setView(mDialogView)
+            .setView(dialogView)
         val mAlertDialog = mBuilder.show()
         bindingDialog.txtError.text = message
 
@@ -133,13 +130,13 @@ class LoginActivity : LeanBaseActivity(), Navigator, LoginView {
         }
     }
 
-    override fun getUniqueCode(): String {
-        return binding.editUniqueCode.text?.trim()
+    override fun getUserId(): String {
+        return binding.etUserId.text?.trim()
             .toString()
     }
 
     override fun getDeviceId(): String {
-        return getDeviceID(getApplicationContext().getContentResolver())
+        return getDeviceID(applicationContext.contentResolver)
     }
 
     override fun isDataEmpty(): Boolean {

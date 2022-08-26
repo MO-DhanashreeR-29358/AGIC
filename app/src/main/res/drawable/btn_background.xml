@@ -2,6 +2,9 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:padding="10dp"
     android:shape="rectangle">
-    <solid android:color="@color/login_btn_back_color" />
-    <corners android:radius="@dimen/margin_large" />
+    <solid android:color="@color/white" />
+    <stroke
+        android:color="@color/black"
+        android:width="@dimen/btn_border_width"/>
+    <corners android:radius="@dimen/margin_extra_small" />
 </shape>

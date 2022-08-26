@@ -215,9 +215,9 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
     private fun setUpView() {
 
 //        binding.txtFundName.setText(userManager.user.fundName)
-        binding.txtName.setText(userManager.user.name)
+        binding.txtName.text = userManager.user.name
 //        binding.txtFundName.setEllipsize(TextUtils.TruncateAt.MARQUEE)
-        binding.txtName.setEllipsize(TextUtils.TruncateAt.MARQUEE)
+        binding.txtName.ellipsize = TextUtils.TruncateAt.MARQUEE
 //        binding.txtFundName.isSelected = true
         binding.txtName.isSelected = true
 
@@ -251,7 +251,7 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
         val runnable = object : Runnable {
             override fun run() {
                 if (isNetworkConnected()) {
-                    ImageViewAnimatedChange()
+                    changeAnimationImageView()
                 }
                 handler.postDelayed(this, 20000)
             }
@@ -260,12 +260,12 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
     }
 
 
-    fun ImageViewAnimatedChange() {
+    fun changeAnimationImageView() {
 
-        val anim_out = AnimationUtils.loadAnimation(this@MOSLCommonActivity, R.anim.fade_out_image)
-        val anim_in = AnimationUtils.loadAnimation(this@MOSLCommonActivity, R.anim.fade_in_image)
+        val animOut = AnimationUtils.loadAnimation(this@MOSLCommonActivity, R.anim.fade_out_image)
+        val animIn = AnimationUtils.loadAnimation(this@MOSLCommonActivity, R.anim.fade_in_image)
 
-        anim_out.setAnimationListener(object : Animation.AnimationListener {
+        animOut.setAnimationListener(object : Animation.AnimationListener {
 
             override fun onAnimationStart(animation: Animation) {}
             override fun onAnimationRepeat(animation: Animation) {}
@@ -273,7 +273,7 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
                 binding.imgLogo.visibility = View.GONE
                 binding.imgLogoTemp.visibility = View.VISIBLE
 
-                anim_in.setAnimationListener(object : Animation.AnimationListener {
+                animIn.setAnimationListener(object : Animation.AnimationListener {
                     override fun onAnimationStart(animation: Animation) {}
                     override fun onAnimationRepeat(animation: Animation) {}
                     override fun onAnimationEnd(animation: Animation) {
@@ -282,11 +282,11 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
                         binding.imgLogoTemp.visibility = View.GONE
                     }
                 })
-                binding.imgLogo.startAnimation(anim_in)
+                binding.imgLogo.startAnimation(animIn)
 
             }
         })
-        binding.imgLogo.startAnimation(anim_out)
+        binding.imgLogo.startAnimation(animOut)
     }
 
 
@@ -304,7 +304,7 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
                         NavigationConstants.NAVIGATE_TO_RM_CLIENT_OVERVIEW
                     )
             )
-            binding.tabLayout.addOnTabSelectedListener(tabSelectedListner)
+            binding.tabLayout.addOnTabSelectedListener(tabSelectedListener)
 
 //            screenNavigator.openPage(NavigationConstants.NAVIGATE_TO_OVERVIEW)
 
@@ -312,12 +312,12 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
     }
 
 
-    internal val tabSelectedListner = object : TabLayout.OnTabSelectedListener {
+    private val tabSelectedListener = object : TabLayout.OnTabSelectedListener {
         override fun onTabSelected(tab: TabLayout.Tab) {
 
             setColorFilter(tab.icon, baseContext.setColor(R.color.blue))
             if (tab.tag as Int == NavigationConstants.NAVIGATE_TO_PDF) {
-                val ft = getSupportFragmentManager().beginTransaction()
+                val ft = supportFragmentManager.beginTransaction()
                 if (userManager.getPdf().isNotEmpty()) {
                     PdfFragment.newInstance()
                         .show(ft, "")
@@ -439,7 +439,7 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
         }
     }
 
-    fun navigateTo(
+    private fun navigateTo(
         id: Int,
         bundle: Bundle,
         addStack: Boolean
@@ -598,7 +598,7 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
             })
     }
 
-    fun Throwable.showOnFailurePopup() {
+    private fun Throwable.showOnFailurePopup() {
         val errorOnFailure = this.getErrorOnFailure()
         alertMessage(message = errorOnFailure.getResolvedMessage(applicationContext))
     }

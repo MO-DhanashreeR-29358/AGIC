@@ -86,4 +86,8 @@
     <string name="txt_label_dayWise">Day Wise</string>
     <string name="txt_label_clientWise">Client Wise</string>
     <string name="txt_label_roomNo">Room No</string>
+
+    <!-- Attendance App Module -->
+    <string name="txt_label_user_id">User Id</string>
+    <string name="tv_password">Password</string>
 </resources>
