@@ -106,7 +106,7 @@ class LoginActivity : LeanBaseActivity(), Navigator, LoginView {
         }
     }
 
-    fun Throwable.showOnFailurePopup() {
+    private fun Throwable.showOnFailurePopup() {
         val errorOnFailure = this.getErrorOnFailure()
         alertMessage(message = errorOnFailure.getResolvedMessage(applicationContext))
     }

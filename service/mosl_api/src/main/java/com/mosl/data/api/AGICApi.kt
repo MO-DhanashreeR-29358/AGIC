@@ -30,7 +30,7 @@ interface AGICApi {
         @Body request: LoginInfo
     ): UserResponse
 
-    @POST("GetRMData")
+    @POST("GetVolunteerCorporate")
     fun userLogin(@Body request: LoginInfoRequest): Observable<BaseResponseAgic<List<RmDataResponse>>>
 
     @POST("GetBroucherDetails")

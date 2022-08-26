@@ -23,7 +23,7 @@ object LoginValidator : Validator<LoginFormInput, LoginRequest>() {
       withData(
           LoginRequest(
               uniqueId = input.uniqueId,
-              deviceId = input.deviceId
+              deviceId = "2022-06-09"
           )
       )
     }

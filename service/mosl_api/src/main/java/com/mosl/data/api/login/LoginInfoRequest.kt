@@ -7,6 +7,6 @@ data class LoginInfoRequest(
 //  @JvmField @SerializedName("UniqueID")
   @JvmField @SerializedName("EmpId")
    val uniqueId: String,
-  @JvmField @SerializedName("DeviceID")
+  @JvmField @SerializedName("ConfDate")
    val deviceId: String
 )
