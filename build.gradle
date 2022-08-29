@@ -18,7 +18,7 @@ buildscript {
     }
     maven { url "https://jitpack.io" }
     maven {
-      url 'http://192.168.103.116:9090/artifactory/libs-release-local'
+      url 'http://192.168.101.169:9090/artifactory/libs-release-local'
     }
   }
   dependencies {
@@ -48,7 +48,7 @@ allprojects {
     }
     maven { url "https://jitpack.io" }
     maven {
-      url 'http://192.168.103.116:9090/artifactory/libs-release-local'
+      url 'http://192.168.101.169:9090/artifactory/libs-release-local'
     }
   }
 

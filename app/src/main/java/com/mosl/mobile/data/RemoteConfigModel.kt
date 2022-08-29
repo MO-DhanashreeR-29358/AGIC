@@ -9,7 +9,8 @@ data class RemoteConfigModel(
     @JvmField @SerializedName("year")var year:String,
     @JvmField @SerializedName("conferenceName")var conferenceName:String,
     @JvmField @SerializedName("conferenceLogo")var conferenceLogo:String,
-    @JvmField @SerializedName("android")var android:AndroidModel
+    @JvmField @SerializedName("android")var android:AndroidModel,
+    @JvmField @SerializedName("loginLogo")var loginLogo: String
 )
 
 data class AndroidModel(
