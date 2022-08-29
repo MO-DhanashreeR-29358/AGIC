@@ -246,7 +246,7 @@ dependencies {
     //Android Room
     implementation RoomDependencies.ktx
     implementation RoomDependencies.runtime
-    kapt RoomDependencies.compiler
+    annotationProcessor  RoomDependencies.compiler
 
     implementation AndroidxDependencies.preferenceKotlin
 
