@@ -33,8 +33,194 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/header"/>
 
+            <TextView
+                style="@style/AttendanceApp.Text.Bold"
+                android:id="@+id/tv_fund_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="@dimen/_100sdp"
+                android:layout_marginStart="@dimen/margin_medium"
+                android:layout_marginTop="@dimen/_100sdp"
+                android:text="@string/tv_fund_name_label"
+                android:gravity="start"
+                android:textSize="@dimen/text_size_large"
+                android:contentDescription="@string/tv_fund_name_label"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/bt_fund_name"
+                app:layout_constraintTop_toBottomOf="@id/tv_corporate_name" />
+
+            <TextView
+                style="@style/AttendanceApp.Button"
+                android:id="@+id/bt_fund_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="@dimen/_100sdp"
+                android:paddingVertical="@dimen/margin_medium"
+                android:paddingHorizontal="@dimen/margin_large"
+                android:layout_marginTop="@dimen/_100sdp"
+                android:layout_marginHorizontal="@dimen/margin_medium"
+                android:textSize="@dimen/text_size_large"
+                android:scrollHorizontally="true"
+                app:layout_constraintStart_toEndOf="@id/tv_fund_name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_corporate_name"/>
+
+            <TextView
+                style="@style/AttendanceApp.Text.Bold"
+                android:id="@+id/tv_client_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="@dimen/_100sdp"
+                android:layout_marginStart="@dimen/margin_medium"
+                android:layout_marginTop="@dimen/margin_large"
+                android:text="@string/tv_client_name_label"
+                android:gravity="start"
+                android:textSize="@dimen/text_size_large"
+                android:contentDescription="@string/tv_client_name_label"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/bt_client_name"
+                app:layout_constraintTop_toBottomOf="@id/bt_fund_name" />
+
+            <TextView
+                style="@style/AttendanceApp.Button"
+                android:id="@+id/bt_client_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="@dimen/_100sdp"
+                android:paddingVertical="@dimen/margin_medium"
+                android:paddingHorizontal="@dimen/margin_large"
+                android:layout_marginTop="@dimen/margin_large"
+                android:layout_marginHorizontal="@dimen/margin_medium"
+                android:textSize="@dimen/text_size_large"
+                android:scrollHorizontally="true"
+                app:layout_constraintStart_toEndOf="@id/tv_client_name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/bt_fund_name"/>
+
+            <TextView
+                style="@style/AttendanceApp.Text.Bold"
+                android:id="@+id/tv_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="@dimen/_100sdp"
+                android:layout_marginStart="@dimen/margin_medium"
+                android:layout_marginTop="@dimen/margin_large"
+                android:text="@string/tv_status_label"
+                android:gravity="start"
+                android:textSize="@dimen/text_size_large"
+                android:contentDescription="@string/tv_status_label"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/bt_status"
+                app:layout_constraintTop_toBottomOf="@id/bt_client_name" />
+
+            <TextView
+                style="@style/AttendanceApp.Button"
+                android:id="@+id/bt_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="@dimen/_100sdp"
+                android:paddingVertical="@dimen/margin_medium"
+                android:paddingHorizontal="@dimen/margin_large"
+                android:layout_marginTop="@dimen/margin_large"
+                android:layout_marginHorizontal="@dimen/margin_medium"
+                android:textSize="@dimen/text_size_large"
+                android:scrollHorizontally="true"
+                android:text="@string/bt_status_unregistered_label"
+                android:textColor="@color/color_error"
+                app:layout_constraintStart_toEndOf="@id/tv_status"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/bt_client_name"/>
 
 
+            <TextView
+                style="@style/AttendanceApp.Text.Bold"
+                android:id="@+id/tv_slot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="@dimen/_100sdp"
+                android:layout_marginStart="@dimen/margin_medium"
+                android:layout_marginTop="@dimen/margin_large"
+                android:text="@string/tv_time_slot_label"
+                android:gravity="start"
+                android:textSize="@dimen/text_size_large"
+                android:contentDescription="@string/tv_time_slot_label"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/bt_slot"
+                app:layout_constraintTop_toBottomOf="@id/bt_status" />
+
+            <TextView
+                style="@style/AttendanceApp.Button"
+                android:id="@+id/bt_slot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="@dimen/_100sdp"
+                android:paddingVertical="@dimen/margin_medium"
+                android:paddingHorizontal="@dimen/margin_large"
+                android:layout_marginTop="@dimen/margin_large"
+                android:layout_marginHorizontal="@dimen/margin_medium"
+                android:textSize="@dimen/text_size_large"
+                android:text="@string/bt_time_slot_na_label"
+                android:gravity="center"
+                android:textColor="@color/color_error"
+                android:scrollHorizontally="true"
+                app:layout_constraintStart_toEndOf="@id/tv_slot"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/bt_status"/>
+
+            <TextView
+                style="@style/AttendanceApp.Button"
+                android:id="@+id/bt_allow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingVertical="@dimen/margin_medium"
+                android:paddingHorizontal="@dimen/margin_large"
+                android:layout_marginTop="@dimen/margin_30"
+                android:layout_marginHorizontal="@dimen/margin_medium"
+                android:textSize="@dimen/text_size_large"
+                android:text="@string/bt_allow_label"
+                android:contentDescription="@string/bt_allow_label"
+                android:scrollHorizontally="true"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/bt_slot"/>
+
+            <TextView
+                style="@style/AttendanceApp.Button"
+                android:id="@+id/bt_yes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="@dimen/_100sdp"
+                android:paddingVertical="@dimen/margin_medium"
+                android:paddingHorizontal="@dimen/margin_large"
+                android:layout_marginTop="@dimen/margin_30"
+                android:layout_marginHorizontal="@dimen/margin_medium"
+                android:textSize="@dimen/text_size_large"
+                android:gravity="center"
+                android:text="@string/bt_yes_label"
+                android:contentDescription="@string/bt_yes_label"
+                android:scrollHorizontally="true"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/bt_no"
+                app:layout_constraintTop_toBottomOf="@id/bt_allow"/>
+
+            <TextView
+                style="@style/AttendanceApp.Button"
+                android:id="@+id/bt_no"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="@dimen/_100sdp"
+                android:paddingVertical="@dimen/margin_medium"
+                android:paddingHorizontal="@dimen/margin_large"
+                android:layout_marginTop="@dimen/margin_30"
+                android:layout_marginHorizontal="@dimen/margin_medium"
+                android:gravity="center"
+                android:textSize="@dimen/text_size_large"
+                android:text="@string/bt_no_label"
+                android:contentDescription="@string/bt_no_label"
+                android:scrollHorizontally="true"
+                app:layout_constraintStart_toEndOf="@id/bt_yes"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/bt_allow"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
