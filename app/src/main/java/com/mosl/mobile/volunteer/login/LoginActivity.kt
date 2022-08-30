@@ -21,7 +21,7 @@ import com.mosl.commons.data.onSuccess
 import com.mosl.commons.date.CalendarUtils
 import com.mosl.mobile.volunteer.R
 import com.mosl.mobile.volunteer.annotations.RemoteConfigData
-import com.mosl.mobile.volunteer.appuser.model.RmUser
+import com.mosl.mobile.volunteer.appuser.model.Volunteer
 import com.mosl.mobile.volunteer.core.MOSLCommonActivity
 import com.mosl.mobile.volunteer.data.RemoteConfigModel
 import com.mosl.mobile.volunteer.databinding.ActivityLoginBinding
@@ -31,7 +31,6 @@ import com.mosl.navigator.AuthorizationState
 import com.mosl.navigator.FragmentNavigationEntry
 import com.mosl.navigator.Navigator
 import com.mosl.shared.AppDateFormats
-import com.mosl.shared.util.getDeviceID
 import io.reactivex.Observable
 import javax.inject.Inject
 
@@ -93,7 +92,7 @@ class LoginActivity : LeanBaseActivity(), Navigator, LoginView {
         return binding.etUserId.editorActions { event -> event == EditorInfo.IME_ACTION_DONE }
     }
 
-    override fun renderLogin(uiModel: UiModel<RmUser>) {
+    override fun renderLogin(uiModel: UiModel<Volunteer>) {
         toggleProgressBar(uiModel.inProgress)
 
         uiModel.onFailure { error ->
@@ -138,7 +137,7 @@ class LoginActivity : LeanBaseActivity(), Navigator, LoginView {
     }
 
     override fun getTodaysDate(): String {
-        return AppDateFormats.df_Date6.format(CalendarUtils.today)
+        return AppDateFormats.DF_JSON_DATE_ONLY.format(CalendarUtils.today)
     }
 
     override fun isDataEmpty(): Boolean {

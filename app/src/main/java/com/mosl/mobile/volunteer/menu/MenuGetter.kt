@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import com.mosl.mobile.volunteer.bytes.BytesFragment
 import com.mosl.mobile.volunteer.constants.NavigationConstants
 import com.mosl.mobile.volunteer.corporatepager.CorporatePagerFragment
+import com.mosl.mobile.volunteer.corporateqr.CorporateNamesListFragment
+import com.mosl.mobile.volunteer.corporateqr.QrCodeScanFragment
 import com.mosl.mobile.volunteer.feedback.FeedbackFragment
 import com.mosl.mobile.volunteer.notes.NotesFragment
 import com.mosl.mobile.volunteer.notification.NotificationHistoryFragment
@@ -37,7 +39,8 @@ object MenuGetter {
             NavigationConstants.NAVIGATE_TO_NOTES -> NotesFragment()
             NavigationConstants.NAVIGATE_TO_NOTIFICATION -> NotificationHistoryFragment()
             NavigationConstants.NAVIGATE_TO_FEEDBACK -> FeedbackFragment()
-
+            NavigationConstants.NAVIGATE_TO_CORPORATE_LIST_FRAGMENT -> CorporateNamesListFragment()
+            NavigationConstants.NAVIGATE_TO_QR_CODE_SCAN_FRAGMENT -> QrCodeScanFragment()
             else -> null
         }
     }
@@ -58,6 +61,8 @@ object MenuGetter {
             NavigationConstants.NAVIGATE_TO_CORPORATE_SCHEDULE -> true
             NavigationConstants.NAVIGATE_TO_NOTIFICATION -> true
             NavigationConstants.NAVIGATE_TO_FEEDBACK -> true
+            NavigationConstants.NAVIGATE_TO_CORPORATE_LIST_FRAGMENT -> true
+            NavigationConstants.NAVIGATE_TO_QR_CODE_SCAN_FRAGMENT -> true
             else -> return false
         }
     }

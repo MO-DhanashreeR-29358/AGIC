@@ -158,63 +158,6 @@ class SplashActivity : LeanBaseActivity() {
                         remoteCongigData.set(agicInit)
                         loadSplashImage(remoteConfigModel.splash)
                         initializeApp()
-                        /*if (BuildConfig.VERSION_NAME.equals(remoteConfigModel.android.version)) {
-                            initializeApp()
-                        }
-                        else {
-
-                            if (remoteConfigModel.android.isMandatory) {
-
-                                MSFDialog.alertDialog(this@SplashActivity,
-                                    0,
-                                    resources.getString(R.string.main_app_name),
-                                    remoteConfigModel.android.releaseNote,
-                                    UPDATE,
-                                    false,
-                                    object : MSFDialog.DialogListener {
-                                        override fun alertDialogAction(
-                                            action: MSFDialog.Action,
-                                            vararg data: Any
-                                        ) {
-                                            if (action == MSFDialog.Action.OK) {
-                                                val i = Intent(
-                                                    Intent.ACTION_VIEW
-                                                )
-                                                i.data =
-                                                    Uri.parse(remoteConfigModel.android.appLink)
-                                                startActivity(i)
-                                                finish()
-                                            }
-                                        }
-                                    })
-                            } else {
-                                MSFDialog.alertDialog(this@SplashActivity,
-                                    0,
-                                    resources.getString(R.string.main_app_name),
-                                    remoteConfigModel.android.releaseNote,
-                                    UPDATE,
-                                    CONTINUE,
-                                    false,
-                                    object : MSFDialog.DialogListener {
-                                        override fun alertDialogAction(
-                                            action: MSFDialog.Action,
-                                            vararg data: Any
-                                        ) {
-                                            if (action == MSFDialog.Action.OK) {
-                                                val i = Intent(
-                                                    Intent.ACTION_VIEW
-                                                )
-                                                i.data =
-                                                    Uri.parse(remoteConfigModel.android.appLink)
-                                                startActivity(i)
-                                                finish()
-                                            } else if (action === MSFDialog.Action.CANCEL) {
-                                                initializeApp()
-                                            }
-                                        }
-                                    })
-                            }
-                        }*/
                     }
                 }
             }
@@ -227,7 +170,6 @@ class SplashActivity : LeanBaseActivity() {
     override fun clearWindowBackground(): Boolean {
         return false
     }
-
 
     internal fun openDashboard() {
         if (userManager.isLoggedIn()) {

@@ -9,6 +9,9 @@ import java.util.Locale;
  */
 
 public class AppDateFormats {
+	private static final String JSON_ONLY_DATE = "dd-MM-yyyy";
+	public static final DateFormat DF_JSON_DATE_ONLY = new SimpleDateFormat(JSON_ONLY_DATE, Locale.ENGLISH);
+
 	private static final String JSON_DATE = "dd-MM-yyyy HH:mm:ss";
 	public static final DateFormat DF_JSON_DATE = new SimpleDateFormat(JSON_DATE, Locale.ENGLISH);
 	private static final String date1 = "dd MMM yyyy";

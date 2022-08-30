@@ -1,6 +1,7 @@
 package com.mosl.mobile.volunteer.appuser.login
 
 import com.mosl.mobile.volunteer.appuser.model.RmUser
+import com.mosl.mobile.volunteer.appuser.model.Volunteer
 import com.mosl.mobile.volunteer.login.UserCache
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -14,7 +15,7 @@ class UserManagerImpl @Inject internal constructor(
     private val userCache: UserCache
 ) : UserManager {
 
-    private var user: RmUser?
+    private var user: Volunteer?
     private var isActive: Boolean = false
     private var pdfLink: String = ""
 
@@ -26,7 +27,7 @@ class UserManagerImpl @Inject internal constructor(
         this.pdfLink = userCache.getPdf()
     }
 
-    fun saveUser(user: RmUser) {
+    fun saveUser(user: Volunteer) {
         userCache.saveUser(user)
         this.user = user
 
@@ -47,7 +48,7 @@ class UserManagerImpl @Inject internal constructor(
         return pdfLink
     }
 
-    override fun getUser(): RmUser? {
+    override fun getUser(): Volunteer? {
         return user
     }
 

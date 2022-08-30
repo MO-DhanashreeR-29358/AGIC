@@ -12,6 +12,7 @@ import com.mosl.data.api.feedback.FeedbackResponseItem
 import com.mosl.data.api.feedback.SubmitFeedbackRequest
 import com.mosl.data.api.login.LoginInfoRequest
 import com.mosl.data.api.login.RmDataResponse
+import com.mosl.data.api.login.VolunteerResponse
 import com.mosl.data.api.newsletter.NewsLetterResponseItem
 import com.mosl.data.api.notification.NotificationRequest
 import com.mosl.data.api.notification.NotificationResponseItem
@@ -31,7 +32,7 @@ interface AGICApi {
     ): UserResponse
 
     @POST("GetVolunteerCorporate")
-    fun userLogin(@Body request: LoginInfoRequest): Observable<BaseResponseAgic<List<RmDataResponse>>>
+    fun userLogin(@Body request: LoginInfoRequest): Observable<BaseResponseAgic<List<VolunteerResponse>>>
 
     @POST("GetBroucherDetails")
     fun getBrochureData(): Observable<BaseResponseAgic<List<NewsLetterResponseItem>>>

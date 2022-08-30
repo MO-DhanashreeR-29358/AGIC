@@ -36,18 +36,8 @@ class ScreenNavigatorImpl @Inject constructor(
     }
 
     override fun openHome() {
-        if (userManager.user.roomNo.equals(
-                MOSLCommonActivity.ROLE_CORPORATE,
-                ignoreCase = true
-            )
-        ) {
-            openPage(NavigationConstants.NAVIGATE_TO_CORPORATE_SCHEDULE, false)
-        } else {
-            openPage(NavigationConstants.NAVIGATE_TO_SCHEDULE, false)
-
-        }
+        openPage(NavigationConstants.NAVIGATE_TO_CORPORATE_LIST_FRAGMENT, false)
     }
-
 
     override fun openPage(entry: NavigationEntry) {
         processNavigation(entry)

@@ -19,7 +19,7 @@ class NotificationPresenter @Inject constructor(
 
         val objNotificationRequestInfo = NotificationRequestInfo(
             ClientID = userManager.user.empCode,
-            Role = userManager.user.roomNo
+            Role = "userManager.user.roomNo"
         )
 
         Observable.merge(view.swipeRefresh(), onFetchCalled(), onRetryCalled())

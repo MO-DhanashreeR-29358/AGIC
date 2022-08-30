@@ -6,6 +6,10 @@ import com.mosl.mobile.volunteer.contactrm.ContactDialogFragment
 import com.mosl.mobile.volunteer.contactrm.ContactModule
 import com.mosl.mobile.volunteer.corporatepager.CorporatePagerFragment
 import com.mosl.mobile.volunteer.corporatepager.CorporatePagerModule
+import com.mosl.mobile.volunteer.corporateqr.CorporateNamesListFragment
+import com.mosl.mobile.volunteer.corporateqr.CorporateNamesListModule
+import com.mosl.mobile.volunteer.corporateqr.QrCodeScanFragment
+import com.mosl.mobile.volunteer.corporateqr.QrCodeScanModule
 import com.mosl.mobile.volunteer.corporateschedule.CorporateScheduleChildModule
 import com.mosl.mobile.volunteer.corporateschedule.CorporateScheduleFragment
 import com.mosl.mobile.volunteer.corporateschedule.CorporateScheduleRepDialogFragment
@@ -98,4 +102,10 @@ interface FragmentProvider {
 
     @ContributesAndroidInjector(modules = [])
     fun provideCorporateScheduleRepDialogFragmentFragmentFactory(): CorporateScheduleRepDialogFragment
+
+    @ContributesAndroidInjector(modules = [CorporateNamesListModule::class])
+    fun provideCorporateNamesListFragmentFactory(): CorporateNamesListFragment
+
+    @ContributesAndroidInjector(modules = [QrCodeScanModule::class])
+    fun provideQrCodeScaneFragmentFactory(): QrCodeScanFragment
 }

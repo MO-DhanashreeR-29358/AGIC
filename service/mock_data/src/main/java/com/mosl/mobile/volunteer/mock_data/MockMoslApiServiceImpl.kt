@@ -15,6 +15,7 @@ import com.mosl.data.api.feedback.FeedbackResponseItem
 import com.mosl.data.api.feedback.SubmitFeedbackRequest
 import com.mosl.data.api.login.LoginInfoRequest
 import com.mosl.data.api.login.RmDataResponse
+import com.mosl.data.api.login.VolunteerResponse
 import com.mosl.data.api.newsletter.NewsLetterResponseItem
 import com.mosl.data.api.notification.NotificationRequest
 import com.mosl.data.api.notification.NotificationResponseItem
@@ -78,7 +79,7 @@ class MockMoslApiServiceImpl(
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun userLogin(request: LoginInfoRequest): Observable<BaseResponseAgic<List<RmDataResponse>>> {
+    override fun userLogin(request: LoginInfoRequest): Observable<BaseResponseAgic<List<VolunteerResponse>>> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 

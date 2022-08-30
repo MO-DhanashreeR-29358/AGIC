@@ -3,6 +3,7 @@ package com.mosl.mobile.volunteer.appuser.login
 import com.mosl.data.api.AGICApi
 import com.mosl.data.api.fcmtoken.FcmTokenRequest
 import com.mosl.data.api.login.RmDataResponse
+import com.mosl.data.api.login.VolunteerResponse
 import com.mosl.mobile.volunteer.appuser.model.*
 import io.reactivex.Completable
 import io.reactivex.Observable
@@ -15,24 +16,19 @@ class LoginRepositoryImpl @Inject constructor(
     internal val userManager: UserManagerImpl,
     internal val userRepository: AppUserRepositoryImpl
     ) : LoginRepository {
-    override fun login(loginInfo: LoginRequest): Observable<RmUser> {
+    override fun login(loginInfo: LoginRequest): Observable<Volunteer> {
 
         val loginInfoRequest = loginInfo.mapToLoginRequest()
 
         return agicApi.userLogin(loginInfoRequest).map {
-            var data = it.data?.get(0)
-            data?.saveRmDataResponse(data,it.message)
+            val user = it.data.mapToCorporateModel(it.message)
+            userManager.saveUser(user)
+            return@map user
         }
     }
 
-    /*fun LoginInfoResponse.saveLoginResponse(): User {
-        userManager.saveUser(this.mapToLoginResponse())
-
-        return this.mapToLoginResponse()
-    }*/
-
     fun RmDataResponse.saveRmDataResponse(dataResponse: RmDataResponse,message: String): RmUser {
-        userManager.saveUser(this.mapToRmData(dataResponse,message))
+        //userManager.saveUser(this.mapToRmData(dataResponse,message))
 
         return this.mapToRmData(dataResponse,message)
     }

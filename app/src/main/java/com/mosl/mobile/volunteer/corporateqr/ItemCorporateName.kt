@@ -1,13 +1,28 @@
 package com.mosl.mobile.volunteer.corporateqr
 
+import android.os.Bundle
 import com.mosl.mobile.volunteer.R
+import com.mosl.mobile.volunteer.appuser.model.CorporateModel
+import com.mosl.mobile.volunteer.constants.NavigationConstants
 import com.mosl.mobile.volunteer.databinding.ItemAttendanceCorporateNameBinding
+import com.mosl.mobile.volunteer.menu.ScreenNavigator
 import com.xwray.groupie.databinding.BindableItem
 
-class ItemCorporateName(val corporateName: String): BindableItem<ItemAttendanceCorporateNameBinding>() {
+class ItemCorporateName(
+    private val model: CorporateModel,
+    private val navigator: ScreenNavigator
+): BindableItem<ItemAttendanceCorporateNameBinding>() {
 
     override fun bind(viewBinding: ItemAttendanceCorporateNameBinding, position: Int) {
-        viewBinding.tvCorporateName.text = corporateName
+        viewBinding.tvCorporateName.text = model.corporateName
+        viewBinding.tvCorporateName.setOnClickListener {
+            navigator.openPage(
+                pageId = NavigationConstants.NAVIGATE_TO_QR_CODE_SCAN_FRAGMENT,
+                args = Bundle().apply {
+                    putString(QrCodeScanContract.EXTRA_COMPANY_ID, model.companyId)
+                }
+            )
+        }
     }
 
     override fun getLayout(): Int {
@@ -15,19 +30,19 @@ class ItemCorporateName(val corporateName: String): BindableItem<ItemAttendanceC
     }
 
     override fun getId(): Long {
-        return corporateName.hashCode().toLong()
+        return model.hashCode().toLong()
     }
 
-    override fun equals(obj: Any?): Boolean {
-        if (this === obj) return true
-        if (obj == null || javaClass != obj.javaClass) return false
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other == null || javaClass != other.javaClass) return false
 
-        val that = obj as ItemCorporateName?
+        val that = other as ItemCorporateName?
 
-        return corporateName == that!!.corporateName
+        return model == that!!.model
     }
 
     override fun hashCode(): Int {
-        return corporateName.hashCode()
+        return model.hashCode()
     }
 }

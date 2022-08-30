@@ -23,8 +23,10 @@ import kotlin.annotation.AnnotationRetention.SOURCE
     NavigationConstants.NAVIGATE_TO_NOTES,
     NavigationConstants.NAVIGATE_TO_CORPORATE_SCHEDULE,
     NavigationConstants.NAVIGATE_TO_NOTIFICATION,
-    NavigationConstants.NAVIGATE_TO_FEEDBACK
-
+    NavigationConstants.NAVIGATE_TO_FEEDBACK,
+    NavigationConstants.NAVIGATE_TO_CORPORATE_LIST_FRAGMENT,
+    NavigationConstants.NAVIGATE_TO_QR_CODE_SCAN_FRAGMENT,
+    NavigationConstants.NAVIGATE_TO_ATTENDANCE_DETAILS_FRAGMENT
 )
 annotation class NavigationConstants {
     companion object {
@@ -43,5 +45,8 @@ annotation class NavigationConstants {
         const val NAVIGATE_TO_FEEDBACK = 11
         const val NAVIGATE_TO_RM_CLIENT_OVERVIEW = 12
         const val NAVIGATE_TO_RM_CLIENT_CHILD = 13
+        const val NAVIGATE_TO_CORPORATE_LIST_FRAGMENT = 14
+        const val NAVIGATE_TO_QR_CODE_SCAN_FRAGMENT = 15
+        const val NAVIGATE_TO_ATTENDANCE_DETAILS_FRAGMENT = 16
     }
 }

@@ -32,11 +32,9 @@ data class User(
 
         return contactList
     }
-
 }
 
 data class RmUser(
-
     @JvmField val empCode: String,
     @JvmField val fundId: String,
     @JvmField val name: String,
@@ -49,3 +47,15 @@ data class RmUser(
     @JvmField val message: String,
 )
 
+data class Volunteer(
+    @JvmField val empCode: String = "",
+    @JvmField val corporateList: List<CorporateModel>,
+    @JvmField val message: String
+)
+
+data class CorporateModel(
+    @JvmField val corporateName: String,
+    @JvmField val corpDate: String,
+    @JvmField val companyId: String,
+    @JvmField val shortName: String
+)

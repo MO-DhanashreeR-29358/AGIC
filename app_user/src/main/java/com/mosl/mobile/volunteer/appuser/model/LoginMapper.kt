@@ -3,6 +3,7 @@ package com.mosl.mobile.volunteer.appuser.model
 import com.mosl.data.api.login.LoginInfoRequest
 import com.mosl.data.api.login.LoginInfoResponse
 import com.mosl.data.api.login.RmDataResponse
+import com.mosl.data.api.login.VolunteerResponse
 
 fun LoginRequest.mapToLoginRequest(): LoginInfoRequest {
     return LoginInfoRequest(
@@ -41,6 +42,23 @@ fun RmDataResponse.mapToRmData(rmResponseData:
         contactName3 = rmResponseData.contactName3?:"",
         roomNo = rmResponseData.roomNO?:"",
         companyName = rmResponseData.companyName?:"",
+        message = message
+    )
+}
+
+fun List<VolunteerResponse>?.mapToCorporateModel(message: String): Volunteer {
+    val corpList = this?.map {
+        CorporateModel(
+            corpDate = it.corpDate.orEmpty(),
+            companyId = it.companyId.orEmpty(),
+            corporateName = it.companyName.orEmpty(),
+            shortName = it.shortName.orEmpty()
+
+        )
+    }.orEmpty()
+
+    return Volunteer(
+        corporateList = corpList,
         message = message
     )
 }

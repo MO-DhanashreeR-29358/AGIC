@@ -3,18 +3,34 @@ package com.mosl.mobile.volunteer.corporateqr
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
+import com.google.gson.Gson
+import com.mosl.app.core.prefs.StringPreference
 import com.mosl.groupiex.section.DataManagerSection
 import com.mosl.mobile.volunteer.R
+import com.mosl.mobile.volunteer.annotations.RemoteConfigData
+import com.mosl.mobile.volunteer.appuser.login.UserManager
 import com.mosl.mobile.volunteer.core.MOSLCommonFragment
+import com.mosl.mobile.volunteer.data.RemoteConfigModel
 import com.mosl.mobile.volunteer.databinding.FragmentAttendanceCorporateListBinding
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
+import javax.inject.Inject
 
 class CorporateNamesListFragment: MOSLCommonFragment(), CorporateNamesListContract {
-
-
     private lateinit var binding: FragmentAttendanceCorporateListBinding
     private lateinit var section: DataManagerSection
+    private var remoteConfigModel: RemoteConfigModel? = null
+
+    @Inject
+    lateinit var userManager: UserManager
+
+    @Inject
+    @field:RemoteConfigData
+    lateinit var remoteConfigData: StringPreference
+
+    @Inject
+    lateinit var gson: Gson
 
     override fun getLayout(): Int {
         return R.layout.fragment_attendance_corporate_list
@@ -23,9 +39,9 @@ class CorporateNamesListFragment: MOSLCommonFragment(), CorporateNamesListContra
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentAttendanceCorporateListBinding.bind(view)
-        setUpRecyclerView()
-        val list = listOf(ItemCorporateName("CorporateName"), ItemCorporateName("CorporateName2"))
-        section.addAll(list)
+        remoteConfigModel =
+            gson.fromJson(remoteConfigData.get(), RemoteConfigModel::class.java)
+        setUpViews()
     }
 
     private fun setUpRecyclerView() {
@@ -37,6 +53,20 @@ class CorporateNamesListFragment: MOSLCommonFragment(), CorporateNamesListContra
             setHasFixedSize(false)
             adapter = groupAdapter
         }
+
+        val corpList = userManager.getUser()?.corporateList?.map {
+            ItemCorporateName(it, screenNavigator)
+        }.orEmpty()
+
+        section.addAll(corpList)
+    }
+
+    private fun setUpViews() {
+        setUpRecyclerView()
+
+        Glide.with(this)
+            .load(remoteConfigModel?.logo)
+            .into(binding.header.icConfLogo)
     }
 
     override fun onDestroyView() {

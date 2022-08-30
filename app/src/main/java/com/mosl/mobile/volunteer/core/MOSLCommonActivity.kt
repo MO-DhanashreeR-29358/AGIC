@@ -14,11 +14,9 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.PersistableBundle
-import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.OnClickListener
-import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Toast
@@ -29,7 +27,6 @@ import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.f2prateek.rx.preferences2.Preference
 import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.tabs.TabLayout
 import com.google.gson.Gson
 import com.jakewharton.rxbinding3.appcompat.navigationClicks
 import com.mosl.annotations.FcmToken
@@ -66,7 +63,6 @@ import com.mosl.mobile.volunteer.databinding.LogoutDialogBinding
 import com.mosl.mobile.volunteer.login.LoginActivity
 import com.mosl.mobile.volunteer.login.UserCacheImpl
 import com.mosl.mobile.volunteer.menu.ScreenNavigatorImpl
-import com.mosl.mobile.volunteer.pdf.PdfFragment
 import com.mosl.navigator.*
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -101,9 +97,6 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
 
     @Inject
     lateinit var userCacheImpl: UserCacheImpl
-
-    @Inject
-    lateinit var userManager: UserManager
 
     @Inject
     @field:RemoteConfigData
@@ -197,7 +190,7 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
         binding.toolBar.navigationClicks().subscribe { openMenuDrawer() }.addTo(disposable)
 
         if (savedInstanceState == null) {
-            activityNavHelper.loadFragment(NavigationConstants.NAVIGATE_TO_OVERVIEW)
+            activityNavHelper.loadFragment(NavigationConstants.NAVIGATE_TO_CORPORATE_LIST_FRAGMENT)
         } else {
             globalTitles =
                 savedInstanceState.getSerializable(PAGE_TITLES) as HashMap<String, AppTitle>
@@ -206,35 +199,13 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
             gson.fromJson(remoteConfigData.get(), RemoteConfigModel::class.java)
         setupObservables()
         setUpView()
-        setUpTabs(intent)
         changeImage()
-
     }
 
-
     private fun setUpView() {
-
-//        binding.txtFundName.setText(userManager.user.fundName)
-        binding.txtName.text = userManager.user.name
-//        binding.txtFundName.setEllipsize(TextUtils.TruncateAt.MARQUEE)
-        binding.txtName.ellipsize = TextUtils.TruncateAt.MARQUEE
-//        binding.txtFundName.isSelected = true
-        binding.txtName.isSelected = true
-
-        /*if (userManager.user.contactList().isEmpty()) {
-            binding.imgCall.visibility = View.GONE
-        } else {
-            binding.imgCall.visibility = View.VISIBLE
-        }*/
-
         binding.imgLogout.setOnClickListener {
             logoutCustomer()
         }
-
-        /*binding.imgCall.setOnClickListener {
-            ContactDialogFragment.newInstance(userManager.user.contactList())
-                .show(supportFragmentManager, "dialog")
-        }*/
     }
 
     fun changeImage() {
@@ -277,7 +248,6 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
                     override fun onAnimationStart(animation: Animation) {}
                     override fun onAnimationRepeat(animation: Animation) {}
                     override fun onAnimationEnd(animation: Animation) {
-//                        binding.imgLogo.setImageResource(R.drawable.ideation_conference)
                         binding.imgLogo.visibility = View.VISIBLE
                         binding.imgLogoTemp.visibility = View.GONE
                     }
@@ -289,137 +259,14 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
         binding.imgLogo.startAnimation(animOut)
     }
 
-
-    private fun setUpTabs(intent: Intent) {
-        binding.tabLayout.apply {
-            addTab(
-                newTab().setText(R.string.txt_label_dayWise)
-                    .setIcon(R.drawable.ic_tab_schedule).setTag(
-                        NavigationConstants.NAVIGATE_TO_OVERVIEW
-                    )
-            )
-            addTab(
-                newTab().setText(R.string.txt_label_clientWise)
-                    .setIcon(R.drawable.ic_tab_schedule).setTag(
-                        NavigationConstants.NAVIGATE_TO_RM_CLIENT_OVERVIEW
-                    )
-            )
-            binding.tabLayout.addOnTabSelectedListener(tabSelectedListener)
-
-//            screenNavigator.openPage(NavigationConstants.NAVIGATE_TO_OVERVIEW)
-
-        }
-    }
-
-
-    private val tabSelectedListener = object : TabLayout.OnTabSelectedListener {
-        override fun onTabSelected(tab: TabLayout.Tab) {
-
-            setColorFilter(tab.icon, baseContext.setColor(R.color.blue))
-            if (tab.tag as Int == NavigationConstants.NAVIGATE_TO_PDF) {
-                val ft = supportFragmentManager.beginTransaction()
-                if (userManager.getPdf().isNotEmpty()) {
-                    PdfFragment.newInstance()
-                        .show(ft, "")
-                } else {
-                    alertMessage(message = PDF_FILE_NOT_YET_UPLOADED)
-                }
-            } else {
-                setColorFilter(tab.icon, baseContext.setColor(R.color.blue))
-                navigateFragment(tab.tag as Int)
-            }
-        }
-
-        override fun onTabUnselected(tab: TabLayout.Tab) {
-            setColorFilter(
-                binding.tabLayout.getTabAt(tab.position)?.icon,
-                baseContext.setColor(R.color.bottom_tab_white)
-            )
-        }
-
-        override fun onTabReselected(tab: TabLayout.Tab) {
-        }
-    }
-
-    private fun disableTab(tabLayout: TabLayout, index: Int) {
-        (tabLayout.getChildAt(0) as ViewGroup).getChildAt(index).isEnabled = compareDate()
-    }
-
-
-    private fun compareDate(): Boolean {
-        /*val currentDate = AppDateFormats.df_Date6.parse(getTodaysDate())
-        val day = userManager.user.day.split(",")
-        val loginDate = AppDateFormats.df_Date6.parse(day[0])
-        currentDate?.apply {
-            if (this.after(loginDate)) {
-                return true
-            }
-        }*/
-        return false
-    }
-
-    private fun setNotificationTab() {
-       /* if (userManager.user.role.equals(ROLE_CLIENT, ignoreCase = true)) {
-            setColorFilter(binding.tabLayout.getTabAt(3)?.icon, baseContext.setColor(R.color.blue))
-            binding.tabLayout.getTabAt(3)?.select()
-        } else if (userManager.user.role.equals(ROLE_CORPORATE, ignoreCase = true)) {
-            setColorFilter(binding.tabLayout.getTabAt(2)?.icon, baseContext.setColor(R.color.blue))
-            binding.tabLayout.getTabAt(2)?.select()
-        }*/
-
-    }
-
-    private fun Intent.isNotification(): Boolean {
-        val category: String? = getStringExtra(ActivityNavigationHelper.ARG_NOTIFICATION_CATEGORY)
-        return category != null
-    }
-
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
-        setNotificationTab()
     }
 
     fun setNotificationUpdate() {
-        /*val count = notificationCount.get()
-        if (count > 0) {
-            if (userManager.user.role.equals(ROLE_CLIENT, ignoreCase = true)) {
-                binding.tabLayout.getTabAt(3)?.orCreateBadge?.number = count
-
-            } else if (userManager.user.role.equals(ROLE_CORPORATE, ignoreCase = true)) {
-                binding.tabLayout.getTabAt(2)?.orCreateBadge?.number = count
-            }
-        } else {
-            if (userManager.user.role.equals(ROLE_CLIENT, ignoreCase = true)) {
-                binding.tabLayout.getTabAt(3)?.removeBadge()
-
-            } else if (userManager.user.role.equals(ROLE_CORPORATE, ignoreCase = true)) {
-                binding.tabLayout.getTabAt(2)?.removeBadge()
-            }
-        }*/
     }
 
-    fun FeedbackBadgeVisiblity() {
-        /*val status = if (feedbackPendingStatus.get().equals("true", ignoreCase = true)) {
-            true
-        } else {
-            false
-        }
-        if (userManager.user.role.equals(ROLE_CLIENT, ignoreCase = true)) {
-            if (status && compareDate()) {
-                binding.tabLayout.getTabAt(2)?.orCreateBadge?.number = 1
-            } else {
-                binding.tabLayout.getTabAt(2)?.removeBadge()
-
-            }
-        } else if (userManager.user.role.equals(ROLE_CORPORATE, ignoreCase = true)) {
-            if (status && compareDate()) {
-                binding.tabLayout.getTabAt(1)?.orCreateBadge?.number = 1
-            } else {
-                binding.tabLayout.getTabAt(1)?.removeBadge()
-
-            }
-        }*/
-
+    fun feedbackBadgeVisibility() {
     }
 
     private fun Context.setColor(color: Int): Int {
@@ -578,7 +425,7 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
             tokenPref.get(),
             uuid,
             FcmTokenSyncHelper.PLATFORM,
-            userManager.user.empCode
+            "13708"
         )
         disposable.add(loginRepository.logout(tokenRequest)
             .toSingleDefault(true).toObservable()

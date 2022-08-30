@@ -4,6 +4,7 @@ import com.google.gson.Gson
 import com.mosl.mobile.volunteer.appuser.helper.NewsLetterPrefStateStore
 import com.mosl.mobile.volunteer.appuser.helper.UserPrefStore
 import com.mosl.mobile.volunteer.appuser.model.RmUser
+import com.mosl.mobile.volunteer.appuser.model.Volunteer
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -42,17 +43,17 @@ class UserCacheImpl @Inject constructor(
         }
     }
 
-    override fun saveUser(user: RmUser) {
+    override fun saveUser(user: Volunteer) {
         userStore.userInfo.set(gson.toJson(user))
     }
 
 
 
-    override fun getUser(): RmUser? {
+    override fun getUser(): Volunteer? {
         return when {
             userStore.userInfo.isSet -> gson.fromJson(
                 userStore.userInfo.get(),
-                RmUser::class.java
+                Volunteer::class.java
             )
             else -> null
         }
