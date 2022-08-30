@@ -27,6 +27,7 @@ object Versions {
     const val lifeCycle = "2.2.0-rc02"
     const val sdp = "1.0.6"
     const val gson = "2.8.5"
+    const val qrCode = "1.9.13"
 }
 
 object Dependencies {
@@ -239,4 +240,8 @@ object MofslArtifactDependencies {
     const val conceal = "MofslArtifacts:conceal:1.0.0"*/
     const val debugView = "MofslArtifacts:debugview:1.0.7"
     const val protoModels = "MofslArtifacts:protomodels:0.0.1"
+}
+
+object QrCodeDependencies {
+    const val qrCode = "me.dm7.barcodescanner:zxing:${Versions.qrCode}"
 }

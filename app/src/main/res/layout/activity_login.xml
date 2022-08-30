@@ -33,8 +33,9 @@
                 <TextView
                     style="@style/AttendanceApp.Text.Bold"
                     android:id="@+id/tv_user_id"
-                    android:layout_width="@dimen/_80sdp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:minWidth="@dimen/_80sdp"
                     android:layout_marginStart="@dimen/_60sdp"
                     android:layout_marginTop="@dimen/margin_30"
                     android:text="@string/txt_label_user_id"
@@ -47,8 +48,9 @@
                 <androidx.appcompat.widget.AppCompatEditText
                     style="@style/AttendanceApp.EditText"
                     android:id="@+id/et_user_id"
-                    android:layout_width="@dimen/_80sdp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:minWidth="@dimen/_80sdp"
                     android:layout_marginStart="@dimen/margin_medium"
                     android:layout_marginTop="@dimen/margin_30"
                     android:autofillHints="@string/app_name"
@@ -63,8 +65,9 @@
                 <TextView
                     style="@style/AttendanceApp.Text.Bold"
                     android:id="@+id/tv_password"
-                    android:layout_width="@dimen/_80sdp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:minWidth="@dimen/_80sdp"
                     android:layout_marginStart="@dimen/_60sdp"
                     android:layout_marginTop="@dimen/margin_medium"
                     android:gravity="start"
@@ -77,8 +80,9 @@
                 <androidx.appcompat.widget.AppCompatEditText
                     style="@style/AttendanceApp.EditText"
                     android:id="@+id/et_password"
-                    android:layout_width="@dimen/_80sdp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:minWidth="@dimen/_80sdp"
                     android:layout_marginTop="@dimen/margin_medium"
                     android:layout_marginStart="@dimen/margin_medium"
                     android:autofillHints="@string/app_name"

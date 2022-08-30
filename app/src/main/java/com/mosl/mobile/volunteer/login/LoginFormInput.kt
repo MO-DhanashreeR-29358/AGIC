@@ -6,14 +6,14 @@ import com.mosl.validator.core.Validator
 import com.mosl.validator.data.ValidationResult
 
 data class LoginFormInput(
-  val uniqueId: String,
-  val deviceId: String
+    val empId: String,
+    val confDate: String
 )
 
 object LoginValidator : Validator<LoginFormInput, LoginRequest>() {
   override fun execute(input: LoginFormInput): ValidationResult<LoginRequest> {
     val errorMessage: Int = when {
-      input.uniqueId.isEmpty() -> R.string.msg_unique_code_empty
+      input.empId.isEmpty() -> R.string.msg_unique_code_empty
       else -> -1
     }
 
@@ -22,8 +22,8 @@ object LoginValidator : Validator<LoginFormInput, LoginRequest>() {
     } else {
       withData(
           LoginRequest(
-              uniqueId = input.uniqueId,
-              deviceId = "2022-06-09"
+              empId = input.empId,
+              confDate = "2022-06-09" // Change
           )
       )
     }

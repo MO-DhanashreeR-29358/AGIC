@@ -82,7 +82,7 @@ class SplashActivity : LeanBaseActivity() {
         }
     }
 
-    fun setupView() {
+    private fun setupView() {
         binding.txtAppInfo.text = java.lang.String.format(
             Locale.ENGLISH, "App Version : %s(%d)", BuildConfig.VERSION_NAME,
             BuildConfig.VERSION_CODE
@@ -151,7 +151,7 @@ class SplashActivity : LeanBaseActivity() {
                 if (task.isSuccessful) {
                     val agicInit =
                         remoteConfig.getString(getString(R.string.agic_init))
-                    if (agicInit != null && !agicInit.isEmpty()) {
+                    if (agicInit != null && agicInit.isNotEmpty()) {
                         val remoteConfigModel: RemoteConfigModel =
                             gson.fromJson(agicInit, RemoteConfigModel::class.java)
                         splashImgUrl.set(remoteConfigModel.splash)

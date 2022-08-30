@@ -6,8 +6,8 @@ import com.mosl.data.api.login.RmDataResponse
 
 fun LoginRequest.mapToLoginRequest(): LoginInfoRequest {
     return LoginInfoRequest(
-        uniqueId = uniqueId,
-        deviceId = deviceId
+        empId = empId,
+        confDate = confDate
     )
 }
 

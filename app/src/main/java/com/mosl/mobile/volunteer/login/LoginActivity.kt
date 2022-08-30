@@ -18,6 +18,7 @@ import com.mosl.app.coreui.base.LeanBaseActivity
 import com.mosl.commons.data.UiModel
 import com.mosl.commons.data.onFailure
 import com.mosl.commons.data.onSuccess
+import com.mosl.commons.date.CalendarUtils
 import com.mosl.mobile.volunteer.R
 import com.mosl.mobile.volunteer.annotations.RemoteConfigData
 import com.mosl.mobile.volunteer.appuser.model.RmUser
@@ -29,6 +30,7 @@ import com.mosl.navigator.AppTitle
 import com.mosl.navigator.AuthorizationState
 import com.mosl.navigator.FragmentNavigationEntry
 import com.mosl.navigator.Navigator
+import com.mosl.shared.AppDateFormats
 import com.mosl.shared.util.getDeviceID
 import io.reactivex.Observable
 import javax.inject.Inject
@@ -135,8 +137,8 @@ class LoginActivity : LeanBaseActivity(), Navigator, LoginView {
             .toString()
     }
 
-    override fun getDeviceId(): String {
-        return getDeviceID(applicationContext.contentResolver)
+    override fun getTodaysDate(): String {
+        return AppDateFormats.df_Date6.format(CalendarUtils.today)
     }
 
     override fun isDataEmpty(): Boolean {
