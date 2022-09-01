@@ -9,7 +9,7 @@ import com.mosl.mobile.volunteer.appuser.helper.UserPrefStore
 import com.mosl.mobile.volunteer.appuser.helper.getPref
 import com.mosl.mobile.volunteer.appuser.login.UserManager
 import com.mosl.mobile.volunteer.login.UserCache
-import com.mosl.mobile.volunteer.login.UserCacheImpl
+import com.mosl.mobile.volunteer.appuser.login.UserCacheImpl
 import com.mosl.mobile.volunteer.appuser.login.UserManagerImpl
 import dagger.Module
 import dagger.Provides

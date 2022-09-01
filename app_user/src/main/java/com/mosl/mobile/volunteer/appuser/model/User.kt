@@ -1,7 +1,6 @@
 package com.mosl.mobile.volunteer.appuser.model
 
 data class User(
-
     @JvmField val clientId: String,
     @JvmField val fundId: String,
     @JvmField val clientName: String,

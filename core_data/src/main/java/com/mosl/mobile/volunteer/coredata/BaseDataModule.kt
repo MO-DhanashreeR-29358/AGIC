@@ -45,7 +45,6 @@ class BaseDataModule {
             .addConverterFactory(moslResponseWrapper)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(rxJava2CallAdapterFactory)
-
     }
 
     @Provides

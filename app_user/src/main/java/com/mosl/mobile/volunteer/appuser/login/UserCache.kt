@@ -1,6 +1,6 @@
 package com.mosl.mobile.volunteer.login
 
-import com.mosl.mobile.volunteer.appuser.model.RmUser
+import com.mosl.data.api.attendance.ClientMeetingDetailsModel
 import com.mosl.mobile.volunteer.appuser.model.Volunteer
 
 
@@ -17,4 +17,7 @@ internal interface UserCache {
     fun clearUser()
     fun saveNewsLetterState(isActive:Boolean)
     fun getNewsLetterState():Boolean
+    fun getClientDetailsModel(): ClientMeetingDetailsModel?
+    fun saveClientDetailsModel(model: ClientMeetingDetailsModel)
+    fun clearClientDetailsModel()
 }

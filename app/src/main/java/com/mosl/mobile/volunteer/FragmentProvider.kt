@@ -1,19 +1,22 @@
 package com.mosl.mobile.volunteer
 
+import com.mosl.mobile.volunteer.attendance.attendancedetails.AttendanceDetailsFragment
+import com.mosl.mobile.volunteer.attendance.attendancedetails.AttendanceDetailsModule
 import com.mosl.mobile.volunteer.bytes.BytesFragment
 import com.mosl.mobile.volunteer.bytes.BytesModule
 import com.mosl.mobile.volunteer.contactrm.ContactDialogFragment
 import com.mosl.mobile.volunteer.contactrm.ContactModule
 import com.mosl.mobile.volunteer.corporatepager.CorporatePagerFragment
 import com.mosl.mobile.volunteer.corporatepager.CorporatePagerModule
-import com.mosl.mobile.volunteer.corporateqr.CorporateNamesListFragment
-import com.mosl.mobile.volunteer.corporateqr.CorporateNamesListModule
-import com.mosl.mobile.volunteer.corporateqr.QrCodeScanFragment
-import com.mosl.mobile.volunteer.corporateqr.QrCodeScanModule
+import com.mosl.mobile.volunteer.attendance.corporateqr.CorporateNamesListFragment
+import com.mosl.mobile.volunteer.attendance.corporateqr.CorporateNamesListModule
+import com.mosl.mobile.volunteer.attendance.corporateqr.QrCodeScanFragment
+import com.mosl.mobile.volunteer.attendance.corporateqr.QrCodeScanModule
 import com.mosl.mobile.volunteer.corporateschedule.CorporateScheduleChildModule
 import com.mosl.mobile.volunteer.corporateschedule.CorporateScheduleFragment
 import com.mosl.mobile.volunteer.corporateschedule.CorporateScheduleRepDialogFragment
 import com.mosl.mobile.volunteer.demo.DemoFragmentProvider
+import com.mosl.mobile.volunteer.domain.attendance.AttendanceRepository
 import com.mosl.mobile.volunteer.feedback.FeedbackFragment
 import com.mosl.mobile.volunteer.feedback.FeedbackModule
 import com.mosl.mobile.volunteer.notes.NotesFragment
@@ -107,5 +110,8 @@ interface FragmentProvider {
     fun provideCorporateNamesListFragmentFactory(): CorporateNamesListFragment
 
     @ContributesAndroidInjector(modules = [QrCodeScanModule::class])
-    fun provideQrCodeScaneFragmentFactory(): QrCodeScanFragment
+    fun provideQrCodeScanFragmentFactory(): QrCodeScanFragment
+
+    @ContributesAndroidInjector(modules = [AttendanceDetailsModule::class])
+    fun provideAttendanceDetailsFragmentFactory(): AttendanceDetailsFragment
 }

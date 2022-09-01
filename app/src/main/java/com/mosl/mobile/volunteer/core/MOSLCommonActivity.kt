@@ -51,8 +51,6 @@ import com.mosl.data.api.fcmtoken.FcmTokenRequest
 import com.mosl.mobile.volunteer.R
 import com.mosl.mobile.volunteer.annotations.*
 import com.mosl.mobile.volunteer.appuser.login.LoginRepositoryImpl
-import com.mosl.mobile.volunteer.appuser.login.UserManager
-import com.mosl.mobile.volunteer.appuser.login.user
 import com.mosl.mobile.volunteer.constants.NavigationConstants
 import com.mosl.mobile.volunteer.coreui.LocaleManager
 import com.mosl.mobile.volunteer.dashboard.ActivityNavigationHelper
@@ -61,7 +59,7 @@ import com.mosl.mobile.volunteer.databinding.ActivityCommonbaseBinding
 import com.mosl.mobile.volunteer.databinding.AlertDialogBinding
 import com.mosl.mobile.volunteer.databinding.LogoutDialogBinding
 import com.mosl.mobile.volunteer.login.LoginActivity
-import com.mosl.mobile.volunteer.login.UserCacheImpl
+import com.mosl.mobile.volunteer.appuser.login.UserCacheImpl
 import com.mosl.mobile.volunteer.menu.ScreenNavigatorImpl
 import com.mosl.navigator.*
 import io.reactivex.Observable

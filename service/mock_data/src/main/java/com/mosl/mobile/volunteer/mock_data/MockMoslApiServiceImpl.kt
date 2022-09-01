@@ -5,6 +5,8 @@ import com.mosl.data.api.AGICApi
 import com.mosl.data.api.BaseResponseAgic
 import com.mosl.data.api.bytes.BytesInfoRequest
 import com.mosl.data.api.bytes.BytesInfoResponse
+import com.mosl.data.api.attendance.GetClientMeetingRequest
+import com.mosl.data.api.attendance.GetClientMeetingResponse
 import com.mosl.data.api.corporateschedulepager.CorporateScheduleRequest
 import com.mosl.data.api.corporateschedulepager.CorporateScheduleResponseDayItem
 import com.mosl.data.api.demo.LoginInfo
@@ -14,7 +16,6 @@ import com.mosl.data.api.feedback.FeedbackRequest
 import com.mosl.data.api.feedback.FeedbackResponseItem
 import com.mosl.data.api.feedback.SubmitFeedbackRequest
 import com.mosl.data.api.login.LoginInfoRequest
-import com.mosl.data.api.login.RmDataResponse
 import com.mosl.data.api.login.VolunteerResponse
 import com.mosl.data.api.newsletter.NewsLetterResponseItem
 import com.mosl.data.api.notification.NotificationRequest
@@ -81,6 +82,10 @@ class MockMoslApiServiceImpl(
 
     override fun userLogin(request: LoginInfoRequest): Observable<BaseResponseAgic<List<VolunteerResponse>>> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun getClientMeeting(request: GetClientMeetingRequest): Observable<BaseResponseAgic<GetClientMeetingResponse>> {
+        TODO("Not yet implemented")
     }
 
     override fun getNotification(notificationRequest: NotificationRequest): Observable<List<NotificationResponseItem>> {

@@ -1,4 +1,4 @@
-package com.mosl.mobile.volunteer.corporateqr
+package com.mosl.mobile.volunteer.attendance.corporateqr
 
 import dagger.Module
 import dagger.Provides

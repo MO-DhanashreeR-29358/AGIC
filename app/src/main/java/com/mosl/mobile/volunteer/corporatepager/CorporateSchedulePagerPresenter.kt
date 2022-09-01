@@ -25,7 +25,7 @@ class CorporateSchedulePagerPresenter @Inject constructor(
         val notificationDateDate = if (lLastNotificationDate.get().isEmpty()) {
             ZERO
         } else {
-            getMilliFromDate(lLastNotificationDate.get(), AppDateFormats.DF_JSON_DATE_12)
+            getMilliFromDate(lLastNotificationDate.get(), AppDateFormats.DF_JSON_DATE_12).toString()
         }
 
         val objCorporateScheduleRequestInfo = CorporateScheduleRequestInfo(
