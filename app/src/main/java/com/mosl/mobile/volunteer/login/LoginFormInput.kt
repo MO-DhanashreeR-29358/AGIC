@@ -25,7 +25,7 @@ object LoginValidator : Validator<LoginFormInput, LoginRequest>() {
             withData(
                 LoginRequest(
                     empId = input.empId,
-                    confDate = "2022-06-09", // Change
+                    confDate = input.confDate,
                     password = input.password
                 )
             )

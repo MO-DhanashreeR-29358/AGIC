@@ -1,6 +1,6 @@
 package com.mosl.mobile.volunteer
 
-import com.mosl.mobile.coredata.ApiBaseUrls
+import com.mosl.mobile.volunteer.coredata.ApiBaseUrls
 
 class ApiBaseUrlImpl:ApiBaseUrls {
   override fun getMoslApiUrl(): String {

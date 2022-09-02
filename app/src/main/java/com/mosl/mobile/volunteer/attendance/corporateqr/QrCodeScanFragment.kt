@@ -55,11 +55,6 @@ class QrCodeScanFragment: MOSLCommonFragment(), ZXingScannerView.ResultHandler, 
         binding.qrCodeView.setResultHandler(this)
         checkPermissionHelper.checkAndRequestPermissions()
         presenter.start()
-        subject.onNext(QrCodeScanEvent.SuccessEvent(
-            uniqueId = "28315",
-            companyId = "CraftsmanAutomationL",
-            confDate = "2022-06-09"
-        ))
     }
 
     override fun handleResult(rawResult: Result?) {
