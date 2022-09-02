@@ -3,7 +3,7 @@ package com.mosl.mobile.volunteer.coredata.interceptor
 import com.mosl.app.core.prefs.StringPreference
 import com.mosl.mobile.volunteer.annotations.*
 import com.mosl.shared.AppDateFormats
-import com.mosl.mobile.volunteer.coredata.util.encryptor.AESEncryptor
+import com.mosl.shared.Encryptor.AESEncryptor
 import com.mosl.shared.util.getFormatedDate
 import okhttp3.Interceptor
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
