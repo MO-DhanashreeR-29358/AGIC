@@ -4,7 +4,7 @@ import com.mosl.data.api.AGICApi
 import com.mosl.data.api.attendance.GetClientMeetingRequest
 import com.mosl.mobile.volunteer.data.attendance.AttendanceMapper.mapToClientDataModel
 import com.mosl.mobile.volunteer.domain.attendance.AttendanceRepository
-import com.mosl.data.api.attendance.ClientMeetingDetailsModel
+import com.mosl.mobile.volunteer.domain.attendance.ClientDetailsModel
 import io.reactivex.Observable
 import javax.inject.Inject
 
@@ -16,7 +16,7 @@ class AttendanceRepositoryImpl
         uniqueId: String,
         companyId: String,
         confDate: String,
-    ): Observable<ClientMeetingDetailsModel> {
+    ): Observable<ClientDetailsModel> {
         val request = GetClientMeetingRequest(uniqueId, companyId, confDate)
         return api.getClientMeeting(request)
             .map {

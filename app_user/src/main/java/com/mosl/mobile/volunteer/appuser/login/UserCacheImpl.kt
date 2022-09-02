@@ -1,12 +1,11 @@
 package com.mosl.mobile.volunteer.appuser.login
 
 import com.google.gson.Gson
-import com.mosl.data.api.attendance.ClientMeetingDetailsModel
+import com.mosl.data.api.attendance.ClientDetails
 import com.mosl.mobile.volunteer.appuser.helper.ClientPrefStore
 import com.mosl.mobile.volunteer.appuser.helper.NewsLetterPrefStateStore
 import com.mosl.mobile.volunteer.appuser.helper.UserPrefStore
 import com.mosl.mobile.volunteer.appuser.model.Volunteer
-import com.mosl.mobile.volunteer.login.UserCache
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -34,17 +33,17 @@ class UserCacheImpl @Inject constructor(
         }
     }
 
-    override fun getClientDetailsModel(): ClientMeetingDetailsModel? {
+    override fun getClientDetailsModel(): ClientDetails? {
         return when {
             clientPrefStore.clientPref.isSet -> gson.fromJson(
                 clientPrefStore.clientPref.get(),
-                ClientMeetingDetailsModel::class.java
+                ClientDetails::class.java
             )
             else -> null
         }
     }
 
-    override fun saveClientDetailsModel(model: ClientMeetingDetailsModel) {
+    override fun saveClientDetailsModel(model: ClientDetails) {
         clientPrefStore.clientPref.set(gson.toJson(model))
     }
 

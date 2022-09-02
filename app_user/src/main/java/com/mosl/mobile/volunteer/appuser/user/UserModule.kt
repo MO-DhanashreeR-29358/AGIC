@@ -3,12 +3,9 @@ package com.mosl.mobile.volunteer.appuser.user
 import android.content.Context
 import android.content.SharedPreferences
 import com.mosl.mobile.volunteer.appuser.UserPreference
-import com.mosl.mobile.volunteer.appuser.helper.NewsLetterPrefStateStore
-import com.mosl.mobile.volunteer.appuser.helper.PrefStoreProvider
-import com.mosl.mobile.volunteer.appuser.helper.UserPrefStore
-import com.mosl.mobile.volunteer.appuser.helper.getPref
+import com.mosl.mobile.volunteer.appuser.helper.*
 import com.mosl.mobile.volunteer.appuser.login.UserManager
-import com.mosl.mobile.volunteer.login.UserCache
+import com.mosl.mobile.volunteer.appuser.login.UserCache
 import com.mosl.mobile.volunteer.appuser.login.UserCacheImpl
 import com.mosl.mobile.volunteer.appuser.login.UserManagerImpl
 import dagger.Module
@@ -44,6 +41,14 @@ class UserModule {
         @UserPreference preferences: SharedPreferences
     ): NewsLetterPrefStateStore {
         return PrefStoreProvider.createNewsLetterStatePrefStore(preferences)
+    }
+
+    @Provides
+    @Singleton
+    fun provideClientPrefStore(
+        @UserPreference preferences: SharedPreferences
+    ): ClientPrefStore {
+        return PrefStoreProvider.createClientPrefStore(preferences)
     }
 
     @Provides

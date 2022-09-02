@@ -13,8 +13,9 @@ import com.mosl.mobile.volunteer.core.MOSLCommonFragment
 import com.mosl.mobile.volunteer.attendance.corporateqr.QrCodeScanContract.Companion.EXTRA_COMPANY_ID
 import com.mosl.mobile.volunteer.constants.NavigationConstants
 import com.mosl.mobile.volunteer.databinding.FragmentQrCodeScanBinding
-import com.mosl.data.api.attendance.ClientMeetingDetailsModel
 import com.mosl.mobile.volunteer.appuser.login.UserManagerImpl
+import com.mosl.mobile.volunteer.attendance.attendancedetails.mapToClientDetails
+import com.mosl.mobile.volunteer.domain.attendance.ClientDetailsModel
 import com.mosl.shared.AppDateFormats
 import com.mosl.shared.CheckPermissionHelper
 import io.reactivex.Observable
@@ -78,14 +79,14 @@ class QrCodeScanFragment: MOSLCommonFragment(), ZXingScannerView.ResultHandler, 
         return subject.ofType()
     }
 
-    override fun renderQrCodeScanSuccess(uiModel: UiModel<ClientMeetingDetailsModel>) {
+    override fun renderQrCodeScanSuccess(uiModel: UiModel<ClientDetailsModel>) {
         toggleProgressBar(uiModel.inProgress)
         uiModel.onFailure {
             showOnFailurePopup(it)
         }
         uiModel.onSuccess {
             userManagerImpl.clearClientModel()
-            userManagerImpl.saveClientModel(it)
+            userManagerImpl.saveClientModel(it.mapToClientDetails())
 
             screenNavigator.openPage(
                 NavigationConstants.NAVIGATE_TO_ATTENDANCE_DETAILS_FRAGMENT,

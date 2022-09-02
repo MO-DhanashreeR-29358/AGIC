@@ -7,5 +7,5 @@ interface AttendanceRepository {
         uniqueId: String,
         companyId: String,
         confDate: String
-    ): Observable<ClientMeetingDetailsModel>
+    ): Observable<ClientDetailsModel>
 }

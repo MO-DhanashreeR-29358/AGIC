@@ -1,9 +1,7 @@
 package com.mosl.mobile.volunteer.appuser.login
 
-import com.mosl.data.api.attendance.ClientMeetingDetailsModel
-import com.mosl.mobile.volunteer.appuser.model.RmUser
+import com.mosl.data.api.attendance.ClientDetails
 import com.mosl.mobile.volunteer.appuser.model.Volunteer
-import com.mosl.mobile.volunteer.login.UserCache
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -45,7 +43,7 @@ class UserManagerImpl @Inject internal constructor(
 
     }
 
-    fun saveClientModel(model: ClientMeetingDetailsModel) {
+    fun saveClientModel(model: ClientDetails) {
         userCache.saveClientDetailsModel(model)
     }
 
@@ -57,7 +55,7 @@ class UserManagerImpl @Inject internal constructor(
         return user
     }
 
-    fun getClientModel(): ClientMeetingDetailsModel? {
+    fun getClientModel(): ClientDetails? {
         return userCache.getClientDetailsModel()
     }
 

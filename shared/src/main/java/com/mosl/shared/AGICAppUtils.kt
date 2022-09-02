@@ -74,7 +74,7 @@ fun getTime(startDateTime: String, endDateTime: String): String {
     val endTimeFormat = DF_TIME_HH_ss.parse(endDateTime.split(1)) ?: "00:00:00"
     val startTime = DF_TIME_hh.format(startTimeFormat)
     val endTime = DF_TIME_hh.format(endTimeFormat)
-    return startTime + '-' + endTime
+    return "$startTime-$endTime"
 }
 
 fun String.split(pos:Int): String {
