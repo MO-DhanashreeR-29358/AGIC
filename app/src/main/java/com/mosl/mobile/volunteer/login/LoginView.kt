@@ -10,5 +10,6 @@ interface LoginView : BaseView {
   fun renderLogin(uiModel: UiModel<Volunteer>)
   fun getUserId(): String
   fun getTodaysDate(): String
+  fun getPassword(): String
   fun onDoneClicked(): Observable<Int>
 }

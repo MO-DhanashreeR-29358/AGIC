@@ -88,7 +88,7 @@
                     android:autofillHints="@string/app_name"
                     android:gravity="center"
                     android:imeOptions="actionDone"
-                    android:inputType="textNoSuggestions"
+                    android:inputType="textPassword"
                     android:textSize="@dimen/text_size_medium"
                     app:layout_constraintStart_toEndOf="@id/tv_password"
                     app:layout_constraintTop_toBottomOf="@id/et_user_id" />

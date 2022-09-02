@@ -1,7 +1,7 @@
 package com.mosl.mobile.volunteer.appuser.model
 
 data class LoginRequest(
-
     val empId: String,
-    val confDate: String
+    val confDate: String,
+    val password: String
 )

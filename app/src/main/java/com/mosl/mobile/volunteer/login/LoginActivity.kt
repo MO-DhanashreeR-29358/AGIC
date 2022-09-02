@@ -137,7 +137,11 @@ class LoginActivity : LeanBaseActivity(), Navigator, LoginView {
     }
 
     override fun getTodaysDate(): String {
-        return AppDateFormats.DF_JSON_DATE_ONLY.format(CalendarUtils.today)
+        return AppDateFormats.df_Date6.format(CalendarUtils.today)
+    }
+
+    override fun getPassword(): String {
+        return binding.etPassword.text?.trim().toString()
     }
 
     override fun isDataEmpty(): Boolean {
@@ -147,7 +151,6 @@ class LoginActivity : LeanBaseActivity(), Navigator, LoginView {
     override fun onDataAction(): Observable<DataAction> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
-
 
     override fun authorizationDialog(listener: (AuthorizationState) -> Unit) {
         TODO(

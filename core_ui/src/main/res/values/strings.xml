@@ -3,6 +3,7 @@
     <string name="main_app_name">Motilal Oswal Conferences</string>
     <string name="network_unavailable">Network Not Available</string>
     <string name="msg_unique_code_empty">Please enter your 5 digit id to Login</string>
+    <string name="msg_password_empty">Please enter your password</string>
 
     <string name="txt_label_conference_over">The Conference got over.</string>
     <string name="txt_label_no_conference">No data available for the day.</string>

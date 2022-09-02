@@ -10,14 +10,14 @@ class LoginPresenter @Inject constructor(
     private val loginRepository: LoginRepository
 ) : BasePresenter<LoginView>(view) {
 
-
     override fun start() {
         disposable.add(
             Observable.merge(view.onLoginClicked(), view.onDoneClicked())
                 .map {
                     LoginFormInput(
                         view.getUserId(),
-                        view.getTodaysDate()
+                        view.getTodaysDate(),
+                        view.getPassword()
                     )
                 }
                 .switchMap { input ->
