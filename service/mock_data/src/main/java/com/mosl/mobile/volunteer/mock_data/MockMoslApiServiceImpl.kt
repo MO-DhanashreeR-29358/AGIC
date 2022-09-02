@@ -3,10 +3,10 @@ package com.mosl.mobile.volunteer.mock_data
 import android.content.Context
 import com.mosl.data.api.AGICApi
 import com.mosl.data.api.BaseResponseAgic
+import com.mosl.data.api.attendance.ClientDetails
 import com.mosl.data.api.bytes.BytesInfoRequest
 import com.mosl.data.api.bytes.BytesInfoResponse
 import com.mosl.data.api.attendance.GetClientMeetingRequest
-import com.mosl.data.api.attendance.GetClientMeetingResponse
 import com.mosl.data.api.attendance.SubmitClientAttendanceRequest
 import com.mosl.data.api.corporateschedulepager.CorporateScheduleRequest
 import com.mosl.data.api.corporateschedulepager.CorporateScheduleResponseDayItem
@@ -85,7 +85,7 @@ class MockMoslApiServiceImpl(
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun getClientMeeting(request: GetClientMeetingRequest): Observable<BaseResponseAgic<GetClientMeetingResponse>> {
+    override fun getClientMeeting(request: GetClientMeetingRequest): Observable<BaseResponseAgic<ClientDetails>> {
         TODO("Not yet implemented")
     }
 

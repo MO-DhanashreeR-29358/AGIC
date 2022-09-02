@@ -137,10 +137,9 @@ class SplashActivity : LeanBaseActivity() {
         }
     }
 
-
     private fun checkVersion() {
-
-        val remoteConfig = FirebaseRemoteConfig.getInstance()
+        initializeApp()
+        /*val remoteConfig = FirebaseRemoteConfig.getInstance()
         val configSettings = FirebaseRemoteConfigSettings.Builder()
             .setMinimumFetchIntervalInSeconds(3600)
             .build()
@@ -160,7 +159,7 @@ class SplashActivity : LeanBaseActivity() {
                         initializeApp()
                     }
                 }
-            }
+            }*/
     }
 
     private fun initializeApp() {

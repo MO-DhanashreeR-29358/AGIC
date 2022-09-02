@@ -2,13 +2,8 @@ package com.mosl.data.api.attendance
 
 import com.google.gson.annotations.SerializedName
 
-data class GetClientMeetingResponse(
-    @JvmField @SerializedName("VolCorporateClientDetails")
-    val clientDetails: ClientDetails?
-)
-
 data class ClientDetails(
-    @JvmField @SerializedName("UserId")
+    @JvmField @SerializedName("UserID")
     val userId: String?,
 
     @JvmField @SerializedName("ClientID")

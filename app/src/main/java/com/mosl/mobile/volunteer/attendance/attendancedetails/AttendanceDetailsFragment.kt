@@ -2,6 +2,7 @@ package com.mosl.mobile.volunteer.attendance.attendancedetails
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.google.gson.Gson
@@ -74,6 +75,8 @@ class AttendanceDetailsFragment: MOSLCommonFragment(), AttendanceDetailsContract
             showOnFailurePopup(it)
         }
         uiModel.onSuccess {
+            Toast.makeText(requireContext(), it, Toast.LENGTH_LONG)
+            userManager.clearClientModel()
             screenNavigator.openHome()
         }
     }
@@ -91,7 +94,9 @@ class AttendanceDetailsFragment: MOSLCommonFragment(), AttendanceDetailsContract
             btClientName.text = clientModel?.clientName.orEmpty()
             btStatus.text = clientModel?.status.orEmpty()
             if (btStatus.text == getString(R.string.bt_status_registered_label)) {
-                btStatus.setText(R.color._green)
+                btStatus.setTextColor(ContextCompat.getColor(requireContext(), R.color._green))
+            } else {
+                btStatus.setTextColor(ContextCompat.getColor(requireContext(), R.color.color_error))
             }
         }
         setTimeSlot(clientModel?.startTime, clientModel?.endTime)
@@ -114,6 +119,7 @@ class AttendanceDetailsFragment: MOSLCommonFragment(), AttendanceDetailsContract
     }
 
     private fun getTime(timeString: String): String {
-        return AppDateFormats.DF_TIME_HH.format(timeString)
+        val date = AppDateFormats.DF_JSON_DATE_4.parse(timeString)
+        return AppDateFormats.DF_TIME_HH.format(date)
     }
 }

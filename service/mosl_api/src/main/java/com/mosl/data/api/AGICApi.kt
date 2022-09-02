@@ -1,9 +1,9 @@
 package com.mosl.data.api
 
+import com.mosl.data.api.attendance.ClientDetails
 import com.mosl.data.api.bytes.BytesInfoRequest
 import com.mosl.data.api.bytes.BytesInfoResponse
 import com.mosl.data.api.attendance.GetClientMeetingRequest
-import com.mosl.data.api.attendance.GetClientMeetingResponse
 import com.mosl.data.api.attendance.SubmitClientAttendanceRequest
 import com.mosl.data.api.corporateschedulepager.CorporateScheduleRequest
 import com.mosl.data.api.corporateschedulepager.CorporateScheduleResponseDayItem
@@ -37,7 +37,7 @@ interface AGICApi {
     fun userLogin(@Body request: LoginInfoRequest): Observable<BaseResponseAgic<List<VolunteerResponse>>>
 
     @POST("GetClientMeeting")
-    fun getClientMeeting(@Body request: GetClientMeetingRequest): Observable<BaseResponseAgic<GetClientMeetingResponse>>
+    fun getClientMeeting(@Body request: GetClientMeetingRequest): Observable<BaseResponseAgic<ClientDetails>>
 
     @POST("SubmitClientAttendance")
     fun submitClientAttendance(@Body request: SubmitClientAttendanceRequest): Observable<BaseResponseAgic<String>>
