@@ -5,7 +5,13 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.google.gson.Gson
+import com.jakewharton.rxbinding3.view.clicks
 import com.mosl.app.core.prefs.StringPreference
+import com.mosl.commons.data.UiModel
+import com.mosl.commons.data.onFailure
+import com.mosl.commons.data.onSuccess
+import com.mosl.commons.rx.addTo
+import com.mosl.commons.rx.ofType
 import com.mosl.mobile.volunteer.R
 import com.mosl.mobile.volunteer.annotations.RemoteConfigData
 import com.mosl.mobile.volunteer.appuser.login.UserManagerImpl
@@ -13,12 +19,15 @@ import com.mosl.mobile.volunteer.core.MOSLCommonFragment
 import com.mosl.mobile.volunteer.data.RemoteConfigModel
 import com.mosl.mobile.volunteer.databinding.FragmentAttendanceDetailsBinding
 import com.mosl.shared.AppDateFormats
-import java.util.*
+import io.reactivex.Observable
+import io.reactivex.subjects.PublishSubject
 import javax.inject.Inject
 
 class AttendanceDetailsFragment: MOSLCommonFragment(), AttendanceDetailsContract {
     private lateinit var binding: FragmentAttendanceDetailsBinding
     private var remoteConfigModel: RemoteConfigModel? = null
+
+    private val subject = PublishSubject.create<AttendanceDetailsEvent>()
 
     @Inject
     lateinit var userManager: UserManagerImpl
@@ -30,6 +39,9 @@ class AttendanceDetailsFragment: MOSLCommonFragment(), AttendanceDetailsContract
     @Inject
     lateinit var gson: Gson
 
+    @Inject
+    lateinit var presenter: AttendanceDetailsPresenter
+
     override fun getLayout(): Int {
         return R.layout.fragment_attendance_details
     }
@@ -40,6 +52,35 @@ class AttendanceDetailsFragment: MOSLCommonFragment(), AttendanceDetailsContract
         remoteConfigModel =
             gson.fromJson(remoteConfigData.get(), RemoteConfigModel::class.java)
         setUpViews()
+
+        binding.btYes.clicks()
+            .subscribe { subject.onNext(AttendanceDetailsEvent.YesNoClicked(isAllowed = 1)) }
+            .addTo(disposable)
+
+        binding.btNo.clicks()
+            .subscribe { subject.onNext(AttendanceDetailsEvent.YesNoClicked(isAllowed = 0)) }
+            .addTo(disposable)
+
+        presenter.start()
+    }
+
+    override fun onYesNoBtnClicked(): Observable<AttendanceDetailsEvent.YesNoClicked> {
+        return subject.ofType()
+    }
+
+    override fun renderAttendanceMarked(uiModel: UiModel<String>) {
+        toggleProgressBar(uiModel.inProgress)
+        uiModel.onFailure {
+            showOnFailurePopup(it)
+        }
+        uiModel.onSuccess {
+            screenNavigator.openHome()
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        presenter.stop()
     }
 
     private fun setUpViews() {

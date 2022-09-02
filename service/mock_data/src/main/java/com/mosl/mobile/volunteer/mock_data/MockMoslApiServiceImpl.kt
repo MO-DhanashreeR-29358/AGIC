@@ -7,6 +7,7 @@ import com.mosl.data.api.bytes.BytesInfoRequest
 import com.mosl.data.api.bytes.BytesInfoResponse
 import com.mosl.data.api.attendance.GetClientMeetingRequest
 import com.mosl.data.api.attendance.GetClientMeetingResponse
+import com.mosl.data.api.attendance.SubmitClientAttendanceRequest
 import com.mosl.data.api.corporateschedulepager.CorporateScheduleRequest
 import com.mosl.data.api.corporateschedulepager.CorporateScheduleResponseDayItem
 import com.mosl.data.api.demo.LoginInfo
@@ -85,6 +86,10 @@ class MockMoslApiServiceImpl(
     }
 
     override fun getClientMeeting(request: GetClientMeetingRequest): Observable<BaseResponseAgic<GetClientMeetingResponse>> {
+        TODO("Not yet implemented")
+    }
+
+    override fun submitClientAttendance(request: SubmitClientAttendanceRequest): Observable<BaseResponseAgic<String>> {
         TODO("Not yet implemented")
     }
 
