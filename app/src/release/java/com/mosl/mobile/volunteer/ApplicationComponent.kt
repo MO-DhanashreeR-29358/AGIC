@@ -1,6 +1,6 @@
-package com.mosl.mobile
+package com.mosl.mobile.volunteer
 
-import com.mosl.mobile.drawermenu.DrawerMenuView
+import com.mosl.mobile.volunteer.drawermenu.DrawerMenuView
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector

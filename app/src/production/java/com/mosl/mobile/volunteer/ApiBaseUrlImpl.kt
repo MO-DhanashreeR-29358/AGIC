@@ -1,4 +1,4 @@
-package com.mosl.mobile
+package com.mosl.mobile.volunteer
 
 import com.mosl.mobile.coredata.ApiBaseUrls
 

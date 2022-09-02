@@ -1,4 +1,4 @@
-package com.mosl.mobile
+package com.mosl.mobile.volunteer
 
 import com.crashlytics.android.Crashlytics
 import com.jakewharton.threetenabp.*

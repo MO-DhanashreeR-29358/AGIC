@@ -1,4 +1,4 @@
-package com.mosl.mobile.coredata.util
+package com.mosl.mobile.volunteer.coredata.util
 
 import com.jakewharton.rxrelay2.PublishRelay
 import io.reactivex.Observable

@@ -1,7 +1,7 @@
-package com.mosl.mobile.coredata.interceptor
+package com.mosl.mobile.volunteer.coredata.interceptor
 
 import com.mosl.app.core.prefs.StringPreference
-import com.mosl.mobile.annotations.*
+import com.mosl.mobile.volunteer.annotations.*
 import com.mosl.shared.AppDateFormats
 import com.mosl.shared.Encryptor.AESEncryptor
 import com.mosl.shared.util.getFormatedDate
