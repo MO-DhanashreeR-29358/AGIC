@@ -15,8 +15,8 @@
 
     <color name="login_year_text_color">@color/_material_black_100</color>
     <color name="login_permission_text_color">#868686</color>
-    <color name="login_btn_text_color">#1F85FB</color>
-    <color name="login_btn_back_color">@color/_material_black_100</color>
+    <color name="login_btn_text_color">#fff</color>
+    <color name="login_btn_back_color">#31B8E5</color>
 
 
     <color name="news_letter_head_welcome">#D5D5D5</color>

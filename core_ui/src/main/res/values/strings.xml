@@ -83,7 +83,7 @@
     <string name="txt_label_status">Status</string>
     <string name="txt_label_corporate">Corporate</string>
     <string name="txt_label_client">Client</string>
-    <string name="txt_label_dayWise">Day Wise</string>
+    <string name="txt_label_dayWise">Time Wise</string>
     <string name="txt_label_clientWise">Client Wise</string>
     <string name="txt_label_roomNo">Room No</string>
 </resources>

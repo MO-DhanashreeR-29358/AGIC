@@ -25,29 +25,37 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/img_agic"
-                android:layout_width="@dimen/img_news_letter"
-                android:layout_height="@dimen/img_news_letter"
-                android:layout_marginLeft="@dimen/margin_normal"
-                android:layout_marginTop="@dimen/margin_large"
-                android:layout_marginRight="@dimen/margin_normal"
+            <FrameLayout
+                android:id="@+id/imgLyt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 app:layout_constraintBottom_toTopOf="@+id/txt_warn_msg"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                >
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/img_agic_temp"
-                android:layout_width="@dimen/img_news_letter"
-                android:layout_height="@dimen/img_news_letter"
-                android:layout_marginLeft="@dimen/margin_normal"
-                android:layout_marginTop="@dimen/margin_large"
-                android:layout_marginRight="@dimen/margin_normal"
-                android:visibility="gone"
-                app:layout_constraintBottom_toTopOf="@+id/txt_warn_msg"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_agic"
+                    android:layout_width="@dimen/img_news_letter"
+                    android:layout_height="@dimen/img_news_letter"
+                    android:layout_marginLeft="@dimen/margin_normal"
+                    android:layout_marginTop="@dimen/margin_large"
+                    android:layout_marginRight="@dimen/margin_normal"
+                    app:srcCompat="@drawable/agic_agic"/>
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_agic_temp"
+                    android:layout_width="@dimen/img_news_letter"
+                    android:layout_height="@dimen/img_news_letter"
+                    android:layout_marginLeft="@dimen/margin_normal"
+                    android:layout_marginTop="@dimen/margin_large"
+                    android:layout_marginRight="@dimen/margin_normal"
+                    android:visibility="gone" />
+
+            </FrameLayout>
+
+
+
 
 
             <TextView
@@ -62,17 +70,19 @@
                 android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent" />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/txt_agic_year"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_medium"
                 android:textColor="@color/black"
-                android:textSize="@dimen/text_size_medium"
+                android:textSize="@dimen/text_size_small"
+                android:layout_marginHorizontal="@dimen/_8sdp"
+                app:layout_constraintStart_toEndOf="@id/imgLyt"
+                android:breakStrategy="simple"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent" />
+                android:scrollHorizontally="false"
+                />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
