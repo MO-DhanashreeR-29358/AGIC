@@ -70,7 +70,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/btn_label_submit"
                 android:textColor="@color/black"
-                android:textSize="@dimen/text_size_medium"
+                android:textSize="@dimen/_12ssp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
