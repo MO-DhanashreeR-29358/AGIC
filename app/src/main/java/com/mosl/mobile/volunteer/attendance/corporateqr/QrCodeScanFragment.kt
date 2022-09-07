@@ -85,7 +85,7 @@ class QrCodeScanFragment: MOSLCommonFragment(), ZXingScannerView.ResultHandler, 
 
             screenNavigator.openPage(
                 NavigationConstants.NAVIGATE_TO_ATTENDANCE_DETAILS_FRAGMENT,
-                false
+                true
             )
         }
     }
@@ -109,6 +109,10 @@ class QrCodeScanFragment: MOSLCommonFragment(), ZXingScannerView.ResultHandler, 
     override fun onPause() {
         super.onPause()
         binding.qrCodeView.stopCamera()
+    }
+
+    override fun isBackPressEnabled(): Boolean {
+        return true
     }
 
     override fun onDestroy() {

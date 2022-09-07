@@ -20,7 +20,8 @@ class ItemCorporateName(
                 pageId = NavigationConstants.NAVIGATE_TO_QR_CODE_SCAN_FRAGMENT,
                 args = Bundle().apply {
                     putString(QrCodeScanContract.EXTRA_COMPANY_ID, model.companyId)
-                }
+                },
+                addToStack = true
             )
         }
     }

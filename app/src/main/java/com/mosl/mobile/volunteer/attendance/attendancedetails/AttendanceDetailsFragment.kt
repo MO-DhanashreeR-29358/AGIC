@@ -81,6 +81,10 @@ class AttendanceDetailsFragment: MOSLCommonFragment(), AttendanceDetailsContract
         }
     }
 
+    override fun isBackPressEnabled(): Boolean {
+        return true
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         presenter.stop()
@@ -119,7 +123,7 @@ class AttendanceDetailsFragment: MOSLCommonFragment(), AttendanceDetailsContract
     }
 
     private fun getTime(timeString: String): String {
-        val date = AppDateFormats.DF_JSON_DATE_4.parse(timeString)
+        val date = AppDateFormats.DF_JSON_DATE_4.parse(timeString) ?: return ""
         return AppDateFormats.DF_TIME_HH.format(date)
     }
 }
