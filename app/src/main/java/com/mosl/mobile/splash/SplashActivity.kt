@@ -56,7 +56,7 @@ class SplashActivity : LeanBaseActivity() {
         AndroidInjection.inject(this)
         binding = ActivitySplashScreenBinding.bind(findViewById(R.id.splash_layout))
         val splashImageUrl = getSplashImageUrl()
-        loadSplashImage(splashImageUrl)
+//        loadSplashImage(splashImageUrl)
         setupView()
         notificationIntent=intent
         mDelayHandler.postDelayed(
