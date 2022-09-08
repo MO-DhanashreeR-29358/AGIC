@@ -12,10 +12,10 @@
                     android:id="@+id/img_banner"
                     android:layout_width="@dimen/_200sdp"
                     android:layout_height="@dimen/_200sdp"
-                    android:layout_marginVertical="@dimen/_80sdp"
                     android:layout_marginHorizontal="@dimen/_60sdp"
                     android:contentDescription="@string/app_name"
                     app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/tv_user_id"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"/>
 
@@ -93,6 +93,7 @@
                     android:paddingHorizontal="@dimen/padding_extra_large"
                     android:paddingVertical="@dimen/padding_small"
                     android:background="@drawable/btn_background"
+                    android:textColor="@color/black"
                     android:gravity="center"
                     android:text="@string/text_label_login"
                     android:textAllCaps="true"
