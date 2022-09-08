@@ -53,7 +53,7 @@ class SplashActivity : LeanBaseActivity() {
         AndroidInjection.inject(this)
         binding = ActivitySplashScreenBinding.bind(findViewById(R.id.splash_layout))
         val splashImageUrl = getSplashImageUrl()
-        loadSplashImage(splashImageUrl)
+        //loadSplashImage(splashImageUrl)
         setupView()
         notificationIntent=intent
         mDelayHandler.postDelayed(
@@ -67,7 +67,7 @@ class SplashActivity : LeanBaseActivity() {
     }
 
     private fun getSplashImageUrl(): String? {
-        return if (!splashImgUrl.get().isEmpty()) {
+        return if (splashImgUrl.get().isNotEmpty()) {
             splashImgUrl.get()
         } else {
             null
@@ -154,7 +154,7 @@ class SplashActivity : LeanBaseActivity() {
                             gson.fromJson(agicInit, RemoteConfigModel::class.java)
                         splashImgUrl.set(remoteConfigModel.splash)
                         remoteCongigData.set(agicInit)
-                        loadSplashImage(remoteConfigModel.splash)
+                        //loadSplashImage(remoteConfigModel.splash)
                         initializeApp()
                     }
                 }
@@ -189,7 +189,7 @@ class SplashActivity : LeanBaseActivity() {
             startActivity(intent)
             finish()
         } else {
-            val intent = Intent(this@SplashActivity, NewsLetterActivity::class.java)
+            val intent = Intent(this@SplashActivity, LoginActivity::class.java)
             startActivity(intent)
             finish()
         }

@@ -77,7 +77,7 @@
     <style name="AttendanceApp" />
 
     <style name="AttendanceApp.Text.Bold" parent="AttendanceApp">
-        <item name="android:textColor">@color/black</item>
+        <item name="android:textColor">@color/primary_text_color</item>
         <item name="fontFamily">@font/roboto_condensed_regular</item>
         <item name="android:textStyle">bold</item>
     </style>

@@ -65,7 +65,7 @@ class QrCodeScanFragment: MOSLCommonFragment(), ZXingScannerView.ResultHandler, 
             subject.onNext(QrCodeScanEvent.SuccessEvent(
                 uniqueId = it,
                 companyId = companyId,
-                confDate = AppDateFormats.df_Date6.format(CalendarUtils.today)
+                confDate = "2022-06-09"
             ))
         }
     }
@@ -80,7 +80,6 @@ class QrCodeScanFragment: MOSLCommonFragment(), ZXingScannerView.ResultHandler, 
             showOnFailurePopup(it)
         }
         uiModel.onSuccess {
-            userManagerImpl.clearClientModel()
             userManagerImpl.saveClientModel(it.mapToClientDetails())
 
             screenNavigator.openPage(
