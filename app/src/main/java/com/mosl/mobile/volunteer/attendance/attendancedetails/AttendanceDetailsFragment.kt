@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.core.content.ContextCompat
-import com.bumptech.glide.Glide
 import com.google.gson.Gson
 import com.jakewharton.rxbinding3.view.clicks
 import com.mosl.app.core.prefs.StringPreference
@@ -104,9 +103,6 @@ class AttendanceDetailsFragment: MOSLCommonFragment(), AttendanceDetailsContract
             }
         }
         setTimeSlot(clientModel?.startTime, clientModel?.endTime)
-        Glide.with(this)
-            .load(remoteConfigModel?.logo)
-            .into(binding.header.icConfLogo)
     }
 
     private fun setTimeSlot(startTimeString: String?, endTimeString: String?) {

@@ -63,10 +63,6 @@ class CorporateNamesListFragment: MOSLCommonFragment(), CorporateNamesListContra
 
     private fun setUpViews() {
         setUpRecyclerView()
-
-        Glide.with(this)
-            .load(remoteConfigModel?.logo)
-            .into(binding.header.icConfLogo)
     }
 
     override fun onDestroyView() {
