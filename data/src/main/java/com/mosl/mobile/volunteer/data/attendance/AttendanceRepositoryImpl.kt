@@ -18,7 +18,7 @@ class AttendanceRepositoryImpl
         companyId: String,
         confDate: String,
     ): Observable<ClientDetailsModel> {
-        val request = GetClientMeetingRequest(uniqueId, companyId, confDate)
+        val request = GetClientMeetingRequest(uniqueId, companyId)
         return api.getClientMeeting(request)
             .map {
                 it.data.mapToClientDataModel()

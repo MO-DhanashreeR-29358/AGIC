@@ -8,8 +8,5 @@ data class LoginInfoRequest(
     val empId: String,
 
     @JvmField @SerializedName("Password")
-    val password: String,
-
-    @JvmField @SerializedName("ConfDate")
-    val confDate: String
+    val password: String
 )

@@ -9,9 +9,5 @@ data class GetClientMeetingRequest(
 
     @JvmField
     @SerializedName("CompanyId")
-    val companyId: String,
-
-    @JvmField
-    @SerializedName("ConfDate")
-    val confDate: String
+    val companyId: String
 )

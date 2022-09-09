@@ -8,7 +8,6 @@ import com.mosl.data.api.login.VolunteerResponse
 fun LoginRequest.mapToLoginRequest(): LoginInfoRequest {
     return LoginInfoRequest(
         empId = empId,
-        confDate = confDate,
         password = password
     )
 }
