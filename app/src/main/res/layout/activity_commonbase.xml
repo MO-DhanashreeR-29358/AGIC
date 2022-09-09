@@ -22,6 +22,7 @@
                     android:id="@+id/app_bar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:visibility="gone"
                     android:theme="@style/AppTheme.AppBarOverlay"
                     app:elevation="0dp">
 
@@ -48,8 +49,7 @@
                                     android:layout_width="@dimen/img_news_letter"
                                     android:layout_height="@dimen/img_news_letter"
                                     android:layout_gravity="center_vertical"
-                                    android:layout_margin="@dimen/margin_small"
-                                    android:src="@drawable/agic_agic"/>
+                                    android:layout_margin="@dimen/margin_small" />
 
                                 <androidx.appcompat.widget.AppCompatImageView
                                     android:id="@+id/img_logo_temp"

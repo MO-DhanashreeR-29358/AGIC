@@ -31,6 +31,7 @@ import com.mosl.navigator.AuthorizationState
 import com.mosl.navigator.FragmentNavigationEntry
 import com.mosl.navigator.Navigator
 import com.mosl.shared.AppDateFormats
+import com.mosl.shared.util.EMPTY_STRING
 import io.reactivex.Observable
 import javax.inject.Inject
 
@@ -137,7 +138,7 @@ class LoginActivity : LeanBaseActivity(), Navigator, LoginView {
     }
 
     override fun getTodaysDate(): String {
-        return AppDateFormats.df_Date6.format(CalendarUtils.today)
+        return EMPTY_STRING
     }
 
     override fun getPassword(): String {

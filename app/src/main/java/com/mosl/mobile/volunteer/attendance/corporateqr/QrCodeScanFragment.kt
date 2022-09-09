@@ -15,9 +15,11 @@ import com.mosl.mobile.volunteer.constants.NavigationConstants
 import com.mosl.mobile.volunteer.databinding.FragmentQrCodeScanBinding
 import com.mosl.mobile.volunteer.appuser.login.UserManagerImpl
 import com.mosl.mobile.volunteer.attendance.attendancedetails.mapToClientDetails
+import com.mosl.mobile.volunteer.core.MOSLCommonActivity
 import com.mosl.mobile.volunteer.domain.attendance.ClientDetailsModel
 import com.mosl.shared.AppDateFormats
 import com.mosl.shared.CheckPermissionHelper
+import com.mosl.shared.util.EMPTY_STRING
 import io.reactivex.Observable
 import io.reactivex.subjects.PublishSubject
 import io.reactivex.rxkotlin.ofType
@@ -54,6 +56,7 @@ class QrCodeScanFragment: MOSLCommonFragment(), ZXingScannerView.ResultHandler, 
         binding = FragmentQrCodeScanBinding.bind(view)
         binding.qrCodeView.setResultHandler(this)
         checkPermissionHelper.checkAndRequestPermissions()
+        (requireActivity() as? MOSLCommonActivity)?.toggleAppBarVisibility(isVisible = false)
         presenter.start()
     }
 
@@ -65,7 +68,7 @@ class QrCodeScanFragment: MOSLCommonFragment(), ZXingScannerView.ResultHandler, 
             subject.onNext(QrCodeScanEvent.SuccessEvent(
                 uniqueId = it,
                 companyId = companyId,
-                confDate = AppDateFormats.df_Date6.format(CalendarUtils.today)
+                confDate = EMPTY_STRING
             ))
         }
     }
@@ -114,8 +117,8 @@ class QrCodeScanFragment: MOSLCommonFragment(), ZXingScannerView.ResultHandler, 
         return true
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView() {
+        super.onDestroyView()
         binding.qrCodeView.stopCamera()
         presenter.stop()
     }

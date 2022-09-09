@@ -3,13 +3,13 @@ package com.mosl.mobile.volunteer.attendance.corporateqr
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.Glide
 import com.google.gson.Gson
 import com.mosl.app.core.prefs.StringPreference
 import com.mosl.groupiex.section.DataManagerSection
 import com.mosl.mobile.volunteer.R
 import com.mosl.mobile.volunteer.annotations.RemoteConfigData
 import com.mosl.mobile.volunteer.appuser.login.UserManager
+import com.mosl.mobile.volunteer.core.MOSLCommonActivity
 import com.mosl.mobile.volunteer.core.MOSLCommonFragment
 import com.mosl.mobile.volunteer.data.RemoteConfigModel
 import com.mosl.mobile.volunteer.databinding.FragmentAttendanceCorporateListBinding
@@ -63,6 +63,11 @@ class CorporateNamesListFragment: MOSLCommonFragment(), CorporateNamesListContra
 
     private fun setUpViews() {
         setUpRecyclerView()
+    }
+
+    override fun onBackPressed(): Boolean {
+        (requireActivity() as? MOSLCommonActivity)?.toggleAppBarVisibility(true)
+        return super.onBackPressed()
     }
 
     override fun onDestroyView() {

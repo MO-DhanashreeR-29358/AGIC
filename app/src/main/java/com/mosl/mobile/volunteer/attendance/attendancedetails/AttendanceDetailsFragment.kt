@@ -15,10 +15,12 @@ import com.mosl.commons.rx.ofType
 import com.mosl.mobile.volunteer.R
 import com.mosl.mobile.volunteer.annotations.RemoteConfigData
 import com.mosl.mobile.volunteer.appuser.login.UserManagerImpl
+import com.mosl.mobile.volunteer.core.MOSLCommonActivity
 import com.mosl.mobile.volunteer.core.MOSLCommonFragment
 import com.mosl.mobile.volunteer.data.RemoteConfigModel
 import com.mosl.mobile.volunteer.databinding.FragmentAttendanceDetailsBinding
 import com.mosl.shared.AppDateFormats
+import com.mosl.shared.util.EMPTY_STRING
 import io.reactivex.Observable
 import io.reactivex.subjects.PublishSubject
 import javax.inject.Inject
@@ -90,6 +92,7 @@ class AttendanceDetailsFragment: MOSLCommonFragment(), AttendanceDetailsContract
     }
 
     private fun setUpViews() {
+        (requireActivity() as? MOSLCommonActivity)?.toggleAppBarVisibility(isVisible = false)
         val clientModel = userManager.getClientModel()
         binding.apply {
             tvCorporateName.text = clientModel?.companyName.orEmpty()
@@ -119,7 +122,7 @@ class AttendanceDetailsFragment: MOSLCommonFragment(), AttendanceDetailsContract
     }
 
     private fun getTime(timeString: String): String {
-        val date = AppDateFormats.DF_JSON_DATE_4.parse(timeString) ?: return ""
+        val date = AppDateFormats.DF_JSON_DATE_4.parse(timeString) ?: return EMPTY_STRING
         return AppDateFormats.DF_TIME_HH.format(date)
     }
 }

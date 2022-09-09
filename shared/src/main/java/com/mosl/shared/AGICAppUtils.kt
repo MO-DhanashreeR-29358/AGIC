@@ -211,3 +211,5 @@ fun getMilliFromDate(dateFormat: String, formatterDate: DateFormat): Long {
 
     return date?.time ?: Long.MIN_VALUE
 }
+
+const val EMPTY_STRING = ""

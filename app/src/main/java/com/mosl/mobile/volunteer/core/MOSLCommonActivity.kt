@@ -23,6 +23,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.f2prateek.rx.preferences2.Preference
@@ -197,7 +198,7 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
             gson.fromJson(remoteConfigData.get(), RemoteConfigModel::class.java)
         setupObservables()
         setUpView()
-        changeImage()
+        //changeImage()
     }
 
     private fun setUpView() {
@@ -352,6 +353,9 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
 
     }
 
+    fun toggleAppBarVisibility(isVisible: Boolean) {
+        binding.appBar.isVisible = isVisible
+    }
 
     internal fun alertMessage(message: String) {
 
