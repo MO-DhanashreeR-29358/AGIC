@@ -99,7 +99,7 @@ class AttendanceDetailsFragment: MOSLCommonFragment(), AttendanceDetailsContract
             if (btStatus.text == getString(R.string.bt_status_registered_label)) {
                 btStatus.setTextColor(ContextCompat.getColor(requireContext(), R.color._green))
             } else {
-                btStatus.setTextColor(ContextCompat.getColor(requireContext(), R.color.color_error))
+                btStatus.setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
             }
         }
         setTimeSlot(clientModel?.startTime, clientModel?.endTime)
@@ -108,14 +108,14 @@ class AttendanceDetailsFragment: MOSLCommonFragment(), AttendanceDetailsContract
     private fun setTimeSlot(startTimeString: String?, endTimeString: String?) {
         if (startTimeString.isNullOrEmpty() || endTimeString.isNullOrEmpty()) {
             binding.btSlot.text = getString(R.string.bt_time_slot_na_label)
-            binding.btSlot.setTextColor(ContextCompat.getColor(requireContext(), R.color.color_error))
+            binding.btSlot.setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
             return
         }
 
         val startTime = getTime(startTimeString)
         val endTime = getTime(endTimeString)
         binding.btSlot.text = "$startTime-$endTime"
-        binding.btSlot.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+        binding.btSlot.setTextColor(ContextCompat.getColor(requireContext(), R.color.primary_text_color))
     }
 
     private fun getTime(timeString: String): String {
