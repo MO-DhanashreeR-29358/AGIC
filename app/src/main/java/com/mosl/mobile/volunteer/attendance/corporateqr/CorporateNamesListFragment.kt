@@ -62,12 +62,8 @@ class CorporateNamesListFragment: MOSLCommonFragment(), CorporateNamesListContra
     }
 
     private fun setUpViews() {
-        setUpRecyclerView()
-    }
-
-    override fun onBackPressed(): Boolean {
         (requireActivity() as? MOSLCommonActivity)?.toggleAppBarVisibility(true)
-        return super.onBackPressed()
+        setUpRecyclerView()
     }
 
     override fun onDestroyView() {
