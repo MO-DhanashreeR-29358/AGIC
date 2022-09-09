@@ -15,6 +15,8 @@ import com.mosl.commons.rx.ofType
 import com.mosl.mobile.volunteer.R
 import com.mosl.mobile.volunteer.annotations.RemoteConfigData
 import com.mosl.mobile.volunteer.appuser.login.UserManagerImpl
+import com.mosl.mobile.volunteer.attendance.corporateqr.QrCodeScanContract
+import com.mosl.mobile.volunteer.constants.NavigationConstants
 import com.mosl.mobile.volunteer.core.MOSLCommonActivity
 import com.mosl.mobile.volunteer.core.MOSLCommonFragment
 import com.mosl.mobile.volunteer.data.RemoteConfigModel
@@ -43,6 +45,10 @@ class AttendanceDetailsFragment: MOSLCommonFragment(), AttendanceDetailsContract
 
     @Inject
     lateinit var presenter: AttendanceDetailsPresenter
+
+    private val companyId by lazy {
+        requireArguments().getString(QrCodeScanContract.EXTRA_COMPANY_ID).orEmpty()
+    }
 
     override fun getLayout(): Int {
         return R.layout.fragment_attendance_details
@@ -82,7 +88,14 @@ class AttendanceDetailsFragment: MOSLCommonFragment(), AttendanceDetailsContract
         }
     }
 
-    override fun isBackPressEnabled(): Boolean {
+    override fun onBackPressed(): Boolean {
+        screenNavigator.openPage(
+            pageId = NavigationConstants.NAVIGATE_TO_QR_CODE_SCAN_FRAGMENT,
+            args = Bundle().apply {
+                putString(QrCodeScanContract.EXTRA_COMPANY_ID, companyId)
+            },
+            addToStack = false
+        )
         return true
     }
 

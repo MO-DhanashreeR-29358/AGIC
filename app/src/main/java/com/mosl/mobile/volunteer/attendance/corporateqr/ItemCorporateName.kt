@@ -21,7 +21,7 @@ class ItemCorporateName(
                 args = Bundle().apply {
                     putString(QrCodeScanContract.EXTRA_COMPANY_ID, model.companyId)
                 },
-                addToStack = true
+                addToStack = false
             )
         }
     }

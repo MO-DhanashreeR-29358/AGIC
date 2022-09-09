@@ -83,11 +83,15 @@ class QrCodeScanFragment: MOSLCommonFragment(), ZXingScannerView.ResultHandler, 
             showOnFailurePopup(it)
         }
         uiModel.onSuccess {
+            userManagerImpl.clearClientModel()
             userManagerImpl.saveClientModel(it.mapToClientDetails())
 
             screenNavigator.openPage(
                 NavigationConstants.NAVIGATE_TO_ATTENDANCE_DETAILS_FRAGMENT,
-                true
+                args = Bundle().apply {
+                    putString(EXTRA_COMPANY_ID, companyId)
+                },
+                addToStack = false
             )
         }
     }
@@ -113,7 +117,8 @@ class QrCodeScanFragment: MOSLCommonFragment(), ZXingScannerView.ResultHandler, 
         binding.qrCodeView.stopCamera()
     }
 
-    override fun isBackPressEnabled(): Boolean {
+    override fun onBackPressed(): Boolean {
+        screenNavigator.openHome()
         return true
     }
 
