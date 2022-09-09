@@ -18,7 +18,8 @@
 
                 <include
                     android:id="@+id/header"
-                    layout="@layout/header_attendance" />
+                    layout="@layout/header_attendance"
+                    />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycler_view"

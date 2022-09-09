@@ -354,7 +354,7 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
     }
 
     fun toggleAppBarVisibility(isVisible: Boolean) {
-        binding.appBar.isVisible = isVisible
+        binding.imgLogout.isVisible = isVisible
     }
 
     internal fun alertMessage(message: String) {

@@ -110,13 +110,13 @@
                                 app:srcCompat="@drawable/ic_call_green_24dp"
                                 android:visibility="gone" />
 
-                            <androidx.appcompat.widget.AppCompatImageView
+                            <!--<androidx.appcompat.widget.AppCompatImageView
                                 android:id="@+id/img_logout"
                                 android:layout_width="@dimen/menuIcons"
                                 android:layout_height="@dimen/menuIcons"
                                 android:layout_gravity="center_vertical"
                                 android:layout_margin="@dimen/margin_large"
-                                app:srcCompat="@drawable/ic_logout_red_24_dp" />
+                                app:srcCompat="@drawable/ic_logout_red_24_dp" />-->
 
                         </LinearLayout>
 
@@ -132,6 +132,13 @@
                     android:layout_marginTop="@dimen/margin_small"
                     app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_logout"
+                    android:layout_width="@dimen/menuIcons"
+                    android:layout_height="@dimen/menuIcons"
+                    android:layout_gravity="end"
+                    android:layout_margin="@dimen/margin_large"
+                    app:srcCompat="@drawable/ic_logout_red_24_dp" />
 
                 <ProgressBar
                     android:id="@+id/progress_bar"
