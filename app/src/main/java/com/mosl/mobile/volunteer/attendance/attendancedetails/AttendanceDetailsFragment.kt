@@ -118,11 +118,15 @@ class AttendanceDetailsFragment: MOSLCommonFragment(), AttendanceDetailsContract
                 btStatus.setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
             }
         }
-        setTimeSlot(clientModel?.startTime, clientModel?.endTime)
+        setTimeSlot(clientModel?.startTime, clientModel?.endTime, clientModel?.status)
     }
 
-    private fun setTimeSlot(startTimeString: String?, endTimeString: String?) {
-        if (startTimeString.isNullOrEmpty() || endTimeString.isNullOrEmpty()) {
+    private fun setTimeSlot(startTimeString: String?, endTimeString: String?, status: String?) {
+        if (startTimeString.isNullOrEmpty() ||
+            endTimeString.isNullOrEmpty() ||
+            status.isNullOrEmpty() ||
+            status == getString(R.string.bt_status_unregistered_label)
+        ) {
             binding.btSlot.text = getString(R.string.bt_time_slot_na_label)
             binding.btSlot.setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
             return

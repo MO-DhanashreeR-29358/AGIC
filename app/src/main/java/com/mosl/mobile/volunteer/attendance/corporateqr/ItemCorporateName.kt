@@ -14,7 +14,7 @@ class ItemCorporateName(
 ): BindableItem<ItemAttendanceCorporateNameBinding>() {
 
     override fun bind(viewBinding: ItemAttendanceCorporateNameBinding, position: Int) {
-        viewBinding.tvCorporateName.text = model.corporateName
+        viewBinding.tvCorporateName.text = model.shortName
         viewBinding.tvCorporateName.setOnClickListener {
             navigator.openPage(
                 pageId = NavigationConstants.NAVIGATE_TO_QR_CODE_SCAN_FRAGMENT,
