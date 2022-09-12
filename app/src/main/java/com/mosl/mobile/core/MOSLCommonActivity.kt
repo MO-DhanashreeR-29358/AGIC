@@ -317,6 +317,13 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
                 )
 
                 addTab(
+                    newTab().setText(R.string.tab_label_panel).setIcon(R.drawable.ic_panel_24dp)
+                        .setTag(
+                            NavigationConstants.NAVIGATE_TO_PANEL
+                        )
+                )
+
+                addTab(
                     newTab().setText(R.string.tab_label_notification)
                         .setIcon(R.drawable.ic_notification_24dp).setTag(
                         NavigationConstants.NAVIGATE_TO_NOTIFICATION

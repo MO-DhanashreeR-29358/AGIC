@@ -9,11 +9,11 @@ import com.jakewharton.threetenabp.AndroidThreeTen
 import com.mosl.app.core.utils.matchesService
 import com.mosl.debugview.DebugComponent
 import com.mosl.debugview.LumberYard
-import com.squareup.leakcanary.LeakCanary
 import dagger.android.AndroidInjector
 import dagger.android.DaggerApplication
 import io.fabric.sdk.android.Fabric
 import io.reactivex.plugins.RxJavaPlugins
+import leakcanary.LeakCanary
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -27,16 +27,21 @@ class MOSLApplicationImpl : MOSLApplication() {
     }
 
     override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
-        return DaggerApplicationComponent.builder()
+        val appComponent = DaggerAppComponent.builder()
+            .application(this)
+            .build()
+        this.appComponent = appComponent
+        return appComponent
+        /*return DaggerApplicationComponent.builder()
             .application(this)
             .build().also {
                 this.appComponent = it
-            }
+            }*/
     }
 
     override fun init() {
         //Add leak canary to debug builds.
-        LeakCanary.install(this)
+//        LeakCanary.install(this)
 //    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         Timber.plant(object : Timber.DebugTree() {
             override fun createStackElementTag(element: StackTraceElement): String? {

@@ -1,6 +1,7 @@
 package com.mosl.mobile.panel
 
 import android.content.Context
+import android.util.Log
 import android.view.View
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -10,6 +11,7 @@ import com.mosl.mobile.domain.panel.PanelDayResponse
 import com.mosl.shared.util.getTime
 import com.xwray.groupie.databinding.BindableItem
 import io.reactivex.subjects.PublishSubject
+import timber.log.Timber
 
 
 class ItemPanelList(
@@ -31,8 +33,14 @@ class ItemPanelList(
             tvPanelDesignation.text = data.designation
             tvPanelIntro.text = data.speakerIntroduction
 
+            Log.d("Panel",data.panelImagePath)
+            Timber.i("Panel ${data.panelImagePath}")
+
+            val imageUrl = "https://galaxy.motilaloswal.com/Conference/"
+            val apiImagePath = data.panelImagePath.replace(" ", "%20")
+
             Glide.with(context)
-                .load(data.panelImagePath)
+                .load(imageUrl+apiImagePath)
                 .apply(RequestOptions.circleCropTransform())
                 .placeholder(R.drawable.agic_15)
                 .into(imgPanelProfile)
