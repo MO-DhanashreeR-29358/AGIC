@@ -85,7 +85,6 @@ class QrCodeScanFragment: MOSLCommonFragment(), ZXingScannerView.ResultHandler, 
         uiModel.onSuccess {
             userManagerImpl.clearClientModel()
             userManagerImpl.saveClientModel(it.mapToClientDetails())
-
             screenNavigator.openPage(
                 NavigationConstants.NAVIGATE_TO_ATTENDANCE_DETAILS_FRAGMENT,
                 args = Bundle().apply {

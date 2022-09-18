@@ -16,6 +16,7 @@ fun ClientDetailsModel?.mapToClientDetails(): ClientDetails {
         meetingId = this?.meetingId ?: Int.MIN_VALUE,
         startTime = this?.startTime.orEmpty(),
         endTime = this?.endTime.orEmpty(),
-        isAllowed = this?.isAllowed ?: Int.MIN_VALUE
+        isAllowed = this?.isAllowed ?: Int.MIN_VALUE,
+        message = this?.message.orEmpty()
     )
 }

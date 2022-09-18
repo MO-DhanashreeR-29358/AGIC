@@ -6,7 +6,7 @@ import com.mosl.mobile.volunteer.domain.attendance.ClientDetailsModel
 
 object AttendanceMapper {
 
-    fun ClientDetails?.mapToClientDataModel(): ClientDetailsModel {
+    fun ClientDetails?.mapToClientDataModel(message: String): ClientDetailsModel {
         return ClientDetailsModel(
             userId = this?.userId.orEmpty(),
             clientId = this?.clientId ?: Int.MIN_VALUE,
@@ -19,7 +19,8 @@ object AttendanceMapper {
             meetingId = this?.meetingId ?: Int.MIN_VALUE,
             startTime = this?.startTime.orEmpty(),
             endTime = this?.endTime.orEmpty(),
-            isAllowed = this?.isAllowed ?: Int.MIN_VALUE
+            isAllowed = this?.isAllowed ?: Int.MIN_VALUE,
+            message = message
         )
     }
 }

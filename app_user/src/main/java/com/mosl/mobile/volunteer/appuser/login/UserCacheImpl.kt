@@ -1,6 +1,7 @@
 package com.mosl.mobile.volunteer.appuser.login
 
 import com.google.gson.Gson
+import com.google.gson.JsonSyntaxException
 import com.mosl.data.api.attendance.ClientDetails
 import com.mosl.mobile.volunteer.appuser.helper.ClientPrefStore
 import com.mosl.mobile.volunteer.appuser.helper.NewsLetterPrefStateStore
@@ -64,7 +65,12 @@ class UserCacheImpl @Inject constructor(
     }
 
     override fun saveUser(user: Volunteer) {
-        userStore.userInfo.set(gson.toJson(user))
+        try {
+            userStore.userInfo.set(gson.toJson(user))
+        }catch (e: JsonSyntaxException){
+
+        }
+
     }
 
     override fun getUser(): Volunteer? {

@@ -1,5 +1,7 @@
 package com.mosl.mobile.volunteer.login
 
+import android.app.NotificationManager
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,19 +10,27 @@ import android.view.inputmethod.EditorInfo
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
+import com.f2prateek.rx.preferences2.Preference
 import com.google.gson.Gson
 import com.jakewharton.rxbinding3.view.clicks
 import com.jakewharton.rxbinding3.widget.editorActions
+import com.mosl.annotations.FcmToken
+import com.mosl.app.core.data.fcm.FcmTokenSyncHelper
 import com.mosl.app.core.error.getErrorOnFailure
 import com.mosl.app.core.events.DataAction
+import com.mosl.app.core.prefs.IntegerPreference
 import com.mosl.app.core.prefs.StringPreference
+import com.mosl.app.core.rx.applyUiModel
+import com.mosl.app.core.utils.getUuid
 import com.mosl.app.coreui.base.LeanBaseActivity
 import com.mosl.commons.data.UiModel
 import com.mosl.commons.data.onFailure
 import com.mosl.commons.data.onSuccess
 import com.mosl.commons.date.CalendarUtils
+import com.mosl.data.api.fcmtoken.FcmTokenRequest
 import com.mosl.mobile.volunteer.R
-import com.mosl.mobile.volunteer.annotations.RemoteConfigData
+import com.mosl.mobile.volunteer.annotations.*
+import com.mosl.mobile.volunteer.appuser.login.LoginRepositoryImpl
 import com.mosl.mobile.volunteer.appuser.model.Volunteer
 import com.mosl.mobile.volunteer.core.MOSLCommonActivity
 import com.mosl.mobile.volunteer.data.RemoteConfigModel
@@ -33,6 +43,7 @@ import com.mosl.navigator.Navigator
 import com.mosl.shared.AppDateFormats
 import com.mosl.shared.util.EMPTY_STRING
 import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
 import javax.inject.Inject
 
 /**
@@ -50,6 +61,57 @@ class LoginActivity : LeanBaseActivity(), Navigator, LoginView {
     lateinit var remoteConfigData: StringPreference
     @Inject
     lateinit var gson: Gson
+
+    @Inject
+    @field:LastScheduleDate
+    lateinit var lastScheduleDate: StringPreference
+
+    @Inject
+    @field:ImageSplashUrl
+    lateinit var imageSplashUrl: StringPreference
+
+    @Inject
+    @field:LastBytesDate
+    lateinit var lastBytesDate: StringPreference
+
+    @Inject
+    @field:ScheduleData
+    lateinit var scheduleData: StringPreference
+
+    @Inject
+    @field:PanelData
+    lateinit var panelData: StringPreference
+
+    @Inject
+    @field:OverViewData
+    lateinit var overViewData: StringPreference
+
+    @Inject
+    @field:CorporateScheduleData
+    lateinit var corporateScheduleData: StringPreference
+
+    @Inject
+    @field:LastCorporateScheduleDate
+    lateinit var lastCorporateScheduleDate: StringPreference
+
+    @Inject
+    @field:LastNotificationDate
+    lateinit var lastNotificationDate: StringPreference
+
+    @Inject
+    @field:NotificationData
+    lateinit var notificationDate: StringPreference
+
+    @Inject
+    @field:NotificationCount
+    lateinit var notificationCount: IntegerPreference
+
+    @Inject
+    @field:FcmToken
+    lateinit var tokenPref: Preference<String>
+
+    @Inject
+    lateinit var loginRepository: LoginRepositoryImpl
 
     override fun getLayout(): Int {
         return R.layout.activity_login
@@ -77,6 +139,49 @@ class LoginActivity : LeanBaseActivity(), Navigator, LoginView {
         finish()
     }
 
+    private fun doLogout() {
+        val notificationManager = getSystemService(
+            Context.NOTIFICATION_SERVICE
+        ) as NotificationManager
+        notificationManager.cancelAll()
+        val uuid = this.getUuid()
+        val tokenRequest = FcmTokenRequest(
+            tokenPref.get(),
+            uuid,
+            FcmTokenSyncHelper.PLATFORM,
+            "13708"
+        )
+        disposable.add(loginRepository.logout(tokenRequest)
+            .toSingleDefault(true).toObservable()
+            .compose(applyUiModel())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe { uiModel ->
+                toggleProgressBar(uiModel.inProgress)
+
+                uiModel.onSuccess {
+                    preferenceClear()
+                }
+
+                uiModel.onFailure { error ->
+                    error.showOnFailurePopup()
+                }
+            })
+    }
+
+    private fun preferenceClear() {
+        lastScheduleDate.set("")
+        imageSplashUrl.set("")
+        lastBytesDate.set("")
+        scheduleData.set("")
+        panelData.set("")
+        overViewData.set("")
+        corporateScheduleData.set("")
+        lastCorporateScheduleDate.set("")
+        lastNotificationDate.set("")
+        notificationDate.set("")
+        notificationCount.set(0)
+    }
+
     fun toggleProgressBar(inProgress: Boolean) {
         if (inProgress) {
             showProgress()
@@ -101,7 +206,11 @@ class LoginActivity : LeanBaseActivity(), Navigator, LoginView {
         }
 
         uiModel.onSuccess {
-            openDashboard()
+            if (it.corporateList.isEmpty() && it.message.isNullOrEmpty().not()){
+                alertMessage(it.message)
+            }else {
+                openDashboard()
+            }
         }
     }
 
@@ -128,6 +237,7 @@ class LoginActivity : LeanBaseActivity(), Navigator, LoginView {
         //cancel button click of custom layout
         bindingDialog.btnOk.setOnClickListener {
             //dismiss dialog
+            doLogout()
             mAlertDialog.dismiss()
         }
     }

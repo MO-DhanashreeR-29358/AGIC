@@ -1,8 +1,10 @@
 package com.mosl.mobile.volunteer.attendance.attendancedetails
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import com.google.gson.Gson
 import com.jakewharton.rxbinding3.view.clicks
@@ -20,6 +22,7 @@ import com.mosl.mobile.volunteer.constants.NavigationConstants
 import com.mosl.mobile.volunteer.core.MOSLCommonActivity
 import com.mosl.mobile.volunteer.core.MOSLCommonFragment
 import com.mosl.mobile.volunteer.data.RemoteConfigModel
+import com.mosl.mobile.volunteer.databinding.AlertDialogBinding
 import com.mosl.mobile.volunteer.databinding.FragmentAttendanceDetailsBinding
 import com.mosl.shared.AppDateFormats
 import com.mosl.shared.util.EMPTY_STRING
@@ -107,18 +110,43 @@ class AttendanceDetailsFragment: MOSLCommonFragment(), AttendanceDetailsContract
     private fun setUpViews() {
         (requireActivity() as? MOSLCommonActivity)?.toggleAppBarVisibility(isVisible = false)
         val clientModel = userManager.getClientModel()
-        binding.apply {
-            tvCorporateName.text = clientModel?.companyName.orEmpty()
-            btFundName.text = clientModel?.fundName.orEmpty()
-            btClientName.text = clientModel?.clientName.orEmpty()
-            btStatus.text = clientModel?.status.orEmpty()
-            if (btStatus.text == getString(R.string.bt_status_registered_label)) {
-                btStatus.setTextColor(ContextCompat.getColor(requireContext(), R.color._green))
-            } else {
-                btStatus.setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
+        if (clientModel?.message.isNullOrEmpty().not()){
+            alertMessage(clientModel?.message?:"No data")
+        }else {
+            binding.apply {
+                tvCorporateName.text = clientModel?.companyName.orEmpty()
+                btFundName.text = clientModel?.fundName.orEmpty()
+                btClientName.text = clientModel?.clientName.orEmpty()
+                btStatus.text = clientModel?.status.orEmpty()
+                if (btStatus.text == getString(R.string.bt_status_registered_label)) {
+                    btStatus.setTextColor(ContextCompat.getColor(requireContext(), R.color._green))
+                } else {
+                    btStatus.setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
+                }
             }
+            setTimeSlot(clientModel?.startTime, clientModel?.endTime, clientModel?.status)
         }
-        setTimeSlot(clientModel?.startTime, clientModel?.endTime, clientModel?.status)
+    }
+    private lateinit var bindingDialog: AlertDialogBinding
+    private fun alertMessage(message: String) {
+
+        //Inflate the dialog with custom view
+        val dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.alert_dialog, null)
+
+        bindingDialog = AlertDialogBinding.bind(dialogView)
+
+
+        val mBuilder = AlertDialog.Builder(requireContext())
+            .setView(dialogView)
+        val mAlertDialog = mBuilder.show()
+        bindingDialog.txtError.text = message
+
+        //cancel button click of custom layout
+        bindingDialog.btnOk.setOnClickListener {
+            //dismiss dialog
+            onBackPressed()
+            mAlertDialog.dismiss()
+        }
     }
 
     private fun setTimeSlot(startTimeString: String?, endTimeString: String?, status: String?) {

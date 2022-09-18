@@ -36,6 +36,9 @@ data class ClientDetails(
     @JvmField @SerializedName("EndTime")
     val endTime: String?,
 
+    @JvmField @SerializedName("Message")
+    val message: String?,
+
     @JvmField @SerializedName("IsAllowed")
     val isAllowed: Int?
 )

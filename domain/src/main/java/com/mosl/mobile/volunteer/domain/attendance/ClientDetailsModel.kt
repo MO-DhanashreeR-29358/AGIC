@@ -12,5 +12,6 @@ data class ClientDetailsModel(
     val meetingId: Int,
     val startTime: String,
     val endTime: String,
-    val isAllowed: Int
+    val isAllowed: Int,
+    val message: String
 )

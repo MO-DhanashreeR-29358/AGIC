@@ -21,7 +21,7 @@ class AttendanceRepositoryImpl
         val request = GetClientMeetingRequest(uniqueId, companyId)
         return api.getClientMeeting(request)
             .map {
-                it.data.mapToClientDataModel()
+                it.data.mapToClientDataModel(it.message)
             }
     }
 
