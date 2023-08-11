@@ -1,4 +1,4 @@
-package com.mosl.app.core.data.fcm
+package com.mosl.mobile.fcm
 
 import android.content.Context
 import com.google.gson.Gson

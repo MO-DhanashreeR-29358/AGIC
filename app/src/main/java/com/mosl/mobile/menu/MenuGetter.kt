@@ -6,6 +6,7 @@ import com.mosl.mobile.bytes.BytesFragment
 import com.mosl.mobile.constants.NavigationConstants
 import com.mosl.mobile.corporatepager.CorporatePagerFragment
 import com.mosl.mobile.feedback.FeedbackFragment
+import com.mosl.mobile.idcard.IdCardFragment
 import com.mosl.mobile.notes.NotesFragment
 import com.mosl.mobile.notification.NotificationHistoryFragment
 import com.mosl.mobile.overview.OverviewChildFragment
@@ -33,6 +34,7 @@ object MenuGetter {
             NavigationConstants.NAVIGATE_TO_NOTES -> NotesFragment()
             NavigationConstants.NAVIGATE_TO_NOTIFICATION -> NotificationHistoryFragment()
             NavigationConstants.NAVIGATE_TO_FEEDBACK -> FeedbackFragment()
+            NavigationConstants.NAVIGATE_TO_IDCARD -> IdCardFragment()
 
             else -> null
         }
@@ -53,6 +55,7 @@ object MenuGetter {
             NavigationConstants.NAVIGATE_TO_CORPORATE_SCHEDULE -> true
             NavigationConstants.NAVIGATE_TO_NOTIFICATION -> true
             NavigationConstants.NAVIGATE_TO_FEEDBACK -> true
+            NavigationConstants.NAVIGATE_TO_IDCARD -> true
             else -> return false
         }
     }

@@ -12,6 +12,8 @@ import com.mosl.mobile.corporateschedule.CorporateScheduleRepDialogFragment
 import com.mosl.mobile.demo.DemoFragmentProvider
 import com.mosl.mobile.feedback.FeedbackFragment
 import com.mosl.mobile.feedback.FeedbackModule
+import com.mosl.mobile.idcard.IDCardModule
+import com.mosl.mobile.idcard.IdCardFragment
 import com.mosl.mobile.notes.NotesFragment
 import com.mosl.mobile.notes.NotesModule
 import com.mosl.mobile.notification.NotificationHistoryFragment
@@ -66,6 +68,9 @@ interface FragmentProvider {
 
     @ContributesAndroidInjector(modules = [NotesModule::class])
     fun provideNotesFragmentFactory(): NotesFragment
+
+    @ContributesAndroidInjector(modules = [IDCardModule::class])
+    fun provideIDCardFragmentFactory(): IdCardFragment
 
     @ContributesAndroidInjector(modules = [ScheduleModule::class])
     fun provideScheduleFragmentFactory(): ScheduleFragment

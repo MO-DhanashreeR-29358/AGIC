@@ -24,6 +24,7 @@ fun LoginInfoResponse.mapToLoginResponse(): User {
         contactMobile2 = contactMobile2,
         contactMobile3 = contactMobile3,
         day = day,
-        role = role
+        role = role,
+        clientIDCard = clientIDCard
     )
 }

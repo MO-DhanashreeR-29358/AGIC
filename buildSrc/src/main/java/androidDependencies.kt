@@ -161,7 +161,8 @@ object RxDependencies {
     const val kotlin = "io.reactivex.rxjava2:rxkotlin:2.3.0"
     const val android = "io.reactivex.rxjava2:rxandroid:2.1.1"
     const val relay = "com.jakewharton.rxrelay2:rxrelay:2.1.0"
-    const val preferences = "com.f2prateek.rx.preferences2:rx-preferences:2.0.0"
+    const val preferences = "MofslArtifacts:rxpreferences:1.0.2"
+//    const val preferences = "com.f2prateek.rx.preferences2:rx-preferences:2.0.0"
 }
 
 object RxBindingDependencies {

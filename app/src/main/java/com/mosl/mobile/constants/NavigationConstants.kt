@@ -21,7 +21,8 @@ import kotlin.annotation.AnnotationRetention.SOURCE
     NavigationConstants.NAVIGATE_TO_NOTES,
     NavigationConstants.NAVIGATE_TO_CORPORATE_SCHEDULE,
     NavigationConstants.NAVIGATE_TO_NOTIFICATION,
-    NavigationConstants.NAVIGATE_TO_FEEDBACK
+    NavigationConstants.NAVIGATE_TO_FEEDBACK,
+    NavigationConstants.NAVIGATE_TO_IDCARD
 
 )
 annotation class NavigationConstants {
@@ -39,7 +40,7 @@ annotation class NavigationConstants {
         const val NAVIGATE_TO_NOTIFICATION = 9
         const val NAVIGATE_TO_CORPORATE_SCHEDULE = 10
         const val NAVIGATE_TO_FEEDBACK = 11
-
+        const val NAVIGATE_TO_IDCARD = 12
 
     }
 }

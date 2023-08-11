@@ -19,22 +19,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.View.OnClickListener
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
-import com.f2prateek.rx.preferences2.Preference
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import com.google.gson.Gson
 import com.jakewharton.rxbinding3.appcompat.navigationClicks
 import com.mosl.annotations.FcmToken
-import com.mosl.app.core.data.fcm.FcmTokenSyncHelper
+import com.mosl.mobile.fcm.FcmTokenSyncHelper
 import com.mosl.app.core.error.getErrorOnFailure
 import com.mosl.app.core.network.NetworkChangeEvent
 import com.mosl.app.core.network.NetworkReceiver
@@ -75,6 +74,7 @@ import com.mosl.shared.util.getTodaysDate
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.addTo
+import mosl.rx_preferences.Preference
 import timber.log.Timber
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -214,7 +214,6 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
 
     }
 
-
     private fun setUpView() {
 
         binding.txtFundName.setText(userManager.user.fundName)
@@ -335,6 +334,13 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
                         NavigationConstants.NAVIGATE_TO_PDF
                     )
                 )
+
+                addTab(
+                    newTab().setText(R.string.tab_label_icard).setIcon(R.drawable.ic_tab_pdf).setTag(
+                        NavigationConstants.NAVIGATE_TO_IDCARD
+                    )
+                )
+
 
                 disableTab(binding.tabLayout, 2)
 
@@ -773,16 +779,16 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
 
     internal fun setupObservables() {
 
-        disposable.add(
-
-            tokenPref.asObservable().distinctUntilChanged()
-                .map { _ -> tokenPref.get() }
-                .filter { token -> !token.equals("0") }
-                .switchMap { token ->
-                    fcmTokenSyncHelper.saveToken(token)
-                        .compose(applyUiModel())
-                }
-                .subscribe())
+//        disposable.add(
+//
+//            tokenPref.asObservable().distinctUntilChanged()
+//                .map { _ -> tokenPref.get() }
+//                .filter { token -> !token.equals("0") }
+//                .switchMap { token ->
+////                    fcmTokenSyncHelper.saveToken(token)
+////                        .compose(applyUiModel())
+//                }
+//                .subscribe())
 
         val mainThread = dispatchers.main
         networkReceiver.onNetworkChanged()

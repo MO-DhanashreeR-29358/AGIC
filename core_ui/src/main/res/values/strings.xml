@@ -16,9 +16,10 @@
 
     <string name="tab_label_schedule">Schedule</string>
     <string name="tab_label_overview">Overview</string>
-    <string name="tab_label_panel">Panel</string>
+    <string name="tab_label_panel">Tracks</string>
     <string name="tab_label_bytes">Bytes</string>
     <string name="tab_label_pdf">PDF</string>
+    <string name="tab_label_icard">ID Card</string>
     <string name="tab_label_notes">Notes</string>
     <string name="tab_label_notification">Notification</string>
     <string name="tab_label_feedback" tools:ignore="ExtraTranslation">Feedback</string>

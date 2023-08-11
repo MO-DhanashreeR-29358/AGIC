@@ -28,6 +28,9 @@ def gitTimestamp() {
 android {
     packagingOptions {
         exclude 'META-INF/annotations.kotlin_module'
+        exclude 'META-INF/rxbinding_release.kotlin_module'
+        exclude 'META-INF/rxbinding-core_release.kotlin_module'
+        exclude 'META-INF/androidx.preference_preference.version'
     }
     compileSdkVersion Versions.compileSdkVersion
     buildToolsVersion Versions.buildToolsVersion

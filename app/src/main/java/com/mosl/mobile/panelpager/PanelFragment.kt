@@ -144,7 +144,7 @@ class PanelFragment : MOSLCommonPager(), PanelView {
 
     companion object {
         const val PANEL_DAY_LIST = "panel_day_list"
-        const val NO_DATA_AVAILABLE_FOR_THE_DAY = "No data available for the day"
+        const val NO_DATA_AVAILABLE_FOR_THE_DAY = "Thank you for participating"
     }
 
 }
