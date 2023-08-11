@@ -308,12 +308,6 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
                         NavigationConstants.NAVIGATE_TO_OVERVIEW
                     )
                 )
-                addTab(
-                    newTab().setText(R.string.tab_label_feedback)
-                        .setIcon(R.drawable.ic_tab_feedback).setTag(
-                        NavigationConstants.NAVIGATE_TO_FEEDBACK
-                    )
-                )
 
                 addTab(
                     newTab().setText(R.string.tab_label_panel).setIcon(R.drawable.ic_panel_24dp)
@@ -323,26 +317,35 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
                 )
 
                 addTab(
-                    newTab().setText(R.string.tab_label_notification)
-                        .setIcon(R.drawable.ic_notification_24dp).setTag(
-                        NavigationConstants.NAVIGATE_TO_NOTIFICATION
+                    newTab().setText(R.string.tab_label_icard).setIcon(R.drawable.ic_tab_pdf).setTag(
+                        NavigationConstants.NAVIGATE_TO_IDCARD
                     )
                 )
-
                 addTab(
                     newTab().setText(R.string.tab_label_pdf).setIcon(R.drawable.ic_tab_pdf).setTag(
                         NavigationConstants.NAVIGATE_TO_PDF
                     )
                 )
 
+
                 addTab(
-                    newTab().setText(R.string.tab_label_icard).setIcon(R.drawable.ic_tab_pdf).setTag(
-                        NavigationConstants.NAVIGATE_TO_IDCARD
+                    newTab().setText(R.string.tab_label_notification)
+                        .setIcon(R.drawable.ic_notification_24dp).setTag(
+                        NavigationConstants.NAVIGATE_TO_NOTIFICATION
                     )
                 )
 
 
-                disableTab(binding.tabLayout, 2)
+
+                addTab(
+                    newTab().setText(R.string.tab_label_feedback)
+                        .setIcon(R.drawable.ic_tab_feedback).setTag(
+                            NavigationConstants.NAVIGATE_TO_FEEDBACK
+                        )
+                )
+
+
+                disableTab(binding.tabLayout, 6)
 
             } else if (userManager.user.role.equals(ROLE_CORPORATE, ignoreCase = true)) {
                 addTab(

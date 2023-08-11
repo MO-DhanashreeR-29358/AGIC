@@ -90,17 +90,20 @@ class PanelFragment : MOSLCommonPager(), PanelView {
     }
 
     override fun onPageSelection(position: Int) {
-        if (panelDayWiseListData.get(position).isNullOrEmpty()) {
-            tabPublishSubject.onNext(
-                UiModel.error(
-                    ServiceFailureException(
-                        NO_DATA_AVAILABLE_FOR_THE_DAY
+        try {
+            if (panelDayWiseListData.get(position).isNullOrEmpty()) {
+                tabPublishSubject.onNext(
+                    UiModel.error(
+                        ServiceFailureException(
+                            NO_DATA_AVAILABLE_FOR_THE_DAY
+                        )
                     )
                 )
-            )
-        } else {
-            tabPublishSubject.onNext(UiModel.success(panelDayWiseListData.get(position)))
-        }
+            } else {
+                tabPublishSubject.onNext(UiModel.success(panelDayWiseListData.get(position)))
+            }
+        }catch (e: IndexOutOfBoundsException){}
+
         super.onPageSelection(position)
     }
 
