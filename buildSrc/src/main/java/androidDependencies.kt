@@ -1,7 +1,7 @@
 object Versions {
     const val compileSdkVersion = 29
     const val targetSdkVersion = 28
-    const val minSdkVersion = 17
+    const val minSdkVersion = 21
     const val buildToolsVersion = "29.0.2"
 
     const val androidVersion = "4.0.1"
@@ -161,7 +161,8 @@ object RxDependencies {
     const val kotlin = "io.reactivex.rxjava2:rxkotlin:2.3.0"
     const val android = "io.reactivex.rxjava2:rxandroid:2.1.1"
     const val relay = "com.jakewharton.rxrelay2:rxrelay:2.1.0"
-    const val preferences = "com.f2prateek.rx.preferences2:rx-preferences:2.0.0"
+    const val preferences = "MofslArtifacts:rxpreferences:1.0.2"
+//    const val preferences = "com.f2prateek.rx.preferences2:rx-preferences:2.0.0"
 }
 
 object RxBindingDependencies {
@@ -198,7 +199,7 @@ object DimensionDependencies {
 }
 
 object GlideDependencies{
-  const val glide = "com.github.bumptech.glide:glide:4.10.0"
+    const val glide = "com.github.bumptech.glide:glide:4.10.0"
 }
 
 object LeakCanaryDependencies {
@@ -231,12 +232,12 @@ object MofslArtifactDependencies {
     const val groupie = "MofslArtifacts:groupie_extensions:1.0.8"
     const val tableView = "MofslArtifacts:tableview:1.1.0"
     const val tableViewX = "MofslArtifacts:tableview_extensions:1.1.0"
-   /* const val tradingCore = "MofslArtifacts:tradingcore:1.0.4"
-    const val tradingCoreUi = "MofslArtifacts:tradingcoreui:1.0.3-alpha1"*/
+    /* const val tradingCore = "MofslArtifacts:tradingcore:1.0.4"
+     const val tradingCoreUi = "MofslArtifacts:tradingcoreui:1.0.3-alpha1"*/
     const val debugViewCore = "MofslArtifacts:debugviewcore:1.0.2"
     const val contactPicker = "MofslArtifacts:contactpicker:1.0.2"
-   /* const val sockets = "TradingArtifacts:sockets:1.2.0-alpha8"
-    const val conceal = "MofslArtifacts:conceal:1.0.0"*/
-//    const val debugView = "MofslArtifacts:debugview:2.1.3"
+    /* const val sockets = "TradingArtifacts:sockets:1.2.0-alpha8"
+     const val conceal = "MofslArtifacts:conceal:1.0.0"*/
+    const val debugView = "MofslArtifacts:debugview:2.1.3"
     const val protoModels = "MofslArtifacts:protomodels:0.0.1"
 }

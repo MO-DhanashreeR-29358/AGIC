@@ -66,7 +66,7 @@ class LoginActivity : LeanBaseActivity(), Navigator, LoginView {
         val banner: RemoteConfigModel? =
             gson.fromJson(remoteCongigData.get(), RemoteConfigModel::class.java)
         Glide.with(this)
-            .load(banner?.loginLogo)
+            .load(banner?.splash)
             .into(binding.imgBanner)
         binding.txtYear.text = banner?.year
         binding.txtAgic.text = banner?.conferenceName

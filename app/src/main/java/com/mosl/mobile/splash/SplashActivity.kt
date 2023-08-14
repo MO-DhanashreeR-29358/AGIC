@@ -246,15 +246,16 @@ class SplashActivity : LeanBaseActivity() {
                 startActivity(intent)
                 finish()
             }
-        } else if (userManager.isActive()) {
+        } else  {
             val intent = Intent(this@SplashActivity, LoginActivity::class.java)
             startActivity(intent)
             finish()
-        } else {
-            val intent = Intent(this@SplashActivity, NewsLetterActivity::class.java)
-            startActivity(intent)
-            finish()
         }
+//        else {
+//            val intent = Intent(this@SplashActivity, NewsLetterActivity::class.java)
+//            startActivity(intent)
+//            finish()
+//        }
 
     }
 
