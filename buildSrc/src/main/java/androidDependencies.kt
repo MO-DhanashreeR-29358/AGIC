@@ -1,32 +1,34 @@
 object Versions {
-    const val compileSdkVersion = 29
-    const val targetSdkVersion = 28
-    const val minSdkVersion = 17
-    const val buildToolsVersion = "29.0.2"
-
-    const val androidVersion = "4.0.1"
-    const val kotlinVersion = "1.4.30"
     const val fabric = "1.31.0"
-    const val googleServices = "4.2.0"
-
     const val dexCountGradlePlugin = "0.8.6"
     const val errorProne = "0.0.13"
-    const val okHttp = "4.2.0"
     const val okIo = "1.17.4"
-    const val timber = "4.7.1"
-    const val groupie = "2.3.0"
-    const val retrofit = "2.6.0"
-    const val dagger = "2.28.3"
     const val leakCanary = "1.6.3"
-    const val rxBinding = "3.0.0"
     const val room = "2.1.0"
-    const val stetho = "1.5.1"
     const val wearable = "2.3.0"
-    const val androidDataBinding = "3.4.2"
     const val coroutines = "1.3.0"
-    const val lifeCycle = "2.2.0-rc02"
+    const val compileSdkVersion = 33
+    const val targetSdkVersion = 33
+    const val minSdkVersion = 21
+    const val buildToolsVersion = "33.0.0"
+    const val androidVersion = "7.3.0"
+    const val kotlinVersion = "1.6.21"
+    const val okHttp = "4.9.0"
+    const val timber = "4.7.1"
+    const val groupie = "2.8.1"
+    const val retrofit = "2.9.0"
+    const val dagger = "2.42"
+    const val rxBinding = "3.0.0"
+    const val stetho = "1.5.1"
+    const val androidDataBinding = "4.0.1"
+    const val lifeCycle = "2.2.0"
     const val sdp = "1.0.6"
-    const val gson = "2.8.5"
+    const val gson = "2.8.6"
+    const val flashBar = "0.0.22"
+    const val securityVersion = "1.1.0-alpha02"
+    const val googleServices = "4.3.13"
+    const val detektVersion = "1.10.0"
+    const val firebaseCrashlytics = "2.9.1"
 }
 
 object Dependencies {
@@ -56,8 +58,8 @@ object PluginsDependencies {
 
 object AndroidxDependencies {
     const val annotation = "androidx.annotation:annotation:1.1.0"
-    const val material = "com.google.android.material:material:1.1.0-beta01"
-    const val appcompat = "androidx.appcompat:appcompat:1.1.0-rc01"
+    const val material = "com.google.android.material:material:1.3.0"
+    const val appcompat = "androidx.appcompat:appcompat:1.2.0"
     const val constraintLayout = "androidx.constraintlayout:constraintlayout:1.1.3"
     const val recyclerView = "androidx.recyclerview:recyclerview:1.1.0-beta01"
     const val fragment = "androidx.fragment:fragment:1.1.0-rc01"
@@ -75,9 +77,10 @@ object AndroidxDependencies {
 }
 
 object KotlinDependencies {
-    const val ktxCore = "androidx.core:core-ktx:1.1.0-rc01"
-    const val ktxFragment = "androidx.fragment:fragment-ktx:1.1.0-alpha09"
+    const val ktxCore = "androidx.core:core-ktx:1.8.0"
+    const val ktxFragment = "androidx.fragment:fragment-ktx:1.2.5"
     const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlinVersion}"
+
 }
 
 object CoroutinesDependencies {
@@ -161,7 +164,7 @@ object RxDependencies {
     const val kotlin = "io.reactivex.rxjava2:rxkotlin:2.3.0"
     const val android = "io.reactivex.rxjava2:rxandroid:2.1.1"
     const val relay = "com.jakewharton.rxrelay2:rxrelay:2.1.0"
-    const val preferences = "com.f2prateek.rx.preferences2:rx-preferences:2.0.0"
+    const val preferences = "MofslArtifacts:rxpreferences:1.0.2"
 }
 
 object RxBindingDependencies {

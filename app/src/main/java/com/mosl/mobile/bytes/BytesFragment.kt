@@ -26,7 +26,7 @@ import com.mosl.mobile.util.toggleProgressBar
 import com.mosl.shared.AppDateFormats
 import com.mosl.shared.util.getFormatedDate
 import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.ViewHolder
+import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.databinding.BindableItem
 import io.reactivex.Observable
 import javax.inject.Inject
@@ -65,7 +65,7 @@ class BytesFragment : MOSLCommonFragment(), BytesContract {
     }
 
     private fun setupRecyclerView() {
-        val groupAdapter = GroupAdapter<ViewHolder>()
+        val groupAdapter = GroupAdapter<GroupieViewHolder>()
         section = DataManagerSection(onRetryClick)
         groupAdapter.add(section)
         binding.recyclerview.apply {

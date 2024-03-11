@@ -2,6 +2,7 @@ package com.mosl.mobile.login
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.inputmethod.EditorInfo
@@ -65,6 +66,7 @@ class LoginActivity : LeanBaseActivity(), Navigator, LoginView {
     private fun initData() {
         val banner: RemoteConfigModel? =
             gson.fromJson(remoteCongigData.get(), RemoteConfigModel::class.java)
+        Log.d("Remote Data",banner.toString())
         Glide.with(this)
             .load(banner?.logo)
             .into(binding.imgBanner)

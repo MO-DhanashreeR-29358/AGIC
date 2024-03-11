@@ -3,7 +3,7 @@ package com.mosl.data.api
 import com.google.gson.annotations.SerializedName
 
 data class BaseResponseAgic<T>(
-    @JvmField @SerializedName("Message") private val msg: String?,
+    @SerializedName("Message") private val msg: String?,
     @JvmField @SerializedName("Response") val success: String?,
     @JvmField @SerializedName("IsActive") val isActive: String,
     @JvmField @SerializedName("Data") val data: T?,

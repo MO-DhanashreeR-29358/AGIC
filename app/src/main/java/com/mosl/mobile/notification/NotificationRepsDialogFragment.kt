@@ -11,7 +11,7 @@ import com.mosl.mobile.R
 import com.mosl.mobile.databinding.DialogNotificationRepsBinding
 import com.mosl.mobile.menu.ScreenNavigator
 import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.ViewHolder
+import com.xwray.groupie.GroupieViewHolder
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
@@ -56,7 +56,7 @@ class NotificationRepsDialogFragment : BaseDialogFragment() {
     }
 
     private fun setupRecyclerView() {
-        val groupAdapter = GroupAdapter<ViewHolder>()
+        val groupAdapter = GroupAdapter<GroupieViewHolder>()
         section = DataManagerSection(onRetryClick)
         groupAdapter.add(section)
         binding.rvScheduleRepo.apply {

@@ -12,7 +12,6 @@ import android.os.Bundle
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
-import com.f2prateek.rx.preferences2.Preference
 import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
@@ -21,6 +20,7 @@ import com.mosl.mobile.R
 import com.mosl.mobile.core.MOSLCommonActivity
 import com.mosl.mobile.dashboard.ActivityNavigationHelper.Companion.ARG_NOTIFICATION_CATEGORY
 import dagger.android.AndroidInjection
+import mosl.rx_preferences.Preference
 import timber.log.Timber
 import java.util.*
 import javax.inject.Inject

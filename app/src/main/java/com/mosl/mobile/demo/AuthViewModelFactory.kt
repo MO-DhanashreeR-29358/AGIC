@@ -2,6 +2,7 @@ package com.mosl.mobile.demo
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+
 import com.mosl.mobile.domain.demo.DemoRepository
 import javax.inject.Inject
 
@@ -12,7 +13,7 @@ class AuthViewModelFactory @Inject constructor(
 
 ) : ViewModelProvider.NewInstanceFactory() {
 
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return AuthViewModel(view,repository) as T
     }
 }

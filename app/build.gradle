@@ -5,25 +5,25 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'io.fabric'
 
-def gitSha() {
-    def p = 'git rev-parse --short HEAD'.execute([], project.rootDir)
-    p.waitFor()
-    if (p.exitValue() != 0) {
-        throw new RuntimeException(p.errorStream.text)
-    }
-
-    return p.text.trim()
-}
-
-def gitTimestamp() {
-    def p = 'git log -n 1 --format=%at'.execute([], rootDir)
-    p.waitFor()
-    if (p.exitValue() != 0) {
-        throw new RuntimeException(p.errorStream.text)
-    }
-
-    return p.text.trim()
-}
+//def gitSha() {
+//    def p = 'git rev-parse --short HEAD'.execute([], project.rootDir)
+//    p.waitFor()
+//    if (p.exitValue() != 0) {
+//        throw new RuntimeException(p.errorStream.text)
+//    }
+//
+//    return p.text.trim()
+//}
+//
+//def gitTimestamp() {
+//    def p = 'git log -n 1 --format=%at'.execute([], rootDir)
+//    p.waitFor()
+//    if (p.exitValue() != 0) {
+//        throw new RuntimeException(p.errorStream.text)
+//    }
+//
+//    return p.text.trim()
+//}
 
 android {
     packagingOptions {
@@ -43,8 +43,8 @@ android {
         minSdkVersion Versions.minSdkVersion
         targetSdkVersion Versions.targetSdkVersion
 
-        buildConfigField 'String', 'GIT_SHA', "\"${gitSha()}\""
-        buildConfigField 'long', 'GIT_TIMESTAMP', "${gitTimestamp()}L"
+//        buildConfigField 'String', 'GIT_SHA', "\"${gitSha()}\""
+//        buildConfigField 'long', 'GIT_TIMESTAMP', "${gitTimestamp()}L"
 
         resConfigs "en", "hi"
         vectorDrawables.useSupportLibrary = true
@@ -152,6 +152,10 @@ android {
     }
 }
 
+configurations.implementation {
+    exclude group: 'androidx.lifecycle' , module:'lifecycle-viewmodel-ktx'
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation KotlinDependencies.kotlin
@@ -164,7 +168,8 @@ dependencies {
     androidTestImplementation AndroidxDependencies.testRunner
     androidTestImplementation AndroidxDependencies.testEspresso
 
-    //Dagger
+    //
+
     implementation DaggerDependencies.core
     implementation DaggerDependencies.javaAnnotations
     kapt DaggerDependencies.compiler
@@ -201,7 +206,7 @@ dependencies {
     debugImplementation OkHttpDependencies.logger
 
     debugImplementation MofslArtifactDependencies.debugViewCore
-//    debugImplementation MofslArtifactDependencies.debugView
+    debugImplementation MofslArtifactDependencies.debugView
     debugImplementation AndroidxDependencies.multiDex
     implementation MofslArtifactDependencies.appCoreUI
     implementation MofslArtifactDependencies.validator

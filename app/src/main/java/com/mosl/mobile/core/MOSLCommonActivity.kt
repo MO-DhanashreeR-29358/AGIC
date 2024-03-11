@@ -28,7 +28,6 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
-import com.f2prateek.rx.preferences2.Preference
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import com.google.gson.Gson
@@ -75,6 +74,7 @@ import com.mosl.shared.util.getTodaysDate
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.addTo
+import mosl.rx_preferences.Preference
 import timber.log.Timber
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -673,16 +673,16 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
 
     internal fun setupObservables() {
 
-        disposable.add(
-
-            tokenPref.asObservable().distinctUntilChanged()
-                .map { _ -> tokenPref.get() }
-                .filter { token -> !token.equals("0") }
-                .switchMap { token ->
-                    fcmTokenSyncHelper.saveToken(token)
-                        .compose(applyUiModel())
-                }
-                .subscribe())
+//        disposable.add(
+//
+//            tokenPref.asObservable().distinctUntilChanged()
+//                .map { _ -> tokenPref.get() }
+//                .filter { token -> !token.equals("0") }
+//                .switchMap { token ->
+//                    fcmTokenSyncHelper.saveToken(token)
+//                        .compose(applyUiModel())
+//                }
+//                .subscribe())
 
         val mainThread = dispatchers.main
         networkReceiver.onNetworkChanged()
