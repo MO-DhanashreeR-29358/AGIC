@@ -24,9 +24,12 @@ class MOSLApplicationImpl : MOSLApplication() {
 
   }
 
-  override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
-    val appComponent = DaggerApplicationComponent.builder().application(this).build()
-    this.appComponent = appComponent
-    return appComponent
-  }
+    override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
+        val appComponent = DaggerApplicationComponent.builder()
+//            DaggerAppComponent.builder()
+            .application(this)
+            .build()
+        this.appComponent = appComponent
+        return appComponent
+    }
 }

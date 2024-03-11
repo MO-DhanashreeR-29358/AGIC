@@ -2,11 +2,8 @@ package com.mosl.mobile.volunteer.coredata
 
 import android.content.Context
 import android.content.SharedPreferences
-import mosl.rx_preferences.Preference
-
-import mosl.rx_preferences.RxSharedPreferences
-
-
+import com.f2prateek.rx.preferences2.Preference
+import com.f2prateek.rx.preferences2.RxSharedPreferences
 import com.mosl.annotations.FcmToken
 import com.mosl.annotations.FcmTokenRequest
 import com.mosl.app.core.prefs.BooleanPreference

@@ -31,7 +31,7 @@ import com.mosl.mobile.volunteer.appuser.login.UserManagerImpl
 import com.mosl.mobile.volunteer.panelpager.PanelFragment
 import com.mosl.shared.AppDateFormats.df_Date6
 import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.GroupieViewHolder
+import com.xwray.groupie.ViewHolder
 import io.reactivex.Observable
 import io.reactivex.rxkotlin.ofType
 import io.reactivex.subjects.PublishSubject
@@ -106,7 +106,7 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
 
             binding.apply {
 
-                val groupAdapter = GroupAdapter<GroupieViewHolder>()
+                val groupAdapter = GroupAdapter<ViewHolder>()
                 searchSection = DataManagerSection(onRetryClick)
 
                 groupAdapter.add(searchSection)

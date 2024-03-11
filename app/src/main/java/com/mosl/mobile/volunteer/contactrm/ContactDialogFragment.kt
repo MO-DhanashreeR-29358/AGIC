@@ -14,7 +14,7 @@ import com.mosl.mobile.volunteer.databinding.FragmentContactDialogBinding
 import com.mosl.mobile.volunteer.menu.ScreenNavigator
 import com.mosl.mobile.volunteer.util.initiateCall
 import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.GroupieViewHolder
+import com.xwray.groupie.ViewHolder
 import dagger.android.support.AndroidSupportInjection
 import io.reactivex.Observable
 import io.reactivex.rxkotlin.ofType
@@ -60,7 +60,7 @@ class ContactDialogFragment : BaseDialogFragment(), ContactView {
 
 
     private fun setupRecyclerView() {
-        val groupAdapter = GroupAdapter<GroupieViewHolder>()
+        val groupAdapter = GroupAdapter<ViewHolder>()
         section = DataManagerSection(onRetryClick)
         binding.rvContactList.apply {
             layoutManager = LinearLayoutManager(requireContext())

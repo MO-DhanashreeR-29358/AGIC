@@ -26,7 +26,7 @@ import com.mosl.mobile.volunteer.databinding.FragmentNotificationHistoryBinding
 import com.mosl.mobile.volunteer.domain.notification.NotificationResponse
 import com.mosl.mobile.volunteer.util.toggleProgressBar
 import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.GroupieViewHolder
+import com.xwray.groupie.ViewHolder
 import io.reactivex.Observable
 import io.reactivex.rxkotlin.ofType
 import io.reactivex.subjects.PublishSubject
@@ -65,7 +65,7 @@ class NotificationHistoryFragment : MOSLCommonFragment(), NotificationContract {
     }
 
     private fun setupRecyclerView() {
-        val groupAdapter = GroupAdapter<GroupieViewHolder>()
+        val groupAdapter = GroupAdapter<ViewHolder>()
         section = DataManagerSection(onRetryClick)
         section.retrySubject = dataActionSubject
         groupAdapter.add(section)

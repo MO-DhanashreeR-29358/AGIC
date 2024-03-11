@@ -15,7 +15,7 @@ object Versions {
     const val kotlinVersion = "1.6.21"
     const val okHttp = "4.9.0"
     const val timber = "4.7.1"
-    const val groupie = "2.8.1"
+    const val groupie = "2.3.0"
     const val retrofit = "2.9.0"
     const val dagger = "2.42"
     const val rxBinding = "3.0.0"
@@ -23,7 +23,6 @@ object Versions {
     const val androidDataBinding = "4.0.1"
     const val lifeCycle = "2.2.0"
     const val sdp = "1.0.6"
-    const val gson = "2.8.5"
     const val qrCode = "1.9.13"
     const val gson = "2.8.6"
     const val flashBar = "0.0.22"
@@ -166,7 +165,7 @@ object RxDependencies {
     const val kotlin = "io.reactivex.rxjava2:rxkotlin:2.3.0"
     const val android = "io.reactivex.rxjava2:rxandroid:2.1.1"
     const val relay = "com.jakewharton.rxrelay2:rxrelay:2.1.0"
-    const val preferences = "MofslArtifacts:rxpreferences:1.0.2"
+    const val preferences = "com.f2prateek.rx.preferences2:rx-preferences:2.0.0"
 }
 
 object RxBindingDependencies {

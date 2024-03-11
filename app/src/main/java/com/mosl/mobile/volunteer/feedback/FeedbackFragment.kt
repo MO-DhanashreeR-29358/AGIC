@@ -24,7 +24,7 @@ import com.mosl.mobile.volunteer.feedback.item.CheckBoxQuestionItem
 import com.mosl.mobile.volunteer.feedback.item.RatingBarQuestionItem
 import com.mosl.mobile.volunteer.feedback.item.TextQuestionItem
 import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.GroupieViewHolder
+import com.xwray.groupie.ViewHolder
 import io.reactivex.Observable
 import javax.inject.Inject
 
@@ -65,7 +65,7 @@ class FeedbackFragment : MOSLCommonFragment(), FeedbackContract {
 
 
     private fun setupRecyclerView() {
-        val groupAdapter = GroupAdapter<GroupieViewHolder>()
+        val groupAdapter = GroupAdapter<ViewHolder>()
         section = DataManagerSection(onRetryClick)
         groupAdapter.add(section)
         binding.rvQuestions.apply {

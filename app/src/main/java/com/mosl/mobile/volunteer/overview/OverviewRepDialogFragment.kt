@@ -12,7 +12,7 @@ import com.mosl.mobile.volunteer.databinding.FragmentScheduleRepDialogBinding
 import com.mosl.mobile.volunteer.domain.overviewpager.OverviewResponseRepresntativeInfo
 import com.mosl.mobile.volunteer.menu.ScreenNavigator
 import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.GroupieViewHolder
+import com.xwray.groupie.ViewHolder
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
@@ -57,7 +57,7 @@ class OverviewRepDialogFragment : BaseDialogFragment() {
     }
 
     private fun setupRecyclerView() {
-        val groupAdapter = GroupAdapter<GroupieViewHolder>()
+        val groupAdapter = GroupAdapter<ViewHolder>()
         section = DataManagerSection(onRetryClick)
         groupAdapter.add(section)
         binding.rvScheduleRepo.apply {
