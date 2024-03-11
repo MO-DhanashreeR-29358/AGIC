@@ -8,6 +8,7 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.ExpandableListView.OnGroupExpandListener
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.google.gson.Gson
 import com.jakewharton.rxbinding3.view.clicks
 import com.mosl.app.core.error.getErrorOnFailure
@@ -75,10 +76,12 @@ class NewsLetterActivity : LeanBaseActivity(), NewsLetterView {
 
         Glide.with(this@NewsLetterActivity)
             .load(remoteConfigModel?.logo)
+            .diskCacheStrategy(DiskCacheStrategy.DATA)
             .into(binding.imgAgic)
 
         Glide.with(this@NewsLetterActivity)
             .load(remoteConfigModel?.conferenceLogo)
+            .diskCacheStrategy(DiskCacheStrategy.DATA)
             .into(binding.imgAgicTemp)
 
         val handler = Handler()

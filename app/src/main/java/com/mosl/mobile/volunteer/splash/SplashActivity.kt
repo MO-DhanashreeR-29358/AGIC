@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.widget.Toast
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
 import com.google.gson.Gson
@@ -13,7 +14,7 @@ import com.mosl.app.core.network.isNetworkConnected
 import com.mosl.app.core.prefs.StringPreference
 import com.mosl.app.core.utils.showConfirmation
 import com.mosl.app.coreui.base.LeanBaseActivity
-import com.mosl.mobile.volunteer.BuildConfig
+
 import com.mosl.mobile.volunteer.R
 import com.mosl.mobile.volunteer.annotations.ImageSplashUrl
 import com.mosl.mobile.volunteer.annotations.RemoteConfigData
@@ -78,15 +79,14 @@ class SplashActivity : LeanBaseActivity() {
         if (imageUrl != null) {
             Glide.with(this)
                 .load(imageUrl)
+                .diskCacheStrategy(DiskCacheStrategy.DATA)
                 .into(binding.ivSplash)
         }
     }
 
     private fun setupView() {
-        binding.txtAppInfo.text = java.lang.String.format(
-            Locale.ENGLISH, "App Version : %s(%d)", BuildConfig.VERSION_NAME,
-            BuildConfig.VERSION_CODE
-        )
+        binding.txtAppInfo.text = "1.0"
+
 
     }
 

@@ -23,10 +23,12 @@
             android:name="com.mosl.mobile.volunteer.newsletter.NewsLetterActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
+            android:exported="true"
             android:label="@string/title_activity_news_letter" />
         <activity
             android:name="com.mosl.mobile.volunteer.login.LoginActivity"
             android:screenOrientation="portrait"
+            android:exported="true"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_login" />
         <activity android:name="com.mosl.mobile.volunteer.splash.SplashActivity"
@@ -46,7 +48,7 @@
             android:label="@string/main_app_name"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:exported="false"
+            android:exported="true"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
