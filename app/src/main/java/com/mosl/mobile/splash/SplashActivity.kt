@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.widget.Toast
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
 import com.google.gson.Gson
@@ -80,6 +81,7 @@ class SplashActivity : LeanBaseActivity() {
         if (imageUrl != null) {
             Glide.with(this)
                 .load(imageUrl)
+                .diskCacheStrategy(DiskCacheStrategy.DATA)
                 .into(binding.ivSplash)
         }
     }
@@ -147,6 +149,10 @@ class SplashActivity : LeanBaseActivity() {
             .setMinimumFetchIntervalInSeconds(3600)
             .build()
         remoteConfig.setConfigSettingsAsync(configSettings)
+        val banner: RemoteConfigModel? =
+            gson.fromJson(remoteCongigData.get(), RemoteConfigModel::class.java)
+        loadSplashImage(banner?.splash)
+        initializeApp()
 
         remoteConfig.fetchAndActivate()
             .addOnCompleteListener(this) { task ->
@@ -159,7 +165,8 @@ class SplashActivity : LeanBaseActivity() {
                         splashImgUrl.set(remoteConfigModel.splash)
                         remoteCongigData.set(agicInit)
                         loadSplashImage(remoteConfigModel.splash)
-                        initializeApp()
+                        Toast.makeText(this,"Remote Config ${remoteConfigModel.splash}",Toast.LENGTH_LONG).show()
+
                         /*if (BuildConfig.VERSION_NAME.equals(remoteConfigModel.android.version)) {
                             initializeApp()
                         }

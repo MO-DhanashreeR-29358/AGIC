@@ -31,6 +31,7 @@
         <activity android:name=".splash.SplashActivity"
             android:theme="@style/SplashTheme"
             android:screenOrientation="portrait"
+            android:exported="true"
             android:configChanges="orientation|keyboardHidden|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -43,6 +44,7 @@
             android:configChanges="keyboard|keyboardHidden|orientation"
             android:label="@string/main_app_name"
             android:launchMode="singleTop"
+            android:exported="true"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan">
             <intent-filter>

@@ -8,6 +8,7 @@ import android.view.inputmethod.EditorInfo
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.google.gson.Gson
 import com.jakewharton.rxbinding3.view.clicks
 import com.jakewharton.rxbinding3.widget.editorActions
@@ -67,6 +68,7 @@ class LoginActivity : LeanBaseActivity(), Navigator, LoginView {
             gson.fromJson(remoteCongigData.get(), RemoteConfigModel::class.java)
         Glide.with(this)
             .load(banner?.splash)
+            .diskCacheStrategy(DiskCacheStrategy.DATA)
             .into(binding.imgBanner)
         binding.txtYear.text = banner?.year
         binding.txtAgic.text = banner?.conferenceName
