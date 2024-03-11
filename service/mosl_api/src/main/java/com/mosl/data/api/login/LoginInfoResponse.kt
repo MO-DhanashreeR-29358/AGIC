@@ -32,3 +32,9 @@ data class RmDataResponse(
     @JvmField @SerializedName("contact_name3") val contactName3: String?
 )
 
+data class VolunteerResponse(
+    @JvmField @SerializedName("CorpDate") val corpDate: String?,
+    @JvmField @SerializedName("CompanyName") val companyName: String?,
+    @JvmField @SerializedName("company_id") val companyId: String?,
+    @JvmField @SerializedName("ShortName") val shortName: String?
+)

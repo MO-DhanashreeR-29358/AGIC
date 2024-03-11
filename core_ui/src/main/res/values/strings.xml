@@ -3,6 +3,7 @@
     <string name="main_app_name">Motilal Oswal Conferences</string>
     <string name="network_unavailable">Network Not Available</string>
     <string name="msg_unique_code_empty">Please enter your 5 digit id to Login</string>
+    <string name="msg_password_empty">Please enter your password</string>
 
     <string name="txt_label_conference_over">The Conference got over.</string>
     <string name="txt_label_no_conference">No data available for the day.</string>
@@ -86,4 +87,20 @@
     <string name="txt_label_dayWise">Day Wise</string>
     <string name="txt_label_clientWise">Client Wise</string>
     <string name="txt_label_roomNo">Room No</string>
+
+    <!-- Attendance App Module -->
+    <string name="txt_label_user_id">User Id</string>
+    <string name="tv_password">Password</string>
+
+    <string name="bt_label_corporate_one">Corporate 1</string>
+    <string name="tv_fund_name_label">Fund Name</string>
+    <string name="tv_client_name_label">Client Name</string>
+    <string name="tv_status_label">Status</string>
+    <string name="bt_status_registered_label">Registered</string>
+    <string name="bt_status_unregistered_label">Unregistered</string>
+    <string name="tv_time_slot_label">Slot</string>
+    <string name="bt_time_slot_na_label">NA</string>
+    <string name="bt_allow_label">Allow ?</string>
+    <string name="bt_yes_label">Yes</string>
+    <string name="bt_no_label">No</string>
 </resources>

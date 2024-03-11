@@ -11,11 +11,6 @@
         tools:context=".core.MOSLCommonActivity"
         tools:openDrawer="start">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
             <androidx.coordinatorlayout.widget.CoordinatorLayout
                 android:id="@+id/coordinator_layout"
                 android:layout_width="match_parent"
@@ -27,6 +22,7 @@
                     android:id="@+id/app_bar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:visibility="gone"
                     android:theme="@style/AppTheme.AppBarOverlay"
                     app:elevation="0dp">
 
@@ -53,8 +49,7 @@
                                     android:layout_width="@dimen/img_news_letter"
                                     android:layout_height="@dimen/img_news_letter"
                                     android:layout_gravity="center_vertical"
-                                    android:layout_margin="@dimen/margin_small"
-                                    android:src="@drawable/agic_agic"/>
+                                    android:layout_margin="@dimen/margin_small" />
 
                                 <androidx.appcompat.widget.AppCompatImageView
                                     android:id="@+id/img_logo_temp"
@@ -115,13 +110,13 @@
                                 app:srcCompat="@drawable/ic_call_green_24dp"
                                 android:visibility="gone" />
 
-                            <androidx.appcompat.widget.AppCompatImageView
+                            <!--<androidx.appcompat.widget.AppCompatImageView
                                 android:id="@+id/img_logout"
                                 android:layout_width="@dimen/menuIcons"
                                 android:layout_height="@dimen/menuIcons"
                                 android:layout_gravity="center_vertical"
                                 android:layout_margin="@dimen/margin_large"
-                                app:srcCompat="@drawable/ic_logout_red_24_dp" />
+                                app:srcCompat="@drawable/ic_logout_red_24_dp" />-->
 
                         </LinearLayout>
 
@@ -137,6 +132,13 @@
                     android:layout_marginTop="@dimen/margin_small"
                     app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_logout"
+                    android:layout_width="@dimen/menuIcons"
+                    android:layout_height="@dimen/menuIcons"
+                    android:layout_gravity="end"
+                    android:layout_margin="@dimen/margin_large"
+                    app:srcCompat="@drawable/ic_logout_red_24_dp" />
 
                 <ProgressBar
                     android:id="@+id/progress_bar"
@@ -147,30 +149,6 @@
                     tools:visibility="visible" />
 
             </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-
-
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tabLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:background="@color/toolbar_color"
-                android:orientation="horizontal"
-                app:iconGravity="textStart"
-                app:iconPadding="@dimen/padding_small"
-                app:layout_anchorGravity="bottom|center"
-                app:tabGravity="fill"
-                app:tabIconTint="@color/bottom_tab_white"
-                app:tabIndicatorColor="@color/blue"
-                app:tabIndicatorHeight="0dp"
-                app:tabMode="auto"
-                app:tabSelectedTextColor="@color/blue"
-                app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
-                app:tabTextColor="@color/bottom_tab_white"
-                android:visibility="visible"/>
-
-        </LinearLayout>
 
     </androidx.drawerlayout.widget.DrawerLayout>
 

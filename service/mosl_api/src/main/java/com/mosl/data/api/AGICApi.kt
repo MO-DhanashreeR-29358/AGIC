@@ -1,7 +1,10 @@
 package com.mosl.data.api
 
+import com.mosl.data.api.attendance.ClientDetails
 import com.mosl.data.api.bytes.BytesInfoRequest
 import com.mosl.data.api.bytes.BytesInfoResponse
+import com.mosl.data.api.attendance.GetClientMeetingRequest
+import com.mosl.data.api.attendance.SubmitClientAttendanceRequest
 import com.mosl.data.api.corporateschedulepager.CorporateScheduleRequest
 import com.mosl.data.api.corporateschedulepager.CorporateScheduleResponseDayItem
 import com.mosl.data.api.demo.LoginInfo
@@ -11,8 +14,7 @@ import com.mosl.data.api.feedback.FeedbackRequest
 import com.mosl.data.api.feedback.FeedbackResponseItem
 import com.mosl.data.api.feedback.SubmitFeedbackRequest
 import com.mosl.data.api.login.LoginInfoRequest
-import com.mosl.data.api.login.LoginInfoResponse
-import com.mosl.data.api.login.RmDataResponse
+import com.mosl.data.api.login.VolunteerResponse
 import com.mosl.data.api.newsletter.NewsLetterResponseItem
 import com.mosl.data.api.notification.NotificationRequest
 import com.mosl.data.api.notification.NotificationResponseItem
@@ -20,7 +22,7 @@ import com.mosl.data.api.overviewpager.*
 import com.mosl.data.api.panel.PanelDataResponse
 import com.mosl.data.api.schedule.ScheduleRequest
 import com.mosl.data.api.schedule.ScheduleResponseItem
-import com.mosl.mobile.demo.UserResponse
+import com.mosl.mobile.volunteer.demo.UserResponse
 import io.reactivex.Observable
 import retrofit2.http.*
 
@@ -31,8 +33,14 @@ interface AGICApi {
         @Body request: LoginInfo
     ): UserResponse
 
-    @POST("GetRMData")
-    fun userLogin(@Body request: LoginInfoRequest): Observable<BaseResponseAgic<List<RmDataResponse>>>
+    @POST("GetVolunteerCorporate")
+    fun userLogin(@Body request: LoginInfoRequest): Observable<BaseResponseAgic<List<VolunteerResponse>>>
+
+    @POST("GetClientMeeting")
+    fun getClientMeeting(@Body request: GetClientMeetingRequest): Observable<BaseResponseAgic<ClientDetails>>
+
+    @POST("SubmitClientAttendance")
+    fun submitClientAttendance(@Body request: SubmitClientAttendanceRequest): Observable<BaseResponseAgic<String>>
 
     @POST("GetBroucherDetails")
     fun getBrochureData(): Observable<BaseResponseAgic<List<NewsLetterResponseItem>>>

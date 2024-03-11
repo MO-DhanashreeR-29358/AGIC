@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView
+        style="@style/AttendanceApp.Button.Gray"
+        android:id="@+id/tv_corporate_name"
+        android:layout_width="@dimen/_200sdp"
+        android:layout_height="wrap_content"
+        android:paddingVertical="@dimen/margin_medium"
+        android:paddingHorizontal="@dimen/margin_large"
+        android:layout_marginVertical="@dimen/margin_medium"
+        android:gravity="center"
+        android:scrollHorizontally="true"
+        android:text="@string/bt_label_corporate_one"
+        android:textSize="@dimen/text_size_large" />
+</layout>

@@ -4,9 +4,9 @@ import com.google.gson.annotations.SerializedName
 
 data class LoginInfoRequest(
 
-//  @JvmField @SerializedName("UniqueID")
-  @JvmField @SerializedName("EmpId")
-   val uniqueId: String,
-  @JvmField @SerializedName("DeviceID")
-   val deviceId: String
+    @JvmField @SerializedName("EmpId")
+    val empId: String,
+
+    @JvmField @SerializedName("Password")
+    val password: String
 )

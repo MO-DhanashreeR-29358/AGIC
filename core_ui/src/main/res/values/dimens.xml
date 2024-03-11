@@ -10,6 +10,7 @@
     <dimen name="margin_medium">@dimen/_8sdp</dimen>
     <dimen name="margin_normal">@dimen/_12sdp</dimen>
     <dimen name="margin_small">@dimen/_4sdp</dimen>
+    <dimen name="margin_48">@dimen/_48sdp</dimen>
     <dimen name="padding_extra_large">@dimen/_24sdp</dimen>
     <dimen name="padding_extra_small">@dimen/_2sdp</dimen>
     <dimen name="padding_large">@dimen/_16sdp</dimen>
@@ -47,4 +48,6 @@
     <dimen name="drawerLayoutWidth">280dp</dimen>
     <dimen name="toolbar_height">@dimen/_38ssp</dimen>
     <dimen name="img_height_width_default">@dimen/_32sdp</dimen>
+
+    <dimen name="btn_border_width">@dimen/_1sdp</dimen>
 </resources>

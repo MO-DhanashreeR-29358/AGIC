@@ -1,0 +1,45 @@
+package com.mosl.mobile.volunteer.data.attendance
+
+import com.mosl.data.api.AGICApi
+import com.mosl.data.api.attendance.GetClientMeetingRequest
+import com.mosl.data.api.attendance.SubmitClientAttendanceRequest
+import com.mosl.mobile.volunteer.data.attendance.AttendanceMapper.mapToClientDataModel
+import com.mosl.mobile.volunteer.domain.attendance.AttendanceRepository
+import com.mosl.mobile.volunteer.domain.attendance.ClientDetailsModel
+import io.reactivex.Observable
+import javax.inject.Inject
+
+class AttendanceRepositoryImpl
+    @Inject constructor(
+    private val api: AGICApi
+): AttendanceRepository {
+    override fun getClientMeeting(
+        uniqueId: String,
+        companyId: String,
+        confDate: String,
+    ): Observable<ClientDetailsModel> {
+        val request = GetClientMeetingRequest(uniqueId, companyId)
+        return api.getClientMeeting(request)
+            .map {
+                it.data.mapToClientDataModel(it.message)
+            }
+    }
+
+    override fun submitClientAttendance(
+        userId: String,
+        clientId: Int,
+        fundId: Int,
+        companyId: String,
+        status: String,
+        meetingId: Int,
+        startTime: String,
+        endTime: String,
+        isAllowed: Int
+    ): Observable<String> {
+        val request = SubmitClientAttendanceRequest(
+            userId, clientId, fundId, companyId, status, meetingId, startTime, endTime, isAllowed
+        )
+        return api.submitClientAttendance(request)
+            .map { it.message }
+    }
+}

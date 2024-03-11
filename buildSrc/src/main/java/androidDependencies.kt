@@ -23,6 +23,8 @@ object Versions {
     const val androidDataBinding = "4.0.1"
     const val lifeCycle = "2.2.0"
     const val sdp = "1.0.6"
+    const val gson = "2.8.5"
+    const val qrCode = "1.9.13"
     const val gson = "2.8.6"
     const val flashBar = "0.0.22"
     const val securityVersion = "1.1.0-alpha02"
@@ -240,6 +242,10 @@ object MofslArtifactDependencies {
     const val contactPicker = "MofslArtifacts:contactpicker:1.0.2"
    /* const val sockets = "TradingArtifacts:sockets:1.2.0-alpha8"
     const val conceal = "MofslArtifacts:conceal:1.0.0"*/
-    const val debugView = "MofslArtifacts:debugview:2.1.3"
+    const val debugView = "MofslArtifacts:debugview:1.0.7"
     const val protoModels = "MofslArtifacts:protomodels:0.0.1"
+}
+
+object QrCodeDependencies {
+    const val qrCode = "me.dm7.barcodescanner:zxing:${Versions.qrCode}"
 }

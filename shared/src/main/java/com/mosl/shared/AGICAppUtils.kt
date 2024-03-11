@@ -9,6 +9,7 @@ import android.os.Build
 import android.provider.CalendarContract
 import android.provider.CalendarContract.Events
 import android.provider.Settings
+import com.mosl.shared.AppDateFormats
 import com.mosl.shared.AppDateFormats.*
 import java.net.Inet4Address
 import java.net.NetworkInterface
@@ -73,7 +74,7 @@ fun getTime(startDateTime: String, endDateTime: String): String {
     val endTimeFormat = DF_TIME_HH_ss.parse(endDateTime.split(1)) ?: "00:00:00"
     val startTime = DF_TIME_hh.format(startTimeFormat)
     val endTime = DF_TIME_hh.format(endTimeFormat)
-    return startTime + '-' + endTime
+    return "$startTime-$endTime"
 }
 
 fun String.split(pos:Int): String {
@@ -205,8 +206,10 @@ fun addToCalendart(
 
 }
 
-fun getMilliFromDate(dateFormat: String, formaterDate: DateFormat): String {
-    val date = formaterDate.parse(dateFormat)
+fun getMilliFromDate(dateFormat: String, formatterDate: DateFormat): Long {
+    val date = formatterDate.parse(dateFormat)
 
-    return date?.time.toString()
+    return date?.time ?: Long.MIN_VALUE
 }
+
+const val EMPTY_STRING = ""

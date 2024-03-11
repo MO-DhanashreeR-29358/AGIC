@@ -3,136 +3,112 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constrainLaout"
+        android:id="@+id/login_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white">
+        android:background="@drawable/ic_bg_attendance">
 
-        <View
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/_50ssp"
-            android:layout_marginTop="@dimen/margin_large"
-            android:background="@color/login_logo_back"
-            android:contentDescription="@string/app_name"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_banner"
+                    android:layout_width="@dimen/_200sdp"
+                    android:layout_height="@dimen/_200sdp"
+                    android:layout_marginHorizontal="@dimen/_60sdp"
+                    android:contentDescription="@string/app_name"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/tv_user_id"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/img_logo"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/_50ssp"
-            android:layout_marginTop="@dimen/margin_large"
-            android:contentDescription="@string/app_name"
-            android:scaleType="fitStart"
-            android:src="@drawable/mot_logo"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    style="@style/AttendanceApp.Text.Bold"
+                    android:id="@+id/tv_user_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="@dimen/_80sdp"
+                    android:layout_marginStart="@dimen/_60sdp"
+                    android:layout_marginTop="@dimen/margin_30"
+                    android:layout_marginBottom="@dimen/margin_small"
+                    android:text="@string/txt_label_user_id"
+                    android:gravity="start"
+                    android:textSize="@dimen/text_size_medium"
+                    android:contentDescription="@string/txt_label_user_id"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/tv_password" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/img_banner"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="@dimen/margin_large"
-            android:layout_marginBottom="@dimen/margin_large"
-            android:contentDescription="@string/app_name"
-            app:layout_constraintBottom_toTopOf="@+id/txt_agic"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/img_logo" />
+                <androidx.appcompat.widget.AppCompatEditText
+                    style="@style/AttendanceApp.EditText"
+                    android:id="@+id/et_user_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="@dimen/_100sdp"
+                    android:layout_marginStart="@dimen/margin_medium"
+                    android:layout_marginTop="@dimen/margin_30"
+                    android:layout_marginBottom="@dimen/margin_small"
+                    android:maxLength="@integer/max_digit_id"
+                    android:gravity="center"
+                    android:imeOptions="actionDone"
+                    android:inputType="textNoSuggestions"
+                    android:textSize="@dimen/text_size_medium"
+                    app:layout_constraintStart_toEndOf="@id/tv_user_id"
+                    app:layout_constraintBottom_toTopOf="@id/tv_password" />
 
-        <TextView
-            android:id="@+id/txt_agic"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_small"
-            android:gravity="center_horizontal"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text_size_normal"
-            android:textStyle="bold"
-            android:textAllCaps="true"
-            app:layout_constraintBottom_toTopOf="@+id/txt_year"
-            app:layout_constraintStart_toStartOf="parent" />
+                <TextView
+                    style="@style/AttendanceApp.Text.Bold"
+                    android:id="@+id/tv_password"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="@dimen/_80sdp"
+                    android:layout_marginStart="@dimen/_60sdp"
+                    android:layout_marginTop="@dimen/margin_medium"
+                    android:layout_marginBottom="@dimen/margin_large"
+                    android:gravity="start"
+                    android:text="@string/tv_password"
+                    android:textSize="@dimen/text_size_medium"
+                    android:contentDescription="@string/tv_password"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/txt_login" />
 
-        <TextView
-            android:id="@+id/txt_year"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_large"
-            android:layout_marginBottom="@dimen/margin_large"
-            android:gravity="center"
-            android:scaleY="1.4"
-            android:textColor="@color/login_year_text_color"
-            android:textScaleX="1.5"
-            android:textSize="@dimen/very_extra_large"
-            android:textStyle="normal"
-            app:layout_constraintBottom_toTopOf="@+id/edit_unique_code"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent" />
+                <androidx.appcompat.widget.AppCompatEditText
+                    style="@style/AttendanceApp.EditText"
+                    android:id="@+id/et_password"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="@dimen/_100sdp"
+                    android:layout_marginTop="@dimen/margin_medium"
+                    android:layout_marginStart="@dimen/margin_medium"
+                    android:layout_marginBottom="@dimen/margin_large"
+                    android:gravity="center"
+                    android:imeOptions="actionDone"
+                    android:inputType="textPassword"
+                    android:textSize="@dimen/text_size_medium"
+                    app:layout_constraintStart_toEndOf="@id/tv_password"
+                    app:layout_constraintBottom_toTopOf="@id/txt_login" />
 
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/edit_unique_code"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/edittext_size"
-            android:layout_marginLeft="@dimen/margin_30"
-            android:layout_marginTop="@dimen/margin_large"
-            android:layout_marginRight="@dimen/margin_30"
-            android:layout_marginBottom="@dimen/margin_large"
-            android:autofillHints="@string/app_name"
-            android:maxLength="@integer/max_digit_id"
-            android:background="@drawable/login_et_back"
-            android:gravity="center"
-            android:hint="@string/hint_label_digit_id"
-            android:imeOptions="actionDone"
-            android:inputType="textNoSuggestions"
-            android:textSize="@dimen/text_size_normal"
-            app:layout_constraintBottom_toTopOf="@+id/txt_login"
-            app:layout_constraintStart_toStartOf="parent"
-            android:textColor="@color/black" />
+                <TextView
+                    style="@style/AttendanceApp.Text.Bold"
+                    android:id="@+id/txt_login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_48"
+                    android:paddingHorizontal="@dimen/padding_extra_large"
+                    android:paddingVertical="@dimen/padding_small"
+                    android:background="@drawable/btn_background"
+                    android:gravity="center"
+                    android:text="@string/text_label_login"
+                    android:textAllCaps="true"
+                    android:textSize="@dimen/text_size_medium"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
 
-        <TextView
-            android:id="@+id/txt_login"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/edittext_size"
-            android:layout_marginLeft="@dimen/margin_30"
-            android:layout_marginRight="@dimen/margin_30"
-            android:layout_marginBottom="@dimen/margin_large"
-            android:background="@drawable/btn_background"
-            android:gravity="center"
-            android:text="@string/text_label_login"
-            android:textColor="@color/login_btn_text_color"
-            android:textSize="@dimen/text_size_normal"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/txt_permission"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <TextView
-            android:id="@+id/txt_permission"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_large"
-            android:layout_marginTop="@dimen/margin_large"
-            android:layout_marginEnd="@dimen/margin_large"
-            android:layout_marginBottom="@dimen/margin_large"
-            android:gravity="center_horizontal"
-            android:paddingLeft="@dimen/padding_extra_large"
-            android:paddingRight="@dimen/padding_extra_large"
-            android:text="@string/text_label_permission"
-            android:textColor="@color/login_permission_text_color"
-            android:textSize="@dimen/text_size_normal"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent" />
-
-        <ProgressBar
-            android:id="@+id/progressBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
