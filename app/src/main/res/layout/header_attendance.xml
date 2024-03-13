@@ -10,9 +10,9 @@
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ic_mosl"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/_90sdp"
             android:layout_marginHorizontal="@dimen/margin_medium"
             android:layout_marginVertical="@dimen/padding_extra_large"
-            app:srcCompat="@drawable/ic_logo_attendance" />
+            app:srcCompat="@drawable/agic_header" />
     </FrameLayout>
 </layout>
