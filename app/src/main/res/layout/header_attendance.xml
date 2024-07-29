@@ -13,6 +13,6 @@
             android:layout_height="@dimen/_90sdp"
             android:layout_marginHorizontal="@dimen/margin_medium"
             android:layout_marginVertical="@dimen/padding_extra_large"
-            app:srcCompat="@drawable/agic_header" />
+            />
     </FrameLayout>
 </layout>

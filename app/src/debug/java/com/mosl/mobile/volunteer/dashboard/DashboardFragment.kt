@@ -10,7 +10,7 @@ import com.mosl.mobile.volunteer.core.MOSLCommonFragment
 import com.mosl.mobile.volunteer.databinding.FragmentDashboardBinding
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Section
-import com.xwray.groupie.GroupieViewHolder
+import com.xwray.groupie.ViewHolder
 import com.xwray.groupie.databinding.BindableItem
 import io.reactivex.Observable
 import javax.inject.Inject
@@ -37,7 +37,7 @@ class DashboardFragment : MOSLCommonFragment(), DashboardContract.View {
 
   fun setupRecyclerView() {
     val context = requireContext()
-    val dashboardAdapter = GroupAdapter<GroupieViewHolder>()
+    val dashboardAdapter = GroupAdapter<ViewHolder>()
     dashboardAdapter.setOnItemClickListener { item, _ ->
       if (item is DashboardItem) {
         navigateDashboardFragment(item.data)

@@ -6,6 +6,8 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.google.gson.Gson
 import com.jakewharton.rxbinding3.view.clicks
 import com.mosl.app.core.prefs.StringPreference
@@ -63,6 +65,8 @@ class AttendanceDetailsFragment: MOSLCommonFragment(), AttendanceDetailsContract
         remoteConfigModel =
             gson.fromJson(remoteConfigData.get(), RemoteConfigModel::class.java)
         setUpViews()
+        initData()
+
 
         binding.btYes.clicks()
             .subscribe { subject.onNext(AttendanceDetailsEvent.YesNoClicked(isAllowed = 1)) }
@@ -73,6 +77,15 @@ class AttendanceDetailsFragment: MOSLCommonFragment(), AttendanceDetailsContract
             .addTo(disposable)
 
         presenter.start()
+    }
+
+    private fun initData() {
+//        val banner: RemoteConfigModel? =
+//            gson.fromJson(remoteConfigData.get(), RemoteConfigModel::class.java)
+        Glide.with(this)
+            .load(remoteConfigModel?.headerImage)
+            .diskCacheStrategy(DiskCacheStrategy.DATA)
+            .into(binding.header.icMosl)
     }
 
     override fun onYesNoBtnClicked(): Observable<AttendanceDetailsEvent.YesNoClicked> {

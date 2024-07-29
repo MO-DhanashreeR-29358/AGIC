@@ -3,6 +3,8 @@ package com.mosl.mobile.volunteer.attendance.corporateqr
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.google.gson.Gson
 import com.mosl.app.core.prefs.StringPreference
 import com.mosl.groupiex.section.DataManagerSection
@@ -42,6 +44,16 @@ class CorporateNamesListFragment: MOSLCommonFragment(), CorporateNamesListContra
         remoteConfigModel =
             gson.fromJson(remoteConfigData.get(), RemoteConfigModel::class.java)
         setUpViews()
+        initData()
+    }
+
+    private fun initData() {
+//        val banner: RemoteConfigModel? =
+//            gson.fromJson(remoteConfigData.get(), RemoteConfigModel::class.java)
+        Glide.with(this)
+            .load(remoteConfigModel?.headerImage)
+            .diskCacheStrategy(DiskCacheStrategy.DATA)
+            .into(binding.header.icMosl)
     }
 
     private fun setUpRecyclerView() {
