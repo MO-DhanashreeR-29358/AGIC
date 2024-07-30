@@ -18,8 +18,8 @@ class DebugUiModule {
             context.getString(string.main_app_name),
             BuildConfig.VERSION_NAME,
             BuildConfig.VERSION_CODE,
-            BuildConfig.GIT_SHA,
-            BuildConfig.GIT_TIMESTAMP,
+            "",
+            123,
             SplashActivity::class.java,
             MOSLCommonActivity::class.java,
             DebugConstants.NAVIGATE_TO_DASHBOARD

@@ -53,6 +53,7 @@
             </intent-filter>
         </activity>
 
+
         <service
             android:name="com.mosl.mobile.service.MessageReceiverIntentService"
             android:enabled="true"
