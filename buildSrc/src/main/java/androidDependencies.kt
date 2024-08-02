@@ -8,7 +8,7 @@ object Versions {
     const val wearable = "2.3.0"
     const val coroutines = "1.3.0"
     const val compileSdkVersion = 33
-    const val targetSdkVersion = 33
+    const val targetSdkVersion = 30
     const val minSdkVersion = 21
     const val buildToolsVersion = "33.0.0"
     const val androidVersion = "7.3.0"

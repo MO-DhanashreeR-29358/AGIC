@@ -230,6 +230,7 @@ dependencies {
     implementation DimensionDependencies.sdp
 
     implementation GlideDependencies.glide
+    implementation LeakCanaryDependencies.debug
 
     implementation project(':data')
     implementation project(':domain')

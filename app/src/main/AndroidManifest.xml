@@ -52,7 +52,8 @@
                 <category android:name="android.intent.category.BROWSABLE" />
             </intent-filter>
         </activity>
-
+        <activity android:name="leakcanary.internal.activity.LeakLauncherAcity"
+            android:exported="true"/>
 
         <service
             android:name="com.mosl.mobile.service.MessageReceiverIntentService"

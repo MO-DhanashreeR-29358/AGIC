@@ -38,7 +38,7 @@ class SplashActivity : LeanBaseActivity() {
     lateinit var binding: ActivitySplashScreenBinding
 
     private var mDelayHandler: Handler = Handler()
-    private val SPLASH_DELAY: Long = 2000 //2 seconds
+    private val SPLASH_DELAY: Long = 4000 //2 seconds
     private var count = 0
     @Inject
     lateinit var userManager: UserManager
@@ -55,13 +55,11 @@ class SplashActivity : LeanBaseActivity() {
         super.onCreate(savedInstanceState)
         AndroidInjection.inject(this)
         binding = ActivitySplashScreenBinding.bind(findViewById(R.id.splash_layout))
-        val splashImageUrl = getSplashImageUrl()
-//        loadSplashImage(splashImageUrl)
+        loadSplashImage("")
         setupView()
         notificationIntent=intent
         mDelayHandler.postDelayed(
-            { checkNetwork() },
-            (if (splashImageUrl == null) 0 else SPLASH_DELAY).toLong()
+            { checkNetwork() },SPLASH_DELAY
         )
     }
 
@@ -70,20 +68,14 @@ class SplashActivity : LeanBaseActivity() {
     }
 
     private fun getSplashImageUrl(): String? {
-        return if (!splashImgUrl.get().isEmpty()) {
-            splashImgUrl.get()
-        } else {
-            null
-        }
+        return "https://ekyc.motilaloswal.com/ekyc_icons/agic/AGICSplash.png"
     }
 
     private fun loadSplashImage(imageUrl: String?) {
-        if (imageUrl != null) {
-            Glide.with(this)
-                .load(imageUrl)
-                .diskCacheStrategy(DiskCacheStrategy.DATA)
-                .into(binding.ivSplash)
-        }
+        Glide.with(this)
+            .load("https://ekyc.motilaloswal.com/ekyc_icons/agic/AGICSplash.png")
+            .diskCacheStrategy(DiskCacheStrategy.DATA)
+            .into(binding.ivSplash)
     }
 
     fun setupView() {
@@ -153,7 +145,7 @@ class SplashActivity : LeanBaseActivity() {
             gson.fromJson(remoteCongigData.get(), RemoteConfigModel::class.java)
         loadSplashImage(banner?.splash)
         initializeApp()
-
+        splashImgUrl.set("https://ekyc.motilaloswal.com/ekyc_icons/agic/AGICSplash.png")
         remoteConfig.fetchAndActivate()
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
@@ -162,7 +154,7 @@ class SplashActivity : LeanBaseActivity() {
                     if (agicInit != null && !agicInit.isEmpty()) {
                         val remoteConfigModel: RemoteConfigModel =
                             gson.fromJson(agicInit, RemoteConfigModel::class.java)
-                        splashImgUrl.set(remoteConfigModel.splash)
+
                         remoteCongigData.set(agicInit)
                         loadSplashImage(remoteConfigModel.splash)
                         Toast.makeText(this,"Remote Config ${remoteConfigModel.splash}",Toast.LENGTH_LONG).show()

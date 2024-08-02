@@ -19,7 +19,7 @@ class DebugUiModule {
             BuildConfig.VERSION_NAME,
             BuildConfig.VERSION_CODE,
             "",
-            123,
+            0,
             SplashActivity::class.java,
             MOSLCommonActivity::class.java,
             DebugConstants.NAVIGATE_TO_DASHBOARD

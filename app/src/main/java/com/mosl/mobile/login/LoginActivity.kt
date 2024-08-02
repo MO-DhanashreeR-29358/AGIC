@@ -24,7 +24,6 @@ import com.mosl.mobile.annotations.RemoteConfigData
 import com.mosl.mobile.appuser.model.RmUser
 import com.mosl.mobile.appuser.model.User
 import com.mosl.mobile.core.MOSLCommonActivity
-import com.mosl.mobile.data.RemoteConfigModel
 import com.mosl.mobile.databinding.ActivityLoginBinding
 import com.mosl.mobile.databinding.AlertDialogBinding
 import com.mosl.navigator.AppTitle
@@ -45,9 +44,9 @@ class LoginActivity : LeanBaseActivity(), Navigator, LoginView {
     @Inject
     lateinit var presenter: LoginPresenter
 
-    @Inject
-    @field:RemoteConfigData
-    lateinit var remoteCongigData: StringPreference
+//    @Inject
+//    @field:RemoteConfigData
+//    lateinit var remoteCongigData: StringPreference
     @Inject
     lateinit var gson: Gson
 
@@ -64,14 +63,14 @@ class LoginActivity : LeanBaseActivity(), Navigator, LoginView {
     }
 
     private fun initData() {
-        val banner: RemoteConfigModel? =
-            gson.fromJson(remoteCongigData.get(), RemoteConfigModel::class.java)
+//        val banner: RemoteConfigModel? =
+//            gson.fromJson(remoteCongigData.get(), RemoteConfigModel::class.java)
         Glide.with(this)
-            .load(banner?.splash)
+            .load("https://ekyc.motilaloswal.com/ekyc_icons/agic/AGICSplash.png")
             .diskCacheStrategy(DiskCacheStrategy.DATA)
             .into(binding.imgBanner)
-        binding.txtYear.text = banner?.year
-        binding.txtAgic.text = banner?.conferenceName
+        binding.txtYear.text = "2024"
+        binding.txtAgic.text = "AGIC"
     }
 
     internal fun openDashboard() {

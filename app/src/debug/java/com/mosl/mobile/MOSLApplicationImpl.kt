@@ -9,11 +9,11 @@ import com.jakewharton.threetenabp.AndroidThreeTen
 import com.mosl.app.core.utils.matchesService
 import com.mosl.debugview.DebugComponent
 import com.mosl.debugview.LumberYard
+//import com.squareup.leakcanary.LeakCanary
 import dagger.android.AndroidInjector
 import dagger.android.DaggerApplication
 import io.fabric.sdk.android.Fabric
 import io.reactivex.plugins.RxJavaPlugins
-import leakcanary.LeakCanary
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -27,16 +27,12 @@ class MOSLApplicationImpl : MOSLApplication() {
     }
 
     override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
-//        val appComponent = DaggerAppComponent.builder()
-//            .application(this)
-//            .build()
-//        this.appComponent = appComponent
-//        return appComponent
-        return DaggerApplicationComponent.builder()
+        val appComponent = DaggerApplicationComponent.builder()
+//            DaggerAppComponent.builder()
             .application(this)
-            .build().also {
-                this.appComponent = it
-            }
+            .build()
+        this.appComponent = appComponent
+        return appComponent
     }
 
     override fun init() {
