@@ -3,7 +3,7 @@ package com.mosl.mobile.corporateschedule
 import com.mosl.mobile.R
 import com.mosl.mobile.databinding.ItemFragmentScheduleRepoBinding
 import com.mosl.mobile.domain.corporateschedulepager.CorporateScheduleResponseRepresentativeItemInfo
-import com.xwray.groupie.databinding.BindableItem
+import com.mosl.groupiex.helper.databind.BindableItem
 
 
 class ItemCorporateScheduleChildRepo(

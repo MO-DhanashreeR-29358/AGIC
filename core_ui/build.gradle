@@ -57,10 +57,17 @@ dependencies {
   androidTestImplementation AndroidxDependencies.testEspresso
 
   implementation AndroidxDependencies.material
-  implementation MofslArtifactDependencies.appCoreUI
+
+  implementation project(':appcore')
+  implementation project(':artifact_annotations')
+  implementation project(':navigator')
+  implementation project(':moslcommons')
+  implementation project(':appcoreui')
+
+  /*implementation MofslArtifactDependencies.appCoreUI
   implementation MofslArtifactDependencies.appCore
   implementation MofslArtifactDependencies.annotation
-  implementation MofslArtifactDependencies.navigator
+  implementation MofslArtifactDependencies.navigator*/
 
   implementation DimensionDependencies.ssp
   implementation DimensionDependencies.sdp

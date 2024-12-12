@@ -169,16 +169,23 @@ class LoginActivity : LeanBaseActivity(), Navigator, LoginView {
         return 0
     }
 
-    override fun getFragment(pageId: Int): Fragment? {
-        TODO(
-            "not implemented"
-        ) //To change body of created functions use File | Settings | File Templates.
+    override fun getFragment(pageId: String): Fragment? {
+        TODO("Not yet implemented")
     }
+
+    override fun getFragment(pageId: Int): Fragment? {
+        TODO("Not yet implemented")
+    }
+
 
     override fun gotoPage(fragmentEntry: FragmentNavigationEntry) {
         TODO(
             "not implemented"
         ) //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun isConnected(): Boolean {
+        TODO("Not yet implemented")
     }
 
     override fun hideAppTitle() {

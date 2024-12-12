@@ -56,7 +56,7 @@ dependencies {
   implementation RxDependencies.kotlin
   implementation RxDependencies.relay
   implementation RxDependencies.android
-  implementation RxDependencies.preferences
+  implementation project(':rx_preferences')
 
 
   //StethoDependencies
@@ -68,14 +68,22 @@ dependencies {
   debugImplementation OkHttpDependencies.logger
 //  implementation MofslArtifactDependencies.conceal
 
-  implementation MofslArtifactDependencies.moslCommons
+  /*implementation MofslArtifactDependencies.moslCommons
   implementation MofslArtifactDependencies.appCore
   debugImplementation MofslArtifactDependencies.debugViewCore
+  implementation MofslArtifactDependencies.annotation
+  implementation MofslArtifactDependencies.apiCore
+*/
+  implementation project(':moslcommons')
+  implementation project(':appcore')
+  implementation project(':artifact_annotations')
+  implementation project(':apicore')
+  debugImplementation project(':debugviewcore')
+
+
 
   implementation LifeCycleDependencies.liveData
-  implementation MofslArtifactDependencies.annotation
   implementation RetrofitDependencies.gson
-  implementation MofslArtifactDependencies.apiCore
   implementation project(':mosl_api')
   implementation project (':domain')
   implementation project (':annotations')

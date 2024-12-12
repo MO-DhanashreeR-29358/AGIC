@@ -15,7 +15,7 @@ object Versions {
     const val kotlinVersion = "1.6.21"
     const val okHttp = "4.9.0"
     const val timber = "4.7.1"
-    const val groupie = "2.3.0"
+    const val groupie = "2.8.1"
     const val retrofit = "2.9.0"
     const val dagger = "2.42"
     const val rxBinding = "3.0.0"
@@ -221,9 +221,9 @@ object GamoogaDependencies {
 }
 
 
-object MofslArtifactDependencies {
-    /*const val scanner = "MofslArtifacts:scannerapi:1.0.6"
-    const val wear = "MofslArtifacts:wearapi:1.0.5"*/
+/*object MofslArtifactDependencies {
+    *//*const val scanner = "MofslArtifacts:scannerapi:1.0.6"
+    const val wear = "MofslArtifacts:wearapi:1.0.5"*//*
     const val apiCore = "MofslArtifacts:apicore:1.0.3"
     const val loginApi = "MofslArtifacts:loginapi:1.0.11"
     const val validator = "MofslArtifacts:validator:1.1.1"
@@ -236,12 +236,13 @@ object MofslArtifactDependencies {
     const val groupie = "MofslArtifacts:groupie_extensions:1.0.8"
     const val tableView = "MofslArtifacts:tableview:1.1.0"
     const val tableViewX = "MofslArtifacts:tableview_extensions:1.1.0"
-    /* const val tradingCore = "MofslArtifacts:tradingcore:1.0.4"
-     const val tradingCoreUi = "MofslArtifacts:tradingcoreui:1.0.3-alpha1"*/
+    *//* const val tradingCore = "MofslArtifacts:tradingcore:1.0.4"
+     const val tradingCoreUi = "MofslArtifacts:tradingcoreui:1.0.3-alpha1"*//*
     const val debugViewCore = "MofslArtifacts:debugviewcore:1.0.2"
     const val contactPicker = "MofslArtifacts:contactpicker:1.0.2"
-    /* const val sockets = "TradingArtifacts:sockets:1.2.0-alpha8"
-     const val conceal = "MofslArtifacts:conceal:1.0.0"*/
+    *//* const val sockets = "TradingArtifacts:sockets:1.2.0-alpha8"
+     const val conceal = "MofslArtifacts:conceal:1.0.0"*//*
     const val debugView = "MofslArtifacts:debugview:2.1.3"
     const val protoModels = "MofslArtifacts:protomodels:0.0.1"
-}
+}*/
+

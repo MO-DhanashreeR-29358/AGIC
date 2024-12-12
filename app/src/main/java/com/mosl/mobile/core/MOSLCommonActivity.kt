@@ -75,6 +75,7 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.addTo
 import mosl.rx_preferences.Preference
+
 import timber.log.Timber
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -451,7 +452,7 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
         val activity = this
         if (activity != null) {
             hideKeyboard(activity.currentFocus)
-            screenNavigator.openPage(id, bundle, addStack)
+            screenNavigator.openPage(id.toString(), bundle, addStack)
         }
     }
 
@@ -474,12 +475,20 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
         return R.id.activityFrameLayout
     }
 
+    override fun getFragment(pageId: String): Fragment? {
+        return fragmentResolver.resolve(pageId.toInt())
+    }
+
     override fun getFragment(pageId: Int): Fragment? {
         return fragmentResolver.resolve(pageId)
     }
 
     override fun gotoPage(fragmentEntry: FragmentNavigationEntry) {
         fragTransitionHelper.navigateTo(fragmentEntry)
+    }
+
+    override fun isConnected(): Boolean {
+        return true
     }
 
     override fun onBackPressed() {
@@ -590,6 +599,7 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe { uiModel ->
                 toggleProgressBar(uiModel.inProgress)
+
 
                 uiModel.onSuccess {
                     openLogin()

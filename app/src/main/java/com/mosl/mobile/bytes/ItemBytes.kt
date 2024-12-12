@@ -6,7 +6,7 @@ import com.mosl.mobile.domain.bytes.BytesItemModel
 import com.mosl.shared.AppDateFormats.DF_JSON_DATE_4
 import com.mosl.shared.AppDateFormats.DF_TIME_hh
 import com.mosl.shared.util.getFormatedDate
-import com.xwray.groupie.databinding.BindableItem
+import com.mosl.groupiex.helper.databind.BindableItem
 
 class ItemBytes(private val data: BytesItemModel) : BindableItem<ItemBytesBinding>() {
 

@@ -71,7 +71,7 @@ class OverviewChildFragment : MOSLCommonFragment(), OverviewChildContract {
     }
 
     private fun setupRecyclerView() {
-//        val groupAdapter = GroupAdapter<ViewHolder>()
+//        val groupAdapter = GroupAdapter<GroupieViewHolder>()
 //        section = DataManagerSection(onRetryClick)
 //        groupAdapter.add(section)
 //        binding.recyclerView.apply {

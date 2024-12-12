@@ -4,7 +4,7 @@ import android.content.Context
 import com.mosl.mobile.R
 import com.mosl.mobile.databinding.ItemFragmentScheduleRepoBinding
 import com.mosl.mobile.domain.schedule.ScheduleRepresentativeItemData
-import com.xwray.groupie.databinding.BindableItem
+import com.mosl.groupiex.helper.databind.BindableItem
 
 
 class ItemScheduleRepo(

@@ -7,8 +7,43 @@ include ':app',
         ':app_user',
         ':mock_data',
         ':core_ui',
-        ':core_data'
+        ':core_data',
+        ':apicore',
+        ':artifact_annotations',
+        ':appcore',
+        ':appcoreui',
+        ':debugview',
+        ':debugviewcore',
+        ':domaincore',
+        ':groupie_extensions',
+        ':loginapi',
+        ':moslcommons',
+        ':navigator',
+        ':tableview',
+        ':tableview_extensions',
+        ':tokenmanager',
+        ':validator',
+        ':rx_preferences',
+        ':flashbar',
 rootProject.name='Agic'
 
 project(':mock_data').projectDir = new File("service/mock_data")
 project(':mosl_api').projectDir = new File("service/mosl_api")
+project(':apicore').projectDir = new File("mosl_artifact/apicore")
+project(':artifact_annotations').projectDir = new File("mosl_artifact/annotations")
+project(':appcore').projectDir = new File("mosl_artifact/appcore")
+project(':appcoreui').projectDir = new File("mosl_artifact/appcoreui")
+project(':debugview').projectDir = new File("mosl_artifact/debugview")
+project(':debugviewcore').projectDir = new File("mosl_artifact/debugviewcore")
+project(':domaincore').projectDir = new File("mosl_artifact/domaincore")
+project(':rx_preferences').projectDir = new File("mosl_artifact/rx_preferences")
+project(':groupie_extensions').projectDir = new File("mosl_artifact/groupie_extensions")
+project(':loginapi').projectDir = new File("mosl_artifact/loginapi")
+project(':moslcommons').projectDir = new File("mosl_artifact/moslcommons")
+project(':navigator').projectDir = new File("mosl_artifact/navigator")
+project(':tableview').projectDir = new File("mosl_artifact/tableview")
+project(':apicore').projectDir = new File("mosl_artifact/apicore")
+project(':tableview_extensions').projectDir = new File("mosl_artifact/tableview_extensions")
+project(':tokenmanager').projectDir = new File("mosl_artifact/tokenmanager")
+project(':validator').projectDir = new File("mosl_artifact/validator")
+project(':flashbar').projectDir = new File("mosl_artifact/flashbar")

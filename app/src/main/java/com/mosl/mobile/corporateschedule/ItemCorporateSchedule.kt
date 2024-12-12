@@ -10,9 +10,9 @@ import com.mosl.groupiex.section.DataManagerSection
 import com.mosl.mobile.R
 import com.mosl.mobile.databinding.ItemFragmentCorporateScheduleChildBinding
 import com.mosl.mobile.domain.corporateschedulepager.CorporateScheduleResponseDayItemInfo
-import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.ViewHolder
-import com.xwray.groupie.databinding.BindableItem
+import com.mosl.groupiex.helper.groupie.GroupAdapter
+import com.mosl.groupiex.helper.databind.BindableItem
+import com.mosl.groupiex.helper.groupie.GroupieViewHolder
 import io.reactivex.subjects.PublishSubject
 
 class ItemCorporateSchedule(
@@ -81,7 +81,7 @@ class ItemCorporateSchedule(
         binding.tvShiftTime.setOnClickListener(this)
         binding.rabView.setOnClickListener(this)
 
-        val groupAdapter = GroupAdapter<ViewHolder>()
+        val groupAdapter = GroupAdapter<GroupieViewHolder>()
 
         val section = DataManagerSection(onRetryClick)
         groupAdapter.add(section)

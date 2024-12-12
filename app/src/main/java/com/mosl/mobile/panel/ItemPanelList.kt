@@ -8,7 +8,7 @@ import com.mosl.mobile.R
 import com.mosl.mobile.databinding.ItemFragmentPanelChildBinding
 import com.mosl.mobile.domain.panel.PanelDayResponse
 import com.mosl.shared.util.getTime
-import com.xwray.groupie.databinding.BindableItem
+import com.mosl.groupiex.helper.databind.BindableItem
 import io.reactivex.subjects.PublishSubject
 
 

@@ -7,7 +7,7 @@ import androidx.core.content.ContextCompat.getColor
 import com.mosl.mobile.R
 import com.mosl.mobile.databinding.ItemFeedbackCheckboxBinding
 import com.mosl.mobile.domain.feedback.*
-import com.xwray.groupie.databinding.BindableItem
+import com.mosl.groupiex.helper.databind.BindableItem
 import timber.log.Timber
 
 class CheckBoxQuestionItem(
