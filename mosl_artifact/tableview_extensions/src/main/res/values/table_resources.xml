@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="table_cell_first_row_border_color">?android:attr/textColorSecondary</color>
+    <color name="side_indicator_color">?android:attr/colorPrimary</color>
+    <color name="table_background_color">@android:color/white</color>
+    <color name="table_background_color_light">#F5F5F5</color>
+
+    <dimen name="table_sideline_width">4dp</dimen>
+</resources>
