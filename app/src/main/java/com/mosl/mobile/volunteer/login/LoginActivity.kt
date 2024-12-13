@@ -11,7 +11,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.f2prateek.rx.preferences2.Preference
 import com.google.gson.Gson
 import com.jakewharton.rxbinding3.view.clicks
 import com.jakewharton.rxbinding3.widget.editorActions
@@ -19,8 +18,7 @@ import com.mosl.annotations.FcmToken
 import com.mosl.app.core.data.fcm.FcmTokenSyncHelper
 import com.mosl.app.core.error.getErrorOnFailure
 import com.mosl.app.core.events.DataAction
-import com.mosl.app.core.prefs.IntegerPreference
-import com.mosl.app.core.prefs.StringPreference
+//import com.mosl.app.core.prefs.StringPreference
 import com.mosl.app.core.rx.applyUiModel
 import com.mosl.app.core.utils.getUuid
 import com.mosl.app.coreui.base.LeanBaseActivity
@@ -46,6 +44,10 @@ import com.mosl.shared.util.EMPTY_STRING
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import javax.inject.Inject
+import mosl.rx_preferences.Preference
+import com.mosl.app.core.prefs.IntegerPreference
+import com.mosl.app.core.prefs.StringPreference
+
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -281,6 +283,10 @@ class LoginActivity : LeanBaseActivity(), Navigator, LoginView {
         return 0
     }
 
+    override fun getFragment(pageId: String): Fragment? {
+        TODO("Not yet implemented")
+    }
+
     override fun getFragment(pageId: Int): Fragment? {
         TODO(
             "not implemented"
@@ -291,6 +297,10 @@ class LoginActivity : LeanBaseActivity(), Navigator, LoginView {
         TODO(
             "not implemented"
         ) //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun isConnected(): Boolean {
+        return true
     }
 
     override fun hideAppTitle() {

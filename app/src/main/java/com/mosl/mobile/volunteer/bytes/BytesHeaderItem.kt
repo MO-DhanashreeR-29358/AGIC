@@ -1,11 +1,11 @@
 package com.mosl.mobile.volunteer.bytes
 
+import com.mosl.groupiex.helper.databind.BindableItem
 import com.mosl.mobile.volunteer.R
 import com.mosl.mobile.volunteer.databinding.ItemBytesHeaderBinding
 import com.mosl.shared.AppDateFormats.DF_JSON_DATE_10
 import com.mosl.shared.AppDateFormats.DF_JSON_DATE_11
 import com.mosl.shared.util.getFormatedDate
-import com.xwray.groupie.databinding.BindableItem
 
 class BytesHeaderItem(val title: String) : BindableItem<ItemBytesHeaderBinding>() {
     override fun getLayout(): Int {

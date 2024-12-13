@@ -2,7 +2,7 @@ package com.mosl.mobile.volunteer.notification
 
 import com.mosl.mobile.volunteer.R
 import com.mosl.mobile.volunteer.databinding.ItemBytesHeaderBinding
-import com.xwray.groupie.databinding.BindableItem
+import com.mosl.groupiex.helper.databind.BindableItem
 
 class ItemNotificationHeaderDate(val title: String) : BindableItem<ItemBytesHeaderBinding>() {
     override fun getLayout(): Int {

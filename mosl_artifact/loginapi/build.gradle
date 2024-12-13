@@ -1,0 +1,18 @@
+apply plugin: 'java-library'
+apply plugin: 'kotlin'
+
+dependencies {
+//  implementation deps.mofslArtifacts.apicore
+//  implementation deps.mofslArtifacts.annotation
+  implementation project(':apicore')
+  implementation project(':artifact_annotations')
+  compileOnly KotlinDependencies.kotlin
+  compileOnly RetrofitDependencies.core
+  compileOnly RxDependencies.java
+  compileOnly GsonDependencies.gson
+}
+
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"
+
+//apply from: rootProject.file('gradle/gradle-mvn-push.gradle')

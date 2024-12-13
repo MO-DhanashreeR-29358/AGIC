@@ -181,15 +181,34 @@ dependencies {
     implementation RxDependencies.kotlin
     implementation RxDependencies.relay
     implementation RxDependencies.android
-    implementation RxDependencies.preferences
+    implementation project(':rx_preferences')
     implementation RxBindingDependencies.bindingPlatform
     implementation RxBindingDependencies.bindingCore
     implementation RxBindingDependencies.bindingAppcompat
     implementation RxBindingDependencies.bindingSwipeRefresh
 
-    implementation MofslArtifactDependencies.appCore
-    implementation MofslArtifactDependencies.annotation
 
+    /*implementation MofslArtifactDependencies.appCore
+    implementation MofslArtifactDependencies.annotation
+    debugImplementation MofslArtifactDependencies.debugViewCore
+    debugImplementation MofslArtifactDependencies.debugView
+    implementation MofslArtifactDependencies.appCoreUI
+    implementation MofslArtifactDependencies.validator
+    implementation MofslArtifactDependencies.groupie*/
+
+    implementation project(':appcore')
+    implementation project(':artifact_annotations')
+    debugImplementation project(':debugviewcore')
+    debugImplementation project(':debugview')
+    implementation project(':validator')
+    implementation project(':groupie_extensions')
+    implementation project(':appcoreui')
+    implementation project(':moslcommons')
+    implementation project(':navigator')
+
+
+//    implementation GroupieDependencies.core
+//    implementation GroupieDependencies.dataBinding
     implementation Dependencies.timber
     implementation Dependencies.threeTen
 
@@ -205,20 +224,17 @@ dependencies {
     implementation OkHttpDependencies.okio
     debugImplementation OkHttpDependencies.logger
 
-    debugImplementation MofslArtifactDependencies.debugViewCore
-    debugImplementation MofslArtifactDependencies.debugView
+
     debugImplementation AndroidxDependencies.multiDex
-    implementation MofslArtifactDependencies.appCoreUI
-    implementation MofslArtifactDependencies.validator
-    implementation MofslArtifactDependencies.groupie
+
 
     implementation FirebaseDependencies.core
     implementation FirebaseDependencies.crashlytics
     implementation FirebaseDependencies.messaging
     implementation FirebaseDependencies.remoteConfig
 
-    implementation GroupieDependencies.core
-    implementation GroupieDependencies.dataBinding
+
+    implementation 'com.f2prateek.rx.preferences2:rx-preferences:2.0.0'
 
     //StethoDependencies
     debugImplementation StethoDependencies.core
@@ -228,6 +244,7 @@ dependencies {
     implementation DimensionDependencies.sdp
 
     implementation GlideDependencies.glide
+    implementation LeakCanaryDependencies.debug
 
     implementation project(':data')
     implementation project(':domain')
@@ -251,7 +268,7 @@ dependencies {
     //Android Room
     implementation RoomDependencies.ktx
     implementation RoomDependencies.runtime
-    kapt RoomDependencies.compiler
+    annotationProcessor  RoomDependencies.compiler
 
     implementation AndroidxDependencies.preferenceKotlin
 

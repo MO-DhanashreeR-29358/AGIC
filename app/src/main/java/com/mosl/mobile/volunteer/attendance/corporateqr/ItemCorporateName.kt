@@ -1,12 +1,12 @@
 package com.mosl.mobile.volunteer.attendance.corporateqr
 
 import android.os.Bundle
+import com.mosl.groupiex.helper.databind.BindableItem
 import com.mosl.mobile.volunteer.R
 import com.mosl.mobile.volunteer.appuser.model.CorporateModel
 import com.mosl.mobile.volunteer.constants.NavigationConstants
 import com.mosl.mobile.volunteer.databinding.ItemAttendanceCorporateNameBinding
 import com.mosl.mobile.volunteer.menu.ScreenNavigator
-import com.xwray.groupie.databinding.BindableItem
 
 class ItemCorporateName(
     private val model: CorporateModel,

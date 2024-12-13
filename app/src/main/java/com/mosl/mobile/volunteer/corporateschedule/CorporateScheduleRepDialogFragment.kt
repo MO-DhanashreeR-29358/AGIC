@@ -11,8 +11,10 @@ import com.mosl.mobile.volunteer.R
 import com.mosl.mobile.volunteer.databinding.FragmentScheduleRepDialogBinding
 import com.mosl.mobile.volunteer.domain.corporateschedulepager.CorporateScheduleResponseRepresentativeItemInfo
 import com.mosl.mobile.volunteer.menu.ScreenNavigator
-import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.ViewHolder
+import com.mosl.groupiex.helper.groupie.GroupAdapter
+import com.mosl.groupiex.helper.groupie.GroupieViewHolder
+import com.mosl.groupiex.helper.groupie.Section
+import com.mosl.groupiex.helper.databind.BindableItem
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
@@ -57,7 +59,7 @@ class CorporateScheduleRepDialogFragment : BaseDialogFragment() {
     }
 
     private fun setupRecyclerView() {
-        val groupAdapter = GroupAdapter<ViewHolder>()
+        val groupAdapter = GroupAdapter<GroupieViewHolder>()
         section = DataManagerSection(onRetryClick)
         groupAdapter.add(section)
         binding.rvScheduleRepo.apply {

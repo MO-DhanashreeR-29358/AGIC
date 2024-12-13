@@ -15,8 +15,10 @@ import com.mosl.mobile.volunteer.core.MOSLCommonActivity
 import com.mosl.mobile.volunteer.core.MOSLCommonFragment
 import com.mosl.mobile.volunteer.data.RemoteConfigModel
 import com.mosl.mobile.volunteer.databinding.FragmentAttendanceCorporateListBinding
-import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.ViewHolder
+import com.mosl.groupiex.helper.groupie.GroupAdapter
+import com.mosl.groupiex.helper.groupie.GroupieViewHolder
+import com.mosl.groupiex.helper.groupie.Section
+import com.mosl.groupiex.helper.databind.BindableItem
 import javax.inject.Inject
 
 class CorporateNamesListFragment: MOSLCommonFragment(), CorporateNamesListContract {
@@ -57,7 +59,7 @@ class CorporateNamesListFragment: MOSLCommonFragment(), CorporateNamesListContra
     }
 
     private fun setUpRecyclerView() {
-        val groupAdapter = GroupAdapter<ViewHolder>()
+        val groupAdapter = GroupAdapter<GroupieViewHolder>()
         section = DataManagerSection(onRetryClick)
         groupAdapter.add(section)
         binding.recyclerView.apply {

@@ -1,9 +1,10 @@
 package com.mosl.mobile.volunteer.dashboard;
 
 import androidx.annotation.NonNull;
+
+import com.mosl.groupiex.helper.databind.BindableItem;
 import com.mosl.mobile.volunteer.R;
 import com.mosl.mobile.volunteer.databinding.ItemDashboardHeaderBinding;
-import com.xwray.groupie.databinding.BindableItem;
 
 public class DashboardHeaderItem extends BindableItem<ItemDashboardHeaderBinding> {
     private final String title;

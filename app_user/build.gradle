@@ -30,6 +30,7 @@ dependencies {
   implementation KotlinDependencies.kotlin
   implementation AndroidxDependencies.appcompat
   implementation KotlinDependencies.ktxCore
+  implementation project(':appcore')
   testImplementation TestingDependencies.junit
   androidTestImplementation AndroidxDependencies.testRunner
   androidTestImplementation AndroidxDependencies.testEspresso
@@ -45,7 +46,7 @@ dependencies {
   implementation RxDependencies.java
   implementation RxDependencies.kotlin
   implementation RxDependencies.relay
-  implementation RxDependencies.preferences
+  implementation project(':rx_preferences')
   implementation GsonDependencies.gson
 
   implementation project (":mosl_api")

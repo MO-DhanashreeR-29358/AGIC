@@ -3,7 +3,7 @@ package com.mosl.mobile.volunteer.schedule
 import com.mosl.mobile.volunteer.R
 import com.mosl.mobile.volunteer.databinding.ItemFragmentScheduleRepoBinding
 import com.mosl.mobile.volunteer.domain.schedule.ScheduleRepresentativeItemData
-import com.xwray.groupie.databinding.BindableItem
+import com.mosl.groupiex.helper.databind.BindableItem
 
 
 class ItemScheduleRepo(

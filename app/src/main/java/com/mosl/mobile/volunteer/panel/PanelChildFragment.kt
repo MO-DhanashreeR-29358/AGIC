@@ -21,8 +21,10 @@ import com.mosl.mobile.volunteer.panelpager.PanelListDayItemData
 import com.mosl.shared.util.addToCalendart
 import com.mosl.shared.util.getDateJSON_DATE6
 import com.mosl.shared.util.getTimeAMPM
-import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.ViewHolder
+import com.mosl.groupiex.helper.groupie.GroupAdapter
+import com.mosl.groupiex.helper.groupie.GroupieViewHolder
+import com.mosl.groupiex.helper.groupie.Section
+import com.mosl.groupiex.helper.databind.BindableItem
 import io.reactivex.Observable
 import io.reactivex.rxkotlin.ofType
 import io.reactivex.subjects.PublishSubject
@@ -54,7 +56,7 @@ class PanelChildFragment : MOSLPagerItemFragment(), PanelChildView {
     }
 
     private fun setupRecyclerView() {
-        val groupAdapter = GroupAdapter<ViewHolder>()
+        val groupAdapter = GroupAdapter<GroupieViewHolder>()
         section = DataManagerSection(onRetryClick)
         groupAdapter.add(section)
         binding.rvPanelList.apply {

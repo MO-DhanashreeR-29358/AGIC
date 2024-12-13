@@ -4,7 +4,7 @@ import android.view.View
 import com.mosl.mobile.volunteer.R
 import com.mosl.mobile.volunteer.appuser.model.ContactListItemData
 import com.mosl.mobile.volunteer.databinding.ItemFragmentContactBinding
-import com.xwray.groupie.databinding.BindableItem
+import com.mosl.groupiex.helper.databind.BindableItem
 import io.reactivex.subjects.PublishSubject
 
 class ContactListitem(

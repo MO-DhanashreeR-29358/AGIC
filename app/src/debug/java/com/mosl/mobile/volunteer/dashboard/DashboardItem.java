@@ -1,9 +1,10 @@
 package com.mosl.mobile.volunteer.dashboard;
 
 import androidx.annotation.NonNull;
+
+import com.mosl.groupiex.helper.databind.BindableItem;
 import com.mosl.mobile.volunteer.R;
 import com.mosl.mobile.volunteer.databinding.ItemDashboardBinding;
-import com.xwray.groupie.databinding.BindableItem;
 
 /**
  * Created by krutikapatil on 27-12-2017.

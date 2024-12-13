@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="button_label_submit">सबमिट</string>
+    <string name="button_label_cancel">रद्द करें</string>
+    <string name="button_label_retry">फिर से कोशिश करें</string>
+    <string name="button_label_clear">हटाना</string>
+    <string name="button_label_ok">ठीक है</string>
+</resources>

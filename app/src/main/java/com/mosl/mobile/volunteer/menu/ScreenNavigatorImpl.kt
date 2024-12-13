@@ -35,6 +35,10 @@ class ScreenNavigatorImpl @Inject constructor(
         openPage(FragmentNavigationEntry.goBackWithResult(result))
     }
 
+    override fun openPage(pageId: String, addToStack: Boolean) {
+        TODO("Not yet implemented")
+    }
+
     override fun openHome() {
         openPage(NavigationConstants.NAVIGATE_TO_CORPORATE_LIST_FRAGMENT, false)
     }
@@ -54,7 +58,7 @@ class ScreenNavigatorImpl @Inject constructor(
     }
 
     override fun openPage(pageId: Int, args: Bundle, addToStack: Boolean, forceReload: Boolean) {
-        openPage(NavigationRequest(pageId, args, addToStack, forceReload))
+        openPage(NavigationRequest(pageId.toString(), args, addToStack, forceReload))
     }
 
 
@@ -92,6 +96,10 @@ class ScreenNavigatorImpl @Inject constructor(
 
     override fun openPage(pageId: Int, addToStack: Boolean) {
         openPage(pageId, Bundle.EMPTY, addToStack)
+    }
+
+    override fun openPage(pageId: String, args: Bundle, addToStack: Boolean, forceReload: Boolean) {
+        TODO("Not yet implemented")
     }
 
     override fun pageNotAccessible() {

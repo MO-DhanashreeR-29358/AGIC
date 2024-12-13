@@ -9,7 +9,7 @@ import com.mosl.mobile.volunteer.domain.feedback.FeedbackAnswer
 import com.mosl.mobile.volunteer.domain.feedback.FeedbackOptionTag
 import com.mosl.mobile.volunteer.domain.feedback.FeedbackResponse
 import com.mosl.mobile.volunteer.domain.feedback.RatingBarItem
-import com.xwray.groupie.databinding.BindableItem
+import com.mosl.groupiex.helper.databind.BindableItem
 
 
 class RatingBarQuestionItem(

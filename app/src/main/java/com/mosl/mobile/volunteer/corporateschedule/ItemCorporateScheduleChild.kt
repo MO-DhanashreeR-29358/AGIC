@@ -4,7 +4,7 @@ import android.view.View
 import com.mosl.mobile.volunteer.R
 import com.mosl.mobile.volunteer.databinding.ItemFragmentCorporateScheduleSubchildBinding
 import com.mosl.mobile.volunteer.domain.corporateschedulepager.CorporateScheduleResponseDayAttendanceItemInfo
-import com.xwray.groupie.databinding.BindableItem
+import com.mosl.groupiex.helper.databind.BindableItem
 import io.reactivex.subjects.PublishSubject
 
 class ItemCorporateScheduleChild(

@@ -23,7 +23,7 @@ object Versions {
     const val androidDataBinding = "4.0.1"
     const val lifeCycle = "2.2.0"
     const val sdp = "1.0.6"
-    const val qrCode = "1.9.13"
+    const val qrCode = "1.9.8"
     const val gson = "2.8.6"
     const val flashBar = "0.0.22"
     const val securityVersion = "1.1.0-alpha02"
@@ -165,7 +165,8 @@ object RxDependencies {
     const val kotlin = "io.reactivex.rxjava2:rxkotlin:2.3.0"
     const val android = "io.reactivex.rxjava2:rxandroid:2.1.1"
     const val relay = "com.jakewharton.rxrelay2:rxrelay:2.1.0"
-    const val preferences = "com.f2prateek.rx.preferences2:rx-preferences:2.0.0"
+    const val preferences = "MofslArtifacts:rxpreferences:1.0.2"
+//    const val preferences = "com.f2prateek.rx.preferences2:rx-preferences:2.0.0"
 }
 
 object RxBindingDependencies {
@@ -223,7 +224,7 @@ object GamoogaDependencies {
 object MofslArtifactDependencies {
     /*const val scanner = "MofslArtifacts:scannerapi:1.0.6"
     const val wear = "MofslArtifacts:wearapi:1.0.5"*/
-    const val apiCore = "MofslArtifacts:apicore:1.0.3"
+    /*const val apiCore = "MofslArtifacts:apicore:1.0.3"
     const val loginApi = "MofslArtifacts:loginapi:1.0.11"
     const val validator = "MofslArtifacts:validator:1.1.1"
     const val annotation = "MofslArtifacts:annotations:1.0.2"
@@ -235,14 +236,14 @@ object MofslArtifactDependencies {
     const val groupie = "MofslArtifacts:groupie_extensions:1.0.8"
     const val tableView = "MofslArtifacts:tableview:1.1.0"
     const val tableViewX = "MofslArtifacts:tableview_extensions:1.1.0"
-   /* const val tradingCore = "MofslArtifacts:tradingcore:1.0.4"
-    const val tradingCoreUi = "MofslArtifacts:tradingcoreui:1.0.3-alpha1"*/
+   *//* const val tradingCore = "MofslArtifacts:tradingcore:1.0.4"
+    const val tradingCoreUi = "MofslArtifacts:tradingcoreui:1.0.3-alpha1"*//*
     const val debugViewCore = "MofslArtifacts:debugviewcore:1.0.2"
     const val contactPicker = "MofslArtifacts:contactpicker:1.0.2"
-   /* const val sockets = "TradingArtifacts:sockets:1.2.0-alpha8"
-    const val conceal = "MofslArtifacts:conceal:1.0.0"*/
+   *//* const val sockets = "TradingArtifacts:sockets:1.2.0-alpha8"
+    const val conceal = "MofslArtifacts:conceal:1.0.0"*//*
     const val debugView = "MofslArtifacts:debugview:1.0.7"
-    const val protoModels = "MofslArtifacts:protomodels:0.0.1"
+    const val protoModels = "MofslArtifacts:protomodels:0.0.1"*/
 }
 
 object QrCodeDependencies {

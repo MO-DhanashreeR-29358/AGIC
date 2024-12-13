@@ -5,7 +5,7 @@ import android.widget.CheckBox
 import com.mosl.mobile.volunteer.R
 import com.mosl.mobile.volunteer.databinding.ItemFeedbackCheckboxBinding
 import com.mosl.mobile.volunteer.domain.feedback.*
-import com.xwray.groupie.databinding.BindableItem
+import com.mosl.groupiex.helper.databind.BindableItem
 import timber.log.Timber
 
 class CheckBoxQuestionItem(

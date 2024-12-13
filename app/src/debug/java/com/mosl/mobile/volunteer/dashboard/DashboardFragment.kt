@@ -8,10 +8,10 @@ import com.jakewharton.rxbinding3.widget.textChanges
 import com.mosl.mobile.volunteer.R
 import com.mosl.mobile.volunteer.core.MOSLCommonFragment
 import com.mosl.mobile.volunteer.databinding.FragmentDashboardBinding
-import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.Section
-import com.xwray.groupie.ViewHolder
-import com.xwray.groupie.databinding.BindableItem
+import com.mosl.groupiex.helper.groupie.GroupAdapter
+import com.mosl.groupiex.helper.groupie.GroupieViewHolder
+import com.mosl.groupiex.helper.groupie.Section
+import com.mosl.groupiex.helper.databind.BindableItem
 import io.reactivex.Observable
 import javax.inject.Inject
 
@@ -37,7 +37,7 @@ class DashboardFragment : MOSLCommonFragment(), DashboardContract.View {
 
   fun setupRecyclerView() {
     val context = requireContext()
-    val dashboardAdapter = GroupAdapter<ViewHolder>()
+    val dashboardAdapter = GroupAdapter<GroupieViewHolder>()
     dashboardAdapter.setOnItemClickListener { item, _ ->
       if (item is DashboardItem) {
         navigateDashboardFragment(item.data)

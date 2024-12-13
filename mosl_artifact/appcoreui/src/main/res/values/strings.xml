@@ -1,0 +1,7 @@
+<resources>
+    <string name="button_label_cancel">Cancel</string>
+    <string name="button_label_submit">Submit</string>
+    <string name="button_label_clear">Clear</string>
+    <string name="button_label_retry">Retry</string>
+    <string name="button_label_ok">OK</string>
+</resources>

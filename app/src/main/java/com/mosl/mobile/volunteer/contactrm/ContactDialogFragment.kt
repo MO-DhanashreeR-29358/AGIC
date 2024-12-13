@@ -13,8 +13,10 @@ import com.mosl.mobile.volunteer.appuser.model.ContactListItemData
 import com.mosl.mobile.volunteer.databinding.FragmentContactDialogBinding
 import com.mosl.mobile.volunteer.menu.ScreenNavigator
 import com.mosl.mobile.volunteer.util.initiateCall
-import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.ViewHolder
+import com.mosl.groupiex.helper.groupie.GroupAdapter
+import com.mosl.groupiex.helper.groupie.GroupieViewHolder
+import com.mosl.groupiex.helper.groupie.Section
+import com.mosl.groupiex.helper.databind.BindableItem
 import dagger.android.support.AndroidSupportInjection
 import io.reactivex.Observable
 import io.reactivex.rxkotlin.ofType
@@ -60,7 +62,7 @@ class ContactDialogFragment : BaseDialogFragment(), ContactView {
 
 
     private fun setupRecyclerView() {
-        val groupAdapter = GroupAdapter<ViewHolder>()
+        val groupAdapter = GroupAdapter<GroupieViewHolder>()
         section = DataManagerSection(onRetryClick)
         binding.rvContactList.apply {
             layoutManager = LinearLayoutManager(requireContext())

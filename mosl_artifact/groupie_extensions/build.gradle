@@ -1,0 +1,52 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+//apply plugin: 'kotlin-kapt'
+
+android {
+  compileSdkVersion Versions.compileSdkVersion
+  buildToolsVersion Versions.buildToolsVersion
+
+  defaultConfig {
+    minSdkVersion Versions.minSdkVersion
+    targetSdkVersion Versions.targetSdkVersion
+    vectorDrawables.useSupportLibrary true
+  }
+
+  dataBinding {
+    //noinspection DataBindingWithoutKapt
+    enabled = true
+  }
+
+  buildTypes {
+    release {
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    }
+  }
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
+}
+
+dependencies {
+//  implementation GroupieDependencies.core
+//  implementation project(':xwray_groupie')
+  implementation AndroidxDependencies.recyclerView
+  implementation KotlinDependencies.kotlin
+//  implementation 'com.xwray:groupie:2.8.1'
+//  implementation 'com.xwray:groupie-databinding:2.8.1'
+//  implementation GroupieDependencies.dataBinding
+
+//  compileOnly KotlinDependencies.kotlin
+  compileOnly RxDependencies.java
+
+//  implementation deps.mofslArtifacts.appcoreui
+  implementation project(':appcoreui')
+  implementation project(':appcore')
+
+//  kapt AndroidxDependencies.dataBinding
+}
+
+//apply from: rootProject.file('gradle/gradle-mvn-push.gradle')
