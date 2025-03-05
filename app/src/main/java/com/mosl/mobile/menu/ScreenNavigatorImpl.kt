@@ -35,6 +35,10 @@ class ScreenNavigatorImpl @Inject constructor(
         openPage(FragmentNavigationEntry.goBackWithResult(result))
     }
 
+    override fun openPage(pageId: String, addToStack: Boolean) {
+        openPage(pageId.toString(), Bundle.EMPTY, addToStack)
+    }
+
     override fun openHome() {
         if (userManager.user.role.equals(
                 MOSLCommonActivity.ROLE_CORPORATE,
@@ -63,7 +67,7 @@ class ScreenNavigatorImpl @Inject constructor(
         )
     }
 
-    override fun openPage(pageId: Int, args: Bundle, addToStack: Boolean, forceReload: Boolean) {
+    override fun openPage(pageId: String, args: Bundle, addToStack: Boolean, forceReload: Boolean) {
         openPage(NavigationRequest(pageId, args, addToStack, forceReload))
     }
 
@@ -101,7 +105,7 @@ class ScreenNavigatorImpl @Inject constructor(
     }
 
     override fun openPage(pageId: Int, addToStack: Boolean) {
-        openPage(pageId, Bundle.EMPTY, addToStack)
+        openPage(pageId.toString(), Bundle.EMPTY, addToStack)
     }
 
     override fun pageNotAccessible() {

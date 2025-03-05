@@ -11,8 +11,8 @@
         <View
             android:layout_width="wrap_content"
             android:layout_height="@dimen/_50ssp"
-            android:layout_marginTop="@dimen/margin_large"
-            android:background="@color/login_logo_back"
+            android:layout_marginTop="@dimen/margin_extra_large"
+            android:background="#fff"
             android:contentDescription="@string/app_name"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -20,8 +20,8 @@
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/img_logo"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_50ssp"
-            android:layout_marginTop="@dimen/margin_large"
+            android:layout_height="@dimen/_70sdp"
+            android:layout_marginTop="@dimen/_40sdp"
             android:contentDescription="@string/app_name"
             android:scaleType="fitCenter"
             android:src="@drawable/mot_logo"

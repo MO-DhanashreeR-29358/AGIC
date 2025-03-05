@@ -20,8 +20,8 @@ import com.mosl.mobile.domain.corporateschedulepager.CorporateScheduleResponseDa
 import com.mosl.mobile.domain.corporateschedulepager.CorporateScheduleResponseRepresentativeItemInfo
 import com.mosl.shared.AppDateFormats
 import com.mosl.shared.util.checkTimeIsBetween
-import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.ViewHolder
+import com.mosl.groupiex.helper.groupie.GroupAdapter
+import com.mosl.groupiex.helper.groupie.GroupieViewHolder
 import io.reactivex.Observable
 import io.reactivex.rxkotlin.ofType
 import io.reactivex.subjects.PublishSubject
@@ -75,7 +75,7 @@ class CorporateScheduleFragment : MOSLCommonFragment(), CorporateChildContract {
     }
 
     private fun setupRecyclerView() {
-        val groupAdapter = GroupAdapter<ViewHolder>()
+        val groupAdapter = GroupAdapter<GroupieViewHolder>()
         section = DataManagerSection(onRetryClick)
         groupAdapter.add(section)
         binding.recyclerView.apply {

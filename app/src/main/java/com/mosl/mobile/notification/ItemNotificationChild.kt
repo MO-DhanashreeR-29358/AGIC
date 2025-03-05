@@ -8,7 +8,7 @@ import com.mosl.mobile.domain.notification.NotificationResponse
 import com.mosl.shared.AppDateFormats
 import com.mosl.shared.util.getFormatedDate
 import com.mosl.shared.util.getTimeAMPM
-import com.xwray.groupie.databinding.BindableItem
+import com.mosl.groupiex.helper.databind.BindableItem
 import io.reactivex.subjects.PublishSubject
 import java.util.*
 

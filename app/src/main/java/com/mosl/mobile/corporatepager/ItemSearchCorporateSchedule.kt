@@ -4,7 +4,7 @@ import android.view.View
 import com.mosl.mobile.R
 import com.mosl.mobile.databinding.ItemSearchCorporateScheduleBinding
 import com.mosl.mobile.domain.corporateschedulepager.SearchCorporateScheduleItemInfo
-import com.xwray.groupie.databinding.BindableItem
+import com.mosl.groupiex.helper.databind.BindableItem
 import io.reactivex.subjects.PublishSubject
 
 class ItemSearchCorporateSchedule(

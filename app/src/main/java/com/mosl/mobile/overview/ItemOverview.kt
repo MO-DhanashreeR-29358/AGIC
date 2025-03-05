@@ -5,7 +5,7 @@ import com.mosl.mobile.R
 import com.mosl.mobile.databinding.ItemFragmentOverviewChildBinding
 import com.mosl.mobile.domain.overviewpager.OverviewResponseDayItemInfo
 import com.mosl.shared.util.getTimeAMPM
-import com.xwray.groupie.databinding.BindableItem
+import com.mosl.groupiex.helper.databind.BindableItem
 import io.reactivex.subjects.PublishSubject
 
 class ItemOverview(

@@ -5,13 +5,13 @@ import android.view.View
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jakewharton.rxbinding3.widget.textChanges
+import com.mosl.groupiex.helper.databind.BindableItem
 import com.mosl.mobile.R
 import com.mosl.mobile.core.MOSLCommonFragment
 import com.mosl.mobile.databinding.FragmentDashboardBinding
-import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.Section
-import com.xwray.groupie.ViewHolder
-import com.xwray.groupie.databinding.BindableItem
+import com.mosl.groupiex.helper.groupie.GroupAdapter
+import com.mosl.groupiex.helper.groupie.GroupieViewHolder
+import com.mosl.groupiex.helper.groupie.Section
 import io.reactivex.Observable
 import javax.inject.Inject
 
@@ -37,7 +37,7 @@ class DashboardFragment : MOSLCommonFragment(), DashboardContract.View {
 
   fun setupRecyclerView() {
     val context = requireContext()
-    val dashboardAdapter = GroupAdapter<ViewHolder>()
+    val dashboardAdapter = GroupAdapter<GroupieViewHolder>()
     dashboardAdapter.setOnItemClickListener { item, _ ->
       if (item is DashboardItem) {
         navigateDashboardFragment(item.data)

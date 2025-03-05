@@ -560,7 +560,7 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
         val activity = this
         if (activity != null) {
             hideKeyboard(activity.currentFocus)
-            screenNavigator.openPage(id, bundle, addStack)
+            screenNavigator.openPage(id.toString(), bundle, addStack)
         }
     }
 
@@ -583,12 +583,20 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
         return R.id.activityFrameLayout
     }
 
+    override fun getFragment(pageId: String): Fragment? {
+        return fragmentResolver.resolve(pageId.toInt())
+    }
+
     override fun getFragment(pageId: Int): Fragment? {
         return fragmentResolver.resolve(pageId)
     }
 
     override fun gotoPage(fragmentEntry: FragmentNavigationEntry) {
         fragTransitionHelper.navigateTo(fragmentEntry)
+    }
+
+    override fun isConnected(): Boolean {
+        return true
     }
 
     override fun onBackPressed() {

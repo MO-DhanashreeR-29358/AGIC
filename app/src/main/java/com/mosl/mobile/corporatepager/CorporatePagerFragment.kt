@@ -21,7 +21,6 @@ import com.mosl.mobile.R
 import com.mosl.mobile.annotations.CorporateScheduleData
 import com.mosl.mobile.annotations.FeedbackPendingStatus
 import com.mosl.mobile.annotations.NotificationCount
-import com.mosl.mobile.appuser.login.user
 import com.mosl.mobile.core.MOSLCommonPager
 import com.mosl.mobile.corporateschedule.CorporateScheduleFragment
 import com.mosl.mobile.databinding.FragmentCorporateSchedulePagerBinding
@@ -31,8 +30,10 @@ import com.mosl.mobile.domain.corporateschedulepager.SearchCorporateScheduleItem
 import com.mosl.mobile.appuser.login.UserManagerImpl
 import com.mosl.mobile.panelpager.PanelFragment
 import com.mosl.shared.AppDateFormats.df_Date6
-import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.ViewHolder
+import com.mosl.groupiex.helper.groupie.GroupAdapter
+import com.mosl.groupiex.helper.groupie.GroupieViewHolder
+import com.mosl.mobile.appuser.login.user
+//import com.mosl.groupiex.helper.groupie.GroupAdapter
 import io.reactivex.Observable
 import io.reactivex.rxkotlin.ofType
 import io.reactivex.subjects.PublishSubject
@@ -108,7 +109,7 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
 
             binding.apply {
 
-                val groupAdapter = GroupAdapter<ViewHolder>()
+                val groupAdapter = GroupAdapter<GroupieViewHolder>()
                 searchSection = DataManagerSection(onRetryClick)
 
                 groupAdapter.add(searchSection)

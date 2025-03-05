@@ -15,8 +15,9 @@ import com.mosl.mobile.databinding.FragmentOverviewChildBinding
 import com.mosl.mobile.domain.overviewpager.OverviewResponseDayItemInfo
 import com.mosl.mobile.domain.overviewpager.OverviewResponseRepresntativeInfo
 import com.mosl.mobile.overviewpager.OverviewFragment
-import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.ViewHolder
+import com.mosl.groupiex.helper.groupie.GroupAdapter
+
+import com.mosl.groupiex.helper.groupie.GroupieViewHolder
 import io.reactivex.Observable
 import io.reactivex.rxkotlin.ofType
 import io.reactivex.subjects.PublishSubject
@@ -64,7 +65,7 @@ class OverviewChildFragment : MOSLCommonFragment(), OverviewChildContract {
     }
 
     private fun setupRecyclerView() {
-        val groupAdapter = GroupAdapter<ViewHolder>()
+        val groupAdapter = GroupAdapter<GroupieViewHolder>()
         section = DataManagerSection(onRetryClick)
         groupAdapter.add(section)
         binding.recyclerView.apply {

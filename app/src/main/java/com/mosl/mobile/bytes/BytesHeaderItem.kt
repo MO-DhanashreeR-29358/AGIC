@@ -5,7 +5,7 @@ import com.mosl.mobile.databinding.ItemBytesHeaderBinding
 import com.mosl.shared.AppDateFormats.DF_JSON_DATE_10
 import com.mosl.shared.AppDateFormats.DF_JSON_DATE_11
 import com.mosl.shared.util.getFormatedDate
-import com.xwray.groupie.databinding.BindableItem
+import com.mosl.groupiex.helper.databind.BindableItem
 
 class BytesHeaderItem(val title: String) : BindableItem<ItemBytesHeaderBinding>() {
     override fun getLayout(): Int {

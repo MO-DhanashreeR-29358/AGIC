@@ -3,7 +3,7 @@ package com.mosl.mobile.dashboard;
 import androidx.annotation.NonNull;
 import com.mosl.mobile.R;
 import com.mosl.mobile.databinding.ItemDashboardBinding;
-import com.xwray.groupie.databinding.BindableItem;
+import com.mosl.groupiex.helper.databind.BindableItem;
 
 /**
  * Created by krutikapatil on 27-12-2017.

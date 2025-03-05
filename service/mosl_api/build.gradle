@@ -6,7 +6,9 @@ dependencies {
     implementation KotlinDependencies.kotlin
     compileOnly RetrofitDependencies.core
     implementation RxDependencies.java
-    api MofslArtifactDependencies.appCore
+//    implementation project(':appcore')
+//    api project (':appcore')
+//    api MofslArtifactDependencies.appCore
     implementation GsonDependencies.gson
     //Android Room
     implementation RoomDependencies.runtime

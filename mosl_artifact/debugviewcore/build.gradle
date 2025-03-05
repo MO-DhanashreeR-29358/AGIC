@@ -1,0 +1,14 @@
+apply plugin: 'java-library'
+apply plugin: 'kotlin'
+
+dependencies {
+  implementation DaggerDependencies.javax
+  compileOnly KotlinDependencies.kotlin
+//  implementation project(':appcore')
+//  implementation project(':rx_preferences')
+}
+
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"
+
+//apply from: rootProject.file('gradle/gradle-mvn-push.gradle')

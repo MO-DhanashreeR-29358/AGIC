@@ -13,7 +13,6 @@ import dagger.android.AndroidInjector
 import dagger.android.DaggerApplication
 import io.fabric.sdk.android.Fabric
 import io.reactivex.plugins.RxJavaPlugins
-import leakcanary.LeakCanary
 import timber.log.Timber
 import javax.inject.Inject
 

@@ -3,7 +3,7 @@ package com.mosl.mobile.dashboard;
 import androidx.annotation.NonNull;
 import com.mosl.mobile.R;
 import com.mosl.mobile.databinding.ItemDashboardHeaderBinding;
-import com.xwray.groupie.databinding.BindableItem;
+import com.mosl.groupiex.helper.databind.BindableItem;
 
 public class DashboardHeaderItem extends BindableItem<ItemDashboardHeaderBinding> {
     private final String title;
