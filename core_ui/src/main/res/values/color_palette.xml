@@ -56,7 +56,7 @@
     <color name="lightGrey">#272727</color>
     <color name="warmGrey">#888888</color>
     <color name="greyWhite">#dedede</color>
-    <color name="light_orange">#FFE09A6B</color>
+    <color name="light_orange">#7371D2</color>
     <color name="green">#FF11E419</color>
 
 
@@ -73,7 +73,7 @@
     <color name="_red">#ffd50a15</color>
     <color name="_red_disabled">#61d50a15</color>
 
-    <color name="orange">#FBB230</color>
+    <color name="orange">#2C2A95</color>
     <color name="color_notification_child_bg">@color/white</color>
 
 
@@ -86,6 +86,7 @@
     <color name="_material_grey_900">#212121</color>
     <color name="transparent">#00000000</color>
     <color name="dark_grey">#202020</color>
+    <color name="dark_grey_text">#BEBEBE</color>
     <color name="tab_bg_color">#BEBEBE</color>
 
     <color name="dashboard_background_color">#F0F0F0</color>

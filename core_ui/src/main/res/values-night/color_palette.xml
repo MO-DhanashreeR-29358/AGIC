@@ -9,14 +9,14 @@
     <color name="orangeYellow">#999999</color>
     <color name="login_logo_back">#fcae16</color>
 
-    <color name="blue">#03A9F4</color>
+    <color name="blue">#2C2A95</color>
     <color name="red">#b00020</color>
     <color name="lightRed">#cf6679</color>
 
     <color name="login_year_text_color">@color/_material_black_100</color>
     <color name="login_permission_text_color">#868686</color>
     <color name="login_btn_text_color">#fff</color>
-    <color name="login_btn_back_color">#31B8E5</color>
+    <color name="login_btn_back_color">#2C2A95</color>
 
 
     <color name="news_letter_head_welcome">#D5D5D5</color>
@@ -56,7 +56,7 @@
     <color name="lightGrey">#272727</color>
     <color name="warmGrey">#888888</color>
     <color name="greyWhite">#5C5B5B</color>
-    <color name="light_orange">#FFE09A6B</color>
+    <color name="light_orange">#7371D2</color>
     <color name="green">#FF11E419</color>
 
     <color name="light_blue_700">#757575</color>
@@ -71,7 +71,7 @@
     <color name="light_teal">#76D7C4</color>
     <color name="_red">#ffd50a15</color>
     <color name="_red_disabled">#61d50a15</color>
-    <color name="orange">#FBB230</color>
+    <color name="orange">#2C2A95</color>
     <color name="color_notification_child_bg">#1C1C1E</color>
 
 
