@@ -1,10 +1,14 @@
 package com.mosl.mobile.login
 
+import android.content.DialogInterface
 import android.content.Intent
+import android.content.pm.ApplicationInfo
 import android.os.Bundle
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
@@ -61,6 +65,11 @@ class LoginActivity : LeanBaseActivity(), Navigator, LoginView {
         initData()
     }
 
+    override fun onResume() {
+        checkKeyLogger()
+        super.onResume()
+    }
+
     private fun initData() {
         val banner: RemoteConfigModel =
             gson.fromJson(remoteCongigData.get(), RemoteConfigModel::class.java)
@@ -75,6 +84,41 @@ class LoginActivity : LeanBaseActivity(), Navigator, LoginView {
         val intent = Intent(this, MOSLCommonActivity::class.java)
         startActivity(intent)
         finish()
+    }
+
+    fun checkKeyLogger() {
+        if (isUsingCustomInputMethod()) {
+            showExitPopup()
+        }
+    }
+
+    private fun showExitPopup(){
+        val builder = AlertDialog.Builder(this)
+        builder.setMessage("A third-party keyboard is enable")
+        builder.setTitle("Alert !")
+        builder.setCancelable(false)
+        builder.setPositiveButton("Okay",
+            DialogInterface.OnClickListener { dialog: DialogInterface?, which: Int ->
+                // When the user click yes button then app will close
+                this.finish()
+            } as DialogInterface.OnClickListener)
+        val alertDialog = builder.create()
+        alertDialog.show()
+    }
+
+    private fun isUsingCustomInputMethod(): Boolean {
+        val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+        val mInputMethodProperties = imm.enabledInputMethodList
+        val N = mInputMethodProperties.size
+        for (i in 0 until N) {
+            val imi = mInputMethodProperties[i]
+            if (imi.id == Settings.Secure.getString(contentResolver, Settings.Secure.DEFAULT_INPUT_METHOD)) {
+                if ((imi.serviceInfo.applicationInfo.flags and ApplicationInfo.FLAG_SYSTEM) == 0) {
+                    return true
+                }
+            }
+        }
+        return false
     }
 
     fun toggleProgressBar(inProgress: Boolean) {
