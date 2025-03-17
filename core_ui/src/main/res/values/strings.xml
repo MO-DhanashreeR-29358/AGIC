@@ -41,6 +41,12 @@
 
     </string-array>
 
+    <string-array name="tabTitles2">
+        <item>@string/text_label_day1</item>
+        <item>@string/text_label_day2</item>
+
+    </string-array>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

@@ -17,7 +17,9 @@ import com.mosl.commons.data.onSuccess
 import com.mosl.mobile.R
 import com.mosl.mobile.annotations.ClientViewType
 import com.mosl.mobile.annotations.OverViewData
+import com.mosl.mobile.annotations.RemoteConfigData
 import com.mosl.mobile.core.MOSLCommonPager
+import com.mosl.mobile.data.RemoteConfigModel
 import com.mosl.mobile.databinding.FragmentOverviewBinding
 import com.mosl.mobile.databinding.FragmentRmClientOverviewBinding
 import com.mosl.mobile.domain.overviewpager.*
@@ -26,6 +28,7 @@ import com.mosl.mobile.panelpager.PanelFragment
 import com.mosl.mobile.rmclientwise.RmClientWiseFragment
 import io.reactivex.Observable
 import io.reactivex.subjects.PublishSubject
+import timber.log.Timber
 import java.net.ConnectException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
@@ -44,6 +47,10 @@ class RmClientOverviewFragment : MOSLCommonPager(), RmClientOverviewPagerContrac
     @Inject
     @field:OverViewData
     lateinit var overViewData: StringPreference
+
+    @Inject
+    @field:RemoteConfigData
+    lateinit var remoteCongigData: StringPreference
 
     @Inject
     lateinit var gson: Gson
@@ -78,7 +85,15 @@ class RmClientOverviewFragment : MOSLCommonPager(), RmClientOverviewPagerContrac
     private fun setUpAdapter() {
         binding.tabLayout.visibility = View.VISIBLE
         pagerAdapter = ViewPagerAdapter(childFragmentManager, requireContext(), this)
-        pagerAdapter.setFragmentTitles(R.array.tabTitles)
+        val tabData: RemoteConfigModel =
+            gson.fromJson(remoteCongigData.get(), RemoteConfigModel::class.java)
+        Timber.i("Tab Size: ${tabData.tabSize}")
+        if(tabData.tabSize.equals("2")){
+            pagerAdapter.setFragmentTitles(R.array.tabTitles2)
+        }else{
+            pagerAdapter.setFragmentTitles(R.array.tabTitles)
+
+        }
         mPager.adapter = pagerAdapter
         mPager.offscreenPageLimit = 3
         mPager.addOnPageChangeListener(pageChangeListener)
