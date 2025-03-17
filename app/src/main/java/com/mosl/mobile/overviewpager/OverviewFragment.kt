@@ -14,13 +14,16 @@ import com.mosl.commons.data.onFailure
 import com.mosl.commons.data.onSuccess
 import com.mosl.mobile.R
 import com.mosl.mobile.annotations.OverViewData
+import com.mosl.mobile.annotations.RemoteConfigData
 import com.mosl.mobile.core.MOSLCommonPager
+import com.mosl.mobile.data.RemoteConfigModel
 import com.mosl.mobile.databinding.FragmentOverviewBinding
 import com.mosl.mobile.domain.overviewpager.OverviewResponseDataInfo
 import com.mosl.mobile.domain.overviewpager.OverviewResponseDayItemInfo
 import com.mosl.mobile.overview.OverviewChildFragment
 import com.mosl.mobile.panelpager.PanelFragment
 import io.reactivex.subjects.PublishSubject
+import timber.log.Timber
 import java.net.ConnectException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
@@ -39,6 +42,9 @@ class OverviewFragment : MOSLCommonPager(), OverviewPagerContract {
     @Inject
     @field:OverViewData
     lateinit var overViewData: StringPreference
+    @Inject
+    @field:RemoteConfigData
+    lateinit var remoteCongigData: StringPreference
 
     @Inject
     lateinit var gson: Gson
@@ -73,7 +79,13 @@ class OverviewFragment : MOSLCommonPager(), OverviewPagerContract {
     private fun setUpAdapter() {
         binding.tabLayout.visibility = View.VISIBLE
         pagerAdapter = ViewPagerAdapter(childFragmentManager, requireContext(), this)
-        pagerAdapter.setFragmentTitles(R.array.tabTitles)
+        val tabSize: RemoteConfigModel =
+            gson.fromJson(remoteCongigData.get(), RemoteConfigModel::class.java)
+        if (tabSize.tabSize.equals("2")){
+            pagerAdapter.setFragmentTitles(R.array.tabTitles2)
+        }else{
+            pagerAdapter.setFragmentTitles(R.array.tabTitles)
+        }
         mPager.adapter = pagerAdapter
         mPager.addOnPageChangeListener(pageChangeListener)
         mIndicator.setupWithViewPager(mPager)
