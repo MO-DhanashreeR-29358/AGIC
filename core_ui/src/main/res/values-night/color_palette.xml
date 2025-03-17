@@ -9,14 +9,14 @@
     <color name="orangeYellow">#999999</color>
     <color name="login_logo_back">#fcae16</color>
 
-    <color name="blue">#03A9F4</color>
+    <color name="blue">#2C2A95</color>
     <color name="red">#b00020</color>
     <color name="lightRed">#cf6679</color>
 
     <color name="login_year_text_color">@color/_material_black_100</color>
     <color name="login_permission_text_color">#868686</color>
-    <color name="login_btn_text_color">#1F85FB</color>
-    <color name="login_btn_back_color">@color/_material_black_100</color>
+    <color name="login_btn_text_color">#fff</color>
+    <color name="login_btn_back_color">#2C2A95</color>
 
 
     <color name="news_letter_head_welcome">#D5D5D5</color>

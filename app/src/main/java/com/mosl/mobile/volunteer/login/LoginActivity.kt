@@ -132,7 +132,7 @@ class LoginActivity : LeanBaseActivity(), Navigator, LoginView {
         val banner: RemoteConfigModel? =
             gson.fromJson(remoteConfigData.get(), RemoteConfigModel::class.java)
         Glide.with(this)
-            .load(banner?.logo)
+            .load(banner?.splash)
             .diskCacheStrategy(DiskCacheStrategy.DATA)
             .into(binding.imgBanner)
     }
@@ -256,7 +256,7 @@ class LoginActivity : LeanBaseActivity(), Navigator, LoginView {
     }
 
     override fun getPassword(): String {
-        return binding.etPassword.text?.trim().toString()
+        return binding.etUserId.text?.trim().toString()
     }
 
     override fun isDataEmpty(): Boolean {
