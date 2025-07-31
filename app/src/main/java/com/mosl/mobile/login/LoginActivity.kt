@@ -69,7 +69,7 @@ class LoginActivity : LeanBaseActivity(), Navigator, LoginView {
             .load("https://ekyc.motilaloswal.com/ekyc_icons/agic/AGICSplash.png")
             .diskCacheStrategy(DiskCacheStrategy.DATA)
             .into(binding.imgBanner)
-        binding.txtYear.text = "2024"
+        binding.txtYear.text = "2025"
         binding.txtAgic.text = "AGIC"
     }
 
