@@ -205,7 +205,9 @@ dependencies {
     implementation project(':appcoreui')
     implementation project(':moslcommons')
     implementation project(':navigator')
-
+    implementation project(':barcodescanner')
+    implementation project(':core')
+    implementation project(':zxingembeded')
 
 //    implementation GroupieDependencies.core
 //    implementation GroupieDependencies.dataBinding
@@ -274,7 +276,7 @@ dependencies {
 
     implementation GsonDependencies.gson
 
-    implementation QrCodeDependencies.qrCode
+   // implementation QrCodeDependencies.qrCode
 
 }
 

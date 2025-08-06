@@ -25,8 +25,14 @@ include ':app',
         ':validator',
         ':rx_preferences',
         ':flashbar',
+        ':barcodescanner',
+        ':core',
+        ':zxingembeded'
 rootProject.name='Agic'
 
+project(':zxingembeded').projectDir = new File("barcode/zxingembeded")
+project(':core').projectDir = new File("barcode/core")
+project(':barcodescanner').projectDir = new File("barcode/barcodescanner")
 project(':mock_data').projectDir = new File("service/mock_data")
 project(':mosl_api').projectDir = new File("service/mosl_api")
 project(':apicore').projectDir = new File("mosl_artifact/apicore")
@@ -47,3 +53,4 @@ project(':tableview_extensions').projectDir = new File("mosl_artifact/tableview_
 project(':tokenmanager').projectDir = new File("mosl_artifact/tokenmanager")
 project(':validator').projectDir = new File("mosl_artifact/validator")
 project(':flashbar').projectDir = new File("mosl_artifact/flashbar")
+

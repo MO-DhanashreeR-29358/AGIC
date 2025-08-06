@@ -246,6 +246,7 @@ object MofslArtifactDependencies {
     const val protoModels = "MofslArtifacts:protomodels:0.0.1"*/
 }
 
+/*
 object QrCodeDependencies {
     const val qrCode = "me.dm7.barcodescanner:zxing:${Versions.qrCode}"
-}
+}*/

@@ -126,4 +126,6 @@ class QrCodeScanFragment: MOSLCommonFragment(), ZXingScannerView.ResultHandler, 
         binding.qrCodeView.stopCamera()
         presenter.stop()
     }
+
+
 }
