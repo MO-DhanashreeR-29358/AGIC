@@ -1,6 +1,7 @@
 package com.mosl.mobile.volunteer.attendance.corporateqr
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -52,6 +53,7 @@ class CorporateNamesListFragment: MOSLCommonFragment(), CorporateNamesListContra
     private fun initData() {
 //        val banner: RemoteConfigModel? =
 //            gson.fromJson(remoteConfigData.get(), RemoteConfigModel::class.java)
+        Log.d("Volunteer Imageeeee:" , remoteConfigModel?.headerImage.toString() )
         Glide.with(this)
             .load(remoteConfigModel?.headerImage)
             .diskCacheStrategy(DiskCacheStrategy.DATA)
