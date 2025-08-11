@@ -1,6 +1,7 @@
 package com.mosl.mobile.volunteer.attendance.corporateqr
 
 import android.os.Bundle
+import android.widget.Toast
 import com.mosl.groupiex.helper.databind.BindableItem
 import com.mosl.mobile.volunteer.R
 import com.mosl.mobile.volunteer.appuser.model.CorporateModel
@@ -20,6 +21,7 @@ class ItemCorporateName(
                 pageId = NavigationConstants.NAVIGATE_TO_QR_CODE_SCAN_FRAGMENT,
                 args = Bundle().apply {
                     putString(QrCodeScanContract.EXTRA_COMPANY_ID, model.companyId)
+                    putString(QrCodeScanContract.EXTRA_CORPORATE_NAME, model.corporateName)
                 },
                 addToStack = false
             )

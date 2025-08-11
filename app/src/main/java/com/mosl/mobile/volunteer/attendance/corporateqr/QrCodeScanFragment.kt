@@ -2,6 +2,7 @@ package com.mosl.mobile.volunteer.attendance.corporateqr
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.zxing.Result
 import com.mosl.commons.data.UiModel
@@ -15,6 +16,7 @@ import com.mosl.mobile.volunteer.constants.NavigationConstants
 import com.mosl.mobile.volunteer.databinding.FragmentQrCodeScanBinding
 import com.mosl.mobile.volunteer.appuser.login.UserManagerImpl
 import com.mosl.mobile.volunteer.attendance.attendancedetails.mapToClientDetails
+import com.mosl.mobile.volunteer.attendance.corporateqr.QrCodeScanContract.Companion.EXTRA_CORPORATE_NAME
 import com.mosl.mobile.volunteer.core.MOSLCommonActivity
 import com.mosl.mobile.volunteer.domain.attendance.ClientDetailsModel
 import com.mosl.shared.AppDateFormats
@@ -39,6 +41,10 @@ class QrCodeScanFragment: MOSLCommonFragment(), ZXingScannerView.ResultHandler, 
 
     private val companyId by lazy {
         requireArguments().getString(EXTRA_COMPANY_ID).orEmpty()
+    }
+
+    private val corporateName by lazy {
+        requireArguments().getString(EXTRA_CORPORATE_NAME).orEmpty()
     }
 
     private val subject = PublishSubject.create<QrCodeScanEvent>()
@@ -89,6 +95,7 @@ class QrCodeScanFragment: MOSLCommonFragment(), ZXingScannerView.ResultHandler, 
                 NavigationConstants.NAVIGATE_TO_ATTENDANCE_DETAILS_FRAGMENT,
                 args = Bundle().apply {
                     putString(EXTRA_COMPANY_ID, companyId)
+                    putString(QrCodeScanContract.EXTRA_CORPORATE_NAME, corporateName)
                 },
                 addToStack = false
             )

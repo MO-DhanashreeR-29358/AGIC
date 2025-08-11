@@ -12,5 +12,6 @@ interface QrCodeScanContract: BaseView {
 
     companion object {
        internal const val EXTRA_COMPANY_ID = "company_id"
+        internal const val EXTRA_CORPORATE_NAME = "company_name"
     }
 }

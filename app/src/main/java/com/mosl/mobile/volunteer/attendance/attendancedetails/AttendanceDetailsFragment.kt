@@ -55,6 +55,9 @@ class AttendanceDetailsFragment: MOSLCommonFragment(), AttendanceDetailsContract
         requireArguments().getString(QrCodeScanContract.EXTRA_COMPANY_ID).orEmpty()
     }
 
+    private val corporateName by lazy {
+        requireArguments().getString(QrCodeScanContract.EXTRA_CORPORATE_NAME).orEmpty()
+    }
     override fun getLayout(): Int {
         return R.layout.fragment_attendance_details
     }
@@ -109,6 +112,7 @@ class AttendanceDetailsFragment: MOSLCommonFragment(), AttendanceDetailsContract
             pageId = NavigationConstants.NAVIGATE_TO_QR_CODE_SCAN_FRAGMENT,
             args = Bundle().apply {
                 putString(QrCodeScanContract.EXTRA_COMPANY_ID, companyId)
+                putString(QrCodeScanContract.EXTRA_CORPORATE_NAME, corporateName)
             },
             addToStack = false
         )
@@ -127,7 +131,7 @@ class AttendanceDetailsFragment: MOSLCommonFragment(), AttendanceDetailsContract
             alertMessage(clientModel?.message?:"No data")
         }else {
             binding.apply {
-                tvCorporateName.text = clientModel?.companyName.orEmpty()
+                tvCorporateName.text = corporateName
                 btFundName.text = clientModel?.fundName.orEmpty()
                 btClientName.text = clientModel?.clientName.orEmpty()
                 btStatus.text = clientModel?.status.orEmpty()
