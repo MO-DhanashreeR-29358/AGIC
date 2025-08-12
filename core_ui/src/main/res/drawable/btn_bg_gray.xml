@@ -3,9 +3,9 @@
     android:padding="10dp"
     android:shape="rectangle">
 
-    <solid android:color="@color/_material_grey_400" />
+    <solid android:color="@color/dark_blue" />
 
     <stroke
-        android:color="@color/black"
+        android:color="@color/white"
         android:width="@dimen/_1sdp" />
 </shape>

@@ -4,7 +4,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/ic_bg_attendance">
+        android:background="@color/white">
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -29,6 +29,7 @@
                     android:paddingHorizontal="@dimen/margin_large"
                     android:layout_marginTop="@dimen/margin_medium"
                     android:gravity="center"
+                    android:textColor="@color/white"
                     android:text="@string/bt_label_corporate_one"
                     android:textSize="@dimen/text_size_large"
                     app:layout_constraintStart_toStartOf="parent"
@@ -169,7 +170,7 @@
                     app:layout_constraintTop_toBottomOf="@id/bt_status"/>
 
                 <TextView
-                    style="@style/AttendanceApp.Button"
+                    style="@style/AttendanceApp.Button.Gray"
                     android:id="@+id/bt_allow"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -188,7 +189,7 @@
                     app:layout_constraintTop_toBottomOf="@id/bt_slot"/>
 
                 <TextView
-                    style="@style/AttendanceApp.Button"
+                    style="@style/AttendanceApp.Button.Gray"
                     android:id="@+id/bt_yes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -207,7 +208,7 @@
                     app:layout_constraintTop_toBottomOf="@id/bt_allow"/>
 
                 <TextView
-                    style="@style/AttendanceApp.Button"
+                    style="@style/AttendanceApp.Button.Gray"
                     android:id="@+id/bt_no"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
