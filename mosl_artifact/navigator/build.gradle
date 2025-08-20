@@ -2,8 +2,8 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
+  namespace 'com.mosl.navigator'
   compileSdkVersion Versions.compileSdkVersion
-  buildToolsVersion Versions.buildToolsVersion
 
   defaultConfig {
     minSdkVersion 15
@@ -18,11 +18,13 @@ android {
   }
 
   compileOptions {
-    sourceCompatibility JavaVersion.VERSION_1_8
-    targetCompatibility JavaVersion.VERSION_1_8
+    sourceCompatibility JavaVersion.VERSION_17
+    targetCompatibility JavaVersion.VERSION_17
   }
 }
-
+kotlin {
+  jvmToolchain(17)
+}
 dependencies {
   implementation DaggerDependencies.javax
 //    implementation project(':artifact_annotations')
@@ -30,7 +32,7 @@ dependencies {
   compileOnly project(':artifact_annotations')
   compileOnly AndroidxDependencies.fragment
   compileOnly KotlinDependencies.kotlin
-  compileOnly Dependencies.timber
+  compileOnly AgicDependencies.timber
 }
 
 //apply from: rootProject.file('gradle/gradle-mvn-push.gradle')

@@ -145,6 +145,9 @@ internal class FlashbarContainerView(context: Context) : RelativeLayout(context)
             LEFT -> flashbarContainerViewLp.leftMargin = navigationBarSize
             RIGHT -> flashbarContainerViewLp.rightMargin = navigationBarSize
             BOTTOM -> flashbarContainerViewLp.bottomMargin = navigationBarSize
+            else -> {
+                flashbarContainerViewLp.leftMargin = navigationBarSize
+            }
         }
 
         layoutParams = flashbarContainerViewLp

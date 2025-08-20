@@ -1,9 +1,9 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'io.fabric'
+apply plugin: 'kotlin-parcelize'
 
 def gitSha() {
     def p = 'git rev-parse --short HEAD'.execute([], project.rootDir)
@@ -26,6 +26,7 @@ def gitTimestamp() {
 }
 
 android {
+    namespace 'com.mosl.mobile'
     packagingOptions {
         exclude 'META-INF/annotations.kotlin_module'
         exclude 'META-INF/rxbinding_release.kotlin_module'
@@ -33,7 +34,6 @@ android {
         exclude 'META-INF/androidx.preference_preference.version'
     }
     compileSdkVersion Versions.compileSdkVersion
-    buildToolsVersion Versions.buildToolsVersion
 
     Properties versionProps = new Properties()
     versionProps.load(new FileInputStream(file('../version.properties')))
@@ -79,7 +79,9 @@ android {
             }
         }
     }
-
+    buildFeatures {
+        buildConfig = true
+    }
     dataBinding {
         enabled = true
     }
@@ -141,8 +143,9 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        coreLibraryDesugaringEnabled false
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 
     lintOptions {
@@ -211,8 +214,8 @@ dependencies {
 
 //    implementation GroupieDependencies.core
 //    implementation GroupieDependencies.dataBinding
-    implementation Dependencies.timber
-    implementation Dependencies.threeTen
+    implementation AgicDependencies.timber
+    implementation AgicDependencies.threeTen
 
     implementation RetrofitDependencies.core
     implementation RetrofitDependencies.rxJava
@@ -277,7 +280,9 @@ dependencies {
 
 
 }
-
+kotlin {
+    jvmToolchain(17)
+}
 kapt {
     javacOptions {
         option("-Xmaxerrs", 2000)

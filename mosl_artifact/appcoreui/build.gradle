@@ -1,10 +1,9 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
 
 android {
+  namespace 'com.mosl.app.coreui'
   compileSdkVersion Versions.compileSdkVersion
-  buildToolsVersion Versions.buildToolsVersion
 
   defaultConfig {
     minSdkVersion 17
@@ -20,8 +19,8 @@ android {
   }
 
   compileOptions {
-    sourceCompatibility JavaVersion.VERSION_1_8
-    targetCompatibility JavaVersion.VERSION_1_8
+    sourceCompatibility JavaVersion.VERSION_17
+    targetCompatibility JavaVersion.VERSION_17
   }
 }
 
@@ -42,7 +41,7 @@ dependencies {
   implementation project(':domaincore')
 //  implementation project(':moslcommons')
 
-  compileOnly Dependencies.timber
+  compileOnly AgicDependencies.timber
   compileOnly RxDependencies.java
   compileOnly RxDependencies.android
   compileOnly KotlinDependencies.kotlin
@@ -52,7 +51,9 @@ dependencies {
   compileOnly project(':flashbar')
   implementation "com.airbnb.android:lottie:3.4.0"
 
-  kapt DaggerDependencies.compiler
+  compileOnly DaggerDependencies.compiler
 }
-
+kotlin {
+  jvmToolchain(17)
+}
 //apply from: rootProject.file('gradle/gradle-mvn-push.gradle')

@@ -1,11 +1,11 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-parcelize'
 apply plugin: 'kotlin-kapt'
 
 android {
+  namespace 'com.mosl.mobile.appuser'
   compileSdkVersion Versions.compileSdkVersion
-  buildToolsVersion Versions.buildToolsVersion
 
   defaultConfig {
     minSdkVersion Versions.minSdkVersion
@@ -23,6 +23,17 @@ android {
       proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
     }
   }
+  tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+    kotlinOptions {
+      jvmTarget = "17"
+    }
+  }
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_17
+    targetCompatibility JavaVersion.VERSION_17
+  }
+
 }
 
 dependencies {
@@ -34,7 +45,7 @@ dependencies {
   testImplementation TestingDependencies.junit
   androidTestImplementation AndroidxDependencies.testRunner
   androidTestImplementation AndroidxDependencies.testEspresso
-  implementation Dependencies.timber
+  implementation AgicDependencies.timber
   implementation RetrofitDependencies.gson
 
   implementation DaggerDependencies.core
@@ -50,4 +61,7 @@ dependencies {
   implementation GsonDependencies.gson
 
   implementation project (":mosl_api")
+}
+kotlin {
+  jvmToolchain(17)
 }

@@ -1,9 +1,10 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-parcelize'
 apply plugin: 'kotlin-kapt'
 
 android {
+  namespace 'com.mosl.mobile.coreui'
   compileSdkVersion Versions.compileSdkVersion
   buildToolsVersion Versions.buildToolsVersion
 
@@ -22,6 +23,10 @@ android {
       minifyEnabled false
       proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
     }
+  }
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_17
+    targetCompatibility JavaVersion.VERSION_17
   }
 }
 
@@ -50,7 +55,7 @@ dependencies {
   implementation RxBindingDependencies.bindingCore
   implementation RxBindingDependencies.bindingAppcompat
 
-  implementation Dependencies.timber
+  implementation AgicDependencies.timber
 
   testImplementation TestingDependencies.junit
   androidTestImplementation AndroidxDependencies.testJunit
@@ -73,4 +78,7 @@ dependencies {
   implementation DimensionDependencies.sdp
 
   implementation project(":annotations")
+}
+kotlin {
+  jvmToolchain(17)
 }

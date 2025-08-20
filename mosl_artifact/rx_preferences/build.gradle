@@ -1,10 +1,10 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-parcelize'
 
 android {
+    namespace 'mosl.rx_preferences'
     compileSdkVersion Versions.compileSdkVersion
-    buildToolsVersion Versions.buildToolsVersion
 
     defaultConfig {
         minSdkVersion Versions.minSdkVersion
@@ -39,5 +39,8 @@ dependencies {
 //    testImplementation TestingDependencies.assertj
 //    testImplementation deps.androidx.test.testcore
 //    testImplementation deps.testing.robolectric
+}
+kotlin {
+    jvmToolchain(17)
 }
 //apply from: rootProject.file('gradle/gradle-mvn-push.gradle')

@@ -12,6 +12,10 @@ dependencies {
 
 }
 
-sourceCompatibility = "1.8"
-targetCompatibility = "1.8"
+kotlin {
+    jvmToolchain(17)
+}
+
+sourceCompatibility = "17"
+targetCompatibility = "17"
 

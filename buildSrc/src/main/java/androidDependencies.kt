@@ -3,36 +3,36 @@ object Versions {
     const val dexCountGradlePlugin = "0.8.6"
     const val errorProne = "0.0.13"
     const val okIo = "1.17.4"
-    const val leakCanary = "1.6.3"
-    const val room = "2.1.0"
+    const val leakCanary = "2.10"
+    const val room = "2.5.2"
     const val wearable = "2.3.0"
     const val coroutines = "1.3.0"
-    const val compileSdkVersion = 33
-    const val targetSdkVersion = 30
-    const val minSdkVersion = 21
-    const val buildToolsVersion = "33.0.0"
-    const val androidVersion = "7.3.0"
-    const val kotlinVersion = "1.6.21"
+    const val compileSdkVersion = 34
+    const val targetSdkVersion = 34
+    const val minSdkVersion = 17
+    const val buildToolsVersion = "29.0.3"
+    const val androidVersion = "8.0.2"
+    const val kotlinVersion = "1.8.22"
     const val okHttp = "4.9.0"
     const val timber = "4.7.1"
-    const val groupie = "2.8.1"
+    const val groupie = "2.10.1"
     const val retrofit = "2.9.0"
-    const val dagger = "2.42"
+    const val dagger = "2.23.1"
     const val rxBinding = "3.0.0"
     const val stetho = "1.5.1"
-    const val androidDataBinding = "4.0.1"
+    const val androidDataBinding = "7.3.0"
     const val lifeCycle = "2.2.0"
     const val sdp = "1.0.6"
     const val qrCode = "1.9.13"
     const val gson = "2.8.6"
     const val flashBar = "0.0.22"
     const val securityVersion = "1.1.0-alpha02"
-    const val googleServices = "4.3.13"
+    const val googleServices = "4.3.15"
     const val detektVersion = "1.10.0"
     const val firebaseCrashlytics = "2.9.1"
 }
 
-object Dependencies {
+object AgicDependencies {
     const val timber = "com.jakewharton.timber:timber:${Versions.timber}"
     const val brotli = "org.brotli:dec:0.1.2"
     const val mpChart = "com.github.PhilJay:MPAndroidChart:v3.1.0"

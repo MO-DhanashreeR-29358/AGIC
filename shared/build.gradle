@@ -1,14 +1,14 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-parcelize'
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.2"
+    namespace 'com.mosl.shared'
+    compileSdkVersion Versions.compileSdkVersion
 
 
     defaultConfig {
-        minSdkVersion 15
-        targetSdkVersion 29
+        minSdkVersion 21
+        targetSdkVersion Versions.targetSdkVersion
         versionCode 1
         versionName "1.0"
 
@@ -22,7 +22,15 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
+    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+        kotlinOptions {
+            jvmTarget = "17"
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
 }
 
 dependencies {
@@ -33,4 +41,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+}
+kotlin {
+    jvmToolchain(17)
 }
