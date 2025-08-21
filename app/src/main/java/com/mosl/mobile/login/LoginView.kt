@@ -8,6 +8,6 @@ interface LoginView : BaseView {
   fun onLoginClicked(): Observable<Unit>
   fun renderLogin(uiModel: UiModel<com.mosl.mobile.appuser.model.User>)
   fun getUniqueCode(): String
-  fun getDeviceId(): String
+  fun getDevice_Id(): String
   fun onDoneClicked(): Observable<Int>
 }

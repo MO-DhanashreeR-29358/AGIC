@@ -82,7 +82,7 @@ class OverviewFragment : MOSLCommonPager(), OverviewPagerContract {
         val tabSize: RemoteConfigModel =
             gson.fromJson(remoteCongigData.get(), RemoteConfigModel::class.java)
         if (tabSize.tabSize.equals("2")){
-            pagerAdapter.setFragmentTitles(R.array.tabTitles2)
+            pagerAdapter.setFragmentTitles(com.mosl.mobile.coreui.R.array.tabTitles2)
         }else{
             pagerAdapter.setFragmentTitles(R.array.tabTitles)
         }

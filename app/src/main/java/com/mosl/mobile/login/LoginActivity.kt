@@ -182,7 +182,7 @@ class LoginActivity : LeanBaseActivity(), Navigator, LoginView {
             .toString()
     }
 
-    override fun getDeviceId(): String {
+    override fun getDevice_Id(): String {
         return getDeviceID(getApplicationContext().getContentResolver())
     }
 

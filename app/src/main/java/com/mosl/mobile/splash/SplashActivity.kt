@@ -106,7 +106,7 @@ class SplashActivity : LeanBaseActivity() {
             if (userManager.isLoggedIn()) {
                 Toast.makeText(
                     this,
-                    R.string.msg_application_needs_network_to_proceed,
+                    com.mosl.mobile.coreui.R.string.msg_application_needs_network_to_proceed,
                     Toast.LENGTH_LONG
                 ).show()
                 initializeApp()
@@ -114,11 +114,11 @@ class SplashActivity : LeanBaseActivity() {
                 if (count < 2) {
                     count++
                     showConfirmation(
-                        message = getString(R.string.msg_application_needs_network_to_proceed),
+                        message = getString(com.mosl.mobile.coreui.R.string.msg_application_needs_network_to_proceed),
                         cancelable = true,
-                        title = getString(R.string.alert_dialog_title),
-                        positiveButton = R.string.button_label_retrieve,
-                        negativeButton = R.string.button_label_exit
+                        title = getString(com.mosl.app.core.R.string.alert_dialog_title),
+                        positiveButton = com.mosl.mobile.coreui.R.string.button_label_retrieve,
+                        negativeButton = com.mosl.mobile.coreui.R.string.button_label_exit
                     )
                     { positiveClicked ->
                         if (positiveClicked) {
@@ -130,9 +130,9 @@ class SplashActivity : LeanBaseActivity() {
                     }
                 } else {
                     actionableAlert(
-                        message = getString(R.string.msg_application_needs_network_to_proceed),
+                        message = getString(com.mosl.mobile.coreui.R.string.msg_application_needs_network_to_proceed),
                         cancelable = false,
-                        buttonText = R.string.button_label_exit
+                        buttonText = com.mosl.mobile.coreui.R.string.button_label_exit
                     ) {
                         finish()
                     }
@@ -154,7 +154,7 @@ class SplashActivity : LeanBaseActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     val agicInit =
-                        remoteConfig.getString(getString(R.string.agic_init))
+                        remoteConfig.getString(getString(com.mosl.mobile.coreui.R.string.agic_init))
                     if (agicInit != null && !agicInit.isEmpty()) {
                         val remoteConfigModel: RemoteConfigModel =
                             gson.fromJson(agicInit, RemoteConfigModel::class.java)

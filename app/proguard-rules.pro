@@ -26,3 +26,16 @@
 -keep class com.mosl.mobile.appuser.model.User
 -keep class com.mosl.mobile.domain.** { *; }
 -keep class com.mosl.mobile.data.** { *; }
+
+# Keep Flashbar classes
+-keep class com.mosl.mobile.flashbar.** { *; }
+
+# Keep OkHttp platform classes (optional dependencies)
+-dontwarn org.bouncycastle.jsse.**
+-dontwarn org.conscrypt.**
+-dontwarn org.openjsse.**
+
+# Keep SSL classes that might be used reflectively
+-keep class org.bouncycastle.jsse.** { *; }
+-keep class org.conscrypt.** { *; }
+-keep class org.openjsse.** { *; }

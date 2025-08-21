@@ -9,7 +9,7 @@ object Versions {
     const val coroutines = "1.3.0"
     const val compileSdkVersion = 34
     const val targetSdkVersion = 34
-    const val minSdkVersion = 17
+    const val minSdkVersion = 21
     const val buildToolsVersion = "29.0.3"
     const val androidVersion = "8.0.2"
     const val kotlinVersion = "1.8.22"

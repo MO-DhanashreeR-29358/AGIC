@@ -317,7 +317,7 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
                 )
 
                 addTab(
-                    newTab().setText(R.string.tab_label_icard).setIcon(R.drawable.ic_tab_pdf).setTag(
+                    newTab().setText(com.mosl.mobile.coreui.R.string.tab_label_icard).setIcon(R.drawable.ic_tab_pdf).setTag(
                         NavigationConstants.NAVIGATE_TO_IDCARD
                     )
                 )
@@ -417,7 +417,7 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
         if (intent.isNotification()) {
             setNotificationTab()
         } else {
-            setColorFilter(binding.tabLayout.getTabAt(0)?.icon, baseContext.setColor(R.color.blue))
+            setColorFilter(binding.tabLayout.getTabAt(0)?.icon, baseContext.setColor(com.mosl.mobile.coreui.R.color.blue))
         }
 
         binding.tabLayout.addOnTabSelectedListener(tabSelectedListner)
@@ -428,7 +428,7 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
     internal val tabSelectedListner = object : TabLayout.OnTabSelectedListener {
         override fun onTabSelected(tab: TabLayout.Tab) {
 
-            setColorFilter(tab.icon, baseContext.setColor(R.color.blue))
+            setColorFilter(tab.icon, baseContext.setColor(com.mosl.mobile.coreui.R.color.blue))
             if (tab.tag as Int == NavigationConstants.NAVIGATE_TO_PDF) {
                 val ft = getSupportFragmentManager().beginTransaction()
                 if (userManager.getPdf().isNotEmpty()) {
@@ -438,7 +438,7 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
                     alertMessage(message = PDF_FILE_NOT_YET_UPLOADED)
                 }
             } else {
-                setColorFilter(tab.icon, baseContext.setColor(R.color.blue))
+                setColorFilter(tab.icon, baseContext.setColor(com.mosl.mobile.coreui.R.color.blue))
                 navigateFragment(tab.tag as Int)
             }
         }
@@ -446,7 +446,7 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
         override fun onTabUnselected(tab: TabLayout.Tab) {
             setColorFilter(
                 binding.tabLayout.getTabAt(tab.position)?.icon,
-                baseContext.setColor(R.color.bottom_tab_white)
+                baseContext.setColor(com.mosl.mobile.coreui.R.color.bottom_tab_white)
             )
         }
 
@@ -473,10 +473,10 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
 
     private fun setNotificationTab() {
         if (userManager.user.role.equals(ROLE_CLIENT, ignoreCase = true)) {
-            setColorFilter(binding.tabLayout.getTabAt(3)?.icon, baseContext.setColor(R.color.blue))
+            setColorFilter(binding.tabLayout.getTabAt(3)?.icon, baseContext.setColor(com.mosl.mobile.coreui.R.color.blue))
             binding.tabLayout.getTabAt(3)?.select()
         } else if (userManager.user.role.equals(ROLE_CORPORATE, ignoreCase = true)) {
-            setColorFilter(binding.tabLayout.getTabAt(2)?.icon, baseContext.setColor(R.color.blue))
+            setColorFilter(binding.tabLayout.getTabAt(2)?.icon, baseContext.setColor(com.mosl.mobile.coreui.R.color.blue))
             binding.tabLayout.getTabAt(2)?.select()
         }
 
@@ -833,7 +833,7 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
             binding.coordinatorLayout, R.string.network_unavailable,
             Snackbar.LENGTH_INDEFINITE
         )
-        snackbar.setAction(R.string.button_label_ok) { _ -> snackbar.dismiss() }
+        snackbar.setAction(com.mosl.app.core.R.string.button_label_ok) { _ -> snackbar.dismiss() }
         snackbar.show()
         return snackbar
     }

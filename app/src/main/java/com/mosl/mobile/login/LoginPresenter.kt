@@ -16,7 +16,7 @@ class LoginPresenter @Inject constructor(
             Observable.merge(view.onLoginClicked(), view.onDoneClicked())
                 .map<LoginFormInput> {
                     LoginFormInput(
-                        view.getUniqueCode(), view.getDeviceId()
+                        view.getUniqueCode(), view.getDevice_Id()
                     )
                 }
                 .switchMap { input ->

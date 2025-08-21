@@ -68,6 +68,7 @@ dependencies {
   implementation project(':navigator')
   implementation project(':moslcommons')
   implementation project(':appcoreui')
+  implementation project(':flashbar')
 
   /*implementation MofslArtifactDependencies.appCoreUI
   implementation MofslArtifactDependencies.appCore

@@ -1,4 +1,5 @@
 apply plugin: 'java-library'
+apply plugin: 'kotlin'
 apply plugin: 'kotlin-kapt'
 
 dependencies {
@@ -10,9 +11,23 @@ dependencies {
 //    api project (':appcore')
 //    api MofslArtifactDependencies.appCore
     implementation GsonDependencies.gson
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.22"
     //Android Room
    // implementation RoomDependencies.runtime
 }
 
-sourceCompatibility = "17"
-targetCompatibility = "17"
+buildscript {
+    ext.kotlin_version = '1.9.23'
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.22"
+    }
+}
+repositories {
+    mavenCentral()
+}
+kotlin {
+    jvmToolchain(17)
+}
