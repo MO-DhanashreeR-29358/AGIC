@@ -3,6 +3,8 @@ plugins {
  `kotlin-dsl`
 }
 repositories {
- jcenter()
+ gradlePluginPortal()
+ mavenCentral()
+ google()
 }
   
