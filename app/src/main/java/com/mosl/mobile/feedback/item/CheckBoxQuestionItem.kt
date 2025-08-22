@@ -4,8 +4,8 @@ import android.content.Context
 import android.widget.CheckBox
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.getColor
-import com.mosl.mobile.R
-import com.mosl.mobile.databinding.ItemFeedbackCheckboxBinding
+import com.mosl.agicapp.R
+import com.mosl.agicapp.databinding.ItemFeedbackCheckboxBinding
 import com.mosl.mobile.domain.feedback.*
 import com.mosl.groupiex.helper.databind.BindableItem
 import timber.log.Timber

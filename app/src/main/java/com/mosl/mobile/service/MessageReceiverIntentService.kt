@@ -16,7 +16,7 @@ import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.mosl.annotations.FcmToken
-import com.mosl.mobile.R
+import com.mosl.agicapp.R
 import com.mosl.mobile.core.MOSLCommonActivity
 import com.mosl.mobile.dashboard.ActivityNavigationHelper.Companion.ARG_NOTIFICATION_CATEGORY
 import dagger.android.AndroidInjection

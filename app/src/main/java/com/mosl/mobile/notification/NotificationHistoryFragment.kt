@@ -15,14 +15,14 @@ import com.mosl.commons.data.UiModel
 import com.mosl.commons.data.onFailure
 import com.mosl.commons.data.onSuccess
 import com.mosl.groupiex.section.DataManagerSection
-import com.mosl.mobile.R
+import com.mosl.agicapp.R
 import com.mosl.mobile.annotations.NotificationCount
 import com.mosl.mobile.annotations.NotificationData
 import com.mosl.mobile.appuser.login.UserManager
 import com.mosl.mobile.appuser.login.user
 import com.mosl.mobile.core.MOSLCommonActivity
 import com.mosl.mobile.core.MOSLCommonFragment
-import com.mosl.mobile.databinding.FragmentNotificationHistoryBinding
+import com.mosl.agicapp.databinding.FragmentNotificationHistoryBinding
 import com.mosl.mobile.domain.notification.NotificationResponse
 import com.mosl.mobile.util.toggleProgressBar
 import com.mosl.groupiex.helper.groupie.GroupAdapter

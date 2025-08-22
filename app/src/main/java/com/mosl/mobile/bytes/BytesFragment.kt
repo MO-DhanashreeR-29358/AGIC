@@ -15,10 +15,10 @@ import com.mosl.commons.data.UiModel
 import com.mosl.commons.data.onFailure
 import com.mosl.commons.data.onSuccess
 import com.mosl.groupiex.section.DataManagerSection
-import com.mosl.mobile.R
+import com.mosl.agicapp.R
 import com.mosl.mobile.annotations.LastBytesData
 import com.mosl.mobile.core.MOSLCommonFragment
-import com.mosl.mobile.databinding.FragmentBytesBinding
+import com.mosl.agicapp.databinding.FragmentBytesBinding
 import com.mosl.mobile.domain.bytes.BytesData
 import com.mosl.mobile.domain.bytes.BytesItemModel
 import com.mosl.mobile.domain.bytes.BytesResponse

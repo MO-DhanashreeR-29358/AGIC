@@ -7,12 +7,12 @@ import android.util.Base64
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.view.WindowManager
-import com.mosl.mobile.R
+import com.mosl.agicapp.R
 import com.mosl.mobile.appuser.login.UserManager
 import com.mosl.mobile.appuser.login.user
 import com.mosl.mobile.core.MOSLCommonFragment
-import com.mosl.mobile.databinding.FragmentIcardBinding
-import com.mosl.mobile.databinding.FragmentNotesBinding
+import com.mosl.agicapp.databinding.FragmentIcardBinding
+import com.mosl.agicapp.databinding.FragmentNotesBinding
 import javax.inject.Inject
 
 

@@ -1,8 +1,8 @@
 package com.mosl.mobile.schedule
 
 import android.content.Context
-import com.mosl.mobile.R
-import com.mosl.mobile.databinding.ItemFragmentScheduleRepoBinding
+import com.mosl.agicapp.R
+import com.mosl.agicapp.databinding.ItemFragmentScheduleRepoBinding
 import com.mosl.mobile.domain.schedule.ScheduleRepresentativeItemData
 import com.mosl.groupiex.helper.databind.BindableItem
 

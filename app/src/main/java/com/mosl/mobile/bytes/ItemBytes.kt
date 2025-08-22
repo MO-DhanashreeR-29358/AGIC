@@ -1,7 +1,7 @@
 package com.mosl.mobile.bytes
 
-import com.mosl.mobile.R
-import com.mosl.mobile.databinding.ItemBytesBinding
+import com.mosl.agicapp.R
+import com.mosl.agicapp.databinding.ItemBytesBinding
 import com.mosl.mobile.domain.bytes.BytesItemModel
 import com.mosl.shared.AppDateFormats.DF_JSON_DATE_4
 import com.mosl.shared.AppDateFormats.DF_TIME_hh

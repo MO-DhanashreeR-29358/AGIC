@@ -16,7 +16,7 @@ import com.mosl.app.coreui.base.LeanBaseFragment;
 import com.mosl.app.coreui.base.NavigationElement;
 import com.mosl.app.coreui.views.CustomViewPager;
 
-import com.mosl.mobile.R;
+import com.mosl.agicapp.R;
 import com.mosl.mobile.util.PagerLoaderManager;
 
 

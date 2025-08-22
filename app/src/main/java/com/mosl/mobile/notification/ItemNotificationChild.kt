@@ -2,8 +2,8 @@ package com.mosl.mobile.notification
 
 
 import android.view.View
-import com.mosl.mobile.R
-import com.mosl.mobile.databinding.ItemNotificationChildBinding
+import com.mosl.agicapp.R
+import com.mosl.agicapp.databinding.ItemNotificationChildBinding
 import com.mosl.mobile.domain.notification.NotificationResponse
 import com.mosl.shared.AppDateFormats
 import com.mosl.shared.util.getFormatedDate

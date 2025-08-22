@@ -8,8 +8,8 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.mosl.app.core.network.isNetworkConnected
 import com.mosl.app.coreui.dialog.BaseDialogFragment
-import com.mosl.mobile.R
-import com.mosl.mobile.databinding.FragmentPdfBinding
+import com.mosl.agicapp.R
+import com.mosl.agicapp.databinding.FragmentPdfBinding
 import com.mosl.mobile.appuser.login.UserManagerImpl
 import com.mosl.mobile.util.downloadDocument
 import com.mosl.mobile.util.openUrlInBrowser

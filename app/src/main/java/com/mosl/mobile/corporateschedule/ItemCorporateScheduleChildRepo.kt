@@ -1,7 +1,7 @@
 package com.mosl.mobile.corporateschedule
 
-import com.mosl.mobile.R
-import com.mosl.mobile.databinding.ItemFragmentScheduleRepoBinding
+import com.mosl.agicapp.R
+import com.mosl.agicapp.databinding.ItemFragmentScheduleRepoBinding
 import com.mosl.mobile.domain.corporateschedulepager.CorporateScheduleResponseRepresentativeItemInfo
 import com.mosl.groupiex.helper.databind.BindableItem
 

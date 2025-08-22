@@ -3,8 +3,8 @@ package com.mosl.mobile.feedback.item
 import android.content.Context
 import android.view.View
 import android.widget.RatingBar
-import com.mosl.mobile.R
-import com.mosl.mobile.databinding.ItemFeedbackRatingBarBinding
+import com.mosl.agicapp.R
+import com.mosl.agicapp.databinding.ItemFeedbackRatingBarBinding
 import com.mosl.mobile.domain.feedback.FeedbackAnswer
 import com.mosl.mobile.domain.feedback.FeedbackOptionTag
 import com.mosl.mobile.domain.feedback.FeedbackResponse

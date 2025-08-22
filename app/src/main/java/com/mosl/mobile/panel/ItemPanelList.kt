@@ -5,8 +5,8 @@ import android.util.Log
 import android.view.View
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.mosl.mobile.R
-import com.mosl.mobile.databinding.ItemFragmentPanelChildBinding
+import com.mosl.agicapp.R
+import com.mosl.agicapp.databinding.ItemFragmentPanelChildBinding
 import com.mosl.mobile.domain.panel.PanelDayResponse
 import com.mosl.shared.util.getTime
 import com.mosl.groupiex.helper.databind.BindableItem

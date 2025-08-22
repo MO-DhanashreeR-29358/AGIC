@@ -6,9 +6,9 @@ import android.view.ViewGroup
 import android.widget.BaseExpandableListAdapter
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
-import com.mosl.mobile.R
-import com.mosl.mobile.databinding.ItemNewsLetterChildBinding
-import com.mosl.mobile.databinding.ItemNewsLetterParentBinding
+import com.mosl.agicapp.R
+import com.mosl.agicapp.databinding.ItemNewsLetterChildBinding
+import com.mosl.agicapp.databinding.ItemNewsLetterParentBinding
 import com.mosl.mobile.domain.newsletter.NewsLetterResponseItemInfo
 
 class ExpandableNewsLetterAdapter(

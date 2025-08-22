@@ -13,12 +13,12 @@ import com.mosl.commons.data.UiModel
 import com.mosl.commons.data.onFailure
 import com.mosl.commons.data.onSuccess
 import com.mosl.groupiex.section.DataManagerSection
-import com.mosl.mobile.R
+import com.mosl.agicapp.R
 import com.mosl.mobile.annotations.FeedbackPendingStatus
 import com.mosl.mobile.appuser.login.UserManager
 import com.mosl.mobile.appuser.login.user
 import com.mosl.mobile.core.MOSLCommonFragment
-import com.mosl.mobile.databinding.FragmentFeedbackBinding
+import com.mosl.agicapp.databinding.FragmentFeedbackBinding
 import com.mosl.mobile.domain.feedback.*
 import com.mosl.mobile.feedback.item.CheckBoxQuestionItem
 import com.mosl.mobile.feedback.item.RatingBarQuestionItem

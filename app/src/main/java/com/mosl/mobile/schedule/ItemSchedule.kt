@@ -4,8 +4,8 @@ import android.content.Context
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import com.mosl.mobile.R
-import com.mosl.mobile.databinding.ItemFragmentScheduleBinding
+import com.mosl.agicapp.R
+import com.mosl.agicapp.databinding.ItemFragmentScheduleBinding
 import com.mosl.mobile.domain.schedule.ScheduleResponseItemInfo
 import com.mosl.shared.util.getTime
 import com.mosl.groupiex.helper.databind.BindableItem

@@ -26,7 +26,7 @@ def gitTimestamp() {
 }
 
 android {
-    namespace 'com.mosl.mobile'
+    namespace 'com.mosl.agicapp'
     packagingOptions {
         exclude 'META-INF/annotations.kotlin_module'
         exclude 'META-INF/rxbinding_release.kotlin_module'

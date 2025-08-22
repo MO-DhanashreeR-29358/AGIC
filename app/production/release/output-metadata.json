@@ -11,9 +11,9 @@
       "type": "SINGLE",
       "filters": [],
       "attributes": [],
-      "versionCode": 1006,
-      "versionName": "1.0.6",
-      "outputFile": "app-productionRelease-1.0.6.apk"
+      "versionCode": 1009,
+      "versionName": "1.0.9",
+      "outputFile": "app-productionRelease-1.0.9.apk"
     }
   ],
   "elementType": "File"

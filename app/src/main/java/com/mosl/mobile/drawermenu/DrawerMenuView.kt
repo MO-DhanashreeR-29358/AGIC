@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.widget.FrameLayout
 import com.mosl.app.core.utils.obtain
 import com.mosl.mobile.ApplicationComponent
-import com.mosl.mobile.R
+import com.mosl.agicapp.R
 
 class DrawerMenuView(
   context: Context, attrs: AttributeSet? = null

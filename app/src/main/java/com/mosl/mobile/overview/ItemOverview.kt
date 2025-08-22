@@ -1,8 +1,8 @@
 package com.mosl.mobile.overview
 
 import android.view.View
-import com.mosl.mobile.R
-import com.mosl.mobile.databinding.ItemFragmentOverviewChildBinding
+import com.mosl.agicapp.R
+import com.mosl.agicapp.databinding.ItemFragmentOverviewChildBinding
 import com.mosl.mobile.domain.overviewpager.OverviewResponseDayItemInfo
 import com.mosl.shared.util.getTimeAMPM
 import com.mosl.groupiex.helper.databind.BindableItem

@@ -11,10 +11,10 @@ import com.mosl.commons.data.UiModel
 import com.mosl.commons.data.onFailure
 import com.mosl.commons.data.onSuccess
 import com.mosl.groupiex.section.DataManagerSection
-import com.mosl.mobile.R
+import com.mosl.agicapp.R
 import com.mosl.mobile.core.MOSLPagerItemFragment
-import com.mosl.mobile.databinding.CalendarAddDialogBinding
-import com.mosl.mobile.databinding.FragmentPanelChildBinding
+import com.mosl.agicapp.databinding.CalendarAddDialogBinding
+import com.mosl.agicapp.databinding.FragmentPanelChildBinding
 import com.mosl.mobile.domain.panel.PanelDayResponse
 import com.mosl.mobile.panelpager.PanelFragment
 import com.mosl.mobile.panelpager.PanelListDayItemData

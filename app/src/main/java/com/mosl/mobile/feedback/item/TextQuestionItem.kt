@@ -4,8 +4,8 @@ import android.content.Context
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
-import com.mosl.mobile.R
-import com.mosl.mobile.databinding.ItemFeedbackEdittextBinding
+import com.mosl.agicapp.R
+import com.mosl.agicapp.databinding.ItemFeedbackEdittextBinding
 import com.mosl.mobile.domain.feedback.FeedbackAnswer
 import com.mosl.mobile.domain.feedback.FeedbackOptionTag
 import com.mosl.mobile.domain.feedback.FeedbackResponse

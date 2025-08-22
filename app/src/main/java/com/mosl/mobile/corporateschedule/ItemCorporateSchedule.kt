@@ -7,8 +7,8 @@ import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mosl.groupiex.section.DataManagerSection
-import com.mosl.mobile.R
-import com.mosl.mobile.databinding.ItemFragmentCorporateScheduleChildBinding
+import com.mosl.agicapp.R
+import com.mosl.agicapp.databinding.ItemFragmentCorporateScheduleChildBinding
 import com.mosl.mobile.domain.corporateschedulepager.CorporateScheduleResponseDayItemInfo
 import com.mosl.groupiex.helper.groupie.GroupAdapter
 

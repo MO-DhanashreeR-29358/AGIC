@@ -22,13 +22,13 @@ import com.mosl.app.coreui.base.LeanBaseActivity
 import com.mosl.commons.data.UiModel
 import com.mosl.commons.data.onFailure
 import com.mosl.commons.data.onSuccess
-import com.mosl.mobile.R
+import com.mosl.agicapp.R
 import com.mosl.mobile.annotations.RemoteConfigData
 import com.mosl.mobile.appuser.model.User
 import com.mosl.mobile.core.MOSLCommonActivity
 import com.mosl.mobile.data.RemoteConfigModel
-import com.mosl.mobile.databinding.ActivityLoginBinding
-import com.mosl.mobile.databinding.AlertDialogBinding
+import com.mosl.agicapp.databinding.ActivityLoginBinding
+import com.mosl.agicapp.databinding.AlertDialogBinding
 import com.mosl.navigator.AppTitle
 import com.mosl.navigator.AuthorizationState
 import com.mosl.navigator.FragmentNavigationEntry

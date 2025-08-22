@@ -51,7 +51,7 @@ import com.mosl.app.coreui.base.NavigationElement
 import com.mosl.commons.data.onFailure
 import com.mosl.commons.data.onSuccess
 import com.mosl.data.api.fcmtoken.FcmTokenRequest
-import com.mosl.mobile.R
+import com.mosl.agicapp.R
 import com.mosl.mobile.annotations.*
 import com.mosl.mobile.appuser.login.LoginRepositoryImpl
 import com.mosl.mobile.appuser.login.UserManager
@@ -61,9 +61,9 @@ import com.mosl.mobile.contactrm.ContactDialogFragment
 import com.mosl.mobile.coreui.LocaleManager
 import com.mosl.mobile.dashboard.ActivityNavigationHelper
 import com.mosl.mobile.data.RemoteConfigModel
-import com.mosl.mobile.databinding.ActivityCommonbaseBinding
-import com.mosl.mobile.databinding.AlertDialogBinding
-import com.mosl.mobile.databinding.LogoutDialogBinding
+import com.mosl.agicapp.databinding.ActivityCommonbaseBinding
+import com.mosl.agicapp.databinding.AlertDialogBinding
+import com.mosl.agicapp.databinding.LogoutDialogBinding
 import com.mosl.mobile.login.LoginActivity
 import com.mosl.mobile.login.UserCacheImpl
 import com.mosl.mobile.menu.ScreenNavigatorImpl

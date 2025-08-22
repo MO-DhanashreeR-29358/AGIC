@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mosl.app.coreui.dialog.BaseDialogFragment
 import com.mosl.groupiex.section.DataManagerSection
-import com.mosl.mobile.R
-import com.mosl.mobile.databinding.FragmentScheduleRepDialogBinding
+import com.mosl.agicapp.R
+import com.mosl.agicapp.databinding.FragmentScheduleRepDialogBinding
 import com.mosl.mobile.domain.overviewpager.OverviewResponseRepresntativeInfo
 import com.mosl.mobile.menu.ScreenNavigator
 import com.mosl.groupiex.helper.groupie.GroupAdapter

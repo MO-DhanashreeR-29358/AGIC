@@ -1,8 +1,8 @@
 package com.mosl.mobile.corporateschedule
 
 import android.view.View
-import com.mosl.mobile.R
-import com.mosl.mobile.databinding.ItemFragmentCorporateScheduleSubchildBinding
+import com.mosl.agicapp.R
+import com.mosl.agicapp.databinding.ItemFragmentCorporateScheduleSubchildBinding
 import com.mosl.mobile.domain.corporateschedulepager.CorporateScheduleResponseDayAttendanceItemInfo
 import com.mosl.groupiex.helper.databind.BindableItem
 import io.reactivex.subjects.PublishSubject

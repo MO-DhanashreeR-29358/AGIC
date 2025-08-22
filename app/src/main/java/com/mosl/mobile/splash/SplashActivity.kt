@@ -15,8 +15,8 @@ import com.mosl.app.core.network.isNetworkConnected
 import com.mosl.app.core.prefs.StringPreference
 import com.mosl.app.core.utils.showConfirmation
 import com.mosl.app.coreui.base.LeanBaseActivity
-import com.mosl.mobile.BuildConfig
-import com.mosl.mobile.R
+import com.mosl.agicapp.BuildConfig
+import com.mosl.agicapp.R
 import com.mosl.mobile.annotations.ImageSplashUrl
 import com.mosl.mobile.annotations.RemoteConfigData
 import com.mosl.mobile.appuser.login.UserManager
@@ -25,7 +25,7 @@ import com.mosl.mobile.coreui.LocaleManager
 import com.mosl.mobile.coreui.core.MSFDialog
 import com.mosl.mobile.dashboard.ActivityNavigationHelper.Companion.ARG_NOTIFICATION_CATEGORY
 import com.mosl.mobile.data.RemoteConfigModel
-import com.mosl.mobile.databinding.ActivitySplashScreenBinding
+import com.mosl.agicapp.databinding.ActivitySplashScreenBinding
 import com.mosl.mobile.login.LoginActivity
 import com.mosl.mobile.newsletter.NewsLetterActivity
 import dagger.android.AndroidInjection

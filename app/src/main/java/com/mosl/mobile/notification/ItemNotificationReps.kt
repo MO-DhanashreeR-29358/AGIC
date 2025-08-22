@@ -1,7 +1,7 @@
 package com.mosl.mobile.notification
 
-import com.mosl.mobile.R
-import com.mosl.mobile.databinding.ItemNotificationRepsBinding
+import com.mosl.agicapp.R
+import com.mosl.agicapp.databinding.ItemNotificationRepsBinding
 import com.mosl.groupiex.helper.databind.BindableItem
 
 

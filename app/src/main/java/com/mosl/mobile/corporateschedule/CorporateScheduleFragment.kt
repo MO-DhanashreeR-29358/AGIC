@@ -9,13 +9,13 @@ import com.mosl.commons.data.UiModel
 import com.mosl.commons.data.onFailure
 import com.mosl.commons.data.onSuccess
 import com.mosl.groupiex.section.DataManagerSection
-import com.mosl.mobile.R
+import com.mosl.agicapp.R
 import com.mosl.mobile.appuser.login.UserManager
 import com.mosl.mobile.appuser.login.user
 import com.mosl.mobile.core.MOSLCommonFragment
 import com.mosl.mobile.corporatepager.CorporatePagerFragment
 import com.mosl.mobile.corporatepager.SchedulePagerAction
-import com.mosl.mobile.databinding.FragmentOverviewChildBinding
+import com.mosl.agicapp.databinding.FragmentOverviewChildBinding
 import com.mosl.mobile.domain.corporateschedulepager.CorporateScheduleResponseDayItemInfo
 import com.mosl.mobile.domain.corporateschedulepager.CorporateScheduleResponseRepresentativeItemInfo
 import com.mosl.shared.AppDateFormats

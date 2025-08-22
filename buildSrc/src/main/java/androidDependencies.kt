@@ -7,8 +7,8 @@ object Versions {
     const val room = "2.5.2"
     const val wearable = "2.3.0"
     const val coroutines = "1.3.0"
-    const val compileSdkVersion = 34
-    const val targetSdkVersion = 34
+    const val compileSdkVersion = 35
+    const val targetSdkVersion = 35
     const val minSdkVersion = 21
     const val buildToolsVersion = "29.0.3"
     const val androidVersion = "8.0.2"

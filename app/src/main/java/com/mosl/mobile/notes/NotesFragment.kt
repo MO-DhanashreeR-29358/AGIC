@@ -4,9 +4,9 @@ package com.mosl.mobile.notes
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
-import com.mosl.mobile.R
+import com.mosl.agicapp.R
 import com.mosl.mobile.core.MOSLCommonFragment
-import com.mosl.mobile.databinding.FragmentNotesBinding
+import com.mosl.agicapp.databinding.FragmentNotesBinding
 import javax.inject.Inject
 
 

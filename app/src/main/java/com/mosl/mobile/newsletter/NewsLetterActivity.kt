@@ -18,10 +18,10 @@ import com.mosl.app.coreui.base.LeanBaseActivity
 import com.mosl.commons.data.UiModel
 import com.mosl.commons.data.onFailure
 import com.mosl.commons.data.onSuccess
-import com.mosl.mobile.R
+import com.mosl.agicapp.R
 import com.mosl.mobile.annotations.RemoteConfigData
 import com.mosl.mobile.data.RemoteConfigModel
-import com.mosl.mobile.databinding.ActivityNewsLetterBinding
+import com.mosl.agicapp.databinding.ActivityNewsLetterBinding
 import com.mosl.mobile.domain.newsletter.NewsLetterResponseInfo
 import com.mosl.mobile.login.LoginActivity
 import com.mosl.mobile.appuser.login.UserManagerImpl

@@ -1,9 +1,9 @@
 package com.mosl.mobile.contactrm
 
 import android.view.View
-import com.mosl.mobile.R
+import com.mosl.agicapp.R
 import com.mosl.mobile.appuser.model.ContactListItemData
-import com.mosl.mobile.databinding.ItemFragmentContactBinding
+import com.mosl.agicapp.databinding.ItemFragmentContactBinding
 import com.mosl.groupiex.helper.databind.BindableItem
 import io.reactivex.subjects.PublishSubject
 

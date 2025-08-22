@@ -17,13 +17,13 @@ import com.mosl.commons.data.UiModel
 import com.mosl.commons.data.onFailure
 import com.mosl.commons.data.onSuccess
 import com.mosl.groupiex.section.DataManagerSection
-import com.mosl.mobile.R
+import com.mosl.agicapp.R
 import com.mosl.mobile.annotations.CorporateScheduleData
 import com.mosl.mobile.annotations.FeedbackPendingStatus
 import com.mosl.mobile.annotations.NotificationCount
 import com.mosl.mobile.core.MOSLCommonPager
 import com.mosl.mobile.corporateschedule.CorporateScheduleFragment
-import com.mosl.mobile.databinding.FragmentCorporateSchedulePagerBinding
+import com.mosl.agicapp.databinding.FragmentCorporateSchedulePagerBinding
 import com.mosl.mobile.domain.corporateschedulepager.CorporateScheduleResponseDataInfo
 import com.mosl.mobile.domain.corporateschedulepager.CorporateScheduleResponseDayItemInfo
 import com.mosl.mobile.domain.corporateschedulepager.SearchCorporateScheduleItemInfo

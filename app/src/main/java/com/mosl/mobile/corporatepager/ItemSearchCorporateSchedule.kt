@@ -1,8 +1,8 @@
 package com.mosl.mobile.corporatepager
 
 import android.view.View
-import com.mosl.mobile.R
-import com.mosl.mobile.databinding.ItemSearchCorporateScheduleBinding
+import com.mosl.agicapp.R
+import com.mosl.agicapp.databinding.ItemSearchCorporateScheduleBinding
 import com.mosl.mobile.domain.corporateschedulepager.SearchCorporateScheduleItemInfo
 import com.mosl.groupiex.helper.databind.BindableItem
 import io.reactivex.subjects.PublishSubject

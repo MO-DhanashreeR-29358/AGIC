@@ -12,10 +12,10 @@ import com.mosl.app.coreui.adapters.ViewPagerAdapter
 import com.mosl.commons.data.UiModel
 import com.mosl.commons.data.onFailure
 import com.mosl.commons.data.onSuccess
-import com.mosl.mobile.R
+import com.mosl.agicapp.R
 import com.mosl.mobile.annotations.PanelData
 import com.mosl.mobile.core.MOSLCommonPager
-import com.mosl.mobile.databinding.FragmentPanelBinding
+import com.mosl.agicapp.databinding.FragmentPanelBinding
 import com.mosl.mobile.domain.panel.PanelDayResponse
 import com.mosl.mobile.domain.panel.PanelResponse
 import com.mosl.mobile.panel.PanelChildFragment

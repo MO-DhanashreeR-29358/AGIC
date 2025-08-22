@@ -1,7 +1,7 @@
 package com.mosl.mobile.notification
 
-import com.mosl.mobile.R
-import com.mosl.mobile.databinding.ItemBytesHeaderBinding
+import com.mosl.agicapp.R
+import com.mosl.agicapp.databinding.ItemBytesHeaderBinding
 import com.mosl.shared.AppDateFormats.DF_JSON_DATE_10
 import com.mosl.shared.AppDateFormats.DF_JSON_DATE_11
 import com.mosl.shared.util.getDateJSON_DATE6
