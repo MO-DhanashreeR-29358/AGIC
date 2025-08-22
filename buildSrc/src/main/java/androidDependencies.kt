@@ -11,7 +11,7 @@ object Versions {
     const val targetSdkVersion = 35
     const val minSdkVersion = 21
     const val buildToolsVersion = "29.0.3"
-    const val androidVersion = "8.0.2"
+    const val androidVersion = "8.1.0"
     const val kotlinVersion = "1.8.22"
     const val okHttp = "4.9.0"
     const val timber = "4.7.1"
