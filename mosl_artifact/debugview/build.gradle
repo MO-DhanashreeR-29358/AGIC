@@ -45,7 +45,7 @@ dependencies {
   implementation RxBindingDependencies.bindingCore
   implementation "com.jakewharton.madge:madge:1.1.4"
   implementation 'com.jakewharton:process-phoenix:2.0.0'
-  implementation LeakCanaryDependencies.debug
+  debugImplementation LeakCanaryDependencies.debug
   implementation 'com.jakewharton.threetenabp:threetenabp:1.2.2'
   implementation OkHttpDependencies.core
   implementation RetrofitDependencies.core

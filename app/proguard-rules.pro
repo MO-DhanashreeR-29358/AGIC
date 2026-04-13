@@ -39,3 +39,9 @@
 -keep class org.bouncycastle.jsse.** { *; }
 -keep class org.conscrypt.** { *; }
 -keep class org.openjsse.** { *; }
+
+# Firebase Remote Config
+-keep class com.google.firebase.remoteconfig.** { *; }
+-keep class com.google.android.gms.internal.firebase_remote_config.** { *; }
+-keepclassmembers class com.google.android.gms.internal.firebase_remote_config.** { *; }
+-dontwarn com.google.firebase.remoteconfig.**

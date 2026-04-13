@@ -124,6 +124,7 @@ android {
         release {
             debuggable false
             manifestPlaceholders = [crashlyticsEnabled: true]
+            multiDexEnabled true
             minifyEnabled true
             shrinkResources true
             proguardFile 'proguard-conceal.pro'
