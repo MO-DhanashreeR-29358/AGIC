@@ -2,9 +2,9 @@ package com.mosl.mobile.featurescope
 
 import android.os.Bundle
 import android.view.View
-import com.mosl.mobile.R
+import com.mosl.agicapp.R
 import com.mosl.mobile.core.MOSLCommonFragment
-import com.mosl.mobile.databinding.Fragment2Binding
+import com.mosl.agicapp.databinding.Fragment2Binding
 
 class SecondPlaygroundFragment : MOSLCommonFragment() {
   lateinit var binding: Fragment2Binding

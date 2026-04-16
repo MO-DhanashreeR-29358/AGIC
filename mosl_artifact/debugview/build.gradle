@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 android {
   namespace 'com.mosl.debugview'
@@ -34,8 +35,8 @@ dependencies {
   implementation AndroidxDependencies.constraintLayout
 
   //Dagger
-  compileOnly DaggerDependencies.core
-  compileOnly DaggerDependencies.compiler
+  implementation DaggerDependencies.core
+  kapt DaggerDependencies.compiler
 
   //RxJava 2.0
   implementation RxDependencies.java
