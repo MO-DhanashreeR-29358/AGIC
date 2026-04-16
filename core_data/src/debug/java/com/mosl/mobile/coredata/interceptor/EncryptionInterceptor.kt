@@ -1,5 +1,6 @@
 package com.mosl.mobile.coredata.interceptor
 
+import android.util.Log
 import com.mosl.app.core.prefs.StringPreference
 import com.mosl.mobile.annotations.*
 import com.mosl.shared.AppDateFormats
@@ -30,7 +31,7 @@ class EncryptionInterceptor @Inject constructor(
     val corporateScheduleData: StringPreference
 ) : Interceptor {
 
-    @Throws(IOException::class)
+/*    @Throws(IOException::class)
     override fun intercept(chain: Interceptor.Chain): Response {
         var request = chain.request()
         val oldBody = request.body
@@ -113,5 +114,40 @@ class EncryptionInterceptor @Inject constructor(
         } else {
             return response
         }
+    }*/
+
+    @Throws(IOException::class)
+    override fun intercept(chain: Interceptor.Chain): Response {
+        val request = chain.request()
+        val last = request.url.pathSegments.last()
+
+        val response = chain.proceed(request)
+
+        // log response
+        val responseBody = response.body
+        if (responseBody != null) {
+            val responseBodyString = responseBody.string()
+
+            val rebuiltBody = responseBodyString.toResponseBody("application/json; charset=utf-8".toMediaTypeOrNull())
+            val rebuiltResponse = response.newBuilder().body(rebuiltBody).build()
+
+            val headerDate = rebuiltResponse.header("Date") ?: ""
+            if (scheduleDate.get().isNotEmpty()) {
+                val formatedScheduleDate = getFormatedDate(scheduleDate.get(), AppDateFormats.DF_JSON_DATE_12, AppDateFormats.DF_JSON_DATE_13)
+                if (headerDate.contains(formatedScheduleDate) && scheduleData.isSet) scheduleData.delete()
+            }
+            if (corporateScheduleDate.get().isNotEmpty()) {
+                val formatedCorpScheduleDate = getFormatedDate(corporateScheduleDate.get(), AppDateFormats.DF_JSON_DATE_12, AppDateFormats.DF_JSON_DATE_13)
+                if (headerDate.contains(formatedCorpScheduleDate) && corporateScheduleData.isSet) corporateScheduleData.delete()
+            }
+            if (response.code == 200 && last.contains("GetScheduleAPI")) scheduleDate.set(headerDate)
+            if (response.code == 200 && last.contains("GetbyteDetails")) bytesDate.set(headerDate)
+            if (response.code == 200 && last.contains("GetCorporateSchedule")) corporateScheduleDate.set(headerDate)
+            if (response.code == 200 && last.contains("NotificationHistory")) notificationDate.set(headerDate)
+
+            return rebuiltResponse
+        }
+
+        return response
     }
 }

@@ -3,8 +3,8 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
 android {
+    namespace 'com.mosl.debugview'
   compileSdkVersion Versions.compileSdkVersion
-  buildToolsVersion Versions.buildToolsVersion
 
   defaultConfig {
     minSdkVersion 21
@@ -23,8 +23,8 @@ android {
   }
 
   compileOptions {
-    sourceCompatibility JavaVersion.VERSION_1_8
-    targetCompatibility JavaVersion.VERSION_1_8
+    sourceCompatibility JavaVersion.VERSION_17
+    targetCompatibility JavaVersion.VERSION_17
   }
 }
 
@@ -35,7 +35,7 @@ dependencies {
   implementation AndroidxDependencies.constraintLayout
 
   //Dagger
-  compileOnly DaggerDependencies.core
+  implementation DaggerDependencies.core
   kapt DaggerDependencies.compiler
 
   //RxJava 2.0
@@ -62,5 +62,7 @@ dependencies {
   compileOnly project(':appcore')
   implementation project(':rx_preferences')
 }
-
+kotlin {
+  jvmToolchain(17)
+}
 //apply from: rootProject.file('gradle/gradle-mvn-push.gradle')

@@ -2,8 +2,8 @@ package com.mosl.mobile.ui
 
 import android.content.Context
 import com.mosl.debugview.model.DebugAppInfo
-import com.mosl.mobile.BuildConfig
-import com.mosl.mobile.R.string
+import com.mosl.agicapp.BuildConfig
+import com.mosl.agicapp.R.string
 import com.mosl.mobile.core.MOSLCommonActivity
 import com.mosl.mobile.nav.DebugConstants
 import com.mosl.mobile.splash.SplashActivity

@@ -1,13 +1,18 @@
 package com.mosl.mobile.coredata.interceptor
 
+import android.util.Log
 import com.mosl.app.core.prefs.StringPreference
-import com.mosl.mobile.annotations.*
+import com.mosl.mobile.annotations.CorporateScheduleData
+import com.mosl.mobile.annotations.LastBytesDate
+import com.mosl.mobile.annotations.LastCorporateScheduleDate
+import com.mosl.mobile.annotations.LastNotificationDate
+import com.mosl.mobile.annotations.LastScheduleDate
+import com.mosl.mobile.annotations.ScheduleData
 import com.mosl.shared.AppDateFormats
 import com.mosl.shared.Encryptor.AESEncryptor
 import com.mosl.shared.util.getFormatedDate
 import okhttp3.Interceptor
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.Response
 import okhttp3.ResponseBody.Companion.toResponseBody
 import okio.Buffer
@@ -30,7 +35,7 @@ class EncryptionInterceptor @Inject constructor(
     val corporateScheduleData: StringPreference
 ) : Interceptor {
 
-    @Throws(IOException::class)
+    /*@Throws(IOException::class)
     override fun intercept(chain: Interceptor.Chain): Response {
         var request = chain.request()
         val oldBody = request.body
@@ -113,5 +118,59 @@ class EncryptionInterceptor @Inject constructor(
         } else {
             return response
         }
+    }*/
+
+    @Throws(IOException::class)
+    override fun intercept(chain: Interceptor.Chain): Response {
+        val request = chain.request()
+        val last = request.url.pathSegments.last()
+
+        // log request
+        val requestBody = request.body
+        if (requestBody != null) {
+            val buffer = Buffer()
+            requestBody.writeTo(buffer)
+            Log.i("API_REQUEST", "URL: ${request.url}")
+            Log.i("API_REQUEST", "Method: ${request.method}")
+            Log.i("API_REQUEST", "Headers: ${request.headers}")
+            Log.i("API_REQUEST", "Body: ${buffer.readUtf8()}")
+        } else {
+            Log.i("API_REQUEST", "URL: ${request.url} | Method: ${request.method} | No Body")
+        }
+
+        val response = chain.proceed(request)
+
+        // log response
+        val responseBody = response.body
+        if (responseBody != null) {
+            val responseBodyString = responseBody.string()
+            Log.i("API_RESPONSE", "URL: ${request.url}")
+            Log.i("API_RESPONSE", "Code: ${response.code}")
+            Log.i("API_RESPONSE", "Body: $responseBodyString")
+
+            val rebuiltBody = responseBodyString.toResponseBody("application/json; charset=utf-8".toMediaTypeOrNull())
+            val rebuiltResponse = response.newBuilder().body(rebuiltBody).build()
+
+            val headerDate = rebuiltResponse.header("Date") ?: ""
+            if (scheduleDate.get().isNotEmpty()) {
+                val formatedScheduleDate = getFormatedDate(scheduleDate.get(), AppDateFormats.DF_JSON_DATE_12, AppDateFormats.DF_JSON_DATE_13)
+                if (headerDate.contains(formatedScheduleDate) && scheduleData.isSet) scheduleData.delete()
+            }
+            if (corporateScheduleDate.get().isNotEmpty()) {
+                val formatedCorpScheduleDate = getFormatedDate(corporateScheduleDate.get(), AppDateFormats.DF_JSON_DATE_12, AppDateFormats.DF_JSON_DATE_13)
+                if (headerDate.contains(formatedCorpScheduleDate) && corporateScheduleData.isSet) corporateScheduleData.delete()
+            }
+            if (response.code == 200 && last.contains("GetScheduleAPI")) scheduleDate.set(headerDate)
+            if (response.code == 200 && last.contains("GetbyteDetails")) bytesDate.set(headerDate)
+            if (response.code == 200 && last.contains("GetCorporateSchedule")) corporateScheduleDate.set(headerDate)
+            if (response.code == 200 && last.contains("NotificationHistory")) notificationDate.set(headerDate)
+
+            return rebuiltResponse
+        }
+
+        return response
     }
+
+
+
 }
