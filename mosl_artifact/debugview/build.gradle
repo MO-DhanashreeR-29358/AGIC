@@ -3,7 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
 android {
-    namespace 'com.mosl.debugview'
+  namespace 'com.mosl.debugview'
   compileSdkVersion Versions.compileSdkVersion
 
   defaultConfig {
@@ -51,7 +51,7 @@ dependencies {
   implementation OkHttpDependencies.core
   implementation RetrofitDependencies.core
   implementation RetrofitDependencies.mock
-  implementation Dependencies.timber
+  implementation "com.jakewharton.timber:timber:4.7.1"
 
   implementation KotlinDependencies.kotlin
 

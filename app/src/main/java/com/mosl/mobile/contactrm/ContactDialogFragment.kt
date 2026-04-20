@@ -85,12 +85,12 @@ class ContactDialogFragment : BaseDialogFragment(), ContactView {
     override fun showAlertForCall(mobileNumber: String) {
         AlertDialog.Builder(requireContext())
             .setTitle(R.string.main_app_name)
-            .setMessage(R.string.call_alert_message)
+            .setMessage("Motilal Oswal")
             .setCancelable(true)
-            .setPositiveButton(getString(R.string.text_label_yes)) { _, _ ->
+            .setPositiveButton("Yes") { _, _ ->
                 dialNumber(mobileNumber)
             }
-            .setNegativeButton(getString(R.string.text_label_no)) { _, _ ->
+            .setNegativeButton("No") { _, _ ->
             }
             .show()
     }

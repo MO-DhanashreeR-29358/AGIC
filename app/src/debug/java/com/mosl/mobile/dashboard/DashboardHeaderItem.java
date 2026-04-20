@@ -1,8 +1,8 @@
 package com.mosl.mobile.dashboard;
 
 import androidx.annotation.NonNull;
-import com.mosl.agicapp.R;
-import com.mosl.agicapp.databinding.ItemDashboardHeaderBinding;
+import com.mosl.mobile.R;
+import com.mosl.mobile.databinding.ItemDashboardHeaderBinding;
 import com.mosl.groupiex.helper.databind.BindableItem;
 
 public class DashboardHeaderItem extends BindableItem<ItemDashboardHeaderBinding> {

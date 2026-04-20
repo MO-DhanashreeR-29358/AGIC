@@ -5,9 +5,9 @@ import android.view.View
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jakewharton.rxbinding3.widget.textChanges
-import com.mosl.agicapp.databinding.FragmentDashboardBinding
+import com.mosl.mobile.databinding.FragmentDashboardBinding
 import com.mosl.groupiex.helper.databind.BindableItem
-import com.mosl.agicapp.R
+import com.mosl.mobile.R
 import com.mosl.mobile.core.MOSLCommonFragment
 import com.mosl.groupiex.helper.groupie.GroupAdapter
 import com.mosl.groupiex.helper.groupie.GroupieViewHolder

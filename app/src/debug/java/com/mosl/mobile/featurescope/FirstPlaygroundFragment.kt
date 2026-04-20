@@ -3,9 +3,9 @@ package com.mosl.mobile.featurescope
 import android.os.Bundle
 import android.view.View
 import com.mosl.data.api.AGICApi
-import com.mosl.agicapp.R
+import com.mosl.mobile.R
 import com.mosl.mobile.core.MOSLCommonFragment
-import com.mosl.agicapp.databinding.FragmentFeatureMainBinding
+import com.mosl.mobile.databinding.FragmentFeatureMainBinding
 import javax.inject.Inject
 
 class FirstPlaygroundFragment : MOSLCommonFragment() {

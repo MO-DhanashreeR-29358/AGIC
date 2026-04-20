@@ -13,7 +13,7 @@ data class LoginFormInput(
 object LoginValidator : Validator<LoginFormInput, LoginRequest>() {
   override fun execute(input: LoginFormInput): ValidationResult<LoginRequest> {
     val errorMessage: Int = when {
-      input.uniqueId.isEmpty() -> R.string.msg_unique_code_empty
+      input.uniqueId.isEmpty() -> com.mosl.mobile.coreui.R.string.msg_unique_code_empty
       else -> -1
     }
 

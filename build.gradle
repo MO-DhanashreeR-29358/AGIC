@@ -61,14 +61,7 @@ allprojects {
     }
   }
 
-  plugins.whenPluginAdded {
-    if (it instanceof LibraryPlugin) {
-      extensions.getByType(LibraryExtension).libraryVariants.all {
-        it.generateBuildConfigProvider.configure { variant -> variant.enabled = true
-        }
-      }
-    }
-  }
+
 }
 
 task clean(type: Delete) {

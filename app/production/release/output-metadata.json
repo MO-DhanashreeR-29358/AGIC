@@ -4,7 +4,7 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "com.mosl.agicapp",
+  "applicationId": "com.mosl.mobile",
   "variantName": "productionRelease",
   "elements": [
     {

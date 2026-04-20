@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-parcelize'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'io.fabric'
@@ -26,6 +26,7 @@ apply plugin: 'io.fabric'
 //}
 
 android {
+    namespace "com.mosl.mobile"
     packagingOptions {
         exclude 'META-INF/annotations.kotlin_module'
         exclude 'META-INF/rxbinding_release.kotlin_module'
@@ -42,12 +43,12 @@ android {
     keystoreProps.load(new FileInputStream(file('../keystore.properties')))
 
     defaultConfig {
-        applicationId "com.mosl.agicapp"
+        applicationId "com.mosl.mobile"
         minSdkVersion Versions.minSdkVersion
         targetSdkVersion Versions.targetSdkVersion
 
-//        buildConfigField 'String', 'GIT_SHA', "\"${gitSha()}\""
-//        buildConfigField 'long', 'GIT_TIMESTAMP', "${gitTimestamp()}L"
+       /* buildConfigField 'String', 'GIT_SHA', "\"${gitSha()}\""
+        buildConfigField 'long', 'GIT_TIMESTAMP', "${gitTimestamp()}L"*/
 
         resConfigs "en", "hi"
         vectorDrawables.useSupportLibrary = true
@@ -79,7 +80,9 @@ android {
             }
         }
     }
-
+    buildFeatures {
+        buildConfig = true
+    }
     dataBinding {
         enabled = true
     }
@@ -142,8 +145,9 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        coreLibraryDesugaringEnabled false
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 
     lintOptions {
@@ -212,8 +216,8 @@ dependencies {
 
 //    implementation GroupieDependencies.core
 //    implementation GroupieDependencies.dataBinding
-    implementation Dependencies.timber
-    implementation Dependencies.threeTen
+    implementation "com.jakewharton.timber:timber:4.7.1"
+    implementation "com.jakewharton.threetenabp:threetenabp:1.2.1"
 
     implementation RetrofitDependencies.core
     implementation RetrofitDependencies.rxJava
@@ -281,7 +285,9 @@ dependencies {
 
 
 }
-
+kotlin {
+    jvmToolchain(17)
+}
 kapt {
     javacOptions {
         option("-Xmaxerrs", 2000)

@@ -48,7 +48,7 @@ class PdfFragment : BaseDialogFragment(), PdfContract {
                 } else {
                     Toast.makeText(
                         requireContext(),
-                        R.string.msg_pdf_needs_network_to_download,
+                        com.mosl.mobile.coreui.R.string.msg_pdf_needs_network_to_download,
                         Toast.LENGTH_LONG
                     ).show()
                 }

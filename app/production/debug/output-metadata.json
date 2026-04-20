@@ -4,7 +4,7 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "com.mosl.agicapp.debug",
+  "applicationId": "com.mosl.mobile.debug",
   "variantName": "productionDebug",
   "elements": [
     {

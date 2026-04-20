@@ -36,7 +36,6 @@ import com.mosl.debugview.databinding.DebugViewContentBinding;
 import com.mosl.debugview.logs.LogsDialog;
 import com.mosl.debugview.model.DebugAppInfo;
 import com.mosl.debugview.util.StringUtils;
-import com.squareup.leakcanary.internal.DisplayLeakActivity;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -110,7 +109,7 @@ public final class DebugView extends FrameLayout {
         disposable.add(RxView.clicks(binding.debugLogsShow).subscribe(ignored -> showLogs()));
         disposable.add(
             RxView.clicks(binding.debugDashboardPage).subscribe(ignored -> showDashboard()));
-        disposable.add(RxView.clicks(binding.debugLeaksShow).subscribe(ignored -> showLeaks()));
+        //disposable.add(RxView.clicks(binding.debugLeaksShow).subscribe(ignored -> showLeaks()));
         disposable.add(
             RxView.clicks(binding.debugOkhttpClearCache).subscribe(ignored -> clearCache()));
     }
@@ -164,8 +163,8 @@ public final class DebugView extends FrameLayout {
     }
 
     void showLeaks() {
-        Intent intent = new Intent(getContext(), DisplayLeakActivity.class);
-        getContext().startActivity(intent);
+      /*  Intent intent = new Intent(getContext(), DisplayLeakActivity.class);
+        getContext().startActivity(intent);*/
     }
 
     void showDashboard() {

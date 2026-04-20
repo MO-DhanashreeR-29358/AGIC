@@ -29,6 +29,17 @@
 
 # Keep Flashbar classes
 -keep class com.mosl.mobile.flashbar.** { *; }
+-keep class com.mosl.mobile.flashbar.anim.** { *; }
+-dontwarn com.mosl.mobile.flashbar.**
+-dontwarn com.mosl.mobile.flashbar.anim.**
+-dontwarn com.mosl.mobile.flashbar.Flashbar$Builder
+-dontwarn com.mosl.mobile.flashbar.Flashbar$Gravity
+-dontwarn com.mosl.mobile.flashbar.Flashbar
+-dontwarn com.mosl.mobile.flashbar.anim.FlashAnim$Companion
+-dontwarn com.mosl.mobile.flashbar.anim.FlashAnim
+-dontwarn com.mosl.mobile.flashbar.anim.FlashAnimBarBuilder
+-dontwarn com.mosl.mobile.flashbar.anim.FlashAnimIconBuilder
+-dontwarn com.mosl.mobile.flashbar.anim.FlashAnimRetriever
 
 # Keep OkHttp platform classes (optional dependencies)
 -dontwarn org.bouncycastle.jsse.**

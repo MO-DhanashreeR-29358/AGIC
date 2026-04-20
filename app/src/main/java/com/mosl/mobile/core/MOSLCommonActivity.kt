@@ -19,6 +19,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.View.OnClickListener
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
@@ -75,7 +76,6 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.addTo
 import mosl.rx_preferences.Preference
-
 import timber.log.Timber
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -298,13 +298,13 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
     private fun setUpTabs(intent: Intent) {
         binding.tabLayout.apply {
             addTab(
-                newTab().setText(R.string.txt_label_dayWise)
+                newTab().setText(com.mosl.mobile.coreui.R.string.txt_label_dayWise)
                     .setIcon(R.drawable.ic_tab_schedule).setTag(
                         NavigationConstants.NAVIGATE_TO_OVERVIEW
                     )
             )
             addTab(
-                newTab().setText(R.string.txt_label_clientWise)
+                newTab().setText(com.mosl.mobile.coreui.R.string.txt_label_clientWise)
                     .setIcon(R.drawable.ic_tab_schedule).setTag(
                         NavigationConstants.NAVIGATE_TO_RM_CLIENT_OVERVIEW
                     )
@@ -320,7 +320,7 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
     internal val tabSelectedListner = object : TabLayout.OnTabSelectedListener {
         override fun onTabSelected(tab: TabLayout.Tab) {
 
-            setColorFilter(tab.icon, baseContext.setColor(R.color.blue))
+            setColorFilter(tab.icon, baseContext.setColor(com.mosl.mobile.coreui.R.color.blue))
             if (tab.tag as Int == NavigationConstants.NAVIGATE_TO_PDF) {
                 val ft = getSupportFragmentManager().beginTransaction()
                 if (userManager.getPdf().isNotEmpty()) {
@@ -330,7 +330,7 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
                     alertMessage(message = PDF_FILE_NOT_YET_UPLOADED)
                 }
             } else {
-                setColorFilter(tab.icon, baseContext.setColor(R.color.blue))
+                setColorFilter(tab.icon, baseContext.setColor(com.mosl.mobile.coreui.R.color.blue))
                 navigateFragment(tab.tag as Int)
             }
         }
@@ -338,7 +338,7 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
         override fun onTabUnselected(tab: TabLayout.Tab) {
             setColorFilter(
                 binding.tabLayout.getTabAt(tab.position)?.icon,
-                baseContext.setColor(R.color.bottom_tab_white)
+                baseContext.setColor(com.mosl.mobile.coreui.R.color.bottom_tab_white)
             )
         }
 
@@ -723,10 +723,10 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
 
     internal fun showNetworkDisconnectedSnackbar(): Snackbar {
         val snackbar = Snackbar.make(
-            binding.coordinatorLayout, R.string.network_unavailable,
+            binding.coordinatorLayout, com.mosl.mobile.coreui.R.string.network_unavailable,
             Snackbar.LENGTH_INDEFINITE
         )
-        snackbar.setAction(R.string.button_label_ok) { _ -> snackbar.dismiss() }
+        snackbar.setAction(com.mosl.app.core.R.string.button_label_ok) { _ -> snackbar.dismiss() }
         snackbar.show()
         return snackbar
     }

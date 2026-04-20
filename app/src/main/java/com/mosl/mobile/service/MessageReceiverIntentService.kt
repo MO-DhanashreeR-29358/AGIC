@@ -111,7 +111,7 @@ class MessageReceiverIntentService : FirebaseMessagingService() {
 
         val mBuilder =
             NotificationCompat.Builder(this, channelId).setSmallIcon(R.mipmap.ic_launcher)
-                .setColor(ContextCompat.getColor(this, R.color.blue))
+                .setColor(ContextCompat.getColor(this, com.mosl.mobile.coreui.R.color.blue))
                 .setContentTitle(extras.getString("title"))
                 .setTicker(extras.getString("title"))
                 .setContentText(extras.getString("message"))

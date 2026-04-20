@@ -1,9 +1,10 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-parcelize'
 apply plugin: 'kotlin-kapt'
 
 android {
+  namespace "com.mosl.mobile.appuser"
   compileSdkVersion Versions.compileSdkVersion
   buildToolsVersion Versions.buildToolsVersion
 
@@ -23,6 +24,11 @@ android {
       proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
     }
   }
+  compileOptions {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+  }
+
 }
 
 dependencies {
@@ -34,7 +40,7 @@ dependencies {
   testImplementation TestingDependencies.junit
   androidTestImplementation AndroidxDependencies.testRunner
   androidTestImplementation AndroidxDependencies.testEspresso
-  implementation Dependencies.timber
+  implementation "com.jakewharton.timber:timber:4.7.1"
   implementation RetrofitDependencies.gson
 
   implementation DaggerDependencies.core

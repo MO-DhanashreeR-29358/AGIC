@@ -94,9 +94,9 @@ class OverviewFragment : MOSLCommonPager(), OverviewPagerContract {
             gson.fromJson(remoteCongigData.get(), RemoteConfigModel::class.java)
         Timber.i("Tab Size: ${tabData.tabSize}")
         if(tabData.tabSize.equals("2")){
-            pagerAdapter.setFragmentTitles(R.array.tabTitles2)
+            pagerAdapter.setFragmentTitles(com.mosl.mobile.coreui.R.array.tabTitles2)
         }else{
-            pagerAdapter.setFragmentTitles(R.array.tabTitles)
+            pagerAdapter.setFragmentTitles(com.mosl.mobile.coreui.R.array.tabTitles)
 
         }
         mPager.adapter = pagerAdapter

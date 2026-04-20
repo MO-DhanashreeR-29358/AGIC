@@ -6,7 +6,7 @@ import com.crashlytics.android.Crashlytics
 import com.crashlytics.android.core.CrashlyticsCore
 import com.facebook.stetho.Stetho
 import com.jakewharton.threetenabp.AndroidThreeTen
-import com.mosl.agicapp.BuildConfig
+import com.mosl.mobile.BuildConfig
 import com.mosl.app.core.utils.matchesService
 import com.mosl.debugview.DebugComponent
 import com.mosl.debugview.LumberYard

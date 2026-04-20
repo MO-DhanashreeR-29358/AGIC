@@ -4,4 +4,7 @@
     <string name="button_label_clear">Clear</string>
     <string name="button_label_retry">Retry</string>
     <string name="button_label_ok">OK</string>
+    <string name="check_connection">Please Check your Internet Connectivity</string>
+    <string name="alert_dialog_title">Motilal Oswal</string>
+
 </resources>

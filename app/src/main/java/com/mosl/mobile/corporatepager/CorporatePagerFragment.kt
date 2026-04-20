@@ -191,7 +191,7 @@ class CorporatePagerFragment : MOSLCommonPager(), CorporateSchedulePagerContract
 
     private fun setUpAdapter() {
         pagerAdapter = ViewPagerAdapter(childFragmentManager, requireContext(), this)
-        pagerAdapter.setFragmentTitles(R.array.tabTitles)
+        pagerAdapter.setFragmentTitles(com.mosl.mobile.coreui.R.array.tabTitles)
         mPager.adapter = pagerAdapter
         mPager.addOnPageChangeListener(pageChangeListener)
         mIndicator.setupWithViewPager(mPager)

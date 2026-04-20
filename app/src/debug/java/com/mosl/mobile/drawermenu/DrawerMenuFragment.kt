@@ -2,9 +2,9 @@ package com.mosl.mobile.drawermenu
 
 import android.os.Bundle
 import android.view.View
-import com.mosl.agicapp.R
+import com.mosl.mobile.R
 import com.mosl.mobile.core.MOSLCommonFragment
-import com.mosl.agicapp.databinding.FragmentDrawerMenuBinding
+import com.mosl.mobile.databinding.FragmentDrawerMenuBinding
 
 /**
  * Created by lalkishore on 08/02/18.
