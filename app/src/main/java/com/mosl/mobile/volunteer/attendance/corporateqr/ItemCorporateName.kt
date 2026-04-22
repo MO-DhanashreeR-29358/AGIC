@@ -18,7 +18,7 @@ class ItemCorporateName(
         viewBinding.tvCorporateName.text = model.shortName
         viewBinding.tvCorporateName.setOnClickListener {
             navigator.openPage(
-                pageId = NavigationConstants.NAVIGATE_TO_QR_CODE_SCAN_FRAGMENT,
+                pageId = NavigationConstants.NAVIGATE_TO_QR_CODE_SCAN_FRAGMENT.toString(),
                 args = Bundle().apply {
                     putString(QrCodeScanContract.EXTRA_COMPANY_ID, model.companyId)
                     putString(QrCodeScanContract.EXTRA_CORPORATE_NAME, model.corporateName)

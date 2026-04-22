@@ -109,7 +109,7 @@ class AttendanceDetailsFragment: MOSLCommonFragment(), AttendanceDetailsContract
 
     override fun onBackPressed(): Boolean {
         screenNavigator.openPage(
-            pageId = NavigationConstants.NAVIGATE_TO_QR_CODE_SCAN_FRAGMENT,
+            pageId = NavigationConstants.NAVIGATE_TO_QR_CODE_SCAN_FRAGMENT.toString(),
             args = Bundle().apply {
                 putString(QrCodeScanContract.EXTRA_COMPANY_ID, companyId)
                 putString(QrCodeScanContract.EXTRA_CORPORATE_NAME, corporateName)

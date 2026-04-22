@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-parcelize'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'io.fabric'
@@ -28,6 +28,9 @@ apply plugin: 'io.fabric'
 android {
     packagingOptions {
         exclude 'META-INF/annotations.kotlin_module'
+        exclude 'META-INF/rxbinding_release.kotlin_module'
+        exclude 'META-INF/rxbinding-core_release.kotlin_module'
+        exclude 'META-INF/androidx.preference_preference.version'
     }
     compileSdkVersion Versions.compileSdkVersion
     buildToolsVersion Versions.buildToolsVersion
@@ -76,7 +79,9 @@ android {
             }
         }
     }
-
+    buildFeatures {
+        buildConfig = true
+    }
     dataBinding {
         enabled = true
     }
@@ -119,6 +124,7 @@ android {
         release {
             debuggable false
             manifestPlaceholders = [crashlyticsEnabled: true]
+            multiDexEnabled true
             minifyEnabled true
             shrinkResources true
             proguardFile 'proguard-conceal.pro'
@@ -138,8 +144,9 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        coreLibraryDesugaringEnabled false
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 
     lintOptions {
@@ -168,8 +175,7 @@ dependencies {
     androidTestImplementation AndroidxDependencies.testRunner
     androidTestImplementation AndroidxDependencies.testEspresso
 
-    //
-
+    //Dagger
     implementation DaggerDependencies.core
     implementation DaggerDependencies.javaAnnotations
     kapt DaggerDependencies.compiler
@@ -211,8 +217,8 @@ dependencies {
 
 //    implementation GroupieDependencies.core
 //    implementation GroupieDependencies.dataBinding
-    implementation Dependencies.timber
-    implementation Dependencies.threeTen
+    implementation "com.jakewharton.timber:timber:4.7.1"
+    implementation "com.jakewharton.threetenabp:threetenabp:1.2.1"
 
     implementation RetrofitDependencies.core
     implementation RetrofitDependencies.rxJava
@@ -257,6 +263,8 @@ dependencies {
     implementation project(':core_data')
     implementation project(':shared')
 
+
+
     // demo
 
     implementation CoroutinesDependencies.core
@@ -280,8 +288,3 @@ dependencies {
 
 }
 
-kapt {
-    javacOptions {
-        option("-Xmaxerrs", 2000)
-    }
-}

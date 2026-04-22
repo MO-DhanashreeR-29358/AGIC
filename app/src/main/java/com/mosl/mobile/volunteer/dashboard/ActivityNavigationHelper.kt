@@ -64,7 +64,7 @@ class ActivityNavigationHelper @Inject constructor(
   }*/
 
     private fun Bundle.setupFragment(addToStack: Boolean = false) {
-        screenNavigator.openPage(getPageId(), this, addToStack)
+        screenNavigator.openPage(getPageId().toString(), this, addToStack)
     }
 
 /*  private fun isGamoogaNotification(intent: Intent): Boolean {

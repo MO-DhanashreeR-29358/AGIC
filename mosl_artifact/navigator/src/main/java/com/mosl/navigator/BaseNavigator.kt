@@ -29,13 +29,6 @@ interface BaseNavigator {
         forceReload: Boolean = false
     )
 
-    fun openPage(
-        pageId: Int,
-        args: Bundle = Bundle.EMPTY,
-        addToStack: Boolean = false,
-        forceReload: Boolean = false
-    )
-
     /**
      * This NavigationEntry instance will be used for navigating to other screens.
      * It may navigate to a fragment or activity or dialog,

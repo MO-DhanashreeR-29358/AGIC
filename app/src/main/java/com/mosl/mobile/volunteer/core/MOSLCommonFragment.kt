@@ -41,7 +41,7 @@ open class MOSLCommonFragment : BaseFragment() {
         val activity = activity
         if (activity != null) {
             hideKeyboard(activity.currentFocus)
-            screenNavigator.openPage(id, bundle, addStack)
+            screenNavigator.openPage(id.toString(), bundle, addStack)
         }
     }
 

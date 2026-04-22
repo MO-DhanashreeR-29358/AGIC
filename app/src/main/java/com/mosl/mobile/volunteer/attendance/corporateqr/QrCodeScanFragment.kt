@@ -92,7 +92,7 @@ class QrCodeScanFragment: MOSLCommonFragment(), ZXingScannerView.ResultHandler, 
             userManagerImpl.clearClientModel()
             userManagerImpl.saveClientModel(it.mapToClientDetails())
             screenNavigator.openPage(
-                NavigationConstants.NAVIGATE_TO_ATTENDANCE_DETAILS_FRAGMENT,
+                NavigationConstants.NAVIGATE_TO_ATTENDANCE_DETAILS_FRAGMENT.toString(),
                 args = Bundle().apply {
                     putString(EXTRA_COMPANY_ID, companyId)
                     putString(QrCodeScanContract.EXTRA_CORPORATE_NAME, corporateName)

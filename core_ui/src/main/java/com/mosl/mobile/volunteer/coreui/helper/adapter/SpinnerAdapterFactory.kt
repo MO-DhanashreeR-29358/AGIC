@@ -2,7 +2,7 @@ package com.mosl.mobile.volunteer.coreui.helper.adapter
 
 import android.content.Context
 import android.widget.ArrayAdapter
-import com.mosl.mobile.volunteer.coreui.R
+import com.mosl.mobile.coreui.R
 
 object SpinnerAdapterFactory {
 

@@ -3,8 +3,8 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
 android {
+  namespace 'com.mosl.debugview'
   compileSdkVersion Versions.compileSdkVersion
-  buildToolsVersion Versions.buildToolsVersion
 
   defaultConfig {
     minSdkVersion 21
@@ -23,8 +23,8 @@ android {
   }
 
   compileOptions {
-    sourceCompatibility JavaVersion.VERSION_1_8
-    targetCompatibility JavaVersion.VERSION_1_8
+    sourceCompatibility JavaVersion.VERSION_17
+    targetCompatibility JavaVersion.VERSION_17
   }
 }
 
@@ -35,7 +35,7 @@ dependencies {
   implementation AndroidxDependencies.constraintLayout
 
   //Dagger
-  compileOnly DaggerDependencies.core
+  implementation DaggerDependencies.core
   kapt DaggerDependencies.compiler
 
   //RxJava 2.0
@@ -46,12 +46,12 @@ dependencies {
   implementation RxBindingDependencies.bindingCore
   implementation "com.jakewharton.madge:madge:1.1.4"
   implementation 'com.jakewharton:process-phoenix:2.0.0'
-  implementation LeakCanaryDependencies.debug
+  debugImplementation LeakCanaryDependencies.debug
   implementation 'com.jakewharton.threetenabp:threetenabp:1.2.2'
   implementation OkHttpDependencies.core
   implementation RetrofitDependencies.core
   implementation RetrofitDependencies.mock
-  implementation Dependencies.timber
+  implementation "com.jakewharton.timber:timber:4.7.1"
 
   implementation KotlinDependencies.kotlin
 
