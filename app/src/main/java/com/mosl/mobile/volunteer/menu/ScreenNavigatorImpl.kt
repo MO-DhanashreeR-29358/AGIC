@@ -36,7 +36,7 @@ class ScreenNavigatorImpl @Inject constructor(
     }
 
     override fun openPage(pageId: String, addToStack: Boolean) {
-        TODO("Not yet implemented")
+        //("Not yet implemented")
     }
 
     override fun openHome() {
@@ -55,10 +55,6 @@ class ScreenNavigatorImpl @Inject constructor(
                 request.addToStack
             )
         )
-    }
-
-     fun openPage(pageId: Int, args: Bundle, addToStack: Boolean, forceReload: Boolean) {
-        openPage(NavigationRequest(pageId.toString(), args, addToStack, forceReload))
     }
 
 
@@ -98,9 +94,15 @@ class ScreenNavigatorImpl @Inject constructor(
         openPage(pageId.toString(), Bundle.EMPTY, addToStack)
     }
 
-    override fun openPage(pageId: String, args: Bundle, addToStack: Boolean, forceReload: Boolean) {
-        TODO("Not yet implemented")
+    override fun openPage(
+        pageId: String,
+        args: Bundle,
+        addToStack: Boolean,
+        forceReload: Boolean
+    ) {
+        openPage(NavigationRequest(pageId, args, addToStack, forceReload))
     }
+
 
     override fun pageNotAccessible() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
