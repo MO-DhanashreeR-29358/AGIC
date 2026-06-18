@@ -26,7 +26,7 @@ apply plugin: 'io.fabric'
 //}
 
 android {
-    namespace "com.mosl.mobile"
+    namespace "com.mosl.mobile.rm"
     packagingOptions {
         exclude 'META-INF/annotations.kotlin_module'
         exclude 'META-INF/rxbinding_release.kotlin_module'
@@ -43,7 +43,7 @@ android {
     keystoreProps.load(new FileInputStream(file('../keystore.properties')))
 
     defaultConfig {
-        applicationId "com.mosl.mobile"
+        applicationId "com.mosl.mobile.rm"
         minSdkVersion Versions.minSdkVersion
         targetSdkVersion Versions.targetSdkVersion
 
@@ -204,6 +204,8 @@ dependencies {
     implementation MofslArtifactDependencies.groupie*/
 
     implementation project(':appcore')
+    kapt project(':annotations')
+    implementation project(':annotations')
     implementation project(':artifact_annotations')
     debugImplementation project(':debugviewcore')
     debugImplementation project(':debugview')

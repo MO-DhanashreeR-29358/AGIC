@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:486598385892:android:cdff0586df9f3f59ad8cf1",
         "android_client_info": {
-          "package_name": "com.mosl.mobile"
+          "package_name": "com.mosl.mobile.rm"
         }
       },
       "oauth_client": [
@@ -46,7 +46,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:486598385892:android:795d807593983a6ead8cf1",
         "android_client_info": {
-          "package_name": "com.mosl.mobile.debug"
+          "package_name": "com.mosl.mobile.rm.debug"
         }
       },
       "oauth_client": [

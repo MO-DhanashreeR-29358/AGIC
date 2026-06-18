@@ -8,7 +8,7 @@
     <dist:module dist:instant="true" />
 
     <application
-        android:name="com.mosl.mobile.MOSLApplicationImpl"
+        android:name="com.mosl.mobile.rm.MOSLApplicationImpl"
         android:allowBackup="false"
         android:largeHeap="true"
         android:icon="@mipmap/ic_launcher"
@@ -18,16 +18,16 @@
         android:theme="@style/MoslTheme"
         android:hardwareAccelerated="true">
         <activity
-            android:name="com.mosl.mobile.newsletter.NewsLetterActivity"
+            android:name="com.mosl.mobile.rm.newsletter.NewsLetterActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             android:label="@string/title_activity_news_letter" />
         <activity
-            android:name="com.mosl.mobile.login.LoginActivity"
+            android:name="com.mosl.mobile.rm.login.LoginActivity"
             android:screenOrientation="portrait"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_login" />
-        <activity android:name="com.mosl.mobile.splash.SplashActivity"
+        <activity android:name="com.mosl.mobile.rm.splash.SplashActivity"
             android:theme="@style/SplashTheme"
             android:screenOrientation="portrait"
             android:exported="true"
@@ -39,7 +39,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.mosl.mobile.core.MOSLCommonActivity"
+            android:name="com.mosl.mobile.rm.core.MOSLCommonActivity"
             android:configChanges="keyboard|keyboardHidden|orientation"
             android:label="@string/main_app_name"
             android:launchMode="singleTop"
@@ -55,7 +55,7 @@
             android:exported="true"/>
 
         <service
-            android:name="com.mosl.mobile.service.MessageReceiverIntentService"
+            android:name="com.mosl.mobile.rm.service.MessageReceiverIntentService"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
