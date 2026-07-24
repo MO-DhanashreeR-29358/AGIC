@@ -129,12 +129,12 @@ class LoginActivity : LeanBaseActivity(), Navigator, LoginView {
     }
 
     private fun initData() {
-        val banner: RemoteConfigModel? =
+      /*  val banner: RemoteConfigModel? =
             gson.fromJson(remoteConfigData.get(), RemoteConfigModel::class.java)
         Glide.with(this)
             .load(banner?.splash)
             .diskCacheStrategy(DiskCacheStrategy.DATA)
-            .into(binding.imgBanner)
+            .into(binding.imgBanner)*/
     }
 
     internal fun openDashboard() {

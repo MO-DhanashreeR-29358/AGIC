@@ -76,18 +76,17 @@ class SplashActivity : LeanBaseActivity() {
     }
 
     private fun loadSplashImage(imageUrl: String?) {
-        if (imageUrl != null) {
+       /* if (imageUrl != null) {
             Glide.with(this)
                 .load(imageUrl)
                 .diskCacheStrategy(DiskCacheStrategy.DATA)
                 .into(binding.ivSplash)
-        }
+        }*/
     }
 
     private fun setupView() {
-        binding.txtAppInfo.text = "1.0"
-
-
+        binding.txtAppInfo.text = packageManager.getPackageInfo(packageName, 0).versionName
+       // binding.ivSplash.setImageResource(R.drawable.top_logo)
     }
 
 
@@ -138,7 +137,7 @@ class SplashActivity : LeanBaseActivity() {
     }
 
     private fun checkVersion() {
-        val remoteConfig = FirebaseRemoteConfig.getInstance()
+        /*val remoteConfig = FirebaseRemoteConfig.getInstance()
         val configSettings = FirebaseRemoteConfigSettings.Builder()
             .setMinimumFetchIntervalInSeconds(3600)
             .build()
@@ -147,18 +146,18 @@ class SplashActivity : LeanBaseActivity() {
         remoteConfig.fetchAndActivate()
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    val agicInit =
-                        remoteConfig.getString(getString(R.string.agic_init))
-                    if (agicInit != null && agicInit.isNotEmpty()) {
+                    val agicInit = remoteConfig.getString(getString(R.string.agic_init))
+                    if (agicInit.isNotEmpty()) {
                         val remoteConfigModel: RemoteConfigModel =
                             gson.fromJson(agicInit, RemoteConfigModel::class.java)
                         splashImgUrl.set(remoteConfigModel.splash)
                         remoteCongigData.set(agicInit)
-                        //loadSplashImage(remoteConfigModel.splash)
-                        initializeApp()
                     }
                 }
-            }
+                initializeApp()
+            }*/
+        initializeApp()
+
     }
 
     private fun initializeApp() {

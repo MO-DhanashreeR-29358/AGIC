@@ -1,18 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <ScrollView
         android:id="@+id/splash_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context=".splash.SplashActivity">
+        android:fillViewport="true"
+        android:fitsSystemWindows="true">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/ivSplash"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="fitXY" />
+            android:layout_height="wrap_content"
+            android:minHeight="600dp"
+            android:orientation="vertical"
+            tools:context=".splash.SplashActivity">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF">
+
+            <!-- Top Banner Logo -->
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_logo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/main_app_name"
+                android:scaleType="fitXY"
+                android:src="@drawable/top_logo"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- 22nd Middle Logo -->
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_banner"
+                android:layout_width="@dimen/_120sdp"
+                android:layout_height="@dimen/_120sdp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/middle_logo"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/img_logo" />
+
+            <!-- Annual Global Investor Conference text -->
+            <TextView
+                android:id="@+id/tv_conference_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Annual Global\nInvestor Conference"
+                android:textColor="#2C2A95"
+                android:textSize="@dimen/_22sdp"
+                android:textStyle="bold"
+                android:fontFamily="serif"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/img_banner" />
+
+            <!-- India Ahead Image -->
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_india_ahead"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:contentDescription="@string/main_app_name"
+                android:scaleType="fitCenter"
+                android:src="@drawable/india_ahead"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_conference_title" />
+
+
+
+            <!-- Progress Bar -->
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
             android:id="@+id/txt_app_info"
@@ -26,5 +101,7 @@
             tools:text="@string/alert_dialog_title" />
 
 
-    </FrameLayout>
+        </FrameLayout>
+
+    </ScrollView>
 </layout>

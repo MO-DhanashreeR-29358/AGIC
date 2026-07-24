@@ -83,6 +83,11 @@ object FeedbackMapper {
                     )
                 }
 
+                else -> FeedbackAnswerRequest(
+                    questionId = it.questionId,
+                    value = it.value,
+                    options = mutableListOf()
+                )
             }
 
 

@@ -38,7 +38,7 @@ data class CheckBoxOptionTag(
     @JvmField val answeredList: MutableList<CheckBoxAnswered>
 )
 
-sealed class FeedbackAnswer {
+abstract class FeedbackAnswer {
     abstract val questionId: String
     abstract val value: String
 }

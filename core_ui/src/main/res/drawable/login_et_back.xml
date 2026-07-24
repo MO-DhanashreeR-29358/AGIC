@@ -8,5 +8,5 @@
     <stroke
         android:color="@color/warmGrey"
         android:width="@dimen/_1sdp" />
-    <corners android:radius="@dimen/margin_extra_small" />
+    <corners android:radius="@dimen/margin_large" />
 </shape>

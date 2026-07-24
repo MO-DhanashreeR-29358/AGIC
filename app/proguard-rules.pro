@@ -26,3 +26,7 @@
 -keep class com.mosl.mobile.volunteer.appuser.model.User
 -keep class com.mosl.mobile.volunteer.domain.** { *; }
 -keep class com.mosl.mobile.volunteer.data.** { *; }
+
+# Flashbar
+-keep class com.mosl.mobile.flashbar.** { *; }
+-dontwarn com.mosl.mobile.flashbar.**

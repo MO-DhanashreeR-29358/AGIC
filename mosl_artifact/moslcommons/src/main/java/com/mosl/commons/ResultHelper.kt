@@ -13,7 +13,7 @@ fun <T> applyResult(): ObservableTransformer<T, Result<T>> {
 
 fun <T> Observable<T>.withResult(): Observable<Result<T>> {
   return map { Result.data(it) }
-      .onErrorReturn { Result.empty(it) }
+      .onErrorReturn { Result.empty(it) } as Observable<Result<T>>
 }
 
 inline fun <T> Result<T>.onData(action: (data: T) -> Unit) {
