@@ -60,7 +60,7 @@ class LoginActivity : LeanBaseActivity(), Navigator, LoginView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        binding = ActivityLoginBinding.bind(findViewById(R.id.constrainLaout))
+        binding = ActivityLoginBinding.bind(findViewById(R.id.login_layout_new))
         presenter.start()
         initData()
     }
@@ -71,13 +71,13 @@ class LoginActivity : LeanBaseActivity(), Navigator, LoginView {
     }
 
     private fun initData() {
-        val banner: RemoteConfigModel =
+ /*       val banner: RemoteConfigModel =
             gson.fromJson(remoteCongigData.get(), RemoteConfigModel::class.java)
         Glide.with(this)
             .load(banner.splash)
             .into(binding.imgBanner)
         binding.txtYear.text = banner.year
-        binding.txtAgic.text = banner.conferenceName
+        binding.txtAgic.text = banner.conferenceName*/
     }
 
     internal fun openDashboard(user: User) {

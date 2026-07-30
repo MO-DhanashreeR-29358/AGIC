@@ -45,3 +45,31 @@
 -keep class com.google.android.gms.internal.firebase_remote_config.** { *; }
 -keepclassmembers class com.google.android.gms.internal.firebase_remote_config.** { *; }
 -dontwarn com.google.firebase.remoteconfig.**
+-keep class **.ApiLoggerInterceptor { *; }
+
+# --- Keep attributes needed for reflection-based (de)serialization ---
+-keepattributes Signature, InnerClasses, EnclosingMethod
+-keepattributes RuntimeVisibleAnnotations, RuntimeVisibleParameterAnnotations
+-keepattributes AnnotationDefault
+
+# --- Retrofit ---
+-keepattributes Exceptions
+-keep,allowobfuscation,allowshrinking interface retrofit2.Call
+-keep,allowobfuscation,allowshrinking class retrofit2.Response
+-keep,allowobfuscation,allowshrinking class kotlin.coroutines.Continuation
+
+# --- OkHttp / Okio (usually shipped, but safe) ---
+-dontwarn okhttp3.**
+-dontwarn okio.**
+
+# --- Gson ---
+-keep class com.google.gson.** { *; }
+-keepclassmembers,allowobfuscation class * {
+    @com.google.gson.annotations.SerializedName <fields>;
+}
+
+# --- YOUR MODEL / DTO CLASSES (the important one) ---
+# Replace with the real package(s) that hold your request/response models
+
+-keepclassmembers class com.mosl.mobile.domain.** { *; }
+-keepclassmembers class com.mosl.data.api.** { *; }

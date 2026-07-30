@@ -78,12 +78,12 @@ class SplashActivity : LeanBaseActivity() {
     }
 
     private fun loadSplashImage(imageUrl: String?) {
-        if (imageUrl != null) {
+        /*if (imageUrl != null) {
             Glide.with(this)
                 .load(imageUrl)
                 .into(binding.imgSplash)
             binding.progressBar.visibility = View.GONE
-        }
+        }*/
     }
 
     fun setupView() {

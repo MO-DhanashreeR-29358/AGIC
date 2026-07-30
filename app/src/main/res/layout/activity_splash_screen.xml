@@ -1,41 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <FrameLayout
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <ScrollView
         android:id="@+id/splash_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="#FFFFFF"
-        tools:context=".splash.SplashActivity">
+        android:fillViewport="true"
+        android:fitsSystemWindows="true">
 
-        <ProgressBar
-            android:id="@+id/progress_bar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:visibility="visible"
-            />
-
-        <ImageView
-            android:id="@+id/imgSplash"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"
-            android:scaleType="fitCenter"/>
-
-        <TextView
-            android:id="@+id/txt_app_info"
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:gravity="center_horizontal"
-            android:padding="@dimen/padding_large"
-            android:textColor="@color/light_black"
-            android:textStyle="bold"
-            tools:text="@string/alert_dialog_title" />
+            android:minHeight="600dp"
+            android:orientation="vertical"
+            tools:context=".splash.SplashActivity">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FFFFFF">
+
+                <!-- Top Banner Logo -->
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_logo"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:contentDescription="@string/main_app_name"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/top_logo"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!-- 22nd Middle Logo -->
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_banner"
+
+                    android:layout_width="@dimen/_150sdp"
+                    android:layout_height="@dimen/_150sdp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/middle_logo"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/img_logo" />
+
+                <!-- Annual Global Investor Conference text -->
+                <TextView
+                    android:id="@+id/tv_conference_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Annual Global\nInvestor Conference"
+                    android:textColor="#2C2A95"
+                    android:textSize="@dimen/_22sdp"
+                    android:textStyle="bold"
+                    android:fontFamily="serif"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/img_banner" />
+
+                <!-- India Ahead Image -->
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_india_ahead"
+                    android:layout_width="wrap_content"
+                    android:layout_height="250dp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:contentDescription="@string/main_app_name"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/india_ahead"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_conference_title" />
 
 
-    </FrameLayout>
+
+                <!-- Progress Bar -->
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/txt_app_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:gravity="center_horizontal"
+                android:padding="@dimen/padding_large"
+                android:textColor="@color/light_black"
+                android:textStyle="bold"
+                tools:text="@string/alert_dialog_title" />
+
+
+        </FrameLayout>
+
+    </ScrollView>
 </layout>

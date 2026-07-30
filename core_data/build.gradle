@@ -63,8 +63,8 @@ dependencies {
   androidTestImplementation AndroidxDependencies.testRunner
   androidTestImplementation AndroidxDependencies.testEspresso
 
-  debugImplementation OkHttpDependencies.logger
-  debugImplementation OkHttpDependencies.core
+  implementation OkHttpDependencies.logger
+  implementation OkHttpDependencies.core
 //  implementation MofslArtifactDependencies.conceal
 
   implementation project(':appcore')

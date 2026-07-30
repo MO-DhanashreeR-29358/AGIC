@@ -2,139 +2,152 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constrainLaout"
+    <ScrollView
+        android:id="@+id/login_layout_new"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#ffffff">
+        android:fillViewport="true"
+        android:background="#FFFFFF">
 
-        <View
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/_50ssp"
-            android:layout_marginTop="@dimen/margin_extra_large"
-            android:background="#fff"
-            android:contentDescription="@string/app_name"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/img_logo"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_70sdp"
-            android:layout_marginTop="@dimen/_40sdp"
-            android:contentDescription="@string/app_name"
-            android:scaleType="fitCenter"
-            android:src="@drawable/mot_logo"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/img_banner"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="@dimen/margin_large"
-            android:layout_marginBottom="@dimen/margin_large"
-            android:contentDescription="@string/app_name"
-            app:layout_constraintBottom_toTopOf="@+id/txt_agic"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/img_logo"/>
-
-        <TextView
-            android:id="@+id/txt_agic"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_small"
-            android:gravity="center_horizontal"
-            android:textAllCaps="true"
-            android:textColor="@color/black"
-            android:textSize="0dp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/txt_year"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:minHeight="600dp">
 
-        <TextView
-            android:id="@+id/txt_year"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_large"
-            android:layout_marginBottom="@dimen/margin_large"
-            android:gravity="center"
-            android:scaleY="1.4"
-            android:textColor="@color/login_year_text_color"
-            android:textScaleX="1.5"
-            android:textSize="0dp"
-            android:textStyle="normal"
-            app:layout_constraintBottom_toTopOf="@+id/edit_unique_code"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent" />
+            <!-- Top Banner Logo -->
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_logo"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:contentDescription="@string/main_app_name"
+                android:scaleType="fitXY"
+                android:src="@drawable/top_logo"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/edit_unique_code"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/edittext_size"
-            android:layout_marginLeft="@dimen/margin_30"
-            android:layout_marginTop="@dimen/margin_large"
-            android:layout_marginRight="@dimen/margin_30"
-            android:layout_marginBottom="@dimen/margin_large"
-            android:autofillHints="@string/app_name"
-            android:background="@drawable/login_et_back"
-            android:gravity="center"
-            android:hint="@string/hint_label_digit_id"
-            android:imeOptions="actionDone"
-            android:inputType="textNoSuggestions"
-            android:maxLength="@integer/max_digit_id"
-            android:textColor="#000"
-            android:textColorHint="#888888"
-            android:textSize="@dimen/text_size_normal"
-            app:layout_constraintBottom_toTopOf="@+id/txt_login"
-            app:layout_constraintStart_toStartOf="parent" />
+            <!-- 22nd Middle Logo -->
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_banner"
+                android:layout_width="@dimen/_150sdp"
+                android:layout_height="@dimen/_150sdp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/middle_logo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/img_logo" />
 
-        <TextView
-            android:id="@+id/txt_login"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/edittext_size"
-            android:layout_marginLeft="@dimen/margin_30"
-            android:layout_marginRight="@dimen/margin_30"
-            android:layout_marginBottom="@dimen/margin_large"
-            android:background="@drawable/btn_background"
-            android:gravity="center"
-            android:text="@string/text_label_login"
-            android:textColor="@color/login_btn_text_color"
-            android:textSize="@dimen/text_size_normal"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/txt_permission"
-            app:layout_constraintStart_toStartOf="parent" />
+            <!-- Annual Global Investor Conference text -->
+            <TextView
+                android:id="@+id/tv_conference_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Annual Global\nInvestor Conference"
+                android:textColor="#2C2A95"
+                android:textSize="@dimen/_22sdp"
+                android:textStyle="bold"
+                android:fontFamily="serif"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/img_banner" />
 
-        <TextView
-            android:id="@+id/txt_permission"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_large"
-            android:layout_marginTop="@dimen/margin_large"
-            android:layout_marginEnd="@dimen/margin_large"
-            android:layout_marginBottom="@dimen/margin_large"
-            android:gravity="center_horizontal"
-            android:paddingLeft="@dimen/padding_extra_large"
-            android:paddingRight="@dimen/padding_extra_large"
-            android:text="@string/text_label_permission"
-            android:textColor="@color/login_permission_text_color"
-            android:textSize="@dimen/text_size_normal"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent" />
+            <!-- India Ahead Image -->
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_india_ahead"
+                android:layout_width="wrap_content"
+                android:layout_height="200dp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:contentDescription="@string/main_app_name"
+                android:scaleType="fitCenter"
+                android:src="@drawable/india_ahead"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_conference_title" />
 
-        <ProgressBar
-            android:id="@+id/progressBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <!-- 5 Digit ID EditText -->
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edit_unique_code"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/edittext_size"
+                android:layout_marginStart="@dimen/_60sdp"
+                android:layout_marginEnd="@dimen/_60sdp"
+                android:autofillHints="@string/main_app_name"
+                android:background="@drawable/login_et_back"
+                android:gravity="center"
+                android:hint="@string/hint_label_digit_id"
+                android:imeOptions="actionDone"
+                android:inputType="textNoSuggestions"
+                android:maxLength="@integer/max_digit_id"
+                android:textColor="#000"
+                android:textColorHint="#888888"
+                android:textSize="@dimen/text_size_normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/img_india_ahead" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <!-- Password field (hidden) -->
+            <androidx.appcompat.widget.AppCompatEditText
+                style="@style/AttendanceApp.EditText"
+                android:id="@+id/et_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:imeOptions="actionDone"
+                android:inputType="textPassword"
+                android:textSize="@dimen/text_size_medium"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/edit_unique_code" />
 
+            <!-- Login Button -->
+
+            <TextView
+                android:id="@+id/txt_login"
+                style="@style/AttendanceApp.Text.Bold"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/edittext_size"
+                android:layout_marginStart="@dimen/_60sdp"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:layout_marginEnd="@dimen/_60sdp"
+                android:background="@drawable/btn_background"
+                android:gravity="center"
+                android:text="@string/text_label_login"
+                android:textAllCaps="false"
+                android:textColor="#fff"
+                android:textSize="@dimen/text_size_medium"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/edit_unique_code" />
+
+            <!-- Access permitted text -->
+            <TextView
+                android:id="@+id/tv_permission"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:gravity="center"
+                android:text="@string/text_label_permission"
+                android:textColor="#2C2A95"
+                android:textSize="@dimen/_14sdp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txt_login" />
+
+            <!-- Progress Bar -->
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 </layout>

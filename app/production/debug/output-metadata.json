@@ -1,0 +1,20 @@
+{
+  "version": 3,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "com.mosl.agicapp.debug",
+  "variantName": "productionDebug",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "attributes": [],
+      "versionCode": 1009,
+      "versionName": "1.0.9",
+      "outputFile": "app-productionDebug-1.0.9.apk"
+    }
+  ],
+  "elementType": "File"
+}

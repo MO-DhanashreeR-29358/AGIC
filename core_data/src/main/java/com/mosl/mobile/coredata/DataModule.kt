@@ -3,6 +3,7 @@ package com.mosl.mobile.coredata
 import com.mosl.mobile.coredata.interceptor.EncryptionInterceptor
 import com.mosl.mobile.coredata.util.CertPinProvider
 import com.mosl.mobile.coredata.util.HttpListenerFactory
+import com.mosl.mobile.coredata.util.interceptors.ApiLoggerInterceptor
 import com.mosl.mobile.coredata.util.interceptors.CacheInterceptor
 import com.mosl.mobile.coredata.util.interceptors.HeaderInterceptor
 import dagger.Module
@@ -39,10 +40,12 @@ class DataModule {
         cacheInterceptor: CacheInterceptor,
         listenerFactory: HttpListenerFactory,
         okHttpCache: Cache,
-        pinProvider: CertPinProvider
+        pinProvider: CertPinProvider,
+        apiLoggerInterceptor: ApiLoggerInterceptor
     ): OkHttpClient {
         return createOkHttpClient(pinProvider.getPinner())
             .addNetworkInterceptor(cacheInterceptor)
+            .addNetworkInterceptor(apiLoggerInterceptor)
             .cache(okHttpCache)
             .eventListenerFactory(listenerFactory)
             .build()

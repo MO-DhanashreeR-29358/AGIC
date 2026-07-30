@@ -13,4 +13,19 @@
 
     </style>-->
 
+    <style name="AttendanceApp" />
+
+    <style name="AttendanceApp.Text.Bold" parent="AttendanceApp">
+        <item name="android:textColor">@color/primary_text_color</item>
+        <item name="fontFamily">@font/roboto_condensed_regular</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="AttendanceApp.EditText" parent="AttendanceApp">
+        <item name="android:textColor">@color/primary_text_color</item>
+        <item name="fontFamily">@font/roboto_condensed_regular</item>
+        <item name="android:background">@drawable/login_et_back</item>
+    </style>
+
+
 </resources>
