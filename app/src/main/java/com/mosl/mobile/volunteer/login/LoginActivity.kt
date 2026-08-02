@@ -199,7 +199,7 @@ class LoginActivity : LeanBaseActivity(), Navigator, LoginView {
     }
 
     override fun onDoneClicked(): Observable<Int> {
-        return binding.etUserId.editorActions { event -> event == EditorInfo.IME_ACTION_DONE }
+        return binding.editUniqueCode.editorActions { event -> event == EditorInfo.IME_ACTION_DONE }
     }
 
     override fun renderLogin(uiModel: UiModel<Volunteer>) {
@@ -247,7 +247,7 @@ class LoginActivity : LeanBaseActivity(), Navigator, LoginView {
     }
 
     override fun getUserId(): String {
-        return binding.etUserId.text?.trim()
+        return binding.editUniqueCode.text?.trim()
             .toString()
     }
 
@@ -256,7 +256,7 @@ class LoginActivity : LeanBaseActivity(), Navigator, LoginView {
     }
 
     override fun getPassword(): String {
-        return binding.etUserId.text?.trim().toString()
+        return binding.editUniqueCode.text?.trim().toString()
     }
 
     override fun isDataEmpty(): Boolean {

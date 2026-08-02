@@ -25,22 +25,21 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_medium"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:background="@color/white">
 
             <Button
                 android:id="@+id/btn_logout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:background="@color/orange"
+                android:background="@color/blue"
                 android:layout_margin="@dimen/margin_small"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:padding="@dimen/padding_small"
                 android:text="@string/text_label_yes"
                 android:textColor="@color/white"
-                android:textSize="@dimen/text_size_normal"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                android:backgroundTint="@color/orange"/>
+                android:textSize="@dimen/text_size_normal"/>
 
             <Button
                 android:id="@+id/dialogCancelBtn"
@@ -51,9 +50,8 @@
                 android:gravity="center"
                 android:padding="@dimen/padding_small"
                 android:text="@string/text_label_no"
-                android:backgroundTint="@color/black"
                 android:textColor="@color/white"
-                style="@style/Widget.AppCompat.Button.Borderless"
+                android:background="@color/blue"
                 android:textSize="@dimen/text_size_normal" />
 
         </LinearLayout>
