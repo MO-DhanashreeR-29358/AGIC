@@ -3,6 +3,8 @@
 # Animal Sniffer compileOnly dependency to ensure APIs are compatible with older versions of Java.
 -dontwarn org.codehaus.mojo.animal_sniffer.*
 
+-dontobfuscate
+
 # https://github.com/square/okhttp/blob/master/okhttp/src/main/resources/META-INF/proguard/okhttp3.pro
 # OkHttp (Updated-15/10/2018)
 # JSR 305 annotations are for embedding nullability information.
@@ -56,3 +58,17 @@
 -keep class com.google.android.gms.internal.firebase_remote_config.** { *; }
 -keepclassmembers class com.google.android.gms.internal.firebase_remote_config.** { *; }
 -dontwarn com.google.firebase.remoteconfig.**
+
+# --- Your models / domain classes ---
+-keep class com.mosl.mobile.domain.** { *; }
+-keep class com.mosl.data.api.** { *; }
+-keep class com.mosl.mobile.data.** { *; }
+
+# --- Attributes reflection-based JSON needs ---
+-keepattributes Signature, RuntimeVisibleAnnotations, AnnotationDefault
+
+# --- Gson: keep any field annotated with @SerializedName even if class is obfuscated ---
+-keepclassmembers,allowobfuscation class * {
+    @com.google.gson.annotations.SerializedName <fields>;
+}
+
