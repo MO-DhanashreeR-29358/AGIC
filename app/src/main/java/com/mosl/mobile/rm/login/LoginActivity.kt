@@ -57,7 +57,7 @@ class LoginActivity : LeanBaseActivity(), Navigator, LoginView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        binding = ActivityLoginBinding.bind(findViewById(R.id.constrainLaout))
+        binding = ActivityLoginBinding.bind(findViewById(R.id.login_layout_new))
         presenter.start()
         initData()
     }
@@ -65,12 +65,12 @@ class LoginActivity : LeanBaseActivity(), Navigator, LoginView {
     private fun initData() {
 //        val banner: RemoteConfigModel? =
 //            gson.fromJson(remoteCongigData.get(), RemoteConfigModel::class.java)
-        Glide.with(this)
+       /* Glide.with(this)
             .load("https://ekyc.motilaloswal.com/ekyc_icons/agic/AGICSplash.png")
             .diskCacheStrategy(DiskCacheStrategy.DATA)
             .into(binding.imgBanner)
         binding.txtYear.text = "2025"
-        binding.txtAgic.text = "AGIC"
+        binding.txtAgic.text = "AGIC"*/
     }
 
     internal fun openDashboard() {

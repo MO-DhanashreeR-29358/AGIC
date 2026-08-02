@@ -72,10 +72,10 @@ class SplashActivity : LeanBaseActivity() {
     }
 
     private fun loadSplashImage(imageUrl: String?) {
-        Glide.with(this)
+        /*Glide.with(this)
             .load("https://ekyc.motilaloswal.com/ekyc_icons/agic/AGICSplash.png")
             .diskCacheStrategy(DiskCacheStrategy.DATA)
-            .into(binding.ivSplash)
+            .into(binding.ivSplash)*/
     }
 
     fun setupView() {
@@ -157,7 +157,7 @@ class SplashActivity : LeanBaseActivity() {
 
                         remoteCongigData.set(agicInit)
                         loadSplashImage(remoteConfigModel.splash)
-                        Toast.makeText(this,"Remote Config ${remoteConfigModel.splash}",Toast.LENGTH_LONG).show()
+                       // Toast.makeText(this,"Remote Config ${remoteConfigModel.splash}",Toast.LENGTH_LONG).show()
 
                         /*if (BuildConfig.VERSION_NAME.equals(remoteConfigModel.android.version)) {
                             initializeApp()

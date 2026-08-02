@@ -244,13 +244,13 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
 
     fun changeImage() {
 
-        Glide.with(this@MOSLCommonActivity)
+       /* Glide.with(this@MOSLCommonActivity)
             .load(remoteConfigModel?.logo)
             .into(binding.imgLogo)
 
         Glide.with(this@MOSLCommonActivity)
             .load(remoteConfigModel?.conferenceLogo)
-            .into(binding.imgLogoTemp)
+            .into(binding.imgLogoTemp)*/
 
         val handler = Handler()
         val runnable = object : Runnable {
