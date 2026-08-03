@@ -5,7 +5,7 @@ apply plugin: 'com.google.gms.google-services'
 apply plugin: 'io.fabric'
 apply plugin: 'kotlin-parcelize'
 
-def gitSha() {
+/*def gitSha() {
     def p = 'git rev-parse --short HEAD'.execute([], project.rootDir)
     p.waitFor()
     if (p.exitValue() != 0) {
@@ -23,7 +23,7 @@ def gitTimestamp() {
     }
 
     return p.text.trim()
-}
+}*/
 
 android {
     namespace 'com.mosl.agicapp'
@@ -46,8 +46,8 @@ android {
         minSdkVersion Versions.minSdkVersion
         targetSdkVersion Versions.targetSdkVersion
 
-        buildConfigField 'String', 'GIT_SHA', "\"${gitSha()}\""
-        buildConfigField 'long', 'GIT_TIMESTAMP', "${gitTimestamp()}L"
+        //buildConfigField 'String', 'GIT_SHA', "\"${gitSha()}\""
+      //  buildConfigField 'long', 'GIT_TIMESTAMP', "${gitTimestamp()}L"
 
         resConfigs "en", "hi"
         vectorDrawables.useSupportLibrary = true
