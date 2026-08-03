@@ -102,7 +102,7 @@ class ApiLoggerInterceptor @Inject constructor(
                 appendLine()
             }
 
-            FileWriter(logFile, true).use { it.write(entry) }
+           // FileWriter(logFile, true).use { it.write(entry) }
         } catch (e: Exception) {
             // Silently ignore file write failures — never crash the app for logging
         }

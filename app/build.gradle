@@ -125,8 +125,8 @@ android {
             debuggable false
             manifestPlaceholders = [crashlyticsEnabled: true]
             multiDexEnabled true
-            minifyEnabled true
-            shrinkResources true
+            minifyEnabled false
+            shrinkResources false
             proguardFile 'proguard-conceal.pro'
             proguardFile 'proguard-crashlytics.pro'
             proguardFile 'proguard-retrofit.pro'
