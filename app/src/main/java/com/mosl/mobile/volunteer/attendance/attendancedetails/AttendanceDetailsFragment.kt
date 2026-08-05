@@ -85,10 +85,10 @@ class AttendanceDetailsFragment: MOSLCommonFragment(), AttendanceDetailsContract
     private fun initData() {
 //        val banner: RemoteConfigModel? =
 //            gson.fromJson(remoteConfigData.get(), RemoteConfigModel::class.java)
-        Glide.with(this)
+       /* Glide.with(this)
             .load(remoteConfigModel?.headerImage)
             .diskCacheStrategy(DiskCacheStrategy.DATA)
-            .into(binding.header.icMosl)
+            .into(binding.header.icMosl)*/
     }
 
     override fun onYesNoBtnClicked(): Observable<AttendanceDetailsEvent.YesNoClicked> {

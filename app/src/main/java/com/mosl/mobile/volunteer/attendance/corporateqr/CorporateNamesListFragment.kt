@@ -53,11 +53,11 @@ class CorporateNamesListFragment: MOSLCommonFragment(), CorporateNamesListContra
     private fun initData() {
 //        val banner: RemoteConfigModel? =
 //            gson.fromJson(remoteConfigData.get(), RemoteConfigModel::class.java)
-        Log.d("Volunteer Imageeeee:" , remoteConfigModel?.headerImage.toString() )
+       /* Log.d("Volunteer Imageeeee:" , remoteConfigModel?.headerImage.toString() )
         Glide.with(this)
             .load(remoteConfigModel?.headerImage)
             .diskCacheStrategy(DiskCacheStrategy.DATA)
-            .into(binding.header.icMosl)
+            .into(binding.header.icMosl)*/
     }
 
     private fun setUpRecyclerView() {
