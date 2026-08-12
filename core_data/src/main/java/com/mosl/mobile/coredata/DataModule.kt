@@ -22,8 +22,8 @@ class DataModule {
     companion object {
         fun createOkHttpClient(pinner: CertificatePinner?): OkHttpClient.Builder {
             val builder = OkHttpClient.Builder()
-                .readTimeout(20, TimeUnit.SECONDS)
-                .connectTimeout(20, TimeUnit.SECONDS)
+                .readTimeout(20, TimeUnit.MINUTES)
+                .connectTimeout(20, TimeUnit.MINUTES)
 //            if (pinner != null) {
 //                builder.certificatePinner(pinner)
 //            }

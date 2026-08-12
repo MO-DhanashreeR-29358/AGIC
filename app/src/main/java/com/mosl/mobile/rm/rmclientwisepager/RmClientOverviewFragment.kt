@@ -85,15 +85,15 @@ class RmClientOverviewFragment : MOSLCommonPager(), RmClientOverviewPagerContrac
     private fun setUpAdapter() {
         binding.tabLayout.visibility = View.VISIBLE
         pagerAdapter = ViewPagerAdapter(childFragmentManager, requireContext(), this)
-        val tabData: RemoteConfigModel =
+       /* val tabData: RemoteConfigModel =
             gson.fromJson(remoteCongigData.get(), RemoteConfigModel::class.java)
         Timber.i("Tab Size: ${tabData.tabSize}")
         if(tabData.tabSize.equals("2")){
             pagerAdapter.setFragmentTitles(com.mosl.mobile.coreui.R.array.tabTitles2)
-        }else{
+        }else{*/
             pagerAdapter.setFragmentTitles(com.mosl.mobile.coreui.R.array.tabTitles)
 
-        }
+        //}
         mPager.adapter = pagerAdapter
         mPager.offscreenPageLimit = 3
         mPager.addOnPageChangeListener(pageChangeListener)
