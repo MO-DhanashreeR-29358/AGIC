@@ -11,7 +11,6 @@
             android:id="@+id/ic_mosl"
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:visibility="gone"
             android:src="@drawable/top_logo"
             android:scaleType="fitXY"/>
     </FrameLayout>

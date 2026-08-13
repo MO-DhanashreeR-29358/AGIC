@@ -51,7 +51,8 @@
                                     android:layout_height="@dimen/img_news_letter"
                                     android:layout_gravity="center_vertical"
                                     android:src="@drawable/middle_logo"
-                                    android:layout_margin="@dimen/margin_small" />
+                                    android:layout_margin="@dimen/margin_small"
+                                    android:visibility="gone"/>
 
                                 <androidx.appcompat.widget.AppCompatImageView
                                     android:id="@+id/img_logo_temp"

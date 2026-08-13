@@ -198,7 +198,7 @@ class MOSLCommonActivity : BaseActivity(), Navigator, ActivityDelegate {
             gson.fromJson(remoteConfigData.get(), RemoteConfigModel::class.java)
         setupObservables()
         setUpView()
-        changeImage()
+      //  changeImage()
     }
 
     private fun setUpView() {
